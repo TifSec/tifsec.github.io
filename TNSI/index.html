@@ -259,11 +259,12 @@
             </ul>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple simple : La Factorielle</h4>
-            <pre><code>def factorielle(n):
-            if n == 0:  # Cas de base
-                return 1
-            else:
-                return n * factorielle(n - 1)  # Cas récursif
+            <pre><code>
+                def factorielle(n):
+                    if n == 0:  # Cas de base
+                        return 1
+                    else:
+                        return n * factorielle(n - 1)  # Cas récursif
             </code></pre>
         
             <p>Explication du fonctionnement :</p>
@@ -277,13 +278,14 @@
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Modélisation du labyrinthe</h4>
             <p>Nous représentons le labyrinthe comme une liste de listes en Python :</p>
         
-            <pre><code>labyrinthe = [
-                ['S', 1, 0, 0, 1],
-                [0, 1, 0, 1, 0],
-                [0, 0, 0, 1, 'E'],
-                [1, 1, 0, 0, 1],
-                [0, 0, 0, 1, 0]
-            ]
+            <pre><code>
+                labyrinthe = [
+                    ['S', 1, 0, 0, 1],
+                    [0, 1, 0, 1, 0],
+                    [0, 0, 0, 1, 'E'],
+                    [1, 1, 0, 0, 1],
+                    [0, 0, 0, 1, 0]
+                ]
             </code></pre>
         
             <ul>
@@ -296,32 +298,33 @@
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Exploration récursive du labyrinthe</h4>
             <p>Le héros doit explorer toutes les directions possibles. Pour cela, nous allons créer une fonction récursive qui essaie toutes les directions (haut, bas, gauche, droite).</p>
         
-            <pre><code>def explorer_labyrinthe(labyrinthe, x, y, visitees):
-                # Vérifier les limites du labyrinthe
-                if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
+            <pre><code>
+                def explorer_labyrinthe(labyrinthe, x, y, visitees):
+                    # Vérifier les limites du labyrinthe
+                    if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
+                        return False
+                    
+                    # Vérifier si la case est un mur ou déjà visitée
+                    if labyrinthe[x][y] == 1 or (x, y) in visitees:
+                        return False
+                    
+                    # Si on a trouvé la sortie
+                    if labyrinthe[x][y] == 'E':
+                        print(f"Sortie trouvée à la position ({x}, {y})")
+                        return True
+                    
+                    # Marquer la case comme visitée
+                    visitees.add((x, y))
+                    
+                    # Appeler la fonction récursive dans les 4 directions
+                    if (explorer_labyrinthe(labyrinthe, x+1, y, visitees) or  # Bas
+                        explorer_labyrinthe(labyrinthe, x-1, y, visitees) or  # Haut
+                        explorer_labyrinthe(labyrinthe, x, y+1, visitees) or  # Droite
+                        explorer_labyrinthe(labyrinthe, x, y-1, visitees)):   # Gauche
+                        return True
+                    
+                    # Si aucune direction ne fonctionne, on retourne False
                     return False
-                
-                # Vérifier si la case est un mur ou déjà visitée
-                if labyrinthe[x][y] == 1 or (x, y) in visitees:
-                    return False
-                
-                # Si on a trouvé la sortie
-                if labyrinthe[x][y] == 'E':
-                    print(f"Sortie trouvée à la position ({x}, {y})")
-                    return True
-                
-                # Marquer la case comme visitée
-                visitees.add((x, y))
-                
-                # Appeler la fonction récursive dans les 4 directions
-                if (explorer_labyrinthe(labyrinthe, x+1, y, visitees) or  # Bas
-                    explorer_labyrinthe(labyrinthe, x-1, y, visitees) or  # Haut
-                    explorer_labyrinthe(labyrinthe, x, y+1, visitees) or  # Droite
-                    explorer_labyrinthe(labyrinthe, x, y-1, visitees)):   # Gauche
-                    return True
-                
-                # Si aucune direction ne fonctionne, on retourne False
-                return False
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Explication du Code</h4>
@@ -335,7 +338,8 @@
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Tester l’exploration du labyrinthe</h4>
             <p>Les élèves doivent modifier et exécuter la fonction pour que le héros puisse trouver la sortie.</p>
         
-            <pre><code># Position de départ (0, 0)
+            <pre><code>
+                # Position de départ (0, 0)
                 position_depart = (0, 0)
                 
                 # Ensemble des cases visitées
@@ -393,7 +397,9 @@
             { start: '2025-07-05', end: '2025-09-02', name: 'Vacances d\'été' }
         ];
     
-        const sessions = [];
+        const sessions = [
+            'Séance 1 : Introduction à la récursivité (concepts de base)'
+        ];
     
         function isHoliday(date) {
             return holidays[date] !== undefined;
