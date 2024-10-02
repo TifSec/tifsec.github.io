@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme TIM CGEA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        main {
+            margin-left: 200px;
+            padding: 20px;
+            min-height: 80vh;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        aside {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            transition: width 0.3s ease;
+            overflow-y: auto;
+            scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
+        }
+
+        aside::-webkit-scrollbar {
+            display: none; /* Masque la barre de défilement pour Chrome, Safari, et Opera */
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            padding: 10px;
+        }
+
+        aside ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        /* Style pour l'élément de menu actif (séance en cours) */
+        aside ul li a.active {
+            background-color: #4CAF50; /* Couleur pour l'élément actif */
+            color: white;
+            font-weight: bold;
+        }
+
+        aside ul li a:hover {
+            background-color: #555;
+        }
+
+        .hamburger {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Styles spécifiques pour le calendrier */
+        table.calendar {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        /* th {
+            background-color: #f2f2f2;
+        } */
+
+        .holiday {
+            background-color: green;
+            color: white;
+        }
+
+        .vacation {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .current-week {
+            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
+        }
+
+        pre{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Programme TIM CGEA</h1>
+    </header>
+
+    <!-- Menu hamburger sur la gauche -->
+    <aside id="menu">
+        <button class="hamburger" onclick="toggleMenu()">☰ Séances</button>
+        <nav id="session-nav">
+            <ul>
+                <!-- CALENDRIER -->
+                <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
+
+                <!-- CALC - Tableaux de bord -->
+                <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à LibreOffice Calc</a></li>
+                <li><a href="#" onclick="showSession('session2')">Séance 2 : Formules de base et gestion des données dans Calc</a></li>
+                <li><a href="#" onclick="showSession('session3')">Séance 3 : Création de tableaux de bord</a></li>
+                <li><a href="#" onclick="showSession('session4')">Séance 4 : Formatage avancé et personnalisation des tableaux de bord</a></li>
+                <li><a href="#" onclick="showSession('session5')">Séance 5 : Évaluation 1</a></li>
+                <li><a href="#" onclick="showSession('session6')">Séance 6 : Fonctions avancées dans Calc</a></li>
+                <li><a href="#" onclick="showSession('session7')">Séance 7 : Automatisation dans Calc</a></li>
+                <li><a href="#" onclick="showSession('session8')">Séance 8 : Intégration de cartes géographiques avec les données de Calc</a></li>
+                <li><a href="#" onclick="showSession('session9')">Séance 9 : Visualisation de données avancée</a></li>
+                <li><a href="#" onclick="showSession('session10')">Séance 10 : Techniques de mise en page avancée pour les tableaux de bord</a></li>
+                <li><a href="#" onclick="showSession('session11')">Séance 11 : Évaluation 2</a></li>
+                <li><a href="#" onclick="showSession('session12')">Séance 12 : Collaboration avec Calc</a></li>
+                <li><a href="#" onclick="showSession('session13')">Séance 13 : Analyse de données avancée</a></li>
+                <li><a href="#" onclick="showSession('session14')">Séance 14 : Optimisation des tableaux de bord</a></li>
+                <li><a href="#" onclick="showSession('session15')">Séance 15 : Évaluation 3</a></li>
+                <li><a href="#" onclick="showSession('session16')">Séance 16 : Introduction à Writer et Impress</a></li>
+                <li><a href="#" onclick="showSession('session17')">Séance 17 : Projet de fin de semestre</a></li>
+                <li><a href="#" onclick="showSession('session18')">Séance 18 : Évaluation finale</a></li>
+
+                <!-- WRITER ET IMPRESS -->
+                <li><a href="#" onclick="showSession('session19')">Séance 19 : Création de tableaux de bord interactifs dans Calc</a></li>
+                <li><a href="#" onclick="showSession('session20')">Séance 20 : Personnalisation avancée des tableaux de bord</a></li>
+                <li><a href="#" onclick="showSession('session21')">Séance 21 : Automatisation des tableaux de bord avec des macros et fonctions avancées</a></li>
+                <li><a href="#" onclick="showSession('session22')">Séance 22 : Intégration des cartes interactives dans les tableaux de bord</a></li>
+                <li><a href="#" onclick="showSession('session23')">Séance 23 : Création de tableaux de bord interactifs pour la gestion de projets</a></li>
+                <li><a href="#" onclick="showSession('session24')">Séance 24 : Optimisation et finalisation des tableaux de bord interactifs</a></li>
+
+                <!-- PROJET FINAL -->
+                <li><a href="#" onclick="showSession('session25')">Séance 25 : Introduction au projet final</a></li>
+                <li><a href="#" onclick="showSession('session26')">Séance 26 : Conception du projet final</a></li>
+                <li><a href="#" onclick="showSession('session27')">Séance 27 : Avancement du projet fina</a></li>
+                <li><a href="#" onclick="showSession('session28')">Séance 28 : Finalisation du projet final</a></li>
+                <li><a href="#" onclick="showSession('session29')">Séance 29 : Soutenance du projet final</a></li>
+                <li><a href="#" onclick="showSession('session30')">Séance 30 : Évaluation finale</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="content">
+        <!-- Calendrier -->
+        <section id="calendar" class="content-section">
+            <h2>Calendrier de cours des CGEA - 2024/2025</h2>
+            <table class="calendar">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                    <!-- Les lignes du calendrier seront générées ici par JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Onglet 1: Calc - Séance 1 -->
+        <section id="session1" class="content-section active">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 1 : Introduction à LibreOffice Calc</h2>
+            
+            <p><strong>Objectif :</strong> Comprendre les bases de Calc et son rôle dans la gestion des données.</p>
+        
+            <p>Calc est un tableur, un outil qui vous permet de manipuler des données sous forme de tableaux. Vous pouvez l'utiliser pour calculer automatiquement des sommes, des moyennes, ou visualiser des informations sous forme de graphiques. Aujourd'hui, nous allons explorer les bases : création d'une feuille de calcul, saisie de données et formatage simple.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">1. Vue d’ensemble de l'interface</h3>
+        
+            <p>L'interface de LibreOffice Calc se compose de plusieurs éléments principaux :</p>
+            <ul>
+                <li><strong>Barre de menus :</strong> en haut, vous trouverez des options pour enregistrer, ouvrir, ou formater des fichiers.</li>
+                <li><strong>Barre d'outils :</strong> des icônes pour effectuer des actions rapides comme copier/coller, mettre en gras, ou créer un graphique.</li>
+                <li><strong>Grille de cellules :</strong> la zone où vous saisissez les données, organisée en colonnes (A, B, C...) et en lignes (1, 2, 3...).</li>
+                <li><strong>Barre de formules :</strong> elle vous permet d'écrire des formules pour calculer automatiquement des résultats.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">2. Création d’une feuille de calcul</h3>
+            <p>Pour commencer, suivez ces étapes simples :</p>
+            <ul>
+                <li>Ouvrez LibreOffice Calc.</li>
+                <li>Créez une nouvelle feuille de calcul en sélectionnant <strong>Fichier > Nouveau > Feuille de calcul</strong>.</li>
+                <li>Vous verrez un tableau vide où vous pourrez saisir vos données.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">3. Saisie de données simples</h3>
+            <p>Dans cet exercice, nous allons créer un tableau pour organiser une liste de jeux vidéo avec les colonnes suivantes :</p>
+            <ul>
+                <li>Nom du jeu</li>
+                <li>Genre</li>
+                <li>Prix</li>
+                <li>Note</li>
+            </ul>
+        
+            <p><strong>Exercice :</strong> Entrez les données suivantes dans les cellules correspondantes :</p>
+            <table>
+                <tr>
+                    <th>Nom du jeu</th>
+                    <th>Genre</th>
+                    <th>Prix (€)</th>
+                    <th>Note (/10)</th>
+                </tr>
+                <tr>
+                    <td>The Witcher 3</td>
+                    <td>RPG</td>
+                    <td>30</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td>Minecraft</td>
+                    <td>Sandbox</td>
+                    <td>20</td>
+                    <td>8.5</td>
+                </tr>
+                <tr>
+                    <td>FIFA 22</td>
+                    <td>Sport</td>
+                    <td>60</td>
+                    <td>7.5</td>
+                </tr>
+                <tr>
+                    <td>GTA V</td>
+                    <td>Action</td>
+                    <td>40</td>
+                    <td>9.5</td>
+                </tr>
+                <tr>
+                    <td>Among Us</td>
+                    <td>Party Game</td>
+                    <td>5</td>
+                    <td>7</td>
+                </tr>
+            </table>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">4. Formatage de base</h3>
+            <p>Maintenant que vous avez entré vos données, voici comment les formater pour rendre votre tableau plus lisible :</p>
+            <ul>
+                <li>Sélectionnez les en-têtes (Nom du jeu, Genre, Prix, Note) et mettez-les en <strong>gras</strong>.</li>
+                <li>Modifiez l'<strong>alignement</strong> des colonnes pour centrer le texte dans chaque cellule.</li>
+                <li>Changez la <strong>couleur</strong> du texte des en-têtes pour les rendre plus visibles.</li>
+            </ul>
+        
+            <p>Exemple de formatage :</p>
+            <section id="tableau-formate">
+                <table style="width:100%; border-collapse: collapse; text-align: center;">
+                    <thead style="background-color: #4CAF50; color: white; font-weight: bold;">
+                        <tr>
+                            <th style="padding: 10px; border: 1px solid black;">Nom du jeu</th>
+                            <th style="padding: 10px; border: 1px solid black;">Genre</th>
+                            <th style="padding: 10px; border: 1px solid black;">Prix (€)</th>
+                            <th style="padding: 10px; border: 1px solid black;">Note (/10)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid black;">The Witcher 3</td>
+                            <td style="padding: 10px; border: 1px solid black;">RPG</td>
+                            <td style="padding: 10px; border: 1px solid black;">30</td>
+                            <td style="padding: 10px; border: 1px solid black;">9</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid black;">Minecraft</td>
+                            <td style="padding: 10px; border: 1px solid black;">Sandbox</td>
+                            <td style="padding: 10px; border: 1px solid black;">20</td>
+                            <td style="padding: 10px; border: 1px solid black;">8.5</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid black;">FIFA 22</td>
+                            <td style="padding: 10px; border: 1px solid black;">Sport</td>
+                            <td style="padding: 10px; border: 1px solid black;">60</td>
+                            <td style="padding: 10px; border: 1px solid black;">7.5</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid black;">GTA V</td>
+                            <td style="padding: 10px; border: 1px solid black;">Action</td>
+                            <td style="padding: 10px; border: 1px solid black;">40</td>
+                            <td style="padding: 10px; border: 1px solid black;">9.5</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid black;">Among Us</td>
+                            <td style="padding: 10px; border: 1px solid black;">Party Game</td>
+                            <td style="padding: 10px; border: 1px solid black;">5</td>
+                            <td style="padding: 10px; border: 1px solid black;">7</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">5. Enregistrer votre fichier</h3>
+            <p>Pour enregistrer votre travail :</p>
+            <ul>
+                <li>Allez dans <strong>Fichier > Enregistrer sous</strong>.</li>
+                <li>Choisissez l'emplacement où vous souhaitez enregistrer le fichier.</li>
+                <li>Donnez un nom à votre fichier et sélectionnez <strong>Feuille de calcul ODS</strong> comme type de fichier.</li>
+            </ul>
+        
+            <h3>Conclusion</h3>
+            <p>Dans cette séance, nous avons découvert l'interface de LibreOffice Calc, appris à créer une feuille de calcul, à entrer des données et à les formater. Cela vous permettra d'organiser efficacement vos informations et de les rendre plus lisibles. Dans la prochaine séance, nous explorerons l'utilisation des formules pour automatiser les calculs dans votre tableau.</p>
+        
+            <p><strong>À suivre :</strong> Séance 2 - Formules de base dans Calc (Somme, Moyenne, etc.).</p>
+        </section>
+
+        <!-- Séance 2 -->
+        <section id="session2" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 2 : Formules de base et gestion des données dans LibreOffice Calc</h2>
+        
+            <p><strong>Objectif :</strong> Apprendre à utiliser les formules simples dans LibreOffice Calc pour organiser et analyser des données efficacement.</p>
+        
+            <p>Dans cette séance, nous allons découvrir comment utiliser des formules de base telles que <strong>SOMME</strong>, <strong>MOYENNE</strong>, <strong>MINIMUM</strong> et <strong>MAXIMUM</strong>, ainsi que la gestion des lignes et des colonnes pour organiser vos données de manière plus efficace. Ces fonctions sont essentielles pour automatiser des calculs dans vos tableaux.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">1. Introduction aux formules dans Calc</h3>
+            <p>Les formules permettent de faire des calculs automatiquement dans Calc. Elles commencent toujours par un signe égal <strong>=</strong> et peuvent inclure des références à des cellules. Par exemple, une formule simple pour additionner les valeurs des cellules A1 et B1 serait : <code>=A1+B1</code>.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">2. Utilisation de la fonction SOMME</h3>
+            <p>La fonction <strong>SOMME</strong> permet d'additionner plusieurs cellules automatiquement.</p>
+            <p><strong>Exemple :</strong> Si vous avez une liste de prix dans les cellules A1 à A5 et que vous souhaitez obtenir la somme totale, voici la formule à utiliser :</p>
+            <code>=SOMME(A1:A5)</code>
+            <p>Cette formule va additionner toutes les valeurs des cellules A1 à A5.</p>
+        
+            <p><strong>Exercice :</strong> Dans un tableau de jeux vidéo, calculez la somme des prix des jeux en utilisant la fonction SOMME :</p>
+            <table>
+                <tr>
+                    <th>Nom du jeu</th>
+                    <th>Prix (€)</th>
+                </tr>
+                <tr>
+                    <td>The Witcher 3</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>Minecraft</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>FIFA 22</td>
+                    <td>60</td>
+                </tr>
+                <tr>
+                    <td>GTA V</td>
+                    <td>40</td>
+                </tr>
+                <tr>
+                    <td>Among Us</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td><strong>Total :</strong></td>
+                    <td><strong>=SOMME(B2:B6)</strong></td>
+                </tr>
+            </table>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">3. Utilisation de la fonction MOYENNE</h3>
+            <p>La fonction <strong>MOYENNE</strong> calcule la moyenne des valeurs d'une série de cellules.</p>
+            <p><strong>Exemple :</strong> Pour calculer la moyenne des prix des jeux dans les cellules B2 à B6 :</p>
+            <code>=MOYENNE(B2:B6)</code>
+            <p>Cette formule va calculer la moyenne des valeurs des cellules B2 à B6.</p>
+        
+            <p><strong>Exercice :</strong> Calculez la moyenne des prix des jeux dans le tableau ci-dessus.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">4. Utilisation des fonctions MINIMUM et MAXIMUM</h3>
+            <p>Les fonctions <strong>MINIMUM</strong> (<code>MIN</code>) et <strong>MAXIMUM</strong> (<code>MAX</code>) vous permettent de trouver la plus petite et la plus grande valeur dans une plage de cellules.</p>
+        
+            <p><strong>Exemple :</strong> Pour trouver le prix le plus bas et le prix le plus élevé parmi les jeux :</p>
+            <ul>
+                <li>Prix minimum : <code>=MIN(B2:B6)</code></li>
+                <li>Prix maximum : <code>=MAX(B2:B6)</code></li>
+            </ul>
+        
+            <p><strong>Exercice :</strong> Trouvez le prix le plus bas et le plus élevé dans le tableau des jeux ci-dessus.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">5. Gestion des lignes et colonnes</h3>
+            <p>Il est parfois nécessaire de modifier la structure de votre tableau en ajoutant ou en supprimant des lignes et des colonnes. Voici comment faire :</p>
+            <ul>
+                <li><strong>Ajouter une ligne :</strong> Cliquez avec le bouton droit sur une ligne, puis sélectionnez <strong>Insérer > Ligne au-dessus/au-dessous</strong>.</li>
+                <li><strong>Supprimer une ligne :</strong> Cliquez avec le bouton droit sur la ligne à supprimer, puis sélectionnez <strong>Supprimer > Ligne</strong>.</li>
+                <li><strong>Ajouter une colonne :</strong> Cliquez avec le bouton droit sur une colonne, puis sélectionnez <strong>Insérer > Colonne à gauche/à droite</strong>.</li>
+                <li><strong>Supprimer une colonne :</strong> Cliquez avec le bouton droit sur la colonne à supprimer, puis sélectionnez <strong>Supprimer > Colonne</strong>.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">6. Exercice pratique : Analyse des données</h3>
+            <p>À partir du tableau de jeux vidéo utilisé plus tôt, appliquez les formules suivantes :</p>
+            <ul>
+                <li>Calculez la somme des prix des jeux.</li>
+                <li>Calculez la moyenne des prix des jeux.</li>
+                <li>Identifiez le prix le plus bas et le plus élevé.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">7. Conclusion</h3>
+            <p>Dans cette séance, nous avons appris à utiliser des formules simples pour organiser et analyser les données dans Calc. Ces formules vous permettent d'automatiser les calculs de base et d'analyser rapidement vos tableaux de données. Dans la prochaine séance, nous verrons comment créer des tableaux de bord pour visualiser ces données à l'aide de graphiques.</p>
+        
+            <p><strong>À suivre :</strong> Séance 3 - Création de tableaux de bord et visualisation des données.</p>
+        </section>        
+
+        <!-- Séance 3 -->
+        <section id="session3" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 3 : Création de tableaux de bord - Visualisation des données</h2>
+            
+            <p><strong>Objectif :</strong> Créer des tableaux de bord simples pour la visualisation de données.</p>
+        
+            <p>Un tableau de bord est un outil visuel qui permet de représenter des données importantes de manière claire et compréhensible. Dans cette séance, nous allons apprendre à sélectionner des données pertinentes et à créer des graphiques pour les représenter visuellement. Cela peut inclure des graphiques en barres, en courbes ou en secteurs.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">1. Sélection des données pertinentes</h3>
+        
+            <p>La première étape pour créer un tableau de bord efficace est de sélectionner les données que vous souhaitez visualiser. Voici les étapes à suivre :</p>
+            <ul>
+                <li>Identifiez les données importantes que vous voulez afficher dans votre tableau de bord.</li>
+                <li>Organisez vos données dans des colonnes et des lignes dans LibreOffice Calc.</li>
+                <li>Assurez-vous que vos données sont bien formatées (nombres, texte, dates, etc.).</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">2. Création d’un graphique en barres</h3>
+        
+            <p>Le graphique en barres est idéal pour comparer des valeurs entre différentes catégories.</p>
+            <p><strong>Exercice :</strong> Utilisons un exemple de ventes de produits :</p>
+        
+            <table>
+                <tr>
+                    <th>Produit</th>
+                    <th>Ventes (unités)</th>
+                </tr>
+                <tr>
+                    <td>Produit A</td>
+                    <td>150</td>
+                </tr>
+                <tr>
+                    <td>Produit B</td>
+                    <td>230</td>
+                </tr>
+                <tr>
+                    <td>Produit C</td>
+                    <td>90</td>
+                </tr>
+                <tr>
+                    <td>Produit D</td>
+                    <td>120</td>
+                </tr>
+            </table>
+        
+            <p><strong>Étapes pour créer un graphique en barres :</strong></p>
+            <ul>
+                <li>Sélectionnez les colonnes de données (produits et ventes).</li>
+                <li>Allez dans le menu <strong>Insertion > Diagramme</strong>.</li>
+                <li>Choisissez le type de graphique <strong>Barres</strong>.</li>
+                <li>Validez et personnalisez votre graphique en ajoutant un titre et en ajustant les couleurs.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">3. Création d’un graphique en courbes</h3>
+        
+            <p>Les graphiques en courbes sont parfaits pour visualiser l’évolution d'une série de données dans le temps.</p>
+            <p><strong>Exemple :</strong> Visualisation de l’évolution des ventes mensuelles :</p>
+        
+            <table>
+                <tr>
+                    <th>Mois</th>
+                    <th>Ventes (unités)</th>
+                </tr>
+                <tr>
+                    <td>Janvier</td>
+                    <td>120</td>
+                </tr>
+                <tr>
+                    <td>Février</td>
+                    <td>180</td>
+                </tr>
+                <tr>
+                    <td>Mars</td>
+                    <td>140</td>
+                </tr>
+                <tr>
+                    <td>Avril</td>
+                    <td>200</td>
+                </tr>
+            </table>
+        
+            <p><strong>Étapes pour créer un graphique en courbes :</strong></p>
+            <ul>
+                <li>Sélectionnez les données des mois et des ventes.</li>
+                <li>Allez dans <strong>Insertion > Diagramme</strong>.</li>
+                <li>Choisissez le type de graphique <strong>Courbes</strong>.</li>
+                <li>Ajoutez un titre à votre graphique pour mieux l'identifier.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">4. Création d’un graphique en secteurs</h3>
+        
+            <p>Le graphique en secteurs (ou "camembert") est utilisé pour afficher la répartition d’un ensemble de données.</p>
+            <p><strong>Exercice :</strong> Visualisation des parts de marché des différents produits :</p>
+        
+            <table>
+                <tr>
+                    <th>Produit</th>
+                    <th>Part de marché (%)</th>
+                </tr>
+                <tr>
+                    <td>Produit A</td>
+                    <td>30%</td>
+                </tr>
+                <tr>
+                    <td>Produit B</td>
+                    <td>45%</td>
+                </tr>
+                <tr>
+                    <td>Produit C</td>
+                    <td>15%</td>
+                </tr>
+                <tr>
+                    <td>Produit D</td>
+                    <td>10%</td>
+                </tr>
+            </table>
+        
+            <p><strong>Étapes pour créer un graphique en secteurs :</strong></p>
+            <ul>
+                <li>Sélectionnez les produits et leurs parts de marché.</li>
+                <li>Allez dans <strong>Insertion > Diagramme</strong>.</li>
+                <li>Choisissez le type de graphique <strong>Secteurs</strong>.</li>
+                <li>Ajoutez un titre et personnalisez les couleurs pour chaque secteur.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">Conclusion</h3>
+        
+            <p>Dans cette séance, vous avez appris à créer différents types de graphiques pour visualiser vos données dans un tableau de bord. En fonction du type de données que vous gérez, vous pouvez choisir le graphique qui représente le mieux vos informations. N'hésitez pas à personnaliser vos graphiques en ajoutant des titres, des légendes et en ajustant les couleurs pour améliorer la lisibilité.</p>
+        
+            <p><strong>À suivre :</strong> Séance 4 - Formatage avancé et personnalisation des tableaux de bord.</p>
+        </section>        
+
+        <!-- Séance 4 -->
+        <section id="session4" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 4 : Formatage avancé et personnalisation des tableaux de bord</h2>
+        
+            <p><strong>Objectif :</strong> Apprendre à styliser un tableau de bord pour le rendre plus pertinent et visuellement attrayant.</p>
+        
+            <p>Un tableau de bord bien formaté est essentiel pour rendre vos données claires et faciles à interpréter. Aujourd'hui, nous allons explorer plusieurs techniques de formatage avancé, telles que l'utilisation des styles, des couleurs, des formats conditionnels, et l'organisation des graphiques. Ces outils vous aideront à personnaliser vos tableaux de bord et à les rendre plus professionnels.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">1. Utilisation des styles</h3>
+        
+            <p>Les styles permettent d'appliquer des mises en forme cohérentes à plusieurs cellules ou tableaux. Cela vous fait gagner du temps et garantit une présentation uniforme.</p>
+            <ul>
+                <li>Sélectionnez la cellule ou la plage de cellules que vous souhaitez styliser.</li>
+                <li>Allez dans le menu <strong>Format > Styles et formatage</strong> (ou utilisez le raccourci <kbd>F11</kbd>).</li>
+                <li>Choisissez un style existant ou créez-en un nouveau en cliquant sur le bouton <strong>Nouveau style</strong>.</li>
+                <li>Modifiez les paramètres du style (police, taille, couleur de fond, bordures, etc.).</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">2. Utilisation des couleurs</h3>
+        
+            <p>Ajouter des couleurs aux cellules permet de souligner des informations importantes ou de différencier des sections dans votre tableau de bord.</p>
+            <ul>
+                <li>Sélectionnez les cellules que vous souhaitez colorer.</li>
+                <li>Dans la barre d'outils, cliquez sur l'icône <strong>Couleur de fond</strong> pour appliquer une couleur de fond aux cellules.</li>
+                <li>Utilisez des couleurs sobres pour éviter de surcharger visuellement votre tableau. Par exemple, utilisez des couleurs douces pour les en-têtes et des couleurs plus vives pour mettre en évidence des données clés.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">3. Formats conditionnels</h3>
+        
+            <p>Les formats conditionnels vous permettent de changer automatiquement la mise en forme d'une cellule en fonction de sa valeur. C'est particulièrement utile pour suivre des indicateurs de performance dans un tableau de bord.</p>
+            <ul>
+                <li>Sélectionnez les cellules auxquelles vous voulez appliquer un format conditionnel.</li>
+                <li>Allez dans <strong>Format > Format conditionnel</strong>.</li>
+                <li>Définissez une condition, par exemple : "Si la valeur est supérieure à 50, appliquez une couleur verte".</li>
+                <li>Appliquez un style spécifique pour chaque condition.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">4. Organisation des graphiques</h3>
+        
+            <p>Les graphiques permettent de visualiser les données sous une forme visuelle. Vous pouvez organiser plusieurs graphiques dans un tableau de bord pour représenter différents indicateurs.</p>
+            <ul>
+                <li>Sélectionnez les données que vous souhaitez représenter graphiquement.</li>
+                <li>Allez dans <strong>Insertion > Graphique</strong>.</li>
+                <li>Choisissez le type de graphique (barres, courbes, secteurs, etc.).</li>
+                <li>Ajoutez des titres et des légendes pour clarifier les informations.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">Exercice Pratique</h3>
+        
+            <p><strong>Objectif :</strong> Créer un tableau de bord avec un formatage avancé :</p>
+            <ul>
+                <li>Créez un tableau avec des données fictives de ventes (produits, quantité vendue, prix total).</li>
+                <li>Appliquez des styles aux en-têtes et aux lignes.</li>
+                <li>Ajoutez des couleurs pour différencier les sections importantes.</li>
+                <li>Utilisez des formats conditionnels pour changer la couleur des cellules en fonction de la valeur des ventes (par exemple, rouge si le montant est inférieur à 1000 €, vert s'il est supérieur).</li>
+                <li>Créez un graphique à barres pour illustrer la répartition des ventes par produit.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">Conclusion</h3>
+        
+            <p>Dans cette séance, nous avons appris à styliser un tableau de bord avec des techniques de formatage avancé. Vous avez vu comment utiliser les styles, appliquer des couleurs pour mettre en avant certaines informations, utiliser des formats conditionnels pour suivre des indicateurs, et organiser des graphiques pour visualiser les données. Ces outils vous aideront à créer des tableaux de bord professionnels et efficaces.</p>
+        
+            <p><strong>À suivre :</strong> Séance 5 - Introduction à Writer et Impress.</p>
+        </section>        
+
+        <!-- Séance 5 -->
+        <section id="session5" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 5 : Évaluation 1 – QCM sur Calc et création d'un tableau de bord simple</h2>
+        
+            <p><strong>Objectif :</strong> Évaluer les compétences dans l'utilisation des formules et des graphiques dans un tableau de bord.</p>
+        
+            <p>Cette semaine est consacrée à l'évaluation des compétences que vous avez acquises au cours des premières séances, notamment sur l'utilisation des formules et la création de tableaux de bord simples. Vous devrez réaliser deux exercices : un QCM sur Calc et un tableau de bord à partir de données fournies.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">1. QCM sur les fonctions de base dans Calc</h3>
+        
+            <p>Le QCM porte sur les notions suivantes :</p>
+            <ul>
+                <li>Utilisation des formules simples (Somme, Moyenne, Minimum, Maximum).</li>
+                <li>Manipulation des cellules (copier, coller, déplacer).</li>
+                <li>Création de graphiques basiques (barres, secteurs, courbes).</li>
+            </ul>
+        
+            <p><strong>Instructions :</strong> Répondez aux 10 questions du QCM en cochant les bonnes réponses. Vous avez 20 minutes pour terminer cette partie.</p>
+        
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Semaine 5 : Évaluation 1 – QCM sur Calc</h2>
+
+            <form id="qcm-form">
+                <!-- Question 1 -->
+                <div class="qcm-question" style="margin-bottom: 20px;">
+                    <p><strong>1. Quelle est la formule correcte pour additionner les valeurs des cellules A1 à A5 ?</strong></p>
+                    <input type="radio" name="question1" value="a"> A) =SOMME(A1:A5)<br>
+                    <input type="radio" name="question1" value="b"> B) =ADD(A1:A5)<br>
+                    <input type="radio" name="question1" value="c"> C) =TOTAL(A1;A5)<br>
+                    <input type="radio" name="question1" value="d"> D) =SUM(A1:A5)<br>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="qcm-question" style="margin-bottom: 20px;">
+                    <p><strong>2. Comment sélectionner une colonne entière dans Calc ?</strong></p>
+                    <input type="radio" name="question2" value="a"> A) Cliquez sur l'en-tête de ligne<br>
+                    <input type="radio" name="question2" value="b"> B) Cliquez sur l'en-tête de colonne<br>
+                    <input type="radio" name="question2" value="c"> C) Cliquez sur une cellule puis appuyez sur Ctrl+A<br>
+                    <input type="radio" name="question2" value="d"> D) Cliquez sur l'onglet de la feuille<br>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="qcm-question" style="margin-bottom: 20px;">
+                    <p><strong>3. Quelle fonction est utilisée pour calculer la moyenne des valeurs dans Calc ?</strong></p>
+                    <input type="radio" name="question3" value="a"> A) =SOMME<br>
+                    <input type="radio" name="question3" value="b"> B) =MOYENNE<br>
+                    <input type="radio" name="question3" value="c"> C) =MÉDIANE<br>
+                    <input type="radio" name="question3" value="d"> D) =MÉDIANE(A)<br>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="qcm-question" style="margin-bottom: 20px;">
+                    <p><strong>4. Quel type de graphique convient le mieux pour comparer les parts de marché de plusieurs produits ?</strong></p>
+                    <input type="radio" name="question4" value="a"> A) Graphique à colonnes<br>
+                    <input type="radio" name="question4" value="b"> B) Graphique à lignes<br>
+                    <input type="radio" name="question4" value="c"> C) Graphique à secteurs<br>
+                    <input type="radio" name="question4" value="d"> D) Graphique à barres<br>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="qcm-question" style="margin-bottom: 20px;">
+                    <p><strong>5. Comment ajuster la largeur d’une colonne automatiquement en fonction du contenu ?</strong></p>
+                    <input type="radio" name="question5" value="a"> A) Double-cliquez entre deux en-têtes de colonne<br>
+                    <input type="radio" name="question5" value="b"> B) Faites un clic droit sur la colonne et sélectionnez "Ajuster la largeur"<br>
+                    <input type="radio" name="question5" value="c"> C) Sélectionnez la colonne et appuyez sur Ctrl+W<br>
+                    <input type="radio" name="question5" value="d"> D) Entrez une largeur spécifique dans les options de formatage<br>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="qcm-question" style="margin-bottom: 20px;">
+                    <p><strong>6. Quelle est la formule correcte pour rechercher la valeur dans une colonne avec la fonction RECHERCHEV ?</strong></p>
+                    <input type="radio" name="question6" value="a"> A) =RECHERCHE(A1:A10;B1:B10)<br>
+                    <input type="radio" name="question6" value="b"> B) =RECHERCHEV(valeur_cherchée; plage_tableau; colonne)<br>
+                    <input type="radio" name="question6" value="c"> C) =RECHERCHER(valeur; colonne)<br>
+                    <input type="radio" name="question6" value="d"> D) =RECHERCHEV(plage; valeur)<br>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="qcm-question" style="margin-bottom: 20px;">
+                    <p><strong>7. Quelle est la différence entre une formule et une fonction dans Calc ?</strong></p>
+                    <input type="radio" name="question7" value="a"> A) Une formule contient une fonction, tandis qu'une fonction est un calcul prédéfini<br>
+                    <input type="radio" name="question7" value="b"> B) Une fonction est personnalisée, tandis qu'une formule est prédéfinie<br>
+                    <input type="radio" name="question7" value="c"> C) Il n’y a pas de différence<br>
+                    <input type="radio" name="question7" value="d"> D) Une formule est utilisée pour l'analyse des données uniquement<br>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="qcm-question" style="margin-bottom: 20px;">
+                    <p><strong>8. Quelle formule permet d'obtenir la valeur la plus élevée dans une plage de données ?</strong></p>
+                    <input type="radio" name="question8" value="a"> A) =MIN<br>
+                    <input type="radio" name="question8" value="b"> B) =MAX<br>
+                    <input type="radio" name="question8" value="c"> C) =PLUSGRANDEVALEUR<br>
+                    <input type="radio" name="question8" value="d"> D) =SOMME(A1:A10)<br>
+                </div>
+
+                <!-- Question 9 -->
+                <div class="qcm-question" style="margin-bottom: 20px;">
+                    <p><strong>9. Quel est l'objectif d'un tableau croisé dynamique dans Calc ?</strong></p>
+                    <input type="radio" name="question9" value="a"> A) Créer des graphiques interactifs<br>
+                    <input type="radio" name="question9" value="b"> B) Créer un tableau avec des liens vers des feuilles<br>
+                    <input type="radio" name="question9" value="c"> C) Résumer et analyser de grandes quantités de données<br>
+                    <input type="radio" name="question9" value="d"> D) Trier les données automatiquement<br>
+                </div>
+
+                <!-- Question 10 -->
+                <div class="qcm-question" style="margin-bottom: 20px;">
+                    <p><strong>10. Quelle formule utiliseriez-vous pour vérifier une condition (par exemple, si A1 > 100) ?</strong></p>
+                    <input type="radio" name="question10" value="a"> A) =SOMME.SI(A1:A10)<br>
+                    <input type="radio" name="question10" value="b"> B) =SI(A1>100; "Oui"; "Non")<br>
+                    <input type="radio" name="question10" value="c"> C) =CONDITIONAL(A1>100)<br>
+                    <input type="radio" name="question10" value="d"> D) =MOYENNE.SI(A1:A10)<br>
+                </div>
+            </form>
+
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">2. Création d’un tableau de bord simple</h3>
+        
+            <p>Dans cet exercice pratique, vous allez créer un tableau de bord basé sur les données suivantes : le suivi des ventes de jeux vidéo sur les six derniers mois. Le tableau devra inclure :</p>
+            <ul>
+                <li>Un tableau de données montrant les ventes mensuelles pour chaque jeu.</li>
+                <li>Un graphique comparant les ventes des jeux les plus populaires.</li>
+                <li>Des formules pour calculer le total des ventes et les moyennes mensuelles.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">Exercice Pratique : Suivi des ventes de jeux vidéo</h3>
+        
+            <p>Voici les données à entrer dans votre feuille de calcul :</p>
+            <table>
+                <tr>
+                    <th>Jeux Vidéo</th>
+                    <th>Janvier</th>
+                    <th>Février</th>
+                    <th>Mars</th>
+                    <th>Avril</th>
+                    <th>Mai</th>
+                    <th>Juin</th>
+                </tr>
+                <tr>
+                    <td>The Witcher 3</td>
+                    <td>1500</td>
+                    <td>1200</td>
+                    <td>1700</td>
+                    <td>1300</td>
+                    <td>1900</td>
+                    <td>1800</td>
+                </tr>
+                <tr>
+                    <td>Minecraft</td>
+                    <td>2000</td>
+                    <td>2200</td>
+                    <td>2100</td>
+                    <td>2500</td>
+                    <td>2300</td>
+                    <td>2400</td>
+                </tr>
+                <tr>
+                    <td>FIFA 22</td>
+                    <td>1300</td>
+                    <td>1500</td>
+                    <td>1200</td>
+                    <td>1600</td>
+                    <td>1700</td>
+                    <td>1800</td>
+                </tr>
+                <tr>
+                    <td>GTA V</td>
+                    <td>2500</td>
+                    <td>2600</td>
+                    <td>2700</td>
+                    <td>2400</td>
+                    <td>2300</td>
+                    <td>2500</td>
+                </tr>
+                <tr>
+                    <td>Among Us</td>
+                    <td>800</td>
+                    <td>900</td>
+                    <td>1000</td>
+                    <td>850</td>
+                    <td>950</td>
+                    <td>1100</td>
+                </tr>
+            </table>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">Étapes à suivre :</h3>
+            <ul>
+                <li>Créez un tableau dans Calc avec ces données.</li>
+                <li>Utilisez des formules pour calculer le total des ventes pour chaque jeu, ainsi que la moyenne mensuelle des ventes.</li>
+                <li>Créez un graphique à barres montrant la comparaison des ventes totales des jeux.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">3. Enregistrement et soumission</h3>
+        
+            <p>Enregistrez votre fichier sous le nom <strong>"TableauDeBord_Évaluation1.ods"</strong> et soumettez-le via la plateforme en ligne avant la fin de la séance.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">Conclusion</h3>
+            <p>Cette évaluation vous permet de mettre en pratique vos compétences dans la création de tableaux de bord et l'utilisation des formules. Vous avez également appris à créer des graphiques pour visualiser les données de manière efficace.</p>
+        
+            <p><strong>À suivre :</strong> Séance 6 - Fonctions avancées dans Calc.</p>
+        </section>        
+
+        <!-- Séance 6 -->
+        <section id="session6" class="content-section">
+    
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 6 : Fonctions avancées dans Calc - Conditions et recherche de données</h2>
+        
+            <p><strong>Objectif :</strong> Utiliser des fonctions conditionnelles et de recherche pour rendre les tableaux de bord plus interactifs et fonctionnels.</p>
+        
+            <p>Dans cette séance, nous allons explorer deux fonctions puissantes dans LibreOffice Calc : les fonctions conditionnelles et les fonctions de recherche. Ces outils vous permettent de créer des tableaux dynamiques, où les résultats s'adaptent en fonction des conditions définies, ou encore d'extraire des informations spécifiques d'un ensemble de données plus large.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Fonction conditionnelle SI</h3>
+        
+            <p>La fonction <strong>SI</strong> (ou <strong>IF</strong> en anglais) vous permet d'effectuer des tests logiques dans une cellule et de renvoyer une valeur différente selon que le test est vrai ou faux.</p>
+        
+            <p><strong>Synthaxe :</strong> <code>=SI(test; valeur_si_vrai; valeur_si_faux)</code></p>
+            <ul>
+                <li><strong>test :</strong> Une condition à vérifier (par exemple : A1>10).</li>
+                <li><strong>valeur_si_vrai :</strong> Ce qui est affiché si la condition est vraie.</li>
+                <li><strong>valeur_si_faux :</strong> Ce qui est affiché si la condition est fausse.</li>
+            </ul>
+        
+            <p><strong>Exemple :</strong></p>
+            <p>Vous avez une liste de prix de jeux vidéo dans la colonne A, et vous souhaitez afficher "Cher" si le prix est supérieur à 40€, et "Abordable" si le prix est inférieur ou égal à 40€.</p>
+        
+            <p>Dans la cellule B1, vous entrez la formule suivante :</p>
+            <p><code>=SI(A1>40; "Cher"; "Abordable")</code></p>
+        
+            <p>Ce qui donnera, par exemple :</p>
+            <table>
+                <tr>
+                    <th>Nom du jeu</th>
+                    <th>Prix (€)</th>
+                    <th>Catégorie</th>
+                </tr>
+                <tr>
+                    <td>The Witcher 3</td>
+                    <td>30</td>
+                    <td>Abordable</td>
+                </tr>
+                <tr>
+                    <td>FIFA 22</td>
+                    <td>60</td>
+                    <td>Cher</td>
+                </tr>
+            </table>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Fonction RECHERCHEV (ou VLOOKUP)</h3>
+        
+            <p>La fonction <strong>RECHERCHEV</strong> est très utile lorsque vous avez un grand tableau et que vous voulez trouver une valeur spécifique dans une colonne. Cette fonction recherche une valeur dans la première colonne d'un tableau et renvoie une valeur dans la même ligne mais dans une autre colonne que vous spécifiez.</p>
+        
+            <p><strong>Synthaxe :</strong> <code>=RECHERCHEV(valeur_cherchée; plage_de_données; numéro_de_colonne; ordre)</code></p>
+            <ul>
+                <li><strong>valeur_cherchée :</strong> La valeur que vous recherchez dans la première colonne de la plage.</li>
+                <li><strong>plage_de_données :</strong> Le tableau dans lequel vous faites la recherche (par exemple A1:B10).</li>
+                <li><strong>numéro_de_colonne :</strong> Le numéro de la colonne à partir de laquelle renvoyer la valeur (la première colonne est 1).</li>
+                <li><strong>ordre :</strong> Si vous voulez une correspondance exacte, utilisez 0 (ou FAUX).</li>
+            </ul>
+        
+            <p><strong>Exemple :</strong></p>
+            <p>Supposons que vous avez une liste de jeux dans la colonne A et leurs prix dans la colonne B. Vous voulez trouver le prix d'un jeu en particulier.</p>
+        
+            <p>Dans la cellule C1, vous entrez la formule suivante :</p>
+            <p><code>=RECHERCHEV("Minecraft"; A1:B10; 2; 0)</code></p>
+        
+            <p>Si "Minecraft" est trouvé dans la colonne A, la fonction renverra le prix correspondant dans la colonne B.</p>
+        
+            <table>
+                <tr>
+                    <th>Nom du jeu</th>
+                    <th>Prix (€)</th>
+                </tr>
+                <tr>
+                    <td>The Witcher 3</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>Minecraft</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>FIFA 22</td>
+                    <td>60</td>
+                </tr>
+            </table>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Fonction RECHERCHEH (ou HLOOKUP)</h3>
+        
+            <p>La fonction <strong>RECHERCHEH</strong> fonctionne de la même manière que RECHERCHEV, mais elle recherche des valeurs sur une ligne au lieu d'une colonne.</p>
+        
+            <p><strong>Synthaxe :</strong> <code>=RECHERCHEH(valeur_cherchée; plage_de_données; numéro_de_ligne; ordre)</code></p>
+        
+            <p><strong>Exemple :</strong></p>
+            <p>Imaginons que vous avez une liste de prix de jeux en ligne et que vous voulez chercher le prix d’un jeu spécifique en fonction de son nom (placé dans la première ligne).</p>
+        
+            <p>Dans la cellule B2, vous pouvez entrer la formule suivante :</p>
+            <p><code>=RECHERCHEH("FIFA 22"; A1:D2; 2; 0)</code></p>
+        
+            <p>Si "FIFA 22" est trouvé dans la première ligne, RECHERCHEH renverra le prix trouvé dans la deuxième ligne.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion</h3>
+        
+            <p>Dans cette séance, nous avons exploré des fonctions avancées telles que <strong>SI</strong> pour les conditions, ainsi que <strong>RECHERCHEV</strong> et <strong>RECHERCHEH</strong> pour extraire des données spécifiques à partir de grands tableaux. Ces fonctions vous aideront à créer des tableaux de bord plus interactifs et dynamiques.</p>
+        
+            <p><strong>À suivre :</strong> Séance 7 - Automatisation des tâches dans Calc avec les macros.</p>
+        
+        </section>        
+
+        <!-- Séance 7 -->
+        <section id="session7" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 7 : Automatisation dans Calc - Introduction aux macros</h2>
+            
+            <p><strong>Objectif :</strong> Automatiser certaines tâches pour optimiser la gestion de tableaux de bord dans Calc.</p>
+        
+            <p>Les macros dans LibreOffice Calc permettent d’automatiser des tâches répétitives, ce qui vous fait gagner du temps et évite les erreurs manuelles. Aujourd'hui, nous allons découvrir comment créer des macros simples et les exécuter pour automatiser certaines actions.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">1. Qu'est-ce qu'une macro ?</h3>
+        
+            <p>Une macro est une série d'instructions qui sont exécutées automatiquement lorsqu'on la lance. Elle vous permet d'automatiser des actions dans Calc, comme la mise en forme automatique de tableaux, l'exécution de calculs répétitifs, ou même l'organisation de données.</p>
+        
+            <p>Par exemple, si vous devez appliquer une mise en forme particulière à une feuille de calcul à chaque fois que vous ajoutez de nouvelles données, une macro peut enregistrer cette mise en forme et l'appliquer automatiquement.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">2. Création d'une macro simple</h3>
+            <p>Suivez ces étapes pour créer votre première macro :</p>
+            <ul>
+                <li>Ouvrez LibreOffice Calc et accédez à une nouvelle feuille de calcul.</li>
+                <li>Allez dans le menu <strong>Outils > Macros > Enregistrer la macro</strong>.</li>
+                <li>Une petite fenêtre apparaîtra, indiquant que vous êtes en mode d'enregistrement.</li>
+                <li>Effectuez quelques actions que vous souhaitez automatiser (par exemple, changer la couleur d'une cellule, appliquer un format de nombre).</li>
+                <li>Une fois terminé, cliquez sur <strong>Arrêter l'enregistrement</strong> dans la fenêtre d'enregistrement.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">3. Exécution de la macro</h3>
+            <p>Pour exécuter la macro que vous venez de créer :</p>
+            <ul>
+                <li>Allez dans <strong>Outils > Macros > Gérer les macros > LibreOffice Basic</strong>.</li>
+                <li>Dans la fenêtre qui s'ouvre, sélectionnez la macro que vous avez enregistrée.</li>
+                <li>Cliquez sur <strong>Exécuter</strong> pour lancer la macro et appliquer automatiquement les actions que vous avez enregistrées.</li>
+            </ul>
+        
+            <p><strong>Exercice :</strong> Créez une macro simple qui change la couleur de fond de la première ligne de votre tableau en jaune et applique du texte en gras aux titres des colonnes.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">4. Modification d'une macro</h3>
+            <p>Après avoir créé une macro, vous pouvez la modifier pour personnaliser davantage son comportement.</p>
+            <p>Voici comment modifier une macro :</p>
+            <ul>
+                <li>Allez dans <strong>Outils > Macros > Gérer les macros > LibreOffice Basic</strong>.</li>
+                <li>Sélectionnez la macro que vous souhaitez modifier.</li>
+                <li>Cliquez sur <strong>Éditer</strong> pour ouvrir l'éditeur de code.</li>
+                <li>Vous verrez un script en langage **Basic** que vous pouvez ajuster pour modifier les actions exécutées par la macro.</li>
+            </ul>
+        
+            <p>Exemple de code d'une macro qui modifie la couleur d'une cellule :</p>
+        
+            <pre>
+            Sub ChangeColor
+                Dim oSheet as Object
+                oSheet = ThisComponent.Sheets(0) ' Sélectionne la première feuille
+                oCell = oSheet.getCellByPosition(0,0) ' Sélectionne la cellule A1
+                oCell.CellBackColor = RGB(255, 255, 0) ' Change la couleur de fond en jaune
+            End Sub
+            </pre>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">5. Enregistrer et exécuter une macro à partir d'un bouton</h3>
+            <p>Il est souvent pratique d’exécuter une macro à partir d’un bouton dans votre feuille de calcul. Voici comment faire :</p>
+            <ul>
+                <li>Allez dans <strong>Affichage > Barres d'outils > Contrôles de formulaire</strong>.</li>
+                <li>Cliquez sur l'icône <strong>Bouton</strong> et dessinez un bouton dans votre feuille.</li>
+                <li>Cliquez avec le bouton droit sur le bouton, puis sélectionnez <strong>Assigner une macro</strong>.</li>
+                <li>Choisissez la macro que vous souhaitez associer au bouton.</li>
+                <li>Cliquez sur <strong>OK</strong>, puis quittez le mode d’édition pour tester le bouton.</li>
+            </ul>
+        
+            <p><strong>Exercice :</strong> Créez un bouton dans votre feuille de calcul qui exécute une macro pour formater automatiquement une plage de cellules en gras et en couleur.</p>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">6. Limites et bonnes pratiques avec les macros</h3>
+            <p>Bien que les macros soient très puissantes, il est important de suivre quelques bonnes pratiques :</p>
+            <ul>
+                <li>Vérifiez toujours votre macro avant de l'exécuter sur des données sensibles, car elle peut modifier ou supprimer des données de manière irréversible.</li>
+                <li>Enregistrez une copie de sauvegarde de votre fichier avant d’exécuter des macros complexes.</li>
+                <li>Essayez de simplifier vos macros pour les rendre faciles à comprendre et à maintenir.</li>
+            </ul>
+        
+            <h3 style="margin-top: 20px; margin-bottom: 20px;">Conclusion</h3>
+            <p>Dans cette séance, nous avons découvert comment créer et exécuter des macros dans LibreOffice Calc. Grâce aux macros, vous pouvez automatiser des tâches répétitives et gagner un temps précieux dans la gestion de vos tableaux de bord. En continuant à pratiquer, vous deviendrez plus à l'aise avec la personnalisation des macros pour répondre à vos besoins spécifiques.</p>
+        
+            <p><strong>À suivre :</strong> Séance 8 - Intégration de cartes géographiques avec Calc.</p>
+        </section>        
+
+        <!-- Séance 8 -->
+        <section id="session8" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 8 : Intégration de cartes géographiques avec les données de Calc</h2>
+            
+            <p><strong>Objectif :</strong> Apprendre à utiliser les données de Calc pour remplir et visualiser une carte.</p>
+        
+            <p>Dans cette séance, nous allons apprendre à créer des cartes géographiques interactives à partir des données présentes dans une feuille de calcul Calc. Ce type de visualisation est utile pour représenter des données associées à des régions géographiques, comme la population par pays, les ventes par région, ou tout autre type de statistique.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Préparation des données</h3>
+        
+            <p>Avant de commencer l'intégration d'une carte, vous devez préparer vos données de manière structurée dans Calc :</p>
+            <ul>
+                <li>Les données doivent contenir une colonne pour les <strong>localisations géographiques</strong> (comme le nom d'un pays, d'une ville, ou d'une région).</li>
+                <li>Ajoutez une colonne pour les <strong>valeurs associées</strong> à chaque localisation (par exemple, population, ventes, pourcentage).</li>
+                <li>Vérifiez que les noms des régions sont correctement orthographiés et correspondent à la carte géographique que vous souhaitez utiliser.</li>
+            </ul>
+        
+            <p><strong>Exemple de tableau :</strong></p>
+            <table>
+                <tr>
+                    <th>Pays</th>
+                    <th>Population (millions)</th>
+                </tr>
+                <tr>
+                    <td>France</td>
+                    <td>67</td>
+                </tr>
+                <tr>
+                    <td>Allemagne</td>
+                    <td>83</td>
+                </tr>
+                <tr>
+                    <td>Espagne</td>
+                    <td>47</td>
+                </tr>
+                <tr>
+                    <td>Italie</td>
+                    <td>60</td>
+                </tr>
+            </table>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Intégration d'une carte géographique dans Calc</h3>
+        
+            <p>LibreOffice Calc permet d'intégrer une carte géographique de manière simple à travers une extension ou un service externe de visualisation des données.</p>
+            <p>a définir</p>
+            <!-- <p><strong>Étapes à suivre pour insérer une carte :</strong></p>
+            <ul>
+                <li>Ouvrez votre feuille de calcul avec les données géographiques préparées.</li>
+                <li>Sélectionnez les cellules contenant les données (localisation et valeurs).</li>
+                <li>Allez dans <strong>Insertion > Objet > Graphique</strong>.</li>
+                <li>Choisissez l'option "Carte" ou insérez un modèle de carte géographique.</li>
+                <li>Associez les localisations à des points géographiques sur la carte.</li>
+            </ul> -->
+        
+            <p>Une fois la carte insérée, elle se mettra à jour automatiquement avec les données de la feuille de calcul.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Remplissage des cartes avec des données de localisation</h3>
+        
+            <p>Après avoir inséré la carte, vous pouvez personnaliser les données visuelles :</p>
+            <ul>
+                <li>Modifiez la couleur des zones géographiques en fonction des valeurs (par exemple, une couleur plus foncée pour une population plus importante).</li>
+                <li>Ajoutez des <strong>légendes</strong> pour indiquer à quoi correspondent les différentes couleurs ou valeurs.</li>
+                <li>Vous pouvez également ajouter des <strong>étiquettes</strong> à chaque région pour montrer les chiffres directement sur la carte.</li>
+            </ul>
+        
+            <p><strong>Exemple :</strong> Visualisez les populations de chaque pays avec des couleurs allant du jaune (faible population) au rouge (forte population).</p>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">4. Enregistrer et exporter la carte</h3>
+        
+            <p>Lorsque vous avez terminé la personnalisation de la carte :</p>
+            <ul>
+                <li>Enregistrez votre feuille de calcul.</li>
+                <li>Vous pouvez également exporter la carte sous forme d'image ou de fichier PDF via <strong>Fichier > Exporter</strong>.</li>
+            </ul>
+        
+            <p>Cela vous permet d'utiliser la carte dans des présentations ou des rapports créés avec LibreOffice Impress ou Writer.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion</h3>
+        
+            <p>Cette séance vous a montré comment préparer des données géographiques dans Calc et les visualiser sur une carte. Les cartes géographiques sont des outils puissants pour rendre des données plus intuitives et faciles à comprendre. Dans les séances suivantes, nous explorerons d'autres types de visualisation avancée dans Calc.</p>
+        
+            <p><strong>À suivre :</strong> Séance 9 - Visualisation de données avancée avec des graphiques personnalisés.</p>
+        </section>
+        
+
+        <!-- Séance 9 -->
+        <section id="session9" class="content-section">
+            <h2>Séance 9 : Soutenance finale</h2>
+            <p><strong>Objectif :</strong> Présenter le projet final devant un jury.</p>
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2024 Programme TIM CGEA</p>
+    </footer> -->
+
+    <script>
+        const holidays = {
+            '2024-11-11': 'Armistice 1918',
+            '2024-12-25': 'Noël',
+            '2025-01-01': 'Jour de l\'An',
+            '2025-04-21': 'Lundi de Pâques',
+            '2025-05-01': 'Fête du Travail',
+            '2025-05-08': 'Victoire 1945',
+            '2025-05-29': 'Ascension',
+            '2025-06-09': 'Lundi de Pentecôte'
+        };
+
+        const vacations = [
+            { start: '2024-10-19', end: '2024-11-03', name: 'Vacances de la Toussaint' },
+            { start: '2024-12-21', end: '2025-01-05', name: 'Vacances de Noël' },
+            { start: '2025-02-22', end: '2025-03-09', name: 'Vacances d\'hiver' },
+            { start: '2025-04-19', end: '2025-05-04', name: 'Vacances de printemps' },
+            { start: '2025-07-05', end: '2025-09-02', name: 'Vacances d\'été' }
+        ];
+
+        const sessions = [
+            'Séance 1 : Introduction à LibreOffice Calc',
+            'Séance 2 : Formules de base et gestion des données dans Calc',
+            'Séance 3 : Création de tableaux de bord',
+            'Séance 4 : Formatage avancé et personnalisation des tableaux de bord',
+            'Séance 5 : Évaluation 1',
+            'Séance 6 : Fonctions avancées dans Calc',
+            'Séance 7 : Automatisation dans Calc',
+            'Séance 8 : Intégration de cartes géographiques avec les données de Calc',
+            'Séance 9 : Visualisation de données avancée',
+            'Séance 10 : Techniques de mise en page avancée pour les tableaux de bord',
+            'Séance 11 : Évaluation 2',
+            'Séance 12 : Collaboration avec Calc',
+            'Séance 13 : Analyse de données avancée',
+            'Séance 14 : Optimisation des tableaux de bord',
+            'Séance 15 : Évaluation 3',
+            'Séance 16 : Introduction à Writer et Impress',
+            'Séance 17 : Projet de fin de semestre',
+            'Séance 18 : Évaluation finale',
+            'Séance 19 : Création de tableaux de bord interactifs dans Calc',
+            'Séance 20 : Personnalisation avancée des tableaux de bord',
+            'Séance 21 : Automatisation des tableaux de bord avec des macros et fonctions avancées',
+            'Séance 22 : Intégration des cartes interactives dans les tableaux de bord',
+            'Séance 23 : Création de tableaux de bord interactifs pour la gestion de projets',
+            'Séance 24 : Optimisation et finalisation des tableaux de bord interactifs',
+            'Séance 25 : Introduction au projet final',
+            'Séance 26 : Conception du projet final',
+            'Séance 27 : Avancement du projet final',
+            'Séance 28 : Finalisation du projet final',
+            'Séance 29 : Soutenance du projet final',
+            'Séance 30 : Évaluation finale',
+        ];
+
+        function isHoliday(date) {
+            return holidays[date] !== undefined;
+        }
+
+        function isInVacation(date) {
+            const parsedDate = new Date(date);
+            return vacations.some(vacation => {
+                const startDate = new Date(vacation.start);
+                const endDate = new Date(vacation.end);
+                return parsedDate >= startDate && parsedDate <= endDate;
+            });
+        }
+
+        function getVacationName(date) {
+            const parsedDate = new Date(date);
+            const vacation = vacations.find(vacation => {
+                const startDate = new Date(vacation.start);
+                const endDate = new Date(vacation.end);
+                return parsedDate >= startDate && parsedDate <= endDate;
+            });
+            return vacation ? vacation.name : '';
+        }
+
+        function formatFrenchDate(date) {
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return new Date(date).toLocaleDateString('fr-FR', options);
+        }
+
+        function isCurrentWeek(date) {
+            const currentDate = new Date();
+            const firstDayOfWeek = new Date(date);
+            const lastDayOfWeek = new Date(firstDayOfWeek);
+            lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
+            return currentDate >= firstDayOfWeek && currentDate <= lastDayOfWeek;
+        }
+
+        function generateCalendar() {
+            const calendarBody = document.getElementById('calendar-body');
+            const startDate = new Date('2024-09-03'); // Changement pour commencer par un mardi
+            const endDate = new Date('2025-07-31');
+            
+            let currentDate = startDate;
+            let sessionIndex = 0;
+
+            while (currentDate <= endDate) {
+                const dateString = currentDate.toISOString().split('T')[0];
+                const isHolidayDay = isHoliday(dateString);
+                const isVacationDay = isInVacation(dateString);
+                const vacationName = getVacationName(dateString);
+
+                const row = document.createElement('tr');
+                const dateCell = document.createElement('td');
+                const descriptionCell = document.createElement('td');
+
+                dateCell.textContent = formatFrenchDate(dateString);
+
+                if (isHolidayDay) {
+                    descriptionCell.textContent = holidays[dateString];
+                    row.classList.add('holiday');
+                } else if (isVacationDay) {
+                    descriptionCell.textContent = vacationName;
+                    row.classList.add('vacation');
+                } else {
+                    descriptionCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+                    sessionIndex++;
+                }
+
+                // Mettre en évidence la semaine en cours
+                if (isCurrentWeek(currentDate)) {
+                    row.classList.add('current-week');
+                }
+
+                row.appendChild(dateCell);
+                row.appendChild(descriptionCell);
+                calendarBody.appendChild(row);
+
+                // Passer au mardi suivant
+                currentDate.setDate(currentDate.getDate() + 7);
+            }
+        }
+
+        // Générer le calendrier au chargement de la page
+        generateCalendar();
+
+        // Toggle menu visibility
+        function toggleMenu() {
+            const menu = document.getElementById("session-nav");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+
+        // Show selected session content
+        function showSession(sessionId) {
+            const sessions = document.querySelectorAll('.content-section');
+            sessions.forEach(session => {
+                session.classList.remove('active');
+                if (session.id === sessionId) {
+                    session.classList.add('active');
+                }
+            });
+
+            // Mettre en évidence la séance active dans le menu
+            const menuLinks = document.querySelectorAll('#session-nav a');
+            menuLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick').includes(sessionId)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Display the first session by default when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            showSession('session1');
+        });
+    </script>
+
+</body>
+</html>
