@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme TIM CGEA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        main {
+            margin-left: 200px;
+            padding: 20px;
+            min-height: 80vh;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        aside {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            transition: width 0.3s ease;
+            overflow-y: auto;
+            scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
+        }
+
+        aside::-webkit-scrollbar {
+            display: none; /* Masque la barre de défilement pour Chrome, Safari, et Opera */
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            padding: 10px;
+        }
+
+        aside ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        /* Style pour l'élément de menu actif (séance en cours) */
+        aside ul li a.active {
+            background-color: #4CAF50; /* Couleur pour l'élément actif */
+            color: white;
+            font-weight: bold;
+        }
+
+        aside ul li a:hover {
+            background-color: #555;
+        }
+
+        .hamburger {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Styles spécifiques pour le calendrier */
+        table.calendar {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        /* th {
+            background-color: #f2f2f2;
+        } */
+
+        .holiday {
+            background-color: green;
+            color: white;
+        }
+
+        .vacation {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .current-week {
+            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
+        }
+
+        pre{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Programme TIM CGEA</h1>
+    </header>
+
+    <!-- Menu hamburger sur la gauche -->
+    <aside id="menu">
+        <button class="hamburger" onclick="toggleMenu()">☰ Séances</button>
+        <nav id="session-nav">
+            <ul>
+                <!-- CALENDRIER -->
+                <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
+
+                <!-- CALC - Tableaux de bord -->
+                <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à Python, variables, types de données</a></li>
+                <li><a href="#" onclick="showSession('session2')">Séance 2 : Pratique - Inventaire de jeu vidéo (gestion des objets)</a></li>
+                <li><a href="#" onclick="showSession('session3')">Séance 3 : </a></li>
+                <li><a href="#" onclick="showSession('session4')">Séance 4 : </a></li>
+                <li><a href="#" onclick="showSession('session5')">Séance 5 : </a></li>
+                <li><a href="#" onclick="showSession('session6')">Séance 6 : </a></li>
+                <li><a href="#" onclick="showSession('session7')">Séance 7 : </a></li>
+                <li><a href="#" onclick="showSession('session8')">Séance 8 : </a></li>
+                <li><a href="#" onclick="showSession('session9')">Séance 9 : </a></li>
+                <li><a href="#" onclick="showSession('session10')">Séance 10 : </a></li>
+                <li><a href="#" onclick="showSession('session11')">Séance 11 : </a></li>
+                <li><a href="#" onclick="showSession('session12')">Séance 12 : </a></li>
+                <li><a href="#" onclick="showSession('session13')">Séance 13 : </a></li>
+                <li><a href="#" onclick="showSession('session14')">Séance 14 : </a></li>
+                <li><a href="#" onclick="showSession('session15')">Séance 15 : </a></li>
+                <li><a href="#" onclick="showSession('session16')">Séance 16 : </a></li>
+                <li><a href="#" onclick="showSession('session17')">Séance 17 : </a></li>
+                <li><a href="#" onclick="showSession('session18')">Séance 18 : </a></li>
+                <li><a href="#" onclick="showSession('session19')">Séance 19 : </a></li>
+                <li><a href="#" onclick="showSession('session20')">Séance 20 : </a></li>
+                <li><a href="#" onclick="showSession('session21')">Séance 21 : </a></li>
+                <li><a href="#" onclick="showSession('session22')">Séance 22 : </a></li>
+                <li><a href="#" onclick="showSession('session23')">Séance 23 : </a></li>
+                <li><a href="#" onclick="showSession('session24')">Séance 24 : </a></li>
+                <li><a href="#" onclick="showSession('session25')">Séance 25 : </a></li>
+                <li><a href="#" onclick="showSession('session26')">Séance 26 : </a></li>
+                <li><a href="#" onclick="showSession('session27')">Séance 27 : </a></li>
+                <li><a href="#" onclick="showSession('session28')">Séance 28 : </a></li>
+                <li><a href="#" onclick="showSession('session29')">Séance 29 : </a></li>
+                <li><a href="#" onclick="showSession('session30')">Séance 30 : </a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="content">
+        <!-- Calendrier -->
+        <section id="calendar" class="content-section">
+            <h2>Calendrier de cours des CGEA - 2024/2025</h2>
+            <table class="calendar">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                    <!-- Les lignes du calendrier seront générées ici par JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Onglet 1: Calc - Séance 1 -->
+        <section id="session1" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 1 : Introduction à Python, Variables et Types de Données</h2>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectifs de la Séance</h3>
+            <ul>
+                <li>Découvrir l'environnement de développement Python.</li>
+                <li>Comprendre les variables et les types de données en Python.</li>
+                <li>Écrire un programme simple qui utilise des variables pour interagir avec l'utilisateur.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Déroulement de la Séance</h3>
+        
+            <h4 style="margin-top: 30px; margin-bottom: 20px;">1. Introduction à l'environnement Python</h4>
+        
+            <p><strong>Présentation de Python :</strong></p>
+            <ul>
+                <li>Python est un langage de programmation utilisé pour le développement de jeux vidéo, l'analyse de données et le développement d'applications.</li>
+                <li>Il est simple à apprendre et puissant, adapté aux débutants.</li>
+            </ul>
+        
+            <p><strong>Démonstration :</strong></p>
+            <ul>
+                <li>Ouvrir l'environnement de développement (comme IDLE, PyCharm, ou Jupyter Notebook) ou un IDE en ligne comme Replit.</li>
+                <li>Créer un nouveau projet et vérifier que tout fonctionne correctement.</li>
+            </ul>
+        
+            <h4 style="margin-top: 30px; margin-bottom: 20px;">2. Introduction aux Variables</h4>
+        
+            <p><strong>Définition d'une variable :</strong></p>
+            <p>Une variable est un espace de stockage dans votre programme qui peut contenir des données. C'est comme une boîte pour conserver des informations.</p>
+        
+            <p><strong>Types de Données :</strong></p>
+            <ul>
+                <li><strong>Chaînes de caractères (str) :</strong> Texte (ex. : nom = "Mario").</li>
+                <li><strong>Entiers (int) :</strong> Nombres entiers (ex. : score = 100).</li>
+                <li><strong>Flottants (float) :</strong> Nombres à virgule (ex. : temps = 3.5).</li>
+                <li><strong>Booléens (bool) :</strong> Valeurs de vérité (ex. : est_vivant = True).</li>
+            </ul>
+        
+            <p><strong>Exemple de Déclaration de Variables :</strong></p>
+            <pre>
+                nom = "Mario"
+                score = 100
+                temps = 3.5
+                est_vivant = True
+            </pre>
+        
+            <h4 style="margin-top: 30px; margin-bottom: 20px;">3. Activité Pratique : Écrire un Programme Simple</h4>
+        
+            <p><strong>Objectif de l'activité :</strong></p>
+            <p>Créer un programme qui demandera le nom et le score d'un utilisateur, puis affichera un message personnalisé.</p>
+        
+            <p><strong>Instructions :</strong></p>
+            <ul>
+                <li>Ouvrir l'IDE et créer un nouveau fichier Python.</li>
+                <li>Écrire le code suivant :</li>
+            </ul>
+        
+            <pre>
+                # Demande à l'utilisateur d'entrer son nom et son score
+                nom = input("Quel est votre nom ? ")
+                score = input("Quel est votre score ? ")
+                
+                # Affiche un message de bienvenue avec le nom et le score
+                print("Bonjour " + nom + ", votre score est " + score + ".")
+            </pre>
+        
+            <h4 style="margin-top: 30px; margin-bottom: 20px;">Explications du Code :</h4>
+            <ul>
+                <li><strong>input("Quel est votre nom ?") :</strong> Cette fonction attend que l'utilisateur saisisse une réponse. Le texte entre les parenthèses est le message qui s'affiche pour indiquer ce qu'il faut entrer. La valeur saisie sera stockée dans la variable <strong>nom</strong>.</li>
+                <li><strong>print("Bonjour " + nom + ", votre score est " + score + ".") :</strong> Cette ligne affiche un message à l'écran. Le <strong>+</strong> sert à combiner différentes chaînes de caractères et variables, construisant ainsi une phrase avec les réponses.</li>
+            </ul>
+        
+            <h4 style="margin-top: 30px; margin-bottom: 20px;">4. Testez votre programme :</h4>
+            <p>Lancez votre programme et entrez un nom et un score. Observez la réponse du programme.</p>
+        
+            <h4 style="margin-top: 30px; margin-bottom: 20px;">5. Personnalisez le programme :</h4>
+            <p>Ajoutez des fonctionnalités, par exemple :</p>
+            <ul>
+                <li>Vérifier si le score est un nombre et afficher un message d'erreur s'il ne l'est pas.</li>
+                <li>Inclure des questions supplémentaires, comme « Quel est votre jeu préféré ? » et afficher cette information dans le message final.</li>
+            </ul>
+        
+            <p><strong>Exemple de programme amélioré :</strong></p>
+            <pre>
+                # Demande à l'utilisateur d'entrer son nom, son score et son jeu préféré
+                nom = input("Quel est votre nom ? ")
+                score = input("Quel est votre score ? ")
+                jeu_prefere = input("Quel est votre jeu préféré ? ")
+                
+                # Affiche un message personnalisé
+                print("Bonjour " + nom + ", votre score est " + score + " et vous aimez jouer à " + jeu_prefere + ".")
+            </pre>
+        
+            <h4 style="margin-top: 30px; margin-bottom: 20px;">6. Discussion et Réflexion</h4>
+            <p><strong>Discussion en groupe :</strong></p>
+            <p>Réfléchissez à comment utiliser ce programme dans un contexte de jeu vidéo. Par exemple, créer un jeu de rôle qui suit les scores des joueurs et leur fournit des messages personnalisés.</p>
+        
+            <p><strong>Exemples de mise en contexte :</strong></p>
+            <ul>
+                <li>Dans un jeu vidéo, afficher un message comme : "Bravo, Mario ! Vous avez un score de 200 points !"</li>
+                <li>Pour gérer une collection de mangas, imaginer un programme qui suit quels mangas ont été lus et le score de satisfaction pour chacun.</li>
+            </ul>
+        
+            <h4 style="margin-top: 30px; margin-bottom: 20px;">Conclusion :</h4>
+            <p>Cette séance vous a permis de découvrir l'environnement Python, d'utiliser des variables et d'écrire un programme simple qui interagit avec l'utilisateur. Continuez à explorer les possibilités offertes par Python pour aller plus loin.</p>
+        </section>
+        
+
+        <!-- Séance 2 -->
+        <section id="session2" class="content-section">
+        </section>        
+
+        <!-- Séance 3 -->
+        <section id="session3" class="content-section">
+        </section>        
+
+        <!-- Séance 4 -->
+        <section id="session4" class="content-section">
+        </section>        
+
+        <!-- Séance 5 -->
+        <section id="session5" class="content-section">
+        </section>        
+
+        <!-- Séance 6 -->
+        <section id="session6" class="content-section">
+        </section>        
+
+        <!-- Séance 7 -->
+        <section id="session7" class="content-section">
+        </section>        
+
+        <!-- Séance 8 -->
+        <section id="session8" class="content-section">
+        </section>
+        
+
+        <!-- Séance 9 -->
+        <section id="session9" class="content-section">
+            <h2>Séance 9 : Soutenance finale</h2>
+            <p><strong>Objectif :</strong> Présenter le projet final devant un jury.</p>
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2024 Programme TIM CGEA</p>
+    </footer> -->
+
+    <script>
+        const holidays = {
+            '2024-11-11': 'Armistice 1918',
+            '2024-12-25': 'Noël',
+            '2025-01-01': 'Jour de l\'An',
+            '2025-04-21': 'Lundi de Pâques',
+            '2025-05-01': 'Fête du Travail',
+            '2025-05-08': 'Victoire 1945',
+            '2025-05-29': 'Ascension',
+            '2025-06-09': 'Lundi de Pentecôte'
+        };
+
+        const vacations = [
+            { start: '2024-10-19', end: '2024-11-03', name: 'Vacances de la Toussaint' },
+            { start: '2024-12-21', end: '2025-01-05', name: 'Vacances de Noël' },
+            { start: '2025-02-22', end: '2025-03-09', name: 'Vacances d\'hiver' },
+            { start: '2025-04-19', end: '2025-05-04', name: 'Vacances de printemps' },
+            { start: '2025-07-05', end: '2025-09-02', name: 'Vacances d\'été' }
+        ];
+
+        const sessions = [
+            // Semaine 1
+            'Séance 1 : Introduction à Python, variables, types de données',
+            'Séance 2 : Pratique - Inventaire de jeu vidéo (gestion des objets)',
+            // Semaine 2
+            'Séance 3 : Conditions (if, else, elif)',
+            'Séance 4 : Pratique - Gestion des personnages dans un manga',
+            // Semaine 3
+            'Séance 5 : Boucles (while, for)',
+            'Séance 6 : Pratique - Simuler des quêtes dans un jeu vidéo',
+            // Semaine 4
+            'Séance 7 : Structures conditionnelles et boucles (révision)',
+            'Séance 8 : Pratique - Simuler la consommation d’essence (vie réelle)',
+            // Semaine 5
+            'Séance 9 : Introduction aux fonctions',
+            'Séance 10 : Pratique - Statistiques sur l’actualité (par exemple, cas COVID)',
+            // Semaine 6
+            'Séance 11 : Paramètres et retour de valeurs',
+            'Séance 12 : Pratique - Calcul d’un budget familial (vie réelle)',
+            // Semaine 7
+            'Séance 13 : Décomposition d\'un problème en sous-problèmes',
+            'Séance 14 : Pratique - Gestion d’un inventaire de jeu vidéo avancé',
+            // Semaine 8
+            'Séance 15 : Modularité et réutilisation de code',
+            'Séance 16 : Pratique - Personnages de manga avec pouvoirs (réutilisation de code)',
+            // Semaine 9
+            'Séance 17 : Introduction aux listes et tuples',
+            'Séance 18 : Pratique - Gestion d’une liste de quêtes (jeu vidéo)',
+            // Semaine 10
+            'Séance 19 : Opérations sur les listes (ajout, suppression, recherche)',
+            'Séance 20 : Pratique - Suivi d’épisodes de manga',
+            // Semaine 11
+            'Séance 21 : Introduction aux dictionnaires.',
+            'Séance 22 : Pratique - Enregistrement des scores de jeu vidéo.',
+            // Semaine 12
+            'Séance 23 : Récapitulatif des structures de données.',
+            'Séance 24 : Projet pratique - Combinaison de listes, tuples, dictionnaires (mangas et jeux vidéos).',
+            // Semaine 13
+            'Séance 25 : Introduction à la gestion des fichiers (lecture/écriture).',
+            'Séance 26 : Pratique - Enregistrer et charger des scores de jeu.',
+            // Semaine 14
+            'Séance 27 : Introduction aux bases de données relationnelles.',
+            'Séance 28 : Pratique - Interroger une base de données d\'actualité (SQL).',
+            // Semaine 15
+            'Séance 29 : Requêtes SQL de base.',
+            'Séance 30 : Pratique - Gestion des personnages de manga avec SQL.',
+            // Semaine 16
+            'Séance 31 : Manipulation de données avec CSV/JSON.',
+            'Séance 32 : Pratique - Sauvegarde de données dans une base SQL (vie réelle).',
+            // Semaine 17
+            'Séance 33 : Introduction aux algorithmes IA simples.',
+            'Séance 34 : Pratique - IA basique pour ennemi de jeu vidéo.',
+            // Semaine 18
+            'Séance 35 : Apprentissage supervisé (concepts de base).',
+            'Séance 36 : Pratique - Prédiction de consommation électrique (vie réelle).',
+            // Semaine 19
+            'Séance 37 : Réseaux de neurones simplifiés.',
+            'Séance 38 : Pratique - Réseau de neurones pour décision IA dans un jeu.',
+            // Semaine 20
+            'Séance 39 : Algorithmes d\'apprentissage automatique.',
+            'Séance 40 : Pratique - Implémentation IA pour tri de données (actualité).',
+            // Semaine 21
+            'Séance 41 : Introduction aux algorithmes de tri (tri par insertion).',
+            'Séance 42 : Pratique - Tri de mangas par date de sortie.',
+            // Semaine 22
+            'Séance 43 : Algorithmes de tri avancés (tri par sélection).',
+            'Séance 44 : Pratique - Tri de scores de jeux vidéos.',
+            // Semaine 23
+            'Séance 45 : Introduction aux piles et files.',
+            'Séance 46 : Pratique - Simulation d’une file d’attente dans un jeu.',
+            // Semaine 24
+            'Séance 47 : Manipulation de piles dans des algorithmes.',
+            'Séance 48 : Pratique - Utilisation de piles pour gérer des données en temps réel (actualité).',
+            // Semaine 25
+            'Séance 49 : Introduction aux réseaux (adresses IP, TCP/IP).',
+            'Séance 50 : Pratique - Simulation de communication réseau dans un jeu.',
+            // Semaine 26
+            'Séance 51 : Protocoles web (HTTP, HTTPS).',
+            'Séance 52 : Pratique - Création d’une page web simple (vie réelle).',
+            // Semaine 27
+            'Séance 53 : Introduction à la sécurité informatique.',
+            'Séance 54 : Pratique - Sécurisation d’échanges dans un jeu vidéo (cryptographie basique).',
+            // Semaine 28
+            'Séance 55 : Introduction à la cryptographie (chiffrement, clés).',
+            'Séance 56 : Pratique - Protéger les données personnelles dans une application.',
+            // Semaine 29
+            'Séance 57 : Introduction aux classes et objets.',
+            'Séance 58 : Pratique - Modélisation d’un personnage de jeu vidéo avec des classes.',
+            // Semaine 30
+            'Séance 59 : Héritage et polymorphisme.',
+            'Séance 60 : Pratique - Gestion de personnages de manga avec héritage.',
+            // Semaine 31
+            'Séance 61 : Encapsulation et méthodes.',
+            'Séance 62 : Pratique - Classe avancée pour gestion de quêtes dans un jeu.',
+            // Semaine 32
+            'Séance 63 : Révision des concepts de POO.',
+            'Séance 64 : Pratique - Projet de création d\'une application basée sur la vie réelle.',
+            // Semaine 33
+            'Séance 65 : Travail de groupe - Définir le projet final sur un des thèmes (jeu vidéo, manga, actualité, vie réelle).',
+            'Séance 66 : Travail de groupe - Développement du projet (base de données, POO, IA).',
+            // Semaine 34
+            'Séance 67 : Finalisation du projet - Test et validation.',
+            'Séance 68 : Présentation des projets finaux.',
+            // Semaine 35
+            'Séance 69 : Évaluation et retour sur les projets.',
+            'Séance 70 : Discussion sur les apprentissages et les améliorations possibles.',
+            // Semaine 36
+            'Séance 71 : Activité de clôture (réflexion sur l’année).',
+            'Séance 72 : Retour d\'expérience et perspectives pour l\'avenir.'
+        ];
+
+        function isHoliday(date) {
+            return holidays[date] !== undefined;
+        }
+
+        function isInVacation(date) {
+            const parsedDate = new Date(date);
+            return vacations.some(vacation => {
+                const startDate = new Date(vacation.start);
+                const endDate = new Date(vacation.end);
+                return parsedDate >= startDate && parsedDate <= endDate;
+            });
+        }
+
+        function getVacationName(date) {
+            const parsedDate = new Date(date);
+            const vacation = vacations.find(vacation => {
+                const startDate = new Date(vacation.start);
+                const endDate = new Date(vacation.end);
+                return parsedDate >= startDate && parsedDate <= endDate;
+            });
+            return vacation ? vacation.name : '';
+        }
+
+        function formatFrenchDate(date) {
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return new Date(date).toLocaleDateString('fr-FR', options);
+        }
+
+        function isCurrentWeek(date) {
+            const currentDate = new Date();
+            const firstDayOfWeek = new Date(date);
+            const lastDayOfWeek = new Date(firstDayOfWeek);
+            lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
+            return currentDate >= firstDayOfWeek && currentDate <= lastDayOfWeek;
+        }
+
+        function generateCalendar() {
+            const calendarBody = document.getElementById('calendar-body');
+            const startDate = new Date('2024-09-05');  // Premier jeudi de septembre 2024
+            const endDate = new Date('2025-07-31');
+            
+            let currentDate = startDate;
+            let sessionIndex = 0;
+
+            while (currentDate <= endDate) {
+                const row = document.createElement('tr');
+
+                // Jeudi
+                const thursdayDateString = currentDate.toISOString().split('T')[0];
+                const thursdayCell = document.createElement('td');
+                thursdayCell.textContent = formatFrenchDate(thursdayDateString);
+
+                const thursdayDescCell = document.createElement('td');
+                if (isHoliday(thursdayDateString)) {
+                thursdayDescCell.textContent = holidays[thursdayDateString];
+                row.classList.add('holiday');
+                } else if (isInVacation(thursdayDateString)) {
+                thursdayDescCell.textContent = getVacationName(thursdayDateString);
+                row.classList.add('vacation');
+                } else {
+                thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+                sessionIndex++;
+                }
+
+                // Vendredi
+                currentDate.setDate(currentDate.getDate() + 1);  // Vendredi
+                const fridayDateString = currentDate.toISOString().split('T')[0];
+                const fridayCell = document.createElement('td');
+                fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+                const fridayDescCell = document.createElement('td');
+                if (isHoliday(fridayDateString)) {
+                fridayDescCell.textContent = holidays[fridayDateString];
+                row.classList.add('holiday');
+                } else if (isInVacation(fridayDateString)) {
+                fridayDescCell.textContent = getVacationName(fridayDateString);
+                row.classList.add('vacation');
+                } else {
+                fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+                sessionIndex++;
+                }
+
+                // Mettre en évidence la semaine en cours
+                if (isCurrentWeek(currentDate)) {
+                row.classList.add('current-week');
+                }
+
+                // Ajout des cellules à la ligne
+                row.appendChild(thursdayCell);
+                row.appendChild(fridayCell);
+                row.appendChild(thursdayDescCell);
+                row.appendChild(fridayDescCell);
+                calendarBody.appendChild(row);
+
+                // Passer au jeudi suivant
+                currentDate.setDate(currentDate.getDate() + 6);
+            }
+        }
+
+        // Générer le calendrier au chargement de la page
+        generateCalendar();
+    </script>
+
+</body>
+</html>
