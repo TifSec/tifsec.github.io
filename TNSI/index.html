@@ -486,6 +486,233 @@
             </ul>
         
         </section>
+
+        <section id="session2" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 2 : Pratique - Implémentation d’une Fonction Récursive pour Calculer une Suite Mathématique</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif :</h3>
+            <ul>
+                <li>Comprendre et implémenter une fonction récursive.</li>
+                <li>Appliquer la récursivité pour résoudre un problème pratique, inspiré des mécanismes de jeux vidéo.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Contexte :</h3>
+            <p>Dans un jeu vidéo, un personnage accumule des points d'attaque supplémentaires au fil du temps à chaque coup porté à l'ennemi, mais les points bonus diminuent à chaque itération jusqu'à atteindre un seuil minimum. Cela peut être représenté par une suite mathématique où le bonus d'attaque à chaque coup est calculé récursivement.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple Concret :</h4>
+            <p>Le personnage gagne 10 points d'attaque lors du premier coup, puis le bonus diminue de 1 point à chaque coup suivant. Cela forme une série mathématique décrite par :</p>
+            <pre><code>Attaque(n) = Attaque(n−1) + (bonus initial − n)</code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 1 : Introduction à la Récursivité</h3>
+            <p><strong>Concept de la récursivité :</strong></p>
+            <p>Une fonction récursive s'appelle elle-même pour résoudre un problème plus simple à chaque étape, jusqu'à atteindre une condition de fin (ou cas de base).</p>
+            
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple théorique :</h4>
+            <p>Calcul de la suite de Fibonacci ou de la factorielle pour illustrer la récursivité.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 2 : Implémentation d'une Fonction Récursive</h3>
+            <p><strong>Problème :</strong> Dans le jeu, à chaque attaque, le personnage accumule des points bonus. Le premier coup ajoute 10 points, puis chaque coup suivant ajoute 1 point de moins que le précédent jusqu'à atteindre 0. L'objectif est de calculer combien de points d'attaque sont accumulés après un certain nombre de coups.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Fonction récursive pour calculer le bonus d'attaque :</h4>
+            <pre><code>
+                def attaque_bonus(n):
+                    # Cas de base : quand le bonus atteint 0
+                    if n == 0:
+                        return 0
+                    else:
+                        # Récursion : bonus initial (10) - n + bonus précédent
+                        return (10 - n) + attaque_bonus(n - 1)
+                
+                # Exemple d'utilisation :
+                coups = 5  # Le personnage donne 5 coups
+                total_bonus = attaque_bonus(coups)
+                print(f"Le total des points d'attaque après {coups} coups est de : {total_bonus}")
+            </code></pre>
+        
+            <p><strong>Explication :</strong></p>
+            <ul>
+                <li>La fonction se base sur un cas de base où aucun coup n'est porté (0 bonus).</li>
+                <li>À chaque appel récursif, le nombre de coups diminue de 1, et le bonus est calculé en fonction du coup précédent.</li>
+                <li>Le bonus d’attaque diminue jusqu'à ce que la fonction atteigne le cas de base (0).</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 3 : Étendre la Fonctionnalité</h3>
+            <p>Amélioration du jeu : Proposer aux élèves d’ajouter des conditions supplémentaires :</p>
+            <ul>
+                <li>Le bonus ne peut pas descendre en dessous de 0.</li>
+                <li>Ajouter un effet multiplicateur pour chaque coup critique (par exemple, multiplier par 2 si c’est un coup critique).</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple d’amélioration :</h4>
+            <pre><code>
+                def attaque_bonus(n, critique=False):
+                    if n == 0:
+                        return 0
+                    else:
+                        bonus = (10 - n)  # Le bonus diminue avec chaque coup
+                        if critique and n % 3 == 0:
+                            bonus *= 2  # Coup critique tous les 3 coups
+                        return bonus + attaque_bonus(n - 1, critique)
+                
+                # Exemple d'utilisation :
+                coups = 5
+                total_bonus = attaque_bonus(coups, critique=True)
+                print(f"Le total des points d'attaque avec coups critiques est de : {total_bonus}")
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 4 : Exercices Pratiques</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">1. Calcul d'attaque simple :</h4>
+            <p>Modifier le nombre de coups portés et afficher le total des points d'attaque.</p>
+            <p><strong>Exercice :</strong> Demander aux élèves de tester avec 3, 5 et 10 coups pour voir comment la récursivité calcule le total.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">2. Scénario avancé : Combats de boss :</h4>
+            <p>Simuler un combat contre un boss où chaque coup critique donne des points bonus supplémentaires.</p>
+            <p><strong>Exercice :</strong> Les élèves doivent implémenter une version du programme où tous les 5 coups, le personnage inflige un coup critique (multiplication du bonus par 3).</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion</h3>
+            <p><strong>Retour sur la notion de récursivité :</strong></p>
+            <ul>
+                <li><strong>Avantage :</strong> La récursivité permet de simplifier des calculs répétitifs en divisant le problème en sous-problèmes.</li>
+                <li><strong>Inconvénient :</strong> Elle peut entraîner des problèmes de performance si elle est mal utilisée (pile d'appels récursifs trop grande).</li>
+            </ul>
+        
+            <p><strong>Lien avec le jeu vidéo :</strong> La récursivité est un outil puissant pour modéliser des mécanismes de jeu où des actions répétitives évoluent à chaque itération, comme la gestion des dégâts dans les combats.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exercice final :</h4>
+            <p>Les élèves devront créer une version améliorée de la fonction récursive qui inclut plusieurs types de coups (coup normal, coup critique, coup spécial) avec des bonus différents et implémenter une stratégie pour battre un boss avec un nombre limité de coups.</p>
+        </section>
+
+        <section id="session3" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 3 : Applications Pratiques de la Récursivité - Problèmes Simples</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectifs de la séance :</h3>
+            <ul>
+                <li>Comprendre la récursivité à travers des exemples simples.</li>
+                <li>Appliquer la récursivité pour résoudre des problèmes inspirés des jeux vidéo.</li>
+                <li>Créer des programmes interactifs et ludiques en utilisant la récursivité.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Rappel des concepts de base de la récursivité</h3>
+            <p><strong>Cas de base :</strong> Condition qui permet d'arrêter la récursivité.</p>
+            <p><strong>Cas récursif :</strong> La fonction qui s'appelle elle-même avec une version simplifiée du problème.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple théorique :</h4>
+            <p>Calcul de la factorielle d’un nombre.</p>
+            <pre><code>
+                def factorielle(n):
+                    if n == 0:
+                        return 1  # Cas de base
+                    else:
+                        return n * factorielle(n - 1)  # Cas récursif
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Application : Exploration d'un Donjon Récursif</h3>
+            <p>Dans ce projet, nous allons simuler un héros explorant un donjon. Le donjon est représenté par un labyrinthe (sous forme de matrice 2D), où le héros doit trouver la sortie. La récursivité sera utilisée pour explorer toutes les directions possibles à chaque intersection du labyrinthe.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Modélisation du donjon</h4>
+            <p>Le donjon est représenté par une matrice où :</p>
+            <ul>
+                <li>1 représente un mur,</li>
+                <li>0 représente un chemin libre,</li>
+                <li><strong>S</strong> la position de départ,</li>
+                <li><strong>E</strong> la sortie à atteindre.</li>
+            </ul>
+            <pre><code>
+                donjon = [
+                    ['S', 1, 0, 0, 1],
+                    [0, 1, 0, 1, 0],
+                    [0, 0, 0, 1, 'E'],
+                    [1, 1, 0, 0, 1],
+                    [0, 0, 0, 1, 0]
+                ]
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Création de la fonction récursive d’exploration</h4>
+            <p>On écrit une fonction récursive pour explorer le donjon. À chaque étape, le héros explore les cases adjacentes (haut, bas, gauche, droite) jusqu'à trouver la sortie.</p>
+            <pre><code>
+                def explorer_donjon(donjon, x, y, visitees):
+                    # Vérifier les limites du donjon
+                    if x < 0 or x >= len(donjon) or y < 0 or y >= len(donjon[0]):
+                        return False
+                    
+                    # Vérifier si c'est un mur ou une case déjà visitée
+                    if donjon[x][y] == 1 or (x, y) in visitees:
+                        return False
+                    
+                    # Si on a trouvé la sortie
+                    if donjon[x][y] == 'E':
+                        print(f"Sortie trouvée à la position ({x}, {y})")
+                        return True
+                    
+                    # Marquer la case comme visitée
+                    visitees.add((x, y))
+                    
+                    # Exploration récursive des 4 directions
+                    if (explorer_donjon(donjon, x+1, y, visitees) or  # Bas
+                        explorer_donjon(donjon, x-1, y, visitees) or  # Haut
+                        explorer_donjon(donjon, x, y+1, visitees) or  # Droite
+                        explorer_donjon(donjon, x, y-1, visitees)):   # Gauche
+                        return True
+                    
+                    # Si aucune direction ne permet d’avancer, retour en arrière
+                    return False
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 3 : Lancement de l'exploration</h4>
+            <p>L’appel de la fonction d'exploration depuis la position de départ :</p>
+            <pre><code>
+                visitees = set()
+                explorer_donjon(donjon, 0, 0, visitees)
+            </code></pre>
+            <p>Les élèves peuvent visualiser comment la récursivité permet au héros de tester différentes directions jusqu'à trouver la sortie du donjon.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Application : Génération de Terrains Fractals avec la Récursivité</h3>
+            <p>Un autre exemple ludique pour explorer la récursivité est la génération de terrains fractals. C’est un algorithme utilisé dans certains jeux vidéo pour générer des paysages ou des environnements de manière procédurale.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Introduction au concept des fractals</h4>
+            <p>Explication de la notion de fractal : une figure qui se divise en parties similaires à l'ensemble.</p>
+            <p>On montre un exemple simple, tel que le triangle de Sierpinski ou un arbre fractal, qui est un arbre où chaque branche se divise en deux sous-branches plus petites.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Génération d’un arbre fractal</h4>
+            <p>Nous allons utiliser la récursivité pour dessiner un arbre où chaque branche se divise en deux sous-branches plus petites. Pour simplifier, on peut utiliser la bibliothèque turtle de Python, qui permet de dessiner facilement.</p>
+            <pre><code>
+                import turtle
+        
+                def dessiner_arbre(longueur, angle):
+                    if longueur > 5:
+                        turtle.forward(longueur)
+                        turtle.right(angle)
+                        dessiner_arbre(longueur - 15, angle)
+                        turtle.left(angle * 2)
+                        dessiner_arbre(longueur - 15, angle)
+                        turtle.right(angle)
+                        turtle.backward(longueur)
+                
+                # Initialisation de Turtle
+                turtle.speed("fastest")
+                turtle.left(90)  # Faire pointer la tortue vers le haut
+                dessiner_arbre(100, 30)  # Commence avec une longueur de 100
+                turtle.done()
+            </code></pre>
+            <p>Les élèves pourront voir comment la récursivité permet de générer une figure qui se répète de manière auto-similaire.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">4. Conclusion et Améliorations</h3>
+            <p><strong>Extension de l’exploration du donjon :</strong> Les élèves peuvent être encouragés à ajouter des obstacles, des trésors ou d'autres éléments interactifs dans le donjon pour rendre l'exploration plus intéressante.</p>
+            <p><strong>Améliorations sur l’arbre fractal :</strong> Les élèves peuvent modifier l’angle de l’arbre fractal ou ajouter des couleurs pour rendre le dessin plus complexe et esthétique.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Discussion :</h4>
+            <ul>
+                <li>Quand utiliser la récursivité vs les boucles ?</li>
+                <li>Les limites de la récursivité (profondeur maximale de récursion, efficacité).</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exercice :</h4>
+            <p>Modifier le code de l’exploration du donjon pour ajouter des monstres ou des pièges à éviter pendant l'exploration.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion de la Séance</h3>
+            <p>À la fin de cette séance, les élèves auront appris à utiliser la récursivité pour résoudre des problèmes d’exploration et de génération d’environnements, avec des exemples concrets tirés des jeux vidéo. Cela les prépare à appliquer la récursivité dans des projets plus complexes à l'avenir.</p>
+        </section>
         
     </main>
 
