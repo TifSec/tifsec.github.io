@@ -180,7 +180,7 @@
                 <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
 
                 <!-- CALC - Tableaux de bord -->
-                <li><a href="#" onclick="showSession('session1')">Séance 1 : Récursivitée</a></li>
+                <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à la récursivité (concepts de base)</a></li>
                 <li><a href="#" onclick="showSession('session2')">Séance 2 : </a></li>
                 <li><a href="#" onclick="showSession('session3')">Séance 3 : </a></li>
                 <li><a href="#" onclick="showSession('session4')">Séance 4 : </a></li>
@@ -235,9 +235,138 @@
             </table>
         </section>
 
-        <!-- Onglet 1: Calc - Séance 1 -->
         <section id="session1" class="content-section">
-            </section>
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 1 : Introduction à la Récursivité (Concepts de Base)</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectifs de la séance :</h3>
+            <ul>
+                <li>Comprendre le concept de récursivité (cas de base et cas récursif).</li>
+                <li>Savoir identifier et écrire des fonctions récursives.</li>
+                <li>Appliquer la récursivité dans un problème lié aux jeux vidéo.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Contexte : Sauver le héros d’un labyrinthe</h3>
+            <p>L’objectif est d'aider un héros à sortir d’un labyrinthe en utilisant la récursivité. Chaque étape dans le labyrinthe représente une décision à prendre pour avancer ou reculer. Le labyrinthe est un tableau 2D où chaque cellule peut être un mur, un chemin ou la sortie.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Introduction au concept de récursivité</h3>
+            <p>Qu’est-ce que la récursivité ?</p>
+            <p>Une fonction récursive est une fonction qui s'appelle elle-même pour résoudre une version plus simple d’un problème.</p>
+        
+            <p>Une fonction récursive suit deux règles :</p>
+            <ul>
+                <li><strong>Cas de base :</strong> Condition d’arrêt pour éviter que la fonction ne s'appelle indéfiniment.</li>
+                <li><strong>Cas récursif :</strong> Un appel à la fonction elle-même avec une version réduite du problème.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple simple : La Factorielle</h4>
+            <pre><code>def factorielle(n):
+            if n == 0:  # Cas de base
+                return 1
+            else:
+                return n * factorielle(n - 1)  # Cas récursif
+            </code></pre>
+        
+            <p>Explication du fonctionnement :</p>
+            <p>Si <code>n = 3</code>, la fonction va appeler <code>factorielle(2)</code>, puis <code>factorielle(1)</code>, puis <code>factorielle(0)</code> qui est le cas de base, et renverra le résultat en remontant.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Application : Sauver un Héros Coincé dans un Labyrinthe</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Problème</h4>
+            <p>Le héros est piégé dans un labyrinthe modélisé par une grille 2D. Il peut se déplacer à gauche, à droite, en haut ou en bas. L'objectif est de trouver la sortie (marquée par un "E") en utilisant une approche récursive.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Modélisation du labyrinthe</h4>
+            <p>Nous représentons le labyrinthe comme une liste de listes en Python :</p>
+        
+            <pre><code>labyrinthe = [
+                ['S', 1, 0, 0, 1],
+                [0, 1, 0, 1, 0],
+                [0, 0, 0, 1, 'E'],
+                [1, 1, 0, 0, 1],
+                [0, 0, 0, 1, 0]
+            ]
+            </code></pre>
+        
+            <ul>
+                <li><strong>'S' :</strong> Point de départ (start).</li>
+                <li><strong>'E' :</strong> Sortie.</li>
+                <li><strong>0 :</strong> Chemin libre.</li>
+                <li><strong>1 :</strong> Mur.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exploration récursive du labyrinthe</h4>
+            <p>Le héros doit explorer toutes les directions possibles. Pour cela, nous allons créer une fonction récursive qui essaie toutes les directions (haut, bas, gauche, droite).</p>
+        
+            <pre><code>def explorer_labyrinthe(labyrinthe, x, y, visitees):
+                # Vérifier les limites du labyrinthe
+                if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
+                    return False
+                
+                # Vérifier si la case est un mur ou déjà visitée
+                if labyrinthe[x][y] == 1 or (x, y) in visitees:
+                    return False
+                
+                # Si on a trouvé la sortie
+                if labyrinthe[x][y] == 'E':
+                    print(f"Sortie trouvée à la position ({x}, {y})")
+                    return True
+                
+                # Marquer la case comme visitée
+                visitees.add((x, y))
+                
+                # Appeler la fonction récursive dans les 4 directions
+                if (explorer_labyrinthe(labyrinthe, x+1, y, visitees) or  # Bas
+                    explorer_labyrinthe(labyrinthe, x-1, y, visitees) or  # Haut
+                    explorer_labyrinthe(labyrinthe, x, y+1, visitees) or  # Droite
+                    explorer_labyrinthe(labyrinthe, x, y-1, visitees)):   # Gauche
+                    return True
+                
+                # Si aucune direction ne fonctionne, on retourne False
+                return False
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Explication du Code</h4>
+            <ul>
+                <li><strong>Cas de base :</strong> Si le héros sort du labyrinthe ou rencontre un mur (<code>1</code>), la fonction retourne <code>False</code>. Si le héros atteint la sortie (<code>'E'</code>), la fonction retourne <code>True</code>.</li>
+                <li><strong>Cas récursif :</strong> Le héros essaie chaque direction (bas, haut, gauche, droite) en appelant la fonction récursive pour continuer à explorer le labyrinthe.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Mise en Pratique</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Tester l’exploration du labyrinthe</h4>
+            <p>Les élèves doivent modifier et exécuter la fonction pour que le héros puisse trouver la sortie.</p>
+        
+            <pre><code># Position de départ (0, 0)
+                position_depart = (0, 0)
+                
+                # Ensemble des cases visitées
+                cases_visitees = set()
+                
+                # Lancer la recherche de la sortie
+                explorer_labyrinthe(labyrinthe, position_depart[0], position_depart[1], cases_visitees)
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Améliorations</h4>
+            <ul>
+                <li><strong>Marquer le chemin parcouru :</strong> Ajouter une fonctionnalité pour afficher le chemin que le héros a pris jusqu'à la sortie.</li>
+                <li><strong>Compter les mouvements :</strong> Ajouter un compteur pour afficher combien de mouvements le héros a effectués avant de trouver la sortie.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">4. Conclusion et Récapitulatif</h3>
+        
+            <p><strong>Ce qu’ils ont appris :</strong></p>
+            <ul>
+                <li>Comprendre les concepts de récursivité avec un cas de base et un cas récursif.</li>
+                <li>Appliquer la récursivité pour résoudre des problèmes complexes, comme un labyrinthe.</li>
+            </ul>
+        
+            <p><strong>Défis à venir :</strong></p>
+            <ul>
+                <li>D'autres applications de la récursivité dans les jeux vidéo et les structures de données (arbres, tri récursif).</li>
+                <li>Combiner récursivité et optimisations (mémoïsation) pour rendre les algorithmes plus efficaces.</li>
+            </ul>
+        
+        </section>
+        
     </main>
 
     <!-- <footer>
