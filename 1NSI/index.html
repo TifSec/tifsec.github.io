@@ -141,20 +141,6 @@
             border: 1px solid #ccc;
         }
 
-        /* th {
-            background-color: #f2f2f2;
-        } */
-
-        .holiday {
-            background-color: green;
-            color: white;
-        }
-
-        .vacation {
-            background-color: #4CAF50;
-            color: white;
-        }
-
         .current-week {
             background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
         }
@@ -162,6 +148,21 @@
         pre{
             background-color: black;
             color: white;
+        }
+
+        .today {
+            background-color: #007BFF; /* Bleu vif pour le jour actuel */
+            color: white; /* Texte blanc pour le contraste */
+        }
+
+        .vacation {
+            background-color: #B2E4A6; /* Vert pastel pour les vacances */
+            color: black; /* Texte noir ou foncé pour la lisibilité */
+        }
+
+        .holiday {
+            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
+            color: white; /* Texte blanc ou clair */
         }
     </style>
 </head>
@@ -179,7 +180,7 @@
                 <!-- CALENDRIER -->
                 <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
 
-                <!-- CALC - Tableaux de bord -->
+                <!-- Cours -->
                 <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à Python, variables, types de données</a></li>
                 <li><a href="#" onclick="showSession('session2')">Séance 2 : Pratique - Inventaire de jeu vidéo (gestion des objets)</a></li>
                 <li><a href="#" onclick="showSession('session3')">Séance 3 : </a></li>
@@ -217,13 +218,13 @@
     <main id="content">
         <!-- Calendrier -->
         <section id="calendar" class="content-section">
-            <h2>Calendrier de cours des 1ere NSI - 2024/2025</h2>
+            <h2>Calendrier NSI 1ere - 2024/2025</h2>
             <table class="calendar">
                 <thead>
                     <tr>
                         <th>Date Jeudi</th>
-                        <th>Date Vendredi</th>
                         <th>Cours Jeudi</th>
+                        <th>Date Vendredi</th>
                         <th>Cours Vendredi</th>
                     </tr>
                 </thead>
@@ -233,7 +234,6 @@
             </table>
         </section>
 
-        <!-- Onglet 1: Calc - Séance 1 -->
         <section id="session1" class="content-section">
             <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 1 : Introduction à Python, Variables et Types de Données</h2>
             
@@ -341,42 +341,8 @@
             <h4 style="margin-top: 30px; margin-bottom: 20px;">Conclusion :</h4>
             <p>Cette séance vous a permis de découvrir l'environnement Python, d'utiliser des variables et d'écrire un programme simple qui interagit avec l'utilisateur. Continuez à explorer les possibilités offertes par Python pour aller plus loin.</p>
         </section>
+
         
-
-        <!-- Séance 2 -->
-        <section id="session2" class="content-section">
-        </section>        
-
-        <!-- Séance 3 -->
-        <section id="session3" class="content-section">
-        </section>        
-
-        <!-- Séance 4 -->
-        <section id="session4" class="content-section">
-        </section>        
-
-        <!-- Séance 5 -->
-        <section id="session5" class="content-section">
-        </section>        
-
-        <!-- Séance 6 -->
-        <section id="session6" class="content-section">
-        </section>        
-
-        <!-- Séance 7 -->
-        <section id="session7" class="content-section">
-        </section>        
-
-        <!-- Séance 8 -->
-        <section id="session8" class="content-section">
-        </section>
-        
-
-        <!-- Séance 9 -->
-        <section id="session9" class="content-section">
-            <h2>Séance 9 : Soutenance finale</h2>
-            <p><strong>Objectif :</strong> Présenter le projet final devant un jury.</p>
-        </section>
     </main>
 
     <!-- <footer>
@@ -550,10 +516,15 @@
             return currentDate >= firstDayOfWeek && currentDate <= lastDayOfWeek;
         }
 
+        function isToday(date) {
+            const today = new Date().toISOString().split('T')[0];
+            return today === date;
+        }
+
         function generateCalendar() {
             const calendarBody = document.getElementById('calendar-body');
             const startDate = new Date('2024-09-05');  // Premier jeudi de septembre 2024
-            const endDate = new Date('2025-07-31');
+            const endDate = new Date('2025-07-12');
             
             let currentDate = startDate;
             let sessionIndex = 0;
@@ -568,14 +539,21 @@
 
                 const thursdayDescCell = document.createElement('td');
                 if (isHoliday(thursdayDateString)) {
-                thursdayDescCell.textContent = holidays[thursdayDateString];
-                row.classList.add('holiday');
+                    thursdayDescCell.textContent = holidays[thursdayDateString];
+                    thursdayCell.classList.add('holiday');
+                    thursdayDescCell.classList.add('holiday');
                 } else if (isInVacation(thursdayDateString)) {
-                thursdayDescCell.textContent = getVacationName(thursdayDateString);
-                row.classList.add('vacation');
+                    thursdayDescCell.textContent = getVacationName(thursdayDateString);
+                    row.classList.add('vacation');
                 } else {
-                thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-                sessionIndex++;
+                    thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+                    sessionIndex++;
+                }
+
+                // Mise en évidence du jour actuel
+                if (isToday(thursdayDateString)) {
+                    thursdayCell.classList.add('today');
+                    thursdayDescCell.classList.add('today');
                 }
 
                 // Vendredi
@@ -586,25 +564,27 @@
 
                 const fridayDescCell = document.createElement('td');
                 if (isHoliday(fridayDateString)) {
-                fridayDescCell.textContent = holidays[fridayDateString];
-                row.classList.add('holiday');
+                    fridayDescCell.textContent = holidays[fridayDateString];
+                    fridayCell.classList.add('holiday');
+                    fridayDescCell.classList.add('holiday');
                 } else if (isInVacation(fridayDateString)) {
-                fridayDescCell.textContent = getVacationName(fridayDateString);
-                row.classList.add('vacation');
+                    fridayDescCell.textContent = getVacationName(fridayDateString);
+                    row.classList.add('vacation');
                 } else {
-                fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-                sessionIndex++;
+                    fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+                    sessionIndex++;
                 }
 
-                // Mettre en évidence la semaine en cours
-                if (isCurrentWeek(currentDate)) {
-                row.classList.add('current-week');
+                // Mise en évidence du jour actuel
+                if (isToday(fridayDateString)) {
+                    fridayCell.classList.add('today');
+                    fridayDescCell.classList.add('today');
                 }
 
                 // Ajout des cellules à la ligne
                 row.appendChild(thursdayCell);
-                row.appendChild(fridayCell);
                 row.appendChild(thursdayDescCell);
+                row.appendChild(fridayCell);
                 row.appendChild(fridayDescCell);
                 calendarBody.appendChild(row);
 
@@ -646,6 +626,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             showSession('session1');
         });
+
     </script>
 
 </body>

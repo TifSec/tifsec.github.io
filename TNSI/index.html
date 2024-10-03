@@ -141,20 +141,6 @@
             border: 1px solid #ccc;
         }
 
-        /* th {
-            background-color: #f2f2f2;
-        } */
-
-        .holiday {
-            background-color: green;
-            color: white;
-        }
-
-        .vacation {
-            background-color: #4CAF50;
-            color: white;
-        }
-
         .current-week {
             background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
         }
@@ -162,6 +148,21 @@
         pre{
             background-color: black;
             color: white;
+        }
+
+        .today {
+            background-color: #007BFF; /* Bleu vif pour le jour actuel */
+            color: white; /* Texte blanc pour le contraste */
+        }
+
+        .vacation {
+            background-color: #B2E4A6; /* Vert pastel pour les vacances */
+            color: black; /* Texte noir ou foncé pour la lisibilité */
+        }
+
+        .holiday {
+            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
+            color: white; /* Texte blanc ou clair */
         }
     </style>
 </head>
@@ -176,11 +177,13 @@
         <button class="hamburger" onclick="toggleMenu()">☰ Séances</button>
         <nav id="session-nav">
             <ul>
+                <!-- PROGRAMME -->
                 <li><a href="#" onclick="showSession('programme-nsi')">Programme de l'année</a></li>
+
                 <!-- CALENDRIER -->
                 <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
 
-                <!-- CALC - Tableaux de bord -->
+                <!-- COURS -->
                 <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à la récursivité (concepts de base)</a></li>
                 <li><a href="#" onclick="showSession('session2')">Séance 2 : Pratique - Implémentation d’une fonction récursive pour calculer une suite mathématique</a></li>
                 <li><a href="#" onclick="showSession('session3')">Séance 3 : Applications pratiques de la récursivité (problèmes simples)</a></li>
@@ -216,6 +219,7 @@
     </aside>
 
     <main id="content">
+        <!-- Programme -->
         <section id="programme-nsi" class="content-section">
             <h2 style="margin-top: 30px; margin-bottom: 20px;">Programme Terminale NSI</h2>
         
@@ -328,6 +332,7 @@
                 <li><strong>Séance 108 :</strong> Journée de détente (activité créative, jeux de programmation).</li>
             </ul>
         </section>
+
         <!-- Calendrier -->
         <section id="calendar" class="content-section">
             <h2>Calendrier de cours des Tle NSI - 2024/2025</h2>
@@ -778,11 +783,16 @@
             lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
             return currentDate >= firstDayOfWeek && currentDate <= lastDayOfWeek;
         }
+
+        function isToday(date) {
+            const today = new Date().toISOString().split('T')[0];
+            return today === date;
+        }
     
         function generateCalendar() {
             const calendarBody = document.getElementById('calendar-body');
             const startDate = new Date('2024-09-04');  // Premier mercredi de septembre 2024
-            const endDate = new Date('2025-07-31');
+            const endDate = new Date('2025-07-12');
             
             let currentDate = startDate;
             let sessionIndex = 0;
@@ -798,13 +808,20 @@
                 const wednesdayDescCell = document.createElement('td');
                 if (isHoliday(wednesdayDateString)) {
                     wednesdayDescCell.textContent = holidays[wednesdayDateString];
-                    row.classList.add('holiday');
+                    wednesdayCell.classList.add('holiday');
+                    wednesdayDescCell.classList.add('holiday');
                 } else if (isInVacation(wednesdayDateString)) {
                     wednesdayDescCell.textContent = getVacationName(wednesdayDateString);
                     row.classList.add('vacation');
                 } else {
                     wednesdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
                     sessionIndex++;
+                }
+
+                // Mise en évidence du jour actuel
+                if (isToday(wednesdayDateString)) {
+                    wednesdayCell.classList.add('today');
+                    wednesdayDescCell.classList.add('today');
                 }
     
                 // Jeudi
@@ -816,13 +833,20 @@
                 const thursdayDescCell = document.createElement('td');
                 if (isHoliday(thursdayDateString)) {
                     thursdayDescCell.textContent = holidays[thursdayDateString];
-                    row.classList.add('holiday');
+                    thursdayCell.classList.add('holiday');
+                    thursdayDescCell.classList.add('holiday');
                 } else if (isInVacation(thursdayDateString)) {
                     thursdayDescCell.textContent = getVacationName(thursdayDateString);
                     row.classList.add('vacation');
                 } else {
                     thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
                     sessionIndex++;
+                }
+
+                // Mise en évidence du jour actuel
+                if (isToday(thursdayDateString)) {
+                    thursdayCell.classList.add('today');
+                    thursdayDescCell.classList.add('today');
                 }
     
                 // Vendredi
@@ -834,13 +858,20 @@
                 const fridayDescCell = document.createElement('td');
                 if (isHoliday(fridayDateString)) {
                     fridayDescCell.textContent = holidays[fridayDateString];
-                    row.classList.add('holiday');
+                    fridayCell.classList.add('holiday');
+                    fridayDescCell.classList.add('holiday');
                 } else if (isInVacation(fridayDateString)) {
                     fridayDescCell.textContent = getVacationName(fridayDateString);
                     row.classList.add('vacation');
                 } else {
                     fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
                     sessionIndex++;
+                }
+
+                // Mise en évidence du jour actuel
+                if (isToday(fridayDateString)) {
+                    fridayCell.classList.add('today');
+                    fridayDescCell.classList.add('today');
                 }
     
                 // Mettre en évidence la semaine en cours
