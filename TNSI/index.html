@@ -195,10 +195,10 @@
                 <li><a href="#" onclick="showSession('session9')">Séance 9 : Étude des Cas Où le Backtracking Est Utile et de Ses Limitations</a></li>
                 <li><a href="#" onclick="showSession('session10')">Séance 10 : Introduction à la Complexité Algorithmique – Notation Big-O</a></li>
                 <li><a href="#" onclick="showSession('session11')">Séance 11 : Pratique - Comparaison des Algorithmes de Tri Simples (Insertion, Sélection)</a></li>
-                <li><a href="#" onclick="showSession('session12')">Séance 12 : </a></li>
-                <li><a href="#" onclick="showSession('session13')">Séance 13 : </a></li>
-                <li><a href="#" onclick="showSession('session14')">Séance 14 : </a></li>
-                <li><a href="#" onclick="showSession('session15')">Séance 15 : </a></li>
+                <li><a href="#" onclick="showSession('session12')">Séance 12 : Exercices d’Analyse de la Complexité des Algorithmes dans des Jeux Vidéo et la Vie Réelle</a></li>
+                <li><a href="#" onclick="showSession('session13')">Séance 13 : Introduction aux Graphes et à leurs Applications</a></li>
+                <li><a href="#" onclick="showSession('session14')">Séance 14 : Pratique - Représentation d'un Réseau de Routes dans un Jeu Vidéo avec des Graphes</a></li>
+                <li><a href="#" onclick="showSession('session15')">Séance 15 : Algorithmes de Parcours de Graphes – DFS et BFS</a></li>
                 <li><a href="#" onclick="showSession('session16')">Séance 16 : </a></li>
                 <li><a href="#" onclick="showSession('session17')">Séance 17 : </a></li>
                 <li><a href="#" onclick="showSession('session18')">Séance 18 : </a></li>
@@ -1950,6 +1950,654 @@
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Exercice Complémentaire :</h4>
             <p>Tri d'une liste de dictionnaires : Demander aux élèves de trier une liste de dictionnaires (objets du jeu) non seulement par valeur ou poids, mais aussi par d’autres critères comme la rareté.</p>
         </section>
+
+        <section id="session12" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 12 : Exercices d’Analyse de la Complexité des Algorithmes dans des Jeux Vidéo et la Vie Réelle</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves doivent comprendre et analyser la complexité temporelle des algorithmes à travers des exemples concrets tirés de jeux vidéo et de la vie réelle. Ils apprendront à évaluer l’efficacité d’un algorithme en fonction de la taille des données sur lesquelles il opère et à utiliser la notation Big-O.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Introduction à la Complexité Algorithmique</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">1. Qu’est-ce que la Complexité Algorithmique ?</h4>
+            <p>Lorsqu’on écrit un programme ou un algorithme, il est important de se demander "combien de temps prend l’algorithme pour s'exécuter" en fonction de la taille des données à traiter.</p>
+            <p>La complexité algorithmique est une manière de mesurer et comparer l’efficacité de différents algorithmes en fonction du nombre d’opérations qu’ils effectuent.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">2. La Notation Big-O</h4>
+            <p>La notation Big-O est une manière de représenter la croissance du temps d’exécution d’un algorithme en fonction de la taille des données (n).</p>
+            <p><strong>Quelques exemples courants :</strong></p>
+            <ul>
+                <li><strong>O(1)</strong> : Temps constant. L'algorithme prend toujours le même temps, quelle que soit la taille des données.</li>
+                <li><strong>O(n)</strong> : Temps linéaire. Le temps de l'algorithme augmente proportionnellement à la taille des données.</li>
+                <li><strong>O(log n)</strong> : Temps logarithmique. Le temps de l'algorithme augmente lentement à mesure que les données augmentent.</li>
+                <li><strong>O(n²)</strong> : Temps quadratique. Le temps augmente rapidement à mesure que la taille des données augmente (ex. : tri par sélection).</li>
+                <li><strong>O(2ⁿ)</strong> : Temps exponentiel. Très inefficace pour de grandes quantités de données.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">3. Exemple de la Recherche dans un Jeu Vidéo</h4>
+            <p>Dans un jeu vidéo de type open-world (monde ouvert), imaginons que le joueur cherche un objet caché. L’algorithme peut utiliser différents types de recherche pour aider le joueur à trouver cet objet.</p>
+            <ul>
+                <li><strong>Recherche linéaire (O(n)) :</strong> Si le joueur explore toutes les sections de la carte une par une, cela prendra du temps proportionnel à la taille de la carte. Si la carte contient 100 sections, il devra en moyenne en parcourir 50 avant de trouver l'objet.</li>
+                <li><strong>Recherche binaire (O(log n)) :</strong> Si l'algorithme divise la carte en deux parties à chaque étape (comme vu lors de la recherche binaire), la recherche sera bien plus rapide. Pour 100 sections, il suffit de 7 étapes pour trouver l’objet.</li>
+                <li><strong>Recherche dans un graphe (DFS/BFS) (O(n)) :</strong> Si le jeu est un labyrinthe ou un réseau complexe de chemins, les algorithmes de parcours de graphes peuvent être utilisés pour trouver l'objet.</li>
+            </ul>
+        
+            <pre><code>
+                # Pseudo-code pour la recherche linéaire :
+                def recherche_lineaire(liste, cible):
+                    for i in range(len(liste)):
+                        if liste[i] == cible:
+                            return i
+                    return -1
+                
+                # Recherche binaire (comme vu dans une séance précédente) :
+                def recherche_binaire(liste, debut, fin, cible):
+                    if debut > fin:
+                        return -1
+                    milieu = (debut + fin) // 2
+                    if liste[milieu] == cible:
+                        return milieu
+                    elif liste[milieu] < cible:
+                        return recherche_binaire(liste, milieu + 1, fin, cible)
+                    else:
+                        return recherche_binaire(liste, debut, milieu - 1, cible)
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Exercice Pratique 1 : Comparaison des Algorithmes de Recherche</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Scénario dans le Jeu Vidéo :</h4>
+            <p>Dans un monde ouvert, un monstre doit suivre le joueur. Le monstre doit déterminer où se trouve le joueur sur une carte divisée en sections numérotées de 1 à 1000.</p>
+            <ul>
+                <li>Recherche linéaire : Le monstre vérifie chaque section une par une.</li>
+                <li>Recherche binaire : Le monstre divise la carte en deux à chaque étape.</li>
+            </ul>
+            <p><strong>Objectif :</strong> Implémenter les deux algorithmes et comparer le nombre d’étapes nécessaires pour que le monstre trouve le joueur.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étapes :</h4>
+            <ol>
+                <li>Implémenter la recherche linéaire et la recherche binaire.</li>
+                <li>Effectuer des tests avec différentes tailles de carte (ex. : 100, 500, 1000 sections).</li>
+                <li>Comparer le nombre d'étapes nécessaires pour trouver le joueur à chaque fois.</li>
+            </ol>
+        
+            <pre><code>
+                # Code pour la Recherche Linéaire et Binaire :
+                import random
+                
+                # Simulation d'une carte avec 1000 sections
+                sections = list(range(1, 1001))
+                # Le joueur se trouve dans une section aléatoire
+                joueur = random.choice(sections)
+                
+                # Recherche linéaire
+                def recherche_lineaire(liste, cible):
+                    etapes = 0
+                    for i in range(len(liste)):
+                        etapes += 1
+                        if liste[i] == cible:
+                            return i, etapes
+                    return -1, etapes
+                
+                # Recherche binaire
+                def recherche_binaire(liste, debut, fin, cible, etapes=0):
+                    if debut > fin:
+                        return -1, etapes
+                    milieu = (debut + fin) // 2
+                    etapes += 1
+                    if liste[milieu] == cible:
+                        return milieu, etapes
+                    elif liste[milieu] < cible:
+                        return recherche_binaire(liste, milieu + 1, fin, cible, etapes)
+                    else:
+                        return recherche_binaire(liste, debut, milieu - 1, cible, etapes)
+                
+                # Comparaison des algorithmes
+                lin_result, lin_etapes = recherche_lineaire(sections, joueur)
+                bin_result, bin_etapes = recherche_binaire(sections, 0, len(sections) - 1, joueur)
+                
+                print(f"Recherche linéaire : trouvé en {lin_etapes} étapes")
+                print(f"Recherche binaire : trouvé en {bin_etapes} étapes")
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Analyse des Résultats :</h3>
+            <ul>
+                <li><strong>Recherche linéaire :</strong> Plus la carte est grande, plus le monstre doit effectuer d'étapes pour trouver le joueur. La recherche linéaire est donc proportionnelle à la taille de la carte.</li>
+                <li><strong>Recherche binaire :</strong> Le nombre d'étapes est beaucoup plus faible, car l'algorithme divise la carte en deux à chaque étape.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Exercice Pratique 2 : Algorithmes de Tri dans les Jeux Vidéo</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Scénario dans le Jeu Vidéo :</h4>
+            <p>Dans un inventaire de jeu vidéo, les objets doivent être triés par valeur ou par poids. L'algorithme de tri utilisé impacte la vitesse avec laquelle le joueur peut afficher son inventaire trié.</p>
+            <ul>
+                <li><strong>Tri par sélection (O(n²)) :</strong> Un tri basique mais lent.</li>
+                <li><strong>Tri rapide (Quicksort, O(n log n)) :</strong> Un tri plus rapide utilisé dans les systèmes de gestion d'inventaire modernes.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Implémenter le Tri par Sélection</h4>
+            <pre><code>
+                def tri_selection(liste):
+                    n = len(liste)
+                    for i in range(n):
+                        min_idx = i
+                        for j in range(i+1, n):
+                            if liste[j] < liste[min_idx]:
+                                min_idx = j
+                        liste[i], liste[min_idx] = liste[min_idx], liste[i]
+                    return liste
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Implémenter le Tri Rapide (Quicksort)</h4>
+            <pre><code>
+                def tri_rapide(liste):
+                    if len(liste) <= 1:
+                        return liste
+                    pivot = liste[0]
+                    inferieur = [x for x in liste[1:] if x <= pivot]
+                    superieur = [x for x in liste[1:] if x > pivot]
+                    return tri_rapide(inferieur) + [pivot] + tri_rapide(superieur)
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 3 : Comparer les Deux Algorithmes de Tri</h4>
+            <p>Les élèves doivent comparer les performances des deux algorithmes sur des listes d’inventaires de tailles différentes (10, 100, 1000 objets). Ils analyseront combien de temps chaque tri prend pour s'exécuter.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Discussion et Conclusion</h3>
+            <p><strong>Complexité des Algorithmes :</strong> Pourquoi certains algorithmes sont-ils plus lents que d'autres ?</p>
+            <p><strong>Big-O et l’importance de la taille des données :</strong> Discuter de la manière dont la taille des données influe sur les performances d'un algorithme.</p>
+            <p><strong>Jeux Vidéo et Algorithmes :</strong> Comment des concepts théoriques comme la complexité algorithmique impactent directement des expériences de jeu.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Extensions possibles :</h4>
+            <ul>
+                <li>Analyser la complexité spatiale (mémoire utilisée) en plus de la complexité temporelle.</li>
+                <li>Étudier d'autres algorithmes utilisés dans les jeux vidéo, comme les algorithmes d'IA pour le comportement des ennemis ou la génération procédurale de niveaux.</li>
+            </ul>
+        </section>
+
+        <section id="session13" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 13 : Introduction aux Graphes et à leurs Applications</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves doivent comprendre la notion de graphe en informatique, comment il est représenté et ses différentes applications pratiques, y compris dans le domaine des jeux vidéo. Ils apprendront les concepts de sommets, arêtes, parcours, et utiliseront des graphes pour résoudre des problèmes concrets, comme la navigation dans un jeu vidéo.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Introduction aux Graphes</h3>
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Qu’est-ce qu’un graphe ?</h4>
+            <p>Un graphe est une structure de données composée :</p>
+            <ul>
+                <li><strong>De sommets (ou nœuds) :</strong> ce sont les points d’un graphe, souvent utilisés pour représenter des objets, des lieux, ou des états.</li>
+                <li><strong>D’arêtes (ou arcs) :</strong> ce sont les lignes qui relient les sommets entre eux, représentant des relations ou des chemins entre ces objets.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Applications des graphes :</h4>
+            <ul>
+                <li><strong>Jeux vidéo :</strong> Représentation de mondes ou cartes de jeu (les sommets représentent les lieux, les arêtes représentent les chemins entre eux).</li>
+                <li><strong>Réseaux sociaux :</strong> Chaque utilisateur est un sommet, et les relations entre eux (amis) sont des arêtes.</li>
+                <li><strong>Navigation GPS :</strong> Les intersections (sommets) sont reliées par des routes (arêtes) pour trouver le chemin optimal.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Représentation d’un Graphe :</h3>
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">1. Représentation par une matrice d’adjacence :</h4>
+            <p>Une matrice carrée où les lignes et colonnes représentent les sommets. Si deux sommets sont connectés, la case correspondante contient une valeur (1 pour les non pondérés, un poids pour les pondérés).</p>
+        
+            <pre><code>
+                  |  A  |  B  |  C  |
+                   ------------------
+                A |  0  |  1  |  0  |
+                B |  1  |  0  |  1  |
+                C |  0  |  1  |  0  |
+            </code></pre>
+            <p>Ici, A et B sont connectés, et B et C sont connectés.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">2. Représentation par liste d’adjacence :</h4>
+            <p>Chaque sommet a une liste de sommets voisins. Cette représentation est plus économe en mémoire pour les graphes peu denses.</p>
+        
+            <pre><code>
+                graphe = {
+                    'A': ['B'],
+                    'B': ['A', 'C'],
+                    'C': ['B']
+                }
+            </code></pre>
+            <p>A est connecté à B, et B est connecté à C.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Exemple Ludique : Utilisation des Graphes dans un Jeu Vidéo</h3>
+            <p>Dans un jeu vidéo, vous êtes un personnage qui doit se déplacer d'un point A à un point B à travers un réseau de chemins connectant différents lieux. Le monde du jeu peut être représenté sous forme de graphe où :</p>
+            <ul>
+                <li><strong>Les sommets</strong> représentent des lieux (villes, salles dans un donjon, etc.).</li>
+                <li><strong>Les arêtes</strong> représentent des chemins (routes, portes entre les salles, etc.).</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple de Graphe dans le Jeu :</h4>
+            <pre><code>
+                A ----- B ----- C
+                |       |       |
+                D ----- E ----- F
+            </code></pre>
+            <p>Chaque lettre représente une pièce (un sommet). Chaque trait représente un chemin entre deux pièces (une arête).</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Types de Graphes</h3>
+            <ul>
+                <li><strong>Graphe non orienté :</strong> Les arêtes n'ont pas de direction. On peut aller dans les deux sens entre deux sommets.</li>
+                <li><strong>Graphe orienté :</strong> Les arêtes ont une direction. On ne peut aller que dans un sens d’un sommet à un autre.</li>
+                <li><strong>Graphe pondéré :</strong> Chaque arête a un poids (un coût), qui peut représenter la distance, le temps ou le coût énergétique pour se déplacer d’un sommet à un autre.</li>
+                <li><strong>Graphe connexe :</strong> Il est possible d’atteindre n’importe quel sommet à partir de n’importe quel autre sommet.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Mise en Pratique : Représentation d'un Monde de Jeu Vidéo avec un Graphe</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Créer un Graphe Représentant un Monde de Jeu</h4>
+            <pre><code>
+                graphe_donjon = {
+                    'A': ['B', 'D'],
+                    'B': ['A', 'C', 'E'],
+                    'C': ['B', 'F'],
+                    'D': ['A', 'E'],
+                    'E': ['B', 'D', 'F'],
+                    'F': ['C', 'E']
+                }
+            </code></pre>
+            <p>Ici, chaque clé représente une pièce, et les valeurs sont les pièces connectées par une porte.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Représenter le Monde et les Connexions</h4>
+            <p>Visualisez ce graphe dans le contexte d’un jeu :</p>
+            <ul>
+                <li><strong>Les sommets :</strong> Chaque lettre (A, B, C, etc.) représente une salle du donjon.</li>
+                <li><strong>Les arêtes :</strong> Les portes qui relient les salles entre elles.</li>
+            </ul>
+            <p>Demandez aux élèves de dessiner ce graphe sur papier ou sur un tableau pour mieux le visualiser.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 3 : Définir des Chemins dans le Graphe</h4>
+            <p>Le joueur commence dans la salle A et veut se rendre dans la salle F. L’objectif est de parcourir le graphe et de trouver un chemin du point A au point F en suivant les arêtes du graphe.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Parcours de Graphe : Introduction à la Recherche de Chemin</h3>
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">1. Parcours en largeur (BFS - Breadth First Search) :</h4>
+            <p>Utilisé pour trouver le plus court chemin dans un graphe non pondéré. Il explore tous les voisins d’un sommet avant de passer à la couche suivante.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">2. Parcours en profondeur (DFS - Depth First Search) :</h4>
+            <p>Utile pour explorer toutes les branches d’un graphe. Il explore aussi loin que possible dans une branche avant de revenir en arrière.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Mise en Pratique : Parcours en Largeur (BFS)</h3>
+            <pre><code>
+                from collections import deque
+        
+                def bfs(graphe, depart, objectif):
+                    file_attente = deque([depart])
+                    visites = set()
+                    
+                    while file_attente:
+                        sommet = file_attente.popleft()
+                        if sommet == objectif:
+                            print(f"Vous avez trouvé le chemin vers {objectif} depuis {depart} !")
+                            return
+                        if sommet not in visites:
+                            print(f"Vous explorez la pièce {sommet}")
+                            visites.add(sommet)
+                            file_attente.extend(graphe[sommet])
+                    print(f"Pas de chemin trouvé de {depart} à {objectif}.")
+                
+                # Appel de la fonction
+                bfs(graphe_donjon, 'A', 'F')
+            </code></pre>
+            <p>Ce programme parcourt le donjon en utilisant une approche BFS (parcours en largeur) pour explorer les pièces adjacentes et trouver le chemin de la pièce A à la pièce F.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Application et Conclusion</h3>
+            <p>Réflexion sur les Applications des Graphes :</p>
+            <ul>
+                <li><strong>Jeux vidéo :</strong> Les graphes sont utiles pour gérer les déplacements des personnages, que ce soit pour les joueurs ou pour les ennemis.</li>
+                <li><strong>Navigation :</strong> Les GPS utilisent des graphes pondérés pour calculer les meilleurs itinéraires entre deux lieux.</li>
+                <li><strong>Réseaux sociaux :</strong> Les graphes sont utilisés pour représenter les connexions entre utilisateurs (sommets) et leurs relations (arêtes).</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Challenge Supplémentaire (pour les élèves avancés) :</h4>
+            <p>Ajoutez des poids aux arêtes pour représenter le coût (distance, énergie) du déplacement entre les salles, puis utilisez l’algorithme de Dijkstra pour trouver le chemin le plus court entre deux salles.</p>
+            <p>Amélioration du jeu : Implémentez une fonction qui permet au joueur de trouver automatiquement le chemin le plus court pour s’échapper du donjon en évitant certains pièges.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectifs de la Séance :</h3>
+            <ul>
+                <li>Comprendre les concepts de base des graphes (sommets, arêtes, connexions).</li>
+                <li>Savoir représenter un monde de jeu vidéo sous forme de graphe.</li>
+                <li>Utiliser un algorithme de parcours de graphe pour résoudre un problème de navigation dans un jeu.</li>
+                <li>Bonus : Introduction à l’application des graphes dans des domaines plus vastes (réseaux sociaux, GPS).</li>
+            </ul>
+        </section>
+
+        <section id="session14" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 14 : Pratique - Représentation d'un Réseau de Routes dans un Jeu Vidéo avec des Graphes</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif de la Séance :</h3>
+            <p>Les élèves vont apprendre à modéliser un réseau de routes dans un jeu vidéo en utilisant des graphes. Ils vont comprendre comment utiliser un graphe pour représenter des routes entre différentes villes et comment ces structures peuvent être utilisées pour trouver les chemins les plus courts dans un jeu vidéo de type simulation de transport.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Contexte du Jeu Vidéo</h3>
+            <p>Imaginez un jeu de simulation où le joueur doit gérer le réseau de transport d’un royaume. Le royaume est constitué de plusieurs villes reliées entre elles par des routes. Chaque ville est un nœud (ou sommet) du réseau, et chaque route entre deux villes est une arête (ou arc) dans le graphe.</p>
+            <p><strong>Objectif du joueur :</strong> Le joueur doit transporter des marchandises d'une ville à l'autre en optimisant le trajet pour gagner du temps et des ressources. Il devra donc utiliser un algorithme de parcours de graphe pour trouver le chemin le plus court entre deux villes.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Introduction aux Graphes</h3>
+            <p><strong>Qu’est-ce qu’un Graphe ?</strong></p>
+            <p>Un graphe est une structure mathématique utilisée pour modéliser des relations entre des objets. Il est composé de :</p>
+            <ul>
+                <li><strong>Nœuds (ou sommets)</strong> : Ici, chaque nœud représente une ville.</li>
+                <li><strong>Arêtes (ou arcs)</strong> : Ce sont les routes qui relient les villes entre elles.</li>
+            </ul>
+            <p><strong>Types de graphes :</strong></p>
+            <ul>
+                <li><strong>Graphes non orientés :</strong> Les arêtes n'ont pas de direction, comme une route bidirectionnelle entre deux villes.</li>
+                <li><strong>Graphes orientés :</strong> Les arêtes ont une direction, comme une autoroute à sens unique entre deux villes.</li>
+            </ul>
+            <p>Dans notre exemple de jeu vidéo, nous utiliserons un graphe non orienté pour modéliser les routes, où chaque route est bidirectionnelle.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Représentation d’un Graphe en Python</h3>
+            <p>Il existe plusieurs manières de représenter un graphe dans un programme :</p>
+            <ul>
+                <li><strong>Matrice d’adjacence :</strong> Une matrice où chaque élément (i, j) est 1 si une route existe entre les villes i et j, sinon 0.</li>
+                <li><strong>Liste d’adjacence :</strong> Un dictionnaire où chaque ville est associée à une liste de villes adjacentes reliées par une route.</li>
+            </ul>
+            <p>Pour cette séance, nous allons utiliser une liste d’adjacence car elle est plus intuitive et plus efficace pour représenter des graphes avec peu de connexions.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 1 : Créer le Réseau de Routes avec une Liste d’Adjacence</h3>
+            <p><strong>Exemple :</strong></p>
+            <p>Supposons que nous avons cinq villes dans le royaume : A, B, C, D, et E. Les routes sont les suivantes :</p>
+            <ul>
+                <li>Route entre A et B.</li>
+                <li>Route entre A et C.</li>
+                <li>Route entre B et D.</li>
+                <li>Route entre C et D.</li>
+                <li>Route entre D et E.</li>
+            </ul>
+            <pre><code>
+                # Représentation du réseau de routes avec une liste d'adjacence
+                routes = {
+                    'A': ['B', 'C'],
+                    'B': ['A', 'D'],
+                    'C': ['A', 'D'],
+                    'D': ['B', 'C', 'E'],
+                    'E': ['D']
+                }
+            </code></pre>
+            <p><strong>Explication :</strong></p>
+            <ul>
+                <li>La ville A est reliée aux villes B et C.</li>
+                <li>La ville B est reliée aux villes A et D, etc.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 2 : Parcourir le Graphe – Algorithme DFS et BFS</h3>
+            <p><strong>Pourquoi parcourir un graphe ?</strong></p>
+            <p>Dans un jeu vidéo, le joueur peut vouloir savoir le chemin le plus court entre deux villes ou simplement vérifier si une ville est atteignable depuis une autre. Pour cela, on utilise des algorithmes de parcours de graphe, comme DFS (Depth First Search) ou BFS (Breadth First Search).</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Implémentation de DFS :</h4>
+            <pre><code>
+                # Fonction DFS pour parcourir le graphe
+                def dfs(graphe, ville, visitees):
+                    print(f"Visite de {ville}")
+                    visitees.add(ville)  # Marquer la ville comme visitée
+                    
+                    # Explorer les voisins
+                    for voisin in graphe[ville]:
+                        if voisin not in visitees:
+                            dfs(graphe, voisin, visitees)
+                
+                # Appel de DFS à partir de la ville A
+                visitees = set()
+                dfs(routes, 'A', visitees)
+            </code></pre>
+            <p><strong>Explication de DFS :</strong></p>
+            <ul>
+                <li><strong>Départ :</strong> On commence par la ville A, puis on visite tous les voisins de A qui n’ont pas encore été visités (ici B et C).</li>
+                <li><strong>Récursivité :</strong> L’algorithme appelle récursivement DFS sur chaque voisin jusqu’à ce que toutes les villes connectées soient visitées.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Implémentation de BFS :</h4>
+            <pre><code>
+                from collections import deque
+        
+                # Fonction BFS pour parcourir le graphe
+                def bfs(graphe, ville_depart):
+                    file = deque([ville_depart])
+                    visitees = set([ville_depart])
+                    
+                    while file:
+                        ville = file.popleft()
+                        print(f"Visite de {ville}")
+                        
+                        # Parcourir les voisins
+                        for voisin in graphe[ville]:
+                            if voisin not in visitees:
+                                file.append(voisin)
+                                visitees.add(voisin)
+                
+                # Appel de BFS à partir de la ville A
+                bfs(routes, 'A')
+            </code></pre>
+            <p><strong>Explication de BFS :</strong></p>
+            <ul>
+                <li>On commence par visiter la ville A, puis on ajoute ses voisins dans une file (ou file d’attente) pour les visiter à leur tour.</li>
+                <li>Le parcours se fait par niveaux : on visite d’abord les voisins immédiats (ici B et C), puis les voisins des voisins.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 3 : Application au Jeu Vidéo – Trouver le Chemin le Plus Court</h3>
+            <p><strong>Objectif :</strong></p>
+            <p>Dans le jeu, le joueur doit transporter des marchandises entre deux villes et doit trouver le chemin le plus court. Pour cela, nous allons utiliser BFS car il est bien adapté pour trouver les chemins les plus courts dans les graphes non pondérés.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Ajout de la Fonction de Recherche du Chemin le Plus Court :</h4>
+            <pre><code>
+                def bfs_chemin_court(graphe, ville_depart, ville_arrivee):
+                    file = deque([[ville_depart]])  # File qui contient les chemins explorés
+                    visitees = set([ville_depart])
+                    
+                    while file:
+                        chemin = file.popleft()
+                        ville = chemin[-1]
+                        
+                        # Si on arrive à la ville cible, on renvoie le chemin emprunté
+                        if ville == ville_arrivee:
+                            return chemin
+                        
+                        # Parcourir les voisins
+                        for voisin in graphe[ville]:
+                            if voisin not in visitees:
+                                nouveau_chemin = list(chemin)  # Copier le chemin actuel
+                                nouveau_chemin.append(voisin)  # Ajouter le voisin au chemin
+                                file.append(nouveau_chemin)
+                                visitees.add(voisin)
+                    
+                    return None  # Retourner None si aucun chemin n'est trouvé
+                
+                # Trouver le chemin le plus court entre A et E
+                chemin = bfs_chemin_court(routes, 'A', 'E')
+                print(f"Le chemin le plus court est : {chemin}")
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 4 : Extensions et Améliorations</h3>
+            <ul>
+                <li><strong>Pondération des routes :</strong> Ajouter des poids aux routes (distance ou temps de trajet) pour utiliser des algorithmes plus avancés comme Dijkstra pour trouver le chemin le plus court dans un graphe pondéré.</li>
+                <li><strong>Modéliser plus de villes :</strong> Ajouter davantage de villes et routes dans le réseau de transport.</li>
+                <li><strong>Gestion des trajets multiples :</strong> Permettre au joueur de planifier plusieurs trajets entre différentes villes.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion</h3>
+            <ul>
+                <li>Modéliser un réseau de routes avec un graphe en utilisant une liste d’adjacence.</li>
+                <li>Implémenter des algorithmes de parcours (DFS et BFS) pour explorer un réseau de villes.</li>
+                <li>Utiliser BFS pour trouver le chemin le plus court dans un graphe non pondéré, et comprendre comment cela s'applique aux jeux vidéo.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exercice Complémentaire :</h4>
+            <p>Si certains élèves avancent plus rapidement, ils peuvent travailler sur un réseau de routes plus complexe et implémenter un algorithme plus avancé comme Dijkstra pour trouver le chemin le plus rapide en fonction du temps de trajet sur chaque route.</p>
+        </section>
+
+        <section id="session15" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 15 : Algorithmes de Parcours de Graphes – DFS et BFS</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves doivent comprendre et implémenter deux algorithmes fondamentaux de parcours de graphes : DFS (Depth-First Search) et BFS (Breadth-First Search). Ils apprendront à les utiliser dans le cadre d’un jeu vidéo où un personnage doit explorer un réseau de niveaux ou un labyrinthe.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Introduction aux Graphes et Parcours</h3>
+            <h4>Le Contexte du Jeu Vidéo :</h4>
+            <p>Dans un jeu vidéo d’aventure, un personnage doit naviguer à travers un labyrinthe ou un réseau de niveaux pour atteindre la sortie ou accomplir une mission. Chaque niveau est représenté comme un graphe, où :</p>
+            <ul>
+                <li>Chaque nœud du graphe représente une salle ou un point d’intérêt dans le labyrinthe.</li>
+                <li>Chaque arête entre deux nœuds représente un chemin que le personnage peut emprunter.</li>
+            </ul>
+            <p>Le joueur doit explorer le labyrinthe pour trouver la sortie ou un trésor. Pour rendre cette exploration efficace, nous allons utiliser deux algorithmes de parcours de graphes : DFS (parcours en profondeur) et BFS (parcours en largeur).</p>
+        
+            <h4>Définition de Base d’un Graphe :</h4>
+            <ul>
+                <li><strong>Nœuds (ou sommets) :</strong> chaque nœud représente un point, comme une salle dans un labyrinthe ou un niveau dans un jeu.</li>
+                <li><strong>Arêtes :</strong> les connexions entre les nœuds, qui représentent des chemins.</li>
+            </ul>
+            <p>Dans notre jeu, nous pouvons modéliser un labyrinthe ou un réseau de niveaux sous forme de graphe.</p>
+        
+            <h4>Exemple Visuel :</h4>
+            <pre><code>
+    1 --- 2 --- 3
+    |     |     |
+    4 --- 5 --- 6
+            </code></pre>
+            <p>Chaque numéro (1, 2, 3, etc.) représente une salle du labyrinthe.</p>
+            <p>Chaque trait (--- ou |) représente un chemin que le personnage peut emprunter pour aller d'une salle à l'autre.</p>
+            <p>Nous allons voir comment le personnage peut explorer ce labyrinthe en utilisant les algorithmes DFS et BFS pour parcourir le graphe.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Algorithme DFS (Depth-First Search) – Parcours en Profondeur</h3>
+            <h4>1. Principe de DFS :</h4>
+            <p>Le parcours en profondeur consiste à explorer le plus loin possible dans une direction avant de revenir en arrière. Cela signifie que l’algorithme suit un chemin jusqu’à ce qu’il n’y ait plus d’arêtes à suivre, puis il revient en arrière pour explorer d’autres chemins.</p>
+        
+            <p>DFS fonctionne de manière récursive, en suivant un chemin jusqu’à atteindre un nœud sans issue (feuille), puis en revenant pour explorer les autres chemins.</p>
+        
+            <h4>Exemple Visuel avec DFS :</h4>
+            <p>Dans notre labyrinthe ci-dessus, un parcours DFS à partir du nœud 1 pourrait suivre cette séquence : 1 → 2 → 3 → 6 → 5 → 4 (exploration la plus profonde possible avant de revenir).</p>
+        
+            <h4>Pseudo-code de DFS :</h4>
+            <pre><code>
+    def dfs(graphe, noeud, visites):
+        if noeud not in visites:
+            print(f"Visite du nœud {noeud}")
+            visites.add(noeud)  # Marquer le nœud comme visité
+            for voisin dans graphe[noeud]:  # Explorer tous les voisins non visités
+                dfs(graphe, voisin, visites)
+            </code></pre>
+        
+            <h4>Explication Étape par Étape :</h4>
+            <ul>
+                <li><strong>Initialisation :</strong> On commence au premier nœud (par exemple, la salle de départ).</li>
+                <li><strong>Exploration :</strong> On explore un des voisins non visités, puis on continue à explorer les voisins des voisins.</li>
+                <li><strong>Retour en arrière :</strong> Si un nœud n’a plus de voisins non visités, on revient en arrière pour explorer les autres chemins.</li>
+            </ul>
+        
+            <h4>Implémentation DFS dans le Contexte du Jeu (Exemple en Python) :</h4>
+            <pre><code>
+    graphe = {
+        1: [2, 4],
+        2: [1, 3, 5],
+        3: [2, 6],
+        4: [1, 5],
+        5: [2, 4, 6],
+        6: [3, 5]
+    }
+    
+    def dfs(graphe, noeud, visites):
+        if noeud not in visites:
+            print(f"Visite de la salle {noeud}")
+            visites.add(noeud)
+            for voisin dans graphe[noeud]:
+                dfs(graphe, voisin, visites)
+    
+    # Initialiser un ensemble de nœuds visités
+    visites = set()
+    
+    # Lancer le parcours DFS à partir de la salle 1
+    dfs(graphe, 1, visites)
+            </code></pre>
+        
+            <h4>Défi Pratique :</h4>
+            <ul>
+                <li><strong>Étape 1 :</strong> Modifiez le graphe pour que certaines salles contiennent des trésors.</li>
+                <li><strong>Étape 2 :</strong> Implémentez un DFS pour que le joueur explore toutes les salles et affiche si un trésor est trouvé dans une salle.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Algorithme BFS (Breadth-First Search) – Parcours en Largeur</h3>
+            <h4>1. Principe de BFS :</h4>
+            <p>Le parcours en largeur consiste à explorer tous les voisins d’un nœud avant de passer aux voisins des voisins.</p>
+            <p>BFS fonctionne en utilisant une file d’attente (queue) pour gérer les nœuds à explorer. À chaque étape, on explore tous les nœuds voisins du nœud actuel avant de passer aux nœuds de niveau supérieur.</p>
+        
+            <h4>Exemple Visuel avec BFS :</h4>
+            <p>Dans le labyrinthe, un parcours BFS à partir du nœud 1 pourrait suivre cette séquence : 1 → 2 → 4 → 3 → 5 → 6 (exploration niveau par niveau).</p>
+        
+            <h4>Pseudo-code de BFS :</h4>
+            <pre><code>
+    from collections import deque
+
+    def bfs(graphe, noeud):
+        visites = set()  # Ensemble des nœuds visités
+        queue = deque([noeud])  # File d'attente pour gérer les nœuds à explorer
+        
+        while queue:
+            courant = queue.popleft()  # Récupérer le nœud à explorer
+            if courant not in visites:
+                print(f"Visite du nœud {courant}")
+                visites.add(courant)  # Marquer comme visité
+                for voisin dans graphe[courant]:
+                    if voisin not in visites:
+                        queue.append(voisin)  # Ajouter les voisins à la file d'attente
+            </code></pre>
+        
+            <h4>Explication Étape par Étape :</h4>
+            <ul>
+                <li><strong>Initialisation :</strong> On commence au premier nœud (la salle de départ).</li>
+                <li><strong>Exploration des voisins :</strong> On explore tous les voisins directs du nœud actuel.</li>
+                <li><strong>Nœuds de niveau supérieur :</strong> Une fois les voisins directs explorés, on passe aux voisins des voisins, et ainsi de suite, jusqu’à ce que tous les nœuds soient visités.</li>
+            </ul>
+        
+            <h4>Implémentation BFS dans le Contexte du Jeu (Exemple en Python) :</h4>
+            <pre><code>
+    from collections import deque
+        
+    graphe = {
+        1: [2, 4],
+        2: [1, 3, 5],
+        3: [2, 6],
+        4: [1, 5],
+        5: [2, 4, 6],
+        6: [3, 5]
+    }
+                
+    def bfs(graphe, noeud):
+        visites = set()  # Ensemble des nœuds visités
+        queue = deque([noeud])  # File d'attente
+        
+        while queue:
+            courant = queue.popleft()
+            if courant not in visites:
+                print(f"Visite de la salle {courant}")
+                visites.add(courant)
+                for voisin dans graphe[courant]:
+                    if voisin not in visites:
+                        queue.append(voisin)
+    
+    # Lancer le parcours BFS à partir de la salle 1
+    bfs(graphe, 1)
+            </code></pre>
+        
+            <h4>Défi Pratique :</h4>
+            <ul>
+                <li><strong>Étape 1 :</strong> Implémentez un système où le personnage doit explorer toutes les salles du labyrinthe à l'aide du parcours en largeur.</li>
+                <li><strong>Étape 2 :</strong> Ajoutez un obstacle dans certaines salles et modifiez le BFS pour que le personnage ignore les salles avec des obstacles.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Comparaison des Algorithmes</h3>
+        
+            <h4>Comparaison DFS vs BFS :</h4>
+            <ul>
+                <li><strong>DFS (Depth-First Search) :</strong> L'algorithme explore profondément dans un chemin avant de revenir en arrière. Il est utile pour explorer des labyrinthes où l’on veut atteindre des chemins très éloignés. DFS utilise souvent la récursivité.</li>
+                <li><strong>BFS (Breadth-First Search) :</strong> L'algorithme explore tous les voisins directs avant de passer aux nœuds suivants. Il est très efficace pour trouver le chemin le plus court dans un graphe. BFS utilise une file d’attente.</li>
+            </ul>
+        
+            <h4>Complexité Temporelle :</h4>
+            <p>Les deux algorithmes ont une complexité en temps de <code>O(V + E)</code>, où <code>V</code> est le nombre de nœuds (salles) et <code>E</code> est le nombre d’arêtes (chemins).</p>
+        
+            <h4>Discussion :</h4>
+            <ul>
+                <li>DFS est particulièrement utile pour les problèmes de parcours de labyrinthe où il est important d’explorer un chemin complet avant de revenir en arrière.</li>
+                <li>BFS est idéal pour trouver des chemins plus courts ou explorer des environnements "niveau par niveau", comme dans un jeu où l’on veut explorer toutes les salles d'un étage avant de monter à l'étage supérieur.</li>
+            </ul>
+        </section>
     </main>
 
     <!-- <footer>
@@ -1987,7 +2635,11 @@
             'Séance 8 : Pratique - Résolution d\'un Labyrinthe avec Backtracking (Jeu Vidéo)',
             'Séance 9 : Étude des Cas Où le Backtracking Est Utile et de Ses Limitations',
             'Séance 10 : Introduction à la Complexité Algorithmique – Notation Big-O',
-            'Séance 11 : Pratique - Comparaison des Algorithmes de Tri Simples (Insertion, Sélection)'
+            'Séance 11 : Pratique - Comparaison des Algorithmes de Tri Simples (Insertion, Sélection)',
+            'Séance 12 : Exercices d’Analyse de la Complexité des Algorithmes dans des Jeux Vidéo et la Vie Réelle',
+            'Séance 13 : Introduction aux Graphes et à leurs Applications',
+            'Séance 14 : Pratique - Représentation d\'un Réseau de Routes dans un Jeu Vidéo avec des Graphes',
+            'Séance 15 : Algorithmes de Parcours de Graphes – DFS et BFS'
         ];
     
         function isHoliday(date) {
