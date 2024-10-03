@@ -187,14 +187,14 @@
                 <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à la récursivité (concepts de base)</a></li>
                 <li><a href="#" onclick="showSession('session2')">Séance 2 : Pratique - Implémentation d’une fonction récursive pour calculer une suite mathématique</a></li>
                 <li><a href="#" onclick="showSession('session3')">Séance 3 : Applications pratiques de la récursivité (problèmes simples)</a></li>
-                <li><a href="#" onclick="showSession('session4')">Séance 4 : </a></li>
-                <li><a href="#" onclick="showSession('session5')">Séance 5 : </a></li>
-                <li><a href="#" onclick="showSession('session6')">Séance 6 : </a></li>
-                <li><a href="#" onclick="showSession('session7')">Séance 7 : </a></li>
-                <li><a href="#" onclick="showSession('session8')">Séance 8 : </a></li>
-                <li><a href="#" onclick="showSession('session9')">Séance 9 : Introduction aux Fonctions</a></li>
-                <li><a href="#" onclick="showSession('session10')">Séance 10 : </a></li>
-                <li><a href="#" onclick="showSession('session11')">Séance 11 : </a></li>
+                <li><a href="#" onclick="showSession('session4')">Séance 4 : Introduction aux Algorithmes de Recherche Récursive – Recherche Binaire</a></li>
+                <li><a href="#" onclick="showSession('session5')">Séance 5 : Pratique – Recherche d’un Personnage de Manga avec un Algorithme de Recherche Binaire</a></li>
+                <li><a href="#" onclick="showSession('session6')">Séance 6 : Analyse de la Complexité d’un Algorithme de Recherche Récursive</a></li>
+                <li><a href="#" onclick="showSession('session7')">Séance 7 : Introduction au Backtracking (Concepts de Base)</a></li>
+                <li><a href="#" onclick="showSession('session8')">Séance 8 : Pratique - Résolution d'un Labyrinthe avec Backtracking (Jeu Vidéo)</a></li>
+                <li><a href="#" onclick="showSession('session9')">Séance 9 : Étude des Cas Où le Backtracking Est Utile et de Ses Limitations</a></li>
+                <li><a href="#" onclick="showSession('session10')">Séance 10 : Introduction à la Complexité Algorithmique – Notation Big-O</a></li>
+                <li><a href="#" onclick="showSession('session11')">Séance 11 : Pratique - Comparaison des Algorithmes de Tri Simples (Insertion, Sélection)</a></li>
                 <li><a href="#" onclick="showSession('session12')">Séance 12 : </a></li>
                 <li><a href="#" onclick="showSession('session13')">Séance 13 : </a></li>
                 <li><a href="#" onclick="showSession('session14')">Séance 14 : </a></li>
@@ -716,8 +716,1240 @@
             <p>À la fin de cette séance, les élèves auront appris à utiliser la récursivité pour résoudre des problèmes d’exploration et de génération d’environnements, avec des exemples concrets tirés des jeux vidéo. Cela les prépare à appliquer la récursivité dans des projets plus complexes à l'avenir.</p>
         </section>
 
-              
+        <section id="session4" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 4 : Introduction aux Algorithmes de Recherche Récursive – Recherche Binaire</h2>
         
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves doivent comprendre et implémenter un algorithme de recherche binaire en utilisant une approche récursive. Ils doivent également l'appliquer à un contexte ludique (jeu vidéo) pour renforcer la compréhension par la pratique.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Introduction à la Recherche Binaire</h3>
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Le Contexte :</h4>
+            <p>Dans un jeu vidéo de chasse au trésor, le joueur doit trouver un trésor caché sur une île divisée en 100 sections numérotées de 1 à 100. Le joueur ne sait pas où le trésor est caché et doit le retrouver en posant des questions.</p>
+            <p><strong>Problème initial :</strong> Si le joueur cherche le trésor en vérifiant chaque section, cela peut prendre beaucoup de temps. On appelle cela une recherche linéaire. Si le trésor est dans la dernière section, il devra vérifier toutes les sections avant d'arriver à la bonne, ce qui est peu efficace.</p>
+            <p><strong>Solution optimisée :</strong> Utiliser la recherche binaire pour diviser l’espace de recherche en deux à chaque étape. Cela permet de réduire le nombre de vérifications nécessaires.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">L'idée de la Recherche Binaire :</h4>
+            <p>La recherche binaire est un algorithme qui repose sur le principe de diviser pour régner (divide and conquer). Voici les étapes :</p>
+            <ul>
+                <li>Le joueur divise la zone de recherche en deux parties égales.</li>
+                <li>Le joueur demande si le trésor se trouve dans la partie supérieure ou inférieure.</li>
+                <li>À chaque étape, l’algorithme divise à nouveau la zone en deux et répète le processus jusqu’à ce que la section contenant le trésor soit trouvée.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple Concret :</h4>
+            <p>Imaginons que le trésor soit dans la section 75.</p>
+            <ol>
+                <li>Étape 1 : Le joueur commence par diviser la zone en deux et vérifie la section du milieu (50).</li>
+                <li>Est-ce que le trésor est dans la section 50 ? Non.</li>
+                <li>Le trésor est-il dans une section plus haute ou plus basse que 50 ? Le trésor est dans une section plus haute.</li>
+                <li>Étape 2 : Le joueur cherche donc dans les sections 51 à 100. La nouvelle section du milieu est 75.</li>
+                <li>Est-ce que le trésor est dans la section 75 ? Oui !</li>
+                <li>Le trésor est trouvé.</li>
+            </ol>
+            <p><strong>Avantage :</strong> En seulement 2 étapes, le joueur a trouvé le trésor, alors qu'une recherche linéaire aurait pris 75 étapes.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Explication Théorique de la Recherche Binaire</h3>
+            <p>Comment ça fonctionne en termes d’algorithme :</p>
+            <ol>
+                <li><strong>Début :</strong> L’algorithme commence avec une liste triée de sections (de 1 à 100).</li>
+                <li><strong>Milieu :</strong> Il trouve la section au milieu de la liste.</li>
+                <li><strong>Comparaison :</strong> Il compare la section du milieu avec la section où le trésor est caché :
+                    <ul>
+                        <li>Si le trésor est dans la section du milieu, il s’arrête là.</li>
+                        <li>Si le trésor est dans une section plus petite, il continue à chercher dans la moitié inférieure.</li>
+                        <li>Si le trésor est dans une section plus grande, il continue à chercher dans la moitié supérieure.</li>
+                    </ul>
+                </li>
+                <li><strong>Récursion :</strong> L’algorithme répète ce processus jusqu’à ce qu’il trouve le trésor.</li>
+            </ol>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple de Pseudo-code :</h4>
+            <pre><code>
+                recherche_binaire(liste, debut, fin, cible):
+                Si debut > fin, retourner -1 (le trésor n'est pas dans la liste)
+                
+                milieu = (debut + fin) // 2
+                
+                Si liste[milieu] == cible, retourner milieu (le trésor est trouvé)
+                
+                Si liste[milieu] < cible:
+                    Rechercher dans la moitié supérieure (milieu + 1 à fin)
+                Sinon:
+                    Rechercher dans la moitié inférieure (debut à milieu - 1)
+            </code></pre>
+        
+            <p><strong>Cas de base :</strong> Si la liste est vide (début > fin), le trésor n’est pas dans la liste.</p>
+            <p><strong>Cas récursif :</strong> À chaque étape, la liste est divisée en deux, et l’algorithme est rappelé sur la moitié pertinente (supérieure ou inférieure).</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Mise en Pratique dans le Contexte du Jeu Vidéo</h3>
+            
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Créer la Liste des Sections</h4>
+            <p>Tout d’abord, nous allons représenter l’île avec une liste de sections numérotées de 1 à 100 :</p>
+            <pre><code>sections = list(range(1, 101))</code></pre>
+            <p>Ensuite, nous allons choisir une section aléatoire pour cacher le trésor :</p>
+            <pre><code>
+                import random
+                section_tresor = random.choice(sections)
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Implémenter la Recherche Binaire</h4>
+            <p>Nous allons maintenant implémenter l'algorithme de recherche binaire récursive pour chercher le trésor. À chaque étape, le programme indiquera si le trésor est dans la moitié supérieure ou inférieure :</p>
+            <pre><code>
+                def recherche_binaire(liste, debut, fin, cible):
+                    if debut > fin:
+                        print("Le trésor n'est pas sur cette île !")
+                        return -1
+                    
+                    milieu = (debut + fin) // 2
+                    print(f"Vous cherchez dans la section {milieu}...")
+                    
+                    if liste[milieu] == cible:
+                        print(f"Félicitations ! Vous avez trouvé le trésor dans la section {milieu} !")
+                        return milieu
+                    elif liste[milieu] < cible:
+                        print("Le trésor est dans une section plus haute.")
+                        return recherche_binaire(liste, milieu + 1, fin, cible)
+                    else:
+                        print("Le trésor est dans une section plus basse.")
+                        return recherche_binaire(liste, debut, milieu - 1, cible)
+                
+                # Appel de la fonction
+                recherche_binaire(sections, 0, len(sections) - 1, section_tresor)
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Extension et Challenge : Limite de Tentatives</h4>
+            <p>Pour ajouter un défi supplémentaire, introduisez une limite de tentatives. Comme la recherche binaire divise la zone par deux à chaque étape, le nombre maximum de tentatives pour trouver le trésor dans une liste de 100 éléments est de 7 (car log2(100) ≈ 7).</p>
+            <p>Modifiez l'algorithme pour limiter le nombre de tentatives à 7. Si le joueur dépasse ce nombre, il échoue à trouver le trésor.</p>
+        
+            <pre><code>
+                def recherche_binaire(liste, debut, fin, cible, tentatives=7):
+                    if debut > fin or tentatives == 0:
+                        print("Le trésor n'a pas été trouvé, vous avez épuisé vos tentatives.")
+                        return -1
+                    
+                    milieu = (debut + fin) // 2
+                    print(f"Vous cherchez dans la section {milieu}... Tentatives restantes : {tentatives}")
+                    
+                    if liste[milieu] == cible:
+                        print(f"Félicitations ! Vous avez trouvé le trésor dans la section {milieu} !")
+                        return milieu
+                    elif liste[milieu] < cible:
+                        print("Le trésor est dans une section plus haute.")
+                        return recherche_binaire(liste, milieu + 1, fin, cible, tentatives - 1)
+                    else:
+                        print("Le trésor est dans une section plus basse.")
+                        return recherche_binaire(liste, debut, milieu - 1, cible, tentatives - 1)
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Réflexion</h3>
+            <p>À la fin de cette séance :</p>
+            <ul>
+                <li>Les élèves auront compris le concept de récursivité et comment elle peut être utilisée pour diviser un problème en sous-problèmes plus petits.</li>
+                <li>Ils auront appris à implémenter un algorithme de recherche binaire pour améliorer l’efficacité de la recherche par rapport à une recherche linéaire.</li>
+            </ul>
+        
+            <p><strong>Discussion sur la complexité temporelle :</strong> La recherche linéaire prend O(n) opérations, tandis que la recherche binaire prend O(log n) opérations, ce qui est bien plus rapide pour de grandes listes.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exercice complémentaire :</h4>
+            <p>Comparer la recherche linéaire et la recherche binaire : Demander aux élèves d’implémenter une recherche linéaire et de compter combien de tentatives elle nécessite en moyenne pour trouver le trésor.</p>
+        </section>
+
+        <section id="session5" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 5 : Pratique – Recherche d’un Personnage de Manga avec un Algorithme de Recherche Binaire</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves doivent utiliser l’algorithme de recherche binaire pour retrouver un personnage de manga dans une liste triée. Cela permettra de consolider les notions de recherche efficace et d’appliquer la récursivité dans un contexte concret.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Contexte Manga :</h3>
+            <p>Dans cette séance, vous allez simuler une recherche dans une base de données de personnages de manga. Imaginez une application où les utilisateurs peuvent rechercher un personnage de manga par son nom. Comme la base de données contient de nombreux personnages, une recherche linéaire serait inefficace. La solution ? Utiliser un algorithme de recherche binaire pour accélérer la recherche.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Introduction au Problème</h3>
+            <p><strong>Problème :</strong> Vous avez une liste triée de personnages de manga et vous devez trouver un personnage spécifique rapidement. Plutôt que de chercher chaque nom un par un (recherche linéaire), vous allez utiliser un algorithme de recherche binaire pour optimiser le processus.</p>
+            <ul>
+                <li><strong>Recherche linéaire :</strong> Il faut potentiellement parcourir tous les éléments de la liste pour trouver le bon personnage. Si la liste contient 100 personnages, il pourrait falloir jusqu'à 100 comparaisons dans le pire des cas.</li>
+                <li><strong>Recherche binaire :</strong> La liste est triée, donc à chaque étape, vous pouvez diviser la liste en deux, ce qui accélère la recherche de manière exponentielle.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Explication du Contexte et de la Recherche Binaire</h3>
+            <p><strong>Contexte Manga :</strong> Imaginez une application de fans de manga où les utilisateurs peuvent rechercher des personnages. Chaque personnage a un nom, et la liste de personnages est déjà triée alphabétiquement.</p>
+            <p><strong>Exemple :</strong> Voici une liste simplifiée de personnages de mangas (cette liste est triée) :</p>
+        
+            <pre><code>["Asta", "Edward", "Goku", "Luffy", "Naruto", "Sasuke", "Tanjiro", "Vegeta", "Zoro"]</code></pre>
+        
+            <p>Si vous cherchez "Luffy", au lieu de commencer à chercher depuis le début de la liste et d’aller un par un (recherche linéaire), vous pouvez commencer au milieu et diviser la recherche en deux.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Recherche Binaire : Principe et Explication</h3>
+            <p>La recherche binaire consiste à diviser la liste en deux parties égales, à comparer l’élément du milieu avec le nom que vous cherchez, puis à continuer à diviser la moitié pertinente jusqu'à ce que vous trouviez l'élément, ou que vous déterminiez qu'il n'est pas dans la liste.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple Concret :</h4>
+            <p>Si vous cherchez "Luffy", voici les étapes :</p>
+            <ol>
+                <li>La liste contient 9 personnages, l’élément du milieu est à la position 4 (index 4, c’est "Naruto").</li>
+                <li>"Luffy" est plus petit que "Naruto" dans l’ordre alphabétique, donc on cherche dans la première moitié de la liste (éléments [0, 3]).</li>
+                <li>Dans cette nouvelle sous-liste, l’élément du milieu est à la position 1 (index 1, c’est "Edward").</li>
+                <li>"Luffy" est plus grand que "Edward", donc on cherche dans la moitié supérieure de cette sous-liste.</li>
+                <li>On trouve "Luffy" à l’index 3.</li>
+            </ol>
+        
+            <p>Conclusion : La recherche binaire a permis de trouver "Luffy" en seulement 3 comparaisons, au lieu de 5 comparaisons en recherche linéaire.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Explication Théorique de l'Algorithme</h4>
+            <pre><code>
+                recherche_binaire(liste, debut, fin, cible):
+                Si debut > fin, retourner -1 (le personnage n'est pas dans la liste)
+                
+                milieu = (debut + fin) // 2
+                
+                Si liste[milieu] == cible, retourner milieu (personnage trouvé)
+                
+                Si liste[milieu] < cible:
+                    Rechercher dans la moitié supérieure (milieu + 1 à fin)
+                Sinon:
+                    Rechercher dans la moitié inférieure (debut à milieu - 1)
+            </code></pre>
+        
+            <p><strong>Cas de base :</strong> Si la sous-liste est vide (debut > fin), le personnage n'est pas dans la liste.</p>
+            <p><strong>Cas récursif :</strong> La fonction appelle récursivement la recherche binaire sur la moitié supérieure ou inférieure selon la comparaison du personnage du milieu avec celui recherché.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Mise en Pratique : Recherche Binaire sur une Liste de Personnages de Manga</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Créer la Liste des Personnages de Manga</h4>
+            <p>On va d’abord créer une liste de personnages triée alphabétiquement.</p>
+        
+            <pre><code>personnages_manga = ["Asta", "Edward", "Goku", "Luffy", "Naruto", "Sasuke", "Tanjiro", "Vegeta", "Zoro"]</code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Implémenter la Recherche Binaire</h4>
+            <p>On implémente l’algorithme de recherche binaire pour chercher un personnage dans cette liste. L’algorithme prend la liste de personnages, les indices de début et de fin, et le nom du personnage à chercher.</p>
+        
+            <pre><code>
+                def recherche_binaire(liste, debut, fin, cible):
+                    if debut > fin:
+                        print(f"{cible} n'est pas dans la liste.")
+                        return -1
+                    
+                    milieu = (debut + fin) // 2
+                    print(f"Vérification du personnage au milieu : {liste[milieu]}")
+                
+                    if liste[milieu] == cible:
+                        print(f"Félicitations ! {cible} a été trouvé à la position {milieu}.")
+                        return milieu
+                    elif liste[milieu] < cible:
+                        print(f"{cible} est après {liste[milieu]}. Recherche dans la moitié supérieure.")
+                        return recherche_binaire(liste, milieu + 1, fin, cible)
+                    else:
+                        print(f"{cible} est avant {liste[milieu]}. Recherche dans la moitié inférieure.")
+                        return recherche_binaire(liste, debut, milieu - 1, cible)
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 3 : Recherche d’un Personnage</h4>
+            <p>Invitez les élèves à tester cette fonction en recherchant des personnages comme Luffy, Naruto, ou d'autres dans la liste.</p>
+        
+            <pre><code>
+                # Appel de la fonction de recherche
+                recherche_binaire(personnages_manga, 0, len(personnages_manga) - 1, "Luffy")
+            </code></pre>
+        
+            <p><strong>Exemple de sortie :</strong></p>
+            <pre><code>
+                Vérification du personnage au milieu : Naruto
+                Luffy est avant Naruto. Recherche dans la moitié inférieure.
+                Vérification du personnage au milieu : Edward
+                Luffy est après Edward. Recherche dans la moitié supérieure.
+                Vérification du personnage au milieu : Luffy
+                Félicitations ! Luffy a été trouvé à la position 3.
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Extension : Limite de Tentatives</h3>
+            <p>Ajoutez une fonctionnalité pour limiter le nombre de tentatives à un certain nombre, comme 4 tentatives, pour rendre l'exercice plus difficile et montrer comment l’algorithme optimise les recherches.</p>
+        
+            <pre><code>
+                def recherche_binaire(liste, debut, fin, cible, tentatives):
+                    if debut > fin or tentatives == 0:
+                        print(f"{cible} n'a pas été trouvé ou les tentatives sont épuisées.")
+                        return -1
+                    
+                    milieu = (debut + fin) // 2
+                    print(f"Vérification du personnage au milieu : {liste[milieu]} - Tentatives restantes : {tentatives}")
+                
+                    if liste[milieu] == cible:
+                        print(f"Félicitations ! {cible} a été trouvé à la position {milieu}.")
+                        return milieu
+                    elif liste[milieu] < cible:
+                        print(f"{cible} est après {liste[milieu]}. Recherche dans la moitié supérieure.")
+                        return recherche_binaire(liste, milieu + 1, fin, cible, tentatives - 1)
+                    else:
+                        print(f"{cible} est avant {liste[milieu]}. Recherche dans la moitié inférieure.")
+                        return recherche_binaire(liste, debut, milieu - 1, cible, tentatives - 1)
+                
+                # Lancer la recherche avec une limite de tentatives
+                recherche_binaire(personnages_manga, 0, len(personnages_manga) - 1, "Luffy", tentatives=4)
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Réflexion</h3>
+            <ul>
+                <li><strong>Discussion sur l’efficacité :</strong> Demandez aux élèves de comparer le nombre de tentatives nécessaires pour une recherche binaire par rapport à une recherche linéaire. Pour une liste de 9 éléments, la recherche binaire prend généralement 3 comparaisons, contre 9 dans le pire des cas pour une recherche linéaire.</li>
+                <li><strong>Introduction à la complexité algorithmique :</strong> La recherche binaire a une complexité de O(log n), ce qui la rend beaucoup plus rapide que la recherche linéaire O(n) pour de grandes listes.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif de la Séance :</h3>
+            <ul>
+                <li>Utiliser l'algorithme de recherche binaire dans un contexte de liste de personnages de manga.</li>
+                <li>Appliquer des concepts de récursivité pour diviser un problème complexe en sous-problèmes plus simples.</li>
+                <li>Comparer les performances entre une recherche linéaire et une recherche binaire, notamment en termes de nombre de comparaisons.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Exercice Complémentaire :</h3>
+            <ul>
+                <li>Implémenter une recherche linéaire et la comparer à la recherche binaire.</li>
+                <li>Ajouter d’autres fonctionnalités à l’application, comme la possibilité de rechercher par d'autres attributs (ex : force, univers d’origine des personnages).</li>
+            </ul>
+        </section>
+
+        <section id="session6" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 6 : Analyse de la Complexité d’un Algorithme de Recherche Récursive</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves doivent comprendre comment analyser la complexité d’un algorithme récursif en termes de temps d’exécution. Ils découvriront la différence entre la complexité linéaire et la complexité logarithmique, et appliqueront ces concepts à un contexte de jeu vidéo.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Contexte :</h3>
+            <p>Dans un jeu vidéo, le joueur doit rechercher des objets cachés dans une carte divisée en sections. Vous avez déjà appris à implémenter des algorithmes de recherche récursive comme la recherche binaire. Maintenant, nous allons voir comment mesurer et analyser la complexité de cet algorithme, c’est-à-dire, combien de temps il prend en fonction du nombre de sections à explorer.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Introduction à la Notion de Complexité d’un Algorithme</h3>
+            <p><strong>Qu’est-ce que la complexité d’un algorithme ?</strong></p>
+            <p>La complexité d’un algorithme est une manière de mesurer combien de temps ou combien de ressources (comme la mémoire) un algorithme va utiliser en fonction de la taille du problème à résoudre. En général, la complexité est exprimée en termes de nombre d’opérations que l’algorithme doit effectuer, et elle est souvent notée à l’aide de la notation Big-O.</p>
+            
+            <p><strong>Big-O :</strong> Il s'agit d'une notation utilisée pour décrire comment le temps d’exécution ou l’utilisation de la mémoire d’un algorithme augmente lorsque la taille de l’entrée (comme le nombre de sections sur la carte) augmente.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemples de complexités communes :</h4>
+            <ul>
+                <li><strong>Complexité linéaire (O(n)) :</strong> Si l’algorithme doit effectuer une opération pour chaque élément de la liste, le temps d'exécution augmente en ligne droite avec la taille du problème. Exemple : Recherche linéaire.</li>
+                <li><strong>Complexité logarithmique (O(log n)) :</strong> Si l’algorithme divise le problème en deux à chaque étape, le temps d'exécution augmente beaucoup plus lentement que la taille du problème. Exemple : Recherche binaire.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Pourquoi c'est important ?</h4>
+            <ul>
+                <li>Dans un jeu vidéo, si un algorithme est trop lent (complexité élevée), il pourrait ralentir le jeu.</li>
+                <li>Un algorithme plus rapide permet de rechercher des objets ou des ennemis sur de grandes cartes sans affecter les performances du jeu.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Revue des Algorithmes de Recherche</h3>
+            <p>Nous avons déjà implémenté deux algorithmes de recherche :</p>
+            <ul>
+                <li><strong>Recherche linéaire :</strong> Le joueur vérifie chaque section de la carte une à une jusqu’à trouver l’objet. Cet algorithme prend du temps, surtout si l’objet est dans la dernière section.</li>
+                <li><strong>Recherche binaire :</strong> Le joueur divise la carte en deux à chaque étape, réduisant le nombre de sections à chercher. Cet algorithme est beaucoup plus rapide.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple Visuel :</h4>
+            <p>Prenons l’exemple d’une carte divisée en 32 sections. Le joueur doit chercher un objet caché quelque part.</p>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">1. Recherche linéaire :</h5>
+            <p>Si l'objet est dans la 32e section, il faudra vérifier 32 sections avant de trouver l'objet.</p>
+            <p><strong>Nombre d’opérations =</strong> 32 (pour une carte de 32 sections).</p>
+            <p><strong>Complexité :</strong> O(n) (linéaire).</p>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">2. Recherche binaire :</h5>
+            <p>Avec cet algorithme, on divise par deux à chaque étape. Pour 32 sections, il ne faudra que 5 vérifications pour trouver l’objet.</p>
+            <p><strong>Nombre d’opérations ≈</strong> log2(32) = 5 (car 2^5 = 32).</p>
+            <p><strong>Complexité :</strong> O(log n) (logarithmique).</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Analyse de la Recherche Linéaire</h3>
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Algorithme de recherche linéaire :</h4>
+        
+            <pre><code>
+                def recherche_lineaire(liste, cible):
+                    for i in range(len(liste)):
+                        print(f"Vérification de la section {liste[i]}")
+                        if liste[i] == cible:
+                            print(f"Objet trouvé dans la section {liste[i]}")
+                            return i
+                    print("Objet non trouvé")
+                    return -1
+                
+                # Création d'une liste de sections
+                sections = list(range(1, 33))  # Carte avec 32 sections
+                
+                # Appel de la fonction de recherche
+                recherche_lineaire(sections, 32)
+            </code></pre>
+        
+            <p><strong>Analyse :</strong></p>
+            <p>Dans le pire des cas (l’objet est dans la dernière section), l’algorithme doit parcourir 32 sections.</p>
+            <p>Le nombre d’opérations nécessaires est donc directement proportionnel au nombre de sections : O(n).</p>
+            <p><strong>Question pour les élèves :</strong> Que se passe-t-il si on augmente le nombre de sections à 100 ? Combien d’opérations faudra-t-il faire ?</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">4. Analyse de la Recherche Binaire</h3>
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Rappel de l'algorithme de recherche binaire :</h4>
+        
+            <pre><code>
+                def recherche_binaire(liste, debut, fin, cible):
+                    if debut > fin:
+                        print("Objet non trouvé")
+                        return -1
+                    
+                    milieu = (debut + fin) // 2
+                    print(f"Vérification de la section {liste[milieu]}...")
+                    
+                    if liste[milieu] == cible:
+                        print(f"Objet trouvé dans la section {liste[milieu]}")
+                        return milieu
+                    elif liste[milieu] < cible:
+                        return recherche_binaire(liste, milieu + 1, fin, cible)
+                    else:
+                        return recherche_binaire(liste, debut, milieu - 1, cible)
+                
+                # Appel de la fonction de recherche binaire
+                sections = list(range(1, 33))  # Carte avec 32 sections
+                recherche_binaire(sections, 0, len(sections) - 1, 32)
+            </code></pre>
+        
+            <p><strong>Analyse :</strong></p>
+            <p>À chaque étape, l'algorithme divise la liste en deux. Cela signifie que le nombre d’opérations est proportionnel à log2(n).</p>
+            <p>Pour 32 sections, il faut au maximum 5 vérifications (car 2^5 = 32).</p>
+            <p><strong>Complexité :</strong> O(log n).</p>
+            <p><strong>Question pour les élèves :</strong> Que se passe-t-il si la carte contient 100 sections ?</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">5. Conclusion et Discussion</h3>
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Discussion finale :</h4>
+            <p>Les élèves doivent comprendre que la recherche binaire est bien plus rapide que la recherche linéaire, surtout lorsque le nombre de sections devient très grand.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Résumé des points clés :</h4>
+            <ul>
+                <li><strong>Recherche linéaire :</strong> Complexité O(n), ce qui signifie que le nombre d’opérations augmente linéairement avec la taille du problème.</li>
+                <li><strong>Recherche binaire :</strong> Complexité O(log n), ce qui signifie que le nombre d’opérations augmente beaucoup plus lentement, même pour de grandes tailles de problèmes.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exercice de réflexion :</h4>
+            <p>Demander aux élèves d’expliquer pourquoi un jeu vidéo qui utilise des cartes énormes aurait intérêt à utiliser des algorithmes comme la recherche binaire plutôt que la recherche linéaire.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Extension : Exercice complémentaire :</h4>
+            <p><strong>Challenge :</strong> Demandez aux élèves d’ajouter un chronomètre dans le programme pour mesurer le temps réel que prend chaque algorithme pour trouver l’objet dans une liste de 1 000 sections. Ils devront comparer le temps d'exécution entre la recherche linéaire et la recherche binaire en utilisant la bibliothèque Python <code>time</code>.</p>
+        
+            <pre><code>
+                import time
+        
+                # Chronométrer la recherche linéaire
+                start_time = time.time()
+                recherche_lineaire(sections, 32)
+                print("Temps d'exécution de la recherche linéaire :", time.time() - start_time)
+                
+                # Chronométrer la recherche binaire
+                start_time = time.time()
+                recherche_binaire(sections, 0, len(sections) - 1, 32)
+                print("Temps d'exécution de la recherche binaire :", time.time() - start_time)
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif de la Séance :</h3>
+            <p>À la fin de cette séance, les élèves auront appris à :</p>
+            <ul>
+                <li>Analyser la complexité d’un algorithme.</li>
+                <li>Comprendre pourquoi certains algorithmes (comme la recherche binaire) sont beaucoup plus rapides que d'autres (recherche linéaire).</li>
+                <li>Appliquer ces notions de complexité à des cas concrets, comme la recherche d’objets dans un jeu vidéo.</li>
+            </ul>
+        </section>
+
+        <section id="session7" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 7 : Introduction au Backtracking (Concepts de Base)</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves doivent comprendre les concepts de base du backtracking et les implémenter dans un contexte pratique en lien avec un jeu vidéo. Le backtracking est un algorithme qui permet de résoudre des problèmes en explorant toutes les solutions possibles et en revenant en arrière si une solution ne fonctionne pas.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Contexte du Jeu Vidéo :</h3>
+            <p>Dans un jeu d'exploration, le joueur est perdu dans un labyrinthe complexe. Il doit trouver le chemin vers la sortie. Cependant, certains chemins sont bloqués ou mènent à des culs-de-sac. L’objectif est d’utiliser un algorithme de backtracking pour trouver la sortie en explorant le labyrinthe, tout en revenant en arrière lorsqu’un chemin ne fonctionne pas.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Introduction au Problème</h3>
+            <p>Le joueur doit naviguer dans un labyrinthe (représenté par une grille 2D) et trouver la sortie. À chaque case, il peut se déplacer vers le haut, bas, gauche, ou droite, mais certains chemins sont bloqués (murs), et certains conduisent à des impasses.</p>
+            <p><strong>Problème initial :</strong> Comment trouver le chemin optimal pour sortir du labyrinthe sans devoir essayer toutes les combinaisons possibles manuellement ?</p>
+            <p><strong>Solution optimisée :</strong> Utiliser un algorithme de backtracking pour explorer tous les chemins possibles, tout en revenant en arrière (backtrack) lorsqu'on atteint un cul-de-sac ou un chemin bloqué.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Explication Théorique du Backtracking</h3>
+            <p>Le backtracking est un algorithme récursif qui explore toutes les solutions possibles à un problème en essayant différentes options. Lorsqu’une option échoue, l'algorithme revient en arrière (backtrack) et essaie une autre option.</p>
+            <p><strong>Étapes générales de l'algorithme de backtracking :</strong></p>
+            <ul>
+                <li>Commencer à partir d’un point de départ (ici, l’entrée du labyrinthe).</li>
+                <li>Essayer une direction (haut, bas, gauche, droite).</li>
+                <li>Vérifier si la direction est valide (pas de mur, pas de chemin déjà emprunté).</li>
+                <li>Si la direction mène à la sortie, on a trouvé une solution.</li>
+                <li>Si la direction ne mène nulle part (cul-de-sac), revenir en arrière et essayer une autre direction.</li>
+                <li>Répéter jusqu’à trouver la sortie ou épuiser toutes les options.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple de Pseudo-code :</h4>
+            <pre><code>
+                trouver_sortie(labyrinthe, position_x, position_y):
+                Si la position actuelle est la sortie :
+                    Afficher "Sortie trouvée"
+                    Finir l'algorithme
+                
+                Marquer la position actuelle comme visitée
+                
+                Pour chaque direction possible (haut, bas, gauche, droite) :
+                    Si la direction est valide et non visitée :
+                        Appeler récursivement trouver_sortie avec la nouvelle position
+                        Si cela conduit à la sortie, Finir
+                
+                Si aucune direction ne fonctionne, revenir en arrière (backtrack)
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Implémentation du Backtracking dans un Labyrinthe</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Modélisation du Labyrinthe</h4>
+            <p>Nous allons représenter le labyrinthe comme une grille 2D où chaque case peut être soit un mur (1), soit un chemin libre (0), soit l’entrée (S), soit la sortie (E).</p>
+            <p><strong>Voici un exemple de labyrinthe :</strong></p>
+            <pre><code>
+                labyrinthe = [
+                    ['S', 1, 0, 0, 1],
+                    [0, 1, 0, 1, 0],
+                    [0, 0, 0, 1, 'E'],
+                    [1, 1, 0, 0, 1],
+                    [0, 0, 0, 1, 0]
+                ]
+            </code></pre>
+            <ul>
+                <li><strong>S :</strong> point de départ (entrée).</li>
+                <li><strong>E :</strong> point d'arrivée (sortie).</li>
+                <li><strong>1 :</strong> mur (chemin bloqué).</li>
+                <li><strong>0 :</strong> chemin possible.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Implémenter l'Algorithme de Backtracking</h4>
+            <pre><code>
+                # Labyrinthe 2D
+                labyrinthe = [
+                    ['S', 1, 0, 0, 1],
+                    [0, 1, 0, 1, 0],
+                    [0, 0, 0, 1, 'E'],
+                    [1, 1, 0, 0, 1],
+                    [0, 0, 0, 1, 0]
+                ]
+                
+                # Fonction de backtracking pour explorer le labyrinthe
+                def explorer_labyrinthe(labyrinthe, x, y, visitees):
+                    # Vérifier si la position est hors du labyrinthe
+                    if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
+                        return False
+                    
+                    # Si la position est un mur ou déjà visitée
+                    if labyrinthe[x][y] == 1 or (x, y) in visitees:
+                        return False
+                    
+                    # Si on a trouvé la sortie
+                    if labyrinthe[x][y] == 'E':
+                        print(f"Sortie trouvée à la position ({x}, {y})")
+                        return True
+                    
+                    # Marquer la position comme visitée
+                    visitees.add((x, y))
+                    
+                    # Explorer les directions : bas, haut, droite, gauche
+                    if (explorer_labyrinthe(labyrinthe, x+1, y, visitees) or  # Bas
+                        explorer_labyrinthe(labyrinthe, x-1, y, visitees) or  # Haut
+                        explorer_labyrinthe(labyrinthe, x, y+1, visitees) or  # Droite
+                        explorer_labyrinthe(labyrinthe, x, y-1, visitees)):   # Gauche
+                        return True
+                    
+                    # Si aucune direction ne fonctionne, revenir en arrière
+                    visitees.remove((x, y))
+                    return False
+                
+                # Position de départ
+                position_depart = (0, 0)
+                
+                # Ensemble des cases visitées
+                cases_visitees = set()
+                
+                # Lancer la recherche de la sortie
+                explorer_labyrinthe(labyrinthe, position_depart[0], position_depart[1], cases_visitees)
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Explication de l'Algorithme</h3>
+            <ol>
+                <li><strong>Exploration des Chemins :</strong> L’algorithme commence à la position de départ (S). Il essaie de se déplacer dans les quatre directions possibles (bas, haut, gauche, droite) et appelle récursivement la fonction pour chaque nouvelle position.</li>
+                <li><strong>Conditions de Validité :</strong> Si la position est en dehors des limites du labyrinthe, ou si la case est un mur (1), ou si elle a déjà été visitée, le programme ne continue pas dans cette direction.</li>
+                <li><strong>Si la sortie est atteinte :</strong> Si l’algorithme arrive sur la case de la sortie (E), il arrête l’exploration et affiche un message.</li>
+                <li><strong>Backtracking (Retour en arrière) :</strong> Si l’algorithme ne trouve pas de solution dans une direction, il revient en arrière (backtrack), annule son choix (retire la case visitée de la liste des cases visitées), et essaie une autre direction.</li>
+            </ol>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Prolongements et Extensions</h3>
+            <ul>
+                <li><strong>Ajouter des éléments dans le labyrinthe :</strong> Les élèves peuvent ajouter des pièges ou des portes fermées qui nécessitent de trouver une clé pour progresser. Modification du labyrinthe pour le rendre plus grand ou plus complexe.</li>
+                <li><strong>Limiter le nombre de déplacements :</strong> Proposer une version du jeu où le joueur a un nombre limité de mouvements pour sortir du labyrinthe, ou il échoue.</li>
+                <li><strong>Ajouter un deuxième joueur :</strong> Introduire un mode compétition où deux joueurs doivent trouver la sortie, le premier qui trouve la sortie gagne. On peut utiliser le backtracking pour gérer l'IA du second joueur.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Discussion</h3>
+            <p>À la fin de cette séance :</p>
+            <ul>
+                <li>Les élèves auront appris ce qu’est le backtracking, comment il permet d’explorer toutes les solutions possibles à un problème, et pourquoi il est efficace pour les labyrinthes.</li>
+                <li>Ils auront implémenté une solution complète pour trouver la sortie d’un labyrinthe en utilisant ce concept.</li>
+            </ul>
+            <p><strong>Discussion :</strong> Applications pratiques du backtracking dans d’autres problèmes informatiques (ex. : sudoku, puzzles, algorithmes de parcours de graphes, optimisation combinatoire).</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Exercices Complémentaires :</h3>
+            <ul>
+                <li><strong>Explorer un plus grand labyrinthe :</strong> Créer un labyrinthe aléatoire de taille 10x10 ou plus grand, et tester l’efficacité du backtracking.</li>
+                <li><strong>Ajouter des contraintes :</strong> Imposer des chemins où certaines cases ne peuvent être empruntées qu'une seule fois.</li>
+            </ul>
+        </section>
+
+        <section id="session8" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 8 : Pratique - Résolution d'un Labyrinthe avec Backtracking (Jeu Vidéo)</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves vont apprendre à utiliser l’algorithme de backtracking pour résoudre un labyrinthe. Cet algorithme permet de trouver une sortie dans un environnement en revenant en arrière lorsque le chemin pris est bloqué.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Contexte du Jeu Vidéo :</h3>
+            <p>Dans ce jeu, un personnage est perdu dans un labyrinthe représenté sous la forme d'une grille. Le joueur doit trouver un chemin entre le point de départ S (Start) et le point d’arrivée E (End). Certains chemins sont bloqués par des murs, représentés par des 1, et seuls les chemins libres (0) peuvent être empruntés.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">1. Introduction au Problème</h4>
+            <p><strong>Expliquer le problème du labyrinthe :</strong></p>
+            <p>Le personnage doit trouver la sortie d’un labyrinthe représenté par une grille où certains chemins sont bloqués par des murs.</p>
+        
+            <p><strong>Représentation du labyrinthe :</strong></p>
+            <ul>
+                <li>S représente le point de départ.</li>
+                <li>E représente le point de sortie.</li>
+                <li>1 représente un mur (infranchissable).</li>
+                <li>0 représente un chemin libre.</li>
+            </ul>
+        
+            <p><strong>Exemple de labyrinthe simple :</strong></p>
+            <pre><code>
+                labyrinthe = [    
+                    ['S', 1, 0, 0, 1],
+                    [0, 1, 0, 1, 0],
+                    [0, 0, 0, 1, 'E'],
+                    [1, 1, 0, 0, 1],
+                    [0, 0, 0, 1, 0]
+                ]
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">2. Qu'est-ce que le Backtracking ?</h4>
+            <p>L’algorithme de backtracking est une méthode récursive qui essaie de trouver une solution à un problème en avançant étape par étape. Si un chemin s’avère incorrect, l’algorithme revient en arrière (backtrack) et essaie un autre chemin.</p>
+        
+            <p><strong>Explication du principe :</strong></p>
+            <ul>
+                <li>Le personnage commence au point de départ.</li>
+                <li>Il explore les chemins dans toutes les directions (haut, bas, gauche, droite).</li>
+                <li>Si le chemin mène à un mur ou à une impasse, il revient à la position précédente et essaie une autre direction.</li>
+                <li>Ce processus continue jusqu’à ce qu’il trouve la sortie ou qu’il n’y ait plus de chemin possible.</li>
+            </ul>
+        
+            <p><strong>Application au labyrinthe :</strong></p>
+            <p>L'algorithme va explorer tous les chemins possibles et revenir en arrière si un chemin ne mène pas à la sortie. Cela permet de tester toutes les solutions possibles pour trouver celle qui fonctionne.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">3. Algorithme de Backtracking pour Résoudre le Labyrinthe</h4>
+            <p>L'algorithme de backtracking est généralement implémenté de manière récursive. Voici un exemple d'algorithme en pseudo-code :</p>
+        
+            <pre><code>
+                explorer_labyrinthe(labyrinthe, x, y, visitees):
+                Si (x, y) est hors du labyrinthe ou un mur ou déjà visité :
+                    Retourner False
+                
+                Si (x, y) est la sortie :
+                    Retourner True (la sortie est trouvée)
+                
+                Marquer (x, y) comme visité
+                
+                Explorer les 4 directions (haut, bas, gauche, droite) :
+                    Si l’une des directions mène à la sortie :
+                        Retourner True
+                
+                Si aucune direction ne fonctionne :
+                    Retourner False (chemin bloqué)
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">4. Implémentation en Python</h4>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Représenter le Labyrinthe</h5>
+            <p>Le labyrinthe sera représenté par une matrice (liste de listes en Python). 0 représente un chemin ouvert, 1 représente un mur, S représente la position de départ, et E la sortie.</p>
+        
+            <pre><code>
+                labyrinthe = [
+                    ['S', 1, 0, 0, 1],
+                    [0, 1, 0, 1, 0],
+                    [0, 0, 0, 1, 'E'],
+                    [1, 1, 0, 0, 1],
+                    [0, 0, 0, 1, 0]
+                ]
+            </code></pre>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Fonction de Backtracking</h5>
+            <pre><code>
+                def explorer_labyrinthe(labyrinthe, x, y, visitees):
+                    # Vérifier les limites du labyrinthe
+                    if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
+                        return False
+                
+                    # Vérifier si la case est un mur ou déjà visitée
+                    if labyrinthe[x][y] == 1 or (x, y) in visitees:
+                        return False
+                
+                    # Si on a trouvé la sortie
+                    if labyrinthe[x][y] == 'E':
+                        print(f"Sortie trouvée à la position ({x}, {y})")
+                        return True
+                
+                    # Marquer la case comme visitée
+                    visitees.add((x, y))
+                
+                    # Appeler la fonction récursive dans les 4 directions
+                    if (explorer_labyrinthe(labyrinthe, x + 1, y, visitees) or  # Bas
+                        explorer_labyrinthe(labyrinthe, x - 1, y, visitees) or  # Haut
+                        explorer_labyrinthe(labyrinthe, x, y + 1, visitees) or  # Droite
+                        explorer_labyrinthe(labyrinthe, x, y - 1, visitees)):   # Gauche
+                        return True
+                
+                    # Si aucune direction ne fonctionne, on retourne False (backtrack)
+                    return False
+            </code></pre>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">Étape 3 : Tester l'Algorithme avec un Labyrinthe</h5>
+            <pre><code>
+                # Position de départ
+                position_depart = (0, 0)
+                
+                # Ensemble des cases visitées
+                cases_visitees = set()
+                
+                # Lancer la recherche de la sortie
+                if not explorer_labyrinthe(labyrinthe, position_depart[0], position_depart[1], cases_visitees):
+                    print("Aucun chemin trouvé pour sortir du labyrinthe.")
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">5. Ajout d'une Interface Graphique Simple</h4>
+            <p>Pour rendre l'algorithme plus interactif, nous allons ajouter une interface graphique simple avec Pygame pour visualiser le personnage se déplaçant dans le labyrinthe.</p>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Installer Pygame</h5>
+            <p>Installer Pygame avec la commande :</p>
+            <pre><code>pip install pygame</code></pre>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Visualisation du Labyrinthe</h5>
+            <pre><code>
+                import pygame
+        
+                # Dimensions de la fenêtre
+                TAILLE_BLOC = 40
+                LARGEUR = len(labyrinthe[0]) * TAILLE_BLOC
+                HAUTEUR = len(labyrinthe) * TAILLE_BLOC
+                
+                # Couleurs
+                COULEUR_MUR = (0, 0, 0)
+                COULEUR_CHEMIN = (255, 255, 255)
+                COULEUR_JOUEUR = (0, 255, 0)
+                COULEUR_SORTIE = (255, 0, 0)
+                
+                # Initialiser Pygame
+                pygame.init()
+                fenetre = pygame.display.set_mode((LARGEUR, HAUTEUR))
+                pygame.display.set_caption("Labyrinthe")
+                
+                def dessiner_labyrinthe(labyrinthe, position_joueur):
+                    fenetre.fill(COULEUR_CHEMIN)
+                    for i in range(len(labyrinthe)):
+                        for j in range(len(labyrinthe[0])):
+                            x = j * TAILLE_BLOC
+                            y = i * TAILLE_BLOC
+                            if labyrinthe[i][j] == 1:
+                                pygame.draw.rect(fenetre, COULEUR_MUR, (x, y, TAILLE_BLOC, TAILLE_BLOC))
+                            elif labyrinthe[i][j] == 'E':
+                                pygame.draw.rect(fenetre, COULEUR_SORTIE, (x, y, TAILLE_BLOC, TAILLE_BLOC))
+                    # Dessiner le joueur
+                    joueur_x, joueur_y = position_joueur
+                    pygame.draw.rect(fenetre, COULEUR_JOUEUR, (joueur_y * TAILLE_BLOC, joueur_x * TAILLE_BLOC, TAILLE_BLOC, TAILLE_BLOC))
+                
+                # Position initiale du joueur
+                position_joueur = (0, 0)
+                
+                # Boucle du jeu
+                continuer = True
+                while continuer:
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            continuer = False
+                
+                    dessiner_labyrinthe(labyrinthe, position_joueur)
+                    pygame.display.flip()
+                
+                pygame.quit()
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">6. Challenge et Extension</h4>
+            <ul>
+                <li><strong>Challenge 1 :</strong> Limiter le nombre de déplacements - Limiter le nombre de mouvements que le joueur peut faire avant de trouver la sortie.</li>
+                <li><strong>Challenge 2 :</strong> Génération aléatoire de labyrinthes - Modifier l’algorithme pour générer des labyrinthes aléatoires et les résoudre en utilisant le backtracking.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Réflexion</h3>
+            <ul>
+                <li>Les élèves auront appris à implémenter un algorithme de backtracking pour résoudre un labyrinthe de manière efficace.</li>
+                <li>Ils auront vu comment appliquer cet algorithme à un jeu vidéo pour rendre la solution plus interactive.</li>
+                <li>Discussion sur la récursivité et le backtracking : revenir en arrière dans l'exploration d'un problème permet de résoudre des situations complexes où plusieurs chemins sont possibles.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exercice Complémentaire :</h4>
+            <p>Créer une intelligence artificielle pour explorer le labyrinthe automatiquement, ou modifier l’algorithme pour trouver tous les chemins possibles vers la sortie.</p>
+        </section>
+
+        <section id="session9" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 9 : Étude des Cas Où le Backtracking Est Utile et de Ses Limitations</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves doivent comprendre le fonctionnement de l'algorithme de backtracking (retour en arrière), les cas où il est utile et ses limites en termes de complexité. Ils l'implémenteront dans le cadre d’un jeu vidéo où le joueur doit trouver un chemin dans un labyrinthe.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Contexte :</h3>
+            <p>Dans un jeu de labyrinthe, le joueur doit trouver une sortie à travers un labyrinthe complexe. L’algorithme de backtracking est utilisé pour explorer tous les chemins possibles jusqu’à ce que la sortie soit trouvée. Si un chemin mène à une impasse, l’algorithme revient en arrière (backtrack) et essaie un autre chemin.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">1. Introduction au Problème du Labyrinthe</h4>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Scénario du Jeu Vidéo :</h4>
+            <p>Le joueur se trouve à l'entrée d'un labyrinthe et doit trouver la sortie. Le labyrinthe est représenté sous forme de grille, où certaines cases sont des chemins possibles (0), et d'autres sont des murs (1). Le joueur peut se déplacer vers le haut, le bas, la gauche, ou la droite. Le but est de trouver un chemin de l'entrée à la sortie.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Structure du Labyrinthe :</h4>
+            <pre><code>
+                labyrinthe = [
+                    ['S', 0, 0, 1, 0],
+                    [1, 1, 0, 1, 0],
+                    [0, 0, 0, 1, 'E'],
+                    [1, 1, 1, 1, 1],
+                    [0, 0, 0, 0, 0]
+                ]
+            </code></pre>
+            <ul>
+                <li><strong>S</strong> représente le point de départ (Start).</li>
+                <li><strong>E</strong> représente la sortie (End).</li>
+                <li><strong>1</strong> représente un mur (impossible à traverser).</li>
+                <li><strong>0</strong> représente un chemin possible.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Explication Théorique du Backtracking</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Concept du Backtracking :</h4>
+            <p>Le backtracking est une technique algorithmique qui consiste à essayer toutes les solutions possibles jusqu’à ce que la bonne solution soit trouvée. Le principe est le suivant :</p>
+            <ul>
+                <li><strong>1. Choisir une option :</strong> On avance dans une direction (ou on prend une décision).</li>
+                <li><strong>2. Tester la solution :</strong> Si cette direction (ou décision) mène à une impasse, on "revient en arrière" et on essaie une autre option.</li>
+                <li><strong>3. Répéter :</strong> On continue ainsi jusqu’à ce que la solution soit trouvée ou qu'il n'y ait plus de possibilités à explorer.</li>
+            </ul>
+        
+            <p>Dans le cas du labyrinthe :</p>
+            <ul>
+                <li>On commence à l’entrée du labyrinthe (<strong>S</strong>) et on essaie de se déplacer dans une direction (haut, bas, gauche, droite).</li>
+                <li>Si le joueur rencontre un mur ou un chemin déjà exploré, il revient en arrière et essaie une autre direction.</li>
+                <li>Le processus se répète jusqu'à ce que le joueur trouve la sortie (<strong>E</strong>).</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Pseudo-code du Backtracking :</h4>
+            <pre><code>
+                fonction résoudre_labyrinthe(labyrinthe, x, y):
+                Si (x, y) est la sortie :
+                    Retourner vrai (le chemin est trouvé)
+            
+                Si (x, y) est un mur ou déjà visité :
+                    Retourner faux (impasse)
+            
+                Marquer (x, y) comme visité
+            
+                Tenter de se déplacer dans les 4 directions :
+                    Si résoudre_labyrinthe(labyrinthe, x + 1, y) retourne vrai :
+                        Retourner vrai (la direction est correcte)
+                    Si résoudre_labyrinthe(labyrinthe, x - 1, y) retourne vrai :
+                        Retourner vrai
+                    Si résoudre_labyrinthe(labyrinthe, x, y + 1) retourne vrai :
+                        Retourner vrai
+                    Si résoudre_labyrinthe(labyrinthe, x, y - 1) retourne vrai :
+                        Retourner vrai
+            
+                Si aucune direction ne mène à la sortie :
+                    Retourner en arrière (backtrack) et Retourner faux
+            </code></pre>
+        
+            <p><strong>Idée Clé :</strong> Le backtracking consiste à tester chaque chemin possible et à revenir en arrière lorsqu'on atteint une impasse. Cela permet d'explorer tous les chemins possibles.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Mise en Pratique du Backtracking pour Résoudre un Labyrinthe</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Représenter le Labyrinthe en Python</h4>
+            <p>Nous allons d’abord représenter notre labyrinthe sous forme de liste de listes (2D array), comme précédemment décrit. Chaque case contient soit un chemin possible (0), soit un mur (1), soit l’entrée (S) et la sortie (E).</p>
+        
+            <pre><code>
+                labyrinthe = [
+                    ['S', 0, 0, 1, 0],
+                    [1, 1, 0, 1, 0],
+                    [0, 0, 0, 1, 'E'],
+                    [1, 1, 1, 1, 1],
+                    [0, 0, 0, 0, 0]
+                ]
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Implémenter l'Algorithme de Backtracking</h4>
+            <p>L'algorithme va chercher le chemin à partir du point de départ (x, y) et essayer toutes les directions possibles (haut, bas, gauche, droite) jusqu’à ce qu’il atteigne la sortie (E).</p>
+        
+            <pre><code>
+                # Fonction pour résoudre le labyrinthe
+                def résoudre_labyrinthe(labyrinthe, x, y, visitees):
+                    # Vérifier si on est à la sortie
+                    if labyrinthe[x][y] == 'E':
+                        print(f"Sortie trouvée à la position ({x}, {y})")
+                        return True
+                    
+                    # Vérifier les limites du labyrinthe
+                    if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
+                        return False
+                
+                    # Vérifier si la case est un mur ou déjà visitée
+                    if labyrinthe[x][y] == 1 or (x, y) in visitees:
+                        return False
+                    
+                    # Marquer la case comme visitée
+                    visitees.add((x, y))
+                
+                    # Appeler récursivement la fonction dans les 4 directions
+                    if (résoudre_labyrinthe(labyrinthe, x + 1, y, visitees) or  # Bas
+                        résoudre_labyrinthe(labyrinthe, x - 1, y, visitees) or  # Haut
+                        résoudre_labyrinthe(labyrinthe, x, y + 1, visitees) or  # Droite
+                        résoudre_labyrinthe(labyrinthe, x, y - 1, visitees)):   # Gauche
+                        return True
+                    
+                    # Si aucune direction ne fonctionne, revenir en arrière
+                    return False
+                
+                # Initialisation
+                visitees = set()  # Ensemble des cases déjà visitées
+                résoudre_labyrinthe(labyrinthe, 0, 0, visitees)  # Commence à (0, 0)
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">4. Cas d'Utilisation du Backtracking</h3>
+        
+            <p><strong>Quand le Backtracking est-il utile ?</strong></p>
+            <ul>
+                <li><strong>1. Résolution de labyrinthes :</strong> comme dans notre exemple de jeu vidéo, où il y a plusieurs chemins possibles à explorer.</li>
+                <li><strong>2. Jeux de puzzle :</strong> comme le Sudoku, où chaque choix possible doit être exploré avant de revenir en arrière si nécessaire.</li>
+                <li><strong>3. Problèmes de recherche de combinaisons :</strong> trouver toutes les combinaisons possibles d’un ensemble (par exemple, dans un problème de sac à dos où plusieurs combinaisons doivent être explorées).</li>
+                <li><strong>4. Coloration de graphes :</strong> assigner des couleurs à des nœuds d’un graphe tout en respectant certaines contraintes.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Limites du Backtracking :</h4>
+            <ul>
+                <li><strong>1. Complexité exponentielle :</strong> Le backtracking est souvent inefficace pour de très grands problèmes, car il peut nécessiter d'explorer un nombre exponentiel de solutions.</li>
+                <li><strong>2. Exploration complète :</strong> Il n'y a pas de raccourci pour éviter d'explorer tous les chemins possibles, sauf si l’on combine le backtracking avec d'autres techniques comme la programmation dynamique ou l’élagage (pruning).</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">5. Limites du Backtracking</h3>
+        
+            <p>Le backtracking peut devenir inefficace dans certaines situations, en particulier lorsque :</p>
+            <ul>
+                <li><strong>Trop de solutions possibles :</strong> Par exemple, dans un labyrinthe trop complexe avec de nombreuses impasses, le backtracking explorera chaque chemin, même s’il est inutile.</li>
+                <li><strong>Complexité exponentielle :</strong> La recherche d'une solution peut prendre un temps très long lorsque le problème devient très grand, car le nombre de combinaisons possibles à tester augmente de façon exponentielle.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Discussion</h3>
+            <p>Les élèves auront appris :</p>
+            <ul>
+                <li>Comment utiliser le backtracking pour résoudre des problèmes tels que des labyrinthes dans des jeux vidéo.</li>
+                <li>Pourquoi le backtracking est une méthode efficace pour explorer plusieurs solutions mais pourquoi il peut être limité pour les problèmes de grande envergure.</li>
+                <li>Comprendre l'idée de retour en arrière : explorer, tester, revenir en arrière en cas d'impasse, et continuer à chercher jusqu’à la solution.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exercices Complémentaires :</h4>
+            <ul>
+                <li><strong>Amélioration du labyrinthe :</strong> Ajouter plus d’éléments au labyrinthe (ennemis, objets à collecter, etc.).</li>
+                <li><strong>Élagage (pruning) :</strong> Modifier l'algorithme pour éviter certains chemins déjà identifiés comme inutiles.</li>
+            </ul>
+        </section>
+
+        <section id="session10" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 10 : Introduction à la Complexité Algorithmique – Notation Big-O</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <ul>
+                <li>Comprendre le concept de complexité algorithmique.</li>
+                <li>Apprendre à utiliser la notation Big-O.</li>
+                <li>Appliquer la notation Big-O dans des situations concrètes à travers des exemples de jeux vidéo.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Contexte et Introduction</h3>
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Le Problème :</h4>
+            <p>Dans le contexte d'un jeu vidéo, imaginons que le joueur doit interagir avec un certain nombre d’éléments à l’écran (monstres, objets, personnages). Ces éléments sont stockés dans une liste ou un tableau, et le joueur doit effectuer des actions comme :</p>
+            <ul>
+                <li>Trouver un monstre spécifique pour l’attaquer.</li>
+                <li>Ramasser un objet spécifique.</li>
+                <li>Parcourir tous les éléments pour effectuer une action (comme infliger des dégâts à tous les monstres).</li>
+            </ul>
+            <p>Pour rendre ces actions efficaces, il est crucial de comprendre combien de temps ou combien d'opérations l'algorithme prend pour effectuer la tâche, en fonction du nombre d’éléments. C'est là que la complexité algorithmique intervient.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Qu’est-ce que la Complexité Algorithmique ?</h4>
+            <p>La complexité algorithmique mesure l'efficacité d'un algorithme en fonction de la taille de l'entrée (nombre d'éléments à traiter).</p>
+            <p>Plutôt que de mesurer le temps en secondes, on mesure le nombre d’opérations que l’algorithme doit effectuer pour résoudre le problème.</p>
+            <p><strong>Exemple simple :</strong> Si vous devez chercher un objet spécifique dans une liste, combien de comparaisons l'algorithme devra-t-il faire en fonction de la longueur de la liste ?</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Notation Big-O : Mesurer l’Efficacité des Algorithmes</h3>
+            <p>La notation Big-O permet de classer les algorithmes selon le nombre d’opérations qu’ils effectuent en fonction de la taille de l’entrée (souvent notée n).</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Définitions des Complexités :</h4>
+            <ul>
+                <li><strong>O(1) : Complexité constante</strong> - L’algorithme prend le même temps, quel que soit le nombre d’éléments.
+                    <br>Exemple : Accéder directement à un élément dans un tableau (par index), comme dans une liste de potions dans un inventaire.
+                </li>
+                <li><strong>O(n) : Complexité linéaire</strong> - Le nombre d’opérations augmente proportionnellement au nombre d’éléments.
+                    <br>Exemple : Parcourir une liste d'objets pour trouver un objet spécifique dans un inventaire (recherche linéaire).
+                </li>
+                <li><strong>O(log n) : Complexité logarithmique</strong> - Le nombre d’opérations croît logarithmiquement avec le nombre d'éléments.
+                    <br>Exemple : Recherche binaire dans une liste triée d’objets.
+                </li>
+                <li><strong>O(n²) : Complexité quadratique</strong> - Le nombre d'opérations est proportionnel au carré du nombre d'éléments.
+                    <br>Exemple : Comparer chaque monstre à chaque autre monstre dans un jeu de combat (algorithme de tri par sélection).
+                </li>
+                <li><strong>O(n log n) : Complexité linéaro-logarithmique</strong> - Utilisée pour des algorithmes de tri efficaces comme le tri rapide (Quicksort).
+                </li>
+                <li><strong>O(2ⁿ) : Complexité exponentielle</strong> - Le nombre d'opérations double à chaque ajout d'élément. Très inefficace.
+                    <br>Exemple : Problèmes avec des combinaisons ou la génération d'arbres de décisions très profonds.
+                </li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Exemples Concrets avec des Jeux Vidéo</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple 1 : Recherche dans un Inventaire de Jeu Vidéo</h4>
+            <p>Imaginons que le joueur possède un inventaire avec n objets (potions, épées, boucliers). Il doit trouver une potion spécifique.</p>
+            <ul>
+                <li><strong>O(n)</strong> (recherche linéaire) : Le joueur doit parcourir tous les objets de l’inventaire un par un, en comparant chaque objet avec la potion recherchée.</li>
+                <li>Si l’inventaire contient 100 objets, il faudra au pire 100 opérations pour trouver la potion (ou ne pas la trouver).</li>
+            </ul>
+            <p><strong>Exercice pratique :</strong> Implémenter une recherche linéaire sur une liste d’objets de jeu.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple 2 : Attaque de Tous les Monstres</h4>
+            <p>Dans un jeu de type RPG, le joueur a la capacité d'attaquer tous les monstres présents sur le terrain en une seule action. Si chaque attaque prend une unité de temps, le nombre d'opérations sera proportionnel au nombre de monstres.</p>
+            <ul>
+                <li><strong>O(n)</strong> : S’il y a 50 monstres sur le terrain, il faudra 50 attaques, soit 50 opérations.</li>
+            </ul>
+            <p><strong>Exercice pratique :</strong> Implémenter une boucle qui applique une attaque à chaque monstre dans une liste de 50 monstres.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple 3 : Recherche Binaire pour Trouver un Objet dans un Inventaire Trié</h4>
+            <p>Dans un inventaire trié d’un jeu, le joueur peut utiliser la recherche binaire pour trouver un objet plus rapidement.</p>
+            <ul>
+                <li><strong>O(log n)</strong> : Si l’inventaire contient 100 objets, la recherche binaire permet de trouver un objet en 7 étapes au lieu de 100.</li>
+                <li>Chaque étape divise la liste en deux, ce qui fait que l’algorithme est logarithmique.</li>
+            </ul>
+            <p><strong>Exercice pratique :</strong> Implémenter une recherche binaire dans une liste triée d'objets (similaire à la recherche du trésor vue en séance précédente).</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple 4 : Comparer Chaque Monstre avec Chaque Autre Monstre (Algorithme Quadratique)</h4>
+            <p>Dans certains jeux, vous pourriez avoir un système où chaque monstre doit interagir avec tous les autres (par exemple, vérifier les collisions entre eux).</p>
+            <ul>
+                <li><strong>O(n²)</strong> : Si vous avez 10 monstres, vous devez comparer chaque monstre avec les 9 autres, soit 100 comparaisons.</li>
+                <li>Si vous avez 100 monstres, cela fera 10 000 comparaisons (un algorithme quadratique).</li>
+            </ul>
+            <p><strong>Exercice pratique :</strong> Implémenter un algorithme de comparaison entre chaque paire de monstres dans un jeu.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">4. Expérimentation et Simulation avec des Listes de Données</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Implémenter des Algorithmes Différents</h4>
+            <p>Les élèves vont créer une liste d'objets de jeu (par exemple, 100 objets avec des noms aléatoires).</p>
+            <ul>
+                <li><strong>Exercice 1 :</strong> Recherche linéaire : Implémenter une recherche d’un objet spécifique dans cette liste.</li>
+                <li><strong>Exercice 2 :</strong> Recherche binaire : Si la liste est triée, utiliser la recherche binaire pour trouver l’objet plus rapidement.</li>
+                <li><strong>Exercice 3 :</strong> Comparaison de tous les éléments : Simuler un combat où chaque monstre est comparé avec tous les autres.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Mesurer et Comparer la Performance</h4>
+            <p>Pour chaque exercice, les élèves devront :</p>
+            <ul>
+                <li>Mesurer le nombre d’opérations nécessaires.</li>
+                <li>Comparer la performance des algorithmes en fonction de la taille de la liste (par exemple, en augmentant la taille de la liste de 100 à 1000).</li>
+            </ul>
+            <p><strong>Exercice pratique :</strong> Afficher le temps pris par chaque algorithme pour trouver un objet dans une liste d’objets. Demander aux élèves d’expliquer pourquoi certains algorithmes sont plus rapides que d'autres pour de grandes listes.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">5. Discussion sur la Notion de Limite et d’Optimisation</h3>
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">La Limite des Algorithmes Inefficaces :</h4>
+            <p>Discuter avec les élèves sur le fait qu’un algorithme linéaire (<strong>O(n)</strong>) peut être acceptable pour un petit nombre d’éléments, mais qu'il devient trop lent pour un grand nombre.</p>
+            <p>Par exemple, rechercher un objet dans une liste de 100 éléments avec <strong>O(n)</strong> peut être acceptable, mais dans une liste de 1 000 000 d’éléments, il faut optimiser avec un algorithme plus rapide (comme <strong>O(log n)</strong> ou <strong>O(1)</strong>).</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Optimiser dans les Jeux Vidéo :</h4>
+            <p>Dans les jeux vidéo, optimiser les algorithmes est crucial pour maintenir la performance, surtout si le jeu implique des centaines d'ennemis, des interactions complexes, et des actions en temps réel.</p>
+            <p>Par exemple, pour un jeu où des dizaines de monstres doivent être gérés, il est important d’utiliser des algorithmes efficaces pour éviter les ralentissements.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">6. Conclusion et Résumé</h3>
+            <p><strong>Ce que les élèves ont appris :</strong></p>
+            <ul>
+                <li><strong>Complexité algorithmique :</strong> Comprendre comment mesurer l’efficacité d’un algorithme en fonction du nombre d’opérations qu’il effectue.</li>
+                <li><strong>Notation Big-O :</strong> Apprendre à classer les algorithmes en fonction de leur performance.</li>
+                <li><strong>Exemples concrets :</strong> Les élèves ont appliqué la notion de complexité algorithmique à des cas pratiques dans des jeux vidéo.</li>
+                <li><strong>Comparaison des algorithmes :</strong> Voir comment différents algorithmes (<strong>O(n)</strong>, <strong>O(log n)</strong>, <strong>O(n²)</strong>) fonctionnent dans des situations réelles et pourquoi certains sont plus efficaces.</li>
+            </ul>
+        
+            <p><strong>Exercices Complémentaires :</strong></p>
+            <ul>
+                <li>Étendre l’exercice sur <strong>O(n log n)</strong> : Implémenter un algorithme de tri rapide (Quicksort) et comparer ses performances avec un tri basique (tri par sélection <strong>O(n²)</strong>).</li>
+                <li>Tester des algorithmes sur de très grandes listes : Demander aux élèves de simuler des listes contenant des millions d’éléments et de comparer la rapidité des algorithmes.</li>
+            </ul>
+        </section>
+
+        <section id="session11" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 11 : Pratique - Comparaison des Algorithmes de Tri Simples (Insertion, Sélection)</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves apprendront à implémenter et comparer les algorithmes de tri par insertion et par sélection, en utilisant une approche pratique. Ces concepts seront appliqués dans le contexte d'un jeu vidéo où il faut organiser les objets de l'inventaire d'un personnage pour optimiser le gameplay.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Contexte du Jeu Vidéo :</h3>
+            <p>Dans un jeu d’aventure, le joueur collecte de nombreux objets (armes, potions, armures) pendant son exploration. Ces objets sont initialement mélangés dans son inventaire. Le joueur doit organiser son inventaire, par exemple en triant les objets selon leur valeur ou leur poids.</p>
+            <p>Problème initial : Le joueur a besoin d’un inventaire trié pour accéder rapidement à ses objets les plus précieux ou les plus utiles. Si l’inventaire est désorganisé, cela peut nuire à l’efficacité du jeu.</p>
+            <p>Solution : Utiliser des algorithmes de tri pour organiser l'inventaire.</p>
+            <p>Les élèves vont comparer deux algorithmes de tri simples :</p>
+            <ol>
+                <li>Tri par insertion (Insertion Sort).</li>
+                <li>Tri par sélection (Selection Sort).</li>
+            </ol>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Introduction aux Algorithmes de Tri</h3>
+            <p>Avant de plonger dans la pratique, il est important de comprendre les deux algorithmes de tri et leurs mécanismes.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Tri par Insertion :</h4>
+            <p>Le tri par insertion fonctionne comme si vous triiez une main de cartes :</p>
+            <ul>
+                <li>Vous prenez les cartes (ici des objets de l’inventaire) une par une et les insérez au bon endroit dans une liste déjà triée.</li>
+                <li>À chaque itération, la portion triée de la liste s’agrandit.</li>
+            </ul>
+            <p><strong>Principe :</strong> On compare l’élément actuel avec les éléments précédents et on l’insère à la bonne position pour que la partie gauche de la liste soit triée.</p>
+        
+            <pre><code>
+                def tri_insertion(liste):
+                    for i in range(1, len(liste)):
+                        element = liste[i]
+                        j = i - 1
+                        while j >= 0 and liste[j] > element:
+                            liste[j + 1] = liste[j]
+                            j -= 1
+                        liste[j + 1] = element
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Tri par Sélection :</h4>
+            <p>Le tri par sélection fonctionne en trouvant l'élément le plus petit et en le plaçant au début de la liste. Ensuite, on cherche le deuxième plus petit, et ainsi de suite.</p>
+            <p><strong>Principe :</strong> On sélectionne l'élément le plus petit dans la partie non triée de la liste, puis on le place au début. On répète le processus jusqu'à ce que la liste soit entièrement triée.</p>
+        
+            <pre><code>
+                def tri_selection(liste):
+                    for i in range(len(liste)):
+                        min_index = i
+                        for j in range(i + 1, len(liste)):
+                            if liste[j] < liste[min_index]:
+                                min_index = j
+                        liste[i], liste[min_index] = liste[min_index], liste[i]
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Application dans le Contexte du Jeu Vidéo</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Préparation de l’Inventaire</h4>
+            <p>L’inventaire du personnage est représenté par une liste d’objets, chaque objet ayant une valeur et un poids. Pour simplifier, les élèves peuvent utiliser une liste de nombres représentant les valeurs des objets.</p>
+            <pre><code>inventaire = [50, 10, 40, 30, 20, 60]</code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Implémentation du Tri par Insertion</h4>
+            <p>Les élèves commenceront par implémenter le tri par insertion pour organiser les objets de l’inventaire en fonction de leur valeur.</p>
+            <ul>
+                <li>Rappeler le principe : Le joueur veut trier ses objets du moins précieux au plus précieux pour les retrouver facilement.</li>
+                <li>Exercice pratique : Écrire la fonction <code>tri_insertion</code> pour trier l’inventaire.</li>
+            </ul>
+        
+            <pre><code>
+                def tri_insertion(liste):
+                    for i in range(1, len(liste)):
+                        element = liste[i]
+                        j = i - 1
+                        while j >= 0 and liste[j] > element:
+                            liste[j + 1] = liste[j]
+                            j -= 1
+                        liste[j + 1] = element
+                
+                # Exemple d'utilisation
+                inventaire = [50, 10, 40, 30, 20, 60]
+                print("Inventaire avant tri :", inventaire)
+                tri_insertion(inventaire)
+                print("Inventaire après tri par insertion :", inventaire)
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 3 : Implémentation du Tri par Sélection</h4>
+            <p>Les élèves passent ensuite à l'implémentation du tri par sélection pour organiser l’inventaire de manière alternative.</p>
+            <ul>
+                <li>Rappeler le principe : On cherche l'objet le moins précieux et on le place au début de l’inventaire, puis on répète le processus.</li>
+                <li>Exercice pratique : Écrire la fonction <code>tri_selection</code>.</li>
+            </ul>
+        
+            <pre><code>
+                def tri_selection(liste):
+                    for i in range(len(liste)):
+                        min_index = i
+                        for j in range(i + 1, len(liste)):
+                            if liste[j] < liste[min_index]:
+                                min_index = j
+                        liste[i], liste[min_index] = liste[min_index], liste[i]
+                
+                # Exemple d'utilisation
+                inventaire = [50, 10, 40, 30, 20, 60]
+                print("Inventaire avant tri :", inventaire)
+                tri_selection(inventaire)
+                print("Inventaire après tri par sélection :", inventaire)
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Comparaison des Algorithmes</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 4 : Comparaison sur la Base des Performances</h4>
+            <p>Demander aux élèves de comparer les deux algorithmes de tri en termes de :</p>
+            <ul>
+                <li>Vitesse (nombre de comparaisons) : Combien de comparaisons sont faites dans chaque algorithme ?</li>
+                <li>Tri par insertion : Bon pour des listes presque triées.</li>
+                <li>Tri par sélection : Meilleur pour des listes complètement désordonnées.</li>
+                <li>Simplicité d’implémentation : Lequel est plus simple à comprendre et à écrire ?</li>
+                <li>Complexité temporelle :
+                    <ul>
+                        <li><strong>Insertion sort :</strong> O(n^2) dans le pire des cas.</li>
+                        <li><strong>Selection sort :</strong> O(n^2) dans tous les cas.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>Demander aux élèves d’essayer ces algorithmes sur différentes tailles de listes (par exemple, 10, 100, 1000 éléments) et de mesurer le temps que chaque algorithme prend pour terminer le tri. Voici un code simple pour chronométrer :</p>
+        
+            <pre><code>
+                import time
+        
+                # Exemple pour le tri par insertion
+                start_time = time.time()
+                tri_insertion(inventaire)
+                end_time = time.time()
+                print("Temps pris par le tri par insertion :", end_time - start_time)
+                
+                # Faire de même pour le tri par sélection
+            </code></pre>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">4. Extension et Discussion</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 5 : Extension - Trier par Poids</h4>
+            <p>Ajouter une nouvelle caractéristique aux objets de l’inventaire : le poids. Demander aux élèves de modifier leur code pour trier les objets non plus par valeur, mais par poids.</p>
+        
+            <pre><code>
+                inventaire_avec_poids = [
+                    {"nom": "épée", "valeur": 50, "poids": 5},
+                    {"nom": "potion", "valeur": 10, "poids": 1},
+                    {"nom": "armure", "valeur": 40, "poids": 15},
+                    {"nom": "bouclier", "valeur": 30, "poids": 8},
+                    {"nom": "arc", "valeur": 20, "poids": 3},
+                    {"nom": "flèches", "valeur": 60, "poids": 0.5}
+                ]
+            </code></pre>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 6 : Discussion Finale</h4>
+            <ul>
+                <li><strong>Avantages et inconvénients de chaque algorithme :</strong></li>
+                <li>Le tri par insertion est plus rapide pour les petites listes ou les listes presque triées.</li>
+                <li>Le tri par sélection est simple à comprendre, mais peu efficace pour les grandes listes.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Objectif Atteint</h3>
+            <ul>
+                <li>Implémenter les algorithmes de tri par insertion et tri par sélection.</li>
+                <li>Comparer leurs performances sur des listes de différentes tailles.</li>
+                <li>Appliquer ces concepts à un contexte ludique avec l’organisation d’un inventaire dans un jeu vidéo.</li>
+                <li>Comprendre les forces et faiblesses de chaque méthode de tri.</li>
+            </ul>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">Exercice Complémentaire :</h4>
+            <p>Tri d'une liste de dictionnaires : Demander aux élèves de trier une liste de dictionnaires (objets du jeu) non seulement par valeur ou poids, mais aussi par d’autres critères comme la rareté.</p>
+        </section>
     </main>
 
     <!-- <footer>
@@ -748,7 +1980,14 @@
             'Séance 1 : Introduction à la récursivité (concepts de base)',
             'Séance 2 : Pratique - Implémentation d’une fonction récursive pour calculer une suite mathématique',
             'Séance 3 : Applications pratiques de la récursivité (problèmes simples)',
-            ''
+            'Séance 4 : Introduction aux Algorithmes de Recherche Récursive – Recherche Binaire',
+            'Séance 5 : Pratique – Recherche d’un Personnage de Manga avec un Algorithme de Recherche Binaire',
+            'Séance 6 : Analyse de la Complexité d’un Algorithme de Recherche Récursive',
+            'Séance 7 : Introduction au Backtracking (Concepts de Base)',
+            'Séance 8 : Pratique - Résolution d\'un Labyrinthe avec Backtracking (Jeu Vidéo)',
+            'Séance 9 : Étude des Cas Où le Backtracking Est Utile et de Ses Limitations',
+            'Séance 10 : Introduction à la Complexité Algorithmique – Notation Big-O',
+            'Séance 11 : Pratique - Comparaison des Algorithmes de Tri Simples (Insertion, Sélection)'
         ];
     
         function isHoliday(date) {
