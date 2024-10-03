@@ -342,6 +342,120 @@
             <p>Cette séance vous a permis de découvrir l'environnement Python, d'utiliser des variables et d'écrire un programme simple qui interagit avec l'utilisateur. Continuez à explorer les possibilités offertes par Python pour aller plus loin.</p>
         </section>
 
+        <section id="session9" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 9 : Introduction aux Fonctions</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectifs de la Séance</h3>
+            <ul>
+                <li>Comprendre l'importance des fonctions dans la programmation.</li>
+                <li>Apprendre à définir et appeler des fonctions en Python.</li>
+                <li>Écrire des programmes simples qui utilisent des fonctions pour organiser le code.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Déroulement de la Séance</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">1. Introduction aux Fonctions</h4>
+            <p><strong>Qu'est-ce qu'une fonction ?</strong></p>
+            <p>Une fonction est un bloc de code réutilisable qui effectue une tâche spécifique. Les fonctions permettent de diviser le code en sections plus petites et plus faciles à gérer, d'éviter la répétition de code et de rendre les programmes plus clairs et modulaires.</p>
+        
+            <p><strong>Pourquoi utiliser des fonctions ?</strong></p>
+            <ul>
+                <li><strong>Réutilisabilité :</strong> Une fois une fonction définie, elle peut être utilisée autant de fois que nécessaire dans le programme.</li>
+                <li><strong>Clarté :</strong> Les fonctions permettent de structurer le code en plusieurs parties logiques.</li>
+                <li><strong>Modularité :</strong> Elles facilitent la maintenance du code.</li>
+            </ul>
+        
+            <p><strong>Définir une fonction :</strong></p>
+            <p>La syntaxe pour définir une fonction est la suivante :</p>
+            <pre><code>
+                def nom_de_la_fonction(paramètres):
+                    # Bloc d'instructions
+                    return valeur_de_retour  # (optionnel)
+            </code></pre>
+        
+            <p><strong>Exemple de Fonction Simple :</strong></p>
+            <pre><code>
+                def saluer():
+                    print("Bonjour tout le monde !")
+            </code></pre>
+            <p>Ici, la fonction <code>saluer()</code> ne prend aucun paramètre et affiche simplement "Bonjour tout le monde !" lorsqu'elle est appelée.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">2. Activité Pratique : Écrire des Fonctions Simples</h4>
+        
+            <p><strong>Objectif de l'activité :</strong> Créer des fonctions simples et les appeler pour résoudre des problèmes basiques.</p>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">Exercice Proposé par Thème :</h5>
+        
+            <h6 style="margin-top: 20px; margin-bottom: 20px;">Thème 1 : Jeux Vidéo - Calcul de Score</h6>
+            <p><strong>Exercice :</strong> Créez un programme qui définit une fonction pour calculer le score final d'un joueur en fonction de ses points de base et d'un bonus. Ensuite, appelez cette fonction pour afficher le score final.</p>
+            <pre><code>
+                def calculer_score(points, bonus):
+                    score_total = points + bonus
+                    return score_total
+                
+                # Demande des points et du bonus
+                points = int(input("Entrez vos points : "))
+                bonus = int(input("Entrez votre bonus : "))
+                
+                # Appelle la fonction pour calculer le score
+                score_final = calculer_score(points, bonus)
+                print("Votre score final est :", score_final)
+            </code></pre>
+        
+            <h6 style="margin-top: 20px; margin-bottom: 20px;">Thème 2 : Manga - Suivi de Lecture</h6>
+            <p><strong>Exercice :</strong> Créez une fonction qui demande à l'utilisateur de saisir un manga et le nombre de chapitres lus, puis affiche le nom du manga et les chapitres lus.</p>
+            <pre><code>
+                def suivre_lecture():
+                    manga = input("Entrez le nom du manga : ")
+                    chapitres = int(input(f"Combien de chapitres avez-vous lus de {manga} ? "))
+                    print(f"Vous avez lu {chapitres} chapitres de {manga}.")
+                
+                # Appel de la fonction
+                suivre_lecture()
+            </code></pre>
+        
+            <h6 style="margin-top: 20px; margin-bottom: 20px;">Thème 3 : Vie Réelle - Calcul de Dépenses</h6>
+            <p><strong>Exercice :</strong> Créez une fonction qui calcule le total des dépenses d'une journée. Demandez à l'utilisateur d'entrer les montants de ses dépenses et affichez le total à la fin.</p>
+            <pre><code>
+                def calculer_depenses():
+                    total = 0
+                    for i in range(3):  # Demande 3 montants par exemple
+                        depense = float(input(f"Entrez le montant de la dépense {i+1} : "))
+                        total += depense
+                    return total
+                
+                # Appel de la fonction pour calculer les dépenses
+                total_depenses = calculer_depenses()
+                print("Le total des dépenses est :", total_depenses)
+            </code></pre>
+        
+            <h6 style="margin-top: 20px; margin-bottom: 20px;">Thème 4 : Actualité - Suivi des Événements</h6>
+            <p><strong>Exercice :</strong> Créez une fonction qui permet à l'utilisateur d'ajouter des événements d'actualité dans une liste, puis affiche tous les événements ajoutés.</p>
+            <pre><code>
+                def ajouter_evenements():
+                    evenements = []
+                    for i in range(3):  # Par exemple, 3 événements
+                        evenement = input(f"Entrez l'événement {i+1} : ")
+                        evenements.append(evenement)
+                    return evenements
+                
+                # Appel de la fonction pour ajouter des événements
+                evenements = ajouter_evenements()
+                print("Les événements saisis sont :")
+                for evt in evenements:
+                    print("-", evt)
+            </code></pre>
+        
+            <h4 style="margin-top: 30px; margin-bottom: 20px;">3. Discussion et Réflexion</h4>
+        
+            <p><strong>Discussion en groupe :</strong> Réfléchissez à l'utilité des fonctions. Comment la division du code en petites parties améliore-t-elle la lisibilité et la réutilisation du programme ?</p>
+        
+            <p><strong>Exemples de mise en contexte :</strong></p>
+            <ul>
+                <li>Dans un jeu vidéo, les fonctions peuvent être utilisées pour gérer différents aspects du jeu, comme le calcul des scores, la gestion des inventaires, ou encore les combats.</li>
+                <li>Dans un programme de suivi de mangas, une fonction peut être utilisée pour ajouter de nouveaux titres ou calculer la moyenne des chapitres lus.</li>
+            </ul>
+        </section>
         
     </main>
 
