@@ -190,7 +190,7 @@
                 <li><a href="#" onclick="showSession('session7')">Séance 7 : </a></li>
                 <li><a href="#" onclick="showSession('session8')">Séance 8 : </a></li>
                 <li><a href="#" onclick="showSession('session9')">Séance 9 : Introduction aux Fonctions</a></li>
-                <li><a href="#" onclick="showSession('session10')">Séance 10 : </a></li>
+                <li><a href="#" onclick="showSession('session10')">Séance 10 : Pratique - Statistiques sur l’actualité (par exemple, cas COVID)</a></li>
                 <li><a href="#" onclick="showSession('session11')">Séance 11 : </a></li>
                 <li><a href="#" onclick="showSession('session12')">Séance 12 : </a></li>
                 <li><a href="#" onclick="showSession('session13')">Séance 13 : </a></li>
@@ -456,6 +456,80 @@
                 <li>Dans un programme de suivi de mangas, une fonction peut être utilisée pour ajouter de nouveaux titres ou calculer la moyenne des chapitres lus.</li>
             </ul>
         </section>
+
+        <section id="session10" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 10 : Pratique - Statistiques sur l’actualité (par exemple, cas COVID)</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectifs de la Séance</h3>
+            <ul>
+                <li>Appliquer les concepts de boucles et de manipulation de données pour traiter des statistiques réelles.</li>
+                <li>Analyser des données sous forme de listes et effectuer des calculs simples comme des moyennes, des totaux et des pourcentages.</li>
+                <li>Comprendre comment représenter les données actuelles en utilisant des outils de programmation.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Déroulement de la Séance</h3>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">1. Introduction aux Statistiques et à l'Actualité (20 minutes)</h4>
+            <p><strong>Présentation de l'actualité liée au COVID :</strong></p>
+            <p>Discutez des données disponibles pendant la pandémie, comme le nombre de nouveaux cas, de décès ou de guérisons sur une période donnée (par jour ou par semaine).</p>
+            <p><strong>Pourquoi analyser des données ?</strong></p>
+            <p>Analyser des données permet de comprendre les tendances, comme une augmentation ou une diminution des cas, et de prendre des décisions informées.</p>
+            <p><strong>Données Simplifiées :</strong></p>
+            <p>Pour cet exercice, les élèves utiliseront une liste de données représentant le nombre de cas quotidiens de COVID sur une semaine donnée.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">2. Activité Pratique : Analyse des Cas de COVID sur une Semaine (40 minutes)</h4>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">Objectif de l'activité :</h5>
+            <p>Écrire un programme qui permet à l'utilisateur de saisir le nombre de nouveaux cas de COVID chaque jour pendant une semaine, puis calculer des statistiques comme la somme totale des cas, la moyenne des cas par jour, et identifier le jour avec le plus grand nombre de cas.</p>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">Instructions :</h5>
+            <pre><code>
+                # Initialisation de la liste pour stocker les cas de chaque jour
+                cas_covid = []
+                
+                # Saisie des cas pour chaque jour de la semaine (7 jours)
+                for jour in range(7):
+                    cas = int(input(f"Entrez le nombre de cas pour le jour {jour + 1} : "))
+                    cas_covid.append(cas)
+                
+                # Calcul de la somme totale des cas sur la semaine
+                total_cas = sum(cas_covid)
+                print(f"Nombre total de cas sur la semaine : {total_cas}")
+                
+                # Calcul de la moyenne des cas par jour
+                moyenne_cas = total_cas / len(cas_covid)
+                print(f"Moyenne de cas par jour : {moyenne_cas:.2f}")
+                
+                # Identification du jour avec le plus grand nombre de cas
+                jour_max_cas = cas_covid.index(max(cas_covid)) + 1
+                print(f"Le jour avec le plus grand nombre de cas est le jour {jour_max_cas} avec {max(cas_covid)} cas.")
+            </code></pre>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">2. Testez votre programme :</h5>
+            <p>Saisissez des données fictives pour chaque jour de la semaine et vérifiez que le programme affiche les bonnes statistiques (somme totale, moyenne, jour avec le maximum de cas).</p>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">3. Personnalisez votre programme :</h5>
+            <p>Ajoutez des fonctionnalités supplémentaires, comme le calcul du pourcentage d'augmentation ou de diminution des cas par rapport au jour précédent.</p>
+        
+            <h4 style="margin-top: 20px; margin-bottom: 20px;">3. Exercices Supplémentaires et Discussion (20 minutes)</h4>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">Exercice Supplémentaire : Tendance des Cas</h5>
+            <p>Modifiez le programme pour qu'il affiche si le nombre de cas a augmenté ou diminué par rapport au jour précédent.</p>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">Exemple de Code :</h5>
+            <pre><code>
+                for jour in range(1, len(cas_covid)):
+                    if cas_covid[jour] > cas_covid[jour - 1]:
+                        print(f"Le jour {jour + 1}, les cas ont augmenté par rapport au jour précédent.")
+                    elif cas_covid[jour] < cas_covid[jour - 1]:
+                        print(f"Le jour {jour + 1}, les cas ont diminué par rapport au jour précédent.")
+                    else:
+                        print(f"Le jour {jour + 1}, le nombre de cas est resté identique.")
+            </code></pre>
+        
+            <h5 style="margin-top: 20px; margin-bottom: 20px;">Discussion :</h5>
+            <p>Réfléchissez à d'autres statistiques que vous pourriez calculer à partir de ces données. Comment ces informations pourraient-elles être utiles pour les autorités sanitaires ou le public ?</p>
+        </section>        
         
     </main>
 
