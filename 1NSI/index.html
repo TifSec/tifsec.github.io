@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Calibri, sans-serif;
             line-height: 1.6;
             background-color: #f4f4f4;
         }
@@ -200,9 +200,9 @@
                 <li><a href="#" onclick="showSession('session8')">Séance 8 : </a></li>
                 <li><a href="#" onclick="showSession('session9')">Séance 9 : Introduction aux Fonctions</a></li>
                 <li><a href="#" onclick="showSession('session10')">Séance 10 : Pratique - Statistiques sur l’actualité (par exemple, cas COVID)</a></li>
-                <li><a href="#" onclick="showSession('session11')">Séance 11 : </a></li>
-                <li><a href="#" onclick="showSession('session12')">Séance 12 : </a></li>
-                <li><a href="#" onclick="showSession('session13')">Séance 13 : </a></li>
+                <li><a href="#" onclick="showSession('session11')">Séance 11 : Paramètres et Retour de Valeurs</a></li>
+                <li><a href="#" onclick="showSession('session12')">Séance 12 : Pratique - Calcul d’un Budget Familial</a></li>
+                <!-- <li><a href="#" onclick="showSession('session13')">Séance 13 : </a></li>
                 <li><a href="#" onclick="showSession('session14')">Séance 14 : </a></li>
                 <li><a href="#" onclick="showSession('session15')">Séance 15 : </a></li>
                 <li><a href="#" onclick="showSession('session16')">Séance 16 : </a></li>
@@ -219,7 +219,7 @@
                 <li><a href="#" onclick="showSession('session27')">Séance 27 : </a></li>
                 <li><a href="#" onclick="showSession('session28')">Séance 28 : </a></li>
                 <li><a href="#" onclick="showSession('session29')">Séance 29 : </a></li>
-                <li><a href="#" onclick="showSession('session30')">Séance 30 : </a></li>
+                <li><a href="#" onclick="showSession('session30')">Séance 30 : </a></li> -->
             </ul>
         </nav>
     </aside>
@@ -538,7 +538,306 @@
         
             <h5 style="margin-top: 20px; margin-bottom: 20px;">Discussion :</h5>
             <p>Réfléchissez à d'autres statistiques que vous pourriez calculer à partir de ces données. Comment ces informations pourraient-elles être utiles pour les autorités sanitaires ou le public ?</p>
-        </section>        
+        </section>
+        
+        <section id="session11" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 11 : Paramètres et Retour de Valeurs</h2>
+            
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Comprendre comment passer des paramètres aux fonctions en Python.</li>
+                <li>Apprendre à retourner des valeurs à partir des fonctions.</li>
+                <li>Écrire des programmes qui utilisent des fonctions avec des paramètres et un retour de valeur pour accomplir des tâches spécifiques.</li>
+            </ul>
+            
+            <h3>Déroulement de la Séance</h3>
+            <h4>1. Introduction aux Paramètres et au Retour de Valeurs</h4>
+            <p><strong>Qu'est-ce qu'un paramètre ?</strong><br>
+            Un paramètre est une variable qui est utilisée dans la définition d'une fonction pour recevoir des données lors de l'appel de la fonction.</p>
+            
+            <p><strong>Pourquoi passer des paramètres ?</strong><br>
+            Passer des paramètres permet de rendre les fonctions plus flexibles, car elles peuvent traiter des données différentes à chaque appel.</p>
+            
+            <p><strong>Retourner des valeurs :</strong><br>
+            Les fonctions peuvent également renvoyer des résultats à l'endroit où elles sont appelées à l'aide de l'instruction return.</p>
+            
+            <p><strong>Exemple de Fonction avec Paramètres et Retour de Valeur :</strong></p>
+            <pre><code>
+    def multiplier(a, b):
+        return a * b  # Retourne le produit de a et b
+    
+    # Appel de la fonction
+    resultat = multiplier(3, 4)
+    print(resultat)  # Affiche 12
+            </code></pre>
+            <p>Ici, a et b sont des paramètres et la fonction retourne leur produit.</p>
+            
+            <h4>2. Activité Pratique : Utilisation des Paramètres et du Retour de Valeur</h4>
+            <p>Les élèves choisiront parmi les exercices suivants en fonction de leurs centres d'intérêt.</p>
+            
+            <h5>Exercice 1 : Jeux Vidéo - Calculer le Score Final</h5>
+            <p><strong>Exercice :</strong> Créez une fonction qui prend en paramètres le score d'un joueur et un bonus, et qui retourne le score final. Le programme doit demander à l'utilisateur de saisir un score et un bonus, puis afficher le score final.</p>
+            <pre><code>
+    def calculer_score(score, bonus):
+        return score + bonus
+    
+    score = int(input("Entrez le score du joueur : "))
+    bonus = int(input("Entrez le bonus : "))
+    score_final = calculer_score(score, bonus)
+    print(f"Le score final est : {score_final}")
+            </code></pre>
+            
+            <h5>Exercice 2 : Manga - Calcul de la Progression de Lecture</h5>
+            <p><strong>Exercice :</strong> Créez une fonction qui prend en paramètres le nombre de chapitres lus et le nombre total de chapitres, et qui retourne la progression en pourcentage. Le programme doit demander à l'utilisateur ces informations et afficher le pourcentage de progression.</p>
+            <pre><code>
+    def calculer_progression(chapitres_lus, chapitres_totaux):
+        return (chapitres_lus / chapitres_totaux) * 100
+    
+    chapitres_lus = int(input("Entrez le nombre de chapitres lus : "))
+    chapitres_totaux = int(input("Entrez le nombre total de chapitres : "))
+    progression = calculer_progression(chapitres_lus, chapitres_totaux)
+    print(f"Vous avez lu {progression:.2f}% du manga.")
+            </code></pre>
+            
+            <h5>Exercice 3 : Vie Réelle - Calcul de Budget Restant</h5>
+            <p><strong>Exercice :</strong> Créez une fonction qui prend en paramètres les revenus et les dépenses, et qui retourne le montant restant. Le programme doit demander à l'utilisateur de saisir ses revenus et ses dépenses, puis afficher le budget restant.</p>
+            <pre><code>
+    def calculer_budget(revenus, depenses):
+        return revenus - depenses
+    
+    revenus = float(input("Entrez vos revenus : "))
+    depenses = float(input("Entrez vos dépenses : "))
+    budget_restant = calculer_budget(revenus, depenses)
+    print(f"Le budget restant est : {budget_restant:.2f} euros")
+            </code></pre>
+            
+            <h5>Exercice 4 : Actualité - Calculer le Pourcentage de Participation Électorale</h5>
+            <p><strong>Exercice :</strong> Créez une fonction qui prend en paramètres le nombre de votants et le nombre total d'électeurs, et qui retourne le pourcentage de participation. Le programme doit demander à l'utilisateur ces informations et afficher le pourcentage de participation.</p>
+            <pre><code>
+    def calculer_participation(votants, electeurs_totaux):
+        return (votants / electeurs_totaux) * 100
+    
+    votants = int(input("Entrez le nombre de votants : "))
+    electeurs_totaux = int(input("Entrez le nombre total d'électeurs : "))
+    participation = calculer_participation(votants, electeurs_totaux)
+    print(f"Le pourcentage de participation est : {participation:.2f}%")
+            </code></pre>
+            
+            <h4>3. Discussion et Réflexion</h4>
+            <h5>Discussion en groupe :</h5>
+            <p>Réfléchissez à d'autres situations où vous pourriez utiliser des fonctions avec des paramètres et des retours de valeur. Dans quels scénarios cela vous aide-t-il à simplifier le code ou à le rendre plus réutilisable ?</p>
+            
+            <h5>Exemples de mise en contexte :</h5>
+            <ul>
+                <li>Dans un jeu vidéo, les fonctions avec des paramètres peuvent calculer des scores, des points de vie, ou des récompenses en fonction des actions des joueurs.</li>
+                <li>Pour un suivi de lecture, vous pouvez utiliser ces fonctions pour suivre la progression de plusieurs mangas ou pour calculer le temps estimé pour finir un manga.</li>
+            </ul>
+        </section>
+
+        <section id="session12" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 12 : Pratique - Calcul d’un Budget Familial</h2>
+            
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Appliquer les concepts de boucles, conditions, et gestion de variables pour simuler le calcul d’un budget familial.</li>
+                <li>Écrire un programme permettant à l'utilisateur d'ajouter des revenus et des dépenses et de calculer le solde final.</li>
+            </ul>
+            
+            <h3>Déroulement de la Séance</h3>
+            <h4>1. Introduction au Calcul du Budget Familial</h4>
+            <p><strong>Concept du budget familial :</strong> Un budget familial consiste à calculer la différence entre les revenus (salaire, allocations, etc.) et les dépenses (loyer, nourriture, loisirs). Le solde final doit indiquer si la famille est en excédent ou en déficit.</p>
+            <p><strong>Objectif :</strong> Le programme doit permettre à l'utilisateur de saisir les revenus et les dépenses et, à la fin, afficher le solde final. Si le solde est positif, cela signifie que la famille est en excédent ; sinon, elle est en déficit.</p>
+            
+            <h4>2. Activité Pratique : Calcul d’un Budget Familial</h4>
+            <p><strong>Objectif de l'activité :</strong> Créer un programme interactif qui demande à l'utilisateur de saisir des revenus et des dépenses jusqu'à ce qu'il choisisse d'arrêter, puis affiche le solde final.</p>
+            <p><strong>Instructions :</strong></p>
+            <pre><code>
+    total_revenus = 0
+    total_depenses = 0
+    
+    # Saisie des revenus
+    print("Entrez vos revenus :")
+    while True:
+        revenu = float(input("Entrez un revenu (ou 0 pour terminer) : "))
+        if revenu == 0:
+            break
+        total_revenus += revenu  # Ajoute le revenu au total
+    
+    # Saisie des dépenses
+    print("Entrez vos dépenses :")
+    while True:
+        depense = float(input("Entrez une dépense (ou 0 pour terminer) : "))
+        if depense == 0:
+            break
+        total_depenses += depense  # Ajoute la dépense au total
+    
+    # Calcul du solde final
+    solde = total_revenus - total_depenses
+    
+    # Affichage du solde
+    if solde > 0:
+        print(f"Votre solde final est de {solde:.2f}€. Vous êtes en excédent.")
+    else:
+        print(f"Votre solde final est de {solde:.2f}€. Vous êtes en déficit.")
+            </code></pre>
+            <p><strong>{solde:.2f} :</strong><br>
+            solde est une variable qui contient le solde final, calculé en soustrayant les dépenses des revenus.<br>
+            .2f est une spécification de format qui indique comment le nombre doit être affiché :<br>
+            .2 : Affiche le nombre avec deux chiffres après la virgule.<br>
+            f : Spécifie que le nombre doit être affiché comme un nombre à virgule flottante.<br>
+            Par exemple, si solde vaut 123.4567, l'expression {solde:.2f} afficherait 123.46 (le nombre est arrondi à deux chiffres après la virgule)</p>
+            
+            <h4>Explications du Code :</h4>
+            <ul>
+                <li><strong>Boucle pour les revenus :</strong> L'utilisateur entre ses revenus dans une boucle while qui continue jusqu'à ce qu'il entre 0 pour terminer. Chaque revenu est ajouté à la variable total_revenus.</li>
+                <li><strong>Boucle pour les dépenses :</strong> Le processus est identique pour les dépenses, avec une autre boucle while qui continue jusqu'à ce que l'utilisateur entre 0.</li>
+                <li><strong>Calcul du solde final :</strong> Le solde est calculé en soustrayant les dépenses totales des revenus totaux. Le programme affiche ensuite si le solde est positif (excédent) ou négatif (déficit).</li>
+            </ul>
+            
+            <h4>2. Testez votre programme :</h4>
+            <p>Lancez le programme et testez différentes entrées de revenus et de dépenses pour voir si le solde est correctement calculé et affiché.</p>
+            
+            <h4>3. Personnalisez le programme :</h4>
+            <ul>
+                <li>Ajoutez des catégories pour les dépenses (ex. : loyer, alimentation, loisirs).</li>
+                <li>Affichez un message spécifique si les dépenses dépassent les revenus de manière significative (déficit important).</li>
+            </ul>
+        
+            <h3>3. Exercices Supplémentaires</h3>
+            
+            <h4>Exercice 1 : Catégorisation des Dépenses</h4>
+            <p><strong>Objectif de l'exercice :</strong><br>
+            Dans cet exercice, nous allons modifier le programme original de gestion du budget familial pour permettre à l'utilisateur d'entrer ses dépenses par catégorie (par exemple, loyer, nourriture, loisirs). Ensuite, le programme affichera un récapitulatif des dépenses par catégorie, permettant à l'utilisateur de voir combien il a dépensé dans chaque domaine.</p>
+            
+            <p><strong>Ce que l'on va faire :</strong></p>
+            <ol>
+                <li>Demander à l'utilisateur la catégorie de chaque dépense.</li>
+                <li>Stocker les dépenses dans un dictionnaire où chaque clé représente une catégorie (ex : "loyer", "nourriture") et chaque valeur est la somme des dépenses pour cette catégorie.</li>
+                <li>Afficher un récapitulatif des dépenses par catégorie à la fin.</li>
+            </ol>
+            
+            <h4>Étapes détaillées</h4>
+            <ol>
+                <li><strong>Initialiser un Dictionnaire pour les Dépenses</strong><br>
+                Un dictionnaire est une structure de données Python qui permet de stocker des paires clé-valeur. Dans cet exercice, les clés seront les catégories de dépenses (comme "loyer" ou "nourriture"), et les valeurs seront les montants dépensés dans ces catégories.<br>
+                <code>depenses = {}</code></li>
+                
+                <li><strong>Demander à l'utilisateur d'entrer une catégorie et un montant pour chaque dépense</strong><br>
+                Nous allons utiliser une boucle pour demander à l'utilisateur d'entrer des catégories de dépenses et les montants associés.</li>
+                
+                <li><strong>Mettre à jour le dictionnaire à chaque nouvelle dépense</strong><br>
+                À chaque fois que l'utilisateur saisit une nouvelle dépense, le programme doit vérifier si la catégorie existe dans le dictionnaire. Si c'est le cas, le programme ajoute simplement le montant à la valeur existante. Sinon, il crée une nouvelle entrée pour cette catégorie.</li>
+                
+                <li><strong>Afficher un récapitulatif des dépenses par catégorie</strong><br>
+                Une fois que l'utilisateur a terminé d'entrer ses dépenses (par exemple, en entrant 0 comme montant), le programme affiche un récapitulatif qui liste toutes les catégories et les montants dépensés dans chacune.</li>
+            </ol>
+        
+            <h4>Code Complet : Catégorisation des Dépenses</h4>
+            <pre><code>
+    # Initialisation du dictionnaire des dépenses
+    depenses = {}
+    
+    # Demande à l'utilisateur d'entrer ses dépenses par catégorie
+    print("Entrez vos dépenses par catégorie (ex: loyer, nourriture, loisirs).")
+    print("Entrez 0 comme montant pour terminer.")
+    
+    while True:
+        categorie = input("Entrez la catégorie de dépense (ou 'fin' pour terminer) : ")
+        
+        if categorie.lower() == 'fin':  # Permet de sortir de la boucle avec 'fin'
+            break
+        
+        montant = float(input(f"Entrez le montant pour la catégorie '{categorie}' : "))
+        
+        if montant == 0:  # Si le montant est 0, on arrête l'entrée des dépenses
+            break
+        
+        # Si la catégorie existe déjà dans le dictionnaire, on ajoute au montant
+        if categorie in depenses:
+            depenses[categorie] += montant
+        else:
+            depenses[categorie] = montant  # Sinon, on crée la catégorie avec ce montant
+    
+    # Récapitulatif des dépenses par catégorie
+    print("\nRécapitulatif des dépenses par catégorie :")
+    for categorie, montant in depenses.items():
+        print(f"{categorie.capitalize()} : {montant:.2f} €")
+            </code></pre>
+        
+            <h4>Explication du Code</h4>
+            <ol>
+                <li><strong>Initialisation du dictionnaire depenses :</strong><br>
+                On commence par créer un dictionnaire vide pour stocker les catégories et les montants associés.</li>
+                <li><strong>Boucle while pour entrer les catégories et montants :</strong><br>
+                La boucle continue tant que l'utilisateur ne choisit pas de quitter (en entrant 'fin').</li>
+                <li><strong>Mise à jour du dictionnaire :</strong><br>
+                Si la catégorie existe déjà, on met à jour la valeur en ajoutant le montant actuel au total existant. Sinon, on crée une nouvelle entrée.</li>
+                <li><strong>Affichage du récapitulatif :</strong><br>
+                Après que l'utilisateur ait terminé d'entrer les dépenses, le programme affiche un récapitulatif des montants dépensés pour chaque catégorie.</li>
+            </ol>
+        
+            <h3>Exercice 2 : Prévisions</h3>
+            <p><strong>Objectif de l'Exercice :</strong> Prévisions pour le Mois Suivant</p>
+            <p>Dans cet exercice, vous allez ajouter une fonctionnalité qui permet à l'utilisateur d'entrer une prévision pour le mois suivant, indiquant s'il prévoit une augmentation ou une diminution de ses revenus ou de ses dépenses. Ensuite, vous calculerez un solde estimé pour le mois suivant en fonction de ces prévisions.</p>
+        
+            <h4>Étapes pour Ajouter la Fonctionnalité de Prévision</h4>
+            <ol>
+                <li><strong>Saisie des Revenus et Dépenses Actuels</strong></li>
+                <li><strong>Saisie des Prévisions pour le Mois Suivant</strong></li>
+                <li><strong>Calcul du Solde Estimé pour le Mois Suivant</strong></li>
+                <li><strong>Affichage du Solde Estimé</strong></li>
+            </ol>
+        
+            <h4>Exemple de Code pour Gérer les Prévisions</h4>
+            <pre><code>
+    # Étape 1 : Saisie des revenus et dépenses actuels
+    total_revenus = 0
+    total_depenses = 0
+    
+    print("Entrez vos revenus pour le mois actuel :")
+    while True:
+        revenu = float(input("Entrez un revenu (ou 0 pour terminer) : "))
+        if revenu == 0:
+            break
+        total_revenus += revenu  # Ajoute le revenu au total
+    
+    print("Entrez vos dépenses pour le mois actuel :")
+    while True:
+        depense = float(input("Entrez une dépense (ou 0 pour terminer) : "))
+        if depense == 0:
+            break
+        total_depenses += depense  # Ajoute la dépense au total
+    
+    # Calcul du solde actuel
+    solde = total_revenus - total_depenses
+    
+    # Affichage du solde actuel
+    if solde > 0:
+        print(f"Votre solde actuel est de {solde:.2f}€. Vous êtes en excédent.")
+    else:
+        print(f"Votre solde actuel est de {solde:.2f}€. Vous êtes en déficit.")
+    
+    # Étape 2 : Saisie des prévisions pour le mois suivant
+    print("\nPrévisions pour le mois suivant :")
+    
+    # Prévision des revenus (en pourcentage)
+    pourcentage_revenus = float(input("Entrez le pourcentage de variation des revenus (ex: +10 ou -5) : "))
+    revenus_prevision = total_revenus + (total_revenus * pourcentage_revenus / 100)
+    
+    # Prévision des dépenses (en pourcentage)
+    pourcentage_depenses = float(input("Entrez le pourcentage de variation des dépenses (ex: +10 ou -5) : "))
+    depenses_prevision = total_depenses + (total_depenses * pourcentage_depenses / 100)
+    
+    # Étape 3 : Calcul du solde estimé pour le mois suivant
+    solde_estime = revenus_prevision - depenses_prevision
+    
+    # Étape 4 : Affichage du solde estimé pour le mois suivant
+    if solde_estime > 0:
+        print(f"Votre solde estimé pour le mois suivant est de {solde_estime:.2f}€. Vous serez en excédent.")
+    else:
+        print(f"Votre solde estimé pour le mois suivant est de {solde_estime:.2f}€. Vous serez en déficit.")
+            </code></pre>
+        </section>
         
     </main>
 
