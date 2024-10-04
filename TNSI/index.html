@@ -108,6 +108,11 @@
             margin-bottom: 15px;
         }
 
+        h4{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -199,11 +204,11 @@
                 <li><a href="#" onclick="showSession('session13')">Séance 13 : Introduction aux Graphes et à leurs Applications</a></li>
                 <li><a href="#" onclick="showSession('session14')">Séance 14 : Pratique - Représentation d'un Réseau de Routes dans un Jeu Vidéo avec des Graphes</a></li>
                 <li><a href="#" onclick="showSession('session15')">Séance 15 : Algorithmes de Parcours de Graphes – DFS et BFS</a></li>
-                <li><a href="#" onclick="showSession('session16')">Séance 16 : </a></li>
-                <li><a href="#" onclick="showSession('session17')">Séance 17 : </a></li>
-                <li><a href="#" onclick="showSession('session18')">Séance 18 : </a></li>
-                <li><a href="#" onclick="showSession('session19')">Séance 19 : </a></li>
-                <li><a href="#" onclick="showSession('session20')">Séance 20 : </a></li>
+                <li><a href="#" onclick="showSession('session16')">Séance 16 : Approfondissement sur l’algorithme DFS (Depth-First Search)</a></li>
+                <li><a href="#" onclick="showSession('session17')">Séance 17 : Pratique - Exploration d’un Monde Ouvert (Jeu Vidéo) avec DFS</a></li>
+                <li><a href="#" onclick="showSession('session18')">Séance 18 : Applications Réelles des Graphes (Réseaux Sociaux, Chemins dans les Transports)</a></li>
+                <li><a href="#" onclick="showSession('session19')">Séance 19 : Introduction aux Arbres Binaires et leurs Applications</a></li>
+                <li><a href="#" onclick="showSession('session20')">Séance 20 : Pratique - Utilisation d’arbres pour organiser une base de données de personnages de manga</a></li>
                 <li><a href="#" onclick="showSession('session21')">Séance 21 : </a></li>
                 <li><a href="#" onclick="showSession('session22')">Séance 22 : </a></li>
                 <li><a href="#" onclick="showSession('session23')">Séance 23 : </a></li>
@@ -353,6 +358,7 @@
             </table>
         </section>
 
+        <!-- Cours -->
         <section id="session1" class="content-section">
             <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 1 : Introduction à la Récursivité (Concepts de Base)</h2>
         
@@ -378,11 +384,11 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple simple : La Factorielle</h4>
             <pre><code>
-                def factorielle(n):
-                    if n == 0:  # Cas de base
-                        return 1
-                    else:
-                        return n * factorielle(n - 1)  # Cas récursif
+    def factorielle(n):
+        if n == 0:  # Cas de base
+            return 1
+        else:
+            return n * factorielle(n - 1)  # Cas récursif
             </code></pre>
         
             <p>Explication du fonctionnement :</p>
@@ -397,13 +403,13 @@
             <p>Nous représentons le labyrinthe comme une liste de listes en Python :</p>
         
             <pre><code>
-                labyrinthe = [
-                    ['S', 1, 0, 0, 1],
-                    [0, 1, 0, 1, 0],
-                    [0, 0, 0, 1, 'E'],
-                    [1, 1, 0, 0, 1],
-                    [0, 0, 0, 1, 0]
-                ]
+    labyrinthe = [
+        ['S', 1, 0, 0, 1],
+        [0, 1, 0, 1, 0],
+        [0, 0, 0, 1, 'E'],
+        [1, 1, 0, 0, 1],
+        [0, 0, 0, 1, 0]
+    ]
             </code></pre>
         
             <ul>
@@ -417,32 +423,32 @@
             <p>Le héros doit explorer toutes les directions possibles. Pour cela, nous allons créer une fonction récursive qui essaie toutes les directions (haut, bas, gauche, droite).</p>
         
             <pre><code>
-                def explorer_labyrinthe(labyrinthe, x, y, visitees):
-                    # Vérifier les limites du labyrinthe
-                    if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
-                        return False
-                    
-                    # Vérifier si la case est un mur ou déjà visitée
-                    if labyrinthe[x][y] == 1 or (x, y) in visitees:
-                        return False
-                    
-                    # Si on a trouvé la sortie
-                    if labyrinthe[x][y] == 'E':
-                        print(f"Sortie trouvée à la position ({x}, {y})")
-                        return True
-                    
-                    # Marquer la case comme visitée
-                    visitees.add((x, y))
-                    
-                    # Appeler la fonction récursive dans les 4 directions
-                    if (explorer_labyrinthe(labyrinthe, x+1, y, visitees) or  # Bas
-                        explorer_labyrinthe(labyrinthe, x-1, y, visitees) or  # Haut
-                        explorer_labyrinthe(labyrinthe, x, y+1, visitees) or  # Droite
-                        explorer_labyrinthe(labyrinthe, x, y-1, visitees)):   # Gauche
-                        return True
-                    
-                    # Si aucune direction ne fonctionne, on retourne False
-                    return False
+    def explorer_labyrinthe(labyrinthe, x, y, visitees):
+        # Vérifier les limites du labyrinthe
+        if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
+            return False
+        
+        # Vérifier si la case est un mur ou déjà visitée
+        if labyrinthe[x][y] == 1 or (x, y) in visitees:
+            return False
+        
+        # Si on a trouvé la sortie
+        if labyrinthe[x][y] == 'E':
+            print(f"Sortie trouvée à la position ({x}, {y})")
+            return True
+        
+        # Marquer la case comme visitée
+        visitees.add((x, y))
+        
+        # Appeler la fonction récursive dans les 4 directions
+        if (explorer_labyrinthe(labyrinthe, x+1, y, visitees) or  # Bas
+            explorer_labyrinthe(labyrinthe, x-1, y, visitees) or  # Haut
+            explorer_labyrinthe(labyrinthe, x, y+1, visitees) or  # Droite
+            explorer_labyrinthe(labyrinthe, x, y-1, visitees)):   # Gauche
+            return True
+        
+        # Si aucune direction ne fonctionne, on retourne False
+        return False
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Explication du Code</h4>
@@ -457,14 +463,14 @@
             <p>Les élèves doivent modifier et exécuter la fonction pour que le héros puisse trouver la sortie.</p>
         
             <pre><code>
-                # Position de départ (0, 0)
-                position_depart = (0, 0)
-                
-                # Ensemble des cases visitées
-                cases_visitees = set()
-                
-                # Lancer la recherche de la sortie
-                explorer_labyrinthe(labyrinthe, position_depart[0], position_depart[1], cases_visitees)
+    # Position de départ (0, 0)
+    position_depart = (0, 0)
+    
+    # Ensemble des cases visitées
+    cases_visitees = set()
+    
+    # Lancer la recherche de la sortie
+    explorer_labyrinthe(labyrinthe, position_depart[0], position_depart[1], cases_visitees)
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Améliorations</h4>
@@ -486,7 +492,6 @@
                 <li>D'autres applications de la récursivité dans les jeux vidéo et les structures de données (arbres, tri récursif).</li>
                 <li>Combiner récursivité et optimisations (mémoïsation) pour rendre les algorithmes plus efficaces.</li>
             </ul>
-        
         </section>
 
         <section id="session2" class="content-section">
@@ -517,18 +522,18 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Fonction récursive pour calculer le bonus d'attaque :</h4>
             <pre><code>
-                def attaque_bonus(n):
-                    # Cas de base : quand le bonus atteint 0
-                    if n == 0:
-                        return 0
-                    else:
-                        # Récursion : bonus initial (10) - n + bonus précédent
-                        return (10 - n) + attaque_bonus(n - 1)
-                
-                # Exemple d'utilisation :
-                coups = 5  # Le personnage donne 5 coups
-                total_bonus = attaque_bonus(coups)
-                print(f"Le total des points d'attaque après {coups} coups est de : {total_bonus}")
+    def attaque_bonus(n):
+        # Cas de base : quand le bonus atteint 0
+        if n == 0:
+            return 0
+        else:
+            # Récursion : bonus initial (10) - n + bonus précédent
+            return (10 - n) + attaque_bonus(n - 1)
+    
+    # Exemple d'utilisation :
+    coups = 5  # Le personnage donne 5 coups
+    total_bonus = attaque_bonus(coups)
+    print(f"Le total des points d'attaque après {coups} coups est de : {total_bonus}")
             </code></pre>
         
             <p><strong>Explication :</strong></p>
@@ -547,19 +552,19 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple d’amélioration :</h4>
             <pre><code>
-                def attaque_bonus(n, critique=False):
-                    if n == 0:
-                        return 0
-                    else:
-                        bonus = (10 - n)  # Le bonus diminue avec chaque coup
-                        if critique and n % 3 == 0:
-                            bonus *= 2  # Coup critique tous les 3 coups
-                        return bonus + attaque_bonus(n - 1, critique)
-                
-                # Exemple d'utilisation :
-                coups = 5
-                total_bonus = attaque_bonus(coups, critique=True)
-                print(f"Le total des points d'attaque avec coups critiques est de : {total_bonus}")
+    def attaque_bonus(n, critique=False):
+        if n == 0:
+            return 0
+        else:
+            bonus = (10 - n)  # Le bonus diminue avec chaque coup
+            if critique and n % 3 == 0:
+                bonus *= 2  # Coup critique tous les 3 coups
+            return bonus + attaque_bonus(n - 1, critique)
+    
+    # Exemple d'utilisation :
+    coups = 5
+    total_bonus = attaque_bonus(coups, critique=True)
+    print(f"Le total des points d'attaque avec coups critiques est de : {total_bonus}")
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 4 : Exercices Pratiques</h3>
@@ -602,11 +607,11 @@
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple théorique :</h4>
             <p>Calcul de la factorielle d’un nombre.</p>
             <pre><code>
-                def factorielle(n):
-                    if n == 0:
-                        return 1  # Cas de base
-                    else:
-                        return n * factorielle(n - 1)  # Cas récursif
+    def factorielle(n):
+        if n == 0:
+            return 1  # Cas de base
+        else:
+            return n * factorielle(n - 1)  # Cas récursif
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Application : Exploration d'un Donjon Récursif</h3>
@@ -621,51 +626,51 @@
                 <li><strong>E</strong> la sortie à atteindre.</li>
             </ul>
             <pre><code>
-                donjon = [
-                    ['S', 1, 0, 0, 1],
-                    [0, 1, 0, 1, 0],
-                    [0, 0, 0, 1, 'E'],
-                    [1, 1, 0, 0, 1],
-                    [0, 0, 0, 1, 0]
-                ]
+    donjon = [
+        ['S', 1, 0, 0, 1],
+        [0, 1, 0, 1, 0],
+        [0, 0, 0, 1, 'E'],
+        [1, 1, 0, 0, 1],
+        [0, 0, 0, 1, 0]
+    ]
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Création de la fonction récursive d’exploration</h4>
             <p>On écrit une fonction récursive pour explorer le donjon. À chaque étape, le héros explore les cases adjacentes (haut, bas, gauche, droite) jusqu'à trouver la sortie.</p>
             <pre><code>
-                def explorer_donjon(donjon, x, y, visitees):
-                    # Vérifier les limites du donjon
-                    if x < 0 or x >= len(donjon) or y < 0 or y >= len(donjon[0]):
-                        return False
-                    
-                    # Vérifier si c'est un mur ou une case déjà visitée
-                    if donjon[x][y] == 1 or (x, y) in visitees:
-                        return False
-                    
-                    # Si on a trouvé la sortie
-                    if donjon[x][y] == 'E':
-                        print(f"Sortie trouvée à la position ({x}, {y})")
-                        return True
-                    
-                    # Marquer la case comme visitée
-                    visitees.add((x, y))
-                    
-                    # Exploration récursive des 4 directions
-                    if (explorer_donjon(donjon, x+1, y, visitees) or  # Bas
-                        explorer_donjon(donjon, x-1, y, visitees) or  # Haut
-                        explorer_donjon(donjon, x, y+1, visitees) or  # Droite
-                        explorer_donjon(donjon, x, y-1, visitees)):   # Gauche
-                        return True
-                    
-                    # Si aucune direction ne permet d’avancer, retour en arrière
-                    return False
+    def explorer_donjon(donjon, x, y, visitees):
+        # Vérifier les limites du donjon
+        if x < 0 or x >= len(donjon) or y < 0 or y >= len(donjon[0]):
+            return False
+        
+        # Vérifier si c'est un mur ou une case déjà visitée
+        if donjon[x][y] == 1 or (x, y) in visitees:
+            return False
+        
+        # Si on a trouvé la sortie
+        if donjon[x][y] == 'E':
+            print(f"Sortie trouvée à la position ({x}, {y})")
+            return True
+        
+        # Marquer la case comme visitée
+        visitees.add((x, y))
+        
+        # Exploration récursive des 4 directions
+        if (explorer_donjon(donjon, x+1, y, visitees) or  # Bas
+            explorer_donjon(donjon, x-1, y, visitees) or  # Haut
+            explorer_donjon(donjon, x, y+1, visitees) or  # Droite
+            explorer_donjon(donjon, x, y-1, visitees)):   # Gauche
+            return True
+        
+        # Si aucune direction ne permet d’avancer, retour en arrière
+        return False
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 3 : Lancement de l'exploration</h4>
             <p>L’appel de la fonction d'exploration depuis la position de départ :</p>
             <pre><code>
-                visitees = set()
-                explorer_donjon(donjon, 0, 0, visitees)
+    visitees = set()
+    explorer_donjon(donjon, 0, 0, visitees)
             </code></pre>
             <p>Les élèves peuvent visualiser comment la récursivité permet au héros de tester différentes directions jusqu'à trouver la sortie du donjon.</p>
         
@@ -679,23 +684,23 @@
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Génération d’un arbre fractal</h4>
             <p>Nous allons utiliser la récursivité pour dessiner un arbre où chaque branche se divise en deux sous-branches plus petites. Pour simplifier, on peut utiliser la bibliothèque turtle de Python, qui permet de dessiner facilement.</p>
             <pre><code>
-                import turtle
-        
-                def dessiner_arbre(longueur, angle):
-                    if longueur > 5:
-                        turtle.forward(longueur)
-                        turtle.right(angle)
-                        dessiner_arbre(longueur - 15, angle)
-                        turtle.left(angle * 2)
-                        dessiner_arbre(longueur - 15, angle)
-                        turtle.right(angle)
-                        turtle.backward(longueur)
-                
-                # Initialisation de Turtle
-                turtle.speed("fastest")
-                turtle.left(90)  # Faire pointer la tortue vers le haut
-                dessiner_arbre(100, 30)  # Commence avec une longueur de 100
-                turtle.done()
+    import turtle
+
+    def dessiner_arbre(longueur, angle):
+        if longueur > 5:
+            turtle.forward(longueur)
+            turtle.right(angle)
+            dessiner_arbre(longueur - 15, angle)
+            turtle.left(angle * 2)
+            dessiner_arbre(longueur - 15, angle)
+            turtle.right(angle)
+            turtle.backward(longueur)
+    
+    # Initialisation de Turtle
+    turtle.speed("fastest")
+    turtle.left(90)  # Faire pointer la tortue vers le haut
+    dessiner_arbre(100, 30)  # Commence avec une longueur de 100
+    turtle.done()
             </code></pre>
             <p>Les élèves pourront voir comment la récursivité permet de générer une figure qui se répète de manière auto-similaire.</p>
         
@@ -765,17 +770,17 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple de Pseudo-code :</h4>
             <pre><code>
-                recherche_binaire(liste, debut, fin, cible):
-                Si debut > fin, retourner -1 (le trésor n'est pas dans la liste)
-                
-                milieu = (debut + fin) // 2
-                
-                Si liste[milieu] == cible, retourner milieu (le trésor est trouvé)
-                
-                Si liste[milieu] < cible:
-                    Rechercher dans la moitié supérieure (milieu + 1 à fin)
-                Sinon:
-                    Rechercher dans la moitié inférieure (debut à milieu - 1)
+    recherche_binaire(liste, debut, fin, cible):
+    Si debut > fin, retourner -1 (le trésor n'est pas dans la liste)
+    
+    milieu = (debut + fin) // 2
+    
+    Si liste[milieu] == cible, retourner milieu (le trésor est trouvé)
+    
+    Si liste[milieu] < cible:
+        Rechercher dans la moitié supérieure (milieu + 1 à fin)
+    Sinon:
+        Rechercher dans la moitié inférieure (debut à milieu - 1)
             </code></pre>
         
             <p><strong>Cas de base :</strong> Si la liste est vide (début > fin), le trésor n’est pas dans la liste.</p>
@@ -785,36 +790,38 @@
             
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Créer la Liste des Sections</h4>
             <p>Tout d’abord, nous allons représenter l’île avec une liste de sections numérotées de 1 à 100 :</p>
-            <pre><code>sections = list(range(1, 101))</code></pre>
+            <pre><code>
+    sections = list(range(1, 101))
+            </code></pre>
             <p>Ensuite, nous allons choisir une section aléatoire pour cacher le trésor :</p>
             <pre><code>
-                import random
-                section_tresor = random.choice(sections)
+    import random
+    section_tresor = random.choice(sections)
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Implémenter la Recherche Binaire</h4>
             <p>Nous allons maintenant implémenter l'algorithme de recherche binaire récursive pour chercher le trésor. À chaque étape, le programme indiquera si le trésor est dans la moitié supérieure ou inférieure :</p>
             <pre><code>
-                def recherche_binaire(liste, debut, fin, cible):
-                    if debut > fin:
-                        print("Le trésor n'est pas sur cette île !")
-                        return -1
-                    
-                    milieu = (debut + fin) // 2
-                    print(f"Vous cherchez dans la section {milieu}...")
-                    
-                    if liste[milieu] == cible:
-                        print(f"Félicitations ! Vous avez trouvé le trésor dans la section {milieu} !")
-                        return milieu
-                    elif liste[milieu] < cible:
-                        print("Le trésor est dans une section plus haute.")
-                        return recherche_binaire(liste, milieu + 1, fin, cible)
-                    else:
-                        print("Le trésor est dans une section plus basse.")
-                        return recherche_binaire(liste, debut, milieu - 1, cible)
-                
-                # Appel de la fonction
-                recherche_binaire(sections, 0, len(sections) - 1, section_tresor)
+    def recherche_binaire(liste, debut, fin, cible):
+        if debut > fin:
+            print("Le trésor n'est pas sur cette île !")
+            return -1
+        
+        milieu = (debut + fin) // 2
+        print(f"Vous cherchez dans la section {milieu}...")
+        
+        if liste[milieu] == cible:
+            print(f"Félicitations ! Vous avez trouvé le trésor dans la section {milieu} !")
+            return milieu
+        elif liste[milieu] < cible:
+            print("Le trésor est dans une section plus haute.")
+            return recherche_binaire(liste, milieu + 1, fin, cible)
+        else:
+            print("Le trésor est dans une section plus basse.")
+            return recherche_binaire(liste, debut, milieu - 1, cible)
+    
+    # Appel de la fonction
+    recherche_binaire(sections, 0, len(sections) - 1, section_tresor)
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Extension et Challenge : Limite de Tentatives</h4>
@@ -822,23 +829,23 @@
             <p>Modifiez l'algorithme pour limiter le nombre de tentatives à 7. Si le joueur dépasse ce nombre, il échoue à trouver le trésor.</p>
         
             <pre><code>
-                def recherche_binaire(liste, debut, fin, cible, tentatives=7):
-                    if debut > fin or tentatives == 0:
-                        print("Le trésor n'a pas été trouvé, vous avez épuisé vos tentatives.")
-                        return -1
-                    
-                    milieu = (debut + fin) // 2
-                    print(f"Vous cherchez dans la section {milieu}... Tentatives restantes : {tentatives}")
-                    
-                    if liste[milieu] == cible:
-                        print(f"Félicitations ! Vous avez trouvé le trésor dans la section {milieu} !")
-                        return milieu
-                    elif liste[milieu] < cible:
-                        print("Le trésor est dans une section plus haute.")
-                        return recherche_binaire(liste, milieu + 1, fin, cible, tentatives - 1)
-                    else:
-                        print("Le trésor est dans une section plus basse.")
-                        return recherche_binaire(liste, debut, milieu - 1, cible, tentatives - 1)
+    def recherche_binaire(liste, debut, fin, cible, tentatives=7):
+        if debut > fin or tentatives == 0:
+            print("Le trésor n'a pas été trouvé, vous avez épuisé vos tentatives.")
+            return -1
+        
+        milieu = (debut + fin) // 2
+        print(f"Vous cherchez dans la section {milieu}... Tentatives restantes : {tentatives}")
+        
+        if liste[milieu] == cible:
+            print(f"Félicitations ! Vous avez trouvé le trésor dans la section {milieu} !")
+            return milieu
+        elif liste[milieu] < cible:
+            print("Le trésor est dans une section plus haute.")
+            return recherche_binaire(liste, milieu + 1, fin, cible, tentatives - 1)
+        else:
+            print("Le trésor est dans une section plus basse.")
+            return recherche_binaire(liste, debut, milieu - 1, cible, tentatives - 1)
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Réflexion</h3>
@@ -895,17 +902,17 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Explication Théorique de l'Algorithme</h4>
             <pre><code>
-                recherche_binaire(liste, debut, fin, cible):
-                Si debut > fin, retourner -1 (le personnage n'est pas dans la liste)
-                
-                milieu = (debut + fin) // 2
-                
-                Si liste[milieu] == cible, retourner milieu (personnage trouvé)
-                
-                Si liste[milieu] < cible:
-                    Rechercher dans la moitié supérieure (milieu + 1 à fin)
-                Sinon:
-                    Rechercher dans la moitié inférieure (debut à milieu - 1)
+    recherche_binaire(liste, debut, fin, cible):
+    Si debut > fin, retourner -1 (le personnage n'est pas dans la liste)
+    
+    milieu = (debut + fin) // 2
+    
+    Si liste[milieu] == cible, retourner milieu (personnage trouvé)
+    
+    Si liste[milieu] < cible:
+        Rechercher dans la moitié supérieure (milieu + 1 à fin)
+    Sinon:
+        Rechercher dans la moitié inférieure (debut à milieu - 1)
             </code></pre>
         
             <p><strong>Cas de base :</strong> Si la sous-liste est vide (debut > fin), le personnage n'est pas dans la liste.</p>
@@ -916,73 +923,75 @@
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Créer la Liste des Personnages de Manga</h4>
             <p>On va d’abord créer une liste de personnages triée alphabétiquement.</p>
         
-            <pre><code>personnages_manga = ["Asta", "Edward", "Goku", "Luffy", "Naruto", "Sasuke", "Tanjiro", "Vegeta", "Zoro"]</code></pre>
+            <pre><code>
+    personnages_manga = ["Asta", "Edward", "Goku", "Luffy", "Naruto", "Sasuke", "Tanjiro", "Vegeta", "Zoro"]
+            </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Implémenter la Recherche Binaire</h4>
             <p>On implémente l’algorithme de recherche binaire pour chercher un personnage dans cette liste. L’algorithme prend la liste de personnages, les indices de début et de fin, et le nom du personnage à chercher.</p>
         
             <pre><code>
-                def recherche_binaire(liste, debut, fin, cible):
-                    if debut > fin:
-                        print(f"{cible} n'est pas dans la liste.")
-                        return -1
-                    
-                    milieu = (debut + fin) // 2
-                    print(f"Vérification du personnage au milieu : {liste[milieu]}")
-                
-                    if liste[milieu] == cible:
-                        print(f"Félicitations ! {cible} a été trouvé à la position {milieu}.")
-                        return milieu
-                    elif liste[milieu] < cible:
-                        print(f"{cible} est après {liste[milieu]}. Recherche dans la moitié supérieure.")
-                        return recherche_binaire(liste, milieu + 1, fin, cible)
-                    else:
-                        print(f"{cible} est avant {liste[milieu]}. Recherche dans la moitié inférieure.")
-                        return recherche_binaire(liste, debut, milieu - 1, cible)
+    def recherche_binaire(liste, debut, fin, cible):
+        if debut > fin:
+            print(f"{cible} n'est pas dans la liste.")
+            return -1
+        
+        milieu = (debut + fin) // 2
+        print(f"Vérification du personnage au milieu : {liste[milieu]}")
+    
+        if liste[milieu] == cible:
+            print(f"Félicitations ! {cible} a été trouvé à la position {milieu}.")
+            return milieu
+        elif liste[milieu] < cible:
+            print(f"{cible} est après {liste[milieu]}. Recherche dans la moitié supérieure.")
+            return recherche_binaire(liste, milieu + 1, fin, cible)
+        else:
+            print(f"{cible} est avant {liste[milieu]}. Recherche dans la moitié inférieure.")
+            return recherche_binaire(liste, debut, milieu - 1, cible)
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 3 : Recherche d’un Personnage</h4>
             <p>Invitez les élèves à tester cette fonction en recherchant des personnages comme Luffy, Naruto, ou d'autres dans la liste.</p>
         
             <pre><code>
-                # Appel de la fonction de recherche
-                recherche_binaire(personnages_manga, 0, len(personnages_manga) - 1, "Luffy")
+    # Appel de la fonction de recherche
+    recherche_binaire(personnages_manga, 0, len(personnages_manga) - 1, "Luffy")
             </code></pre>
         
             <p><strong>Exemple de sortie :</strong></p>
             <pre><code>
-                Vérification du personnage au milieu : Naruto
-                Luffy est avant Naruto. Recherche dans la moitié inférieure.
-                Vérification du personnage au milieu : Edward
-                Luffy est après Edward. Recherche dans la moitié supérieure.
-                Vérification du personnage au milieu : Luffy
-                Félicitations ! Luffy a été trouvé à la position 3.
+    Vérification du personnage au milieu : Naruto
+    Luffy est avant Naruto. Recherche dans la moitié inférieure.
+    Vérification du personnage au milieu : Edward
+    Luffy est après Edward. Recherche dans la moitié supérieure.
+    Vérification du personnage au milieu : Luffy
+    Félicitations ! Luffy a été trouvé à la position 3.
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Extension : Limite de Tentatives</h3>
             <p>Ajoutez une fonctionnalité pour limiter le nombre de tentatives à un certain nombre, comme 4 tentatives, pour rendre l'exercice plus difficile et montrer comment l’algorithme optimise les recherches.</p>
         
             <pre><code>
-                def recherche_binaire(liste, debut, fin, cible, tentatives):
-                    if debut > fin or tentatives == 0:
-                        print(f"{cible} n'a pas été trouvé ou les tentatives sont épuisées.")
-                        return -1
-                    
-                    milieu = (debut + fin) // 2
-                    print(f"Vérification du personnage au milieu : {liste[milieu]} - Tentatives restantes : {tentatives}")
-                
-                    if liste[milieu] == cible:
-                        print(f"Félicitations ! {cible} a été trouvé à la position {milieu}.")
-                        return milieu
-                    elif liste[milieu] < cible:
-                        print(f"{cible} est après {liste[milieu]}. Recherche dans la moitié supérieure.")
-                        return recherche_binaire(liste, milieu + 1, fin, cible, tentatives - 1)
-                    else:
-                        print(f"{cible} est avant {liste[milieu]}. Recherche dans la moitié inférieure.")
-                        return recherche_binaire(liste, debut, milieu - 1, cible, tentatives - 1)
-                
-                # Lancer la recherche avec une limite de tentatives
-                recherche_binaire(personnages_manga, 0, len(personnages_manga) - 1, "Luffy", tentatives=4)
+    def recherche_binaire(liste, debut, fin, cible, tentatives):
+        if debut > fin or tentatives == 0:
+            print(f"{cible} n'a pas été trouvé ou les tentatives sont épuisées.")
+            return -1
+        
+        milieu = (debut + fin) // 2
+        print(f"Vérification du personnage au milieu : {liste[milieu]} - Tentatives restantes : {tentatives}")
+    
+        if liste[milieu] == cible:
+            print(f"Félicitations ! {cible} a été trouvé à la position {milieu}.")
+            return milieu
+        elif liste[milieu] < cible:
+            print(f"{cible} est après {liste[milieu]}. Recherche dans la moitié supérieure.")
+            return recherche_binaire(liste, milieu + 1, fin, cible, tentatives - 1)
+        else:
+            print(f"{cible} est avant {liste[milieu]}. Recherche dans la moitié inférieure.")
+            return recherche_binaire(liste, debut, milieu - 1, cible, tentatives - 1)
+    
+    # Lancer la recherche avec une limite de tentatives
+    recherche_binaire(personnages_manga, 0, len(personnages_manga) - 1, "Luffy", tentatives=4)
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Réflexion</h3>
@@ -1056,20 +1065,20 @@
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Algorithme de recherche linéaire :</h4>
         
             <pre><code>
-                def recherche_lineaire(liste, cible):
-                    for i in range(len(liste)):
-                        print(f"Vérification de la section {liste[i]}")
-                        if liste[i] == cible:
-                            print(f"Objet trouvé dans la section {liste[i]}")
-                            return i
-                    print("Objet non trouvé")
-                    return -1
-                
-                # Création d'une liste de sections
-                sections = list(range(1, 33))  # Carte avec 32 sections
-                
-                # Appel de la fonction de recherche
-                recherche_lineaire(sections, 32)
+    def recherche_lineaire(liste, cible):
+        for i in range(len(liste)):
+            print(f"Vérification de la section {liste[i]}")
+            if liste[i] == cible:
+                print(f"Objet trouvé dans la section {liste[i]}")
+                return i
+        print("Objet non trouvé")
+        return -1
+    
+    # Création d'une liste de sections
+    sections = list(range(1, 33))  # Carte avec 32 sections
+    
+    # Appel de la fonction de recherche
+    recherche_lineaire(sections, 32)
             </code></pre>
         
             <p><strong>Analyse :</strong></p>
@@ -1081,25 +1090,25 @@
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Rappel de l'algorithme de recherche binaire :</h4>
         
             <pre><code>
-                def recherche_binaire(liste, debut, fin, cible):
-                    if debut > fin:
-                        print("Objet non trouvé")
-                        return -1
-                    
-                    milieu = (debut + fin) // 2
-                    print(f"Vérification de la section {liste[milieu]}...")
-                    
-                    if liste[milieu] == cible:
-                        print(f"Objet trouvé dans la section {liste[milieu]}")
-                        return milieu
-                    elif liste[milieu] < cible:
-                        return recherche_binaire(liste, milieu + 1, fin, cible)
-                    else:
-                        return recherche_binaire(liste, debut, milieu - 1, cible)
-                
-                # Appel de la fonction de recherche binaire
-                sections = list(range(1, 33))  # Carte avec 32 sections
-                recherche_binaire(sections, 0, len(sections) - 1, 32)
+    def recherche_binaire(liste, debut, fin, cible):
+        if debut > fin:
+            print("Objet non trouvé")
+            return -1
+        
+        milieu = (debut + fin) // 2
+        print(f"Vérification de la section {liste[milieu]}...")
+        
+        if liste[milieu] == cible:
+            print(f"Objet trouvé dans la section {liste[milieu]}")
+            return milieu
+        elif liste[milieu] < cible:
+            return recherche_binaire(liste, milieu + 1, fin, cible)
+        else:
+            return recherche_binaire(liste, debut, milieu - 1, cible)
+    
+    # Appel de la fonction de recherche binaire
+    sections = list(range(1, 33))  # Carte avec 32 sections
+    recherche_binaire(sections, 0, len(sections) - 1, 32)
             </code></pre>
         
             <p><strong>Analyse :</strong></p>
@@ -1125,17 +1134,17 @@
             <p><strong>Challenge :</strong> Demandez aux élèves d’ajouter un chronomètre dans le programme pour mesurer le temps réel que prend chaque algorithme pour trouver l’objet dans une liste de 1 000 sections. Ils devront comparer le temps d'exécution entre la recherche linéaire et la recherche binaire en utilisant la bibliothèque Python <code>time</code>.</p>
         
             <pre><code>
-                import time
-        
-                # Chronométrer la recherche linéaire
-                start_time = time.time()
-                recherche_lineaire(sections, 32)
-                print("Temps d'exécution de la recherche linéaire :", time.time() - start_time)
-                
-                # Chronométrer la recherche binaire
-                start_time = time.time()
-                recherche_binaire(sections, 0, len(sections) - 1, 32)
-                print("Temps d'exécution de la recherche binaire :", time.time() - start_time)
+    import time
+
+    # Chronométrer la recherche linéaire
+    start_time = time.time()
+    recherche_lineaire(sections, 32)
+    print("Temps d'exécution de la recherche linéaire :", time.time() - start_time)
+    
+    # Chronométrer la recherche binaire
+    start_time = time.time()
+    recherche_binaire(sections, 0, len(sections) - 1, 32)
+    print("Temps d'exécution de la recherche binaire :", time.time() - start_time)
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif de la Séance :</h3>
@@ -1175,19 +1184,19 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple de Pseudo-code :</h4>
             <pre><code>
-                trouver_sortie(labyrinthe, position_x, position_y):
-                Si la position actuelle est la sortie :
-                    Afficher "Sortie trouvée"
-                    Finir l'algorithme
-                
-                Marquer la position actuelle comme visitée
-                
-                Pour chaque direction possible (haut, bas, gauche, droite) :
-                    Si la direction est valide et non visitée :
-                        Appeler récursivement trouver_sortie avec la nouvelle position
-                        Si cela conduit à la sortie, Finir
-                
-                Si aucune direction ne fonctionne, revenir en arrière (backtrack)
+    trouver_sortie(labyrinthe, position_x, position_y):
+    Si la position actuelle est la sortie :
+        Afficher "Sortie trouvée"
+        Finir l'algorithme
+    
+    Marquer la position actuelle comme visitée
+    
+    Pour chaque direction possible (haut, bas, gauche, droite) :
+        Si la direction est valide et non visitée :
+            Appeler récursivement trouver_sortie avec la nouvelle position
+            Si cela conduit à la sortie, Finir
+    
+    Si aucune direction ne fonctionne, revenir en arrière (backtrack)
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Implémentation du Backtracking dans un Labyrinthe</h3>
@@ -1196,13 +1205,13 @@
             <p>Nous allons représenter le labyrinthe comme une grille 2D où chaque case peut être soit un mur (1), soit un chemin libre (0), soit l’entrée (S), soit la sortie (E).</p>
             <p><strong>Voici un exemple de labyrinthe :</strong></p>
             <pre><code>
-                labyrinthe = [
-                    ['S', 1, 0, 0, 1],
-                    [0, 1, 0, 1, 0],
-                    [0, 0, 0, 1, 'E'],
-                    [1, 1, 0, 0, 1],
-                    [0, 0, 0, 1, 0]
-                ]
+    labyrinthe = [
+        ['S', 1, 0, 0, 1],
+        [0, 1, 0, 1, 0],
+        [0, 0, 0, 1, 'E'],
+        [1, 1, 0, 0, 1],
+        [0, 0, 0, 1, 0]
+    ]
             </code></pre>
             <ul>
                 <li><strong>S :</strong> point de départ (entrée).</li>
@@ -1213,52 +1222,52 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Implémenter l'Algorithme de Backtracking</h4>
             <pre><code>
-                # Labyrinthe 2D
-                labyrinthe = [
-                    ['S', 1, 0, 0, 1],
-                    [0, 1, 0, 1, 0],
-                    [0, 0, 0, 1, 'E'],
-                    [1, 1, 0, 0, 1],
-                    [0, 0, 0, 1, 0]
-                ]
-                
-                # Fonction de backtracking pour explorer le labyrinthe
-                def explorer_labyrinthe(labyrinthe, x, y, visitees):
-                    # Vérifier si la position est hors du labyrinthe
-                    if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
-                        return False
-                    
-                    # Si la position est un mur ou déjà visitée
-                    if labyrinthe[x][y] == 1 or (x, y) in visitees:
-                        return False
-                    
-                    # Si on a trouvé la sortie
-                    if labyrinthe[x][y] == 'E':
-                        print(f"Sortie trouvée à la position ({x}, {y})")
-                        return True
-                    
-                    # Marquer la position comme visitée
-                    visitees.add((x, y))
-                    
-                    # Explorer les directions : bas, haut, droite, gauche
-                    if (explorer_labyrinthe(labyrinthe, x+1, y, visitees) or  # Bas
-                        explorer_labyrinthe(labyrinthe, x-1, y, visitees) or  # Haut
-                        explorer_labyrinthe(labyrinthe, x, y+1, visitees) or  # Droite
-                        explorer_labyrinthe(labyrinthe, x, y-1, visitees)):   # Gauche
-                        return True
-                    
-                    # Si aucune direction ne fonctionne, revenir en arrière
-                    visitees.remove((x, y))
-                    return False
-                
-                # Position de départ
-                position_depart = (0, 0)
-                
-                # Ensemble des cases visitées
-                cases_visitees = set()
-                
-                # Lancer la recherche de la sortie
-                explorer_labyrinthe(labyrinthe, position_depart[0], position_depart[1], cases_visitees)
+    # Labyrinthe 2D
+    labyrinthe = [
+        ['S', 1, 0, 0, 1],
+        [0, 1, 0, 1, 0],
+        [0, 0, 0, 1, 'E'],
+        [1, 1, 0, 0, 1],
+        [0, 0, 0, 1, 0]
+    ]
+    
+    # Fonction de backtracking pour explorer le labyrinthe
+    def explorer_labyrinthe(labyrinthe, x, y, visitees):
+        # Vérifier si la position est hors du labyrinthe
+        if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
+            return False
+        
+        # Si la position est un mur ou déjà visitée
+        if labyrinthe[x][y] == 1 or (x, y) in visitees:
+            return False
+        
+        # Si on a trouvé la sortie
+        if labyrinthe[x][y] == 'E':
+            print(f"Sortie trouvée à la position ({x}, {y})")
+            return True
+        
+        # Marquer la position comme visitée
+        visitees.add((x, y))
+        
+        # Explorer les directions : bas, haut, droite, gauche
+        if (explorer_labyrinthe(labyrinthe, x+1, y, visitees) or  # Bas
+            explorer_labyrinthe(labyrinthe, x-1, y, visitees) or  # Haut
+            explorer_labyrinthe(labyrinthe, x, y+1, visitees) or  # Droite
+            explorer_labyrinthe(labyrinthe, x, y-1, visitees)):   # Gauche
+            return True
+        
+        # Si aucune direction ne fonctionne, revenir en arrière
+        visitees.remove((x, y))
+        return False
+    
+    # Position de départ
+    position_depart = (0, 0)
+    
+    # Ensemble des cases visitées
+    cases_visitees = set()
+    
+    # Lancer la recherche de la sortie
+    explorer_labyrinthe(labyrinthe, position_depart[0], position_depart[1], cases_visitees)
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Explication de l'Algorithme</h3>
@@ -1314,13 +1323,13 @@
         
             <p><strong>Exemple de labyrinthe simple :</strong></p>
             <pre><code>
-                labyrinthe = [    
-                    ['S', 1, 0, 0, 1],
-                    [0, 1, 0, 1, 0],
-                    [0, 0, 0, 1, 'E'],
-                    [1, 1, 0, 0, 1],
-                    [0, 0, 0, 1, 0]
-                ]
+    labyrinthe = [    
+        ['S', 1, 0, 0, 1],
+        [0, 1, 0, 1, 0],
+        [0, 0, 0, 1, 'E'],
+        [1, 1, 0, 0, 1],
+        [0, 0, 0, 1, 0]
+    ]
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">2. Qu'est-ce que le Backtracking ?</h4>
@@ -1341,21 +1350,21 @@
             <p>L'algorithme de backtracking est généralement implémenté de manière récursive. Voici un exemple d'algorithme en pseudo-code :</p>
         
             <pre><code>
-                explorer_labyrinthe(labyrinthe, x, y, visitees):
-                Si (x, y) est hors du labyrinthe ou un mur ou déjà visité :
-                    Retourner False
+    explorer_labyrinthe(labyrinthe, x, y, visitees):
+    Si (x, y) est hors du labyrinthe ou un mur ou déjà visité :
+        Retourner False
                 
-                Si (x, y) est la sortie :
-                    Retourner True (la sortie est trouvée)
+    Si (x, y) est la sortie :
+        Retourner True (la sortie est trouvée)
+    
+    Marquer (x, y) comme visité
                 
-                Marquer (x, y) comme visité
-                
-                Explorer les 4 directions (haut, bas, gauche, droite) :
-                    Si l’une des directions mène à la sortie :
-                        Retourner True
-                
-                Si aucune direction ne fonctionne :
-                    Retourner False (chemin bloqué)
+    Explorer les 4 directions (haut, bas, gauche, droite) :
+        Si l’une des directions mène à la sortie :
+            Retourner True
+    
+    Si aucune direction ne fonctionne :
+        Retourner False (chemin bloqué)
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">4. Implémentation en Python</h4>
@@ -1364,56 +1373,56 @@
             <p>Le labyrinthe sera représenté par une matrice (liste de listes en Python). 0 représente un chemin ouvert, 1 représente un mur, S représente la position de départ, et E la sortie.</p>
         
             <pre><code>
-                labyrinthe = [
-                    ['S', 1, 0, 0, 1],
-                    [0, 1, 0, 1, 0],
-                    [0, 0, 0, 1, 'E'],
-                    [1, 1, 0, 0, 1],
-                    [0, 0, 0, 1, 0]
-                ]
+    labyrinthe = [
+        ['S', 1, 0, 0, 1],
+        [0, 1, 0, 1, 0],
+        [0, 0, 0, 1, 'E'],
+        [1, 1, 0, 0, 1],
+        [0, 0, 0, 1, 0]
+    ]
             </code></pre>
         
             <h5 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Fonction de Backtracking</h5>
             <pre><code>
-                def explorer_labyrinthe(labyrinthe, x, y, visitees):
-                    # Vérifier les limites du labyrinthe
-                    if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
-                        return False
-                
-                    # Vérifier si la case est un mur ou déjà visitée
-                    if labyrinthe[x][y] == 1 or (x, y) in visitees:
-                        return False
-                
-                    # Si on a trouvé la sortie
-                    if labyrinthe[x][y] == 'E':
-                        print(f"Sortie trouvée à la position ({x}, {y})")
-                        return True
-                
-                    # Marquer la case comme visitée
-                    visitees.add((x, y))
-                
-                    # Appeler la fonction récursive dans les 4 directions
-                    if (explorer_labyrinthe(labyrinthe, x + 1, y, visitees) or  # Bas
-                        explorer_labyrinthe(labyrinthe, x - 1, y, visitees) or  # Haut
-                        explorer_labyrinthe(labyrinthe, x, y + 1, visitees) or  # Droite
-                        explorer_labyrinthe(labyrinthe, x, y - 1, visitees)):   # Gauche
-                        return True
-                
-                    # Si aucune direction ne fonctionne, on retourne False (backtrack)
-                    return False
+    def explorer_labyrinthe(labyrinthe, x, y, visitees):
+        # Vérifier les limites du labyrinthe
+        if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
+            return False
+    
+        # Vérifier si la case est un mur ou déjà visitée
+        if labyrinthe[x][y] == 1 or (x, y) in visitees:
+            return False
+    
+        # Si on a trouvé la sortie
+        if labyrinthe[x][y] == 'E':
+            print(f"Sortie trouvée à la position ({x}, {y})")
+            return True
+    
+        # Marquer la case comme visitée
+        visitees.add((x, y))
+    
+        # Appeler la fonction récursive dans les 4 directions
+        if (explorer_labyrinthe(labyrinthe, x + 1, y, visitees) or  # Bas
+            explorer_labyrinthe(labyrinthe, x - 1, y, visitees) or  # Haut
+            explorer_labyrinthe(labyrinthe, x, y + 1, visitees) or  # Droite
+            explorer_labyrinthe(labyrinthe, x, y - 1, visitees)):   # Gauche
+            return True
+    
+        # Si aucune direction ne fonctionne, on retourne False (backtrack)
+        return False
             </code></pre>
         
             <h5 style="margin-top: 20px; margin-bottom: 20px;">Étape 3 : Tester l'Algorithme avec un Labyrinthe</h5>
             <pre><code>
-                # Position de départ
-                position_depart = (0, 0)
-                
-                # Ensemble des cases visitées
-                cases_visitees = set()
-                
-                # Lancer la recherche de la sortie
-                if not explorer_labyrinthe(labyrinthe, position_depart[0], position_depart[1], cases_visitees):
-                    print("Aucun chemin trouvé pour sortir du labyrinthe.")
+    # Position de départ
+    position_depart = (0, 0)
+    
+    # Ensemble des cases visitées
+    cases_visitees = set()
+    
+    # Lancer la recherche de la sortie
+    if not explorer_labyrinthe(labyrinthe, position_depart[0], position_depart[1], cases_visitees):
+        print("Aucun chemin trouvé pour sortir du labyrinthe.")
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">5. Ajout d'une Interface Graphique Simple</h4>
@@ -1421,56 +1430,58 @@
         
             <h5 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Installer Pygame</h5>
             <p>Installer Pygame avec la commande :</p>
-            <pre><code>pip install pygame</code></pre>
+            <pre><code>
+    pip install pygame
+            </code></pre>
         
             <h5 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Visualisation du Labyrinthe</h5>
             <pre><code>
-                import pygame
-        
-                # Dimensions de la fenêtre
-                TAILLE_BLOC = 40
-                LARGEUR = len(labyrinthe[0]) * TAILLE_BLOC
-                HAUTEUR = len(labyrinthe) * TAILLE_BLOC
-                
-                # Couleurs
-                COULEUR_MUR = (0, 0, 0)
-                COULEUR_CHEMIN = (255, 255, 255)
-                COULEUR_JOUEUR = (0, 255, 0)
-                COULEUR_SORTIE = (255, 0, 0)
-                
-                # Initialiser Pygame
-                pygame.init()
-                fenetre = pygame.display.set_mode((LARGEUR, HAUTEUR))
-                pygame.display.set_caption("Labyrinthe")
-                
-                def dessiner_labyrinthe(labyrinthe, position_joueur):
-                    fenetre.fill(COULEUR_CHEMIN)
-                    for i in range(len(labyrinthe)):
-                        for j in range(len(labyrinthe[0])):
-                            x = j * TAILLE_BLOC
-                            y = i * TAILLE_BLOC
-                            if labyrinthe[i][j] == 1:
-                                pygame.draw.rect(fenetre, COULEUR_MUR, (x, y, TAILLE_BLOC, TAILLE_BLOC))
-                            elif labyrinthe[i][j] == 'E':
-                                pygame.draw.rect(fenetre, COULEUR_SORTIE, (x, y, TAILLE_BLOC, TAILLE_BLOC))
-                    # Dessiner le joueur
-                    joueur_x, joueur_y = position_joueur
-                    pygame.draw.rect(fenetre, COULEUR_JOUEUR, (joueur_y * TAILLE_BLOC, joueur_x * TAILLE_BLOC, TAILLE_BLOC, TAILLE_BLOC))
-                
-                # Position initiale du joueur
-                position_joueur = (0, 0)
-                
-                # Boucle du jeu
-                continuer = True
-                while continuer:
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
-                            continuer = False
-                
-                    dessiner_labyrinthe(labyrinthe, position_joueur)
-                    pygame.display.flip()
-                
-                pygame.quit()
+    import pygame
+
+    # Dimensions de la fenêtre
+    TAILLE_BLOC = 40
+    LARGEUR = len(labyrinthe[0]) * TAILLE_BLOC
+    HAUTEUR = len(labyrinthe) * TAILLE_BLOC
+    
+    # Couleurs
+    COULEUR_MUR = (0, 0, 0)
+    COULEUR_CHEMIN = (255, 255, 255)
+    COULEUR_JOUEUR = (0, 255, 0)
+    COULEUR_SORTIE = (255, 0, 0)
+    
+    # Initialiser Pygame
+    pygame.init()
+    fenetre = pygame.display.set_mode((LARGEUR, HAUTEUR))
+    pygame.display.set_caption("Labyrinthe")
+    
+    def dessiner_labyrinthe(labyrinthe, position_joueur):
+        fenetre.fill(COULEUR_CHEMIN)
+        for i in range(len(labyrinthe)):
+            for j in range(len(labyrinthe[0])):
+                x = j * TAILLE_BLOC
+                y = i * TAILLE_BLOC
+                if labyrinthe[i][j] == 1:
+                    pygame.draw.rect(fenetre, COULEUR_MUR, (x, y, TAILLE_BLOC, TAILLE_BLOC))
+                elif labyrinthe[i][j] == 'E':
+                    pygame.draw.rect(fenetre, COULEUR_SORTIE, (x, y, TAILLE_BLOC, TAILLE_BLOC))
+        # Dessiner le joueur
+        joueur_x, joueur_y = position_joueur
+        pygame.draw.rect(fenetre, COULEUR_JOUEUR, (joueur_y * TAILLE_BLOC, joueur_x * TAILLE_BLOC, TAILLE_BLOC, TAILLE_BLOC))
+    
+    # Position initiale du joueur
+    position_joueur = (0, 0)
+    
+    # Boucle du jeu
+    continuer = True
+    while continuer:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                continuer = False
+    
+        dessiner_labyrinthe(labyrinthe, position_joueur)
+        pygame.display.flip()
+    
+    pygame.quit()
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">6. Challenge et Extension</h4>
@@ -1506,13 +1517,13 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Structure du Labyrinthe :</h4>
             <pre><code>
-                labyrinthe = [
-                    ['S', 0, 0, 1, 0],
-                    [1, 1, 0, 1, 0],
-                    [0, 0, 0, 1, 'E'],
-                    [1, 1, 1, 1, 1],
-                    [0, 0, 0, 0, 0]
-                ]
+    labyrinthe = [
+        ['S', 0, 0, 1, 0],
+        [1, 1, 0, 1, 0],
+        [0, 0, 0, 1, 'E'],
+        [1, 1, 1, 1, 1],
+        [0, 0, 0, 0, 0]
+    ]
             </code></pre>
             <ul>
                 <li><strong>S</strong> représente le point de départ (Start).</li>
@@ -1540,27 +1551,27 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Pseudo-code du Backtracking :</h4>
             <pre><code>
-                fonction résoudre_labyrinthe(labyrinthe, x, y):
-                Si (x, y) est la sortie :
-                    Retourner vrai (le chemin est trouvé)
+    fonction résoudre_labyrinthe(labyrinthe, x, y):
+    Si (x, y) est la sortie :
+        Retourner vrai (le chemin est trouvé)
             
-                Si (x, y) est un mur ou déjà visité :
-                    Retourner faux (impasse)
+    Si (x, y) est un mur ou déjà visité :
+        Retourner faux (impasse)
             
-                Marquer (x, y) comme visité
+    Marquer (x, y) comme visité
             
-                Tenter de se déplacer dans les 4 directions :
-                    Si résoudre_labyrinthe(labyrinthe, x + 1, y) retourne vrai :
-                        Retourner vrai (la direction est correcte)
-                    Si résoudre_labyrinthe(labyrinthe, x - 1, y) retourne vrai :
-                        Retourner vrai
-                    Si résoudre_labyrinthe(labyrinthe, x, y + 1) retourne vrai :
-                        Retourner vrai
-                    Si résoudre_labyrinthe(labyrinthe, x, y - 1) retourne vrai :
-                        Retourner vrai
+    Tenter de se déplacer dans les 4 directions :
+        Si résoudre_labyrinthe(labyrinthe, x + 1, y) retourne vrai :
+            Retourner vrai (la direction est correcte)
+        Si résoudre_labyrinthe(labyrinthe, x - 1, y) retourne vrai :
+            Retourner vrai
+        Si résoudre_labyrinthe(labyrinthe, x, y + 1) retourne vrai :
+            Retourner vrai
+        Si résoudre_labyrinthe(labyrinthe, x, y - 1) retourne vrai :
+            Retourner vrai
             
-                Si aucune direction ne mène à la sortie :
-                    Retourner en arrière (backtrack) et Retourner faux
+    Si aucune direction ne mène à la sortie :
+        Retourner en arrière (backtrack) et Retourner faux
             </code></pre>
         
             <p><strong>Idée Clé :</strong> Le backtracking consiste à tester chaque chemin possible et à revenir en arrière lorsqu'on atteint une impasse. Cela permet d'explorer tous les chemins possibles.</p>
@@ -1571,50 +1582,50 @@
             <p>Nous allons d’abord représenter notre labyrinthe sous forme de liste de listes (2D array), comme précédemment décrit. Chaque case contient soit un chemin possible (0), soit un mur (1), soit l’entrée (S) et la sortie (E).</p>
         
             <pre><code>
-                labyrinthe = [
-                    ['S', 0, 0, 1, 0],
-                    [1, 1, 0, 1, 0],
-                    [0, 0, 0, 1, 'E'],
-                    [1, 1, 1, 1, 1],
-                    [0, 0, 0, 0, 0]
-                ]
+    labyrinthe = [
+        ['S', 0, 0, 1, 0],
+        [1, 1, 0, 1, 0],
+        [0, 0, 0, 1, 'E'],
+        [1, 1, 1, 1, 1],
+        [0, 0, 0, 0, 0]
+    ]
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Implémenter l'Algorithme de Backtracking</h4>
             <p>L'algorithme va chercher le chemin à partir du point de départ (x, y) et essayer toutes les directions possibles (haut, bas, gauche, droite) jusqu’à ce qu’il atteigne la sortie (E).</p>
         
             <pre><code>
-                # Fonction pour résoudre le labyrinthe
-                def résoudre_labyrinthe(labyrinthe, x, y, visitees):
-                    # Vérifier si on est à la sortie
-                    if labyrinthe[x][y] == 'E':
-                        print(f"Sortie trouvée à la position ({x}, {y})")
-                        return True
+    # Fonction pour résoudre le labyrinthe
+    def résoudre_labyrinthe(labyrinthe, x, y, visitees):
+        # Vérifier si on est à la sortie
+        if labyrinthe[x][y] == 'E':
+            print(f"Sortie trouvée à la position ({x}, {y})")
+            return True
                     
-                    # Vérifier les limites du labyrinthe
-                    if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
-                        return False
+        # Vérifier les limites du labyrinthe
+        if x < 0 or x >= len(labyrinthe) or y < 0 or y >= len(labyrinthe[0]):
+            return False
                 
-                    # Vérifier si la case est un mur ou déjà visitée
-                    if labyrinthe[x][y] == 1 or (x, y) in visitees:
-                        return False
+        # Vérifier si la case est un mur ou déjà visitée
+        if labyrinthe[x][y] == 1 or (x, y) in visitees:
+            return False
                     
-                    # Marquer la case comme visitée
-                    visitees.add((x, y))
+        # Marquer la case comme visitée
+        visitees.add((x, y))
                 
-                    # Appeler récursivement la fonction dans les 4 directions
-                    if (résoudre_labyrinthe(labyrinthe, x + 1, y, visitees) or  # Bas
-                        résoudre_labyrinthe(labyrinthe, x - 1, y, visitees) or  # Haut
-                        résoudre_labyrinthe(labyrinthe, x, y + 1, visitees) or  # Droite
-                        résoudre_labyrinthe(labyrinthe, x, y - 1, visitees)):   # Gauche
-                        return True
+        # Appeler récursivement la fonction dans les 4 directions
+        if (résoudre_labyrinthe(labyrinthe, x + 1, y, visitees) or  # Bas
+            résoudre_labyrinthe(labyrinthe, x - 1, y, visitees) or  # Haut
+            résoudre_labyrinthe(labyrinthe, x, y + 1, visitees) or  # Droite
+            résoudre_labyrinthe(labyrinthe, x, y - 1, visitees)):   # Gauche
+            return True
                     
-                    # Si aucune direction ne fonctionne, revenir en arrière
-                    return False
+        # Si aucune direction ne fonctionne, revenir en arrière
+        return False
                 
-                # Initialisation
-                visitees = set()  # Ensemble des cases déjà visitées
-                résoudre_labyrinthe(labyrinthe, 0, 0, visitees)  # Commence à (0, 0)
+    # Initialisation
+    visitees = set()  # Ensemble des cases déjà visitées
+    résoudre_labyrinthe(labyrinthe, 0, 0, visitees)  # Commence à (0, 0)
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">4. Cas d'Utilisation du Backtracking</h3>
@@ -1809,14 +1820,14 @@
             <p><strong>Principe :</strong> On compare l’élément actuel avec les éléments précédents et on l’insère à la bonne position pour que la partie gauche de la liste soit triée.</p>
         
             <pre><code>
-                def tri_insertion(liste):
-                    for i in range(1, len(liste)):
-                        element = liste[i]
-                        j = i - 1
-                        while j >= 0 and liste[j] > element:
-                            liste[j + 1] = liste[j]
-                            j -= 1
-                        liste[j + 1] = element
+    def tri_insertion(liste):
+        for i in range(1, len(liste)):
+            element = liste[i]
+            j = i - 1
+            while j >= 0 and liste[j] > element:
+                liste[j + 1] = liste[j]
+                j -= 1
+            liste[j + 1] = element
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Tri par Sélection :</h4>
@@ -1824,20 +1835,22 @@
             <p><strong>Principe :</strong> On sélectionne l'élément le plus petit dans la partie non triée de la liste, puis on le place au début. On répète le processus jusqu'à ce que la liste soit entièrement triée.</p>
         
             <pre><code>
-                def tri_selection(liste):
-                    for i in range(len(liste)):
-                        min_index = i
-                        for j in range(i + 1, len(liste)):
-                            if liste[j] < liste[min_index]:
-                                min_index = j
-                        liste[i], liste[min_index] = liste[min_index], liste[i]
+    def tri_selection(liste):
+        for i in range(len(liste)):
+            min_index = i
+            for j in range(i + 1, len(liste)):
+                if liste[j] < liste[min_index]:
+                    min_index = j
+            liste[i], liste[min_index] = liste[min_index], liste[i]
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Application dans le Contexte du Jeu Vidéo</h3>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Préparation de l’Inventaire</h4>
             <p>L’inventaire du personnage est représenté par une liste d’objets, chaque objet ayant une valeur et un poids. Pour simplifier, les élèves peuvent utiliser une liste de nombres représentant les valeurs des objets.</p>
-            <pre><code>inventaire = [50, 10, 40, 30, 20, 60]</code></pre>
+            <pre><code>
+    inventaire = [50, 10, 40, 30, 20, 60]
+            </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Implémentation du Tri par Insertion</h4>
             <p>Les élèves commenceront par implémenter le tri par insertion pour organiser les objets de l’inventaire en fonction de leur valeur.</p>
@@ -1847,20 +1860,20 @@
             </ul>
         
             <pre><code>
-                def tri_insertion(liste):
-                    for i in range(1, len(liste)):
-                        element = liste[i]
-                        j = i - 1
-                        while j >= 0 and liste[j] > element:
-                            liste[j + 1] = liste[j]
-                            j -= 1
-                        liste[j + 1] = element
+    def tri_insertion(liste):
+        for i in range(1, len(liste)):
+            element = liste[i]
+            j = i - 1
+            while j >= 0 and liste[j] > element:
+                liste[j + 1] = liste[j]
+                j -= 1
+            liste[j + 1] = element
                 
-                # Exemple d'utilisation
-                inventaire = [50, 10, 40, 30, 20, 60]
-                print("Inventaire avant tri :", inventaire)
-                tri_insertion(inventaire)
-                print("Inventaire après tri par insertion :", inventaire)
+    # Exemple d'utilisation
+    inventaire = [50, 10, 40, 30, 20, 60]
+    print("Inventaire avant tri :", inventaire)
+    tri_insertion(inventaire)
+    print("Inventaire après tri par insertion :", inventaire)
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 3 : Implémentation du Tri par Sélection</h4>
@@ -1871,19 +1884,19 @@
             </ul>
         
             <pre><code>
-                def tri_selection(liste):
-                    for i in range(len(liste)):
-                        min_index = i
-                        for j in range(i + 1, len(liste)):
-                            if liste[j] < liste[min_index]:
-                                min_index = j
-                        liste[i], liste[min_index] = liste[min_index], liste[i]
+    def tri_selection(liste):
+        for i in range(len(liste)):
+            min_index = i
+            for j in range(i + 1, len(liste)):
+                if liste[j] < liste[min_index]:
+                    min_index = j
+            liste[i], liste[min_index] = liste[min_index], liste[i]
                 
-                # Exemple d'utilisation
-                inventaire = [50, 10, 40, 30, 20, 60]
-                print("Inventaire avant tri :", inventaire)
-                tri_selection(inventaire)
-                print("Inventaire après tri par sélection :", inventaire)
+    # Exemple d'utilisation
+    inventaire = [50, 10, 40, 30, 20, 60]
+    print("Inventaire avant tri :", inventaire)
+    tri_selection(inventaire)
+    print("Inventaire après tri par sélection :", inventaire)
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Comparaison des Algorithmes</h3>
@@ -1905,15 +1918,15 @@
             <p>Demander aux élèves d’essayer ces algorithmes sur différentes tailles de listes (par exemple, 10, 100, 1000 éléments) et de mesurer le temps que chaque algorithme prend pour terminer le tri. Voici un code simple pour chronométrer :</p>
         
             <pre><code>
-                import time
+    import time
         
-                # Exemple pour le tri par insertion
-                start_time = time.time()
-                tri_insertion(inventaire)
-                end_time = time.time()
-                print("Temps pris par le tri par insertion :", end_time - start_time)
+    # Exemple pour le tri par insertion
+    start_time = time.time()
+    tri_insertion(inventaire)
+    end_time = time.time()
+    print("Temps pris par le tri par insertion :", end_time - start_time)
                 
-                # Faire de même pour le tri par sélection
+    # Faire de même pour le tri par sélection
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">4. Extension et Discussion</h3>
@@ -1922,14 +1935,14 @@
             <p>Ajouter une nouvelle caractéristique aux objets de l’inventaire : le poids. Demander aux élèves de modifier leur code pour trier les objets non plus par valeur, mais par poids.</p>
         
             <pre><code>
-                inventaire_avec_poids = [
-                    {"nom": "épée", "valeur": 50, "poids": 5},
-                    {"nom": "potion", "valeur": 10, "poids": 1},
-                    {"nom": "armure", "valeur": 40, "poids": 15},
-                    {"nom": "bouclier", "valeur": 30, "poids": 8},
-                    {"nom": "arc", "valeur": 20, "poids": 3},
-                    {"nom": "flèches", "valeur": 60, "poids": 0.5}
-                ]
+    inventaire_avec_poids = [
+        {"nom": "épée", "valeur": 50, "poids": 5},
+        {"nom": "potion", "valeur": 10, "poids": 1},
+        {"nom": "armure", "valeur": 40, "poids": 15},
+        {"nom": "bouclier", "valeur": 30, "poids": 8},
+        {"nom": "arc", "valeur": 20, "poids": 3},
+        {"nom": "flèches", "valeur": 60, "poids": 0.5}
+    ]
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 6 : Discussion Finale</h4>
@@ -1983,24 +1996,24 @@
             </ul>
         
             <pre><code>
-                # Pseudo-code pour la recherche linéaire :
-                def recherche_lineaire(liste, cible):
-                    for i in range(len(liste)):
-                        if liste[i] == cible:
-                            return i
-                    return -1
+    # Pseudo-code pour la recherche linéaire :
+    def recherche_lineaire(liste, cible):
+        for i in range(len(liste)):
+            if liste[i] == cible:
+                return i
+        return -1
                 
-                # Recherche binaire (comme vu dans une séance précédente) :
-                def recherche_binaire(liste, debut, fin, cible):
-                    if debut > fin:
-                        return -1
-                    milieu = (debut + fin) // 2
-                    if liste[milieu] == cible:
-                        return milieu
-                    elif liste[milieu] < cible:
-                        return recherche_binaire(liste, milieu + 1, fin, cible)
-                    else:
-                        return recherche_binaire(liste, debut, milieu - 1, cible)
+    # Recherche binaire (comme vu dans une séance précédente) :
+    def recherche_binaire(liste, debut, fin, cible):
+        if debut > fin:
+            return -1
+        milieu = (debut + fin) // 2
+        if liste[milieu] == cible:
+            return milieu
+        elif liste[milieu] < cible:
+            return recherche_binaire(liste, milieu + 1, fin, cible)
+        else:
+            return recherche_binaire(liste, debut, milieu - 1, cible)
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Exercice Pratique 1 : Comparaison des Algorithmes de Recherche</h3>
@@ -2021,42 +2034,42 @@
             </ol>
         
             <pre><code>
-                # Code pour la Recherche Linéaire et Binaire :
-                import random
+    # Code pour la Recherche Linéaire et Binaire :
+    import random
                 
-                # Simulation d'une carte avec 1000 sections
-                sections = list(range(1, 1001))
-                # Le joueur se trouve dans une section aléatoire
-                joueur = random.choice(sections)
+    # Simulation d'une carte avec 1000 sections
+    sections = list(range(1, 1001))
+    # Le joueur se trouve dans une section aléatoire
+    joueur = random.choice(sections)
                 
-                # Recherche linéaire
-                def recherche_lineaire(liste, cible):
-                    etapes = 0
-                    for i in range(len(liste)):
-                        etapes += 1
-                        if liste[i] == cible:
-                            return i, etapes
-                    return -1, etapes
+    # Recherche linéaire
+    def recherche_lineaire(liste, cible):
+        etapes = 0
+        for i in range(len(liste)):
+            etapes += 1
+            if liste[i] == cible:
+                return i, etapes
+        return -1, etapes
                 
-                # Recherche binaire
-                def recherche_binaire(liste, debut, fin, cible, etapes=0):
-                    if debut > fin:
-                        return -1, etapes
-                    milieu = (debut + fin) // 2
-                    etapes += 1
-                    if liste[milieu] == cible:
-                        return milieu, etapes
-                    elif liste[milieu] < cible:
-                        return recherche_binaire(liste, milieu + 1, fin, cible, etapes)
-                    else:
-                        return recherche_binaire(liste, debut, milieu - 1, cible, etapes)
+    # Recherche binaire
+    def recherche_binaire(liste, debut, fin, cible, etapes=0):
+        if debut > fin:
+            return -1, etapes
+        milieu = (debut + fin) // 2
+        etapes += 1
+        if liste[milieu] == cible:
+            return milieu, etapes
+        elif liste[milieu] < cible:
+            return recherche_binaire(liste, milieu + 1, fin, cible, etapes)
+        else:
+            return recherche_binaire(liste, debut, milieu - 1, cible, etapes)
                 
-                # Comparaison des algorithmes
-                lin_result, lin_etapes = recherche_lineaire(sections, joueur)
-                bin_result, bin_etapes = recherche_binaire(sections, 0, len(sections) - 1, joueur)
+    # Comparaison des algorithmes
+    lin_result, lin_etapes = recherche_lineaire(sections, joueur)
+    bin_result, bin_etapes = recherche_binaire(sections, 0, len(sections) - 1, joueur)
                 
-                print(f"Recherche linéaire : trouvé en {lin_etapes} étapes")
-                print(f"Recherche binaire : trouvé en {bin_etapes} étapes")
+    print(f"Recherche linéaire : trouvé en {lin_etapes} étapes")
+    print(f"Recherche binaire : trouvé en {bin_etapes} étapes")
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Analyse des Résultats :</h3>
@@ -2076,26 +2089,26 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Implémenter le Tri par Sélection</h4>
             <pre><code>
-                def tri_selection(liste):
-                    n = len(liste)
-                    for i in range(n):
-                        min_idx = i
-                        for j in range(i+1, n):
-                            if liste[j] < liste[min_idx]:
-                                min_idx = j
-                        liste[i], liste[min_idx] = liste[min_idx], liste[i]
-                    return liste
+    def tri_selection(liste):
+        n = len(liste)
+        for i in range(n):
+            min_idx = i
+            for j in range(i+1, n):
+                if liste[j] < liste[min_idx]:
+                    min_idx = j
+            liste[i], liste[min_idx] = liste[min_idx], liste[i]
+        return liste
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 2 : Implémenter le Tri Rapide (Quicksort)</h4>
             <pre><code>
-                def tri_rapide(liste):
-                    if len(liste) <= 1:
-                        return liste
-                    pivot = liste[0]
-                    inferieur = [x for x in liste[1:] if x <= pivot]
-                    superieur = [x for x in liste[1:] if x > pivot]
-                    return tri_rapide(inferieur) + [pivot] + tri_rapide(superieur)
+    def tri_rapide(liste):
+        if len(liste) <= 1:
+            return liste
+        pivot = liste[0]
+        inferieur = [x for x in liste[1:] if x <= pivot]
+        superieur = [x for x in liste[1:] if x > pivot]
+        return tri_rapide(inferieur) + [pivot] + tri_rapide(superieur)
             </code></pre>
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 3 : Comparer les Deux Algorithmes de Tri</h4>
@@ -2139,11 +2152,11 @@
             <p>Une matrice carrée où les lignes et colonnes représentent les sommets. Si deux sommets sont connectés, la case correspondante contient une valeur (1 pour les non pondérés, un poids pour les pondérés).</p>
         
             <pre><code>
-                  |  A  |  B  |  C  |
-                   ------------------
-                A |  0  |  1  |  0  |
-                B |  1  |  0  |  1  |
-                C |  0  |  1  |  0  |
+      |  A  |  B  |  C  |
+       ------------------
+    A |  0  |  1  |  0  |
+    B |  1  |  0  |  1  |
+    C |  0  |  1  |  0  |
             </code></pre>
             <p>Ici, A et B sont connectés, et B et C sont connectés.</p>
         
@@ -2151,11 +2164,11 @@
             <p>Chaque sommet a une liste de sommets voisins. Cette représentation est plus économe en mémoire pour les graphes peu denses.</p>
         
             <pre><code>
-                graphe = {
-                    'A': ['B'],
-                    'B': ['A', 'C'],
-                    'C': ['B']
-                }
+    graphe = {
+        'A': ['B'],
+        'B': ['A', 'C'],
+        'C': ['B']
+    }
             </code></pre>
             <p>A est connecté à B, et B est connecté à C.</p>
         
@@ -2168,9 +2181,9 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Exemple de Graphe dans le Jeu :</h4>
             <pre><code>
-                A ----- B ----- C
-                |       |       |
-                D ----- E ----- F
+    A ----- B ----- C
+    |       |       |
+    D ----- E ----- F
             </code></pre>
             <p>Chaque lettre représente une pièce (un sommet). Chaque trait représente un chemin entre deux pièces (une arête).</p>
         
@@ -2186,14 +2199,14 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Étape 1 : Créer un Graphe Représentant un Monde de Jeu</h4>
             <pre><code>
-                graphe_donjon = {
-                    'A': ['B', 'D'],
-                    'B': ['A', 'C', 'E'],
-                    'C': ['B', 'F'],
-                    'D': ['A', 'E'],
-                    'E': ['B', 'D', 'F'],
-                    'F': ['C', 'E']
-                }
+    graphe_donjon = {
+        'A': ['B', 'D'],
+        'B': ['A', 'C', 'E'],
+        'C': ['B', 'F'],
+        'D': ['A', 'E'],
+        'E': ['B', 'D', 'F'],
+        'F': ['C', 'E']
+    }
             </code></pre>
             <p>Ici, chaque clé représente une pièce, et les valeurs sont les pièces connectées par une porte.</p>
         
@@ -2217,25 +2230,25 @@
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Mise en Pratique : Parcours en Largeur (BFS)</h3>
             <pre><code>
-                from collections import deque
+    from collections import deque
         
-                def bfs(graphe, depart, objectif):
-                    file_attente = deque([depart])
-                    visites = set()
-                    
-                    while file_attente:
-                        sommet = file_attente.popleft()
-                        if sommet == objectif:
-                            print(f"Vous avez trouvé le chemin vers {objectif} depuis {depart} !")
-                            return
-                        if sommet not in visites:
-                            print(f"Vous explorez la pièce {sommet}")
-                            visites.add(sommet)
-                            file_attente.extend(graphe[sommet])
-                    print(f"Pas de chemin trouvé de {depart} à {objectif}.")
-                
-                # Appel de la fonction
-                bfs(graphe_donjon, 'A', 'F')
+    def bfs(graphe, depart, objectif):
+        file_attente = deque([depart])
+        visites = set()
+        
+        while file_attente:
+            sommet = file_attente.popleft()
+            if sommet == objectif:
+                print(f"Vous avez trouvé le chemin vers {objectif} depuis {depart} !")
+                return
+            if sommet not in visites:
+                print(f"Vous explorez la pièce {sommet}")
+                visites.add(sommet)
+                file_attente.extend(graphe[sommet])
+        print(f"Pas de chemin trouvé de {depart} à {objectif}.")
+    
+    # Appel de la fonction
+    bfs(graphe_donjon, 'A', 'F')
             </code></pre>
             <p>Ce programme parcourt le donjon en utilisant une approche BFS (parcours en largeur) pour explorer les pièces adjacentes et trouver le chemin de la pièce A à la pièce F.</p>
         
@@ -2303,14 +2316,14 @@
                 <li>Route entre D et E.</li>
             </ul>
             <pre><code>
-                # Représentation du réseau de routes avec une liste d'adjacence
-                routes = {
-                    'A': ['B', 'C'],
-                    'B': ['A', 'D'],
-                    'C': ['A', 'D'],
-                    'D': ['B', 'C', 'E'],
-                    'E': ['D']
-                }
+    # Représentation du réseau de routes avec une liste d'adjacence
+    routes = {
+        'A': ['B', 'C'],
+        'B': ['A', 'D'],
+        'C': ['A', 'D'],
+        'D': ['B', 'C', 'E'],
+        'E': ['D']
+    }
             </code></pre>
             <p><strong>Explication :</strong></p>
             <ul>
@@ -2324,19 +2337,19 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Implémentation de DFS :</h4>
             <pre><code>
-                # Fonction DFS pour parcourir le graphe
-                def dfs(graphe, ville, visitees):
-                    print(f"Visite de {ville}")
-                    visitees.add(ville)  # Marquer la ville comme visitée
-                    
-                    # Explorer les voisins
-                    for voisin in graphe[ville]:
-                        if voisin not in visitees:
-                            dfs(graphe, voisin, visitees)
-                
-                # Appel de DFS à partir de la ville A
-                visitees = set()
-                dfs(routes, 'A', visitees)
+    # Fonction DFS pour parcourir le graphe
+    def dfs(graphe, ville, visitees):
+        print(f"Visite de {ville}")
+        visitees.add(ville)  # Marquer la ville comme visitée
+        
+        # Explorer les voisins
+        for voisin in graphe[ville]:
+            if voisin not in visitees:
+                dfs(graphe, voisin, visitees)
+    
+    # Appel de DFS à partir de la ville A
+    visitees = set()
+    dfs(routes, 'A', visitees)
             </code></pre>
             <p><strong>Explication de DFS :</strong></p>
             <ul>
@@ -2346,25 +2359,25 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Implémentation de BFS :</h4>
             <pre><code>
-                from collections import deque
+    from collections import deque
+
+    # Fonction BFS pour parcourir le graphe
+    def bfs(graphe, ville_depart):
+        file = deque([ville_depart])
+        visitees = set([ville_depart])
         
-                # Fonction BFS pour parcourir le graphe
-                def bfs(graphe, ville_depart):
-                    file = deque([ville_depart])
-                    visitees = set([ville_depart])
-                    
-                    while file:
-                        ville = file.popleft()
-                        print(f"Visite de {ville}")
-                        
-                        # Parcourir les voisins
-                        for voisin in graphe[ville]:
-                            if voisin not in visitees:
-                                file.append(voisin)
-                                visitees.add(voisin)
-                
-                # Appel de BFS à partir de la ville A
-                bfs(routes, 'A')
+        while file:
+            ville = file.popleft()
+            print(f"Visite de {ville}")
+            
+            # Parcourir les voisins
+            for voisin in graphe[ville]:
+                if voisin not in visitees:
+                    file.append(voisin)
+                    visitees.add(voisin)
+    
+    # Appel de BFS à partir de la ville A
+    bfs(routes, 'A')
             </code></pre>
             <p><strong>Explication de BFS :</strong></p>
             <ul>
@@ -2378,31 +2391,31 @@
         
             <h4 style="margin-top: 20px; margin-bottom: 20px;">Ajout de la Fonction de Recherche du Chemin le Plus Court :</h4>
             <pre><code>
-                def bfs_chemin_court(graphe, ville_depart, ville_arrivee):
-                    file = deque([[ville_depart]])  # File qui contient les chemins explorés
-                    visitees = set([ville_depart])
+    def bfs_chemin_court(graphe, ville_depart, ville_arrivee):
+        file = deque([[ville_depart]])  # File qui contient les chemins explorés
+        visitees = set([ville_depart])
                     
-                    while file:
-                        chemin = file.popleft()
-                        ville = chemin[-1]
-                        
-                        # Si on arrive à la ville cible, on renvoie le chemin emprunté
-                        if ville == ville_arrivee:
-                            return chemin
-                        
-                        # Parcourir les voisins
-                        for voisin in graphe[ville]:
-                            if voisin not in visitees:
-                                nouveau_chemin = list(chemin)  # Copier le chemin actuel
-                                nouveau_chemin.append(voisin)  # Ajouter le voisin au chemin
-                                file.append(nouveau_chemin)
-                                visitees.add(voisin)
-                    
-                    return None  # Retourner None si aucun chemin n'est trouvé
-                
-                # Trouver le chemin le plus court entre A et E
-                chemin = bfs_chemin_court(routes, 'A', 'E')
-                print(f"Le chemin le plus court est : {chemin}")
+        while file:
+            chemin = file.popleft()
+            ville = chemin[-1]
+            
+            # Si on arrive à la ville cible, on renvoie le chemin emprunté
+            if ville == ville_arrivee:
+                return chemin
+            
+            # Parcourir les voisins
+            for voisin in graphe[ville]:
+                if voisin not in visitees:
+                    nouveau_chemin = list(chemin)  # Copier le chemin actuel
+                    nouveau_chemin.append(voisin)  # Ajouter le voisin au chemin
+                    file.append(nouveau_chemin)
+                    visitees.add(voisin)
+        
+        return None  # Retourner None si aucun chemin n'est trouvé
+    
+    # Trouver le chemin le plus court entre A et E
+    chemin = bfs_chemin_court(routes, 'A', 'E')
+    print(f"Le chemin le plus court est : {chemin}")
             </code></pre>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 4 : Extensions et Améliorations</h3>
@@ -2598,6 +2611,700 @@
                 <li>BFS est idéal pour trouver des chemins plus courts ou explorer des environnements "niveau par niveau", comme dans un jeu où l’on veut explorer toutes les salles d'un étage avant de monter à l'étage supérieur.</li>
             </ul>
         </section>
+
+        <section id="session16" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 16 : Approfondissement sur l’algorithme DFS (Depth-First Search)</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves approfondiront leur compréhension de l’algorithme DFS (Depth-First Search) en explorant ses différentes applications, en particulier dans les graphes, dans un contexte de jeu vidéo où le joueur doit explorer un réseau complexe de salles interconnectées. L'objectif est de renforcer leur capacité à appliquer la récursivité dans la recherche en profondeur.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Introduction à DFS dans un Contexte de Jeu Vidéo</h3>
+        
+            <h4>Contexte du Jeu Vidéo :</h4>
+            <p>Imaginons un jeu d’aventure où le joueur incarne un explorateur qui doit naviguer à travers un réseau complexe de grottes interconnectées. Chaque grotte est une salle, et chaque connexion entre deux salles représente un chemin possible. L’objectif est de visiter toutes les grottes pour trouver un artefact caché. L’algorithme DFS est un moyen efficace pour parcourir toutes les salles en suivant un chemin en profondeur avant de revenir en arrière.</p>
+        
+            <h4>Concept de DFS :</h4>
+            <p>DFS (Depth-First Search) est un algorithme qui explore un graphe en allant aussi loin que possible dans une direction avant de revenir en arrière pour explorer les autres chemins. C’est un algorithme récursif qui suit une stratégie de <strong>diviser pour régner</strong>, en explorant un chemin complet jusqu’à ce qu’il ne puisse plus avancer.</p>
+        
+            <h4>Représentation en Graphe :</h4>
+            <p>Dans ce jeu vidéo, chaque salle est un nœud du graphe, et chaque connexion entre deux salles est une arête. Voici un exemple de graphe représentant un réseau de grottes :</p>
+        
+            <pre><code>
+    1 --- 2 --- 3
+    |     |     |
+    4 --- 5 --- 6
+            </code></pre>
+        
+            <p>Dans cet exemple, le joueur commence à la salle 1 et doit visiter toutes les autres salles en utilisant l’algorithme DFS pour explorer les salles dans un ordre efficace.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Explication de l’Algorithme DFS (30 min)</h3>
+            <h4>1. Fonctionnement de DFS :</h4>
+            <p>DFS utilise une approche récursive pour explorer les nœuds d’un graphe :</p>
+            <ul>
+                <li>On commence par un nœud initial (par exemple, la salle de départ).</li>
+                <li>On explore un des voisins de ce nœud.</li>
+                <li>À chaque fois qu’un nœud est visité, on le marque comme visité pour éviter de le revisiter.</li>
+                <li>Si tous les voisins d’un nœud sont visités, l’algorithme revient en arrière et explore les autres chemins restants.</li>
+            </ul>
+        
+            <h4>2. Récursivité dans DFS :</h4>
+            <p>DFS est naturellement récursif. Chaque appel de fonction DFS explore un chemin jusqu’à ce qu’il n’y ait plus de voisins à visiter. L'algorithme revient ensuite à la fonction appelante pour explorer d’autres chemins.</p>
+        
+            <p>Le pseudo-code de DFS est le suivant :</p>
+            <pre><code>
+    def dfs(graphe, noeud, visites):
+        if noeud not in visites:
+            print(f"Visite de la salle {noeud}")
+            visites.add(noeud)  # Marquer la salle comme visitée
+            for voisin dans graphe[noeud]:  # Explorer les voisins non visités
+                dfs(graphe, voisin, visites)
+            </code></pre>
+        
+            <h4>3. Exemple Visuel :</h4>
+            <p>Partant du nœud 1, DFS visitera les salles dans l’ordre suivant (dans ce cas particulier) :</p>
+            <pre><code>
+    1 → 2 → 3 → 6 → 5 → 4
+            </code></pre>
+            <p>DFS explore en profondeur jusqu’à la salle 6 avant de revenir en arrière pour explorer les autres chemins.</p>
+        
+            <h4>4. Cas d’Utilisation :</h4>
+            <p>DFS est particulièrement utile lorsque l’on veut explorer un graphe complet ou lorsqu’on veut trouver un chemin à travers un labyrinthe, où les chemins peuvent être très profonds avant d’atteindre une solution.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Implémentation DFS dans un Contexte de Jeu Vidéo (40 min)</h3>
+            
+            <h4>1. Représentation du Graphe en Python :</h4>
+            <p>Le graphe est représenté en Python sous la forme d’un dictionnaire, où chaque clé représente une salle, et la valeur associée est une liste de salles adjacentes (les voisins).</p>
+        
+            <pre><code>
+    graphe = {
+        1: [2, 4],
+        2: [1, 3, 5],
+        3: [2, 6],
+        4: [1, 5],
+        5: [2, 4, 6],
+        6: [3, 5]
+    }
+            </code></pre>
+        
+            <h4>2. Implémentation de DFS en Python :</h4>
+            <p>Voici une implémentation simple de l'algorithme DFS pour explorer les salles d’un réseau de grottes :</p>
+        
+            <pre><code>
+    def dfs(graphe, noeud, visites):
+        if noeud not in visites:
+            print(f"Visite de la salle {noeud}")
+            visites.add(noeud)  # Marquer la salle comme visitée
+            for voisin dans graphe[noeud]:  # Explorer les voisins non visités
+                dfs(graphe, voisin, visites)
+    
+    # Ensemble des nœuds visités
+    visites = set()
+    
+    # Démarrer le parcours DFS à partir de la salle 1
+    dfs(graphe, 1, visites)
+            </code></pre>
+        
+            <h4>3. Explication du Code :</h4>
+            <ul>
+                <li>La fonction <code>dfs()</code> est appelée avec trois arguments : le graphe, le nœud actuel (la salle où le joueur se trouve), et l’ensemble des salles déjà visitées.</li>
+                <li>Si la salle n’a pas encore été visitée, elle est marquée comme visitée et l'algorithme explore tous ses voisins de manière récursive.</li>
+                <li>Une fois que tous les voisins ont été explorés, l’algorithme revient en arrière et continue avec les autres chemins possibles.</li>
+            </ul>
+        
+            <h4>Défi Pratique pour les Élèves :</h4>
+            <ul>
+                <li><strong>Étape 1 :</strong> Modifiez le graphe pour ajouter des objets ou des trésors dans certaines salles.</li>
+                <li><strong>Étape 2 :</strong> Implémentez une version de DFS qui affiche un message lorsque le joueur trouve un trésor dans une salle.</li>
+                <li><strong>Étape 3 :</strong> Ajoutez une fonctionnalité qui limite le nombre de visites dans une salle, comme un nombre maximum de tentatives avant que le joueur échoue.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Comparaison (10 min)</h3>
+            <p>À la fin de cette séance, les élèves auront approfondi leur compréhension de l’algorithme DFS et auront appris à l’appliquer dans un contexte de jeu vidéo, en modélisant un labyrinthe ou un réseau de salles. Ils auront également renforcé leurs compétences en <strong>récursivité</strong>, en suivant un chemin en profondeur et en revenant en arrière pour explorer d’autres chemins.</p>
+        
+            <p>Enfin, nous comparerons DFS avec d’autres algorithmes de parcours comme BFS, en soulignant que DFS est particulièrement efficace dans des contextes où les chemins sont profonds, tandis que BFS est souvent préféré pour trouver les chemins les plus courts.</p>
+        </section>
+
+        <section id="session17" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 17 : Pratique - Exploration d’un Monde Ouvert (Jeu Vidéo) avec DFS</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Dans cette séance pratique, les élèves appliqueront l’algorithme DFS (Depth-First Search) pour permettre à un personnage d’explorer un monde ouvert dans un jeu vidéo. L’objectif est de simuler une exploration où le personnage doit visiter différents lieux en profondeur, en suivant des chemins prédéfinis avant de revenir en arrière et explorer d’autres zones.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Contexte de l'Exploration d’un Monde Ouvert dans un Jeu Vidéo</h3>
+            
+            <h4>1. Le Monde Ouvert :</h4>
+            <p>Un <strong>monde ouvert</strong> dans un jeu vidéo est un environnement vaste et interconnecté où le joueur peut se déplacer librement entre différentes zones (comme des villes, des forêts, des montagnes, etc.). Chaque zone est modélisée comme un nœud d’un graphe, et les connexions entre ces zones sont représentées par des chemins.</p>
+        
+            <p>Dans cette simulation, nous allons modéliser le monde ouvert comme un graphe et utiliser DFS pour simuler l’exploration de ce monde.</p>
+        
+            <h4>2. Objectif de l’Exploration :</h4>
+            <p>Le joueur contrôle un personnage qui doit explorer toutes les zones du monde ouvert. L’objectif est de visiter chaque zone au moins une fois, tout en cherchant des trésors cachés ou des objets dans certaines zones.</p>
+        
+            <p>Par exemple :</p>
+            <ul>
+                <li>Le joueur peut commencer dans la <strong>ville principale</strong> (nœud 1).</li>
+                <li>Le joueur doit explorer des lieux comme des <strong>forêts</strong>, des <strong>cavernes</strong> ou des <strong>montagnes</strong> interconnectées.</li>
+            </ul>
+        
+            <p>DFS est idéal dans ce contexte, car il explore profondément dans une direction avant de revenir pour visiter d’autres zones.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 1 : Représentation du Monde Ouvert avec un Graphe (30 min)</h3>
+            
+            <h4>1. Définition du Monde Ouvert sous forme de Graphe :</h4>
+            <p>Chaque zone du jeu est représentée comme un nœud du graphe, et les chemins entre les zones sont les arêtes du graphe. Voici un exemple de structure de graphe pour un monde ouvert :</p>
+        
+            <pre><code>
+    Ville Principale --- Forêt --- Caverne
+    |                    |        |
+    Montagne --- Plage    Lac     Temple
+            </code></pre>
+        
+            <p>Dans ce graphe, le joueur peut explorer des lieux différents en passant par des chemins qui relient les zones. L’algorithme DFS permet de déterminer l’ordre dans lequel ces zones seront explorées.</p>
+        
+            <h4>2. Représentation en Python :</h4>
+            <p>Nous pouvons modéliser ce monde ouvert comme un dictionnaire en Python, où chaque zone est un nœud, et la liste de ses voisins contient les zones adjacentes :</p>
+        
+            <pre><code>
+    monde_ouvert = {
+        'Ville Principale': ['Forêt', 'Montagne'],
+        'Forêt': ['Ville Principale', 'Caverne', 'Lac'],
+        'Caverne': ['Forêt', 'Temple'],
+        'Montagne': ['Ville Principale', 'Plage'],
+        'Plage': ['Montagne'],
+        'Lac': ['Forêt'],
+        'Temple': ['Caverne']
+    }
+            </code></pre>
+        
+            <h4>3. Objectifs du joueur :</h4>
+            <ul>
+                <li>Explorer toutes les zones du monde ouvert.</li>
+                <li>Trouver des objets ou trésors cachés dans certaines zones.</li>
+                <li>Explorer le monde de manière exhaustive en suivant un parcours en profondeur (DFS).</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 2 : Implémentation de DFS pour l’Exploration (40 min)</h3>
+        
+            <h4>1. Implémentation de DFS en Python pour Explorer le Monde Ouvert :</h4>
+            <p>Nous allons implémenter DFS pour que le personnage explore chaque zone une par une, en suivant un parcours en profondeur. Voici comment cela peut être fait en Python :</p>
+        
+            <pre><code>
+    def explorer_monde(monde, zone, visites):
+        if zone not in visites:
+            print(f"Vous explorez {zone}")
+            visites.add(zone)  # Marquer la zone comme visitée
+            for voisin in monde[zone]:  # Explorer les zones voisines non visitées
+                explorer_monde(monde, voisin, visites)
+        
+    # Ensemble des zones visitées
+    zones_visitees = set()
+    
+    # Lancer l'exploration à partir de la Ville Principale
+    explorer_monde(monde_ouvert, 'Ville Principale', zones_visitees)
+            </code></pre>
+        
+            <h4>2. Explication du Code :</h4>
+            <ul>
+                <li>La fonction <code>explorer_monde()</code> est appelée avec trois arguments : le monde ouvert (le graphe), la zone actuelle, et l’ensemble des zones déjà visitées.</li>
+                <li>Si la zone n’a pas encore été visitée, elle est marquée comme visitée, et l’algorithme explore récursivement tous ses voisins (autres zones connectées).</li>
+                <li>DFS explore d’abord les zones en profondeur avant de revenir en arrière pour explorer d’autres chemins.</li>
+            </ul>
+        
+            <h4>3. Simulation de l’Exploration :</h4>
+            <p>Lorsque vous exécutez le code ci-dessus, le personnage explorera toutes les zones du monde ouvert dans un ordre déterminé par DFS. Par exemple :</p>
+            <pre><code>
+    Vous explorez Ville Principale
+    Vous explorez Forêt
+    Vous explorez Caverne
+    Vous explorez Temple
+    Vous explorez Lac
+    Vous explorez Montagne
+    Vous explorez Plage
+            </code></pre>
+            <p>DFS commence à la "Ville Principale", puis explore en profondeur la "Forêt", la "Caverne", et le "Temple" avant de revenir pour explorer d’autres zones.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étape 3 : Défis Pratiques pour les Élèves (30 min)</h3>
+            
+            <h4>1. Ajout d’Objets Cachés :</h4>
+            <ul>
+                <li><strong>Étape 1 :</strong> Modifiez le monde ouvert pour que certaines zones contiennent des objets ou des trésors cachés.</li>
+                <li><strong>Étape 2 :</strong> Modifiez le code pour que l'algorithme affiche un message lorsqu'un objet ou trésor est trouvé dans une zone spécifique.</li>
+            </ul>
+        
+            <h4>2. Limitation du Temps d’Exploration :</h4>
+            <ul>
+                <li><strong>Étape 1 :</strong> Ajoutez une contrainte de temps ou un nombre maximum d'explorations que le joueur peut effectuer avant que le temps ne s’écoule.</li>
+                <li><strong>Étape 2 :</strong> Implémentez cette limite dans le code. Si le joueur dépasse la limite, un message s’affiche pour indiquer que l’exploration est terminée.</li>
+            </ul>
+        
+            <h4>3. Exploration Sélective :</h4>
+            <ul>
+                <li><strong>Étape 1 :</strong> Créez un système où certaines zones du monde ouvert sont bloquées jusqu'à ce que le joueur trouve une clé ou un objet spécial dans une autre zone.</li>
+                <li><strong>Étape 2 :</strong> Modifiez l'algorithme pour permettre au joueur d'explorer uniquement après avoir trouvé cet objet.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Réflexion sur DFS dans les Jeux Vidéo (10 min)</h3>
+        
+            <h4>Analyse de DFS dans un Monde Ouvert :</h4>
+            <p>DFS est une méthode efficace pour explorer des mondes ouverts en profondeur, permettant au joueur de suivre des chemins jusqu’à ce qu’il atteigne une impasse ou un objectif. Une fois qu’un chemin est épuisé, l’algorithme revient en arrière pour explorer d’autres options.</p>
+        
+            <h4>Avantages et Inconvénients :</h4>
+            <ul>
+                <li><strong>Avantage :</strong> DFS est excellent pour explorer les mondes où l’objectif est situé à une grande profondeur (par exemple, dans une grotte éloignée ou dans un temple caché).</li>
+                <li><strong>Inconvénient :</strong> DFS peut parfois suivre un chemin non optimal avant de revenir en arrière pour explorer d’autres options.</li>
+            </ul>
+        
+            <h4>Discussion :</h4>
+            <ul>
+                <li>Comparez DFS avec d’autres algorithmes d’exploration, comme BFS (Breadth-First Search), pour discuter des avantages et inconvénients dans des mondes ouverts.</li>
+                <li>Comment pourriez-vous modifier cet algorithme pour permettre une exploration plus "intelligente" dans un monde ouvert ? Par exemple, ajouter une stratégie d’évitement des zones dangereuses ou moins intéressantes.</li>
+            </ul>
+        </section>
+
+        <section id="session18" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 18 : Applications Réelles des Graphes (Réseaux Sociaux, Chemins dans les Transports)</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Dans cette séance, les élèves vont découvrir des applications concrètes de l’utilisation des graphes dans des domaines comme les réseaux sociaux et les systèmes de transport. Ils apprendront à modéliser des situations réelles sous forme de graphes, puis à appliquer des algorithmes de parcours pour résoudre des problèmes spécifiques. Le but est de renforcer la compréhension des graphes à travers des cas pratiques.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Introduction aux Graphes dans le Monde Réel</h3>
+            <h4>1. Qu’est-ce qu’un Graphe ?</h4>
+            <p>Un graphe est une structure composée de :</p>
+            <ul>
+                <li><strong>Nœuds (ou sommets) :</strong> représentant des entités (personnes, lieux, stations de transport).</li>
+                <li><strong>Arêtes :</strong> les connexions entre les nœuds, représentant des relations (amitié dans les réseaux sociaux, lignes de métro dans un réseau de transport).</li>
+            </ul>
+            <p>Dans les applications réelles, les graphes peuvent modéliser une grande variété de systèmes complexes.</p>
+        
+            <h4>2. Applications Réelles des Graphes :</h4>
+            <ul>
+                <li><strong>Réseaux sociaux :</strong> Les utilisateurs sont les nœuds, et les connexions (amitié, abonnements) sont les arêtes. DFS et BFS peuvent être utilisés pour explorer des groupes d’amis ou des recommandations.</li>
+                <li><strong>Réseaux de transport :</strong> Les stations ou arrêts sont des nœuds, et les lignes de transport (bus, métro) sont des arêtes. Les algorithmes de recherche permettent de trouver le chemin le plus court entre deux stations.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étude de Cas 1 : Réseaux Sociaux (40 min)</h3>
+            
+            <h4>1. Modélisation des Réseaux Sociaux :</h4>
+            <p>Dans un réseau social, chaque utilisateur est un **nœud** et chaque relation (amitié, abonnement) est une **arête**. Les graphes permettent de modéliser ces connexions pour résoudre des problèmes comme :</p>
+            <ul>
+                <li><strong>Explorer des groupes d’amis :</strong> Utilisation de DFS ou BFS pour parcourir un réseau d'amis et suggérer de nouvelles connexions.</li>
+                <li><strong>Recommandations :</strong> Utilisation d'algorithmes pour trouver les amis d'amis et recommander de nouveaux contacts.</li>
+            </ul>
+        
+            <h4>2. Exemple Visuel d'un Réseau Social :</h4>
+            <pre><code>
+    Personne 1 --- Personne 2 --- Personne 3
+       |               |               |
+    Personne 4 --- Personne 5 --- Personne 6
+            </code></pre>
+            <p>Chaque personne est représentée comme un nœud, et les liens d’amitié comme des arêtes. L’algorithme peut explorer les connexions d’une personne pour proposer des recommandations.</p>
+        
+            <h4>3. Algorithme DFS pour Explorer les Amis :</h4>
+            <p>On peut utiliser l’algorithme DFS pour explorer les groupes d’amis de manière récursive, à partir d’une personne donnée :</p>
+        
+            <pre><code>
+    def explorer_reseau(graphe, personne, visites):
+        if personne not in visites:
+            print(f"Exploration de l’ami {personne}")
+            visites.add(personne)
+            for ami dans graphe[personne]:
+                explorer_reseau(graphe, ami, visites)
+            </code></pre>
+        
+            <p>Ce code permet d'explorer tous les amis directs et indirects d'une personne dans le réseau social.</p>
+        
+            <h4>4. Exemple d'Implémentation en Python :</h4>
+            <pre><code>
+    reseau_social = {
+        "Personne 1": ["Personne 2", "Personne 4"],
+        "Personne 2": ["Personne 1", "Personne 3", "Personne 5"],
+        "Personne 3": ["Personne 2", "Personne 6"],
+        "Personne 4": ["Personne 1", "Personne 5"],
+        "Personne 5": ["Personne 2", "Personne 4", "Personne 6"],
+        "Personne 6": ["Personne 3", "Personne 5"]
+    }
+    
+    # Ensemble des personnes déjà visitées
+    visites = set()
+    
+    # Lancer l'exploration à partir de "Personne 1"
+    explorer_reseau(reseau_social, "Personne 1", visites)
+            </code></pre>
+        
+            <h4>Défi Pratique :</h4>
+            <ul>
+                <li><strong>Étape 1 :</strong> Modifiez le réseau social pour ajouter des liens d’amitié supplémentaires.</li>
+                <li><strong>Étape 2 :</strong> Utilisez DFS pour explorer les amis de "Personne 3" et proposer des amis potentiels (amis d’amis).</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Étude de Cas 2 : Réseau de Transport (40 min)</h3>
+        
+            <h4>1. Modélisation d’un Réseau de Transport :</h4>
+            <p>Un réseau de transport, comme un réseau de métro ou de bus, peut être modélisé sous forme de graphe :</p>
+            <ul>
+                <li><strong>Nœuds :</strong> Les stations ou arrêts de bus.</li>
+                <li><strong>Arêtes :</strong> Les lignes de transport entre les stations.</li>
+            </ul>
+        
+            <h4>2. Rechercher le Chemin le Plus Court :</h4>
+            <p>Dans un réseau de transport, un problème fréquent est de trouver le chemin le plus court entre deux stations. Pour cela, nous utilisons l’algorithme **BFS (Breadth-First Search)**, qui explore tous les voisins d'une station avant de passer aux voisins de niveau supérieur.</p>
+        
+            <h4>3. Exemple Visuel d’un Réseau de Transport :</h4>
+            <pre><code>
+    Station A --- Station B --- Station C
+        |           |               |
+    Station D --- Station E --- Station F
+            </code></pre>
+            <p>Chaque station est représentée par un nœud, et chaque ligne de transport entre deux stations est une arête.</p>
+        
+            <h4>Algorithme BFS pour Trouver le Chemin le Plus Court :</h4>
+            <p>Nous allons utiliser l’algorithme BFS pour trouver le chemin le plus court entre deux stations :</p>
+        
+            <pre><code>
+    from collections import deque
+        
+    def bfs_chemin_court(graphe, debut, fin):
+        visites = set()  # Ensemble des stations visitées
+        queue = deque([(debut, [debut])])  # File d'attente avec le chemin actuel
+        
+        while queue:
+            (station, chemin) = queue.popleft()
+            if station == fin:
+                return chemin  # Retourner le chemin trouvé
+            
+            for voisin dans graphe[station]:
+                if voisin not in visites:
+                    visites.add(voisin)
+                    queue.append((voisin, chemin + [voisin]))  # Ajouter le voisin et le chemin parcouru
+        return None  # Aucun chemin trouvé
+            </code></pre>
+        
+            <h4>4. Implémentation en Python :</h4>
+            <pre><code>
+    reseau_transport = {
+        "Station A": ["Station B", "Station D"],
+        "Station B": ["Station A", "Station C", "Station E"],
+        "Station C": ["Station B", "Station F"],
+        "Station D": ["Station A", "Station E"],
+        "Station E": ["Station B", "Station D", "Station F"],
+        "Station F": ["Station C", "Station E"]
+    }
+    
+    chemin = bfs_chemin_court(reseau_transport, "Station A", "Station F")
+    print(f"Le chemin le plus court est : {chemin}")
+            </code></pre>
+        
+            <h4>Défi Pratique :</h4>
+            <ul>
+                <li><strong>Étape 1 :</strong> Ajoutez de nouvelles lignes de transport dans le réseau.</li>
+                <li><strong>Étape 2 :</strong> Utilisez BFS pour trouver le chemin le plus court entre deux stations définies par l’utilisateur.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Comparaison des Applications (10 min)</h3>
+            
+            <h4>Discussion :</h4>
+            <ul>
+                <li>Les graphes sont une structure extrêmement polyvalente utilisée dans des domaines très variés, des réseaux sociaux aux transports en passant par la biologie.</li>
+                <li>Les algorithmes de parcours comme DFS et BFS permettent de résoudre efficacement des problèmes complexes tels que l’exploration de réseaux ou la recherche de chemins.</li>
+                <li>Dans les réseaux sociaux, DFS peut être utilisé pour explorer des relations profondes, tandis que BFS est souvent utilisé pour explorer des connexions plus directes, comme dans les réseaux de transport.</li>
+            </ul>
+        
+            <h4>Problèmes Avancés :</h4>
+            <ul>
+                <li>Comment optimiser le parcours dans un graphe de grande taille, où chaque nœud peut avoir de nombreux voisins ?</li>
+                <li>Comment adapter ces algorithmes pour des applications plus spécifiques, comme la recommandation de contenu ou la gestion du trafic dans un réseau urbain ?</li>
+            </ul>
+        </section>
+        
+        <section id="session19" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 19 : Introduction aux Arbres Binaires et leurs Applications</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves découvriront les arbres binaires, leurs propriétés, et leurs applications dans un contexte de jeu vidéo. Ils apprendront à modéliser et à manipuler des arbres binaires, en mettant l'accent sur des applications concrètes comme la gestion d'inventaires dans un jeu ou la recherche rapide d'objets.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Introduction aux Arbres Binaires</h3>
+        
+            <h4>1. Qu’est-ce qu’un Arbre Binaire ?</h4>
+            <p>Un arbre binaire est une structure de données hiérarchique dans laquelle chaque nœud a au maximum deux enfants, appelés <strong>enfant gauche</strong> et <strong>enfant droit</strong>.</p>
+            
+            <h4>Exemple Visuel :</h4>
+            <pre><code>
+          8
+         / \
+        3   10
+       / \    \
+      1   6   14
+         / \   /
+        4   7 13
+            </code></pre>
+            <p>Dans cet exemple, chaque nœud contient une valeur, et chaque nœud peut avoir deux enfants. Le nœud racine est 8, les enfants de 8 sont 3 (à gauche) et 10 (à droite).</p>
+        
+            <h4>Propriétés des Arbres Binaires :</h4>
+            <ul>
+                <li>Chaque nœud a au plus deux enfants.</li>
+                <li>Les sous-arbres peuvent eux-mêmes être des arbres binaires.</li>
+                <li>Un arbre binaire peut être utilisé pour stocker des données ordonnées de manière à permettre des recherches, des insertions et des suppressions rapides.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Applications des Arbres Binaires dans un Jeu Vidéo</h3>
+        
+            <h4>Contexte du Jeu Vidéo :</h4>
+            <p>Dans un jeu vidéo de gestion d'inventaire, chaque objet ramassé par le joueur peut être stocké dans un arbre binaire de recherche (binary search tree, ou BST). Cet arbre permet de rechercher un objet spécifique rapidement, ou de trier les objets par ordre de puissance ou de rareté.</p>
+        
+            <h4>Exemple d'Application : Gestion d'Inventaire</h4>
+            <p>Dans un RPG (jeu de rôle), les objets ramassés par le joueur peuvent être organisés dans un arbre binaire selon leur valeur (par exemple, un objet plus puissant sera placé à droite d'un objet moins puissant). Cela permet de rechercher un objet de manière efficace, ou de lister tous les objets dans l'ordre de leur valeur.</p>
+        
+            <h4>Modélisation d’un Inventaire avec un Arbre Binaire :</h4>
+            <p>Chaque objet dans l’inventaire est un nœud de l’arbre, où :</p>
+            <ul>
+                <li>La racine de l'arbre est le premier objet ramassé.</li>
+                <li>Les objets plus puissants sont placés à droite de l’arbre.</li>
+                <li>Les objets moins puissants sont placés à gauche.</li>
+            </ul>
+        
+            <h4>Exemple Visuel avec des Objets :</h4>
+            <pre><code>
+        Épée de fer (puissance 8)
+         /         \
+    Bouclier (3)  Arc (10)
+                \
+             Flèche (14)
+            </code></pre>
+        
+            <p>Dans cet exemple, l'épée de fer est la racine, car elle a été ramassée en premier. Le bouclier, moins puissant, est placé à gauche. L’arc, plus puissant, est placé à droite.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Implémentation d’un Arbre Binaire en Python (40 min)</h3>
+        
+            <h4>1. Représentation d’un Nœud d’Arbre Binaire :</h4>
+            <p>Nous allons d’abord définir une classe <code>ArbreBinaire</code> pour représenter chaque nœud de l’arbre binaire.</p>
+        
+            <pre><code>
+    class ArbreBinaire:
+        def __init__(self, valeur):
+            self.valeur = valeur
+            self.gauche = None
+            self.droite = None
+            </code></pre>
+        
+            <p>Chaque nœud a une <code>valeur</code> et peut avoir deux enfants : <code>gauche</code> et <code>droite</code>.</p>
+        
+            <h4>2. Insertion dans un Arbre Binaire :</h4>
+            <p>Pour insérer un nouvel objet dans l’arbre binaire, nous allons comparer la valeur de l’objet avec la valeur du nœud courant. Si l’objet est moins puissant (ou de valeur inférieure), il sera inséré à gauche. Sinon, il sera inséré à droite.</p>
+        
+            <pre><code>
+    def inserer(noeud, valeur):
+        if noeud is None:
+            return ArbreBinaire(valeur)
+        
+        if valeur < noeud.valeur:
+            noeud.gauche = inserer(noeud.gauche, valeur)
+        else:
+            noeud.droite = inserer(noeud.droite, valeur)
+        
+        return noeud
+            </code></pre>
+        
+            <h4>3. Exemple d’Insertion dans l’Arbre :</h4>
+            <p>Supposons que le joueur ramasse un bouclier avec une puissance de 5 et qu’il l’insère dans l’inventaire :</p>
+        
+            <pre><code>
+    # Créer la racine de l'arbre
+    racine = ArbreBinaire(8)
+    
+    # Insérer d'autres objets dans l'inventaire
+    inserer(racine, 3)  # Bouclier
+    inserer(racine, 10) # Arc
+    inserer(racine, 1)  # Casque
+            </code></pre>
+        
+            <h4>4. Parcours Infixe (In-order Traversal) :</h4>
+            <p>Pour lister les objets dans l’ordre de leur puissance, nous utilisons un parcours infixe. Ce parcours visite d’abord le sous-arbre gauche, puis le nœud courant, et enfin le sous-arbre droit.</p>
+        
+            <pre><code>
+    def parcours_infixe(noeud):
+        if noeud:
+            parcours_infixe(noeud.gauche)
+            print(noeud.valeur, end=" ")
+            parcours_infixe(noeud.droite)
+    
+    # Lancer le parcours infixe
+    parcours_infixe(racine)
+            </code></pre>
+        
+            <h4>Résultat attendu :</h4>
+            <p>Si le joueur a ramassé des objets avec des puissances de 1, 3, 8, et 10, le parcours infixe affichera : <code>1 3 8 10</code>.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Défi Pratique pour les Élèves (30 min)</h3>
+        
+            <h4>Étape 1 :</h4>
+            <p>Modifiez le programme pour que chaque objet ait un nom (par exemple, “Épée de fer”) en plus de sa valeur de puissance. Vous pouvez créer une classe <code>Objet</code> pour représenter chaque objet, et la valeur de puissance sera utilisée pour ordonner les objets dans l’arbre binaire.</p>
+        
+            <h4>Étape 2 :</h4>
+            <p>Ajoutez une fonctionnalité permettant de chercher un objet dans l’arbre par son nom ou sa puissance. Si l’objet est trouvé, affichez ses caractéristiques. Si l’objet n’est pas trouvé, affichez un message indiquant qu’il n’est pas dans l’inventaire.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion (10 min)</h3>
+            <p>À la fin de cette séance, les élèves auront appris les concepts fondamentaux des arbres binaires et auront appliqué ces connaissances à un exemple concret de gestion d’inventaire dans un jeu vidéo. Ils auront également renforcé leur compréhension des parcours d’arbres (parcours infixe) et de l’insertion dans un arbre binaire.</p>
+            <p>Les élèves pourront utiliser cette structure de données pour d’autres applications dans leurs futurs projets, comme la gestion de données hiérarchiques ou la recherche efficace d’informations.</p>
+        </section>
+
+        <section id="session20" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 20 : Pratique - Utilisation d’arbres pour organiser une base de données de personnages de manga</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves apprendront à utiliser une structure de données en <strong>arbre binaire de recherche (BST)</strong> pour organiser une base de données de personnages de manga. Ils exploreront comment stocker et rechercher efficacement des informations sur les personnages en fonction de caractéristiques spécifiques (nom, puissance, affiliation).</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Introduction aux Arbres Binaires et à leur Utilisation (30 min)</h3>
+        
+            <h4>Contexte de la Séance :</h4>
+            <p>Dans l’univers des mangas, chaque personnage a des caractéristiques uniques (nom, puissance, affiliation, etc.). Nous allons organiser une base de données de personnages en utilisant un <strong>arbre binaire de recherche</strong> pour permettre des opérations de recherche rapide, d’ajout et de suppression de personnages.</p>
+        
+            <h4>Qu'est-ce qu'un Arbre Binaire de Recherche (BST) ?</h4>
+            <p>Un <strong>arbre binaire de recherche (BST)</strong> est une structure de données récursive qui permet de stocker des données de manière ordonnée, facilitant ainsi les opérations de recherche, d'insertion et de suppression.</p>
+            <ul>
+                <li><strong>Nœud :</strong> Chaque nœud de l'arbre contient un élément (par exemple, un personnage de manga).</li>
+                <li><strong>Clé :</strong> Chaque nœud a une clé (par exemple, le nom du personnage ou un autre attribut) qui est utilisée pour organiser l’arbre.</li>
+                <li><strong>Arbre binaire :</strong> Chaque nœud a au plus deux enfants : un enfant à gauche (plus petit) et un enfant à droite (plus grand).</li>
+            </ul>
+        
+            <h4>Principe du BST :</h4>
+            <p>Dans un BST :</p>
+            <ul>
+                <li>Pour chaque nœud, tous les éléments dans le sous-arbre gauche sont plus petits que l’élément du nœud.</li>
+                <li>Tous les éléments dans le sous-arbre droit sont plus grands que l’élément du nœud.</li>
+            </ul>
+        
+            <h4>Exemple Visuel d’un Arbre Binaire de Recherche :</h4>
+            <pre><code>
+            Luffy
+            /    \
+         Goku    Naruto
+         /  \       /   \
+    Zoro Vegeta   Sasuke  Saitama
+            </code></pre>
+            <p>Dans cet arbre :</p>
+            <ul>
+                <li>Le personnage Luffy est la racine.</li>
+                <li>Les personnages situés à gauche de Luffy (Goku, Zoro) ont des noms plus petits (ordre alphabétique), tandis que ceux situés à droite (Naruto, Saitama) ont des noms plus grands.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Implémentation Pratique d’un Arbre Binaire de Recherche (BST) (45 min)</h3>
+        
+            <h4>1. Créer une Classe pour Représenter un Personnage de Manga :</h4>
+            <p>Chaque personnage sera représenté par un objet contenant des informations telles que son nom, sa puissance et son affiliation.</p>
+        
+            <pre><code>
+    class PersonnageManga:
+        def __init__(self, nom, puissance, affiliation):
+            self.nom = nom
+            self.puissance = puissance
+            self.affiliation = affiliation
+            self.gauche = None  # Sous-arbre gauche
+            self.droite = None  # Sous-arbre droit
+    
+        def __str__(self):
+            return f"{self.nom} - Puissance : {self.puissance}, Affiliation : {self.affiliation}"
+            </code></pre>
+        
+            <p>Chaque instance de <code>PersonnageManga</code> représente un personnage avec un nom, une puissance et une affiliation.</p>
+        
+            <h4>2. Créer un Arbre Binaire de Recherche :</h4>
+            <p>L’arbre binaire de recherche sera utilisé pour organiser les personnages en fonction de leur nom. Chaque nœud de l’arbre contiendra un personnage de manga.</p>
+        
+            <pre><code>
+    class ArbreBinaireRecherche:
+        def __init__(self):
+            self.racine = None  # La racine de l'arbre est initialement vide
+    
+        # Fonction pour insérer un nouveau personnage dans l'arbre
+        def inserer(self, personnage):
+            if self.racine is None:
+                self.racine = personnage  # Si l'arbre est vide, le personnage devient la racine
+            else:
+                self._inserer_recur(self.racine, personnage)
+    
+        # Fonction récursive pour insérer dans le bon sous-arbre
+        def _inserer_recur(self, courant, personnage):
+            if personnage.nom < courant.nom:
+                if courant.gauche is None:
+                    courant.gauche = personnage  # Insertion à gauche
+                else:
+                    self._inserer_recur(courant.gauche, personnage)  # Récursion vers la gauche
+            else:
+                if courant.droite is None:
+                    courant.droite = personnage  # Insertion à droite
+                else:
+                    self._inserer_recur(courant.droite, personnage)  # Récursion vers la droite
+    
+        # Fonction pour afficher l'arbre en parcours infixe (ordre alphabétique)
+        def afficher_infixe(self):
+            self._afficher_infixe_recur(self.racine)
+    
+        def _afficher_infixe_recur(self, courant):
+            if courant is not None:
+                self._afficher_infixe_recur(courant.gauche)
+                print(courant)
+                self._afficher_infixe_recur(courant.droite)
+            </code></pre>
+        
+            <p>Cette classe permet d’ajouter des personnages dans l’arbre et de les afficher dans l’ordre alphabétique grâce à un parcours en infixe.</p>
+        
+            <h4>3. Insérer des Personnages dans l’Arbre :</h4>
+            <p>Ajoutons des personnages célèbres de mangas dans notre arbre :</p>
+        
+            <pre><code>
+    # Création de l'arbre
+    arbre = ArbreBinaireRecherche()
+    
+    # Création des personnages
+    luffy = PersonnageManga("Luffy", 9000, "Pirate")
+    goku = PersonnageManga("Goku", 9500, "Guerrier Saiyan")
+    naruto = PersonnageManga("Naruto", 8800, "Ninja")
+    saitama = PersonnageManga("Saitama", 10000, "Héros")
+    zoro = PersonnageManga("Zoro", 8500, "Pirate")
+    vegeta = PersonnageManga("Vegeta", 9400, "Guerrier Saiyan")
+    
+    # Insertion dans l'arbre
+    arbre.inserer(luffy)
+    arbre.inserer(goku)
+    arbre.inserer(naruto)
+    arbre.inserer(saitama)
+    arbre.inserer(zoro)
+    arbre.inserer(vegeta)
+    
+    # Affichage des personnages dans l'ordre alphabétique
+    arbre.afficher_infixe()
+            </code></pre>
+        
+            <p>La sortie du programme affichera les personnages par ordre alphabétique de nom :</p>
+        
+            <pre><code>
+    Goku - Puissance : 9500, Affiliation : Guerrier Saiyan
+    Luffy - Puissance : 9000, Affiliation : Pirate
+    Naruto - Puissance : 8800, Affiliation : Ninja
+    Saitama - Puissance : 10000, Affiliation : Héros
+    Vegeta - Puissance : 9400, Affiliation : Guerrier Saiyan
+    Zoro - Puissance : 8500, Affiliation : Pirate
+            </code></pre>
+        
+            <h4>4. Défi Pratique pour les Élèves :</h4>
+            <ul>
+                <li><strong>Étape 1 :</strong> Modifiez le programme pour que l’arbre soit organisé en fonction de la puissance des personnages au lieu de leur nom.</li>
+                <li><strong>Étape 2 :</strong> Ajoutez une fonction pour rechercher un personnage par nom dans l’arbre et renvoyer ses caractéristiques.</li>
+                <li><strong>Étape 3 :</strong> Ajoutez une fonctionnalité pour supprimer un personnage de l’arbre (utilisation d’un algorithme de suppression dans un arbre binaire).</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Applications (10 min)</h3>
+        
+            <p>À la fin de cette séance, les élèves auront appris à :</p>
+            <ul>
+                <li>Utiliser un <strong>arbre binaire de recherche</strong> pour organiser et gérer des données de manière structurée et efficace.</li>
+                <li>Implémenter les opérations de base d’un arbre (insertion, parcours, recherche) dans un contexte de gestion de base de données de personnages de manga.</li>
+            </ul>
+        
+            <p>Cette approche leur permettra de comprendre comment les structures de données avancées sont utilisées pour organiser de grandes quantités de données dans des applications réelles, telles que les bases de données et les systèmes de recherche d’information.</p>
+        </section>
+        
+        
     </main>
 
     <!-- <footer>
@@ -2639,7 +3346,12 @@
             'Séance 12 : Exercices d’Analyse de la Complexité des Algorithmes dans des Jeux Vidéo et la Vie Réelle',
             'Séance 13 : Introduction aux Graphes et à leurs Applications',
             'Séance 14 : Pratique - Représentation d\'un Réseau de Routes dans un Jeu Vidéo avec des Graphes',
-            'Séance 15 : Algorithmes de Parcours de Graphes – DFS et BFS'
+            'Séance 15 : Algorithmes de Parcours de Graphes – DFS et BFS',
+            'Séance 16 : Approfondissement sur l’algorithme DFS (Depth-First Search)',
+            'Séance 17 : Pratique - Exploration d’un Monde Ouvert (Jeu Vidéo) avec DFS',
+            'Séance 18 : Applications Réelles des Graphes (Réseaux Sociaux, Chemins dans les Transports)',
+            'Séance 19 : Introduction aux Arbres Binaires et leurs Applications',
+            'Séance 20 : Pratique - Utilisation d’arbres pour organiser une base de données de personnages de manga'
         ];
     
         function isHoliday(date) {
