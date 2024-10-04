@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme SNT 2nd</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        main {
+            margin-left: 200px;
+            padding: 20px;
+            min-height: 80vh;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        aside {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            transition: width 0.3s ease;
+            overflow-y: auto;
+            scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
+        }
+
+        aside::-webkit-scrollbar {
+            display: none; /* Masque la barre de défilement pour Chrome, Safari, et Opera */
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            padding: 10px;
+        }
+
+        aside ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        /* Style pour l'élément de menu actif (séance en cours) */
+        aside ul li a.active {
+            background-color: #4CAF50; /* Couleur pour l'élément actif */
+            color: white;
+            font-weight: bold;
+        }
+
+        aside ul li a:hover {
+            background-color: #555;
+        }
+
+        .hamburger {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h2, h3, h4, h5{
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        h4, h5, p, ul{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Styles spécifiques pour le calendrier */
+        table.calendar {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .current-week {
+            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
+        }
+
+        pre{
+            background-color: black;
+            color: white;
+        }
+
+        .today {
+            background-color: #007BFF; /* Bleu vif pour le jour actuel */
+            color: white; /* Texte blanc pour le contraste */
+        }
+
+        .vacation {
+            background-color: #B2E4A6; /* Vert pastel pour les vacances */
+            color: black; /* Texte noir ou foncé pour la lisibilité */
+        }
+
+        .holiday {
+            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
+            color: white; /* Texte blanc ou clair */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Programme SNT 2nd</h1>
+    </header>
+
+    <!-- Menu hamburger sur la gauche -->
+    <aside id="menu">
+        <button class="hamburger" onclick="toggleMenu()">☰ Séances</button>
+        <nav id="session-nav">
+            <ul>
+                <!-- CALENDRIER -->
+                <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
+
+                <!-- Cours -->
+                <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à la SNT</a></li>
+                <li><a href="#" onclick="showSession('session2')">Séance 2 : Histoire et définition d'Internet</a></li>
+                <li><a href="#" onclick="showSession('session3')">Séance 3 : Fonctionnement du Web et des Sites Web</a></li>
+                <li><a href="#" onclick="showSession('session4')">Séance 4 : Les Protocoles Réseau (HTTP/HTTPS)</a></li>
+                <li><a href="#" onclick="showSession('session5')">Séance 5 : Exploration des moteurs de recherche</a></li>
+                <li><a href="#" onclick="showSession('session6')">Séance 6 : Les algorithmes de recherche</a></li>
+                <li><a href="#" onclick="showSession('session7')">Séance 7 : Les dangers du Web - Cybersécurité et Fake News</a></li>
+                <li><a href="#" onclick="showSession('session8')">Séance 8 : Les bases de la protection en ligne</a></li>
+                <li><a href="#" onclick="showSession('session9')">Séance 9 : Révisions et Grand QCM récapitulatif</a></li>
+                <li><a href="#" onclick="showSession('session10')">Séance 10 : Introduction aux réseaux sociaux</a></li>
+                <li><a href="#" onclick="showSession('session11')">Séance 11 : Les algorithmes derrière les réseaux sociaux</a></li>
+                <li><a href="#" onclick="showSession('session12')">Séance 12 : Les dangers des réseaux sociaux (privacy, harcèlement)</a></li>
+                <li><a href="#" onclick="showSession('session13')">Séance 13 : Introduction aux données numériques</a></li>
+                
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="content">
+        <!-- Calendrier -->
+        <section id="calendar" class="content-section">
+            <h2>Calendrier SNT 2nd - 2024/2025</h2>
+            <table class="calendar">
+                <thead>
+                    <tr>
+                        <th>Date Jeudi</th>
+                        <th>Cours Jeudi</th>
+                        <th>Date Vendredi</th>
+                        <th>Cours Vendredi</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                    <!-- Les lignes du calendrier seront générées ici par JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="session1" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 1 : Introduction à la SNT</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Cette séance est destinée à présenter la matière « Sciences Numériques et Technologie » (SNT) aux élèves. L’objectif est de clarifier les thèmes qui seront abordés au cours de l’année et de donner un aperçu des compétences et connaissances qu’ils développeront.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Présentation de la SNT</h3>
+        
+            <h4>Définition de la SNT :</h4>
+            <p>La SNT est une matière dédiée à l'étude des technologies numériques qui façonnent le monde moderne. Elle vise à expliquer non seulement le fonctionnement de ces technologies, mais aussi leur impact sur notre quotidien et la société en général.</p>
+            <p><strong>Explication :</strong> La SNT vous aidera à comprendre comment fonctionnent les réseaux sociaux, comment les objets connectés interagissent avec Internet, et comment les algorithmes traitent les données que vous générez chaque jour. C’est une matière qui vous permettra de devenir des utilisateurs avertis des technologies, tout en abordant les défis et opportunités qu’elles présentent.</p>
+        
+            <h4>Rôle de la SNT :</h4>
+            <p>La SNT aide à développer une compréhension critique des outils numériques, en explorant à la fois leur fonctionnement et leurs effets sur notre société.</p>
+            <p><strong>Explication :</strong> En plus d'apprendre des concepts techniques, nous réfléchirons à des questions essentielles : comment les réseaux sociaux influencent-ils notre façon de penser ? Pourquoi est-il important de protéger nos données personnelles ? Comment les objets connectés modifient-ils notre quotidien ? La SNT permet d’explorer ces questions et de mieux comprendre les technologies qui nous entourent.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Thèmes Principaux de l’Année</h3>
+            <p>Voici les grands thèmes qui seront abordés tout au long de l’année :</p>
+        
+            <ul>
+                <li><strong>Internet et Réseaux :</strong> Exploration de questions telles que : Comment fonctionne Internet ? Qu'est-ce que le Web ? Comment les informations circulent-elles ?
+                    <p><em>Exemple :</em> Nous verrons ce qui se passe lorsque vous envoyez un message sur WhatsApp ou comment Google trouve des milliards de résultats en quelques secondes.</p>
+                </li>
+                <li><strong>Réseaux Sociaux :</strong> Analyse de la conception des réseaux sociaux et des algorithmes qui se cachent derrière les suggestions d’amis ou de contenus.
+                    <p><em>Exemple :</em> Pourquoi TikTok ou Instagram vous montrent-ils toujours des contenus qui vous intéressent ? Nous découvrirons les algorithmes puissants qui rendent cela possible.</p>
+                </li>
+                <li><strong>Objets Connectés :</strong> Exploration des objets connectés, leur fonctionnement, et leur interaction avec Internet.
+                    <p><em>Exemple :</em> Les montres connectées et les maisons intelligentes reposent sur la communication entre des objets et des réseaux. Nous explorerons ces technologies innovantes.</p>
+                </li>
+                <li><strong>Données et Big Data :</strong> Pourquoi nos données sont-elles si précieuses ? Comment sont-elles collectées et utilisées ?
+                    <p><em>Exemple :</em> Nous verrons comment les données sont utilisées pour personnaliser vos expériences en ligne ou pour cibler des publicités.</p>
+                </li>
+                <li><strong>Programmation (Scratch, HTML/CSS, Python) :</strong> Introduction aux bases de la programmation.
+                    <p><em>Exemple :</em> Vous apprendrez à créer des programmes simples avec Scratch, à construire des pages web avec HTML/CSS, et à découvrir Python, un langage largement utilisé par les professionnels.</p>
+                </li>
+                <li><strong>Images Numériques :</strong> Comment les images sont-elles codées et compressées ? Comment sont-elles traitées ?
+                    <p><em>Exemple :</em> Nous découvrirons comment les images sont codées, stockées et modifiées, en explorant les pixels et les techniques de compression.</p>
+                </li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectifs de l’Année</h3>
+        
+            <ul>
+                <li><strong>Avoir une base solide en culture numérique :</strong> Comprendre les technologies numériques du quotidien.
+                    <p><em>Exemple :</em> Vous comprendrez mieux comment fonctionnent les réseaux sociaux que vous utilisez et comment vos données sont traitées.</p>
+                </li>
+                <li><strong>Développer l’esprit critique face aux informations numériques :</strong> Apprendre à distinguer les informations fiables des fausses informations sur Internet et les réseaux sociaux.
+                    <p><em>Exemple :</em> Dans un contexte où les fake news sont de plus en plus présentes, il est essentiel de savoir vérifier la véracité des informations en ligne.</p>
+                </li>
+                <li><strong>Acquérir des compétences pratiques :</strong> Découverte et pratique de la programmation via des outils simples comme Scratch, HTML et Python.
+                    <p><em>Exemple :</em> Vous allez vous familiariser avec les bases de la programmation, une compétence essentielle dans de nombreux domaines.</p>
+                </li>
+                <li><strong>Découvrir l’impact du numérique sur la société :</strong> Réfléchir à l'influence des nouvelles technologies sur les habitudes de vie et la société.
+                    <p><em>Exemple :</em> Nous examinerons comment les réseaux sociaux changent notre manière de communiquer et comment les objets connectés transforment notre quotidien.</p>
+                </li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Activité : Brainstorming sur les Outils Numériques</h3>
+        
+            <h4>Objectif de l’Activité :</h4>
+            <p>Encourager les élèves à réfléchir de manière critique à la place des outils numériques dans leur quotidien.</p>
+        
+            <h4>Lancement de l’Activité :</h4>
+            <p><strong>Introduction :</strong> Nous allons explorer l’importance du numérique dans le monde actuel et comment les technologies influencent déjà votre quotidien sans que vous en ayez forcément conscience. Nous commencerons par examiner les outils numériques que vous utilisez tous les jours.</p>
+            <p><strong>Consigne :</strong> Réfléchissez à un ou plusieurs outils numériques que vous utilisez quotidiennement. Cela peut inclure des objets physiques (comme un smartphone) ou des applications (comme un réseau social). Pensez aux différents moments de la journée : communication, divertissement, apprentissage, etc.</p>
+            <p><strong>Exemples :</strong></p>
+            <ul>
+                <li>Smartphone (appels, SMS, réseaux sociaux)</li>
+                <li>Tablette/Ordinateur (navigation web, jeux, travail scolaire)</li>
+                <li>Objets connectés (montre connectée, Google Home)</li>
+                <li>Réseaux sociaux (Instagram, TikTok, Snapchat)</li>
+                <li>Moteurs de recherche (Google, Bing)</li>
+                <li>Services de streaming (Netflix, YouTube, Spotify)</li>
+            </ul>
+        
+            <h4>Regroupement des Outils Numériques par Catégorie :</h4>
+            <ul>
+                <li><strong>Communication :</strong> WhatsApp, Snapchat, Instagram, SMS, e-mails.</li>
+                <li><strong>Divertissement :</strong> YouTube, Netflix, Spotify, jeux vidéo en ligne.</li>
+                <li><strong>Recherche d’information :</strong> Google, Wikipédia, moteurs de recherche.</li>
+                <li><strong>Éducation et travail :</strong> ENT, Zoom, Microsoft Teams, Google Docs.</li>
+                <li><strong>Objets connectés :</strong> Montres connectées, assistants vocaux, domotique.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Débriefing et Réflexion Collective</h3>
+        
+            <ul>
+                <li><strong>Comment ces outils numériques facilitent-ils votre vie quotidienne ?</strong>
+                    <p>Exemples de réponses : « Mon téléphone me permet de rester en contact avec mes amis », « Internet me permet de trouver des informations rapidement ».</p>
+                </li>
+                <li><strong>Quels sont les inconvénients ou dangers que vous percevez avec ces technologies ?</strong>
+                    <p>Exemples de réponses : « On peut y passer trop de temps », « Il y a des risques pour la vie privée », « Les réseaux sociaux peuvent être stressants ».</p>
+                </li>
+                <li><strong>Pensez-vous que vous pourriez vous en passer ? Pourquoi ou pourquoi pas ?</strong>
+                    <p>Exemples de réponses : « Ce serait difficile car j'utilise ces outils pour tout », « Oui, mais avec des alternatives ».</p>
+                </li>
+            </ul>
+        
+            <p>Ce débat permettra de comprendre comment les outils numériques affectent la vie quotidienne, tout en développant un esprit critique quant à leur utilisation.</p>
+        </section>
+        
+        <section id="session2" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 2 : Histoire et Définition d'Internet</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Introduction : Qu'est-ce qu'Internet ?</h3>
+            
+            <h4>Définition d'Internet</h4>
+            <p><strong>Définition simple :</strong> Internet est un réseau mondial de réseaux informatiques interconnectés. Il permet aux ordinateurs de communiquer entre eux en utilisant un ensemble commun de règles appelées protocoles.</p>
+            <p><strong>Exemple concret :</strong> Imaginez Internet comme une immense toile d'araignée où chaque point représente un ordinateur ou un réseau. Tous ces points sont reliés entre eux et peuvent échanger des informations, comme des pages Web, des e-mails ou des vidéos.</p>
+        
+            <h4>Fonctionnement de base d'Internet</h4>
+            <h5>Réseau de réseaux :</h5>
+            <p>Internet est composé de millions de réseaux locaux (LAN - Local Area Network), comme ceux que l'on trouve dans les maisons, les écoles ou les entreprises, et de réseaux étendus (WAN - Wide Area Network), qui couvrent de grandes distances.</p>
+            <p><strong>Exemple concret :</strong> Votre maison est connectée à un réseau local (le Wi-Fi), mais ce réseau local est connecté à d’autres réseaux à travers le monde pour accéder à Internet.</p>
+        
+            <h5>Les protocoles :</h5>
+            <p><strong>Définition :</strong> Les protocoles sont des règles qui définissent comment les ordinateurs échangent des informations sur Internet. Le protocole principal d'Internet est le TCP/IP (Transmission Control Protocol/Internet Protocol).</p>
+            <p><strong>Explication simplifiée :</strong> TCP/IP s'assure que les informations envoyées sur Internet, comme des e-mails ou des fichiers, arrivent bien à destination et dans le bon ordre, même si elles empruntent différents chemins pour y parvenir.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Histoire d'Internet</h3>
+        
+            <h4>Les débuts d’Internet (1960-1970s)</h4>
+            <p><strong>ARPA et ARPANET :</strong> Dans les années 1960, aux États-Unis, l'ARPA (Advanced Research Projects Agency) a développé ARPANET, un réseau de communication militaire conçu pour que différents ordinateurs puissent échanger des informations, même en cas de guerre. Ce réseau est l'ancêtre d'Internet.</p>
+            <p><strong>Illustration :</strong> Imaginez une époque sans Internet, où pour partager des informations entre ordinateurs, il fallait créer un réseau capable de résister à des crises majeures, comme une guerre.</p>
+        
+            <p><strong>Développement du TCP/IP :</strong> En 1973, deux informaticiens, Vinton Cerf et Robert Kahn, ont créé le protocole TCP/IP. Cela permettait aux réseaux de s'interconnecter facilement et de transmettre les informations de manière fiable, peu importe la distance.</p>
+        
+            <h4>Expansion et développement (1980s-1990s)</h4>
+            <p><strong>Internet Protocol Suite :</strong> Durant les années 1980, les protocoles TCP/IP ont été standardisés, ce qui a permis à Internet de s’étendre au-delà des milieux académiques et militaires pour atteindre un public plus large.</p>
+            <p><strong>Exemple concret :</strong> C’est à ce moment-là que les premiers ordinateurs domestiques ont commencé à se connecter à Internet, même si cela restait assez limité.</p>
+        
+            <p><strong>World Wide Web (WWW) :</strong> En 1989, Tim Berners-Lee a créé le World Wide Web pour faciliter l'accès aux informations grâce à des liens hypertextes. En 1991, le premier site Web est mis en ligne, et c'est ainsi que nous avons commencé à naviguer sur Internet comme nous le faisons aujourd'hui.</p>
+        
+            <h4>L'ère moderne (2000s-présent)</h4>
+            <p><strong>Expansion rapide :</strong> À partir des années 2000, Internet a connu une expansion exponentielle. C'est à cette époque que des services comme les réseaux sociaux (Facebook, Twitter), le commerce électronique (Amazon), et les services de streaming (Netflix) ont vu le jour.</p>
+            <p><strong>Exemple :</strong> Pensez à toutes les choses que vous faites aujourd'hui sur Internet. C'est grâce à ces évolutions que nous pouvons désormais communiquer instantanément, accéder à des millions de vidéos, ou encore acheter des produits en ligne.</p>
+        
+            <p><strong>Accessibilité globale :</strong> Aujourd’hui, Internet est devenu omniprésent, accessible à presque tous les habitants de la planète grâce aux smartphones, aux tablettes et aux ordinateurs. Il a transformé tous les aspects de notre vie quotidienne.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Schéma du fonctionnement d’Internet</h3>
+            
+            <h4>Envoi et réception des données :</h4>
+            <p><strong>Serveur :</strong> Un serveur est l'ordinateur qui stocke les données, comme les sites Web ou les fichiers.</p>
+            <p><strong>Client :</strong> Le client, c’est votre ordinateur, votre smartphone ou votre tablette. Il demande les données stockées sur le serveur.</p>
+            <p><strong>Routeurs et commutateurs :</strong> Les routeurs et les commutateurs sont les appareils intermédiaires qui transmettent les informations entre le client et le serveur. Ce sont eux qui font passer vos données d’un endroit à un autre, même si les deux appareils sont situés à l’autre bout du monde.</p>
+            <p>Tout comme un commutateur connecte plusieurs appareils pour créer un réseau, un routeur connecte plusieurs commutateurs et leurs réseaux respectifs pour former un réseau encore plus vaste. À la maison, votre box Internet fait les deux.</p>
+        
+            <p><strong>Protocoles :</strong> Les protocoles, comme le TCP/IP, garantissent que les données arrivent correctement et dans le bon ordre.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">4. Conclusion</h3>
+            <p>Internet est une infrastructure complexe, mais à la base, c’est un réseau de réseaux qui utilise des protocoles pour permettre la communication entre les ordinateurs à travers le monde.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">5. Activité : Dessiner le cheminement d’un message envoyé via Internet</h3>
+            <h4>But de l’activité :</h4>
+            <p>Vous permettre de visualiser le processus de transmission des données sur Internet. En dessinant le parcours d’un message, vous comprendrez mieux les concepts théoriques liés à la communication sur Internet.</p>
+        
+            <h4>Consignes de l’activité</h4>
+            <h5>Matériel nécessaire :</h5>
+            <ul>
+                <li>Feuilles de papier pour chaque groupe.</li>
+                <li>Stylos et crayons de couleur.</li>
+                <li>Tableau blanc ou grands papiers pour faciliter les présentations des groupes.</li>
+            </ul>
+        
+            <h5>Étapes de l’activité :</h5>
+            <ol>
+                <li><strong>Introduction de l'activité :</strong> Vous allez dessiner le parcours d’un message envoyé via Internet. Imaginez que vous envoyez un e-mail ou que vous accédez à un site Web. Comment ce message ou cette requête voyage-t-il à travers Internet pour atteindre sa destination ?</li>
+                
+                <li><strong>Clarification des concepts :</strong> Avant de commencer, rappel des éléments clés :
+                    <ul>
+                        <li>Le message part de votre appareil (client) et se dirige vers un serveur (où les données sont stockées).</li>
+                        <li>Sur son chemin, le message passe par des routeurs et commutateurs, qui sont comme des "passeurs" sur le réseau.</li>
+                        <li>Le tout est orchestré par des protocoles qui assurent que les informations sont bien envoyées, reçues et comprises.</li>
+                    </ul>
+                </li>
+                
+                <li><strong>Dessiner le parcours :</strong> Vous devez représenter graphiquement le cheminement d’un message envoyé via Internet, depuis leur ordinateur ou smartphone jusqu’à sa destination. Vous devez inclure les éléments suivants dans vos schémas :
+                    <ul>
+                        <li><strong>Client :</strong> L'ordinateur ou le smartphone de l’utilisateur (point de départ).</li>
+                        <li><strong>Serveur :</strong> L’endroit où les données sont stockées ou la destination du message (point d’arrivée).</li>
+                        <li><strong>Routeurs et commutateurs :</strong> Les dispositifs intermédiaires qui permettent de transmettre les données d’un réseau à un autre.</li>
+                        <li><strong>Protocoles :</strong> Mentionner TCP/IP, qui est le langage utilisé pour la communication entre les machines.</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h5>Détails supplémentaires :</h5>
+            <p>Vous pouvez aussi ajouter des éléments comme :</p>
+            <ul>
+                <li><strong>Adresses IP :</strong> Chaque ordinateur ou serveur possède une adresse IP unique.</li>
+                <li><strong>Paquets de données :</strong> Les données ne sont pas envoyées en un bloc mais sont divisées en petits paquets pour voyager plus facilement.</li>
+                <li><strong>Sécurité :</strong> Mentionner l’idée du cryptage ou du protocole HTTPS pour la sécurité des données.</li>
+            </ul>
+        </section>
+
+        <section id="session3" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 3 : Fonctionnement du Web et des Sites Web</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectifs Pédagogiques :</h3>
+            <ul>
+                <li>Comprendre les concepts fondamentaux du Web : serveurs, DNS et adresses IP.</li>
+                <li>Comprendre le cheminement des données entre le client (navigateur) et le serveur.</li>
+                <li>Introduire la notion de requête HTTP/HTTPS.</li>
+                <li>Apprendre à utiliser la console pour trouver l'adresse IP d’un site web.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">I. Théorie</h3>
+            <h4>1. Le Web et son fonctionnement général</h4>
+            <p>Le Web est un système d'accès aux informations hébergées sur des serveurs via Internet. Lorsque vous tapez une adresse web (appelée URL) dans un navigateur (par exemple, <code>www.example.com</code>), une requête est envoyée à un serveur. Le serveur détient les informations demandées (par exemple, une page web), et il répond à cette requête en envoyant les données correspondantes (texte, images, etc.).</p>
+            <p>Le navigateur transforme ces données en une page web lisible pour l'utilisateur. C'est ainsi que fonctionne l'affichage des sites Internet : un échange continu entre le client (votre ordinateur ou smartphone) et le serveur (l'ordinateur qui stocke le site).</p>
+        
+            <h4>2. Serveur et Client</h4>
+            <p><strong>Serveur :</strong> Un serveur est un ordinateur distant (généralement très puissant) qui stocke des données, comme des sites web, des fichiers, des applications, etc. Ce serveur est constamment connecté à Internet pour permettre aux utilisateurs de récupérer ces données.</p>
+            <p><strong>Client :</strong> Le client est l'ordinateur ou l'appareil de l'utilisateur. Il envoie une requête au serveur pour obtenir des données. Par exemple, lorsque vous saisissez <code>www.example.com</code> dans votre navigateur, votre appareil devient un client qui envoie une demande au serveur où est hébergé ce site.</p>
+            <p><strong>Métaphore :</strong> Imaginez qu’un serveur est comme un restaurant qui stocke des plats (les pages web). Le client est le client du restaurant qui passe commande (la requête) à un serveur du restaurant (le serveur informatique). Le restaurant (le serveur informatique) prépare et envoie le plat (les données ou pages web) au client.</p>
+        
+            <h4>3. Adresse IP (Internet Protocol)</h4>
+            <p>Chaque appareil connecté à Internet, y compris les serveurs, possède une adresse IP unique. Cette adresse IP est une série de chiffres qui permet d’identifier et de localiser un appareil sur Internet, comme une adresse postale le fait dans le monde physique.</p>
+            <ul>
+                <li><strong>IPv4 :</strong> Composée de quatre séries de chiffres séparés par des points, par exemple <code>192.168.1.1</code>. Elle est encore largement utilisée, mais le nombre d’adresses disponibles est limité.</li>
+                <li><strong>IPv6 :</strong> Une nouvelle version plus longue, qui permet de créer davantage d’adresses uniques. Elle ressemble à cela : <code>2001:0db8:85a3::8a2e:0370:7334</code>.</li>
+            </ul>
+            <p>Les adresses IP sont essentielles pour diriger le trafic sur Internet. Elles fonctionnent comme des adresses postales : lorsqu'une requête est envoyée (par exemple, pour charger une page web), l’adresse IP du serveur indique où envoyer la réponse.</p>
+        
+            <h4>4. DNS (Domain Name System)</h4>
+            <p>Le DNS est comme un répertoire téléphonique d'Internet. Il traduit les noms de domaine que nous utilisons (comme <code>www.example.com</code>) en adresses IP que les ordinateurs peuvent comprendre (par exemple, <code>93.184.216.34</code>). Cela simplifie notre utilisation d’Internet, car il est plus facile de retenir un nom comme <code>google.com</code> qu'une adresse IP numérique.</p>
+            <p>Quand vous tapez une adresse web dans votre navigateur, le DNS vérifie son registre pour trouver l’adresse IP associée à ce nom de domaine. Ensuite, cette adresse IP est utilisée pour localiser le serveur hébergeant le site web et établir une connexion.</p>
+            <p><strong>Métaphore :</strong> Le DNS fonctionne comme un GPS ou une carte qui vous aide à trouver un endroit spécifique en traduisant une adresse facile à lire en coordonnées spécifiques.</p>
+        
+            <h4>5. Explication rapide de la requête HTTP/HTTPS</h4>
+            <p>Lorsque le client (votre navigateur) envoie une requête au serveur, il utilise un protocole de communication. Le protocole le plus couramment utilisé pour transférer des pages web est le HTTP (HyperText Transfer Protocol).</p>
+            <ul>
+                <li><strong>HTTP :</strong> Ce protocole permet au navigateur de demander des données et au serveur de les envoyer. Cependant, les données envoyées via HTTP ne sont pas sécurisées.</li>
+                <li><strong>HTTPS :</strong> Le HTTPS (HyperText Transfer Protocol Secure) est une version sécurisée de HTTP. Il utilise un cryptage pour protéger les données échangées entre le client et le serveur, en particulier lors des transactions sensibles (par exemple, paiements en ligne). Le <strong>S</strong> de HTTPS signifie que la connexion est sécurisée à l'aide de certificats de cryptage.</li>
+            </ul>
+            <p>Ainsi, lorsque vous visitez un site web en HTTPS, vos informations sont cryptées, ce qui protège votre vie privée et garantit que les données ne seront pas interceptées ou modifiées pendant leur transfert.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">II. Activité Pratique</h3>
+            <h4>Objectif :</h4>
+            <p>Apprendre à trouver l’adresse IP d’un site web à l’aide de la console de commande.</p>
+        
+            <h4>1. Introduction à l'utilisation de la console de commande :</h4>
+            <ul>
+                <li>La console (ou invite de commande) est un outil permettant d’exécuter des instructions et d’interagir avec l'ordinateur par le biais de lignes de commande.</li>
+                <li>Elle est utilisée pour lancer des programmes ou des tâches directement à l’aide de texte, sans interface graphique.</li>
+            </ul>
+            <h4>Accéder à la console selon le système d’exploitation :</h4>
+            <ul>
+                <li><strong>Sous Windows :</strong> Rechercher "cmd" ou "Invite de commandes" dans la barre de recherche (à côté du bouton démarrer) et cliquer sur l'application Invite de commandes pour l'ouvrir.</li>
+                <li><strong>Sous macOS :</strong> Ouvrir le dossier Applications &gt; Utilitaires &gt; Terminal.</li>
+                <li><strong>Sous Linux :</strong> Utiliser le raccourci clavier <code>Ctrl + Alt + T</code> pour ouvrir le Terminal, ou rechercher "Terminal" dans les applications.</li>
+            </ul>
+            
+            <h4>2. Utiliser la commande ping pour trouver l’adresse IP d’un site web :</h4>
+            <p><strong>Commande ping :</strong> La commande ping est un outil réseau qui permet d'envoyer une requête à un serveur afin de vérifier si ce dernier est accessible et, en retour, il fournit des informations sur la connexion (temps de réponse, pertes de paquets, et surtout, l'adresse IP du serveur).</p>
+            <p><strong>Déroulement de l'exercice :</strong></p>
+            <pre><code>
+    ping www.google.com
+            </code></pre>
+            <p>Résultat attendu : La console va afficher des informations sur le serveur de Google, dont l’adresse IP associée (par exemple : <code>142.250.179.68</code>).</p>
+            <ul>
+                <li>Le nombre de paquets envoyés et reçus.</li>
+                <li>Le temps de latence (délai de réponse) du serveur.</li>
+                <li>L'adresse IP du serveur Google, qui est résolue via le DNS à partir du nom de domaine <code>www.google.com</code>.</li>
+            </ul>
+        
+            <h4>3. Exercice pratique :</h4>
+            <p>Objectif : Répéter la procédure pour différents sites web afin de retrouver leurs adresses IP respectives.</p>
+            <ul>
+                <li>Ouvrir la console ou le terminal sur l'ordinateur.</li>
+                <li>Utiliser la commande ping pour retrouver l'adresse IP d'un site de votre choix. Exemples suggérés :</li>
+                <ul>
+                    <li><code>ping www.wikipedia.org</code></li>
+                    <li><code>ping www.amazon.fr</code></li>
+                    <li><code>ping www.netflix.com</code></li>
+                </ul>
+                <li>Noter l'adresse IP obtenue pour chaque site web.</li>
+                <li>Comparer les résultats avec vos camarades :</li>
+                <ul>
+                    <li>Est-ce que tout le monde obtient la même adresse IP pour un site donné ?</li>
+                    <li>Discussion rapide sur les éventuelles différences (certaines adresses IP peuvent changer en fonction des zones géographiques ou des serveurs miroirs utilisés).</li>
+                </ul>
+            </ul>
+        
+            <h4>4. Discussion en Classe :</h4>
+            <p>Réflexion collective après avoir trouvé les adresses IP de plusieurs sites web.</p>
+            <ul>
+                <li><strong>Noms de domaine vs Adresses IP :</strong> Bien que nous utilisions des noms de domaine pour accéder facilement aux sites web, c’est en réalité l’adresse IP qui permet de localiser le serveur sur Internet.</li>
+                <li><strong>DNS (Domain Name System) :</strong> Joue un rôle crucial en convertissant les noms de domaine en adresses IP. C’est grâce à lui que nous n’avons pas besoin de retenir des suites de chiffres pour chaque site.</li>
+                <li><strong>Changement d’adresses IP :</strong> Les adresses IP peuvent changer pour plusieurs raisons (maintenance des serveurs, changement de localisation du serveur, mise en place de nouveaux serveurs).</li>
+                <li><strong>Utilité du ping :</strong> La commande ping permet non seulement de retrouver une adresse IP, mais elle est aussi utile pour diagnostiquer des problèmes de réseau. Si un serveur ne répond pas au ping, cela peut indiquer qu'il est inaccessible ou en panne.</li>
+            </ul>
+        </section>
+
+        <section id="session4" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 4 : Les Protocoles Réseau (HTTP/HTTPS)</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif du Cours :</h3>
+            <p>Cette séance a pour objectif de comprendre les protocoles HTTP et HTTPS et leur rôle dans la communication sur Internet. Les élèves apprendront à différencier un site web sécurisé (HTTPS) d’un site non sécurisé (HTTP) et seront sensibilisés aux enjeux de la sécurité en ligne ainsi qu'à l'importance du chiffrement des données.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Introduction aux Protocoles Réseau</h3>
+            <h4>But :</h4>
+            <p>Mettre en contexte l’importance des protocoles réseau dans la navigation quotidienne sur Internet et explorer la différence entre HTTP et HTTPS.</p>
+        
+            <h4>Étape 1 : Introduction au Sujet</h4>
+            <ul>
+                <li>Lorsque vous visitez un site web, savez-vous comment les informations arrivent sur votre ordinateur ?</li>
+                <li>Avez-vous déjà remarqué que certaines adresses de site web commencent par <strong>http://</strong> et d’autres par <strong>https://</strong> ?</li>
+            </ul>
+        
+            <h4>Étape 2 : Explication Simple</h4>
+            <p>HTTP et HTTPS sont des <strong>protocoles réseau</strong> utilisés pour permettre à votre navigateur (comme Chrome ou Firefox) de communiquer avec un site web.</p>
+            <ul>
+                <li><strong>HTTP (HyperText Transfer Protocol) :</strong> méthode de transfert des informations entre votre ordinateur et le serveur où est hébergé le site web.</li>
+                <li><strong>HTTPS (HyperText Transfer Protocol Secure) :</strong> version sécurisée de HTTP qui ajoute une couche de sécurité pour protéger les informations échangées, comme les mots de passe et les données bancaires.</li>
+            </ul>
+            <p>Comparaison : HTTP est comme une lettre envoyée sans enveloppe (tout le monde peut la lire), tandis que HTTPS est comme une lettre placée dans une enveloppe scellée que seul le destinataire peut ouvrir.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Théorie : HTTP et HTTPS</h3>
+        
+            <h4>a) Définition des Protocoles Réseau</h4>
+            <h5>1. HTTP (HyperText Transfer Protocol) :</h5>
+            <p>HTTP est le protocole utilisé pour transférer des informations sur le web. Quand vous chargez une page web, une requête HTTP est envoyée du navigateur au serveur hébergeant le site, qui renvoie les données demandées au navigateur.</p>
+            <ul>
+                <li>Exemple : Lorsque vous tapez <em>http://example.com</em>, une requête est envoyée en texte clair sans aucune protection.</li>
+            </ul>
+        
+            <h5>2. HTTPS (HyperText Transfer Protocol Secure) :</h5>
+            <p>HTTPS est une version sécurisée de HTTP qui utilise SSL/TLS (Secure Sockets Layer / Transport Layer Security) pour chiffrer les informations échangées.</p>
+            <ul>
+                <li>Exemple : Quand vous visitez <em>https://www.example.com</em>, le "s" dans HTTPS indique que les échanges sont chiffrés et sécurisés.</li>
+            </ul>
+        
+            <h4>b) Principales Différences entre HTTP et HTTPS</h4>
+            <h5>1. Sécurité :</h5>
+            <ul>
+                <li><strong>HTTP :</strong> Les données échangées ne sont pas chiffrées, donc elles peuvent être interceptées et lues par des tiers.</li>
+                <li><strong>HTTPS :</strong> Les données sont chiffrées avec SSL/TLS, transformant les informations en symboles incompréhensibles pour les personnes non autorisées.</li>
+            </ul>
+        
+            <h5>2. Certificats SSL/TLS :</h5>
+            <p>Pour utiliser HTTPS, un site doit obtenir un <strong>certificat SSL/TLS</strong> délivré par une autorité de certification, ce qui vérifie l'identité du site et rassure l'utilisateur.</p>
+        
+            <h5>3. Indicateurs Visibles dans les Navigateurs :</h5>
+            <ul>
+                <li><strong>HTTP :</strong> L’URL commence par http://, et certains navigateurs affichent une alerte signalant que le site n'est pas sécurisé.</li>
+                <li><strong>HTTPS :</strong> L’URL commence par https://, souvent avec un cadenas à côté. En cliquant sur le cadenas, on peut voir les détails du certificat de sécurité.</li>
+            </ul>
+        
+            <h4>c) Pourquoi est-il Important d'Utiliser HTTPS ?</h4>
+            <ul>
+                <li><strong>Protection des données personnelles :</strong> Empêche les pirates d'intercepter des informations sensibles.</li>
+                <li><strong>Confiance des utilisateurs :</strong> Un site HTTPS inspire confiance. Les sites HTTP peuvent être marqués comme "non sécurisés" par les navigateurs modernes.</li>
+                <li><strong>SEO :</strong> Les moteurs de recherche favorisent les sites HTTPS pour le classement dans les résultats de recherche.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Activité Pratique : Comparaison HTTP/HTTPS</h3>
+        
+            <h4>But de l'Activité :</h4>
+            <p>Mettre en pratique les connaissances en comparant des sites utilisant HTTP et HTTPS, et observer les différences dans un navigateur.</p>
+        
+            <h4>Étapes de l'Activité :</h4>
+            <h5>Étape 1 : Visite de Sites HTTP et HTTPS</h5>
+            <p>Accédez à deux sites web :</p>
+            <ul>
+                <li><strong>Site HTTP :</strong> Par exemple, <em>http://example.com</em> (ou un autre site non sécurisé).</li>
+                <li><strong>Site HTTPS :</strong> Par exemple, <em>https://www.wikipedia.org</em>.</li>
+            </ul>
+            <p>Notez les adresses URL dans la barre d’adresse des deux sites visités.</p>
+        
+            <h5>Étape 2 : Observer les Différences</h5>
+            <ul>
+                <li><strong>Barre d'adresse :</strong> Identifier si le site commence par http:// ou https:// et s’il y a un cadenas pour HTTPS.</li>
+                <li><strong>Message de Sécurité :</strong> Observer si le navigateur affiche une alerte pour le site HTTP et un symbole de sécurité pour le site HTTPS.</li>
+                <li><strong>Certificat de Sécurité :</strong> Cliquez sur le cadenas pour voir les détails du certificat SSL/TLS et notez l'autorité de certification et la validité.</li>
+            </ul>
+        
+            <h4>4. Noter les Observations :</h4>
+            <p>Faire une capture d’écran ou noter les différences observées entre les sites HTTP et HTTPS.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">4. Conclusion et Résumé</h3>
+        
+            <h4>Synthèse des Concepts :</h4>
+            <ul>
+                <li><strong>HTTP :</strong> Protocole de communication non sécurisé.</li>
+                <li><strong>HTTPS :</strong> Protocole sécurisé utilisant SSL/TLS pour chiffrer les données.</li>
+            </ul>
+            <p>L’utilisation de HTTPS est cruciale pour la sécurité et la confidentialité des utilisateurs sur Internet, en particulier pour les données sensibles.</p>
+        
+            <h4>Ressources Supplémentaires :</h4>
+            <ul>
+                <li><strong>Vidéos :</strong> Visionner des vidéos YouTube sur HTTP et HTTPS pour approfondir la compréhension.</li>
+                <li><strong>Exercice Pratique :</strong> Vérifier la sécurité des sites web fréquemment visités pour observer les détails des certificats et les mesures de sécurité utilisées.</li>
+            </ul>
+        </section>
+
+        <section id="session5" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 5 : Exploration des moteurs de recherche</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif du Cours :</h3>
+            <p>Comprendre le fonctionnement des moteurs de recherche et apprendre à les utiliser efficacement pour trouver des informations pertinentes. Les élèves découvriront également les algorithmes de classement qui déterminent l'affichage des résultats de recherche.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Théorie : Comment fonctionnent les moteurs de recherche ?</h3>
+        
+            <h4>a) Introduction aux Moteurs de Recherche</h4>
+            <p><strong>Définition :</strong> Un moteur de recherche est un outil en ligne qui aide les utilisateurs à trouver des informations sur Internet. Il fonctionne en indexant les pages web disponibles et en permettant aux utilisateurs de rechercher des informations avec des mots-clés.</p>
+            <p>Par exemple, si vous recherchez "recettes de pâtes", le moteur de recherche va trouver des pages web contenant des recettes et les afficher dans une liste organisée.</p>
+        
+            <p><strong>Exemples de moteurs de recherche :</strong></p>
+            <ul>
+                <li><strong>Google :</strong> Le moteur de recherche le plus utilisé dans le monde, réputé pour sa rapidité et la pertinence de ses résultats.</li>
+                <li><strong>Bing :</strong> Développé par Microsoft, avec une interface et des fonctionnalités distinctes.</li>
+                <li><strong>Yahoo :</strong> Un pionnier des moteurs de recherche, utilisant maintenant Bing pour ses résultats.</li>
+                <li><strong>DuckDuckGo :</strong> Connu pour sa politique de confidentialité, il ne suit pas les utilisateurs et n'affiche pas de publicités ciblées.</li>
+            </ul>
+        
+            <h4>b) Les Étapes du Fonctionnement des Moteurs de Recherche</h4>
+        
+            <h5>1. Exploration (ou Crawling)</h5>
+            <p><strong>Définition :</strong> L'exploration, ou crawling, est le processus par lequel les moteurs de recherche utilisent des robots d'exploration (appelés spiders ou crawlers) pour parcourir le web.</p>
+            <p>Les robots commencent par des pages web connues et suivent les liens sur ces pages pour découvrir de nouvelles pages et mettre à jour les pages existantes. Ils visitent chaque page, lisent son contenu, et capturent les informations.</p>
+        
+            <h5>2. Indexation</h5>
+            <p><strong>Définition :</strong> L'indexation est le processus où les pages explorées sont analysées et organisées dans une base de données ou un index. Cela permet aux moteurs de recherche de récupérer les pages pertinentes lors d'une recherche.</p>
+            <p>Les moteurs de recherche analysent le contenu des pages (texte, images, balises, etc.) et stockent ces informations avec des mots-clés pertinents, ce qui facilite la récupération rapide des informations.</p>
+        
+            <h5>3. Algorithme de Classement</h5>
+            <p><strong>Définition :</strong> L'algorithme de classement détermine comment les pages web sont classées dans les résultats de recherche en fonction de leur pertinence pour les mots-clés recherchés.</p>
+            <p>Lors d'une recherche, l'algorithme évalue chaque page en fonction de plusieurs facteurs pour déterminer les pages les plus pertinentes, qui sont alors affichées en premier.</p>
+        
+            <h5>4. Affichage des Résultats</h5>
+            <p><strong>Définition :</strong> Les résultats de recherche sont présentés sous forme de liste. Chaque résultat affiche un titre, un extrait de texte (snippet) tiré de la page, et un lien vers la page web.</p>
+            <ul>
+                <li><strong>Résultats organiques :</strong> Pages classées en fonction de leur pertinence.</li>
+                <li><strong>Résultats payants :</strong> Publicités apparaissant souvent en haut ou sur les côtés de la page, marquées comme "Annonce" ou "Sponsorisé".</li>
+            </ul>
+        
+            <h4>c) Facteurs influençant le Classement</h4>
+            <ul>
+                <li><strong>Réputation du site :</strong> Les moteurs de recherche évaluent la réputation en fonction des liens entrants (backlinks) et de leur qualité. Un site avec de nombreux liens provenant de sources fiables est perçu comme plus pertinent.</li>
+                <li><strong>Qualité du contenu :</strong> Le contenu doit être pertinent, bien écrit, et répondre aux requêtes des utilisateurs, car il améliore l'expérience utilisateur et le classement.</li>
+                <li><strong>Mots-clés :</strong> Les mots-clés dans les titres, balises, et contenu influencent la pertinence. Ils aident les moteurs de recherche à comprendre le sujet de la page.</li>
+                <li><strong>Expérience utilisateur :</strong> La vitesse de chargement des pages, l'optimisation mobile, et la facilité de navigation sont aussi importants pour un bon classement.</li>
+            </ul>
+        
+            <h4>Résumé de la Théorie</h4>
+            <p>Les moteurs de recherche indexent les pages web et utilisent des algorithmes de classement pour afficher les résultats les plus pertinents. Les étapes clés sont l'exploration, l'indexation, l'application d'algorithmes de classement, et l'affichage des résultats. Les facteurs influençant le classement incluent la réputation du site, la qualité du contenu, l'usage des mots-clés, et l'expérience utilisateur.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Activité : Recherche en Ligne et Analyse des Résultats</h3>
+        
+            <h4>a) Objectif de l'Activité</h4>
+            <ul>
+                <li>Utiliser les moteurs de recherche pour trouver des informations spécifiques.</li>
+                <li>Analyser les résultats pour comprendre leur présentation et les critères de classement.</li>
+            </ul>
+        
+            <h4>b) Instructions de l'Activité</h4>
+            
+            <h5>Étape 1 : Recherche Guidée</h5>
+            <p>Les élèves sont répartis en petits groupes de 2-3 élèves. Chaque groupe effectuera des recherches spécifiques pour analyser les résultats.</p>
+        
+            <p><strong>Exemples de requêtes :</strong></p>
+            <ul>
+                <li>Groupe 1 : "Meilleurs restaurants végétariens à Paris"</li>
+                <li>Groupe 2 : "Comment fonctionne l'intelligence artificielle ?"</li>
+                <li>Groupe 3 : "Histoire des Jeux Olympiques"</li>
+                <li>Groupe 4 : "Conseils pour améliorer son sommeil"</li>
+                <li>Groupe 5 : "Innovations technologiques de 2024"</li>
+            </ul>
+        
+            <p><strong>Analyse des résultats :</strong></p>
+            <ul>
+                <li>Quels sont les premiers résultats affichés ? (Les 3 à 5 premiers liens)</li>
+                <li>Différences entre résultats organiques et annonces payantes.</li>
+                <li>Types de contenu (articles, vidéos, forums, infographies).</li>
+                <li>Quels titres et extraits sont les plus pertinents ou attrayants ? Pourquoi ?</li>
+            </ul>
+        
+            <h5>Étape 2 : Discussion et Réflexion</h5>
+            <p>Chaque groupe présente brièvement ses résultats et ses observations. La discussion inclut :</p>
+            <ul>
+                <li>Quels facteurs influencent le classement des résultats ?</li>
+                <li>Différence entre les annonces payantes et les résultats organiques.</li>
+                <li>Importance de comprendre les moteurs de recherche pour trouver des informations fiables.</li>
+            </ul>
+        
+            <h5>Étape 3 : Conclusion</h5>
+            <p>Résumé des points clés abordés durant l’activité :</p>
+            <ul>
+                <li>Les moteurs de recherche utilisent des algorithmes complexes pour classer et afficher les résultats.</li>
+                <li>Les résultats incluent des annonces payantes et des résultats organiques.</li>
+                <li>La qualité du contenu, les mots-clés, et d'autres facteurs influencent le classement.</li>
+            </ul>
+            <p>Comprendre les algorithmes de classement aide à naviguer efficacement sur Internet et à développer des compétences de recherche critique.</p>
+        </section>
+
+        <section id="session6" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 6 : Les algorithmes de recherche</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif du cours :</h3>
+            <p>Comprendre le fonctionnement des <strong>algorithmes de tri et d’indexation</strong> utilisés par les moteurs de recherche. Les élèves mettront en pratique ces concepts en relevant un défi de recherche efficace et évalueront leur compréhension avec un QCM.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Théorie : Algorithmes de tri et d’indexation</h3>
+        
+            <h4>a) Introduction aux algorithmes de recherche</h4>
+            <h5>1. Définition des algorithmes de recherche :</h5>
+            <p>Un <strong>algorithme de recherche</strong> est un ensemble de règles ou d’instructions utilisées par les moteurs de recherche pour trouver, organiser et afficher les informations disponibles sur Internet.</p>
+            <ul>
+                <li><strong>Indexation :</strong> Processus permettant aux moteurs de recherche de stocker et organiser les informations des pages web. Objectif : faciliter la recherche rapide de ces informations en réponse à une requête.</li>
+                <li><strong>Tri (ou classement) :</strong> Processus déterminant l’ordre dans lequel les résultats de recherche sont affichés en fonction de leur pertinence par rapport à la requête de l’utilisateur.</li>
+            </ul>
+        
+            <h5>2. Importance des algorithmes :</h5>
+            <p>Les algorithmes permettent de gérer l'énorme quantité d'informations disponibles sur le web et d'offrir une expérience utilisateur plus efficace et pertinente. Sans eux, il serait impossible de retrouver des informations précises parmi les milliards de pages disponibles.</p>
+        
+            <h4>b) Algorithmes de tri</h4>
+            <h5>1. Algorithmes de classement courants :</h5>
+            <ul>
+                <li><strong>PageRank :</strong> Algorithme développé par Google pour mesurer la popularité des pages web. Il se base sur le nombre et la qualité des liens entrants pour déterminer l'importance d'une page.</li>
+                <li><strong>Algorithmes de pertinence :</strong> Ces algorithmes utilisent les mots-clés et les phrases de la requête pour évaluer la pertinence d'une page. Ils prennent également en compte l'historique de recherche et la géolocalisation.</li>
+            </ul>
+        
+            <h5>2. Critères de classement supplémentaires :</h5>
+            <ul>
+                <li><strong>Contenu de qualité :</strong> La pertinence et la richesse du contenu influencent le classement.</li>
+                <li><strong>Expérience utilisateur :</strong> Vitesse de chargement, optimisation mobile, et structure de la page jouent un rôle important dans le classement.</li>
+            </ul>
+        
+            <h4>c) Algorithmes d’indexation</h4>
+            <h5>1. Processus d’indexation :</h5>
+            <ul>
+                <li><strong>Exploration :</strong> Les robots d'exploration (ou crawlers) visitent les pages web et collectent des informations en suivant les liens pour découvrir de nouvelles pages.</li>
+                <li><strong>Analyse :</strong> Les moteurs de recherche analysent le contenu des pages pour identifier les mots-clés et les sujets principaux.</li>
+                <li><strong>Indexation :</strong> Les informations analysées sont stockées dans une base de données ou un index pour permettre une recherche rapide.</li>
+            </ul>
+        
+            <h5>2. Index inversé :</h5>
+            <p>Un <strong>index inversé</strong> associe directement les mots-clés aux pages qui les contiennent, permettant ainsi une recherche rapide. Au lieu de parcourir tous les documents, les moteurs de recherche accèdent directement aux documents pertinents pour une requête donnée.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Activité : Mini-défi de recherche efficace sur Internet</h3>
+        
+            <h4>a) Objectif de l’activité :</h4>
+            <p>Mettre en pratique les connaissances sur les algorithmes de recherche pour effectuer des recherches efficaces. Les élèves trouveront des informations précises en utilisant les moteurs de recherche et analyseront les critères de classement des résultats.</p>
+        
+            <h4>b) Instructions de l’activité :</h4>
+            <h5>Étape 1 : Défi de recherche</h5>
+            <ul>
+                <li><strong>Formation des groupes :</strong> Les élèves se répartissent en groupes de 2-3.</li>
+                <li><strong>Défi :</strong> Chaque groupe reçoit un sujet à rechercher sur Internet. Exemples de sujets :
+                    <ul>
+                        <li><strong>Groupe 1 :</strong> Trouvez une page qui explique le fonctionnement de PageRank.</li>
+                        <li><strong>Groupe 2 :</strong> Recherchez des articles récents sur les algorithmes d'indexation des moteurs de recherche.</li>
+                        <li><strong>Groupe 3 :</strong> Trouvez un tutoriel en ligne sur l'optimisation pour les moteurs de recherche (SEO).</li>
+                        <li><strong>Groupe 4 :</strong> Trouvez des informations sur l’impact de la vitesse de chargement sur le classement.</li>
+                        <li><strong>Groupe 5 :</strong> Recherchez un article comparant les algorithmes de classement de Google et Bing.</li>
+                    </ul>
+                </li>
+            </ul>
+        
+            <h5>Étape 2 : Recherche et observation</h5>
+            <ul>
+                <li>Chaque groupe effectue des recherches et prend des notes sur les résultats pertinents, y compris les liens vers les pages trouvées.</li>
+                <li>Ils observent comment les résultats sont présentés et analysent les critères de classement.</li>
+            </ul>
+        
+            <h4>c) Analyse des résultats</h4>
+            <h5>Présentation des résultats :</h5>
+            <ul>
+                <li>Chaque groupe présente ses résultats et décrit le type de pages trouvées (articles, vidéos, forums, etc.).</li>
+                <li>Ils expliquent quels concepts étaient abordés dans les pages trouvées et comment les résultats étaient classés.</li>
+            </ul>
+        
+            <h5>Discussion et réflexion :</h5>
+            <ul>
+                <li>Stratégies de recherche : Quels mots-clés ont été utilisés ? Quelle stratégie s’est avérée la plus efficace ?</li>
+                <li>Choix des résultats : Comment les groupes ont-ils choisi sur quels liens cliquer ?</li>
+                <li>Pertinence : Quels résultats semblaient les plus pertinents, et pourquoi ?</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Évaluation : QCM sur les algorithmes de recherche</h3>
+            <p>Les élèves passeront un QCM pour évaluer leur compréhension des algorithmes de tri et d’indexation. Le QCM comportera des questions sur le fonctionnement des algorithmes, le processus d’indexation et les critères de classement des moteurs de recherche.</p>
+        
+            <h4>Exemples de Questions :</h4>
+            <ol>
+                <li>Quel est l’objectif principal du processus d’indexation ?
+                    <ul>
+                        <li>a) Trier les pages web par popularité</li>
+                        <li>b) Stocker et organiser les informations pour une recherche rapide</li>
+                        <li>c) Évaluer la pertinence des mots-clés</li>
+                    </ul>
+                </li>
+                <li>Quel critère influence le classement d'une page selon l'algorithme PageRank ?
+                    <ul>
+                        <li>a) Le nombre de visites sur la page</li>
+                        <li>b) Le nombre et la qualité des liens entrants</li>
+                        <li>c) La vitesse de chargement de la page</li>
+                    </ul>
+                </li>
+                <li>Qu'est-ce qu'un index inversé ?
+                    <ul>
+                        <li>a) Une base de données qui stocke les pages web triées par date</li>
+                        <li>b) Une structure de données associant les mots-clés aux pages contenant ces mots</li>
+                        <li>c) Un algorithme de recherche utilisé par les moteurs de recherche</li>
+                    </ul>
+                </li>
+            </ol>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion de la séance :</h3>
+            <p>Les élèves ont appris à connaître les algorithmes de recherche, leur importance et leur rôle dans l'indexation et le tri des informations en ligne. Grâce au défi de recherche, ils ont appliqué ces concepts de manière pratique et ont pu mieux comprendre les facteurs influençant les résultats affichés par les moteurs de recherche.</p>
+        </section>
+
+        <section id="session7" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 7 : Les dangers du Web - Cybersécurité et Fake News</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectifs de la Séance :</h3>
+            <ul>
+                <li>Comprendre les concepts de cybersécurité et les risques associés aux fake news.</li>
+                <li>Apprendre à identifier les fake news et comprendre l’importance de la vérification des informations en ligne.</li>
+                <li>Sensibiliser aux bonnes pratiques pour assurer votre sécurité en ligne.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Théorie : Introduction à la Cybersécurité et aux Fake News</h3>
+            
+            <h4>a) Introduction à la Cybersécurité</h4>
+            <h5>1. Définition de la Cybersécurité</h5>
+            <p>La cybersécurité consiste à protéger les systèmes informatiques et les données contre les cyberattaques et les accès non autorisés.</p>
+            <ul>
+                <li><strong>Confidentialité :</strong> Assurer que seules les personnes autorisées ont accès aux informations.</li>
+                <li><strong>Intégrité :</strong> Garantir que les informations ne sont pas modifiées de manière non autorisée.</li>
+                <li><strong>Disponibilité :</strong> S'assurer que les systèmes et les données sont accessibles lorsque nécessaire.</li>
+            </ul>
+        
+            <h5>2. Principaux Risques et Menaces</h5>
+            <p>Les cybermenaces sont variées et peuvent causer de nombreux dégâts. Voici les plus courantes :</p>
+            <ul>
+                <li><strong>Malwares :</strong> Programmes malveillants conçus pour endommager, exploiter ou prendre le contrôle de systèmes informatiques.</li>
+                <ul>
+                    <li><strong>Virus :</strong> Programmes qui se propagent en infectant d'autres fichiers.</li>
+                    <li><strong>Chevaux de Troie :</strong> Logiciels déguisés en applications légitimes qui permettent l'accès à des informations sensibles.</li>
+                    <li><strong>Ransomware :</strong> Logiciels qui bloquent l'accès aux données jusqu'à ce qu'une rançon soit payée.</li>
+                </ul>
+                <li><strong>Phishing :</strong> Tentatives de tromper les utilisateurs pour obtenir des informations sensibles en se faisant passer pour une source fiable, souvent par email.</li>
+                <li><strong>Piraterie informatique :</strong> Accès non autorisé aux systèmes et aux données par des hackers pour voler des informations ou causer des dommages.</li>
+            </ul>
+        
+            <h5>3. Bonnes Pratiques pour la Cybersécurité</h5>
+            <p>Voici quelques pratiques pour assurer votre sécurité en ligne :</p>
+            <ul>
+                <li><strong>Utiliser des mots de passe forts :</strong> Créer des mots de passe longs et complexes, et les changer régulièrement pour éviter les accès non autorisés.</li>
+                <li><strong>Activer l’authentification à deux facteurs :</strong> Ajouter une couche de sécurité supplémentaire en nécessitant un deuxième élément de vérification en plus du mot de passe.</li>
+                <li><strong>Mettre à jour régulièrement les logiciels :</strong> Installer les mises à jour pour corriger les vulnérabilités de sécurité.</li>
+                <li><strong>Être prudent avec les emails et les liens suspects :</strong> Ne pas ouvrir les pièces jointes ou cliquer sur les liens provenant de sources inconnues ou douteuses.</li>
+            </ul>
+        
+            <h4>b) Introduction aux Fake News</h4>
+            <h5>1. Définition des Fake News</h5>
+            <p>Les fake news sont des informations fausses ou trompeuses diffusées comme des nouvelles authentiques. Elles visent à influencer l'opinion publique, créer de la confusion ou générer du trafic pour des sites web.</p>
+        
+            <h5>2. Comment se Propagent les Fake News</h5>
+            <ul>
+                <li><strong>Réseaux sociaux :</strong> Les fake news se répandent rapidement via les partages sur des plateformes comme Facebook, Twitter, et Instagram.</li>
+                <li><strong>Sites web peu fiables :</strong> Certains sites créent des articles sensationnalistes pour attirer des visiteurs et générer des revenus publicitaires.</li>
+            </ul>
+        
+            <h5>3. Conséquences des Fake News</h5>
+            <ul>
+                <li><strong>Désinformation :</strong> Diffuser des fausses informations qui influencent les opinions et les comportements de manière incorrecte.</li>
+                <li><strong>Atteinte à la crédibilité :</strong> Éroder la confiance dans les médias et les institutions.</li>
+                <li><strong>Impact sur les comportements :</strong> Influencer les décisions de vote, les comportements de santé publique, et créer des divisions sociales.</li>
+            </ul>
+        
+            <h5>4. Stratégies pour Identifier les Fake News</h5>
+            <ul>
+                <li><strong>Vérifier les sources :</strong> Les sites fiables ont des normes de qualité, des auteurs vérifiables, et des références.</li>
+                <li><strong>Croiser les informations :</strong> Si plusieurs sources fiables confirment l'information, elle est probablement correcte.</li>
+                <li><strong>Vérifier la date de publication :</strong> Assurez-vous que l'information est actuelle et pertinente.</li>
+                <li><strong>Rechercher des indices de manipulation :</strong> Méfiez-vous des titres accrocheurs, du manque de sources, et des contenus émotionnellement chargés.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Activité : Jeu sur la Vérification des Informations en Ligne</h3>
+            
+            <h4>Objectif de l'Activité :</h4>
+            <p>Mettre en pratique les compétences de vérification des informations et de détection des fake news. Sensibiliser aux dangers des informations trompeuses et aux bonnes pratiques de vérification.</p>
+        
+            <h4>Instructions de l'Activité :</h4>
+            
+            <h5>Étape 1 : Préparation du Jeu</h5>
+            <ol>
+                <li><strong>Formation des groupes :</strong> Divisez la classe en petits groupes de 2 à 3 élèves.</li>
+                <li><strong>Distribution des articles :</strong> Chaque groupe reçoit un ensemble d’articles, comprenant un mélange de fake news et de nouvelles authentiques.</li>
+                <li><strong>But du jeu :</strong> Les groupes doivent déterminer si les articles sont fiables ou non en utilisant les stratégies de vérification apprises.</li>
+            </ol>
+        
+            <h5>Étape 2 : Jeu de Vérification</h5>
+            <ol>
+                <li><strong>Analyse des articles :</strong> Chaque groupe lit les articles et utilise les critères de vérification suivants :</li>
+                <ul>
+                    <li><strong>Source de l'article :</strong> Vérifiez si l'article provient d'une source reconnue et fiable.</li>
+                    <li><strong>Auteur :</strong> Recherchez des informations sur l'auteur pour vérifier son expertise.</li>
+                    <li><strong>Date de publication :</strong> Assurez-vous que l'article est récent et pertinent.</li>
+                    <li><strong>Signes de fake news :</strong> Recherchez des titres accrocheurs, des erreurs factuelles, ou un manque de sources citées.</li>
+                    <li><strong>Vérification croisée :</strong> Utilisez d'autres sources fiables pour confirmer ou infirmer les informations.</li>
+                </ul>
+                <li><strong>Noter les observations :</strong> Les groupes notent si l'article est fiable et les signes de fake news éventuels.</li>
+            </ol>
+        
+            <h5>Étape 3 : Présentation des Résultats et Discussion</h5>
+            <ol>
+                <li><strong>Présentation des conclusions :</strong> Chaque groupe explique pourquoi un article est fiable ou non, en se basant sur leur analyse.</li>
+                <li><strong>Discussion de groupe :</strong> Comparez les conclusions des groupes et notez les points communs ou les divergences dans les analyses.</li>
+                <li><strong>Questions de réflexion :</strong> Discutez de l'importance de la vérification et de l'impact des fake news sur les opinions et les comportements.</li>
+            </ol>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Conseils Pratiques</h3>
+            <p>À la fin de cette séance, vous devriez être en mesure de :</p>
+            <ul>
+                <li>Reconnaître les principales menaces de cybersécurité et adopter des bonnes pratiques pour vous protéger en ligne.</li>
+                <li>Identifier les fake news et comprendre l'importance de vérifier les informations avant de les partager.</li>
+            </ul>
+        </section>
+
+        <section id="session8" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 8 : Les bases de la protection en ligne</h2>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif du cours :</h3>
+            <ul>
+                <li>Comprendre les principes de base de la cybersécurité, y compris les VPN, la création de mots de passe sécurisés et la protection des données personnelles.</li>
+                <li>Apprendre à créer des mots de passe forts et sécurisés.</li>
+                <li>Évaluer les connaissances des élèves sur la cybersécurité à l’aide d’un QCM.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Théorie : Introduction aux VPN, mots de passe sécurisés, et protection des données</h3>
+            
+            <h4>a) Introduction aux VPN (Virtual Private Network)</h4>
+            <h5>Définition :</h5>
+            <p>VPN (Virtual Private Network) est un service qui crée une connexion sécurisée et chiffrée entre votre appareil et un serveur distant.</p>
+            
+            <h5>Objectif :</h5>
+            <p>Protéger votre vie privée en ligne en cachant votre adresse IP et en cryptant vos données.</p>
+            
+            <h5>Pourquoi utiliser un VPN ? :</h5>
+            <ul>
+                <li><strong>Protection de la vie privée :</strong> Empêche le suivi et l’interception des données, en particulier sur les réseaux Wi-Fi publics.</li>
+                <li><strong>Accès sécurisé à des réseaux publics :</strong> Protège vos informations personnelles sur les réseaux publics.</li>
+                <li><strong>Contournement des géo-restrictions :</strong> Permet d'accéder à des contenus restreints dans certaines régions.</li>
+            </ul>
+            
+            <h4>b) Mots de passe sécurisés</h4>
+            <h5>Principes de base :</h5>
+            <ul>
+                <li><strong>Longueur :</strong> Minimum de 12 caractères.</li>
+                <li><strong>Complexité :</strong> Inclure des lettres majuscules, minuscules, chiffres et caractères spéciaux.</li>
+                <li><strong>Unicité :</strong> Utiliser un mot de passe unique pour chaque compte en ligne.</li>
+            </ul>
+            
+            <h5>Pourquoi éviter les mots de passe simples ? :</h5>
+            <ul>
+                <li>Les mots de passe simples sont vulnérables aux attaques par force brute.</li>
+                <li><strong>Exemple :</strong> L3g@nd@!2024$ (bon mot de passe) vs password123 (mauvais mot de passe)</li>
+            </ul>
+            
+            <h4>c) Protection des données</h4>
+            <h5>Principes clés :</h5>
+            <ul>
+                <li><strong>Sensibilisation aux arnaques :</strong> Méfiez-vous des e-mails et liens suspects.</li>
+                <li><strong>Utilisation de l’authentification à deux facteurs (2FA) :</strong> Ajoute une sécurité supplémentaire même si le mot de passe est compromis.</li>
+                <li><strong>Sauvegarde régulière des données :</strong> Sauvegardez régulièrement pour éviter les pertes d'informations.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Activité : Atelier pratique sur la création de mots de passe forts</h3>
+            
+            <h4>Objectif :</h4>
+            <p>Apprendre à créer des mots de passe forts et sécurisés en suivant les bonnes pratiques de sécurité.</p>
+            
+            <h5>Étape 1 : Explication de l'activité</h5>
+            <ol>
+                <li>Rappel des critères : longueur, complexité, imprévisibilité.</li>
+                <li>Introduction à l'activité : création manuelle et utilisation d'un générateur de mots de passe.</li>
+            </ol>
+            
+            <h5>Étape 2 : Création des mots de passe</h5>
+            <ol>
+                <li><strong>Utilisation d'un générateur :</strong> Utiliser des outils en ligne comme LastPass ou Dashlane.</li>
+                <li><strong>Création manuelle :</strong> Créer des mots de passe complexes en utilisant les critères appris.</li>
+            </ol>
+            
+            <h5>Étape 3 : Discussion</h5>
+            <ol>
+                <li><strong>Discussion en groupe :</strong> Partage des stratégies de création de mots de passe forts.</li>
+                <li><strong>Vérification de la force des mots de passe :</strong> Utilisation d'outils en ligne pour tester la robustesse des créations.</li>
+            </ol>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Conseils Pratiques</h3>
+            <p>À la fin de cette séance, vous devriez être en mesure de :</p>
+            <ul>
+                <li>Comprendre l'importance des VPN pour la protection en ligne.</li>
+                <li>Créer des mots de passe sécurisés et uniques.</li>
+                <li>Adopter des pratiques de protection des données personnelles en ligne.</li>
+            </ul>
+        </section>
+
+        <section id="session9" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 9 : Révisions et Grand QCM récapitulatif</h2>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif :</h3>
+            <ul>
+                <li>Réviser les notions-clés abordées : Internet, le Web, protocoles et cybersécurité.</li>
+                <li>Évaluer la compréhension des élèves à travers un grand QCM récapitulatif.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Introduction et Objectifs</h3>
+            
+            <h4>Objectif de la séance :</h4>
+            <ul>
+                <li>Revoir les concepts clés étudiés.</li>
+                <li>Préparer à l’évaluation finale à l’aide d’un quiz interactif et d’un grand QCM récapitulatif.</li>
+            </ul>
+            
+            <h4>Introduction :</h4>
+            <h5>1. Rappel des principaux thèmes</h5>
+            <ul>
+                <li><strong>Internet et le Web :</strong> 
+                    <ul>
+                        <li><strong>Différences :</strong> Internet est le réseau mondial physique, tandis que le Web est un système de pages accessibles via Internet.</li>
+                        <li><strong>Fonctionnement :</strong> Internet permet la communication entre appareils, et le Web utilise ce réseau pour afficher des sites web.</li>
+                        <li><strong>Protocoles :</strong> HTTP et HTTPS pour la communication entre serveurs web et navigateurs.</li>
+                    </ul>
+                </li>
+                <li><strong>Protocoles de communication :</strong>
+                    <ul>
+                        <li><strong>HTTP (HyperText Transfer Protocol) :</strong> Protocole de base pour la transmission de données sur le Web.</li>
+                        <li><strong>HTTPS (HyperText Transfer Protocol Secure) :</strong> Version sécurisée de HTTP, utilisant le chiffrement pour protéger les données.</li>
+                        <li><strong>VPN (Virtual Private Network) :</strong> Technologie qui crée un tunnel sécurisé pour protéger les données et masquer l’adresse IP.</li>
+                    </ul>
+                </li>
+                <li><strong>Cybersécurité :</strong>
+                    <ul>
+                        <li><strong>Création de mots de passe forts :</strong> Importance de choisir des mots de passe complexes et uniques.</li>
+                        <li><strong>Authentification à deux facteurs (2FA) :</strong> Méthode de sécurité ajoutant une couche de vérification supplémentaire.</li>
+                        <li><strong>Protection des données :</strong> Stratégies pour sécuriser les informations personnelles.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Explication de l’activité</h3>
+            
+            <h4>Quiz interactif :</h4>
+            <ul>
+                <li><strong>But :</strong> Réviser les notions-clés de manière engageante et dynamique.</li>
+                <li><strong>Méthode :</strong> Participer à un quiz interactif pour tester vos connaissances.</li>
+            </ul>
+            
+            <h4>Grand QCM :</h4>
+            <ul>
+                <li><strong>But :</strong> Évaluer votre compréhension globale sur les thèmes du trimestre.</li>
+                <li><strong>Méthode :</strong> Répondre à un grand QCM récapitulatif couvrant les principaux concepts abordés.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Quiz interactif de révision</h3>
+            
+            <h4>But de l’activité :</h4>
+            <p>Réviser les notions abordées durant le trimestre de manière dynamique et engageante pour renforcer la compréhension des concepts clés.</p>
+            
+            <h4>Matériel nécessaire :</h4>
+            <ul>
+                <li>Feuilles et stylos</li>
+            </ul>
+            
+            <h4>Déroulement de l’activité :</h4>
+            <h5>a) Introduction au Quiz</h5>
+            <p><strong>Présentation de l’activité :</strong> Réviser les sujets clés du trimestre.</p>
+            <p><strong>Thèmes abordés :</strong></p>
+            <ul>
+                <li>Différences entre Internet et le Web.</li>
+                <li>Fonctionnement des protocoles HTTP et HTTPS.</li>
+                <li>Concepts de cybersécurité comme les mots de passe forts et l'authentification à deux facteurs.</li>
+            </ul>
+            
+            <h4>1. Différences entre Internet et le Web</h4>
+            <p><strong>Objectif :</strong> Évaluer votre compréhension sur les différences fondamentales entre Internet et le Web.</p>
+            <ul>
+                <li>Question 1 : Quelle est la principale différence entre Internet et le Web ?
+                    <ul>
+                        <li>a) Internet est un réseau physique, tandis que le Web est un système de pages liées.</li>
+                        <li>b) Le Web est un réseau physique, tandis qu'Internet est un système de pages liées.</li>
+                        <li>c) Internet et le Web sont des synonymes.</li>
+                        <li>d) Internet est une application Web, tandis que le Web est un réseau physique.</li>
+                    </ul>
+                </li>
+                <li>Question 2 : Le Web fait partie de l’Internet. Vrai ou Faux ?
+                    <ul>
+                        <li>a) Vrai</li>
+                        <li>b) Faux</li>
+                    </ul>
+                </li>
+                <li>Question 3 : Internet permet à des ordinateurs de communiquer entre eux. Comment appelle-t-on ce type de réseau mondial ?
+                    <ul>
+                        <li>a) Réseau local</li>
+                        <li>b) Réseau mondial</li>
+                        <li>c) Réseau de pages</li>
+                        <li>d) Réseau social</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h4>2. Fonctionnement des protocoles HTTP et HTTPS</h4>
+            <p><strong>Objectif :</strong> Vérifier si vous comprenez la différence entre HTTP et HTTPS et leur utilité dans la sécurité des connexions web.</p>
+            <ul>
+                <li>Question 1 : Quel protocole est utilisé pour une connexion sécurisée ?
+                    <ul>
+                        <li>a) HTTP</li>
+                        <li>b) FTP</li>
+                        <li>c) HTTPS</li>
+                        <li>d) SMTP</li>
+                    </ul>
+                </li>
+                <li>Question 2 : Quelle est la principale différence entre HTTP et HTTPS ?
+                    <ul>
+                        <li>a) HTTP crypte les données, tandis que HTTPS ne les crypte pas.</li>
+                        <li>b) HTTPS crypte les données, tandis que HTTP ne les crypte pas.</li>
+                        <li>c) HTTP utilise le protocole de sécurité SSL, tandis que HTTPS utilise TLS.</li>
+                        <li>d) Il n’y a pas de différence, les deux sont sécurisés.</li>
+                    </ul>
+                </li>
+                <li>Question 3 : Que signifie le cadenas visible dans la barre d’adresse d’un navigateur lorsque vous visitez un site web ?
+                    <ul>
+                        <li>a) Le site est sécurisé par le protocole HTTPS.</li>
+                        <li>b) Le site est gratuit.</li>
+                        <li>c) Le site utilise un VPN pour masquer votre adresse IP.</li>
+                        <li>d) Le site est populaire et vérifié.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h4>3. Concepts de cybersécurité</h4>
+            <p><strong>Objectif :</strong> Tester votre compréhension sur la sécurité en ligne, la création de mots de passe forts, l’utilisation de VPN et l’authentification à deux facteurs.</p>
+            <ul>
+                <li>Question 1 : Quelle est une caractéristique d’un mot de passe fort ?
+                    <ul>
+                        <li>a) Il est simple et facile à mémoriser.</li>
+                        <li>b) Il contient uniquement des lettres.</li>
+                        <li>c) Il contient des lettres majuscules, minuscules, chiffres et symboles.</li>
+                        <li>d) Il contient moins de 8 caractères.</li>
+                    </ul>
+                </li>
+                <li>Question 2 : Pourquoi est-il important de ne pas utiliser le même mot de passe pour plusieurs comptes ?
+                    <ul>
+                        <li>a) Cela améliore la vitesse de connexion.</li>
+                        <li>b) Cela réduit le risque de piratage multiple si un compte est compromis.</li>
+                        <li>c) Cela économise de la mémoire.</li>
+                        <li>d) Cela rend les mots de passe plus courts.</li>
+                    </ul>
+                </li>
+                <li>Question 3 : Quelle méthode permet de renforcer la sécurité d’un compte en ligne ?
+                    <ul>
+                        <li>a) Utiliser un mot de passe simple.</li>
+                        <li>b) Utiliser un VPN.</li>
+                        <li>c) Utiliser l’authentification à deux facteurs (2FA).</li>
+                        <li>d) Utiliser un navigateur en mode incognito.</li>
+                    </ul>
+                </li>
+                <li>Question 4 : Qu’est-ce qu’un VPN ?
+                    <ul>
+                        <li>a) Un réseau privé virtuel qui masque l’adresse IP et sécurise les données.</li>
+                        <li>b) Un logiciel antivirus.</li>
+                        <li>c) Une méthode pour bloquer les publicités.</li>
+                        <li>d) Un protocole pour partager des fichiers.</li>
+                    </ul>
+                </li>
+                <li>Question 5 : Quelle mesure supplémentaire peut améliorer la sécurité de vos données sur un réseau Wi-Fi public ?
+                    <ul>
+                        <li>a) Désactiver le Wi-Fi.</li>
+                        <li>b) Utiliser un VPN.</li>
+                        <li>c) Partager le réseau avec d’autres utilisateurs.</li>
+                        <li>d) Naviguer en mode incognito.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">4. Grand QCM récapitulatif (20 questions)</h3>
+            
+            <h4>But de l’activité :</h4>
+            <p>Évaluer votre compréhension sur les thèmes abordés : Internet, le Web, protocoles, cybersécurité.</p>
+            
+            <h4>Matériel nécessaire :</h4>
+            <ul>
+                <li>Feuilles et stylos</li>
+            </ul>
+            
+            <h4>Déroulement de l’activité :</h4>
+            <p>Répondre aux 20 questions du QCM pour tester votre compréhension globale des concepts étudiés.</p>
+        </section>
+
+        <section id="session10" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 10 : Introduction aux réseaux sociaux</h2>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif du cours :</h3>
+            <ul>
+                <li>Comprendre le rôle et le fonctionnement des réseaux sociaux.</li>
+                <li>Explorer les différentes plateformes de réseaux sociaux et leur impact sur la communication et les interactions sociales.</li>
+                <li>Encourager les élèves à partager leurs expériences personnelles avec les réseaux sociaux.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Théorie : Qu'est-ce qu'un réseau social ?</h3>
+            
+            <h4>Définition :</h4>
+            <p>Un réseau social est une plateforme en ligne qui permet aux utilisateurs de se connecter avec d'autres personnes, de partager des informations et de participer à des communautés. Ces plateformes sont conçues pour faciliter la communication, l'échange d'idées, et la création de liens sociaux.</p>
+            
+            <h4>Rôle des réseaux sociaux :</h4>
+            <ul>
+                <li><strong>Connectivité :</strong> Permet de maintenir des liens avec des amis, la famille, et des personnes partageant des centres d'intérêt, peu importe la distance géographique.</li>
+                <li><strong>Partage d'informations :</strong> Les utilisateurs peuvent partager des mises à jour personnelles, des photos, des vidéos, des articles, et d'autres contenus pour informer, divertir ou inspirer leur réseau.</li>
+                <li><strong>Engagement social :</strong> Les réseaux sociaux offrent des espaces pour échanger des idées, discuter de sujets d'actualité et participer à des mouvements sociaux.</li>
+                <li><strong>Expression de soi :</strong> Les utilisateurs peuvent créer des profils et pages personnalisés qui reflètent leur personnalité, leurs intérêts, et leurs valeurs.</li>
+                <li><strong>Plateforme pour les entreprises et les marques :</strong> Les réseaux sociaux sont aussi des outils de marketing pour les entreprises qui souhaitent atteindre un large public, promouvoir leurs produits, et interagir avec les clients.</li>
+                <li><strong>Accès à l'information :</strong> Les réseaux sociaux permettent de suivre les dernières nouvelles, tendances, et de recevoir des informations en temps réel.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Activité : Présentation d'un réseau social</h3>
+            
+            <h4>Objectif de l'activité :</h4>
+            <p>Cette activité vise à encourager les élèves à réfléchir sur l'utilisation des réseaux sociaux et à partager leurs expériences personnelles. Cela leur permettra également de découvrir différents réseaux sociaux et leurs particularités.</p>
+            
+            <h5>Instructions :</h5>
+            <ol>
+                <li><strong>Préparation :</strong> Chaque élève choisit un réseau social qu'il utilise régulièrement, par exemple : Facebook, Instagram, TikTok, Twitter, Snapchat, LinkedIn, etc.</li>
+                <li><strong>Présentation :</strong> L'élève présente en quelques minutes le réseau social choisi, en abordant les points suivants :</li>
+                <ul>
+                    <li><strong>Nom et description :</strong> Nom du réseau social, date de création, et une brève description de la plateforme.</li>
+                    <li><strong>Principales fonctionnalités :</strong> Quels types de contenu peuvent être partagés (photos, vidéos, stories, messages privés, etc.) ? Quelles sont les options d'interaction (commentaires, likes, partages, etc.) ?</li>
+                    <li><strong>Raisons de son utilisation :</strong> Pourquoi utilise-t-il ce réseau social ? Qu'est-ce qui le rend attractif (connectivité, fonctionnalités spécifiques, accès à l'information, etc.) ?</li>
+                    <li><strong>Aspects positifs :</strong> Quels sont, selon lui, les avantages de cette plateforme (par exemple, facilité d'utilisation, diversité du contenu, connectivité) ?</li>
+                    <li><strong>Aspects négatifs :</strong> Quels sont les inconvénients ou les aspects problématiques (risques pour la vie privée, risque de dépendance, diffusion de fake news) ?</li>
+                </ul>
+                <li><strong>Discussion :</strong> Après chaque présentation, les autres élèves peuvent poser des questions ou partager leurs propres expériences avec le réseau social présenté. Cette discussion permet d'explorer différents points de vue et d'approfondir la compréhension de chaque plateforme.</li>
+            </ol>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Points Clés</h3>
+            <p>À la fin de cette séance, les élèves devraient :</p>
+            <ul>
+                <li>Avoir une compréhension des principaux réseaux sociaux et de leur fonctionnement.</li>
+                <li>Reconnaître l'importance des réseaux sociaux dans la communication moderne.</li>
+                <li>Être conscient des avantages et des risques associés à l'utilisation des réseaux sociaux.</li>
+                <li>Apprécier la diversité des expériences et des perceptions des réseaux sociaux parmi leurs pairs.</li>
+            </ul>
+        </section>
+
+        <section id="session11" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 11 : Les algorithmes derrière les réseaux sociaux</h2>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif du cours :</h3>
+            <ul>
+                <li>Comprendre comment les réseaux sociaux personnalisent les contenus pour chaque utilisateur.</li>
+                <li>Découvrir les bases des algorithmes de recommandation utilisés par les plateformes sociales.</li>
+                <li>Expérimenter la création d'un mini-algorithme de recommandation pour mieux appréhender son fonctionnement.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Théorie : Algorithmes de recommandation sur les réseaux sociaux</h3>
+            
+            <h4>Définition des algorithmes de recommandation :</h4>
+            <p>Les algorithmes de recommandation sont des systèmes qui permettent aux réseaux sociaux de proposer des contenus personnalisés aux utilisateurs, en se basant sur leurs interactions passées, leurs préférences, et leurs centres d'intérêt. Ils analysent de grandes quantités de données pour sélectionner les publications, vidéos, et publicités les plus pertinentes pour chaque personne.</p>
+            
+            <h4>Fonctionnement des algorithmes :</h4>
+            <ul>
+                <li><strong>Collecte de données :</strong> Les plateformes collectent des informations sur les interactions des utilisateurs (likes, partages, commentaires, temps passé sur un post, etc.).</li>
+                <li><strong>Analyse des comportements :</strong> Ces données sont ensuite analysées pour déterminer les préférences de chaque utilisateur, en fonction des contenus et des profils avec lesquels ils interagissent le plus souvent.</li>
+                <li><strong>Personnalisation des contenus :</strong> En fonction de l’analyse, les algorithmes décident quels contenus apparaîtront dans le fil d'actualité de l'utilisateur. Les publications susceptibles de retenir leur attention sont mises en avant.</li>
+                <li><strong>Rétroaction :</strong> Les réactions aux contenus recommandés influencent continuellement l'algorithme, qui s'ajuste pour améliorer ses recommandations.</li>
+            </ul>
+            
+            <h4>Exemples d'algorithmes courants sur les réseaux sociaux :</h4>
+            <ul>
+                <li><strong>Algorithme de Facebook :</strong> Priorise les publications de vos amis proches et des groupes auxquels vous appartenez, tout en utilisant l'engagement passé pour déterminer l'intérêt probable d'un contenu.</li>
+                <li><strong>Algorithme de TikTok :</strong> Analyse les vidéos avec lesquelles vous interagissez et recommande des vidéos similaires, souvent issues de comptes que vous ne suivez pas encore.</li>
+                <li><strong>Algorithme de YouTube :</strong> Recommande des vidéos basées sur votre historique de visionnage, vos abonnements et des vidéos populaires sur la plateforme.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Activité : Imaginer un mini-algorithme de recommandation</h3>
+            
+            <h4>Objectif de l'activité :</h4>
+            <p>Comprendre les bases de la personnalisation des contenus en imaginant un mini-algorithme de recommandation pour une plateforme fictive. Cela permet aux élèves d'appréhender comment les données sont utilisées pour influencer ce qu'ils voient en ligne.</p>
+            
+            <h5>Instructions :</h5>
+            <ol>
+                <li><strong>Choisir une plateforme fictive :</strong> Imaginez un réseau social de votre choix (par exemple, une plateforme de partage de musique, de vidéos ou de photos).</li>
+                <li><strong>Définir les données à utiliser :</strong> Décidez quelles données seront collectées pour personnaliser les contenus (par exemple, types de contenus aimés, profils suivis, temps passé sur chaque contenu).</li>
+                <li><strong>Établir des critères de recommandation :</strong> Choisissez les critères que votre algorithme utilisera pour proposer des contenus (par exemple, recommandation de contenus similaires à ceux aimés, suggestion de nouveaux profils basés sur les abonnements existants).</li>
+                <li><strong>Imaginer le processus de recommandation :</strong> Décrivez comment votre algorithme fonctionnera en expliquant les étapes que l'algorithme suivra pour personnaliser le contenu. Par exemple :</li>
+                <ul>
+                    <li><em>Étape 1 :</em> Analyser les cinq derniers contenus avec lesquels l'utilisateur a interagi.</li>
+                    <li><em>Étape 2 :</em> Trouver des contenus similaires provenant d'autres utilisateurs qui aiment les mêmes types de contenus.</li>
+                    <li><em>Étape 3 :</em> Prioriser les contenus provenant de nouveaux profils pour diversifier les recommandations.</li>
+                </ul>
+                <li><strong>Présentation et discussion :</strong> Chaque élève présente son mini-algorithme, expliquant ses choix et les critères utilisés. Ensuite, une discussion de groupe permet de comparer les différentes approches et d'explorer les conséquences potentielles de ces choix sur la diversité des contenus et l'expérience utilisateur.</li>
+            </ol>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Points Clés</h3>
+            <p>À la fin de cette séance, les élèves devraient :</p>
+            <ul>
+                <li>Comprendre les bases du fonctionnement des algorithmes de recommandation sur les réseaux sociaux.</li>
+                <li>Savoir comment les données personnelles sont utilisées pour personnaliser les contenus en ligne.</li>
+                <li>Être conscients de l'impact que ces algorithmes peuvent avoir sur la diversité des informations et des points de vue auxquels ils sont exposés.</li>
+                <li>Avoir une première expérience dans la conception d'un algorithme de recommandation simple, en comprenant les implications des choix faits lors de sa création.</li>
+            </ul>
+        </section>
+
+        <section id="session12" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 12 : Les dangers des réseaux sociaux (privacy, harcèlement)</h2>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif du cours :</h3>
+            <ul>
+                <li>Comprendre les risques liés à l'utilisation des réseaux sociaux, en particulier en ce qui concerne la protection de la vie privée et le cyberharcèlement.</li>
+                <li>Encourager les élèves à réfléchir et à débattre sur les dangers potentiels des réseaux sociaux.</li>
+                <li>Évaluer les connaissances des élèves à travers un QCM sur les réseaux sociaux, les algorithmes de recommandation, et la vie privée en ligne.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Théorie : Introduction à la protection de la vie privée et au cyberharcèlement</h3>
+            
+            <h4>Protection de la vie privée :</h4>
+            <p>La protection de la vie privée en ligne consiste à contrôler quelles informations personnelles sont partagées sur les réseaux sociaux et comment elles sont utilisées par d'autres utilisateurs, ainsi que par les plateformes elles-mêmes.</p>
+            <ul>
+                <li><strong>Données personnelles :</strong> Informations comme le nom, la date de naissance, l’adresse, les photos, et les habitudes de navigation, qui peuvent être collectées par les réseaux sociaux.</li>
+                <li><strong>Paramètres de confidentialité :</strong> Les réseaux sociaux offrent des paramètres permettant de contrôler qui peut voir vos informations. Il est important de bien configurer ces paramètres pour limiter l'accès non désiré.</li>
+                <li><strong>Risques liés aux données :</strong> Les informations partagées en ligne peuvent être utilisées pour du profilage, de la publicité ciblée, ou même vendues à des tiers sans consentement explicite.</li>
+                <li><strong>Conseils pour protéger la vie privée :</strong> Réduire la quantité d'informations personnelles partagées, utiliser des mots de passe forts, activer l'authentification à deux facteurs et surveiller les paramètres de confidentialité.</li>
+            </ul>
+            
+            <h4>Cyberharcèlement :</h4>
+            <p>Le cyberharcèlement inclut toutes les formes de harcèlement effectuées par le biais des plateformes en ligne, que ce soit des menaces, des moqueries, ou la diffusion d'informations personnelles sans consentement.</p>
+            <ul>
+                <li><strong>Formes de cyberharcèlement :</strong> Messages haineux, commentaires humiliants, diffusion de rumeurs, usurpation d’identité, et publication de photos ou vidéos embarrassantes.</li>
+                <li><strong>Conséquences :</strong> Le cyberharcèlement peut entraîner du stress, de l'anxiété, une perte de confiance en soi, et, dans certains cas, des répercussions graves sur la santé mentale.</li>
+                <li><strong>Rôle des témoins :</strong> Les témoins de cyberharcèlement peuvent signaler les abus et offrir leur soutien aux victimes. Ne pas rester passif est essentiel pour aider à combattre ce phénomène.</li>
+                <li><strong>Que faire en cas de cyberharcèlement :</strong> Bloquer et signaler les harceleurs, garder des preuves (captures d'écran), et en parler à un adulte ou à des professionnels pour obtenir de l'aide.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Activité : Débats en groupes autour des dangers liés aux réseaux sociaux</h3>
+            
+            <h4>Objectif de l'activité :</h4>
+            <p>Encourager les élèves à discuter des risques et à partager leurs points de vue sur la protection de la vie privée et le cyberharcèlement sur les réseaux sociaux. Cette activité aide à sensibiliser et à mieux comprendre les effets de ces dangers.</p>
+            
+            <h5>Instructions :</h5>
+            <ol>
+                <li><strong>Formation des groupes :</strong> Divisez la classe en petits groupes de 4 à 5 élèves. Chaque groupe aura un sujet spécifique lié aux dangers des réseaux sociaux à débattre.</li>
+                <li><strong>Sujets de débat possibles :</strong></li>
+                <ul>
+                    <li>Les avantages et les inconvénients des réseaux sociaux en matière de vie privée.</li>
+                    <li>Le rôle des plateformes dans la prévention du cyberharcèlement.</li>
+                    <li>Les algorithmes de recommandation et leur impact sur le bien-être mental des utilisateurs.</li>
+                    <li>Les mesures que les utilisateurs peuvent prendre pour se protéger contre le cyberharcèlement.</li>
+                </ul>
+                <li><strong>Déroulement du débat :</strong> Chaque groupe discute du sujet pendant environ 10-15 minutes, puis partage ses conclusions avec le reste de la classe. Encouragez un échange respectueux et ouvert des opinions.</li>
+                <li><strong>Discussion en groupe :</strong> Après les présentations, une discussion générale est menée pour comparer les points de vue et les arguments avancés par chaque groupe.</li>
+            </ol>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. QCM : Sur les réseaux sociaux, les algorithmes de recommandation, et la vie privée en ligne</h3>
+            
+            <h4>Objectif du QCM :</h4>
+            <p>Évaluer les connaissances des élèves sur les concepts abordés, incluant la vie privée, les algorithmes de recommandation, et le cyberharcèlement sur les réseaux sociaux.</p>
+            
+            <h5>Format du QCM :</h5>
+            <ul>
+                <li>10 questions à choix multiple sur les sujets suivants :</li>
+                <ul>
+                    <li>Le fonctionnement et l'impact des algorithmes de recommandation.</li>
+                    <li>Les stratégies de protection de la vie privée sur les réseaux sociaux.</li>
+                    <li>Les différentes formes de cyberharcèlement et leurs conséquences.</li>
+                </ul>
+                <li>Chaque question propose quatre réponses possibles, dont une seule est correcte.</li>
+                <li>Les élèves complètent le QCM individuellement pour tester leur compréhension des notions discutées.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Points Clés</h3>
+            <p>À la fin de cette séance, les élèves devraient être en mesure de :</p>
+            <ul>
+                <li>Comprendre les dangers potentiels des réseaux sociaux en termes de vie privée et de cyberharcèlement.</li>
+                <li>Développer des stratégies pour protéger leur vie privée et éviter le cyberharcèlement.</li>
+                <li>Être conscient des algorithmes de recommandation et de leur influence sur les interactions en ligne.</li>
+                <li>Reconnaître l'importance de signaler et de prendre des mesures contre le cyberharcèlement.</li>
+            </ul>
+        </section>
+
+        <section id="session13" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 13 : Introduction aux données numériques</h2>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif du cours :</h3>
+            <ul>
+                <li>Sensibiliser à l'importance de la gestion des données personnelles.</li>
+                <li>Comprendre ce qu’est une donnée numérique et comment elle est collectée.</li>
+                <li>Prendre conscience des types de données que les appareils personnels, comme les téléphones, collectent.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Théorie : Qu'est-ce qu'une donnée numérique ?</h3>
+            
+            <h4>Définition :</h4>
+            <p>Une donnée numérique est une information qui est stockée ou traitée électroniquement. Elle peut inclure des éléments comme des textes, des images, des vidéos, des enregistrements audio, et bien plus, qui sont tous représentés sous forme binaire (suite de 0 et de 1).</p>
+            
+            <h4>Types de données numériques :</h4>
+            <ul>
+                <li><strong>Données personnelles :</strong> Informations qui identifient directement ou indirectement une personne, comme le nom, l'adresse, l'email, le numéro de téléphone, ou encore la localisation.</li>
+                <li><strong>Données de comportement :</strong> Informations relatives à l'activité d'un utilisateur, comme les sites visités, les clics effectués, les applications utilisées, ou les préférences.</li>
+                <li><strong>Données transactionnelles :</strong> Données relatives aux achats, paiements, et interactions financières.</li>
+                <li><strong>Données sensibles :</strong> Informations plus protégées, comme les données de santé, les informations financières, ou les identifiants biométriques.</li>
+            </ul>
+            
+            <h4>Comment les données numériques sont-elles collectées ?</h4>
+            <p>Les données numériques sont collectées par différents moyens et dispositifs au quotidien :</p>
+            <ul>
+                <li><strong>Sites web et applications :</strong> Les sites et applications collectent des données à travers les formulaires d'inscription, les cookies, les historiques de navigation, et d'autres outils de suivi.</li>
+                <li><strong>Dispositifs mobiles :</strong> Les téléphones collectent des données par les capteurs (GPS, accéléromètre, gyroscope), et les interactions de l'utilisateur (messages, appels, photos).</li>
+                <li><strong>Objets connectés :</strong> De plus en plus d'appareils domestiques (montres, assistants vocaux, caméras) collectent et transmettent des données sur leur utilisation.</li>
+                <li><strong>Médias sociaux :</strong> Les réseaux sociaux recueillent des informations sur les interactions, les préférences, et les connexions des utilisateurs.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Activité : Explorer les données collectées par son propre téléphone</h3>
+            
+            <h4>Objectif de l'activité :</h4>
+            <p>Aider les élèves à identifier les données personnelles collectées par leur téléphone et à prendre conscience des paramètres de confidentialité disponibles pour les protéger.</p>
+            
+            <h5>Instructions :</h5>
+            <ol>
+                <li><strong>Accéder aux paramètres de confidentialité :</strong> Demander aux élèves de se rendre dans les paramètres de leur téléphone et de trouver les options de confidentialité ou de gestion des données.</li>
+                <li><strong>Explorer les types de données collectées :</strong> Ils doivent observer les types de données auxquelles les applications accèdent. Cela inclut :</li>
+                <ul>
+                    <li><strong>Localisation :</strong> Quelles applications utilisent la géolocalisation et pourquoi ?</li>
+                    <li><strong>Contacts et calendrier :</strong> Quelles applications accèdent aux contacts et au calendrier ?</li>
+                    <li><strong>Caméra et micro :</strong> Quelles applications peuvent accéder à la caméra et au micro ?</li>
+                    <li><strong>Données d'utilisation :</strong> Quels paramètres montrent les données d'utilisation ou d'activité collectées par le téléphone ?</li>
+                </ul>
+                <li><strong>Réfléchir aux implications :</strong> Encourager les élèves à noter ce qu’ils découvrent et à réfléchir sur l'importance de chaque type de données. Ils devraient également se poser des questions sur la pertinence des accès accordés à certaines applications.</li>
+                <li><strong>Ajuster les paramètres :</strong> Les élèves peuvent explorer comment modifier les paramètres de confidentialité pour limiter l'accès aux données et mieux protéger leurs informations personnelles.</li>
+            </ol>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Points Clés</h3>
+            <p>À la fin de cette séance, les élèves devraient :</p>
+            <ul>
+                <li>Avoir une compréhension de base des données numériques et de leurs méthodes de collecte.</li>
+                <li>Être capables d'identifier les données personnelles collectées par leurs propres appareils.</li>
+                <li>Savoir comment ajuster les paramètres de confidentialité pour protéger leurs données personnelles.</li>
+                <li>Prendre conscience de l'importance de gérer activement leurs données personnelles pour garantir leur sécurité en ligne.</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2024 Programme NSI 1ere</p>
+    </footer> -->
+
+    <script>
+        const holidays = {
+            '2024-11-11': 'Armistice 1918',
+            '2024-12-25': 'Noël',
+            '2025-01-01': 'Jour de l\'An',
+            '2025-04-21': 'Lundi de Pâques',
+            '2025-05-01': 'Fête du Travail',
+            '2025-05-08': 'Victoire 1945',
+            '2025-05-29': 'Ascension',
+            '2025-06-09': 'Lundi de Pentecôte'
+        };
+
+        const vacations = [
+            { start: '2024-10-19', end: '2024-11-03', name: 'Vacances de la Toussaint' },
+            { start: '2024-12-21', end: '2025-01-05', name: 'Vacances de Noël' },
+            { start: '2025-02-22', end: '2025-03-09', name: 'Vacances d\'hiver' },
+            { start: '2025-04-19', end: '2025-05-04', name: 'Vacances de printemps' },
+            { start: '2025-07-05', end: '2025-09-02', name: 'Vacances d\'été' }
+        ];
+
+        const sessions = [
+            'Séance 1 : Introduction à la SNT',
+            'Séance 2 : Histoire et définition d\'Internet',
+            'Séance 3 : Fonctionnement du Web et des Sites Web + QCM',
+            'Séance 4 : Les Protocoles Réseau (HTTP/HTTPS)',
+            'Séance 5 : Exploration des moteurs de recherche',
+            'Séance 6 : Les algorithmes de recherche +QCM',
+            'Séance 7 : Les dangers du Web - Cybersécurité et Fake News',
+            'Séance 8 : Les bases de la protection en ligne + QCM',
+            'Séance 9 : Révisions et Grand QCM récapitulatif + Quiz + QCM',
+            'Séance 10 : Introduction aux réseaux sociaux',
+            'Séance 11 : Les algorithmes derrière les réseaux sociaux',
+            'Séance 12 : Les dangers des réseaux sociaux (privacy, harcèlement) + QCM',
+            'Séance 13 : Introduction aux données numériques'
+        ];
+
+        function isHoliday(date) {
+            return holidays[date] !== undefined;
+        }
+
+        function isInVacation(date) {
+            const parsedDate = new Date(date);
+            return vacations.some(vacation => {
+                const startDate = new Date(vacation.start);
+                const endDate = new Date(vacation.end);
+                return parsedDate >= startDate && parsedDate <= endDate;
+            });
+        }
+
+        function getVacationName(date) {
+            const parsedDate = new Date(date);
+            const vacation = vacations.find(vacation => {
+                const startDate = new Date(vacation.start);
+                const endDate = new Date(vacation.end);
+                return parsedDate >= startDate && parsedDate <= endDate;
+            });
+            return vacation ? vacation.name : '';
+        }
+
+        function formatFrenchDate(date) {
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return new Date(date).toLocaleDateString('fr-FR', options);
+        }
+
+        function isCurrentWeek(date) {
+            const currentDate = new Date();
+            const firstDayOfWeek = new Date(date);
+            const lastDayOfWeek = new Date(firstDayOfWeek);
+            lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
+            return currentDate >= firstDayOfWeek && currentDate <= lastDayOfWeek;
+        }
+
+        function isToday(date) {
+            const today = new Date().toISOString().split('T')[0];
+            return today === date;
+        }
+
+        function generateCalendar() {
+            const calendarBody = document.getElementById('calendar-body');
+            const startDate = new Date('2024-09-06');  // Commence le vendredi 6 septembre
+            const endDate = new Date('2025-07-12');
+            
+            let currentDate = startDate;
+            let sessionIndex = 0;
+            let firstLine = true; // Pour gérer le premier vendredi seul
+            let displayThursday = true; // Alterne l'affichage des jeudis
+
+            while (currentDate <= endDate) {
+                const row = document.createElement('tr');
+
+                if (firstLine) {
+                    // Première ligne : uniquement le vendredi
+                    const fridayDateString = currentDate.toISOString().split('T')[0];
+                    const fridayCell = document.createElement('td');
+                    const fridayDescCell = document.createElement('td');
+                    
+                    fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+                    if (isHoliday(fridayDateString)) {
+                        fridayDescCell.textContent = holidays[fridayDateString];
+                        fridayCell.classList.add('holiday');
+                        fridayDescCell.classList.add('holiday');
+                    } else if (isInVacation(fridayDateString)) {
+                        fridayDescCell.textContent = getVacationName(fridayDateString);
+                        row.classList.add('vacation');
+                    } else {
+                        fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+                        sessionIndex++;
+                    }
+
+                    if (isToday(fridayDateString)) {
+                        fridayCell.classList.add('today');
+                        fridayDescCell.classList.add('today');
+                    }
+
+                    // Cellules vides pour jeudi
+                    row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
+                    row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+                    row.appendChild(fridayCell);
+                    row.appendChild(fridayDescCell);
+
+                    // Passer au jeudi suivant
+                    currentDate.setDate(currentDate.getDate() + 6);
+                    firstLine = false;
+                } else {
+                    // Ligne suivante : jeudi et vendredi (alternance pour jeudi)
+                    if (displayThursday) {
+                        // Affiche le jeudi
+                        const thursdayDateString = currentDate.toISOString().split('T')[0];
+                        const thursdayCell = document.createElement('td');
+                        const thursdayDescCell = document.createElement('td');
+                        
+                        thursdayCell.textContent = formatFrenchDate(thursdayDateString);
+
+                        if (isHoliday(thursdayDateString)) {
+                            thursdayDescCell.textContent = holidays[thursdayDateString];
+                            thursdayCell.classList.add('holiday');
+                            thursdayDescCell.classList.add('holiday');
+                        } else if (isInVacation(thursdayDateString)) {
+                            thursdayDescCell.textContent = getVacationName(thursdayDateString);
+                            row.classList.add('vacation');
+                        } else {
+                            thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+                            sessionIndex++;
+                        }
+
+                        if (isToday(thursdayDateString)) {
+                            thursdayCell.classList.add('today');
+                            thursdayDescCell.classList.add('today');
+                        }
+
+                        row.appendChild(thursdayCell);
+                        row.appendChild(thursdayDescCell);
+                    } else {
+                        // Si jeudi est sauté, ajoute des cellules vides
+                        row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
+                        row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+                    }
+
+                    // Passe au vendredi
+                    currentDate.setDate(currentDate.getDate() + 1);
+                    const fridayDateString = currentDate.toISOString().split('T')[0];
+                    const fridayCell = document.createElement('td');
+                    const fridayDescCell = document.createElement('td');
+                    
+                    fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+                    if (isHoliday(fridayDateString)) {
+                        fridayDescCell.textContent = holidays[fridayDateString];
+                        fridayCell.classList.add('holiday');
+                        fridayDescCell.classList.add('holiday');
+                    } else if (isInVacation(fridayDateString)) {
+                        fridayDescCell.textContent = getVacationName(fridayDateString);
+                        row.classList.add('vacation');
+                    } else {
+                        fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+                        sessionIndex++;
+                    }
+
+                    if (isToday(fridayDateString)) {
+                        fridayCell.classList.add('today');
+                        fridayDescCell.classList.add('today');
+                    }
+
+                    row.appendChild(fridayCell);
+                    row.appendChild(fridayDescCell);
+
+                    // Passe au jeudi suivant (saute un jeudi sur deux)
+                    currentDate.setDate(currentDate.getDate() + 6);
+                    displayThursday = !displayThursday; // Alterne l'affichage des jeudis
+                }
+
+                calendarBody.appendChild(row);
+            }
+        }
+
+        // Générer le calendrier au chargement de la page
+        generateCalendar();
+
+        // Toggle menu visibility
+        function toggleMenu() {
+            const menu = document.getElementById("session-nav");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+
+        // Show selected session content
+        function showSession(sessionId) {
+            const sessions = document.querySelectorAll('.content-section');
+            sessions.forEach(session => {
+                session.classList.remove('active');
+                if (session.id === sessionId) {
+                    session.classList.add('active');
+                }
+            });
+
+            // Mettre en évidence la séance active dans le menu
+            const menuLinks = document.querySelectorAll('#session-nav a');
+            menuLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick').includes(sessionId)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Display the first session by default when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            showSession('session1');
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme TIM CGEA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        main {
+            margin-left: 200px;
+            padding: 20px;
+            min-height: 80vh;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        aside {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            transition: width 0.3s ease;
+            overflow-y: auto;
+            scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
+        }
+
+        aside::-webkit-scrollbar {
+            display: none; /* Masque la barre de défilement pour Chrome, Safari, et Opera */
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            padding: 10px;
+        }
+
+        aside ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        /* Style pour l'élément de menu actif (séance en cours) */
+        aside ul li a.active {
+            background-color: #4CAF50; /* Couleur pour l'élément actif */
+            color: white;
+            font-weight: bold;
+        }
+
+        aside ul li a:hover {
+            background-color: #555;
+        }
+
+        .hamburger {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h2, h3, h4, h5{
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        h4, h5, p, ul{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Styles spécifiques pour le calendrier */
+        table.calendar {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .current-week {
+            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
+        }
+
+        pre{
+            background-color: black;
+            color: white;
+        }
+
+        .today {
+            background-color: #007BFF; /* Bleu vif pour le jour actuel */
+            color: white; /* Texte blanc pour le contraste */
+        }
+
+        .vacation {
+            background-color: #B2E4A6; /* Vert pastel pour les vacances */
+            color: black; /* Texte noir ou foncé pour la lisibilité */
+        }
+
+        .holiday {
+            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
+            color: white; /* Texte blanc ou clair */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Programme TIM CGEA</h1>
+    </header>
+
+    <!-- Menu hamburger sur la gauche -->
+    <aside id="menu">
+        <button class="hamburger" onclick="toggleMenu()">☰ Séances</button>
+        <nav id="session-nav">
+            <ul>
+                <!-- CALENDRIER -->
+                <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
+
+                <!-- COURS -->
+                <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à LibreOffice Calc</a></li>
+                
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="content">
+        <!-- Calendrier -->
+        <section id="calendar" class="content-section">
+            <h2>Calendrier de cours des CGEA - 2024/2025</h2>
+            <table class="calendar">
+                <thead>
+                    <tr>
+                        <th>Date Mardi</th>
+                        <th>Cours Mardi</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                    <!-- Les lignes du calendrier seront générées ici par JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Séance 1 -->
+        <section id="session1" class="content-section active">
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2024 Programme TIM CGEA</p>
+    </footer> -->
+
+    <script>
+        const holidays = {
+            '2024-11-11': 'Armistice 1918',
+            '2024-12-25': 'Noël',
+            '2025-01-01': 'Jour de l\'An',
+            '2025-04-21': 'Lundi de Pâques',
+            '2025-05-01': 'Fête du Travail',
+            '2025-05-08': 'Victoire 1945',
+            '2025-05-29': 'Ascension',
+            '2025-06-09': 'Lundi de Pentecôte'
+        };
+
+        const vacations = [
+            { start: '2024-10-19', end: '2024-11-03', name: 'Vacances de la Toussaint' },
+            { start: '2024-12-21', end: '2025-01-05', name: 'Vacances de Noël' },
+            { start: '2025-02-22', end: '2025-03-09', name: 'Vacances d\'hiver' },
+            { start: '2025-04-19', end: '2025-05-04', name: 'Vacances de printemps' },
+            { start: '2025-07-05', end: '2025-09-02', name: 'Vacances d\'été' }
+        ];
+
+        const sessions = [
+            
+        ];
+
+        function isHoliday(date) {
+            return holidays[date] !== undefined;
+        }
+
+        function isInVacation(date) {
+            const parsedDate = new Date(date);
+            return vacations.some(vacation => {
+                const startDate = new Date(vacation.start);
+                const endDate = new Date(vacation.end);
+                return parsedDate >= startDate && parsedDate <= endDate;
+            });
+        }
+
+        function getVacationName(date) {
+            const parsedDate = new Date(date);
+            const vacation = vacations.find(vacation => {
+                const startDate = new Date(vacation.start);
+                const endDate = new Date(vacation.end);
+                return parsedDate >= startDate && parsedDate <= endDate;
+            });
+            return vacation ? vacation.name : '';
+        }
+
+        function formatFrenchDate(date) {
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return new Date(date).toLocaleDateString('fr-FR', options);
+        }
+
+        function isCurrentWeek(date) {
+            const currentDate = new Date();
+            const firstDayOfWeek = new Date(date);
+            const lastDayOfWeek = new Date(firstDayOfWeek);
+            lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
+            return currentDate >= firstDayOfWeek && currentDate <= lastDayOfWeek;
+        }
+
+        function generateCalendar() {
+            const calendarBody = document.getElementById('calendar-body');
+            const startDate = new Date('2024-09-03'); // Changement pour commencer par un mardi
+            const endDate = new Date('2025-07-12');
+            
+            let currentDate = startDate;
+            let sessionIndex = 0;
+
+            while (currentDate <= endDate) {
+                const dateString = currentDate.toISOString().split('T')[0];
+                const isHolidayDay = isHoliday(dateString);
+                const isVacationDay = isInVacation(dateString);
+                const vacationName = getVacationName(dateString);
+
+                const row = document.createElement('tr');
+                const dateCell = document.createElement('td');
+                const descriptionCell = document.createElement('td');
+
+                dateCell.textContent = formatFrenchDate(dateString);
+
+                if (isHolidayDay) {
+                    descriptionCell.textContent = holidays[dateString];
+                    row.classList.add('holiday');
+                } else if (isVacationDay) {
+                    descriptionCell.textContent = vacationName;
+                    row.classList.add('vacation');
+                } else {
+                    descriptionCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+                    sessionIndex++;
+                }
+
+                // Mettre en évidence la semaine en cours
+                if (isCurrentWeek(currentDate)) {
+                    row.classList.add('current-week');
+                }
+
+                row.appendChild(dateCell);
+                row.appendChild(descriptionCell);
+                calendarBody.appendChild(row);
+
+                // Passer au mardi suivant
+                currentDate.setDate(currentDate.getDate() + 7);
+            }
+        }
+
+        // Générer le calendrier au chargement de la page
+        generateCalendar();
+
+        // Toggle menu visibility
+        function toggleMenu() {
+            const menu = document.getElementById("session-nav");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+
+        // Show selected session content
+        function showSession(sessionId) {
+            const sessions = document.querySelectorAll('.content-section');
+            sessions.forEach(session => {
+                session.classList.remove('active');
+                if (session.id === sessionId) {
+                    session.classList.add('active');
+                }
+            });
+
+            // Mettre en évidence la séance active dans le menu
+            const menuLinks = document.querySelectorAll('#session-nav a');
+            menuLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick').includes(sessionId)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Display the first session by default when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            showSession('session1');
+        });
+    </script>
+
+</body>
+</html>
