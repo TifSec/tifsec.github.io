@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Piste Numérique - À la découverte d'Internet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+        }
+
+        h2 {
+            margin-top: 40px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-step {
+            margin-bottom: 20px;
+        }
+
+        .activity-step p {
+            margin: 10px 0;
+        }
+
+        .objective {
+            background-color: #eafaf1;
+            padding: 10px;
+            border-left: 5px solid #2ecc71;
+            margin-bottom: 20px;
+        }
+
+        .game-step {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-left: 5px solid #3498db;
+            margin-bottom: 20px;
+        }
+
+        .game-step.hidden {
+            display: none;
+        }
+
+        .conclusion {
+            background-color: #f9ebea;
+            padding: 10px;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .important {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Jeu de piste numérique : À la découverte d'Internet</h1>
+        <p><strong>Durée : 2h</strong></p>
+
+        <div class="objective">
+            <h2>Objectif</h2>
+            <p>Découvrir les bases d'Internet à travers un jeu de piste en ligne interactif, permettant aux élèves de comprendre les concepts clés tout en s'amusant.</p>
+        </div>
+
+        <h2>Déroulement de la séance</h2>
+
+        <div class="activity-step">
+            <h3>1. Introduction (15 minutes)</h3>
+            <p><strong>Présentation de la séance :</strong> Expliquer brièvement le concept d'Internet, ses usages, et pourquoi il est essentiel de comprendre son fonctionnement.</p>
+            <ul>
+                <li><strong>Notions clés abordées :</strong> serveurs, DNS, protocoles (HTTP, HTTPS), adresses IP, et sécurité en ligne.</li>
+                <li><strong>Explication des règles :</strong> du jeu de piste numérique.</li>
+            </ul>
+            <p><strong>Formation des équipes :</strong> Diviser la classe en groupes de 3 à 4 élèves. Chaque groupe collaborera pour résoudre des énigmes en ligne, avec des indices cachés dans les ressources d'Internet.</p>
+        </div>
+
+        <div class="activity-step">
+            <h3>2. Lancement du jeu de piste (1h 30 minutes)</h3>
+            <p>Chaque équipe reçoit une première énigme commune. À chaque résolution, une nouvelle étape s'ouvre, leur faisant découvrir un aspect fondamental d'Internet.</p>
+
+            <div class="game-step" id="step1">
+                <h4>Étape 1 : Qu’est-ce qu’un serveur ?</h4>
+                <p><strong>Énigme :</strong> Trouvez une page web expliquant comment un serveur fonctionne et notez ce qu'il fait quand on demande une page web.</p>
+                <input type="text" id="answer1" placeholder="Entrez votre réponse">
+                <button onclick="checkAnswer(1, 'serveur')">Vérifier la réponse</button>
+            </div>
+
+            <div class="game-step hidden" id="step2">
+                <h4>Étape 2 : Comment fonctionne le DNS ?</h4>
+                <p><strong>Énigme :</strong> Quel est le rôle du DNS quand on tape une URL dans le navigateur ?</p>
+                <input type="text" id="answer2" placeholder="Entrez votre réponse">
+                <button onclick="checkAnswer(2, 'dns')">Vérifier la réponse</button>
+            </div>
+
+            <div class="game-step hidden" id="step3">
+                <h4>Étape 3 : Protocoles Internet (HTTP/HTTPS)</h4>
+                <p><strong>Énigme :</strong> Quelle est la différence entre HTTP et HTTPS ? Quel est le principal avantage de HTTPS ?</p>
+                <input type="text" id="answer3" placeholder="Entrez votre réponse">
+                <button onclick="checkAnswer(3, 'https')">Vérifier la réponse</button>
+            </div>
+
+            <div class="game-step hidden" id="step4">
+                <h4>Étape 4 : Les adresses IP</h4>
+                <p><strong>Énigme :</strong> Trouvez l’adresse IP d’un site web célèbre (ex. : google.com). Expliquez ce que cette adresse représente.</p>
+                <input type="text" id="answer4" placeholder="Entrez votre réponse">
+                <button onclick="checkAnswer(4, 'ip')">Vérifier la réponse</button>
+            </div>
+
+            <div class="game-step hidden" id="step5">
+                <h4>Étape 5 : Sécurité en ligne</h4>
+                <p><strong>Énigme :</strong> Citez trois pratiques pour assurer sa sécurité en ligne et protéger ses données.</p>
+                <input type="text" id="answer5" placeholder="Entrez votre réponse">
+                <button onclick="checkAnswer(5, 'sécurité')">Vérifier la réponse</button>
+            </div>
+        </div>
+
+        <div class="activity-step conclusion hidden" id="conclusion">
+            <h3>3. Fin du jeu et débriefing (15 minutes)</h3>
+            <p><strong>Annonce des résultats :</strong> L’équipe qui a résolu toutes les énigmes en premier ou qui a obtenu le plus de bonnes réponses gagne.</p>
+            <p><strong>Débriefing :</strong> Retour sur chaque notion abordée lors des différentes étapes du jeu. Discuter des difficultés rencontrées, des méthodes de collaboration, et des concepts appris.</p>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswer(step, keyword) {
+            const answer = document.getElementById(`answer${step}`).value.toLowerCase().trim();
+            if (answer.includes(keyword)) {
+                document.getElementById(`step${step + 1}`).classList.remove('hidden');
+                if (step === 5) {
+                    document.getElementById('conclusion').classList.remove('hidden');
+                }
+            } else {
+                alert("Mauvaise réponse, essayez encore.");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
