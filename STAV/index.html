@@ -5911,6 +5911,11 @@
             return currentDate >= firstDayOfWeek && currentDate <= lastDayOfWeek;
         }
 
+        function isToday(date) {
+            const today = new Date().toISOString().split('T')[0];
+            return today === date;
+        }
+
         function generateCalendar() {
             const calendarBody = document.getElementById('calendar-body');
             const startDate = new Date('2024-09-03'); // Changement pour commencer par un mardi
@@ -5943,8 +5948,9 @@
                 }
 
                 // Mettre en évidence la semaine en cours
-                if (isCurrentWeek(currentDate)) {
-                    row.classList.add('current-week');
+                if (isToday(dateString)) {
+                    dateCell.classList.add('today');
+                    descriptionCell.classList.add('today');
                 }
 
                 row.appendChild(dateCell);
