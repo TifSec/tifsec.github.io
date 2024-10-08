@@ -245,23 +245,23 @@
                 <li><a href="#" onclick="showSession('session53')">Séance 53 : Introduction à la Sécurité Informatique</a></li>
                 <li><a href="#" onclick="showSession('session54')">Séance 54 : Pratique - Sécurisation d’Échanges dans un Jeu Vidéo (Cryptographie Basique)</a></li>
                 <li><a href="#" onclick="showSession('session55')">Séance 55 : Introduction à la Cryptographie (Chiffrement, Clés)</a></li>
-                <li><a href="#" onclick="showSession('session56')"></a></li>
-                <li><a href="#" onclick="showSession('session57')"></a></li>
-                <li><a href="#" onclick="showSession('session58')"></a></li>
-                <li><a href="#" onclick="showSession('session59')"></a></li>
-                <li><a href="#" onclick="showSession('session60')"></a></li>
-                <li><a href="#" onclick="showSession('session61')"></a></li>
-                <li><a href="#" onclick="showSession('session62')"></a></li>
-                <li><a href="#" onclick="showSession('session63')"></a></li>
-                <li><a href="#" onclick="showSession('session64')"></a></li>
-                <li><a href="#" onclick="showSession('session65')"></a></li>
-                <li><a href="#" onclick="showSession('session66')"></a></li>
-                <li><a href="#" onclick="showSession('session67')"></a></li>
-                <li><a href="#" onclick="showSession('session68')"></a></li>
-                <li><a href="#" onclick="showSession('session69')"></a></li>
-                <li><a href="#" onclick="showSession('session70')"></a></li>
-                <li><a href="#" onclick="showSession('session71')"></a></li>
-                <li><a href="#" onclick="showSession('session72')"></a></li>
+                <li><a href="#" onclick="showSession('session56')">Séance 56 : Pratique - Protéger les Données Personnelles dans une Application</a></li>
+                <li><a href="#" onclick="showSession('session57')">Séance 57 : Introduction aux Classes et Objets</a></li>
+                <li><a href="#" onclick="showSession('session58')">Séance 58 : Pratique - Modélisation d’un personnage de jeu vidéo avec des classes</a></li>
+                <li><a href="#" onclick="showSession('session59')">Séance 59 : Héritage et Polymorphisme</a></li>
+                <li><a href="#" onclick="showSession('session60')">Séance 60 : Pratique - Gestion de Personnages de Manga avec Héritage</a></li>
+                <li><a href="#" onclick="showSession('session61')">Séance 61 : Encapsulation et Méthodes</a></li>
+                <li><a href="#" onclick="showSession('session62')">Séance 62 : Pratique - Classe Avancée pour Gestion de Quêtes dans un Jeu</a></li>
+                <li><a href="#" onclick="showSession('session63')">Séance 63 : Révision des Concepts de POO</a></li>
+                <li><a href="#" onclick="showSession('session64')">Séance 64 : Pratique - Projet de Création d'une Application Basée sur la Vie Réelle</a></li>
+                <li><a href="#" onclick="showSession('session65')">Séance 65 : Travail de groupe - Définir le projet final sur un des thèmes (jeu vidéo, manga, actualité, vie réelle)</a></li>
+                <li><a href="#" onclick="showSession('session66')">Séance 66 : Travail de groupe - Développement du projet (base de données, POO, IA)</a></li>
+                <li><a href="#" onclick="showSession('session67')">Séance 67 : Finalisation du Projet - Test et Validation</a></li>
+                <li><a href="#" onclick="showSession('session68')">Séance 68 : Présentation des Projets Finaux</a></li>
+                <li><a href="#" onclick="showSession('session69')">Séance 69 : Évaluation et Retour sur les Projets</a></li>
+                <li><a href="#" onclick="showSession('session70')">Séance 70 : Discussion sur les Apprentissages et les Améliorations Possibles</a></li>
+                <li><a href="#" onclick="showSession('session71')">Séance 71 : Activité de Clôture (Réflexion sur l’Année)</a></li>
+                <li><a href="#" onclick="showSession('session72')">Séance 72 : Retour d'expérience et perspectives pour l'avenir</a></li>
             </ul>
         </nav>
     </aside>
@@ -8738,6 +8738,3076 @@
             </code></pre>
         </section>
         
+        <section id="session56" class="content-section">
+            <h2>Séance 56 : Pratique - Protéger les Données Personnelles dans une Application</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Comprendre l'importance de la protection des données personnelles.</li>
+                <li>Apprendre les bases du chiffrement pour protéger les informations sensibles dans une application.</li>
+                <li>Appliquer les techniques de base de cryptographie à des scénarios pratiques.</li>
+            </ul>
+        
+            <h3>1. Introduction à la Protection des Données Personnelles</h3>
+            <h4>Pourquoi protéger les données personnelles ?</h4>
+            <p>Les données personnelles incluent des informations telles que les noms, adresses, mots de passe, et numéros de carte bancaire. Ces informations doivent être protégées pour éviter des abus, tels que l'usurpation d'identité.</p>
+            <p>Dans une application, il est essentiel de chiffrer ces données afin de les rendre illisibles pour les personnes non autorisées.</p>
+        
+            <h4>Qu'est-ce que le chiffrement ?</h4>
+            <p>Le chiffrement est une technique qui transforme des données en un format illisible appelé "texte chiffré" à l'aide d'un algorithme spécifique.</p>
+            <p>Seules les personnes ayant la clé de déchiffrement peuvent convertir les données chiffrées en texte clair.</p>
+            <p><strong>Exemple :</strong></p>
+            <p>Si nous avons une donnée sensible comme un mot de passe <code>1234</code>, nous voulons la transformer en quelque chose de totalement illisible, comme <code>F5G7H2</code>. Seules les personnes autorisées peuvent décrypter ces informations pour obtenir le mot de passe original.</p>
+        
+            <h3>2. Techniques de Chiffrement Simples</h3>
+            <h4>Chiffrement par Décalage (ou Chiffrement de César)</h4>
+            <p>Le chiffrement par décalage est l'une des techniques les plus simples. Il consiste à remplacer chaque lettre par une autre en la décalant d'un certain nombre dans l'alphabet.</p>
+            <p><strong>Exemple :</strong></p>
+            <p>Avec un décalage de 3, la lettre A devient D, B devient E, etc.</p>
+            <p><strong>Mot à chiffrer :</strong> "manga"</p>
+            <p><strong>Après décalage de 3 :</strong> "pdqjd"</p>
+        
+            <h4>Comment l'implémenter en Python ?</h4>
+            <p>Nous allons implémenter cette technique avec une boucle pour chiffrer un texte en décalant chaque lettre d'un certain nombre de positions dans l'alphabet.</p>
+        
+            <h3>3. Activité Pratique : Chiffrer des Données Sensibles</h3>
+            <h4>Objectif de l'activité :</h4>
+            <p>Les élèves vont implémenter un chiffrement simple par décalage pour protéger des données sensibles comme des noms d'utilisateur ou des mots de passe dans une application.</p>
+        
+            <h4>Instructions :</h4>
+            <h5>1. Exemple de Code pour Chiffrer et Déchiffrer des Données :</h5>
+            <pre><code>
+        # Fonction pour chiffrer un texte avec un décalage donné
+        def chiffrer_texte(texte, decalage):
+            texte_chiffre = ""
+            
+            for caractere in texte:
+                if caractere.isalpha():  # Vérifie si c'est une lettre
+                    ascii_de_base = ord('a') if caractere.islower() else ord('A')
+                    texte_chiffre += chr((ord(caractere) - ascii_de_base + decalage) % 26 + ascii_de_base)
+                else:
+                    texte_chiffre += caractere  # Conserve les espaces et les autres caractères non alphabétiques
+            
+            return texte_chiffre
+        
+        # Fonction pour déchiffrer un texte avec un décalage donné
+        def dechiffrer_texte(texte, decalage):
+            return chiffrer_texte(texte, -decalage)
+        
+        # Exemple de données sensibles
+        donnee = input("Entrez des données à chiffrer (par exemple un mot de passe) : ")
+        decalage = 3  # Décalage pour le chiffrement
+        
+        # Chiffrement
+        texte_chiffre = chiffrer_texte(donnee, decalage)
+        print("Donnée chiffrée :", texte_chiffre)
+        
+        # Déchiffrement
+        texte_dechiffre = dechiffrer_texte(texte_chiffre, decalage)
+        print("Donnée déchiffrée :", texte_dechiffre)
+            </code></pre>
+        
+            <h5>Explications du Code :</h5>
+            <ul>
+                <li><code>chiffrer_texte(texte, decalage)</code> : Parcourt chaque caractère du texte et le décale d'un certain nombre de positions dans l'alphabet. Si le caractère est une lettre, on applique la transformation ; sinon, on le conserve tel quel.</li>
+                <li><code>dechiffrer_texte(texte, decalage)</code> : Applique le même processus que le chiffrement, mais avec un décalage inverse pour revenir au texte d'origine.</li>
+                <li><code>ord()</code> et <code>chr()</code> : <code>ord()</code> convertit un caractère en son code ASCII, et <code>chr()</code> reconvertit un code ASCII en caractère.</li>
+            </ul>
+        
+            <h4>2. Personnalisation du Programme :</h4>
+            <p>Les élèves peuvent modifier le programme pour chiffrer différentes informations selon les thèmes abordés en classe, comme des noms de personnages de jeux vidéo, des informations personnelles dans la vie réelle, etc.</p>
+        
+            <h3>4. Exercices au Choix</h3>
+            <p>Les élèves choisissent l'un des exercices suivants pour appliquer le chiffrement dans différents contextes. Ils doivent utiliser le chiffrement pour protéger des données spécifiques en lien avec les jeux vidéo, les mangas, la vie réelle ou l'actualité.</p>
+        
+            <h4>Exercice 1 : Jeux Vidéo - Chiffrement des Noms de Joueurs</h4>
+            <p><strong>Exercice :</strong> Créez un programme qui demande à l'utilisateur de saisir un nom de joueur dans un jeu vidéo, puis chiffre ce nom pour le protéger. L'utilisateur doit ensuite pouvoir déchiffrer ce nom.</p>
+            <p><strong>Objectif :</strong> Protéger les noms des joueurs dans un jeu en les chiffrant.</p>
+            <p><strong>Points d'apprentissage :</strong> Application directe du chiffrement à un contexte de jeu vidéo.</p>
+        
+            <pre><code>
+        nom_joueur = input("Entrez le nom du joueur : ")
+        
+        decalage = 3  # Décalage de chiffrement
+        
+        nom_chiffre = chiffrer_texte(nom_joueur, decalage)
+        print("Nom chiffré :", nom_chiffre)
+        
+        nom_dechiffre = dechiffrer_texte(nom_chiffre, decalage)
+        print("Nom déchiffré :", nom_dechiffre)
+            </code></pre>
+        
+            <h4>Exercice 2 : Manga - Chiffrement des Noms de Personnages</h4>
+            <p><strong>Exercice :</strong> Écrivez un programme qui permet de protéger les noms des personnages d'un manga. L'utilisateur entre plusieurs noms de personnages et le programme chiffre ces noms. Ensuite, il peut déchiffrer les noms pour les retrouver.</p>
+            <p><strong>Objectif :</strong> Protéger les noms des personnages dans une base de données fictive en les chiffrant.</p>
+            <p><strong>Points d'apprentissage :</strong> Utilisation du chiffrement dans un contexte lié aux mangas.</p>
+        
+            <pre><code>
+        nom_personnage = input("Entrez le nom du personnage de manga : ")
+        
+        decalage = 3  # Décalage de chiffrement
+        
+        nom_chiffre = chiffrer_texte(nom_personnage, decalage)
+        print("Nom chiffré :", nom_chiffre)
+        
+        nom_dechiffre = dechiffrer_texte(nom_chiffre, decalage)
+        print("Nom déchiffré :", nom_dechiffre)
+            </code></pre>
+        
+            <h4>Exercice 3 : Vie Réelle - Chiffrement des Mots de Passe</h4>
+            <p><strong>Exercice :</strong> Demandez à l'utilisateur de saisir un mot de passe personnel. Le programme doit chiffrer ce mot de passe pour le protéger et permettre à l'utilisateur de le déchiffrer pour le vérifier.</p>
+            <p><strong>Objectif :</strong> Appliquer le chiffrement pour protéger des mots de passe dans un contexte de vie réelle.</p>
+            <p><strong>Points d'apprentissage :</strong> Utilisation pratique du chiffrement pour protéger des informations sensibles.</p>
+        
+            <pre><code>
+        mot_de_passe = input("Entrez un mot de passe à protéger : ")
+        
+        decalage = 5  # Décalage de chiffrement
+        
+        mot_de_passe_chiffre = chiffrer_texte(mot_de_passe, decalage)
+        print("Mot de passe chiffré :", mot_de_passe_chiffre)
+        
+        mot_de_passe_dechiffre = dechiffrer_texte(mot_de_passe_chiffre, decalage)
+        print("Mot de passe déchiffré :", mot_de_passe_dechiffre)
+            </code></pre>
+        
+            <h4>Exercice 4 : Actualité - Chiffrement d'Événements Sensibles</h4>
+            <p><strong>Exercice :</strong> Créez un programme qui permet de saisir des événements d'actualité sensibles (comme des noms de projets confidentiels). Chiffrez ces informations pour les protéger.</p>
+            <p><strong>Objectif :</strong> Protéger des informations sensibles en rapport avec l'actualité en les chiffrant.</p>
+            <p><strong>Points d'apprentissage :</strong> Application du chiffrement dans un contexte lié à l'actualité.</p>
+        
+            <pre><code>
+        evenement = input("Entrez un événement sensible à chiffrer : ")
+        
+        decalage = 4  # Décalage de chiffrement
+        
+        evenement_chiffre = chiffrer_texte(evenement, decalage)
+        print("Événement chiffré :", evenement_chiffre)
+        
+        evenement_dechiffre = dechiffrer_texte(evenement_chiffre, decalage)
+        print("Événement déchiffré :", evenement_dechiffre)
+            </code></pre>
+        
+        </section>
+        
+        <section id="session57" class="content-section">
+            <h2>Séance 57 : Introduction aux Classes et Objets</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Comprendre les concepts de base de la programmation orientée objet (POO) en Python.</li>
+                <li>Apprendre à créer et utiliser des classes et des objets pour organiser les données et les comportements d’un programme.</li>
+                <li>Appliquer les classes et objets dans des exercices pratiques liés aux jeux vidéo, aux mangas, à la vie réelle, et à l'actualité.</li>
+            </ul>
+        
+            <h3>1. Introduction à la Programmation Orientée Objet</h3>
+        
+            <h4>Qu'est-ce qu'une classe ?</h4>
+            <p>Une classe est une sorte de modèle ou de plan utilisé pour créer des objets. Elle permet de regrouper des données (sous forme d'attributs) et des comportements (sous forme de méthodes) liés à un même type d'entité. En termes simples, une classe définit ce qu'est un objet, ses caractéristiques, et ce qu'il peut faire.</p>
+            
+            <p><strong>Exemple :</strong><br>
+            Si on veut créer un jeu vidéo avec des personnages, on peut créer une classe <code>Personnage</code>. Cette classe contient les attributs et les actions communes à tous les personnages (comme le nom, la santé, attaquer, etc.).</p>
+        
+            <h4>Qu'est-ce qu'un objet ?</h4>
+            <p>Un objet est une instance d'une classe. C'est une version concrète de la classe, avec ses propres valeurs pour les attributs définis dans la classe.</p>
+        
+            <p><strong>Exemple :</strong><br>
+            Dans notre jeu, un objet serait un personnage spécifique comme "Mario" ou "Zelda". Chaque personnage a ses propres valeurs (nom, santé, force, etc.).</p>
+        
+            <h4>Pourquoi utiliser les classes et objets ?</h4>
+            <ul>
+                <li><strong>Organisation :</strong> Les classes permettent de regrouper des données et des comportements liés.</li>
+                <li><strong>Réutilisabilité :</strong> Une fois une classe définie, vous pouvez créer autant d'objets que nécessaire sans dupliquer le code.</li>
+                <li><strong>Modularité :</strong> Vous pouvez facilement gérer et modifier des parties du programme sans affecter le reste.</li>
+            </ul>
+        
+            <h3>2. Création d'une Classe et d'Objets</h3>
+        
+            <h4>Structure de Base d'une Classe</h4>
+            <p>Voici la structure de base d'une classe en Python :</p>
+            <pre><code>
+        class Personnage:
+            def __init__(self, nom, sante):
+                self.nom = nom  # Attribut nom
+                self.sante = sante  # Attribut santé
+        
+            def attaquer(self):
+                print(f"{self.nom} attaque l'ennemi !")
+            </code></pre>
+            
+            <p><code>__init__</code> : C'est une méthode spéciale appelée le constructeur. Elle est utilisée pour initialiser les objets, c'est-à-dire pour leur donner des valeurs initiales quand ils sont créés.</p>
+            <p><code>self</code> fait référence à l'objet lui-même. Il est obligatoire dans toutes les méthodes d'une classe.</p>
+            <p><code>self.nom</code> et <code>self.sante</code> : Ce sont des attributs qui appartiennent à l'objet (dans ce cas, nom et sante).</p>
+            <p><code>attaquer()</code> : C'est une méthode, une fonction définie dans une classe. Elle décrit ce que l'objet peut faire (ici, "attaquer").</p>
+        
+            <h4>Créer un Objet</h4>
+            <p>Une fois la classe définie, nous pouvons créer un objet de cette classe comme ceci :</p>
+            <pre><code>
+        # Créer un personnage
+        personnage1 = Personnage("Mario", 100)
+        
+        # Utiliser la méthode attaquer
+        personnage1.attaquer()
+            </code></pre>
+        
+            <p><strong>Sortie :</strong><br>
+            <code>Mario attaque l'ennemi !</code></p>
+        
+            <p>Dans cet exemple :</p>
+            <ul>
+                <li><code>Personnage("Mario", 100)</code> crée un personnage avec le nom "Mario" et 100 points de santé.</li>
+                <li>L'appel à <code>personnage1.attaquer()</code> fait en sorte que le personnage "Mario" attaque.</li>
+            </ul>
+        
+            <h3>3. Activité Pratique : Créer et Utiliser des Classes et Objets</h3>
+        
+            <p><strong>Objectif de l'activité :</strong><br>
+            Écrire un programme qui utilise une classe pour modéliser des entités spécifiques (par exemple, un personnage de jeu vidéo, un manga, une dépense dans la vie réelle, ou un événement d'actualité). Les élèves pourront ensuite manipuler les objets créés à partir de cette classe.</p>
+        
+            <h4>Instructions :</h4>
+            <p>Voici un exemple simple basé sur un personnage de jeu vidéo. Vous pouvez ensuite inviter les élèves à choisir un thème et à adapter l'exercice en conséquence.</p>
+        
+            <h4>Exemple de Code pour un Personnage de Jeu Vidéo :</h4>
+            <pre><code>
+        class Personnage:
+            def __init__(self, nom, sante, force):
+                self.nom = nom
+                self.sante = sante
+                self.force = force
+        
+            def attaquer(self, cible):
+                print(f"{self.nom} attaque {cible.nom} avec une force de {self.force} !")
+                cible.sante -= self.force  # Réduit la santé de la cible
+                print(f"{cible.nom} a maintenant {cible.sante} points de santé.")
+        
+        # Créer deux personnages
+        personnage1 = Personnage("Mario", 100, 20)
+        personnage2 = Personnage("Bowser", 150, 25)
+        
+        # Mario attaque Bowser
+        personnage1.attaquer(personnage2)
+            </code></pre>
+        
+            <h4>Explications du Code :</h4>
+            <ul>
+                <li><code>__init__(self, nom, sante, force)</code> : Le constructeur initialise les objets avec trois attributs : le nom, la santé, et la force.</li>
+                <li><code>attaquer(self, cible)</code> : Cette méthode permet à un personnage d'attaquer un autre personnage (cible) et de réduire sa santé.</li>
+                <li>Lors de l'exécution, "Mario" attaque "Bowser", et la santé de Bowser diminue.</li>
+            </ul>
+        
+            <h3>4. Exercices au Choix</h3>
+        
+            <p>Les élèves peuvent choisir l’un des exercices suivants en fonction de leur centre d’intérêt. Chaque exercice implique la création et l’utilisation de classes et d’objets.</p>
+        
+            <h4>Exercice 1 : Jeux Vidéo - Modéliser un Inventaire d'Objets</h4>
+            <p><strong>Exercice :</strong> Créez une classe <code>Objet</code> qui modélise un objet d'un inventaire dans un jeu vidéo (ex : épée, potion, bouclier). Chaque objet doit avoir un nom et un niveau de puissance. Ensuite, créez plusieurs objets et affichez leurs caractéristiques.</p>
+            <pre><code>
+        class Objet:
+            def __init__(self, nom, puissance):
+                self.nom = nom
+                self.puissance = puissance
+        
+            def afficher(self):
+                print(f"Objet : {self.nom}, Puissance : {self.puissance}")
+        
+        # Créer des objets
+        epee = Objet("Épée", 50)
+        bouclier = Objet("Bouclier", 30)
+        
+        # Afficher les caractéristiques des objets
+        epee.afficher()
+        bouclier.afficher()
+            </code></pre>
+        
+            <h4>Exercice 2 : Manga - Créer un Personnage de Manga</h4>
+            <p><strong>Exercice :</strong> Écrivez une classe <code>PersonnageManga</code> qui modélise un personnage de manga. Chaque personnage doit avoir un nom, un niveau de puissance, et un pouvoir spécial. Créez ensuite plusieurs personnages et affichez leurs informations.</p>
+            <pre><code>
+        class PersonnageManga:
+            def __init__(self, nom, puissance, pouvoir):
+                self.nom = nom
+                self.puissance = puissance
+                self.pouvoir = pouvoir
+        
+            def afficher(self):
+                print(f"Personnage : {self.nom}, Puissance : {self.puissance}, Pouvoir : {self.pouvoir}")
+        
+        # Créer des personnages
+        naruto = PersonnageManga("Naruto", 9000, "Rasengan")
+        luffy = PersonnageManga("Luffy", 8500, "Gear Fourth")
+        
+        # Afficher les informations des personnages
+        naruto.afficher()
+        luffy.afficher()
+            </code></pre>
+        
+            <h4>Exercice 3 : Vie Réelle - Gérer une Liste de Dépenses</h4>
+            <p><strong>Exercice :</strong> Créez une classe <code>Depense</code> qui modélise une dépense dans la vie réelle. Chaque dépense doit avoir un libellé (ex : loyer, courses) et un montant. Ensuite, créez une liste de plusieurs dépenses et affichez-les.</p>
+            <pre><code>
+        class Depense:
+            def __init__(self, libelle, montant):
+                self.libelle = libelle
+                self.montant = montant
+        
+            def afficher(self):
+                print(f"Dépense : {self.libelle}, Montant : {self.montant}€")
+        
+        # Créer des dépenses
+        loyer = Depense("Loyer", 800)
+        courses = Depense("Courses", 150)
+        
+        # Afficher les dépenses
+        loyer.afficher()
+        courses.afficher()
+            </code></pre>
+        
+            <h4>Exercice 4 : Actualité - Modéliser des Événements d'Actualité</h4>
+            <p><strong>Exercice :</strong> Créez une classe <code>EvenementActualite</code> qui modélise un événement d'actualité. Chaque événement doit avoir un titre, une description, et une date. Ensuite, créez plusieurs événements et affichez-les.</p>
+            <pre><code>
+        class EvenementActualite:
+            def __init__(self, titre, description, date):
+                self.titre = titre
+                self.description = description
+                self.date = date
+        
+            def afficher(self):
+                print(f"Événement : {self.titre}, Date : {self.date}")
+                print(f"Détails : {self.description}")
+        
+        # Créer des événements
+        event1 = EvenementActualite("Élection présidentielle", "Résultats du premier tour.", "2023-04-12")
+        event2 = EvenementActualite("Conférence internationale", "Thème : climat et environnement.", "2023-11-15")
+        
+        # Afficher les événements
+        event1.afficher()
+        event2.afficher()
+            </code></pre>
+        
+        </section>
+        
+        <section id="session58" class="content-section">
+            <h2>Séance 58 : Pratique - Modélisation d’un personnage de jeu vidéo avec des classes</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Comprendre le concept de classe et d'objet en programmation orientée objet (POO).</li>
+                <li>Apprendre à modéliser un personnage de jeu vidéo en créant une classe.</li>
+                <li>Utiliser les attributs et méthodes pour décrire les caractéristiques et actions d’un personnage.</li>
+                <li>Appliquer la POO dans un contexte lié aux jeux vidéo.</li>
+            </ul>
+        
+            <h3>1. Introduction à la Programmation Orientée Objet (POO)</h3>
+        
+            <h4>Qu'est-ce qu'une classe ?</h4>
+            <p>Une classe est un modèle ou un plan qui définit des attributs (variables) et des méthodes (fonctions) pour un objet.<br>
+            Un objet est une instance d'une classe. C'est une représentation concrète de ce modèle.</p>
+        
+            <h4>Pourquoi utiliser des classes ?</h4>
+            <ul>
+                <li>Les classes permettent de regrouper des informations et des comportements associés dans une structure organisée.</li>
+                <li>Elles facilitent la réutilisation du code et rendent les programmes plus modulaires.</li>
+            </ul>
+        
+            <h4>Exemple simple : Classe "Personnage"</h4>
+            <p>Prenons l'exemple d'un personnage de jeu vidéo. Un personnage possède des caractéristiques (comme la santé, la force) et peut effectuer des actions (comme attaquer ou défendre).</p>
+        
+            <h5>Attributs et Méthodes</h5>
+            <ul>
+                <li><strong>Attributs :</strong> Ce sont les propriétés qui décrivent un objet (par exemple, la santé et la force d'un personnage).</li>
+                <li><strong>Méthodes :</strong> Ce sont des actions ou des comportements que l'objet peut réaliser (par exemple, attaquer ou se soigner).</li>
+            </ul>
+        
+            <h3>2. Création d'une Classe pour un Personnage de Jeu Vidéo</h3>
+        
+            <h4>Modélisation d'un personnage de base</h4>
+            <p>Pour cette activité, les élèves vont modéliser un personnage de jeu vidéo avec des caractéristiques telles que nom, santé, force, et des actions comme attaquer et se défendre.</p>
+        
+            <h5>Exemple de Code :</h5>
+            <pre><code>
+        # Création de la classe Personnage
+        class Personnage:
+            # Constructeur pour initialiser les attributs
+            def __init__(self, nom, sante, force):
+                self.nom = nom  # Attribut nom
+                self.sante = sante  # Attribut santé
+                self.force = force  # Attribut force
+        
+            # Méthode pour afficher les informations du personnage
+            def afficher_infos(self):
+                print(f"Nom: {self.nom}, Santé: {self.sante}, Force: {self.force}")
+        
+            # Méthode pour attaquer un autre personnage
+            def attaquer(self, adversaire):
+                print(f"{self.nom} attaque {adversaire.nom} et inflige {self.force} points de dégâts.")
+                adversaire.sante -= self.force  # Réduit la santé de l'adversaire
+        
+            # Méthode pour se défendre (récupérer de la santé)
+            def se_defendre(self):
+                print(f"{self.nom} se défend et récupère 10 points de santé.")
+                self.sante += 10  # Augmente la santé
+        
+        # Exemple d'utilisation
+        heros = Personnage("Link", 100, 20)  # Création du personnage
+        heros.afficher_infos()  # Affichage des infos
+            </code></pre>
+        
+            <h5>Explication du Code :</h5>
+            <ul>
+                <li><code>__init__</code> : Le constructeur de la classe, appelé lors de la création d'un nouvel objet. Il initialise les attributs <code>nom</code>, <code>sante</code>, et <code>force</code>.</li>
+                <li><code>afficher_infos()</code> : Méthode pour afficher les informations du personnage.</li>
+                <li><code>attaquer()</code> : Permet au personnage d'attaquer un adversaire et de réduire la santé de celui-ci.</li>
+                <li><code>se_defendre()</code> : Permet au personnage de récupérer de la santé.</li>
+            </ul>
+        
+            <p>Les élèves doivent comprendre que chaque personnage est un objet de la classe <code>Personnage</code>, avec des caractéristiques uniques (nom, santé, force) et des actions qu'il peut effectuer.</p>
+        
+            <h3>3. Activité Pratique : Créer et Manipuler des Personnages</h3>
+        
+            <h4>Objectif de l'activité :</h4>
+            <p>Les élèves doivent créer deux personnages de jeu vidéo qui peuvent interagir l'un avec l'autre (attaquer, se défendre). Ils utiliseront des attributs et des méthodes pour modéliser ces interactions.</p>
+        
+            <h5>Étapes à suivre :</h5>
+            <ol>
+                <li><strong>Créer deux personnages :</strong> Invitez les élèves à créer deux personnages avec des caractéristiques différentes.</li>
+                <li><strong>Les faire interagir :</strong> Ils devront utiliser les méthodes pour les faire interagir, comme attaquer l'autre personnage et utiliser la méthode <code>se_defendre</code> pour récupérer des points de santé.</li>
+            </ol>
+        
+            <h5>Exemple de Code :</h5>
+            <pre><code>
+        # Création des personnages
+        heros = Personnage("Link", 100, 20)
+        adversaire = Personnage("Ganon", 120, 25)
+        
+        # Afficher les informations des personnages
+        heros.afficher_infos()
+        adversaire.afficher_infos()
+        
+        # Interaction entre les personnages
+        heros.attaquer(adversaire)  # Link attaque Ganon
+        adversaire.se_defendre()  # Ganon se défend
+        
+        # Afficher les informations mises à jour après l'attaque
+        heros.afficher_infos()
+        adversaire.afficher_infos()
+            </code></pre>
+        
+            <h5>Explication :</h5>
+            <p>Les élèves apprennent ici à créer des objets (instances de classe) et à les manipuler. Les méthodes permettent de simuler des interactions simples, comme attaquer ou se défendre.</p>
+            <p>Observation de l'état : Après chaque interaction, les élèves doivent observer l'état des personnages (santé, force) et voir comment il évolue.</p>
+        
+            <h3>4. Exercices au Choix</h3>
+        
+            <p>Les élèves peuvent choisir parmi les exercices suivants pour approfondir la modélisation de personnages de jeu vidéo avec des classes. Chaque exercice est lié à un thème particulier.</p>
+        
+            <h4>Exercice 1 : Ajouter un Inventaire au Personnage (Jeux Vidéo)</h4>
+            <p><strong>Exercice :</strong> Modifiez la classe <code>Personnage</code> pour ajouter un inventaire (une liste d'objets). Chaque personnage pourra ajouter des objets à son inventaire et afficher le contenu de celui-ci.</p>
+        
+            <pre><code>
+        class Personnage:
+            def __init__(self, nom, sante, force):
+                self.nom = nom
+                self.sante = sante
+                self.force = force
+                self.inventaire = []  # Inventaire vide
+        
+            def ajouter_objet(self, objet):
+                self.inventaire.append(objet)
+                print(f"{objet} a été ajouté à l'inventaire de {self.nom}.")
+        
+            def afficher_inventaire(self):
+                print(f"Inventaire de {self.nom} : {', '.join(self.inventaire)}")
+        
+        # Exemple d'utilisation
+        heros = Personnage("Link", 100, 20)
+        heros.ajouter_objet("Épée")
+        heros.ajouter_objet("Bouclier")
+        heros.afficher_inventaire()
+            </code></pre>
+        
+            <p><strong>But de l'exercice :</strong> Permettre aux élèves de manipuler des listes à l'intérieur de classes pour gérer des inventaires.</p>
+        
+            <h4>Exercice 2 : Ajouter des Compétences à un Personnage (Manga)</h4>
+            <p><strong>Exercice :</strong> Ajoutez une liste de compétences spéciales à chaque personnage (comme dans un manga). Chaque personnage peut utiliser une compétence spéciale pour attaquer ou se défendre.</p>
+        
+            <pre><code>
+        class Personnage:
+            def __init__(self, nom, sante, force, competences):
+                self.nom = nom
+                self.sante = sante
+                self.force = force
+                self.competences = competences  # Liste des compétences
+        
+            def utiliser_competence(self, competence):
+                if competence in self.competences:
+                    print(f"{self.nom} utilise {competence} !")
+                else:
+                    print(f"{self.nom} ne possède pas cette compétence.")
+        
+        # Exemple d'utilisation
+        heros = Personnage("Naruto", 100, 20, ["Rasengan", "Kage Bunshin"])
+        heros.utiliser_competence("Rasengan")
+        heros.utiliser_competence("Chidori")
+            </code></pre>
+        
+            <p><strong>But de l'exercice :</strong> Donner aux élèves la possibilité de gérer des compétences spéciales pour les personnages et leur permettre d'implémenter des actions personnalisées.</p>
+        
+            <h4>Exercice 3 : Ajouter un Système de Niveaux (Vie Réelle)</h4>
+            <p><strong>Exercice :</strong> Modifiez la classe <code>Personnage</code> pour inclure un système de niveaux. Chaque fois qu'un personnage attaque, il gagne des points d'expérience, et lorsqu'il atteint un certain seuil, il monte de niveau.</p>
+        
+            <pre><code>
+        class Personnage:
+            def __init__(self, nom, sante, force):
+                self.nom = nom
+                self.sante = sante
+                self.force = force
+                self.niveau = 1  # Le personnage commence au niveau 1
+                self.experience = 0  # Points d'expérience
+        
+            def attaquer(self, adversaire):
+                print(f"{self.nom} attaque {adversaire.nom} et inflige {self.force} points de dégâts.")
+                adversaire.sante -= self.force
+                self.gagner_experience(10)  # Gagne 10 points d'expérience par attaque
+        
+            def gagner_experience(self, points):
+                self.experience += points
+                print(f"{self.nom} gagne {points} points d'expérience.")
+                if self.experience >= 100:
+                    self.niveau += 1
+                    self.experience = 0
+                    print(f"{self.nom} monte au niveau {self.niveau} !")
+        
+        # Exemple d'utilisation
+        heros = Personnage("Mario", 100, 20)
+        adversaire = Personnage("Bowser", 150, 30)
+        heros.attaquer(adversaire)
+            </code></pre>
+        
+            <p><strong>But de l'exercice :</strong> Introduire la gestion de l'expérience et des niveaux dans un système de jeu de rôle.</p>
+        
+            <h4>Exercice 4 : Ajout d'un Système de Statistiques (Actualité)</h4>
+            <p><strong>Exercice :</strong> Créez un système de statistiques qui suit combien de fois chaque personnage a attaqué, s'est défendu, ou utilisé une compétence.</p>
+        
+            <pre><code>
+        class Personnage:
+            def __init__(self, nom, sante, force):
+                self.nom = nom
+                self.sante = sante
+                self.force = force
+                self.stats = {"attaques": 0, "defenses": 0}  # Statistiques initiales
+        
+            def attaquer(self, adversaire):
+                self.stats["attaques"] += 1  # Incrémenter le nombre d'attaques
+                print(f"{self.nom} attaque {adversaire.nom}")
+        
+            def se_defendre(self):
+                self.stats["defenses"] += 1  # Incrémenter le nombre de défenses
+                print(f"{self.nom} se défend")
+        
+            def afficher_stats(self):
+                print(f"Statistiques de {self.nom} : Attaques: {self.stats['attaques']}, Défenses: {self.stats['defenses']}")
+        
+        # Exemple d'utilisation
+        heros = Personnage("Superman", 100, 30)
+        heros.attaquer(heros)
+        heros.se_defendre()
+        heros.afficher_stats()
+            </code></pre>
+        
+            <p><strong>But de l'exercice :</strong> Les élèves apprennent à gérer des statistiques sur les actions d'un personnage et à suivre les données pertinentes.</p>
+        
+        </section>
+        
+        <section id="session59" class="content-section">
+            <h2>Séance 59 : Héritage et Polymorphisme</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Comprendre les concepts d'héritage et de polymorphisme en programmation orientée objet (POO).</li>
+                <li>Apprendre à créer des classes dérivées à partir de classes existantes (héritage).</li>
+                <li>Utiliser le polymorphisme pour appeler des méthodes sur des objets de classes différentes partageant des fonctionnalités communes.</li>
+                <li>Appliquer ces concepts dans des contextes variés comme les jeux vidéo, les mangas, la vie réelle et l'actualité.</li>
+            </ul>
+        
+            <h3>1. Introduction à l'Héritage en Programmation Orientée Objet</h3>
+            <h4>Qu'est-ce que l'héritage ?</h4>
+            <p>
+                L'héritage permet de créer de nouvelles classes (appelées classes dérivées ou sous-classes) à partir de classes existantes (appelées classes de base ou superclasses).
+                La sous-classe hérite des attributs et des méthodes de la classe de base, ce qui permet de réutiliser du code sans avoir à le dupliquer.
+            </p>
+        
+            <h4>Pourquoi utiliser l'héritage ?</h4>
+            <ul>
+                <li><strong>Réutilisation de code :</strong> Vous n'avez pas besoin de réécrire des fonctionnalités communes pour plusieurs classes.</li>
+                <li><strong>Organisation :</strong> Il permet de structurer et de hiérarchiser les classes en fonction de leurs caractéristiques communes.</li>
+                <li><strong>Extensibilité :</strong> Vous pouvez ajouter des comportements spécifiques dans les sous-classes tout en conservant les propriétés de base de la classe parent.</li>
+            </ul>
+        
+            <h4>Exemple Simple :</h4>
+            <p>Imaginons que vous avez une classe de base appelée <code>Personnage</code> dans un jeu vidéo. Vous pouvez créer des sous-classes comme <code>Guerrier</code> et <code>Mage</code> qui héritent de <code>Personnage</code> tout en ajoutant leurs propres caractéristiques spécifiques.</p>
+            <pre><code>
+        class Personnage:
+            def __init__(self, nom, vie):
+                self.nom = nom
+                self.vie = vie
+            
+            def afficher(self):
+                print(f"Nom : {self.nom}, Vie : {self.vie}")
+        
+        class Guerrier(Personnage):
+            def __init__(self, nom, vie, force):
+                super().__init__(nom, vie)  # Appelle le constructeur de la classe de base
+                self.force = force
+            
+            def attaquer(self):
+                print(f"{self.nom} attaque avec une force de {self.force} !")
+        
+        class Mage(Personnage):
+            def __init__(self, nom, vie, mana):
+                super().__init__(nom, vie)  # Appelle le constructeur de la classe de base
+                self.mana = mana
+            
+            def lancer_sort(self):
+                print(f"{self.nom} lance un sort avec {self.mana} points de mana.")
+            </code></pre>
+        
+            <h5>Explications :</h5>
+            <ul>
+                <li><strong>Classe de Base <code>Personnage</code> :</strong> Contient des attributs communs comme le nom et la vie.</li>
+                <li><strong>Sous-classe <code>Guerrier</code> :</strong> Hérite de <code>Personnage</code> et ajoute l'attribut <code>force</code> ainsi qu'une méthode <code>attaquer</code>.</li>
+                <li><strong>Sous-classe <code>Mage</code> :</strong> Hérite de <code>Personnage</code> et ajoute l'attribut <code>mana</code> ainsi qu'une méthode <code>lancer_sort</code>.</li>
+            </ul>
+        
+            <h3>2. Activité Pratique : Implémenter l'Héritage</h3>
+            
+            <h4>Objectif de l'activité :</h4>
+            <p>Écrire un programme qui crée des classes dérivées à partir d'une classe de base. L'objectif est de voir comment on peut utiliser l'héritage pour réutiliser des fonctionnalités communes tout en ajoutant des spécificités aux sous-classes.</p>
+        
+            <h4>Instructions :</h4>
+            <p>Voici un exemple de code pour implémenter l'héritage dans un contexte de jeu vidéo.</p>
+            
+            <h5>1. Exemple de Code :</h5>
+            <pre><code>
+        # Classe de base : Personnage
+        class Personnage:
+            def __init__(self, nom, vie):
+                self.nom = nom
+                self.vie = vie
+        
+            def afficher_infos(self):
+                print(f"Nom : {self.nom}, Vie : {self.vie}")
+        
+        # Sous-classe : Guerrier
+        class Guerrier(Personnage):
+            def __init__(self, nom, vie, force):
+                super().__init__(nom, vie)
+                self.force = force
+        
+            def attaquer(self):
+                print(f"{self.nom} attaque avec une force de {self.force} !")
+        
+        # Sous-classe : Mage
+        class Mage(Personnage):
+            def __init__(self, nom, vie, mana):
+                super().__init__(nom, vie)
+                self.mana = mana
+        
+            def lancer_sort(self):
+                print(f"{self.nom} lance un sort avec {self.mana} points de mana.")
+                
+        # Création des objets
+        guerrier = Guerrier("Thor", 100, 75)
+        mage = Mage("Merlin", 80, 120)
+        
+        # Affichage des informations et utilisation des méthodes spécifiques
+        guerrier.afficher_infos()
+        guerrier.attaquer()
+        
+        mage.afficher_infos()
+        mage.lancer_sort()
+            </code></pre>
+        
+            <h5>Explications du Code :</h5>
+            <ul>
+                <li>La classe <code>Personnage</code> est la classe de base avec des attributs partagés comme <code>nom</code> et <code>vie</code>.</li>
+                <li>Les classes <code>Guerrier</code> et <code>Mage</code> sont des sous-classes qui héritent de <code>Personnage</code> et ajoutent des attributs et méthodes spécifiques (<code>force</code> et <code>attaquer</code> pour <code>Guerrier</code>, <code>mana</code> et <code>lancer_sort</code> pour <code>Mage</code>).</li>
+                <li><code>super().__init__(...)</code> : Appelle le constructeur de la classe de base pour initialiser les attributs hérités.</li>
+            </ul>
+        
+            <h3>3. Introduction au Polymorphisme</h3>
+        
+            <h4>Qu'est-ce que le polymorphisme ?</h4>
+            <p>Le polymorphisme permet à des objets de différentes classes de répondre de manière unique à la même méthode. Cela permet d'utiliser une même méthode dans plusieurs classes, mais avec des comportements différents selon la classe de l'objet.</p>
+        
+            <h4>Pourquoi utiliser le polymorphisme ?</h4>
+            <ul>
+                <li><strong>Flexibilité :</strong> Le polymorphisme permet de traiter différents objets de manière uniforme, tout en leur laissant le contrôle de leur comportement spécifique.</li>
+                <li><strong>Simplification du code :</strong> Cela rend le code plus concis et évite de devoir écrire des conditions pour vérifier le type exact de chaque objet.</li>
+            </ul>
+        
+            <h4>Exemple Simple :</h4>
+            <pre><code>
+        def attaquer_personnage(personnage):
+            personnage.afficher_infos()  # Appelle la méthode commune
+            if isinstance(personnage, Guerrier):
+                personnage.attaquer()
+            elif isinstance(personnage, Mage):
+                personnage.lancer_sort()
+            </code></pre>
+        
+            <h5>Explications :</h5>
+            <ul>
+                <li><code>isinstance(personnage, Guerrier)</code> : Vérifie si l'objet est une instance de la classe <code>Guerrier</code> ou <code>Mage</code>.</li>
+                <li><strong>Polymorphisme :</strong> En utilisant le polymorphisme, vous pouvez appeler la méthode <code>afficher_infos()</code> pour tous les types de personnages, tout en exécutant des actions spécifiques pour chaque type de personnage.</li>
+            </ul>
+        
+            <h3>4. Exercices au Choix</h3>
+        
+            <p>Les élèves peuvent choisir l'un des exercices suivants pour appliquer les concepts d'héritage et de polymorphisme dans des contextes familiers.</p>
+        
+            <h4>Exercice 1 : Jeux Vidéo - Système de Personnages</h4>
+            <p><strong>Exercice :</strong> Créez un programme qui modélise des personnages dans un jeu vidéo. Créez une classe de base <code>Personnage</code> avec des attributs communs (nom, vie) et deux sous-classes <code>Guerrier</code> et <code>Archer</code> avec des attributs et méthodes spécifiques (force pour le <code>Guerrier</code>, précision pour l'<code>Archer</code>).</p>
+            <pre><code>
+        class Personnage:
+            def __init__(self, nom, vie):
+                self.nom = nom
+                self.vie = vie
+            
+            def afficher_infos(self):
+                print(f"Nom : {self.nom}, Vie : {self.vie}")
+        
+        class Guerrier(Personnage):
+            def __init__(self, nom, vie, force):
+                super().__init__(nom, vie)
+                self.force = force
+        
+            def attaquer(self):
+                print(f"{self.nom} attaque avec une force de {self.force} !")
+        
+        class Archer(Personnage):
+            def __init__(self, nom, vie, precision):
+                super().__init__(nom, vie)
+                self.precision = precision
+        
+            def tirer(self):
+                print(f"{self.nom} tire avec une précision de {self.precision} !")
+            </code></pre>
+        
+            <h4>Exercice 2 : Manga - Système de Personnages dans un Manga</h4>
+            <p><strong>Exercice :</strong> Créez un programme qui modélise des personnages de manga. Créez une classe de base <code>PersonnageManga</code> avec des attributs communs (nom, pouvoir). Créez deux sous-classes <code>Hero</code> et <code>Antagoniste</code> avec des méthodes spécifiques (attaque pour le héros, piège pour l'antagoniste).</p>
+            <pre><code>
+        class PersonnageManga:
+            def __init__(self, nom, pouvoir):
+                self.nom = nom
+                self.pouvoir = pouvoir
+            
+            def afficher_pouvoir(self):
+                print(f"{self.nom} possède le pouvoir de {self.pouvoir}.")
+        
+        class Hero(PersonnageManga):
+            def attaquer(self):
+                print(f"{self.nom} utilise son pouvoir pour attaquer !")
+        
+        class Antagoniste(PersonnageManga):
+            def pieger(self):
+                print(f"{self.nom} tend un piège en utilisant {self.pouvoir}.")
+            </code></pre>
+        
+            <h4>Exercice 3 : Vie Réelle - Gestion des Employés</h4>
+            <p><strong>Exercice :</strong> Créez un programme qui modélise des employés dans une entreprise. Créez une classe de base <code>Employe</code> avec des attributs communs (nom, salaire) et deux sous-classes <code>Developpeur</code> et <code>Designer</code> avec des méthodes spécifiques (développer pour le développeur, concevoir pour le designer).</p>
+            <pre><code>
+        class Employe:
+            def __init__(self, nom, salaire):
+                self.nom = nom
+                self.salaire = salaire
+            
+            def afficher_infos(self):
+                print(f"{self.nom}, Salaire : {self.salaire}")
+        
+        class Developpeur(Employe):
+            def developper(self):
+                print(f"{self.nom} développe un nouveau programme.")
+        
+        class Designer(Employe):
+            def concevoir(self):
+                print(f"{self.nom} conçoit une nouvelle interface.")
+            </code></pre>
+        
+            <h4>Exercice 4 : Actualité - Système de Rédacteurs</h4>
+            <p><strong>Exercice :</strong> Créez un programme qui modélise des rédacteurs d'articles d'actualité. Créez une classe de base <code>Redacteur</code> avec des attributs communs (nom, sujet) et deux sous-classes <code>RedacteurPolitique</code> et <code>RedacteurSportif</code> avec des méthodes spécifiques (écrire un article politique ou sportif).</p>
+            <pre><code>
+        class Redacteur:
+            def __init__(self, nom, sujet):
+                self.nom = nom
+                self.sujet = sujet
+            
+            def ecrire_article(self):
+                print(f"{self.nom} rédige un article sur {self.sujet}.")
+        
+        class RedacteurPolitique(Redacteur):
+            def ecrire_politique(self):
+                print(f"{self.nom} écrit un article politique.")
+        
+        class RedacteurSportif(Redacteur):
+            def ecrire_sport(self):
+                print(f"{self.nom} écrit un article sportif.")
+            </code></pre>
+        </section>
+        
+        <section id="session60" class="content-section">
+            <h2>Séance 60 : Pratique - Gestion de Personnages de Manga avec Héritage</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Comprendre le concept d'héritage en programmation orientée objet (POO).</li>
+                <li>Appliquer l'héritage pour créer une hiérarchie de classes pour gérer des personnages dans un manga.</li>
+                <li>Manipuler les concepts de classe parent et classe enfant.</li>
+                <li>Appliquer ces notions dans un exercice pratique de gestion de personnages avec héritage.</li>
+            </ul>
+        
+            <h3>1. Introduction à l'Héritage en Programmation Orientée Objet</h3>
+        
+            <h4>Qu'est-ce que l'héritage ?</h4>
+            <p>L'héritage en POO est un concept qui permet à une classe enfant d'hériter des attributs et des méthodes d'une classe parent. L'idée est de réutiliser du code déjà existant et d'ajouter ou de modifier certaines fonctionnalités dans les classes dérivées.</p>
+            <ul>
+                <li><strong>Classe parent (ou superclasse) :</strong> Une classe qui définit des attributs et des méthodes de base.</li>
+                <li><strong>Classe enfant (ou sous-classe) :</strong> Une classe qui hérite des caractéristiques de la classe parent, mais peut aussi avoir ses propres attributs et méthodes spécifiques.</li>
+            </ul>
+        
+            <h4>Pourquoi utiliser l'héritage ?</h4>
+            <ul>
+                <li><strong>Réutilisabilité :</strong> Permet de ne pas réécrire du code déjà défini dans la classe parent.</li>
+                <li><strong>Modularité :</strong> Permet de créer des classes spécialisées basées sur une structure commune, facilitant la gestion du code.</li>
+                <li><strong>Simplicité :</strong> Rendre le code plus facile à comprendre et à maintenir.</li>
+            </ul>
+        
+            <h4>Exemple d'Héritage Simple :</h4>
+            <p>Imaginons que vous ayez une classe <code>Personnage</code> qui définit des attributs de base pour n'importe quel personnage dans un manga. Ensuite, vous pouvez créer des sous-classes comme <code>Guerrier</code>, <code>Mage</code> ou <code>Ninja</code> qui hériteront des attributs de base tout en ajoutant des caractéristiques spécifiques.</p>
+        
+            <h3>2. Création d'une Hiérarchie de Classes avec Héritage</h3>
+        
+            <h4>Classe Parent : Personnage</h4>
+            <p>Définissons une classe de base <code>Personnage</code>, qui contient des attributs communs à tous les personnages (comme le nom, l'âge et les points de vie).</p>
+        
+            <pre><code>
+        class Personnage:
+            def __init__(self, nom, age, points_de_vie):
+                self.nom = nom
+                self.age = age
+                self.points_de_vie = points_de_vie
+        
+            def se_presenter(self):
+                print(f"Je m'appelle {self.nom}, j'ai {self.age} ans et j'ai {self.points_de_vie} points de vie.")
+            </code></pre>
+        
+            <h4>Sous-classes : Guerrier, Mage et Ninja</h4>
+            <p>Créons maintenant des sous-classes qui hériteront de <code>Personnage</code> et ajouteront des caractéristiques spécifiques.</p>
+        
+            <pre><code>
+        class Guerrier(Personnage):
+            def __init__(self, nom, age, points_de_vie, force):
+                super().__init__(nom, age, points_de_vie)
+                self.force = force
+        
+            def attaquer(self):
+                print(f"{self.nom} attaque avec une force de {self.force} !")
+        
+        class Mage(Personnage):
+            def __init__(self, nom, age, points_de_vie, mana):
+                super().__init__(nom, age, points_de_vie)
+                self.mana = mana
+        
+            def lancer_sort(self):
+                print(f"{self.nom} lance un sort avec {self.mana} points de mana !")
+        
+        class Ninja(Personnage):
+            def __init__(self, nom, age, points_de_vie, agilité):
+                super().__init__(nom, age, points_de_vie)
+                self.agilite = agilité
+        
+            def disparaitre(self):
+                print(f"{self.nom} disparaît avec une agilité de {self.agilite} !")
+            </code></pre>
+        
+            <h4>Explications du Code :</h4>
+            <ul>
+                <li><strong>Classe parent Personnage :</strong> Définit les attributs communs comme <code>nom</code>, <code>age</code>, et <code>points_de_vie</code>. La méthode <code>se_presenter()</code> permet à tous les personnages de se présenter.</li>
+                <li><strong>Classe enfant Guerrier :</strong> Hérite des attributs de <code>Personnage</code>, mais ajoute un attribut <code>force</code> et une méthode <code>attaquer()</code>.</li>
+                <li><strong>Classe enfant Mage :</strong> Ajoute l'attribut <code>mana</code> et la méthode <code>lancer_sort()</code>.</li>
+                <li><strong>Classe enfant Ninja :</strong> Ajoute l'attribut <code>agilité</code> et la méthode <code>disparaitre()</code>.</li>
+            </ul>
+        
+            <h3>3. Activité Pratique : Gestion de Personnages dans un Manga</h3>
+        
+            <h4>Objectif de l'activité :</h4>
+            <p>Les élèves doivent écrire un programme où ils créent des personnages de type guerrier, mage et ninja en utilisant l'héritage. Ils pourront ensuite interagir avec ces personnages en invoquant leurs méthodes spécifiques (<code>attaquer</code>, <code>lancer un sort</code>, <code>disparaître</code>).</p>
+        
+            <h4>Instructions :</h4>
+            <p>1. Exemple de Code pour Créer et Manipuler des Personnages :</p>
+        
+            <pre><code>
+        # Création des personnages
+        naruto = Ninja("Naruto", 16, 100, 95)
+        goku = Guerrier("Goku", 35, 150, 120)
+        gandalf = Mage("Gandalf", 1000, 80, 200)
+        
+        # Interaction avec les personnages
+        naruto.se_presenter()
+        naruto.disparaitre()
+        
+        goku.se_presenter()
+        goku.attaquer()
+        
+        gandalf.se_presenter()
+        gandalf.lancer_sort()
+            </code></pre>
+        
+            <h4>Explications du Code :</h4>
+            <ul>
+                <li><strong>Création des personnages :</strong> Nous créons trois personnages, chacun appartenant à une sous-classe (<code>Ninja</code>, <code>Guerrier</code>, et <code>Mage</code>).</li>
+                <li><strong>Interaction avec les personnages :</strong> Chaque personnage peut utiliser les méthodes de la classe parent (<code>se_presenter</code>) et ses propres méthodes spécifiques (<code>disparaitre</code>, <code>attaquer</code>, <code>lancer_sort</code>).</li>
+            </ul>
+        
+            <h3>4. Exercices au Choix</h3>
+        
+            <h4>Les élèves peuvent choisir un exercice en lien avec un thème spécifique :</h4>
+        
+            <h5>Exercice 1 : Jeux Vidéo - Création de Personnages Jouables</h5>
+            <p>Créez un programme qui gère différents types de personnages jouables dans un jeu vidéo. Utilisez une classe parent <code>Personnage</code> et des sous-classes <code>Chevalier</code>, <code>Archer</code>, et <code>Sorcier</code>. Chaque sous-classe doit avoir un attribut spécifique (force, précision, pouvoir magique) et une méthode pour effectuer une action (combattre, tirer à l'arc, lancer un sort).</p>
+        
+            <pre><code>
+        class Personnage:
+            def __init__(self, nom, points_de_vie):
+                self.nom = nom
+                self.points_de_vie = points_de_vie
+        
+        class Chevalier(Personnage):
+            def __init__(self, nom, points_de_vie, force):
+                super().__init__(nom, points_de_vie)
+                self.force = force
+            
+            def combattre(self):
+                print(f"{self.nom} attaque avec une force de {self.force} !")
+        
+        class Archer(Personnage):
+            def __init__(self, nom, points_de_vie, precision):
+                super().__init__(nom, points_de_vie)
+                self.precision = precision
+            
+            def tirer_arc(self):
+                print(f"{self.nom} tire une flèche avec une précision de {self.precision} !")
+        
+        class Sorcier(Personnage):
+            def __init__(self, nom, points_de_vie, magie):
+                super().__init__(nom, points_de_vie)
+                self.magie = magie
+            
+            def lancer_sort(self):
+                print(f"{self.nom} lance un sort avec {self.magie} points de magie !")
+            </code></pre>
+        
+            <h5>Exercice 2 : Manga - Créer des Personnages de Manga</h5>
+            <p>Créez un programme qui gère plusieurs types de personnages dans un manga. Utilisez une classe parent <code>Personnage</code> et des sous-classes <code>Samurai</code>, <code>Mage</code>, et <code>Ninja</code>. Chaque sous-classe doit avoir un attribut spécifique (force, mana, agilité) et une méthode pour exécuter une action propre à chaque type de personnage.</p>
+        
+            <pre><code>
+        class Personnage:
+            def __init__(self, nom, age):
+                self.nom = nom
+                self.age = age
+        
+        class Samurai(Personnage):
+            def __init__(self, nom, age, force):
+                super().__init__(nom, age)
+                self.force = force
+            
+            def combattre(self):
+                print(f"{self.nom} attaque avec une force de {self.force} !")
+        
+        class Mage(Personnage):
+            def __init__(self, nom, age, mana):
+                super().__init__(nom, age)
+                self.mana = mana
+            
+            def lancer_sort(self):
+                print(f"{self.nom} lance un sort avec {self.mana} points de mana !")
+        
+        class Ninja(Personnage):
+            def __init__(self, nom, age, agilite):
+                super().__init__(nom, age)
+                self.agilite = agilite
+            
+            def disparaitre(self):
+                print(f"{self.nom} disparaît avec une agilité de {self.agilite} !")
+            </code></pre>
+        
+            <h5>Exercice 3 : Vie Réelle - Création de Profils d'Employés</h5>
+            <p>Créez un programme qui gère des employés dans une entreprise. Utilisez une classe parent <code>Employe</code> et des sous-classes <code>Manager</code>, <code>Développeur</code>, et <code>Designer</code>. Chaque sous-classe doit avoir un attribut spécifique (équipe, langage de programmation, créativité) et une méthode qui représente une action (organiser une réunion, coder, créer une maquette).</p>
+        
+            <pre><code>
+        class Employe:
+            def __init__(self, nom, salaire):
+                self.nom = nom
+                self.salaire = salaire
+        
+        class Manager(Employe):
+            def __init__(self, nom, salaire, equipe):
+                super().__init__(nom, salaire)
+                self.equipe = equipe
+            
+            def organiser_reunion(self):
+                print(f"{self.nom} organise une réunion pour l'équipe {self.equipe}.")
+        
+        class Developpeur(Employe):
+            def __init__(self, nom, salaire, langage):
+                super().__init__(nom, salaire)
+                self.langage = langage
+            
+            def coder(self):
+                print(f"{self.nom} code en {self.langage}.")
+        
+        class Designer(Employe):
+            def __init__(self, nom, salaire, creativite):
+                super().__init__(nom, salaire)
+                self.creativite = creativite
+            
+            def creer_maquette(self):
+                print(f"{self.nom} crée une maquette avec une créativité de {self.creativite}.")
+            </code></pre>
+        
+            <h5>Exercice 4 : Actualité - Créer des Types d'Articles</h5>
+            <p>Créez un programme qui gère différents types d'articles d'actualité. Utilisez une classe parent <code>Article</code> et des sous-classes <code>ArticlePolitique</code>, <code>ArticleSport</code>, et <code>ArticleCulture</code>. Chaque sous-classe doit avoir un attribut spécifique (parti politique, équipe sportive, événement culturel) et une méthode qui affiche le type d'article et ses informations.</p>
+        
+            <pre><code>
+        class Article:
+            def __init__(self, titre, date):
+                self.titre = titre
+                self.date = date
+        
+        class ArticlePolitique(Article):
+            def __init__(self, titre, date, parti):
+                super().__init__(titre, date)
+                self.parti = parti
+            
+            def afficher_article(self):
+                print(f"Article Politique : {self.titre}, Parti : {self.parti}, Date : {self.date}")
+        
+        class ArticleSport(Article):
+            def __init__(self, titre, date, equipe):
+                super().__init__(titre, date)
+                self.equipe = equipe
+            
+            def afficher_article(self):
+                print(f"Article Sport : {self.titre}, Équipe : {self.equipe}, Date : {self.date}")
+        
+        class ArticleCulture(Article):
+            def __init__(self, titre, date, evenement):
+                super().__init__(titre, date)
+                self.evenement = evenement
+            
+            def afficher_article(self):
+                print(f"Article Culture : {self.titre}, Événement : {self.evenement}, Date : {self.date}")
+            </code></pre>
+        
+        </section>
+        
+        <section id="session61" class="content-section">
+            <h2>Séance 61 : Encapsulation et Méthodes</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Comprendre le concept d'encapsulation en programmation orientée objet.</li>
+                <li>Apprendre à définir et utiliser des méthodes dans une classe.</li>
+                <li>Appliquer ces concepts à des objets pratiques comme des personnages de jeux vidéo, des mangas, des finances personnelles, ou des événements d'actualité.</li>
+            </ul>
+        
+            <h3>1. Introduction à la Programmation Orientée Objet (POO) et à l'Encapsulation</h3>
+            <h4>Qu'est-ce que la POO ?</h4>
+            <p>La programmation orientée objet (POO) est une méthode de programmation qui permet de structurer un programme en regroupant les données et les fonctions qui manipulent ces données dans des unités appelées objets. Chaque objet est une instance d'une classe, qui est comme un modèle ou une structure pour créer des objets similaires.</p>
+        
+            <h4>Encapsulation : Définition</h4>
+            <p>L'encapsulation est l'un des principes fondamentaux de la POO. Elle consiste à protéger l'accès aux données d'un objet et à définir des méthodes qui permettent de les manipuler de manière contrôlée.</p>
+            <p>En encapsulant les données, vous limitez l'accès direct aux attributs d'un objet, rendant votre code plus sûr et facile à maintenir.</p>
+        
+            <h4>Exemple Simple d'Encapsulation :</h4>
+            <p>Les attributs d'une classe sont souvent marqués comme "privés" (c'est-à-dire qu'ils ne peuvent être modifiés que via des méthodes spécifiques). En Python, on peut marquer un attribut comme privé en le précédant de deux underscores (__).</p>
+        
+            <pre><code>class Personnage:
+            def __init__(self, nom, vie):
+                self.__nom = nom    # Attribut privé
+                self.__vie = vie    # Attribut privé
+            
+            def afficher_vie(self):
+                print(f"{self.__nom} a {self.__vie} points de vie.")
+        
+        # Création d'un objet de la classe Personnage
+        perso = Personnage("Naruto", 100)
+        perso.afficher_vie()
+            </code></pre>
+            
+            <p>Dans cet exemple, les attributs <code>__nom</code> et <code>__vie</code> sont encapsulés, et la méthode <code>afficher_vie()</code> est la seule manière de lire ces informations.</p>
+        
+            <h4>Pourquoi utiliser l'encapsulation ?</h4>
+            <ul>
+                <li><strong>Protéger les données sensibles :</strong> On évite que les données soient modifiées directement par erreur ou intentionnellement.</li>
+                <li><strong>Contrôle des accès :</strong> On peut spécifier comment les données d'un objet peuvent être modifiées en définissant des méthodes pour cela.</li>
+                <li><strong>Facilité de maintenance :</strong> En encapsulant les attributs, vous pouvez facilement ajuster la manière dont les données sont manipulées sans affecter le reste du programme.</li>
+            </ul>
+        
+            <h3>2. Introduction aux Méthodes</h3>
+        
+            <h4>Qu'est-ce qu'une méthode ?</h4>
+            <p>Une méthode est une fonction définie à l'intérieur d'une classe qui permet d'effectuer des actions sur les objets de cette classe. Les méthodes permettent aux objets de manipuler leurs attributs ou d'interagir avec d'autres objets.</p>
+        
+            <h4>Méthodes Spéciales :</h4>
+            <p>Les méthodes comme <code>__init__()</code> sont appelées méthodes spéciales car elles ont un rôle particulier dans la classe. <code>__init__()</code> est appelée automatiquement lors de la création d'un nouvel objet pour initialiser ses attributs.</p>
+        
+            <h4>Exemple de Méthodes :</h4>
+            <pre><code>class Personnage:
+            def __init__(self, nom, vie):
+                self.__nom = nom
+                self.__vie = vie
+        
+            # Méthode pour afficher les points de vie
+            def afficher_vie(self):
+                print(f"{self.__nom} a {self.__vie} points de vie.")
+            
+            # Méthode pour infliger des dégâts
+            def subir_degats(self, degats):
+                self.__vie -= degats
+                print(f"{self.__nom} a subi {degats} points de dégâts.")
+        
+        # Création d'un personnage
+        perso = Personnage("Naruto", 100)
+        
+        # Utilisation des méthodes
+        perso.afficher_vie()       # Affiche : Naruto a 100 points de vie.
+        perso.subir_degats(20)      # Affiche : Naruto a subi 20 points de dégâts.
+        perso.afficher_vie()        # Affiche : Naruto a 80 points de vie.
+            </code></pre>
+        
+            <h4>Pourquoi utiliser des méthodes ?</h4>
+            <ul>
+                <li><strong>Interaction avec les données :</strong> Les méthodes permettent aux objets d'interagir avec leurs attributs de manière sécurisée.</li>
+                <li><strong>Réutilisabilité :</strong> Une méthode définie dans une classe peut être réutilisée pour tous les objets créés à partir de cette classe.</li>
+                <li><strong>Organisation du code :</strong> Les méthodes rendent le code plus structuré et facile à comprendre.</li>
+            </ul>
+        
+            <h3>3. Activité Pratique : Créer des Objets avec Encapsulation et Méthodes</h3>
+            
+            <h4>Objectif de l'activité :</h4>
+            <p>Les élèves doivent créer des objets qui encapsulent leurs données et interagissent avec elles via des méthodes. L'activité est adaptée aux différents thèmes (jeux vidéo, manga, vie réelle, actualité).</p>
+        
+            <h4>Instructions :</h4>
+            
+            <h5>Exercice de Base :</h5>
+            <p>Créez une classe <code>Personnage</code> qui possède les attributs suivants :</p>
+            <ul>
+                <li><code>nom</code> (le nom du personnage)</li>
+                <li><code>vie</code> (les points de vie du personnage)</li>
+            </ul>
+            <p>Les points de vie doivent être encapsulés et manipulés uniquement à travers des méthodes. Les élèves devront définir les méthodes suivantes :</p>
+            <ul>
+                <li><code>afficher_vie()</code> : Affiche les points de vie du personnage.</li>
+                <li><code>subir_degats(degats)</code> : Diminue les points de vie du personnage d'un certain nombre de dégâts.</li>
+                <li><code>soigner(sante)</code> : Augmente les points de vie du personnage.</li>
+            </ul>
+        
+            <h5>1. Exemple de Code :</h5>
+            <pre><code>class Personnage:
+            def __init__(self, nom, vie):
+                self.__nom = nom    # Attribut privé
+                self.__vie = vie    # Attribut privé
+            
+            def afficher_vie(self):
+                print(f"{self.__nom} a {self.__vie} points de vie.")
+            
+            def subir_degats(self, degats):
+                self.__vie -= degats
+                print(f"{self.__nom} a subi {degats} points de dégâts.")
+            
+            def soigner(self, sante):
+                self.__vie += sante
+                print(f"{self.__nom} a récupéré {sante} points de vie.")
+        
+        # Création d'un objet Personnage et utilisation des méthodes
+        naruto = Personnage("Naruto", 100)
+        naruto.afficher_vie()        # Affiche : Naruto a 100 points de vie.
+        naruto.subir_degats(20)      # Affiche : Naruto a subi 20 points de dégâts.
+        naruto.soigner(10)           # Affiche : Naruto a récupéré 10 points de vie.
+        naruto.afficher_vie()        # Affiche : Naruto a 90 points de vie.
+            </code></pre>
+        
+            <h4>Personnalisation du Programme :</h4>
+            <p>Les élèves peuvent appliquer ces concepts à des objets différents, selon leur préférence. Voici des exercices adaptés aux différents thèmes :</p>
+        
+            <h3>4. Exercices au Choix</h3>
+        
+            <h5>Exercice 1 : Jeux Vidéo - Gestion des Personnages</h5>
+            <p>Créez une classe <code>Personnage</code> pour un jeu vidéo. Cette classe doit encapsuler les points de vie et les capacités d'attaque d'un personnage. Implémentez les méthodes suivantes :</p>
+            <ul>
+                <li><code>attaquer(ennemi)</code> : Réduit les points de vie de l'ennemi en fonction de l'attaque du personnage.</li>
+                <li><code>afficher_statistiques()</code> : Affiche les points de vie et les capacités du personnage.</li>
+            </ul>
+        
+            <pre><code>class Personnage:
+            def __init__(self, nom, vie, attaque):
+                self.__nom = nom
+                self.__vie = vie
+                self.__attaque = attaque
+            
+            def afficher_statistiques(self):
+                print(f"{self.__nom} - Vie : {self.__vie}, Attaque : {self.__attaque}")
+            
+            def attaquer(self, ennemi):
+                print(f"{self.__nom} attaque {ennemi.__nom} et lui inflige {self.__attaque} dégâts.")
+                ennemi.__vie -= self.__attaque
+        
+        # Création de deux personnages
+        naruto = Personnage("Naruto", 100, 15)
+        sasuke = Personnage("Sasuke", 80, 20)
+        
+        # Naruto attaque Sasuke
+        naruto.attaquer(sasuke)
+        sasuke.afficher_statistiques()  # Vie de Sasuke après l'attaque
+            </code></pre>
+        
+            <h5>Exercice 2 : Manga - Suivi des Lectures</h5>
+            <p>Créez une classe <code>Manga</code> qui encapsule le titre et le nombre de chapitres lus. Implémentez les méthodes suivantes :</p>
+            <ul>
+                <li><code>lire_chapitre(n)</code> : Ajoute <code>n</code> chapitres au nombre de chapitres lus.</li>
+                <li><code>afficher_statistiques()</code> : Affiche le titre du manga et le nombre de chapitres lus.</li>
+            </ul>
+        
+            <pre><code>class Manga:
+            def __init__(self, titre, chapitres):
+                self.__titre = titre
+                self.__chapitres = chapitres
+            
+            def lire_chapitre(self, n):
+                self.__chapitres += n
+                print(f"Vous avez lu {n} chapitres de {self.__titre}.")
+            
+            def afficher_statistiques(self):
+                print(f"{self.__titre} - Chapitres lus : {self.__chapitres}")
+        
+        # Suivi de lecture pour un manga
+        one_piece = Manga("One Piece", 1000)
+        one_piece.afficher_statistiques()  # Affiche : One Piece - Chapitres lus : 1000
+        one_piece.lire_chapitre(10)        # Ajoute 10 chapitres
+        one_piece.afficher_statistiques()  # Affiche : One Piece - Chapitres lus : 1010
+            </code></pre>
+        
+            <h5>Exercice 3 : Vie Réelle - Gestion de Budget</h5>
+            <p>Créez une classe <code>Budget</code> qui encapsule le solde d'un utilisateur. Implémentez les méthodes suivantes :</p>
+            <ul>
+                <li><code>ajouter_depense(montant)</code> : Réduit le solde en fonction de la dépense.</li>
+                <li><code>ajouter_revenu(montant)</code> : Augmente le solde en fonction du revenu.</li>
+                <li><code>afficher_solde()</code> : Affiche le solde actuel.</li>
+            </ul>
+        
+            <pre><code>class Budget:
+            def __init__(self, solde):
+                self.__solde = solde
+            
+            def ajouter_depense(self, montant):
+                self.__solde -= montant
+                print(f"Vous avez dépensé {montant} €. Solde restant : {self.__solde} €")
+            
+            def ajouter_revenu(self, montant):
+                self.__solde += montant
+                print(f"Vous avez ajouté {montant} € à votre budget. Solde total : {self.__solde} €")
+            
+            def afficher_solde(self):
+                print(f"Votre solde actuel est de {self.__solde} €")
+        
+        # Gestion du budget
+        budget = Budget(1000)
+        budget.afficher_solde()
+        budget.ajouter_depense(150)
+        budget.ajouter_revenu(500)
+        budget.afficher_solde()
+            </code></pre>
+        
+            <h5>Exercice 4 : Actualité - Gestion des Événements</h5>
+            <p>Créez une classe <code>Evenement</code> qui encapsule le titre et la date d'un événement d'actualité. Implémentez les méthodes suivantes :</p>
+            <ul>
+                <li><code>modifier_date(nouvelle_date)</code> : Modifie la date de l'événement.</li>
+                <li><code>afficher_evenement()</code> : Affiche le titre et la date de l'événement.</li>
+            </ul>
+        
+            <pre><code>class Evenement:
+            def __init__(self, titre, date):
+                self.__titre = titre
+                self.__date = date
+            
+            def modifier_date(self, nouvelle_date):
+                self.__date = nouvelle_date
+                print(f"La date de l'événement '{self.__titre}' a été modifiée.")
+            
+            def afficher_evenement(self):
+                print(f"Événement : {self.__titre}, Date : {self.__date}")
+        
+        # Gestion d'événements d'actualité
+        event = Evenement("Conférence Climat", "2024-05-10")
+        event.afficher_evenement()
+        event.modifier_date("2024-05-15")
+        event.afficher_evenement()
+            </code></pre>
+        
+            <h3>Conclusion</h3>
+            <p>Cette séance introduit les concepts d'encapsulation et de méthodes en programmation orientée objet, des concepts essentiels pour structurer les programmes de manière plus modulaire et sécurisée. En personnalisant les exercices selon les thèmes choisis par les élèves, vous pouvez les engager davantage et leur permettre de mieux comprendre l'utilité de ces concepts dans des contextes variés.</p>
+        </section>
+        
+        <section id="session62" class="content-section">
+            <h2>Séance 62 : Pratique - Classe Avancée pour Gestion de Quêtes dans un Jeu</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Comprendre comment utiliser les classes et les objets en Python pour modéliser des éléments de jeu, comme des quêtes.</li>
+                <li>Créer et manipuler une classe avancée pour gérer des quêtes dans un jeu vidéo.</li>
+                <li>Appliquer les principes de la programmation orientée objet pour rendre le code plus modulaire, réutilisable et maintenable.</li>
+            </ul>
+        
+            <h3>1. Introduction aux Classes et à la POO</h3>
+        
+            <h4>Qu'est-ce qu'une classe ?</h4>
+            <p>En Python, une classe est un modèle (ou un plan) qui permet de créer des objets. Elle définit les attributs (variables) et les méthodes (fonctions) que les objets créés à partir de cette classe posséderont.</p>
+            <p>Une classe peut être vue comme une "usine" qui fabrique des objets qui ont des propriétés spécifiques et des comportements associés.</p>
+        
+            <h4>Pourquoi utiliser les classes pour les quêtes ?</h4>
+            <p>En modélisant les quêtes comme des objets, vous pouvez facilement gérer des informations complexes (comme les objectifs, les récompenses, l'état d'achèvement, etc.).</p>
+            <p>Les classes permettent de structurer le code, facilitant ainsi la gestion des multiples quêtes dans un jeu vidéo.</p>
+        
+            <h4>Exemple Simple d'une Classe :</h4>
+            <pre><code>class Quete:
+            def __init__(self, titre, description, recompense):
+                self.titre = titre
+                self.description = description
+                self.recompense = recompense
+                self.terminee = False  # Une quête commence toujours non terminée
+            </code></pre>
+            <p>Dans cet exemple :</p>
+            <ul>
+                <li>La classe <code>Quete</code> a trois attributs : <code>titre</code>, <code>description</code>, et <code>recompense</code>.</li>
+                <li>Un attribut supplémentaire <code>terminee</code> est défini comme <code>False</code> pour indiquer que la quête n'a pas encore été terminée.</li>
+            </ul>
+        
+            <h3>2. Construction d'une Classe pour Gérer une Quête</h3>
+        
+            <h4>Objectif de l'activité :</h4>
+            <p>Les élèves vont créer une classe <code>Quete</code> qui permet de modéliser et de gérer les quêtes dans un jeu vidéo.</p>
+        
+            <h4>Étapes pour Créer la Classe :</h4>
+            <p>1. Définir la Classe <code>Quete</code> : La classe doit permettre de gérer plusieurs aspects d'une quête : le titre, la description, la récompense et l'état d'achèvement (si la quête est terminée ou non).</p>
+        
+            <h4>Exemple Complet de la Classe :</h4>
+            <pre><code>class Quete:
+            def __init__(self, titre, description, recompense):
+                self.titre = titre
+                self.description = description
+                self.recompense = recompense
+                self.terminee = False  # Par défaut, la quête n'est pas terminée
+            
+            def marquer_terminee(self):
+                self.terminee = True  # Marquer la quête comme terminée
+                print(f"La quête '{self.titre}' est terminée ! Récompense : {self.recompense}")
+            
+            def afficher_details(self):
+                etat = "Terminée" if self.terminee else "En cours"
+                print(f"Quête : {self.titre}\nDescription : {self.description}\nÉtat : {etat}")
+            </code></pre>
+        
+            <h4>Explication du Code :</h4>
+            <ul>
+                <li><code>__init__</code> (constructeur) : Ce constructeur initialise les attributs de la quête. Lorsqu'une quête est créée, elle est initialisée avec un titre, une description et une récompense.</li>
+                <li><code>marquer_terminee()</code> : Cette méthode marque la quête comme terminée et affiche la récompense obtenue.</li>
+                <li><code>afficher_details()</code> : Cette méthode affiche les détails de la quête, y compris son état (si elle est terminée ou non).</li>
+            </ul>
+        
+            <h4>3. Créer et Manipuler des Objets Quete :</h4>
+            <pre><code># Création de deux quêtes
+        quete1 = Quete("Explorer la forêt", "Trouver le trésor caché dans la forêt.", "100 pièces d'or")
+        quete2 = Quete("Rencontrer le villageois", "Parler au villageois dans la ville.", "Potion magique")
+        
+        # Afficher les détails des quêtes
+        quete1.afficher_details()
+        quete2.afficher_details()
+        
+        # Marquer la première quête comme terminée
+        quete1.marquer_terminee()
+        
+        # Afficher à nouveau les détails pour voir l'état mis à jour
+        quete1.afficher_details()
+            </code></pre>
+        
+            <h4>Résultat attendu :</h4>
+            <pre><code>Quête : Explorer la forêt
+        Description : Trouver le trésor caché dans la forêt.
+        État : En cours
+        Quête : Rencontrer le villageois
+        Description : Parler au villageois dans la ville.
+        État : En cours
+        La quête 'Explorer la forêt' est terminée ! Récompense : 100 pièces d'or
+        Quête : Explorer la forêt
+        Description : Trouver le trésor caché dans la forêt.
+        État : Terminée
+            </code></pre>
+        
+            <h3>3. Exercices Pratiques au Choix</h3>
+        
+            <h4>Exercice 1 : Ajouter des Objectifs à la Quête</h4>
+        
+            <p><strong>Exercice :</strong> Modifiez la classe <code>Quete</code> pour ajouter un ou plusieurs objectifs. Chaque quête doit avoir un ou plusieurs objectifs à accomplir avant de la terminer.</p>
+            <p><strong>Objectif :</strong> Créer un système où une quête comporte plusieurs étapes (objectifs) à réaliser avant de la considérer comme terminée.</p>
+        
+            <pre><code>class Quete:
+            def __init__(self, titre, description, recompense, objectifs):
+                self.titre = titre
+                self.description = description
+                self.recompense = recompense
+                self.terminee = False
+                self.objectifs = objectifs  # Liste d'objectifs
+                self.objectifs_acheves = []  # Liste des objectifs terminés
+            
+            def accomplir_objectif(self, objectif):
+                if objectif in self.objectifs and objectif not in self.objectifs_acheves:
+                    self.objectifs_acheves.append(objectif)
+                    print(f"Objectif '{objectif}' accompli.")
+                else:
+                    print(f"L'objectif '{objectif}' n'existe pas ou est déjà accompli.")
+            
+            def verifier_achevement(self):
+                if len(self.objectifs) == len(self.objectifs_acheves):
+                    self.marquer_terminee()
+            
+            def marquer_terminee(self):
+                self.terminee = True
+                print(f"La quête '{self.titre}' est terminée ! Récompense : {self.recompense}")
+            
+            def afficher_details(self):
+                etat = "Terminée" if self.terminee else "En cours"
+                print(f"Quête : {self.titre}\nDescription : {self.description}\nObjectifs : {self.objectifs_acheves}/{self.objectifs}\nÉtat : {etat}")
+            </code></pre>
+        
+            <h4>Exercice 2 : Suivi des Quêtes d'un Joueur</h4>
+        
+            <p><strong>Exercice :</strong> Créez un système qui permet de suivre plusieurs quêtes pour un joueur. Le joueur peut commencer de nouvelles quêtes, terminer des quêtes, et afficher la liste des quêtes actives et terminées.</p>
+            <p><strong>Objectif :</strong> Créer une gestion des quêtes où un joueur peut avoir plusieurs quêtes en cours simultanément.</p>
+        
+            <pre><code>class Joueur:
+            def __init__(self, nom):
+                self.nom = nom
+                self.quetes_actives = []
+                self.quetes_terminees = []
+            
+            def commencer_quete(self, quete):
+                self.quetes_actives.append(quete)
+                print(f"Quête '{quete.titre}' commencée.")
+            
+            def terminer_quete(self, quete):
+                quete.marquer_terminee()
+                self.quetes_actives.remove(quete)
+                self.quetes_terminees.append(quete)
+            
+            def afficher_quetes(self):
+                print(f"Quêtes en cours pour {self.nom} :")
+                for quete in self.quetes_actives:
+                    quete.afficher_details()
+                print(f"Quêtes terminées pour {self.nom} :")
+                for quete in self.quetes_terminees:
+                    quete.afficher_details()
+        
+        # Exemple d'utilisation
+        joueur = Joueur("Arthur")
+        quete1 = Quete("Explorer la grotte", "Trouvez le trésor caché dans la grotte.", "Épée légendaire")
+        quete2 = Quete("Sauver le village", "Protégez le village des envahisseurs.", "Bouclier magique")
+        
+        joueur.commencer_quete(quete1)
+        joueur.commencer_quete(quete2)
+        
+        joueur.afficher_quetes()
+            </code></pre>
+        
+            <h4>Exercice 3 : Quêtes et Récompenses Variables</h4>
+        
+            <p><strong>Exercice :</strong> Modifiez la classe <code>Quete</code> pour que la récompense soit fonction des choix du joueur ou de la difficulté de la quête. Par exemple, une quête plus difficile pourrait offrir une plus grande récompense.</p>
+            <p><strong>Objectif :</strong> Créer une gestion dynamique des récompenses qui varie en fonction de la difficulté de la quête.</p>
+        
+            <pre><code>class Quete:
+            def __init__(self, titre, description, difficulte):
+                self.titre = titre
+                self.description = description
+                self.difficulte = difficulte  # Difficulté de la quête : facile, moyenne, difficile
+                self.terminee = False
+                self.recompense = self.definir_recompense()
+        
+            def definir_recompense(self):
+                if self.difficulte == "facile":
+                    return "50 pièces d'or"
+                elif self.difficulte == "moyenne":
+                    return "100 pièces d'or"
+                else:
+                    return "250 pièces d'or"
+        
+            def marquer_terminee(self):
+                self.terminee = True
+                print(f"La quête '{self.titre}' est terminée ! Récompense : {self.recompense}")
+        
+            def afficher_details(self):
+                etat = "Terminée" si self.terminee else "En cours"
+                print(f"Quête : {self.titre}\nDifficulté : {self.difficulte}\nÉtat : {etat}")
+        
+        # Création d'une quête avec récompense basée sur la difficulté
+        quete1 = Quete("Sauver le village", "Défendez le village contre les envahisseurs.", "difficile")
+        quete1.afficher_details()
+            </code></pre>
+        
+        </section>
+        
+        <section id="session63" class="content-section">
+            <h2>Séance 63 : Révision des Concepts de POO</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Réviser les concepts essentiels de la Programmation Orientée Objet (POO), notamment les classes, objets, attributs, et méthodes.</li>
+                <li>Apprendre à créer et manipuler des objets dans des programmes.</li>
+                <li>Appliquer les concepts de la POO à des contextes concrets (jeux vidéo, mangas, vie réelle, actualité).</li>
+            </ul>
+        
+            <h3>1. Introduction à la Programmation Orientée Objet</h3>
+        
+            <h4>Qu'est-ce que la POO ?</h4>
+            <p>La Programmation Orientée Objet (POO) est une approche de la programmation qui se concentre sur l'organisation du code autour de classes et objets.</p>
+            <p><strong>Classes :</strong> Ce sont des "modèles" qui définissent les caractéristiques (attributs) et les comportements (méthodes) des objets créés à partir d'elles. Par exemple, dans un jeu vidéo, une classe "Personnage" pourrait avoir des attributs comme le nom, la vie, et les compétences, ainsi que des méthodes pour attaquer ou se déplacer.</p>
+            <p><strong>Objets :</strong> Ce sont des instances de classes. Un objet représente un élément concret avec des attributs définis. Par exemple, "Mario" serait un objet de la classe "Personnage".</p>
+        
+            <h4>Concepts Clés de la POO :</h4>
+            <ul>
+                <li><strong>Classe :</strong> Un modèle définissant un ensemble de caractéristiques et de comportements communs aux objets qui en seront dérivés.</li>
+                <li><strong>Objet :</strong> Une instance d'une classe. Chaque objet a ses propres valeurs pour les attributs définis par la classe.</li>
+                <li><strong>Attributs :</strong> Les variables associées à une classe. Elles représentent les caractéristiques d'un objet.</li>
+                <li><strong>Méthodes :</strong> Les fonctions définies dans une classe. Elles représentent les actions qu'un objet peut effectuer.</li>
+            </ul>
+        
+            <h3>2. Structure de Base d'une Classe</h3>
+            
+            <h4>Exemple de Code Simple :</h4>
+            <pre><code>
+        # Définition de la classe Personnage
+        class Personnage:
+            def __init__(self, nom, vie, attaque):
+                self.nom = nom  # Attribut "nom"
+                self.vie = vie  # Attribut "vie"
+                self.attaque = attaque  # Attribut "attaque"
+            
+            # Méthode pour attaquer un autre personnage
+            def attaquer(self, cible):
+                cible.vie -= self.attaque
+                print(f"{self.nom} attaque {cible.nom} et lui inflige {self.attaque} dégâts.")
+        
+        # Création de deux objets de la classe Personnage
+        perso1 = Personnage("Mario", 100, 20)
+        perso2 = Personnage("Bowser", 150, 30)
+        
+        # Mario attaque Bowser
+        perso1.attaquer(perso2)
+        
+        # Affichage de la vie restante de Bowser
+        print(f"Il reste {perso2.vie} points de vie à {perso2.nom}.")
+            </code></pre>
+        
+            <h4>Explications du Code :</h4>
+            <ul>
+                <li><code>class Personnage:</code> : Déclaration de la classe <code>Personnage</code>. Elle servira de modèle pour créer des personnages avec des attributs <code>nom</code>, <code>vie</code>, et <code>attaque</code>.</li>
+                <li><code>def __init__(self, nom, vie, attaque):</code> : La méthode spéciale <code>__init__</code> est utilisée pour initialiser les attributs de chaque objet au moment de sa création.</li>
+                <li><code>self.nom = nom</code> : <code>self</code> fait référence à l'instance courante de la classe. <code>self.nom</code> stocke la valeur passée pour l'attribut <code>nom</code>.</li>
+                <li><code>def attaquer(self, cible):</code> : Cette méthode permet à un personnage d'attaquer un autre personnage (<code>cible</code>) et de réduire ses points de vie (<code>cible.vie</code>).</li>
+            </ul>
+        
+            <h3>3. Activité Pratique : Créer et Manipuler des Objets</h3>
+            
+            <h4>Objectif de l'activité :</h4>
+            <p>Les élèves doivent écrire un programme utilisant des classes pour créer et manipuler des objets, en fonction du thème choisi. Chaque élève peut choisir un thème différent (jeux vidéo, mangas, vie réelle, actualité) pour appliquer les concepts de la POO.</p>
+            
+            <h4>Exercice 1 : Jeux Vidéo - Créer des Personnages</h4>
+            <pre><code>
+        class Personnage:
+            def __init__(self, nom, vie, attaque):
+                self.nom = nom
+                self.vie = vie
+                self.attaque = attaque
+            
+            def attaquer(self, cible):
+                cible.vie -= self.attaque
+                print(f"{self.nom} attaque {cible.nom} et lui inflige {self.attaque} dégâts.")
+                
+        # Création de personnages
+        heros = Personnage("Héros", 100, 15)
+        monstre = Personnage("Monstre", 80, 10)
+        
+        # Le héros attaque le monstre
+        heros.attaquer(monstre)
+        
+        # Affichage de la vie restante
+        print(f"Vie restante de {monstre.nom}: {monstre.vie}")
+            </code></pre>
+            
+            <h4>Explication de l'Exercice :</h4>
+            <p>Les élèves vont créer deux objets de la classe <code>Personnage</code>, puis utiliser la méthode <code>attaquer</code> pour simuler un combat.</p>
+        
+            <h4>Objectifs :</h4>
+            <ul>
+                <li>Réviser la création d'objets à partir d'une classe.</li>
+                <li>Apprendre à manipuler les méthodes pour faire interagir les objets.</li>
+            </ul>
+        
+            <h4>Exercice 2 : Manga - Suivi de Personnages</h4>
+            <pre><code>
+        class PersonnageDeManga:
+            def __init__(self, nom, age):
+                self.nom = nom
+                self.age = age
+                self.competences = []
+            
+            def ajouter_competence(self, competence):
+                self.competences.append(competence)
+                print(f"{competence} a été ajouté à {self.nom}.")
+            
+            def afficher_competences(self):
+                print(f"Compétences de {self.nom}: {', '.join(self.competences)}")
+        
+        # Création d'un personnage
+        naruto = PersonnageDeManga("Naruto", 16)
+        
+        # Ajout de compétences
+        naruto.ajouter_competence("Rasengan")
+        naruto.ajouter_competence("Kage Bunshin")
+        
+        # Affichage des compétences
+        naruto.afficher_competences()
+            </code></pre>
+        
+            <h4>Explication de l'Exercice :</h4>
+            <p>Chaque personnage de manga peut avoir un ensemble de compétences.</p>
+            
+            <h4>Objectifs :</h4>
+            <ul>
+                <li>Réviser la création d'objets avec plusieurs attributs.</li>
+                <li>Manipuler des listes à l'intérieur d'une classe pour gérer les compétences.</li>
+            </ul>
+        
+            <h4>Exercice 3 : Vie Réelle - Gestion d'un Compte Bancaire</h4>
+            <pre><code>
+        class CompteBancaire:
+            def __init__(self, titulaire, solde):
+                self.titulaire = titulaire
+                self.solde = solde
+            
+            def deposer(self, montant):
+                self.solde += montant
+                print(f"{montant} euros déposés. Nouveau solde: {self.solde} euros.")
+            
+            def retirer(self, montant):
+                if montant <= self.solde:
+                    self.solde -= montant
+                    print(f"{montant} euros retirés. Nouveau solde: {self.solde} euros.")
+                else:
+                    print("Fonds insuffisants.")
+        
+        # Création d'un compte
+        compte = CompteBancaire("Jean", 500)
+        
+        # Dépôts et retraits
+        compte.deposer(200)
+        compte.retirer(150)
+        compte.retirer(600)  # Fonds insuffisants
+            </code></pre>
+        
+            <h4>Explication de l'Exercice :</h4>
+            <p>Les élèves doivent gérer des comptes avec des méthodes pour effectuer des dépôts et des retraits.</p>
+            
+            <h4>Objectifs :</h4>
+            <ul>
+                <li>Utiliser les attributs pour stocker des informations financières.</li>
+                <li>Manipuler les méthodes pour simuler des transactions bancaires.</li>
+            </ul>
+        
+            <h4>Exercice 4 : Actualité - Suivi des Événements</h4>
+            <pre><code>
+        class Evenement:
+            def __init__(self, titre, date, description):
+                self.titre = titre
+                self.date = date
+                self.description = description
+            
+            def afficher_details(self):
+                print(f"Événement: {self.titre} - {self.date}")
+                print(f"Détails: {self.description}")
+        
+        # Création d'événements
+        evenement1 = Evenement("Conférence mondiale sur le climat", "2024-12-01", "Discours des leaders mondiaux sur les enjeux climatiques.")
+        evenement2 = Evenement("Lancement d'une mission spatiale", "2024-11-20", "Une nouvelle mission pour explorer Mars.")
+        
+        # Affichage des détails des événements
+        evenement1.afficher_details()
+        evenement2.afficher_details()
+            </code></pre>
+        
+            <h4>Explication de l'Exercice :</h4>
+            <p>Les élèves doivent créer et gérer des événements d'actualité avec des attributs tels que le titre, la date et la description.</p>
+            
+            <h4>Objectifs :</h4>
+            <ul>
+                <li>Apprendre à manipuler des données textuelles et des dates dans des classes.</li>
+                <li>Utiliser des objets pour stocker des informations liées à des événements.</li>
+            </ul>
+        </section>
+        
+        <section id="session64" class="content-section">
+            <h2>Séance 64 : Pratique - Projet de Création d'une Application Basée sur la Vie Réelle</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Appliquer les concepts vus en cours (variables, boucles, conditions, listes, etc.) dans un projet pratique.</li>
+                <li>Concevoir et coder une petite application utile dans la vie réelle.</li>
+                <li>Travailler sur un projet autonome ou en petit groupe, tout en consolidant les bases de la programmation.</li>
+            </ul>
+        
+            <h3>1. Introduction au Projet</h3>
+            <p><strong>Qu'est-ce qu'une application basée sur la vie réelle ?</strong><br>
+            Il s'agit d'une application qui aide à résoudre un problème pratique ou à automatiser une tâche dans la vie quotidienne. Cela peut être la gestion des dépenses, l'organisation des tâches, le suivi de la santé, etc. Les élèves peuvent choisir un domaine qui les intéresse et imaginer une application simple, mais utile.</p>
+        
+            <p><strong>Exemples d'applications basées sur la vie réelle :</strong></p>
+            <ul>
+                <li><strong>Gestion de budget personnel :</strong> Permet de suivre ses dépenses et de calculer le solde restant.</li>
+                <li><strong>Organisation de tâches :</strong> Une liste de tâches avec des priorités et des délais.</li>
+                <li><strong>Suivi d'exercices physiques :</strong> Enregistre les séances d'exercice (course, vélo, etc.) et suit les progrès.</li>
+                <li><strong>Gestion d'inventaire pour la maison :</strong> Suivi des produits ménagers (nourriture, produits d'entretien, etc.) avec des rappels pour acheter ce qui manque.</li>
+            </ul>
+        
+            <p><strong>Choix du Projet :</strong><br>
+            Les élèves choisiront entre plusieurs idées de projets ou proposeront leurs propres idées. Ils peuvent travailler individuellement ou en petits groupes (2-3 élèves).</p>
+        
+            <h3>2. Développement du Projet</h3>
+        
+            <h4>Étape 1 : Choisir l'idée de l'application</h4>
+            <p>Chaque élève (ou groupe) choisit une idée pour son projet. Ils peuvent choisir parmi des suggestions ou en inventer une.</p>
+        
+            <p><strong>Suggestions de projets :</strong></p>
+            <ul>
+                <li><strong>1. Application de Gestion de Budget Personnel</strong></li>
+                <ul>
+                    <li>Saisie des revenus et des dépenses.</li>
+                    <li>Calcul du solde restant.</li>
+                    <li>Affichage de toutes les transactions.</li>
+                </ul>
+                <li><strong>2. Application de Suivi des Exercices</strong></li>
+                <ul>
+                    <li>Saisie des séances de sport (type, durée, distance, etc.).</li>
+                    <li>Calcul des progrès (total d'heures d'exercice, distances parcourues, etc.).</li>
+                    <li>Affichage des statistiques.</li>
+                </ul>
+                <li><strong>3. Application de Liste de Tâches</strong></li>
+                <ul>
+                    <li>Ajout de tâches avec des priorités et des dates limites.</li>
+                    <li>Affichage des tâches à accomplir, triées par priorité ou date.</li>
+                    <li>Marquage des tâches comme terminées.</li>
+                </ul>
+                <li><strong>4. Application de Gestion des Courses</strong></li>
+                <ul>
+                    <li>Saisie des articles à acheter (nom, quantité).</li>
+                    <li>Vérification de ce qui a été acheté ou reste à acheter.</li>
+                    <li>Affichage de la liste de courses.</li>
+                </ul>
+            </ul>
+        
+            <h4>Étape 2 : Structurer l'application</h4>
+            <p>Pour chaque projet, les élèves doivent d'abord structurer leur application. Voici un guide pour les aider à définir la structure :</p>
+            <ul>
+                <li><strong>1. Entrées Utilisateur :</strong><br>
+                Quels types de données l'utilisateur va-t-il entrer ? (Ex. : montants pour le budget, séances pour le sport, tâches pour l'organisateur, etc.)</li>
+                <li><strong>2. Stockage des Données :</strong><br>
+                Où stocker ces données ? (Dans des listes ou des dictionnaires.)</li>
+                <li>Exemple, dans l'application de budget :</li>
+                <pre><code>depenses = []  # Liste pour stocker les montants des dépenses</code></pre>
+                <li><strong>3. Traitement des Données :</strong><br>
+                Comment traiter ces données ? (Calculs, affichage, tri, etc.)</li>
+                <p>Exemple pour calculer le solde restant dans une application de budget :</p>
+                <pre><code>solde = revenus - sum(depenses)</code></pre>
+                <li><strong>4. Sorties (Affichage) :</strong><br>
+                Quels résultats afficher à l'utilisateur ? (Liste de dépenses, solde restant, tâches, etc.)</li>
+                <p>Exemple d'affichage pour une liste de tâches :</p>
+                <pre><code>
+        for tache in liste_taches:
+            print(f"{tache['nom']} - Priorité: {tache['priorite']}")
+                </code></pre>
+            </ul>
+        
+            <h3>3. Codage du Projet</h3>
+            
+            <h4>Exercice Pratique :</h4>
+            <p>Les élèves écrivent le code de leur projet. Voici des exemples détaillés pour chaque type d'application.</p>
+        
+            <h4>Exemple 1 : Application de Gestion de Budget Personnel</h4>
+            <pre><code>
+        # Saisie des revenus
+        revenus = float(input("Entrez vos revenus : "))
+        
+        # Liste pour stocker les dépenses
+        depenses = []
+        
+        # Saisie des dépenses
+        while True:
+            depense = float(input("Entrez une dépense (ou 0 pour terminer) : "))
+            if depense == 0:
+                break
+            depenses.append(depense)
+        
+        # Calcul du solde restant
+        solde = revenus - sum(depenses)
+        
+        # Affichage du solde et des dépenses
+        print("Dépenses totales :", sum(depenses))
+        print("Solde restant :", solde)
+            </code></pre>
+        
+            <h4>Exemple 2 : Application de Suivi des Exercices</h4>
+            <pre><code>
+        # Liste pour stocker les séances de sport
+        seances = []
+        
+        # Saisie des séances
+        while True:
+            type_seance = input("Type d'exercice (course, vélo, etc.) : ")
+            duree = float(input("Durée de la séance (en heures) : "))
+            distance = float(input("Distance parcourue (en km) : "))
+            
+            seances.append({"type": type_seance, "duree": duree, "distance": distance})
+            
+            continuer = input("Ajouter une autre séance ? (oui/non) : ")
+            if continuer.lower() != 'oui':
+                break
+        
+        # Affichage des statistiques
+        total_duree = sum([s["duree"] for s in seances])
+        total_distance = sum([s["distance"] for s in seances])
+        
+        print("Total d'heures d'exercice :", total_duree)
+        print("Total de distance parcourue :", total_distance, "km")
+            </code></pre>
+        
+            <h4>Exemple 3 : Application de Liste de Tâches</h4>
+            <pre><code>
+        # Liste pour stocker les tâches
+        liste_taches = []
+        
+        # Saisie des tâches
+        while True:
+            nom_tache = input("Entrez le nom de la tâche : ")
+            priorite = int(input("Priorité (1: haute, 3: basse) : "))
+            liste_taches.append({"nom": nom_tache, "priorite": priorite})
+            
+            continuer = input("Ajouter une autre tâche ? (oui/non) : ")
+            if continuer.lower() != 'oui':
+                break
+        
+        # Affichage des tâches triées par priorité
+        liste_taches = sorted(liste_taches, key=lambda x: x["priorite"])
+        print("Liste des tâches triées par priorité :")
+        for tache in liste_taches:
+            print(f"{tache['nom']} - Priorité: {tache['priorite']}")
+            </code></pre>
+        
+            <h4>Exemple 4 : Application de Gestion des Courses</h4>
+            <pre><code>
+        # Liste pour stocker les articles de courses
+        liste_courses = []
+        
+        # Saisie des articles
+        while True:
+            article = input("Entrez le nom de l'article : ")
+            quantite = int(input(f"Quantité de {article} : "))
+            liste_courses.append({"article": article, "quantite": quantite, "achete": False})
+            
+            continuer = input("Ajouter un autre article ? (oui/non) : ")
+            if continuer.lower() != 'oui':
+                break
+        
+        # Affichage de la liste des articles
+        print("Liste des articles à acheter :")
+        for article in liste_courses:
+            status = "acheté" if article["achete"] else "à acheter"
+            print(f"{article['article']} (Quantité : {article['quantite']}) - {status}")
+        
+        # Possibilité de marquer un article comme acheté
+        while True:
+            article_achete = input("Entrez le nom d'un article acheté (ou 'fin' pour terminer) : ")
+            if article_achete.lower() == 'fin':
+                break
+            for article in liste_courses:
+                if article["article"].lower() == article_achete.lower():
+                    article["achete"] = True
+                    print(f"{article_achete} marqué comme acheté.")
+            </code></pre>
+        
+            <h3>Conclusion</h3>
+            <h4>Présentation des Projets :</h4>
+            <p>Les élèves peuvent présenter rapidement leurs projets à la classe (ou simplement partager leurs idées et ce qu'ils ont appris).</p>
+            
+            <h4>Réflexion sur les Améliorations :</h4>
+            <p>Encouragez-les à réfléchir à des améliorations possibles pour rendre leur application plus utile, par exemple en ajoutant des fonctionnalités plus avancées comme la sauvegarde des données.</p>
+        
+            <h4>Résumé des Points Clés</h4>
+            <p>Le projet de création d'application permet aux élèves d'appliquer plusieurs concepts clés de la programmation dans un contexte concret. Ils apprennent à structurer leur code, à utiliser des listes et des boucles pour gérer des données, et à créer des programmes utiles pour la vie réelle.</p>
+        </section>
+        
+        <section id="session65" class="content-section">
+            <h2>Séance 65 : Travail de groupe - Définir le projet final sur un des thèmes (jeu vidéo, manga, actualité, vie réelle)</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Travailler en groupe pour définir un projet final concret sur un des quatre thèmes : jeu vidéo, manga, actualité ou vie réelle.</li>
+                <li>Développer des compétences de planification et de collaboration.</li>
+                <li>Choisir un projet pertinent en fonction des compétences acquises pendant l'année (structures de contrôle, boucles, gestion des données, bases de données simples, etc.).</li>
+                <li>Définir clairement les objectifs, les fonctionnalités et la répartition des tâches dans le groupe.</li>
+            </ul>
+        
+            <h3>1. Introduction à la Séance et Définition du Projet</h3>
+            <h4>Introduction à la Session :</h4>
+            <p>La séance 65 marque le début de la phase de projet final. Les élèves vont travailler en groupes pour définir un projet sur l’un des quatre thèmes : jeu vidéo, manga, actualité ou vie réelle.</p>
+            <p>Chaque groupe devra concevoir un projet qui :</p>
+            <ul>
+                <li>Répond à un besoin ou un concept lié à leur thème choisi.</li>
+                <li>Intègre des concepts appris tout au long de l’année (comme les boucles, les conditions, les structures de données, et potentiellement des bases de données simples).</li>
+                <li>Est réalisable dans le cadre des séances restantes et avec les compétences acquises.</li>
+            </ul>
+        
+            <h4>Exemples de Projets :</h4>
+            <ul>
+                <li><strong>Jeu vidéo :</strong> Un mini-jeu de type RPG où le joueur doit accomplir des quêtes simples.</li>
+                <li><strong>Manga :</strong> Une application de gestion de mangas lus, suivie des chapitres et des avis.</li>
+                <li><strong>Actualité :</strong> Un agrégateur d’actualités qui trie et affiche des événements récents.</li>
+                <li><strong>Vie réelle :</strong> Un outil de gestion de budget personnel.</li>
+            </ul>
+        
+            <h4>Étapes de la Planification :</h4>
+            <ol>
+                <li><strong>Discussion en groupe :</strong> Choisir le thème.</li>
+                <li><strong>Définir un projet réaliste :</strong> Discuter des objectifs du projet et de ses fonctionnalités.</li>
+                <li><strong>Répartition des tâches :</strong> Chaque membre du groupe doit avoir un rôle et des responsabilités claires.</li>
+            </ol>
+        
+            <h3>2. Travail de Groupe : Définir le Projet</h3>
+            
+            <h4>Étape 1 : Choisir un Thème</h4>
+            <p>Chaque groupe doit commencer par choisir l'un des thèmes suivants pour leur projet :</p>
+            
+            <ul>
+                <li><strong>Jeu vidéo :</strong> Créer un jeu simple (RPG, plateforme, ou simulation) où l'utilisateur peut interagir avec le monde (exploration, collecte d'objets, quêtes).</li>
+                <ul>
+                    <li><strong>Fonctionnalités possibles :</strong> Gestion d’un inventaire, quêtes à accomplir, gestion des points de vie.</li>
+                </ul>
+                <li><strong>Manga :</strong> Créer une application de suivi de mangas où les utilisateurs peuvent entrer les mangas qu'ils lisent et suivre leurs progrès.</li>
+                <ul>
+                    <li><strong>Fonctionnalités possibles :</strong> Ajouter, modifier et supprimer des mangas, trier par titre, nombre de chapitres lus, etc.</li>
+                </ul>
+                <li><strong>Actualité :</strong> Créer une application qui permet de suivre les événements d’actualité, classés par thème (politique, sport, culture).</li>
+                <ul>
+                    <li><strong>Fonctionnalités possibles :</strong> Ajouter et afficher des événements, trier les événements par date ou par catégorie.</li>
+                </ul>
+                <li><strong>Vie réelle :</strong> Un gestionnaire de budget simple où l'utilisateur peut suivre ses dépenses, définir des objectifs d’épargne et voir le solde restant.</li>
+                <ul>
+                    <li><strong>Fonctionnalités possibles :</strong> Suivi des dépenses et des revenus, calcul du solde, génération de rapports simples.</li>
+                </ul>
+            </ul>
+        
+            <h4>Étape 2 : Définir le Concept Principal du Projet</h4>
+            <p>Une fois le thème choisi, le groupe doit discuter du concept principal de leur projet. Ils doivent répondre aux questions suivantes :</p>
+            <ol>
+                <li><strong>Qu’est-ce que notre projet va accomplir ?</strong><br>Décrivez l'objectif général. Par exemple, dans un jeu vidéo, l'objectif pourrait être d'accomplir des quêtes pour gagner des points.</li>
+                <li><strong>Quelle sera la fonctionnalité principale ?</strong><br>Déterminez la fonctionnalité centrale du projet. Par exemple, dans une application de gestion de mangas, la fonctionnalité principale serait d'ajouter et suivre les mangas lus.</li>
+                <li><strong>Quelles autres fonctionnalités voulons-nous inclure ?</strong><br>Listez des fonctionnalités supplémentaires qui enrichiront le projet, comme la possibilité de trier ou de filtrer des données, ou d’ajouter des éléments interactifs.</li>
+            </ol>
+        
+            <h4>Étape 3 : Réaliser une ébauche du Projet</h4>
+            <p>Demandez aux élèves de créer une ébauche du projet. Cela peut inclure :</p>
+            <ul>
+                <li>Un schéma des écrans ou de l'interface utilisateur (exemple : un écran de menu pour un jeu vidéo, un écran d'ajout de mangas, etc.).</li>
+                <li>Une description des fonctionnalités : Une liste des actions que l'utilisateur pourra effectuer dans le projet (exemple : ajouter des éléments, trier les données, jouer à un mini-jeu).</li>
+                <li>Les flux de données : Comment les données vont circuler (exemple : saisie des données par l’utilisateur et leur affichage).</li>
+            </ul>
+        
+            <h3>3. Répartition des Tâches</h3>
+        
+            <h4>Étape 1 : Identifier les Modules du Projet</h4>
+            <ul>
+                <li><strong>Jeu vidéo :</strong> Mécanismes de jeu, gestion de l’inventaire, calcul des points, affichage des quêtes.</li>
+                <li><strong>Manga :</strong> Saisie des données (titres de manga, chapitres), gestion et tri des mangas, affichage des mangas triés.</li>
+                <li><strong>Actualité :</strong> Saisie d'événements, tri et affichage par date ou catégorie.</li>
+                <li><strong>Vie réelle :</strong> Saisie des dépenses, calcul du solde, génération des rapports de dépenses.</li>
+            </ul>
+        
+            <h4>Étape 2 : Attribuer les Rôles</h4>
+            <p>Chaque membre du groupe doit être responsable d'un aspect du projet. Voici quelques exemples de rôles :</p>
+            <ul>
+                <li><strong>Responsable de la collecte des données :</strong> Gérer les entrées de données (scores, mangas, événements, dépenses).</li>
+                <li><strong>Responsable de l’algorithme :</strong> Implémenter la logique (calcul des scores, tri des éléments, calcul des dépenses).</li>
+                <li><strong>Responsable de l'affichage :</strong> S'occuper de la partie qui montre les résultats à l'utilisateur (afficher les scores, les dépenses, etc.).</li>
+                <li><strong>Responsable de la documentation :</strong> Noter les progrès du groupe et assurer que le projet reste cohérent.</li>
+            </ul>
+        
+            <h4>Étape 3 : Créer un Planning</h4>
+            <p>Chaque groupe doit estimer combien de temps chaque tâche prendra et organiser le travail pour les prochaines séances. Cela leur permet de suivre leurs progrès et de s'assurer qu'ils auront terminé à temps.</p>
+        
+            <h3>4. Présentation Initiale</h3>
+            <p>Chaque groupe doit partager brièvement avec le reste de la classe :</p>
+            <ul>
+                <li>Le thème choisi (jeu vidéo, manga, actualité ou vie réelle).</li>
+                <li>Le concept principal de leur projet.</li>
+                <li>Les fonctionnalités principales qu'ils prévoient d'inclure.</li>
+                <li>La répartition des rôles dans leur groupe.</li>
+            </ul>
+            <p>Les autres élèves et le professeur peuvent donner des retours ou poser des questions pour clarifier les objectifs du projet.</p>
+        
+            <h4>Exemples Concrets pour Chaque Thème</h4>
+            
+            <h5>Thème 1 : Jeu Vidéo - Exemple de Projet</h5>
+            <p><strong>Projet :</strong> Un mini-jeu de type RPG.<br>
+            <strong>Concept :</strong> Le joueur incarne un aventurier qui doit accomplir des quêtes et collecter des objets pour gagner des points.</p>
+            <ul>
+                <li><strong>Fonctionnalités :</strong> Système de quêtes, gestion d’un inventaire, calcul des points de vie et des gains en fonction des actions.</li>
+            </ul>
+        
+            <h5>Thème 2 : Manga - Exemple de Projet</h5>
+            <p><strong>Projet :</strong> Une application de suivi des mangas lus.<br>
+            <strong>Concept :</strong> Les utilisateurs peuvent ajouter des mangas qu'ils lisent, voir leur progression, et trier la liste par titre ou nombre de chapitres.</p>
+            <ul>
+                <li><strong>Fonctionnalités :</strong> Ajout et modification des mangas, tri des mangas par ordre alphabétique ou par nombre de chapitres.</li>
+            </ul>
+        
+            <h5>Thème 3 : Actualité - Exemple de Projet</h5>
+            <p><strong>Projet :</strong> Un agrégateur d'actualité.<br>
+            <strong>Concept :</strong> L'application permet d'ajouter des événements d'actualité, de les trier par date ou par thème, et de les afficher dans un ordre chronologique.</p>
+            <ul>
+                <li><strong>Fonctionnalités :</strong> Ajout d'événements d'actualité, tri des événements par date ou par catégorie (politique, sport, etc.).</li>
+            </ul>
+        
+            <h5>Thème 4 : Vie Réelle - Exemple de Projet</h5>
+            <p><strong>Projet :</strong> Gestion de budget personnel.<br>
+            <strong>Concept :</strong> L'utilisateur saisit ses revenus et ses dépenses, et l'application affiche son solde et génère des rapports simples.</p>
+            <ul>
+                <li><strong>Fonctionnalités :</strong> Suivi des dépenses et des revenus, calcul du solde restant, visualisation des dépenses sous forme de rapport.</li>
+            </ul>
+        </section>
+        
+        <section id="session66" class="content-section">
+            <h2>Séance 66 : Travail de groupe - Développement du projet (base de données, POO, IA)</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Travailler en groupe pour développer un projet qui combine les concepts de base de données, programmation orientée objet (POO), et intelligence artificielle (IA).</li>
+                <li>Appliquer les concepts théoriques vus en cours à un projet concret.</li>
+                <li>Apprendre à collaborer, se répartir les tâches, et intégrer différentes parties d’un projet complexe.</li>
+            </ul>
+        
+            <h3>1. Introduction à la Séance</h3>
+            <h4>Travail en groupe :</h4>
+            <p>Chaque groupe de 3 à 4 élèves va choisir un projet sur l’un des thèmes suivants :</p>
+            <ul>
+                <li>Jeux vidéo</li>
+                <li>Mangas</li>
+                <li>Vie réelle</li>
+                <li>Actualité</li>
+            </ul>
+        
+            <h4>Objectif du Projet :</h4>
+            <p>Le projet doit combiner trois éléments :</p>
+            <ul>
+                <li><strong>Base de données :</strong> Stockage d’informations sur des objets ou des événements liés au projet.</li>
+                <li><strong>Programmation Orientée Objet (POO) :</strong> Utiliser des classes pour modéliser les objets manipulés dans le projet.</li>
+                <li><strong>IA simple :</strong> Implémenter une forme d’intelligence artificielle, comme une prise de décision automatique ou une recommandation basée sur les données.</li>
+            </ul>
+        
+            <p>Chaque groupe doit déterminer les rôles de chacun :</p>
+            <ul>
+                <li>Un élève pourrait se concentrer sur la base de données.</li>
+                <li>Un autre sur la POO.</li>
+                <li>Un autre sur l’IA.</li>
+            </ul>
+        
+            <h3>2. Choix des Projets</h3>
+            <h4>Exemples de Projets :</h4>
+        
+            <h5>Projet 1 : Jeux Vidéo - Gestion de Personnages et Recommandations d'Équipement</h5>
+            <h6>Contexte :</h6>
+            <p>Vous développez un système qui gère un inventaire d’équipements pour différents personnages dans un jeu vidéo. Chaque personnage peut avoir un niveau, des compétences, et un équipement spécifique. L’IA recommandera des équipements en fonction des compétences du personnage.</p>
+        
+            <h6>Base de données :</h6>
+            <p>Stocker les personnages, leurs niveaux, leurs équipements et compétences dans une base de données SQLite.</p>
+        
+            <h6>POO :</h6>
+            <p>Utiliser des classes pour représenter les Personnages, les Équipements, et les Compétences.</p>
+        
+            <h6>IA :</h6>
+            <p>Implémenter un système simple de recommandation qui propose l’équipement optimal en fonction des compétences du personnage.</p>
+        
+            <h6>Plan pour chaque groupe :</h6>
+            <h6>1. Base de données :</h6>
+            <ul>
+                <li>Créer une base de données SQLite qui stocke des informations sur les personnages et leurs équipements.</li>
+                <li>Exemple de tables :</li>
+                <ul>
+                    <li><strong>Personnages :</strong> (ID, nom, niveau, compétences)</li>
+                    <li><strong>Équipements :</strong> (ID, nom, type, puissance)</li>
+                    <li><strong>Compétences :</strong> (ID, nom, personnage_ID)</li>
+                </ul>
+                <li>Utilisation de SQL pour ajouter des personnages et des équipements dans la base de données et pour récupérer les données.</li>
+            </ul>
+        
+            <h6>2. POO :</h6>
+            <p>Créer des classes Python pour représenter les Personnages et Équipements. Chaque personnage doit avoir un nom, un niveau et une liste d’équipements.</p>
+        
+            <pre><code>class Personnage:
+            def __init__(self, nom, niveau, competences):
+                self.nom = nom
+                self.niveau = niveau
+                self.competences = competences
+                self.equipements = []
+        
+            def ajouter_equipement(self, equipement):
+                self.equipements.append(equipement)
+        
+        class Equipement:
+            def __init__(self, nom, type, puissance):
+                self.nom = nom
+                self.type = type
+                self.puissance = puissance
+            </code></pre>
+        
+            <h6>3. IA :</h6>
+            <p>Implémenter une IA qui recommande l’équipement optimal en fonction des compétences du personnage :</p>
+        
+            <pre><code>def recommander_equipement(personnage):
+            if "force" in personnage.competences:
+                return "Épée lourde"
+            elif "défense" in personnage.competences:
+                return "Bouclier renforcé"
+            else:
+                return "Aucun équipement recommandé"
+            </code></pre>
+        
+            <h5>Projet 2 : Manga - Gestion de Collection et Recommandation d'Œuvres</h5>
+            <h6>Contexte :</h6>
+            <p>Vous développez un système pour gérer une collection de mangas et recommander de nouvelles œuvres à lire en fonction des mangas déjà lus.</p>
+        
+            <h6>Base de données :</h6>
+            <p>Stocker les mangas dans une base de données SQLite (titre, auteur, nombre de chapitres).</p>
+        
+            <h6>POO :</h6>
+            <p>Utiliser des classes pour modéliser les mangas et la collection.</p>
+        
+            <h6>IA :</h6>
+            <p>Recommander de nouveaux mangas à lire en fonction des préférences de l’utilisateur (par auteur, genre, ou nombre de chapitres).</p>
+        
+            <h6>Plan pour chaque groupe :</h6>
+            <h6>1. Base de données :</h6>
+            <ul>
+                <li>Créer une base de données SQLite pour stocker des informations sur les mangas :</li>
+                <ul>
+                    <li><strong>Mangas :</strong> (ID, titre, auteur, chapitres, genre)</li>
+                    <li><strong>Genres :</strong> (ID, nom)</li>
+                </ul>
+            </ul>
+        
+            <h6>2. POO :</h6>
+            <pre><code>class Manga:
+            def __init__(self, titre, auteur, chapitres, genre):
+                self.titre = titre
+                self.auteur = auteur
+                self.chapitres = chapitres
+                self.genre = genre
+        
+        class Collection:
+            def __init__(self):
+                self.mangas = []
+        
+            def ajouter_manga(self, manga):
+                self.mangas.append(manga)
+            </code></pre>
+        
+            <h6>3. IA :</h6>
+            <p>Implémenter une IA qui recommande un nouveau manga basé sur le genre préféré de l’utilisateur :</p>
+        
+            <pre><code>def recommander_manga(collection, genre_prefere):
+            recommandations = []
+            for manga in collection.mangas:
+                if manga.genre == genre_prefere:
+                    recommandations.append(manga.titre)
+            return recommandations
+            </code></pre>
+        
+            <h5>Projet 3 : Vie Réelle - Gestion des Dépenses et Prédiction de Budget</h5>
+            <h6>Contexte :</h6>
+            <p>Développer une application pour suivre les dépenses personnelles et prédire les dépenses futures en fonction des habitudes passées.</p>
+        
+            <h6>Base de données :</h6>
+            <p>Stocker les dépenses dans une base de données SQLite (montant, catégorie, date).</p>
+        
+            <h6>POO :</h6>
+            <pre><code>class Depense:
+            def __init__(self, montant, categorie, date):
+                self.montant = montant
+                self.categorie = categorie
+                self.date = date
+            </code></pre>
+        
+            <h6>3. IA :</h6>
+            <p>Implémenter une IA qui prédit les dépenses futures en fonction des mois précédents :</p>
+        
+            <pre><code>def predire_depenses(depenses):
+            total_mensuel = {}
+            for depense in depenses:
+                mois = depense.date[:7]  # Année et mois AAAA-MM
+                if mois not in total_mensuel:
+                    total_mensuel[mois] = 0
+                total_mensuel[mois] += depense.montant
+            # Prédire la prochaine dépense mensuelle (moyenne des derniers mois)
+            moyenne = sum(total_mensuel.values()) / len(total_mensuel)
+            return moyenne
+            </code></pre>
+        
+            <h5>Projet 4 : Actualité - Suivi des Événements et Classification</h5>
+            <h6>Contexte :</h6>
+            <p>Développer une application pour suivre des événements d’actualité et classer les événements par importance.</p>
+        
+            <h6>Base de données :</h6>
+            <p>Stocker les événements dans une base de données (titre, description, date, importance).</p>
+        
+            <h6>POO :</h6>
+            <pre><code>class Evenement:
+            def __init__(self, titre, description, date, importance):
+                self.titre = titre
+                self.description = description
+                self.date = date
+                self.importance = importance
+            </code></pre>
+        
+            <h6>IA :</h6>
+            <p>Implémenter une IA qui classifie l'importance d'un événement en fonction de certains mots-clés :</p>
+        
+            <pre><code>def classer_evenement(description):
+            if "urgence" in description.lower():
+                return "Haute importance"
+            elif "alerte" in description.lower():
+                return "Moyenne importance"
+            else:
+                return "Basse importance"
+            </code></pre>
+        
+            <h3>5. Travail en Groupe</h3>
+            <p>Chaque groupe commence à développer son projet en se basant sur les concepts étudiés. Les élèves doivent s’assurer que chaque partie (base de données, POO, IA) est bien intégrée et communique avec les autres.</p>
+        
+            <h4>Répartition des Tâches :</h4>
+            <ul>
+                <li><strong>Base de données :</strong> Définir la structure des tables et gérer les interactions avec la base de données.</li>
+                <li><strong>POO :</strong> Créer les classes et les objets pour représenter les éléments du projet (personnages, mangas, dépenses, événements).</li>
+                <li><strong>IA :</strong> Mettre en place un système d’intelligence artificielle simple pour prendre des décisions basées sur les données.</li>
+            </ul>
+        
+            <h3>6. Conclusion (10 minutes)</h3>
+            <p>Retour sur le travail de groupe :</p>
+            <ul>
+                <li>Chaque groupe fait un point rapide sur l'avancement du projet, ce qui a fonctionné et les défis rencontrés.</li>
+                <li>Préparation pour la Séance suivante :</li>
+                <ul>
+                    <li>Le développement du projet continue à la prochaine séance. Les groupes doivent se coordonner pour terminer la partie de base et intégrer chaque section (base de données, POO, IA).</li>
+                </ul>
+            </ul>
+        </section>
+        
+        <section id="session67" class="content-section">
+            <h2>Séance 67 : Finalisation du Projet - Test et Validation</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Comprendre l'importance du test et de la validation dans le processus de développement de projets.</li>
+                <li>Apprendre à identifier et corriger les erreurs potentielles (bugs) dans le projet.</li>
+                <li>Utiliser différentes techniques de tests pour s'assurer que le projet fonctionne correctement.</li>
+                <li>Valider le projet en fonction des exigences initiales et des cas d'utilisation.</li>
+            </ul>
+        
+            <h3>1. Introduction aux Tests et à la Validation</h3>
+            
+            <h4>Pourquoi tester un projet ?</h4>
+            <p>Le test est une phase cruciale dans tout projet de programmation. L'objectif principal est de s'assurer que le programme fonctionne comme prévu, sans erreurs, et répond aux besoins définis initialement. Voici les raisons pour lesquelles il est essentiel de tester :</p>
+            <ul>
+                <li><strong>Détection d'erreurs (bugs) :</strong> Tester aide à identifier des comportements inattendus ou des erreurs dans le code.</li>
+                <li><strong>Validation des fonctionnalités :</strong> Vérifier que toutes les fonctionnalités spécifiées fonctionnent correctement.</li>
+                <li><strong>Amélioration de la qualité :</strong> Un projet bien testé est plus robuste et fiable.</li>
+            </ul>
+        
+            <h4>Types de tests :</h4>
+            <ul>
+                <li><strong>Tests fonctionnels :</strong> Vérifier que les fonctionnalités du programme répondent aux attentes. Par exemple, un test fonctionnel pourrait consister à s'assurer que l'ajout d'un objet à l'inventaire dans un jeu vidéo fonctionne correctement.</li>
+                <li><strong>Tests de limite :</strong> Vérifier comment le programme réagit aux valeurs extrêmes ou inhabituelles. Par exemple, tester un budget en entrée négative ou des chapitres de mangas inexistants.</li>
+                <li><strong>Tests utilisateur :</strong> Simuler des actions que les utilisateurs réels pourraient faire pour s'assurer que le programme est intuitif et fonctionnel.</li>
+            </ul>
+        
+            <h4>Qu'est-ce que la validation ?</h4>
+            <p>La validation consiste à s'assurer que le projet respecte les exigences définies au début du développement :</p>
+            <ul>
+                <li>Est-ce que toutes les fonctionnalités promises sont présentes ?</li>
+                <li>Est-ce que les performances du projet sont satisfaisantes (rapidité, fluidité) ?</li>
+                <li>Est-ce que le projet est utilisable et répond à une problématique réelle ?</li>
+            </ul>
+        
+            <h3>2. Processus de Test</h3>
+            
+            <h4>Étape 1 : Identification des Fonctionnalités à Tester</h4>
+            <p>Commencez par lister toutes les fonctionnalités principales de votre projet. Voici quelques exemples pour les différents thèmes :</p>
+            <ul>
+                <li><strong>Jeux Vidéo :</strong> Tester l'ajout et le retrait d'objets dans l'inventaire, vérifier que les scores des joueurs sont bien enregistrés et affichés.</li>
+                <li><strong>Manga :</strong> S'assurer que la liste des mangas est bien triée par nombre de chapitres, vérifier que l'ajout et la modification des chapitres fonctionnent.</li>
+                <li><strong>Vie Réelle :</strong> Tester l'ajout et l'affichage des dépenses, vérifier que le calcul du solde fonctionne correctement.</li>
+                <li><strong>Actualité :</strong> Vérifier que l'utilisateur peut ajouter et retirer des événements d'actualité, tester que les événements sont triés correctement par date.</li>
+            </ul>
+        
+            <h4>Étape 2 : Création de Scénarios de Test</h4>
+            <p>Un scénario de test est un ensemble d'actions ou d'événements que vous simulez pour vérifier si une fonctionnalité fonctionne correctement. Pour chaque fonctionnalité, vous devez créer plusieurs scénarios de test.</p>
+        
+            <h5>Exemples de Scénarios de Test :</h5>
+            <ul>
+                <li><strong>1. Jeux Vidéo :</strong></li>
+                <ul>
+                    <li>Scénario 1 : Ajouter trois objets dans l'inventaire et vérifier que chaque objet est correctement affiché.</li>
+                    <li>Scénario 2 : Retirer un objet de l'inventaire et vérifier que l'objet n'est plus présent.</li>
+                    <li>Scénario 3 : Tester l'ajout d'un objet déjà présent (vérifier la gestion des doublons).</li>
+                </ul>
+                <li><strong>2. Manga :</strong></li>
+                <ul>
+                    <li>Scénario 1 : Ajouter deux mangas avec un nombre de chapitres, puis vérifier que les mangas sont bien triés.</li>
+                    <li>Scénario 2 : Modifier le nombre de chapitres d'un manga et vérifier que l'affichage est mis à jour correctement.</li>
+                </ul>
+                <li><strong>3. Vie Réelle :</strong></li>
+                <ul>
+                    <li>Scénario 1 : Ajouter plusieurs dépenses et vérifier que le total est correctement calculé.</li>
+                    <li>Scénario 2 : Tester une entrée de dépense incorrecte (exemple : valeur négative) et vérifier que le programme gère cette erreur.</li>
+                </ul>
+                <li><strong>4. Actualité :</strong></li>
+                <ul>
+                    <li>Scénario 1 : Ajouter plusieurs événements d'actualité avec des dates et vérifier qu'ils sont bien triés.</li>
+                    <li>Scénario 2 : Supprimer un événement et vérifier qu'il n'apparaît plus dans la liste.</li>
+                </ul>
+            </ul>
+        
+            <h4>Étape 3 : Exécution des Tests</h4>
+            <p>Les élèves doivent maintenant exécuter les scénarios de test sur leurs projets. Cela implique de lancer le programme, d'effectuer les actions prévues dans le scénario, et de vérifier si le résultat obtenu correspond au résultat attendu.</p>
+        
+            <h5>Exemple :</h5>
+            <p>Pour un jeu vidéo, si l'élève ajoute trois objets dans l'inventaire, il doit vérifier que l'inventaire contient bien ces trois objets et que rien ne manque ou n'est dupliqué.</p>
+        
+            <h3>3. Exercice Pratique : Effectuer des Tests sur le Projet</h3>
+        
+            <h4>Objectif de l'exercice :</h4>
+            <p>Les élèves doivent tester toutes les fonctionnalités principales de leurs projets en utilisant les scénarios de test qu'ils ont préparés. Ils doivent également valider leur projet en s'assurant qu'il répond bien aux attentes initiales.</p>
+        
+            <h5>Étapes :</h5>
+            <ul>
+                <li><strong>1. Lancer leur projet :</strong> Chaque élève ou groupe doit lancer son projet et tester chaque fonctionnalité avec les scénarios de test préparés.</li>
+                <li><strong>2. Noter les résultats :</strong> Pour chaque test, l'élève doit noter s'il a réussi ou s'il a échoué. S'il y a des erreurs ou des comportements inattendus, il doit les documenter.</li>
+                <li><strong>3. Corriger les erreurs :</strong> Lorsque des bugs sont identifiés, les élèves doivent essayer de les corriger. Ils peuvent utiliser les retours des tests pour ajuster leur code.</li>
+                <li><strong>4. Répéter les tests :</strong> Après chaque correction, il est important de relancer les tests pour vérifier si les problèmes ont été résolus.</li>
+            </ul>
+        
+            <h5>Exemple de Test et Validation (Manga) :</h5>
+            <p><strong>Scénario :</strong> L'utilisateur ajoute deux mangas avec des nombres de chapitres différents. Le programme doit afficher les mangas triés par chapitres.</p>
+            <p><strong>Test :</strong></p>
+            <ul>
+                <li><strong>Entrée :</strong> Manga1 (45 chapitres) et Manga2 (20 chapitres)</li>
+                <li><strong>Résultat attendu :</strong> Manga2 (20 chapitres) doit apparaître avant Manga1 (45 chapitres).</li>
+                <li><strong>Résultat du test :</strong> Si le programme affiche les mangas dans le bon ordre, le test est validé. Sinon, il faut corriger l'algorithme de tri.</li>
+            </ul>
+        
+            <h3>4. Réflexion et Discussion en Groupe</h3>
+        
+            <h4>Objectif :</h4>
+            <p>Après avoir effectué les tests, les élèves se regroupent pour partager leurs résultats :</p>
+            <ul>
+                <li>Quels types de bugs ont-ils rencontrés ?</li>
+                <li>Comment ont-ils résolu les erreurs ?</li>
+                <li>Leurs projets fonctionnent-ils comme prévu ?</li>
+            </ul>
+            <p>Cette discussion permet aux élèves de réfléchir sur leur processus de développement, de comparer leurs expériences et d'apprendre des autres groupes. Cela les aide également à comprendre qu'un projet de programmation doit passer par plusieurs étapes d'ajustement avant d'être parfait.</p>
+        
+            <h3>5. Conclusion</h3>
+            
+            <h4>Résumé des points clés :</h4>
+            <ul>
+                <li>Le test et la validation sont des étapes cruciales du développement.</li>
+                <li>Les tests permettent de s'assurer que le programme fonctionne correctement et sans erreurs.</li>
+                <li>La validation vérifie que le programme correspond aux exigences initiales et fonctionne comme prévu pour les utilisateurs.</li>
+            </ul>
+        
+            <h4>Prochaines étapes :</h4>
+            <p>Les projets sont presque terminés. La prochaine étape consistera à finaliser tous les aspects du projet et à préparer une présentation pour montrer le travail accompli.</p>
+        
+            <h3>Exercices au Choix (Tests et Validation)</h3>
+        
+            <h4>Exercice 1 : Jeux Vidéo - Tester l'Inventaire</h4>
+            <p><strong>Exercice :</strong> Testez l'inventaire de votre jeu vidéo en utilisant plusieurs scénarios. Vérifiez l'ajout d'objets, la suppression d'objets, et la gestion des doublons.</p>
+            <h5>Scénarios suggérés :</h5>
+            <ul>
+                <li>Ajouter 3 objets et vérifier que tous les objets sont présents.</li>
+                <li>Supprimer un objet et vérifier que la liste d'objets se met à jour correctement.</li>
+                <li>Ajouter deux fois le même objet et voir comment l'inventaire réagit.</li>
+            </ul>
+        
+            <h4>Exercice 2 : Manga - Valider le Suivi des Chapitres</h4>
+            <p><strong>Exercice :</strong> Testez le système de gestion des mangas et des chapitres. Vérifiez que les mangas sont bien triés et que les chapitres sont mis à jour correctement.</p>
+            <h5>Scénarios suggérés :</h5>
+            <ul>
+                <li>Ajouter plusieurs mangas et vérifier que le tri par chapitres fonctionne.</li>
+                <li>Modifier le nombre de chapitres d'un manga et vérifier que le programme affiche les bonnes informations.</li>
+                <li>Supprimer un manga et vérifier que la liste se met à jour.</li>
+            </ul>
+        
+            <h4>Exercice 3 : Vie Réelle - Vérifier le Calcul des Dépenses</h4>
+            <p><strong>Exercice :</strong> Testez le système de gestion des dépenses. Vérifiez que les calculs de total sont corrects et que le programme gère bien les erreurs.</p>
+            <h5>Scénarios suggérés :</h5>
+            <ul>
+                <li>Ajouter plusieurs montants de dépenses et vérifier que le total est exact.</li>
+                <li>Entrer un montant de dépense incorrect (par exemple, une valeur négative) et voir si le programme gère correctement l'erreur.</li>
+                <li>Vérifier que la suppression d'une dépense met à jour le total.</li>
+            </ul>
+        
+            <h4>Exercice 4 : Actualité - Tester l'Affichage des Événements</h4>
+            <p><strong>Exercice :</strong> Testez le système de gestion des événements d'actualité. Vérifiez que les événements sont bien triés et que la gestion des dates fonctionne correctement.</p>
+            <h5>Scénarios suggérés :</h5>
+            <ul>
+                <li>Ajouter plusieurs événements avec des dates et vérifier que l'affichage est dans l'ordre chronologique.</li>
+                <li>Supprimer un événement et vérifier que la liste se met à jour correctement.</li>
+                <li>Entrer une date incorrecte et voir comment le programme gère l'erreur.</li>
+            </ul>
+        
+        </section>
+        
+        <section id="session68" class="content-section">
+            <h2>Séance 68 : Présentation des Projets Finaux</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Donner aux élèves l'opportunité de présenter leurs projets finaux.</li>
+                <li>Permettre aux élèves d'expliquer les concepts, algorithmes et outils qu'ils ont utilisés pour réaliser leurs projets.</li>
+                <li>Favoriser un environnement collaboratif où les élèves peuvent apprendre des projets de leurs pairs et recevoir des retours constructifs.</li>
+                <li>Mettre en valeur l'aboutissement de leur travail pratique autour des thèmes choisis : jeux vidéo, mangas, vie réelle, actualité.</li>
+            </ul>
+        
+            <h3>1. Introduction et Objectifs de la Séance</h3>
+            <h4>Introduction :</h4>
+            <p>Expliquer brièvement le but de la séance. Cette séance est un moment important où chaque groupe/élève va présenter son projet final. Chaque projet doit refléter les compétences acquises au cours de l'année, notamment les structures de données, les algorithmes (comme le tri, les conditions, boucles, etc.), et éventuellement des concepts plus avancés comme les bases de données, la gestion des fichiers, ou la programmation orientée objet (POO).</p>
+        
+            <h4>Règles des présentations :</h4>
+            <ul>
+                <li><strong>Temps de présentation :</strong> Chaque groupe/élève dispose de 10 à 15 minutes pour présenter son projet.</li>
+                <li><strong>Critères d'évaluation :</strong> Les présentations seront évaluées sur la clarté des explications, la pertinence de l'utilisation des concepts appris et la créativité du projet.</li>
+            </ul>
+            <p><strong>Organisation de la présentation :</strong> Encourager les élèves à structurer leurs présentations comme suit :</p>
+            <ul>
+                <li>Présentation du thème choisi (jeux vidéo, manga, vie réelle, actualité).</li>
+                <li>Description des objectifs du projet.</li>
+                <li>Démonstration du programme.</li>
+                <li>Explications techniques sur les algorithmes et structures utilisés.</li>
+                <li>Difficultés rencontrées et solutions trouvées.</li>
+            </ul>
+        
+            <h3>2. Présentation des Projets</h3>
+            <h4>Organisation des Présentations :</h4>
+            <ol>
+                <li><strong>Les projets seront présentés par groupe ou individuellement :</strong> Chaque élève ou groupe devra faire une démonstration en direct de leur programme. Après la démonstration, ils devront répondre aux questions de leurs camarades et de l’enseignant.</li>
+                <li><strong>Encadrer chaque présentation avec un format précis :</strong> Voici un format type pour guider les élèves sur ce qu’ils doivent présenter :</li>
+            </ol>
+        
+            <h5>Partie 1 : Introduction du projet (2-3 minutes)</h5>
+            <ul>
+                <li><strong>Thème choisi :</strong> L'élève ou le groupe doit expliquer quel thème a été choisi pour leur projet final (jeux vidéo, manga, vie réelle, actualité) et pourquoi ce thème a été retenu.</li>
+                <li><strong>Objectifs du projet :</strong> Qu'est-ce que le programme est censé accomplir ? Est-ce un jeu, une application de gestion, un outil d'information ? Cela permet de situer le projet dans son contexte.</li>
+            </ul>
+        
+            <h5>Partie 2 : Démonstration en direct (5-7 minutes)</h5>
+            <ul>
+                <li><strong>Démonstration du programme :</strong> L'élève ou le groupe montre concrètement comment leur programme fonctionne. Ils doivent montrer les principales fonctionnalités de leur programme.</li>
+                <li><strong>Points à montrer :</strong> Interaction utilisateur (saisie des données), utilisation des conditions, boucles, structures de données (listes, dictionnaires, etc.), affichage des résultats (tri, calculs, etc.).</li>
+                <li><strong>Exemples de démonstration :</strong></li>
+                <ul>
+                    <li><strong>Jeux vidéo :</strong> Montrer comment l'utilisateur peut gérer un inventaire d'équipement ou comment une quête évolue en fonction des choix du joueur.</li>
+                    <li><strong>Manga :</strong> Montrer comment ajouter de nouveaux titres de manga, calculer le nombre de chapitres lus, ou organiser les mangas par ordre de lecture.</li>
+                    <li><strong>Vie réelle :</strong> Présenter comment l'utilisateur entre ses dépenses, comment elles sont triées ou résumées sous forme de rapport financier.</li>
+                    <li><strong>Actualité :</strong> Montrer l'ajout d'événements, la possibilité de les trier par date ou par importance.</li>
+                </ul>
+            </ul>
+        
+            <h5>Partie 3 : Explications techniques (3-4 minutes)</h5>
+            <ul>
+                <li><strong>Algorithmes et structures utilisés :</strong> Chaque groupe doit expliquer comment ils ont implémenté leur programme. Exemples :</li>
+                <ul>
+                    <li>Conditions et boucles : Comment les décisions sont prises dans le programme (via if, else, while, for).</li>
+                    <li>Tri ou manipulation des données : Si le projet implique un tri ou une organisation spécifique, l'élève doit expliquer quel algorithme a été utilisé (par exemple, tri par insertion, tri par sélection).</li>
+                    <li>Structures de données : Explication de l'utilisation des listes, dictionnaires, ou autres structures pour stocker les données.</li>
+                </ul>
+                <li><strong>Exemple d'explication :</strong> Dans un projet de gestion d'inventaire (thème jeux vidéo), l'élève pourrait expliquer l'utilisation d'une liste pour stocker les objets et l'utilisation d'une boucle for pour afficher le contenu de l'inventaire. Pour un projet de tri des dépenses, l'élève pourrait expliquer l'algorithme de tri utilisé pour organiser les montants par ordre croissant.</li>
+            </ul>
+        
+            <h5>Partie 4 : Difficultés rencontrées et solutions (1-2 minutes)</h5>
+            <ul>
+                <li><strong>Difficultés techniques :</strong> Quels problèmes ont été rencontrés pendant le développement du projet ? Cela peut être des erreurs de logique, des bugs, ou des difficultés à comprendre certaines notions.</li>
+                <li><strong>Solutions :</strong> Comment ces problèmes ont-ils été résolus ? Par exemple, un élève pourrait expliquer comment il a réussi à corriger une boucle infinie ou comment il a optimisé un tri pour des listes plus longues.</li>
+            </ul>
+        
+            <h5>Partie 5 : Conclusion et perspectives (1-2 minutes)</h5>
+            <ul>
+                <li><strong>Conclusion :</strong> Résumer l'importance du projet et ce que le groupe/élève a appris durant le processus de création.</li>
+                <li><strong>Améliorations futures :</strong> Que pourrait-on ajouter ou améliorer si le projet devait être poursuivi ou développé davantage ? Cela peut inclure de nouvelles fonctionnalités, une meilleure interface utilisateur, ou une optimisation du code.</li>
+            </ul>
+        
+            <h3>3. Retour et Discussion (10-20 minutes)</h3>
+            <h4>Feedback de la classe et de l'enseignant :</h4>
+            <ul>
+                <li>Chaque présentation doit être suivie de quelques minutes de retour de la part des autres élèves et de l'enseignant. Les élèves peuvent poser des questions sur le projet, demander des clarifications techniques, ou proposer des améliorations.</li>
+                <li><strong>Suggestions de questions :</strong> Comment avez-vous organisé les données dans votre programme ? Quelle a été la partie la plus difficile du projet ? Avez-vous envisagé d'ajouter d'autres fonctionnalités ? Si oui, lesquelles ?</li>
+            </ul>
+        
+            <h4>Discussion générale :</h4>
+            <p>À la fin de toutes les présentations, une discussion collective peut avoir lieu pour parler des points communs entre les différents projets et des différences dans l'approche de chaque groupe. Cela permet de comparer les techniques utilisées et d'encourager l'apprentissage collaboratif.</p>
+        
+            <h3>Conclusion</h3>
+            <h4>Félicitations aux élèves pour leur travail :</h4>
+            <p>Valorisez le travail des élèves en soulignant que cette présentation est l'aboutissement de leurs efforts et de leur apprentissage tout au long de l'année.</p>
+        
+            <h4>Apprentissages récapitulés :</h4>
+            <ul>
+                <li>Résolution de problèmes par étapes.</li>
+                <li>Organisation des données à l'aide des structures appropriées.</li>
+                <li>Utilisation efficace des algorithmes vus en cours (tri, conditions, boucles).</li>
+            </ul>
+        
+            <h4>Réflexion finale :</h4>
+            <p>Demander aux élèves ce qu'ils ont trouvé le plus gratifiant ou le plus difficile durant cette période de projet et comment ils pourraient améliorer leur approche dans de futurs projets.</p>
+        
+            <h3>Évaluation</h3>
+            <p>Les projets finaux peuvent être évalués sur plusieurs critères :</p>
+            <ul>
+                <li><strong>Originalité du projet :</strong> La créativité et l'originalité de l'idée derrière le projet.</li>
+                <li><strong>Qualité technique :</strong> La clarté du code, l'utilisation correcte des structures de données et des algorithmes.</li>
+                <li><strong>Présentation :</strong> La capacité à expliquer clairement le fonctionnement du programme et les décisions techniques prises.</li>
+                <li><strong>Interactivité :</strong> La qualité de la démonstration et l'interaction avec l'utilisateur (fluidité, logique, ergonomie).</li>
+            </ul>
+        </section>
+        
+        <section id="session69" class="content-section">
+            <h2>Séance 69 : Évaluation et Retour sur les Projets</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Évaluer les projets réalisés par les élèves sur plusieurs critères (fonctionnalité, créativité, respect des consignes, etc.).</li>
+                <li>Fournir un retour constructif à chaque groupe ou individu.</li>
+                <li>Permettre aux élèves de partager leur expérience de projet et d'analyser les points forts et les axes d'amélioration.</li>
+            </ul>
+        
+            <h3>1. Introduction à l'Évaluation</h3>
+            <h4>Pourquoi évaluer un projet ?</h4>
+            <ul>
+                <li><strong>Évaluation Formative :</strong> L'objectif de l'évaluation est non seulement de vérifier si les projets respectent les consignes, mais aussi d'aider les élèves à comprendre ce qui a bien fonctionné et ce qu'ils peuvent améliorer.</li>
+                <li><strong>Retour Constructif :</strong> Donner un retour détaillé à chaque groupe est essentiel pour leur progression, en mettant en avant leurs réussites tout en suggérant des pistes d'amélioration.</li>
+            </ul>
+        
+            <h4>Critères d'Évaluation :</h4>
+            <p>Les projets seront évalués sur les critères suivants (ou ceux établis par l'enseignant) :</p>
+            <ol>
+                <li><strong>Fonctionnalité :</strong> Le programme fonctionne-t-il correctement ? Respecte-t-il les fonctionnalités demandées ?</li>
+                <li><strong>Créativité :</strong> Le projet propose-t-il des fonctionnalités innovantes ou des idées originales ?</li>
+                <li><strong>Respect des Consignes :</strong> Le projet respecte-t-il les instructions données au départ ?</li>
+                <li><strong>Lisibilité du Code :</strong> Le code est-il bien structuré et commenté ?</li>
+                <li><strong>Organisation et Travail d'Équipe (si applicable) :</strong> Comment s'est passé le travail de groupe ? Y a-t-il eu une bonne répartition des tâches ?</li>
+            </ol>
+        
+            <h3>2. Présentation des Projets</h3>
+            <p>Chaque groupe ou élève présente son projet. Les autres élèves peuvent poser des questions ou donner des retours à la fin de chaque présentation.</p>
+        
+            <h4>Organisation de la Présentation :</h4>
+            <ol>
+                <li><strong>Introduction (2-3 minutes) :</strong><br>
+                    Chaque groupe ou élève explique l'idée derrière leur projet. Ils décrivent brièvement ce qu'ils ont essayé de réaliser, les objectifs de leur projet, et leur démarche.
+                </li>
+                <li><strong>Démonstration (5-7 minutes) :</strong><br>
+                    Les élèves montrent leur programme en action. Ils doivent expliquer clairement les fonctionnalités principales de leur programme. Si possible, ils peuvent faire une démonstration en direct du programme.
+                </li>
+            </ol>
+        
+            <h4>Exemples de Projets et Thèmes :</h4>
+            <ul>
+                <li><strong>Jeux Vidéo :</strong> Un mini-jeu avec gestion de scores et niveaux.</li>
+                <li><strong>Manga :</strong> Une application de gestion de collection de mangas avec suivi des chapitres.</li>
+                <li><strong>Vie Réelle :</strong> Une application de gestion de budget ou de suivi de dépenses.</li>
+                <li><strong>Actualité :</strong> Un programme de suivi des événements d'actualité avec affichage chronologique.</li>
+            </ul>
+        
+            <h4>Interaction avec la Classe :</h4>
+            <p>Après la démonstration, les autres élèves peuvent poser des questions ou faire des remarques sur ce qu'ils ont aimé ou ce qu'ils ont trouvé intéressant. Cela permet de créer un environnement d'apprentissage collectif où les élèves apprennent les uns des autres.</p>
+        
+            <h3>3. Évaluation du Projet</h3>
+        
+            <h4>Retour du Professeur :</h4>
+            <p>Après chaque présentation, le professeur donne un retour basé sur les critères d'évaluation prédéfinis :</p>
+        
+            <ol>
+                <li><strong>Fonctionnalité :</strong> Le programme fonctionne-t-il comme prévu ? Y a-t-il des erreurs ou des bugs à corriger ?<br>
+                    <em>Exemple :</em> Si le projet est un jeu vidéo, est-ce que le score est bien géré ? Les actions des joueurs sont-elles correctement prises en compte ?
+                </li>
+                <li><strong>Créativité :</strong> Le projet propose-t-il des idées originales ou des fonctionnalités inattendues ?<br>
+                    <em>Exemple :</em> Dans un programme de gestion de mangas, y a-t-il des options supplémentaires comme des recommandations basées sur les lectures ?
+                </li>
+                <li><strong>Respect des Consignes :</strong> Le projet respecte-t-il les consignes données au départ ?<br>
+                    <em>Exemple :</em> Le projet devait inclure des structures conditionnelles et des boucles. Sont-elles bien présentes ?
+                </li>
+                <li><strong>Lisibilité du Code :</strong> Le code est-il bien structuré et commenté ?<br>
+                    <em>Exemple :</em> Les élèves ont-ils utilisé des variables explicites et des commentaires pour expliquer le fonctionnement du programme ?
+                </li>
+                <li><strong>Organisation et Travail d'Équipe :</strong> Comment s'est passée la répartition des tâches dans le groupe ? Les élèves ont-ils bien collaboré pour mener à bien le projet ?<br>
+                    <em>Exemple :</em> Si c'était un projet de groupe, comment les membres se sont-ils répartis le travail ? Ont-ils rencontré des difficultés de communication ou de coordination ?
+                </li>
+            </ol>
+        
+            <h4>Exemple de Retour Constructif :</h4>
+            <p>Après la présentation d'un groupe qui a travaillé sur un jeu vidéo simple :</p>
+            <ul>
+                <li><strong>Points positifs :</strong> "Le jeu est fonctionnel et les scores sont bien gérés. J'ai particulièrement aimé que vous ayez ajouté un bonus aléatoire pour augmenter les scores."</li>
+                <li><strong>Suggestions d'amélioration :</strong> "Le code est correct, mais il manque de commentaires pour rendre plus claires certaines sections complexes. Vous pourriez aussi penser à des améliorations, comme ajouter un chronomètre pour limiter le temps de chaque tour."</li>
+            </ul>
+        
+            <h3>4. Discussion et Réflexion Collective</h3>
+        
+            <h4>Discussion en Groupe :</h4>
+            <p>Qu'avez-vous appris ? Encouragez les élèves à parler de ce qu'ils ont appris en travaillant sur leur projet, non seulement sur la programmation, mais aussi sur la gestion du temps et la collaboration (si travail en groupe).</p>
+        
+            <h4>Défis rencontrés :</h4>
+            <p>Quels problèmes avez-vous rencontrés et comment les avez-vous résolus ?<br>
+                <em>Exemple :</em> Certains élèves peuvent avoir eu des difficultés à implémenter une fonctionnalité particulière ou à résoudre un bug.
+            </p>
+        
+            <h4>Suggestions pour la Suite :</h4>
+            <p>Que pourriez-vous améliorer ou ajouter à votre projet si vous aviez plus de temps ?<br>
+                <em>Exemple :</em> Ajouter des niveaux supplémentaires dans un jeu, ou intégrer une base de données pour stocker les scores de manière permanente.
+            </p>
+        
+            <h4>Leçons Tirées :</h4>
+            <p>Discutez des bonnes pratiques de la programmation que les élèves ont découvertes en travaillant sur leurs projets.<br>
+                <em>Exemple :</em> Importance des tests réguliers pendant le développement, de la lisibilité du code, et de la planification.
+            </p>
+        
+            <h3>Conclusion</h3>
+        
+            <h4>Résumé des Points Clés :</h4>
+            <ul>
+                <li><strong>Évaluation Formative :</strong> L'évaluation est une opportunité pour les élèves de comprendre ce qu'ils ont bien fait et ce qu'ils peuvent améliorer.</li>
+                <li><strong>Retour Constructif :</strong> Chaque projet est évalué de manière positive, avec des conseils pour progresser.</li>
+                <li><strong>Réflexion Collective :</strong> L'occasion de partager les difficultés rencontrées et les solutions trouvées, pour apprendre ensemble.</li>
+            </ul>
+        
+            <p>Cette séance clôture les projets en donnant aux élèves un espace pour s'exprimer et recevoir des retours. Si cela vous convient, nous pouvons adopter ce modèle pour d'autres projets futurs !</p>
+        </section>
+        
+        <section id="session70" class="content-section">
+            <h2>Séance 70 : Discussion sur les Apprentissages et les Améliorations Possibles</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Faire un bilan collectif et individuel sur les concepts appris durant l'année.</li>
+                <li>Identifier les forces et les faiblesses dans la compréhension et l'application des connaissances.</li>
+                <li>Encourager la réflexion sur les stratégies d'amélioration possibles pour l'avenir.</li>
+            </ul>
+        
+            <h3>1. Introduction : Rétrospective de l'Année</h3>
+            <p><strong>Objectif :</strong><br>
+            Revenir sur les principales notions abordées au cours de l'année en NSI, tout en engageant les élèves dans une réflexion sur leur propre parcours d'apprentissage.</p>
+            
+            <h4>Liste des Thèmes abordés :</h4>
+            <ul>
+                <li>Programmation (Python) : Variables, conditions, boucles, fonctions, manipulation de listes, dictionnaires, etc.</li>
+                <li>Algorithmique : Recherche, tri (tri par insertion, tri par sélection), récursivité.</li>
+                <li>Bases de données : SQL, gestion de fichiers, requêtes simples.</li>
+                <li>Programmation orientée objet (POO) : Classes, objets, héritage, encapsulation.</li>
+                <li>Intelligence Artificielle (IA) : Algorithmes d'IA simples, réseaux de neurones basiques.</li>
+                <li>Réseaux et Sécurité : Protocoles réseau, introduction à la cryptographie.</li>
+                <li>Projets pratiques : Réalisation de projets en groupes, intégration des concepts dans des cas concrets (jeux vidéo, mangas, vie réelle, actualité).</li>
+            </ul>
+        
+            <h4>Questions pour engager la discussion :</h4>
+            <ul>
+                <li>Quels sont les concepts que vous avez trouvés les plus intéressants ?</li>
+                <li>Y a-t-il des notions avec lesquelles vous avez eu des difficultés ?</li>
+                <li>Quel a été votre projet préféré et pourquoi ?</li>
+            </ul>
+        
+            <h4>Activité : Rétrospective Personnelle</h4>
+            <p>Les élèves peuvent passer quelques minutes à noter dans leur cahier les points suivants :</p>
+            <ul>
+                <li><strong>Ce que j'ai bien compris :</strong> Les concepts que vous maîtrisez bien et avec lesquels vous êtes à l'aise.</li>
+                <li><strong>Ce que j'ai moins bien compris :</strong> Les notions qui vous semblent encore floues ou difficiles.</li>
+                <li><strong>Progrès réalisés :</strong> Les domaines dans lesquels vous avez fait le plus de progrès depuis le début de l'année.</li>
+            </ul>
+        
+            <h3>2. Discussion en Groupe : Forces et Faiblesses</h3>
+            <p><strong>Objectif :</strong><br>
+            Partager et discuter des forces et des faiblesses de chacun, afin de créer un environnement de soutien et d'entraide.</p>
+            
+            <h4>1. Partage en Groupe :</h4>
+            <p>Chaque élève peut partager ce qu'il ou elle a noté dans la section "Ce que j'ai bien compris" et "Ce que j'ai moins bien compris".</p>
+            <p>Encouragez les élèves à identifier des stratégies qui les ont aidés à comprendre certaines notions, comme :</p>
+            <ul>
+                <li>Faire des exercices supplémentaires.</li>
+                <li>Travailler en groupe.</li>
+                <li>Utiliser des ressources en ligne (tutoriels, vidéos, etc.).</li>
+            </ul>
+        
+            <h4>2. Identifications des Points Communs :</h4>
+            <p>Notez les points de difficulté communs à plusieurs élèves. Par exemple, si plusieurs élèves mentionnent avoir des difficultés avec la récursivité ou les algorithmes de tri, c'est un indicateur qu'une révision ou des exercices supplémentaires seraient bénéfiques.</p>
+        
+            <h4>3. Discussions sur les Réalisations Collectives :</h4>
+            <p>Discutez des projets de groupe qui ont été réalisés durant l'année. Quelles ont été les réussites, et quelles difficultés ont été rencontrées ?</p>
+            <p>Par exemple, dans un projet de jeu vidéo, certains élèves ont peut-être excellé dans la gestion des conditions et boucles, tandis que d'autres ont trouvé cela plus difficile.</p>
+        
+            <h3>3. Réflexion sur les Stratégies d'Amélioration</h3>
+            <p><strong>Objectif :</strong><br>
+            Encourager les élèves à réfléchir sur les moyens d'améliorer leurs compétences et leur compréhension pour les futures années.</p>
+            
+            <h4>Axes d'Amélioration Personnelle :</h4>
+            <ul>
+                <li><strong>Planification du Temps de Travail :</strong> Avez-vous l'impression d'avoir consacré suffisamment de temps à vos révisions et travaux pratiques ?</li>
+                <li>Si vous avez rencontré des difficultés, avez-vous essayé de les résoudre en demandant de l'aide, en faisant des recherches supplémentaires ou en travaillant avec d'autres élèves ?</li>
+                <li><strong>Utilisation des Ressources Extérieures :</strong> Avez-vous utilisé des outils en ligne, des forums (comme Stack Overflow), ou des vidéos YouTube pour compléter votre apprentissage ?</li>
+                <li><strong>Travail en Équipe :</strong> Les projets de groupe ont-ils été efficaces pour améliorer votre compréhension ?</li>
+            </ul>
+        
+            <h4>Amélioration Collective :</h4>
+            <ul>
+                <li><strong>Suggestions pour Améliorer les Cours :</strong> Quels aspects du cours ou des activités vous ont aidé à mieux comprendre les concepts ?</li>
+                <li><strong>Création d'un Guide de Révision Collectif :</strong> Les élèves pourraient proposer de créer ensemble un guide de révision avec des résumés, des exemples de code, et des astuces.</li>
+            </ul>
+        
+            <h3>4. Conclusion : Planification pour le Futur</h3>
+            
+            <h4>1. Projets Personnels :</h4>
+            <p>Encouragez les élèves à commencer ou continuer des projets personnels en informatique pendant les vacances ou après la fin du cours.</p>
+            <ul>
+                <li><strong>Projets possibles :</strong></li>
+                <ul>
+                    <li>Créer un jeu vidéo simple.</li>
+                    <li>Réaliser un petit programme d'analyse de données à partir d'informations réelles.</li>
+                    <li>Développer une application web ou mobile basique.</li>
+                </ul>
+            </ul>
+        
+            <h4>2. Préparation aux Examens (si applicable) :</h4>
+            <p>Si des examens ou des évaluations finales approchent, discutez des méthodes de révision efficaces :</p>
+            <ul>
+                <li>Revoir les exercices déjà faits.</li>
+                <li>Travailler sur des exercices supplémentaires.</li>
+                <li>Utiliser des cartes mémoire pour les concepts théoriques.</li>
+            </ul>
+        
+            <h4>3. Pistes pour les Études Supérieures :</h4>
+            <p>Discutez des opportunités dans les études en informatique pour ceux qui souhaitent se diriger vers des domaines connexes.</p>
+        
+            <h4>Exercices de Réflexion au Choix :</h4>
+            <p>Les élèves peuvent choisir l'un des exercices suivants pour réfléchir plus en profondeur à leurs apprentissages et aux améliorations possibles :</p>
+            <ul>
+                <li><strong>Exercice 1 :</strong> Jeux Vidéo - Réflexion sur un Projet Personnel : Réfléchissez à un projet de jeu vidéo que vous aimeriez réaliser pendant les vacances.</li>
+                <li><strong>Exercice 2 :</strong> Manga - Révision d'un Algorithme : Choisissez un algorithme vu en cours et expliquez-le à un camarade en utilisant un exemple basé sur les mangas.</li>
+                <li><strong>Exercice 3 :</strong> Vie Réelle - Planification de Projet : Si vous deviez créer une application pour gérer un budget familial, quelles seraient les fonctionnalités clés ?</li>
+                <li><strong>Exercice 4 :</strong> Actualité - Programmation Orientée Objet : Imaginez une application qui suit des événements, en utilisant la POO pour gérer les événements sous forme de classes et objets.</li>
+            </ul>
+        
+            <h4>Conclusion de la Séance</h4>
+            <p><strong>1. Synthèse des Discussions :</strong> Récapitulez les principales forces et faiblesses identifiées au cours de la séance.</p>
+            <p><strong>2. Encouragement pour la Suite :</strong> Terminez la séance sur une note positive, en soulignant les progrès réalisés et en encourageant les élèves à continuer d'apprendre.</p>
+        
+            <h4>Bilan Final :</h4>
+            <p>Cette Séance 70 est une opportunité pour les élèves de réfléchir à leurs progrès, de discuter ouvertement de leurs difficultés, et de se préparer pour la suite de leur parcours en informatique. Cela leur permet de consolider leurs apprentissages tout en identifiant des pistes d'amélioration personnelles et collectives.</p>
+        </section>
+        
+        <section id="session71" class="content-section">
+            <h2>Séance 71 : Activité de Clôture (Réflexion sur l’Année)</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Encourager les élèves à réfléchir sur les compétences qu'ils ont acquises tout au long de l'année.</li>
+                <li>Discuter des moments forts, des défis et des réussites.</li>
+                <li>Consolider les apprentissages en travaillant sur des activités pratiques.</li>
+                <li>Ouvrir un espace de discussion pour recueillir des retours d'expérience et des idées pour le futur.</li>
+            </ul>
+        
+            <h3>1. Introduction à la Réflexion de Clôture</h3>
+            <h4>Objectif de cette activité :</h4>
+            <p>Encourager les élèves à réfléchir sur ce qu'ils ont appris et comment ils ont évolué en tant que programmeurs tout au long de l'année.</p>
+            
+            <h4>Bilan personnel :</h4>
+            <p>Chaque élève doit penser à trois éléments :</p>
+            <ul>
+                <li>Une compétence importante qu'il a apprise.</li>
+                <li>Un défi qu'il a rencontré et surmonté.</li>
+                <li>Un projet ou une activité qu'il a particulièrement apprécié.</li>
+            </ul>
+        
+            <h4>Exemple de réflexion guidée :</h4>
+            <ul>
+                <li><strong>Compétence :</strong> "J'ai appris à organiser mon code en utilisant des fonctions pour rendre mes programmes plus clairs et plus efficaces."</li>
+                <li><strong>Défi :</strong> "J'ai eu du mal avec l'algorithme de tri, mais j'ai fini par comprendre comment il fonctionne grâce aux exercices pratiques."</li>
+                <li><strong>Projet :</strong> "Mon projet préféré était de simuler un inventaire dans un jeu vidéo, car je pouvais le personnaliser à ma façon."</li>
+            </ul>
+            <p>Les élèves peuvent écrire ces réflexions sur papier ou discuter en petits groupes avant de partager leurs idées avec la classe.</p>
+        
+            <h3>2. Discussion en Groupe : Moments Forts de l’Année</h3>
+            <h4>Objectif de cette discussion :</h4>
+            <p>Revenir sur les moments importants de l’année, en abordant des thèmes clés comme les projets, les algorithmes, la créativité, et la résolution de problèmes.</p>
+            
+            <h4>Sujets à aborder :</h4>
+            <ul>
+                <li><strong>1. Quelles séances vous ont le plus marqué ?</strong><br>
+                Les élèves partagent les séances ou les projets qu’ils ont particulièrement aimés. Par exemple, certains pourraient mentionner des projets créatifs comme les quêtes de jeu vidéo ou le suivi des mangas.</li>
+                <li><strong>2. Quel a été l'algorithme ou le concept le plus difficile à maîtriser ?</strong><br>
+                Cela pourrait inclure des discussions sur des sujets comme les algorithmes de tri, les boucles ou la gestion de données.</li>
+                <li><strong>3. Quels sont les projets qui vous ont donné le plus de satisfaction ?</strong><br>
+                Les élèves évoquent des projets qu'ils ont trouvés gratifiants ou amusants, comme les systèmes de gestion d'inventaire, les simulations de quêtes, ou la gestion des dépenses.</li>
+            </ul>
+        
+            <h4>Objectif secondaire :</h4>
+            <p>Réfléchir aux moyens d'améliorer ces projets pour des exercices futurs et discuter des nouvelles compétences que les élèves souhaiteraient acquérir dans les années à venir.</p>
+        
+            <h3>3. Activités de Consolidation : Exercices Pratiques au Choix</h3>
+            <p>Les élèves choisissent l'un des exercices suivants pour appliquer les compétences qu'ils ont acquises tout au long de l'année. Chaque exercice est lié aux principaux thèmes abordés : jeux vidéo, mangas, vie réelle et actualité.</p>
+        
+            <h4>Exercice 1 : Jeux Vidéo - Finaliser un Inventaire Avancé</h4>
+            <p><strong>Exercice :</strong> Demandez aux élèves de créer un inventaire avancé où chaque objet a des attributs (par exemple : nom, rareté, valeur en pièces d'or). L'utilisateur doit pouvoir :</p>
+            <ul>
+                <li>Ajouter un objet avec ses attributs.</li>
+                <li>Retirer un objet spécifique.</li>
+                <li>Trier les objets par valeur.</li>
+                <li>Afficher l'inventaire avec tous les détails.</li>
+            </ul>
+            <pre><code>
+        inventaire = []
+        
+        # Ajout d'objets avec nom, rareté et valeur
+        for _ in range(3):
+            nom = input("Entrez le nom de l'objet : ")
+            rarete = input("Entrez la rareté (commun, rare, épique) : ")
+            valeur = int(input("Entrez la valeur en pièces d'or : "))
+            inventaire.append({"nom": nom, "rarete": rarete, "valeur": valeur})
+        
+        # Tri par valeur
+        inventaire = sorted(inventaire, key=lambda x: x["valeur"])
+        
+        # Affichage de l'inventaire trié
+        print("\nInventaire trié par valeur :")
+        for item in inventaire:
+            print(f"Objet : {item['nom']}, Rareté : {item['rarete']}, Valeur : {item['valeur']} pièces d'or")
+            </code></pre>
+        
+            <h4>Exercice 2 : Manga - Créer un Classement de Mangas</h4>
+            <p><strong>Exercice :</strong> Demandez aux élèves de créer un classement des mangas lus cette année. Chaque manga doit avoir un titre, un auteur et une note. Les élèves doivent :</p>
+            <ul>
+                <li>Ajouter des mangas avec leurs attributs.</li>
+                <li>Trier les mangas par note décroissante.</li>
+                <li>Afficher le classement final des mangas.</li>
+            </ul>
+            <pre><code>
+        mangas = []
+        
+        # Ajout de mangas avec titre, auteur et note
+        for _ in range(3):
+            titre = input("Entrez le titre du manga : ")
+            auteur = input(f"Entrez le nom de l'auteur pour {titre} : ")
+            note = float(input(f"Entrez une note pour {titre} (sur 10) : "))
+            mangas.append({"titre": titre, "auteur": auteur, "note": note})
+        
+        # Tri par note décroissante
+        mangas = sorted(mangas, key=lambda x: x["note"], reverse=True)
+        
+        # Affichage du classement des mangas
+        print("\nClassement des mangas par note :")
+        for manga in mangas:
+            print(f"Titre : {manga['titre']}, Auteur : {manga['auteur']}, Note : {manga['note']}/10")
+            </code></pre>
+        
+            <h4>Exercice 3 : Vie Réelle - Organiser un Budget Annuel</h4>
+            <p><strong>Exercice :</strong> Les élèves doivent créer un programme qui les aide à organiser leur budget annuel. Le programme doit permettre de :</p>
+            <ul>
+                <li>Ajouter des dépenses (avec description et montant).</li>
+                <li>Afficher le total des dépenses.</li>
+                <li>Trier les dépenses du plus petit montant au plus grand.</li>
+            </ul>
+            <pre><code>
+        depenses = []
+        
+        # Ajout de dépenses avec description et montant
+        for _ in range(3):
+            description = input("Entrez la description de la dépense : ")
+            montant = float(input(f"Entrez le montant de {description} : "))
+            depenses.append({"description": description, "montant": montant})
+        
+        # Tri des dépenses par montant croissant
+        depenses = sorted(depenses, key=lambda x: x["montant"])
+        
+        # Affichage des dépenses
+        print("\nDépenses triées par montant :")
+        for depense in depenses:
+            print(f"Dépense : {depense['description']}, Montant : {depense['montant']} euros")
+            </code></pre>
+        
+            <h4>Exercice 4 : Actualité - Résumer l'Année</h4>
+            <p><strong>Exercice :</strong> Les élèves créent un programme pour récapituler les événements d'actualité marquants de l’année. Chaque événement doit avoir un titre, une date et une catégorie. Les élèves doivent :</p>
+            <ul>
+                <li>Ajouter des événements.</li>
+                <li>Trier les événements par date.</li>
+                <li>Afficher les événements avec leurs détails.</li>
+            </ul>
+            <pre><code>
+        evenements = []
+        
+        # Ajout d'événements avec titre, date et catégorie
+        for _ in range(3):
+            titre = input("Entrez le titre de l'événement : ")
+            date = input(f"Entrez la date de {titre} (ex : 2023-05-15) : ")
+            categorie = input(f"Entrez la catégorie de {titre} (ex : Politique, Science) : ")
+            evenements.append({"titre": titre, "date": date, "categorie": categorie})
+        
+        # Tri des événements par date croissante
+        evenements = sorted(evenements, key=lambda x: x["date"])
+        
+        # Affichage des événements
+        print("\nRésumé des événements de l'année :")
+        for evenement in evenements:
+            print(f"Date : {evenement['date']}, Titre : {evenement['titre']}, Catégorie : {evenement['categorie']}")
+            </code></pre>
+        
+            <h3>5. Clôture de la Séance et Réflexion Finales</h3>
+            <h4>Discussion Finale :</h4>
+            <p><strong>Questions clés à poser aux élèves pour clore l'année :</strong></p>
+            <ul>
+                <li>Quel a été votre plus grand progrès cette année ?</li>
+                <li>Quel aspect de la programmation souhaitez-vous approfondir à l'avenir ?</li>
+                <li>Quel projet avez-vous trouvé le plus stimulant ?</li>
+            </ul>
+        
+            <h4>Fermeture :</h4>
+            <ul>
+                <li>Félicitez les élèves pour leurs efforts et leur persévérance tout au long de l'année.</li>
+                <li>Encouragez-les à continuer à développer leurs compétences en programmation, que ce soit à travers des projets personnels, des défis ou des compétitions.</li>
+            </ul>
+        
+            <h3>Conclusion</h3>
+            <p>Cette Séance 71 de clôture est conçue pour offrir aux élèves un espace de réflexion sur leur parcours de l'année, tout en consolidant leurs apprentissages par le biais d'exercices pratiques. Les exercices au choix, adaptés à différents thèmes, permettent aux élèves de revisiter les concepts abordés tout au long de l'année dans des contextes qu'ils apprécient. Cela leur donne également l'opportunité de finir l'année sur une note créative et personnelle.</p>
+        </section>
+        
+        <section id="session72" class="content-section">
+            <h2>Séance 72 : Retour d'expérience et perspectives pour l'avenir</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Réfléchir aux compétences acquises durant l'année.</li>
+                <li>Analyser les difficultés rencontrées et les réussites.</li>
+                <li>Discuter des perspectives futures, tant dans la suite du parcours scolaire que dans les domaines professionnels en lien avec l'informatique.</li>
+                <li>Identifier des projets ou des domaines où les élèves peuvent continuer à pratiquer et améliorer leurs compétences en programmation.</li>
+            </ul>
+        
+            <h3>1. Réflexion et Bilan sur les Acquis</h3>
+        
+            <h4>Introduction : Importance du Retour d'Expérience</h4>
+            <p>Cette partie de la séance a pour but d'encourager les élèves à réfléchir sur ce qu'ils ont appris au cours de l'année. En tant que compétence clé dans le monde de l'informatique, la réflexion et l'auto-évaluation sont essentielles pour progresser.</p>
+        
+            <h4>Réflexion Guidée :</h4>
+            <p>Les élèves doivent répondre aux questions suivantes pour faire un bilan de leur apprentissage. Il est préférable de faire cet exercice individuellement ou en petits groupes, avec une discussion en grand groupe après.</p>
+            <ol>
+                <li><strong>Quelles compétences avez-vous le plus améliorées ?</strong>
+                    <ul>
+                        <li>Exemples : Compréhension des algorithmes, gestion des structures de données, programmation orientée objet, manipulation des boucles et des conditions, etc.</li>
+                        <li><strong>Exercice :</strong> Lister trois compétences techniques spécifiques acquises durant l'année.</li>
+                    </ul>
+                </li>
+                <li><strong>Quelles parties du programme ont été les plus difficiles ?</strong>
+                    <ul>
+                        <li>Cela peut inclure des concepts ou des algorithmes spécifiques.</li>
+                        <li>Exemples : Tri de données, gestion de projets en groupe, algorithmes de recherche, création de bases de données.</li>
+                        <li><strong>Exercice :</strong> Identifiez un concept ou un sujet sur lequel vous avez eu des difficultés et comment vous l'avez surmonté.</li>
+                    </ul>
+                </li>
+                <li><strong>Quelles parties du programme avez-vous le plus appréciées ?</strong>
+                    <ul>
+                        <li>Exemples : Création d'un projet de jeu vidéo, manipulation de bases de données, intelligence artificielle basique, etc.</li>
+                        <li><strong>Exercice :</strong> Lister un projet ou un exercice qui a particulièrement retenu votre attention et expliquer pourquoi.</li>
+                    </ul>
+                </li>
+            </ol>
+        
+            <h4>Retour et Discussion en Groupe :</h4>
+            <p>À la suite de cette réflexion individuelle, les élèves partagent leurs réponses et échangent sur leurs expériences. Cela permet d’avoir un panorama global des compétences acquises par le groupe et des difficultés communes.</p>
+        
+            <h3>2. Exercices d'Évaluation et Analyse des Progrès</h3>
+        
+            <h4>Exercice de Programmation Libre</h4>
+            <p><strong>Objectif :</strong> Créer un mini-projet en utilisant les concepts appris durant l’année. L'idée est que les élèves réutilisent et intègrent les compétences acquises de manière autonome.</p>
+        
+            <h4>Exemples de Projets :</h4>
+            <ul>
+                <li><strong>Jeux Vidéo :</strong> Créer un jeu simple (ex : pierre-papier-ciseaux) avec gestion des scores et interactions utilisateur.</li>
+                <li><strong>Manga :</strong> Créer une application qui suit la lecture des chapitres de mangas, en calculant le nombre total de chapitres lus.</li>
+                <li><strong>Vie Réelle :</strong> Créer un programme de gestion de budget, qui permet de suivre des dépenses et des revenus.</li>
+                <li><strong>Actualité :</strong> Développer un programme qui récupère des événements récents et affiche des informations en fonction de la date ou du type d'événement.</li>
+            </ul>
+        
+            <h4>Instructions :</h4>
+            <p>Les élèves peuvent choisir un projet parmi les thèmes abordés durant l’année (jeux vidéo, manga, actualité, vie réelle). Ils sont encouragés à utiliser les boucles, conditions, structures de données (listes, dictionnaires) et, si possible, des fonctions pour structurer leur code.</p>
+            <p><strong>Objectif :</strong> Le projet doit être simple mais fonctionnel, avec une attention particulière sur la structure du code et la clarté.</p>
+        
+            <h4>Retour sur les Projets :</h4>
+            <p>Après avoir terminé leur mini-projet, les élèves partagent leur travail avec le reste du groupe. Discussion sur les approches choisies, les difficultés rencontrées, et les solutions trouvées. Ce retour en groupe est une manière de conclure sur une note positive, en montrant concrètement les progrès réalisés.</p>
+        
+            <h3>3. Perspectives pour l'Avenir</h3>
+        
+            <h4>Prolongement des Compétences en Informatique</h4>
+            <p>Cette partie de la séance aborde ce que les élèves peuvent faire après cette année pour continuer à développer leurs compétences en informatique. Voici quelques suggestions :</p>
+        
+            <h5>1. Applications Pratiques dans le Futur :</h5>
+            <ul>
+                <li><strong>Dans le parcours scolaire :</strong> Les compétences acquises seront utiles pour les prochaines années de NSI (Numérique et Sciences Informatiques) en terminale, ou dans tout autre programme d'études supérieures axé sur l'informatique.</li>
+                <li><strong>Dans la vie professionnelle :</strong> Exemples de métiers : Développeur de jeux vidéo, analyste de données, ingénieur en logiciels, spécialiste en cybersécurité, etc.</li>
+            </ul>
+        
+            <h5>2. Projets Personnels et Initiatives en Autodidacte :</h5>
+            <ul>
+                <li><strong>Projets personnels :</strong> Créer un blog, développer une application mobile, participer à des hackathons, ou développer des projets Open Source.</li>
+                <li><strong>Ressources en ligne gratuites :</strong> GitHub, Kaggle (pour les projets liés à l'analyse de données), Codewars ou LeetCode pour pratiquer la programmation et les algorithmes.</li>
+            </ul>
+        
+            <h5>3. Inscription à des Cours en Ligne :</h5>
+            <ul>
+                <li>Codecademy pour apprendre de nouveaux langages comme Python, JavaScript ou SQL.</li>
+                <li>Coursera ou edX pour des cours plus avancés en informatique, algorithmes, développement web, etc.</li>
+            </ul>
+        
+            <h5>4. Suivre l'Actualité Tech et Informatique :</h5>
+            <ul>
+                <li><strong>Sites recommandés :</strong> The Verge, TechCrunch, Wired, ou encore Le Monde Informatique. Cela leur permettra de voir comment les technologies apprises en classe sont appliquées dans le monde réel, et de se tenir au courant des dernières innovations.</li>
+            </ul>
+        
+            <h3>Conclusion</h3>
+            <h4>Résumé des Points Clés :</h4>
+            <p>Le professeur fait un retour sur l’ensemble du programme, les acquis des élèves et les points à améliorer. La conclusion doit être positive et motivante pour encourager les élèves à continuer à explorer le domaine informatique.</p>
+        
+            <h4>Perspectives à long terme :</h4>
+            <p>Il est important que les élèves comprennent qu’ils sont au début de leur parcours en informatique et que les possibilités sont vastes et variées. L'informatique n'est pas seulement un sujet scolaire, mais une compétence clé pour l'avenir.</p>
+        
+            <h4>Message Final :</h4>
+            <p>"Continuez à coder, à expérimenter, à être curieux. Vous avez acquis des bases solides, et les perspectives dans ce domaine sont immenses. C’est à vous de jouer !"</p>
+        </section>
     </main>
 
     <!-- <footer>
