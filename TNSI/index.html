@@ -213,8 +213,8 @@
                 <li><a href="#" onclick="showSession('session18')">Séance 18 : Applications Réelles des Graphes (Réseaux Sociaux, Chemins dans les Transports)</a></li>
                 <li><a href="#" onclick="showSession('session19')">Séance 19 : Introduction aux Arbres Binaires et leurs Applications</a></li>
                 <li><a href="#" onclick="showSession('session20')">Séance 20 : Pratique - Utilisation d’arbres pour organiser une base de données de personnages de manga</a></li>
-                <!-- <li><a href="#" onclick="showSession('session21')">Séance 21 : </a></li>
-                <li><a href="#" onclick="showSession('session22')">Séance 22 : </a></li>
+                <li><a href="#" onclick="showSession('session21')">Séance 21 : Algorithmes de Parcours d’Arbres (Pré-ordre, En-ordre, Post-ordre)</a></li>
+                <!-- <li><a href="#" onclick="showSession('session22')">Séance 22 : </a></li>
                 <li><a href="#" onclick="showSession('session23')">Séance 23 : </a></li>
                 <li><a href="#" onclick="showSession('session24')">Séance 24 : </a></li>
                 <li><a href="#" onclick="showSession('session25')">Séance 25 : </a></li>
@@ -3308,6 +3308,196 @@
             <p>Cette approche leur permettra de comprendre comment les structures de données avancées sont utilisées pour organiser de grandes quantités de données dans des applications réelles, telles que les bases de données et les systèmes de recherche d’information.</p>
         </section>
         
+        <section id="session21" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 21 : Algorithmes de Parcours d’Arbres (Pré-ordre, En-ordre, Post-ordre)</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves apprendront et mettront en pratique les trois principales méthodes de parcours d’arbres binaires : pré-ordre, en-ordre, et post-ordre. Ils exploreront ces algorithmes dans le contexte d'un jeu vidéo où un personnage doit explorer des niveaux structurés sous forme d'arbres (arborescence de décisions, exploration d’environnements hiérarchiques).</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Introduction aux Arbres Binaires et Parcours</h3>
+            <h4>Le Contexte du Jeu Vidéo :</h4>
+            <p>Dans un jeu vidéo d'exploration, un personnage évolue dans une série de niveaux ou d’environnements reliés entre eux de manière hiérarchique. Chaque environnement peut être modélisé sous forme d’arbre binaire :</p>
+            <ul>
+                <li><strong>Nœuds :</strong> représentent des zones ou des objectifs dans le jeu (par exemple, des salles, des missions, ou des ennemis).</li>
+                <li><strong>Branches (arêtes) :</strong> relient deux nœuds et représentent les chemins ou les transitions possibles entre les différentes zones ou objectifs.</li>
+            </ul>
+            <p>Le joueur doit explorer l’arbre en visitant chaque nœud en suivant un parcours spécifique. Nous allons explorer trois types de parcours : pré-ordre, en-ordre, et post-ordre.</p>
+        
+            <h4>Définition d’un Arbre Binaire :</h4>
+            <ul>
+                <li><strong>Nœud Racine :</strong> Le point de départ de l’arbre.</li>
+                <li><strong>Nœuds Fils :</strong> Deux sous-arbres, le fils gauche et le fils droit.</li>
+                <li><strong>Feuille :</strong> Un nœud sans fils.</li>
+            </ul>
+        
+            <h4>Exemple d’Arbre Binaire :</h4>
+            <pre><code>
+                A
+               / \
+              B   C
+             / \   \
+            D   E   F
+            </code></pre>
+            <p>Dans cet arbre, A est la racine, B et C sont ses enfants, et D, E, F sont des feuilles.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Algorithmes de Parcours d’Arbres (30 min)</h3>
+            
+            <h4>1. Parcours en Pré-ordre (Prefix Traversal) :</h4>
+            <p>Le parcours en pré-ordre explore un arbre en visitant d’abord le nœud racine, puis le sous-arbre gauche, puis le sous-arbre droit. Il suit l’ordre suivant :</p>
+            <ul>
+                <li>Visiter la racine</li>
+                <li>Explorer le sous-arbre gauche</li>
+                <li>Explorer le sous-arbre droit</li>
+            </ul>
+            
+            <h4>Exemple Visuel du Parcours en Pré-ordre :</h4>
+            <pre><code>
+                A
+               / \
+              B   C
+             / \   \
+            D   E   F
+            
+            Parcours pré-ordre : A → B → D → E → C → F
+            </code></pre>
+            
+            <h4>Pseudo-code du Parcours en Pré-ordre :</h4>
+            <pre><code>
+        def parcours_preordre(noeud):
+            if noeud:
+                print(noeud.valeur)  # Visiter la racine
+                parcours_preordre(noeud.gauche)  # Explorer le sous-arbre gauche
+                parcours_preordre(noeud.droite)  # Explorer le sous-arbre droit
+            </code></pre>
+        
+            <h4>Explication :</h4>
+            <ul>
+                <li>La racine est visitée en premier.</li>
+                <li>Le sous-arbre gauche est entièrement exploré avant de passer au sous-arbre droit.</li>
+            </ul>
+        
+            <h4>2. Parcours en En-ordre (Infix Traversal) :</h4>
+            <p>Le parcours en en-ordre explore l’arbre en visitant d’abord le sous-arbre gauche, puis la racine, puis le sous-arbre droit. Il suit l’ordre suivant :</p>
+            <ul>
+                <li>Explorer le sous-arbre gauche</li>
+                <li>Visiter la racine</li>
+                <li>Explorer le sous-arbre droit</li>
+            </ul>
+        
+            <h4>Exemple Visuel du Parcours en En-ordre :</h4>
+            <pre><code>
+                A
+               / \
+              B   C
+             / \   \
+            D   E   F
+            
+            Parcours en-ordre : D → B → E → A → C → F
+            </code></pre>
+        
+            <h4>Pseudo-code du Parcours en En-ordre :</h4>
+            <pre><code>
+        def parcours_enordre(noeud):
+            if noeud:
+                parcours_enordre(noeud.gauche)  # Explorer le sous-arbre gauche
+                print(noeud.valeur)  # Visiter la racine
+                parcours_enordre(noeud.droite)  # Explorer le sous-arbre droit
+            </code></pre>
+        
+            <h4>Explication :</h4>
+            <ul>
+                <li>Le sous-arbre gauche est entièrement exploré avant de visiter la racine.</li>
+                <li>Le sous-arbre droit est visité en dernier.</li>
+            </ul>
+        
+            <h4>3. Parcours en Post-ordre (Postfix Traversal) :</h4>
+            <p>Le parcours en post-ordre explore l’arbre en visitant d’abord le sous-arbre gauche, puis le sous-arbre droit, et enfin la racine. Il suit l’ordre suivant :</p>
+            <ul>
+                <li>Explorer le sous-arbre gauche</li>
+                <li>Explorer le sous-arbre droit</li>
+                <li>Visiter la racine</li>
+            </ul>
+        
+            <h4>Exemple Visuel du Parcours en Post-ordre :</h4>
+            <pre><code>
+                A
+               / \
+              B   C
+             / \   \
+            D   E   F
+            
+            Parcours post-ordre : D → E → B → F → C → A
+            </code></pre>
+        
+            <h4>Pseudo-code du Parcours en Post-ordre :</h4>
+            <pre><code>
+        def parcours_postordre(noeud):
+            if noeud:
+                parcours_postordre(noeud.gauche)  # Explorer le sous-arbre gauche
+                parcours_postordre(noeud.droite)  # Explorer le sous-arbre droit
+                print(noeud.valeur)  # Visiter la racine
+            </code></pre>
+        
+            <h4>Explication :</h4>
+            <ul>
+                <li>Les deux sous-arbres sont explorés avant de visiter la racine.</li>
+                <li>Le parcours en post-ordre est souvent utilisé dans les contextes où des sous-arbres doivent être traités avant leur racine.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Mise en Pratique dans le Contexte du Jeu Vidéo (40 min)</h3>
+        
+            <h4>1. Représentation d’un Arbre en Python :</h4>
+            <p>Dans ce jeu vidéo, nous allons modéliser une série de niveaux interconnectés sous forme d’arbre binaire. Voici une classe Python pour représenter un nœud dans l’arbre :</p>
+        
+            <pre><code>
+        class Noeud:
+            def __init__(self, valeur):
+                self.valeur = valeur
+                self.gauche = None
+                self.droite = None
+        
+        # Créer un exemple d'arbre
+        racine = Noeud('A')
+        racine.gauche = Noeud('B')
+        racine.droite = Noeud('C')
+        racine.gauche.gauche = Noeud('D')
+        racine.gauche.droite = Noeud('E')
+        racine.droite.droite = Noeud('F')
+            </code></pre>
+        
+            <h4>2. Implémentation des Trois Parcours :</h4>
+            <p>Les élèves implémenteront les trois types de parcours (pré-ordre, en-ordre, post-ordre) en Python, à partir de la structure d'arbre ci-dessus.</p>
+        
+            <pre><code>
+        def parcours_preordre(noeud):
+            if noeud:
+                print(noeud.valeur)
+                parcours_preordre(noeud.gauche)
+                parcours_preordre(noeud.droite)
+        
+        def parcours_enordre(noeud):
+            if noeud:
+                parcours_enordre(noeud.gauche)
+                print(noeud.valeur)
+                parcours_enordre(noeud.droite)
+        
+        def parcours_postordre(noeud):
+            if noeud:
+                parcours_postordre(noeud.gauche)
+                parcours_postordre(noeud.droite)
+                print(noeud.valeur)
+            </code></pre>
+        
+            <h4>Défi Pratique pour les Élèves :</h4>
+            <ul>
+                <li><strong>Étape 1 :</strong> Implémentez les trois parcours et testez-les sur l’arbre fourni.</li>
+                <li><strong>Étape 2 :</strong> Modifiez l’arbre pour ajouter plus de niveaux et des valeurs différentes.</li>
+                <li><strong>Étape 3 :</strong> Modélisez un système de progression dans un jeu vidéo où chaque nœud représente une mission ou un niveau, et le joueur suit un parcours spécifique (par exemple, post-ordre pour accomplir toutes les missions avant de rencontrer le boss final).</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Comparaison (10 min)</h3>
+            <p>À la fin de cette séance, les élèves auront appris à appliquer les trois parcours d’arbres dans différents contextes, et auront compris comment chaque type de parcours peut être utile selon le problème à résoudre. Ils auront également renforcé leur compréhension de la récursivité et de la structure des arbres binaires.</p>
+        </section>
         
     </main>
 
