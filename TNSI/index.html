@@ -214,7 +214,7 @@
                 <li><a href="#" onclick="showSession('session19')">Séance 19 : Introduction aux Arbres Binaires et leurs Applications</a></li>
                 <li><a href="#" onclick="showSession('session20')">Séance 20 : Pratique - Utilisation d’arbres pour organiser une base de données de personnages de manga</a></li>
                 <li><a href="#" onclick="showSession('session21')">Séance 21 : Algorithmes de Parcours d’Arbres (Pré-ordre, En-ordre, Post-ordre)</a></li>
-                <!-- <li><a href="#" onclick="showSession('session22')">Séance 22 : </a></li>
+                <li><a href="#" onclick="showSession('session22')">Séance 22 : Approfondissement sur les Algorithmes de Parcours d’Arbres</a></li>
                 <li><a href="#" onclick="showSession('session23')">Séance 23 : </a></li>
                 <li><a href="#" onclick="showSession('session24')">Séance 24 : </a></li>
                 <li><a href="#" onclick="showSession('session25')">Séance 25 : </a></li>
@@ -222,7 +222,7 @@
                 <li><a href="#" onclick="showSession('session27')">Séance 27 : </a></li>
                 <li><a href="#" onclick="showSession('session28')">Séance 28 : </a></li>
                 <li><a href="#" onclick="showSession('session29')">Séance 29 : </a></li>
-                <li><a href="#" onclick="showSession('session30')">Séance 30 : </a></li> -->
+                <li><a href="#" onclick="showSession('session30')">Séance 30 : </a></li>
             </ul>
         </nav>
     </aside>
@@ -3498,6 +3498,169 @@
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Comparaison (10 min)</h3>
             <p>À la fin de cette séance, les élèves auront appris à appliquer les trois parcours d’arbres dans différents contextes, et auront compris comment chaque type de parcours peut être utile selon le problème à résoudre. Ils auront également renforcé leur compréhension de la récursivité et de la structure des arbres binaires.</p>
         </section>
+
+        <section id="session22" class="content-section">
+            <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 22 : Approfondissement sur les Algorithmes de Parcours d’Arbres</h2>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Objectif Global :</h3>
+            <p>Les élèves apprendront les différentes méthodes de parcours d’arbres, incluant les parcours en profondeur (pré-ordre, en ordre, post-ordre) et en largeur. Ces parcours seront appliqués dans un contexte pratique de jeu vidéo, où les structures d’arbres peuvent représenter des niveaux de jeu, des décisions ou des quêtes à accomplir.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Introduction aux Arbres et Parcours d'Arbres</h3>
+            
+            <h4>Contexte du Jeu Vidéo :</h4>
+            <p>Dans un jeu vidéo, un arbre peut représenter différentes structures de jeu. Par exemple :</p>
+            <ul>
+                <li>Un arbre de quêtes, où chaque nœud représente une quête que le joueur doit accomplir avant de passer à la suivante.</li>
+                <li>Un arbre de niveaux, où chaque nœud est un niveau, et le joueur doit explorer les niveaux dans un ordre spécifique.</li>
+                <li>Un arbre de décision, où chaque nœud est une action possible, et chaque branche représente une conséquence ou un choix.</li>
+            </ul>
+            <p>Nous allons étudier comment parcourir ces arbres de manière systématique en utilisant plusieurs algorithmes de parcours.</p>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">1. Types de Parcours d'Arbres</h3>
+            
+            <p>Il existe deux grandes catégories de parcours d'arbres :</p>
+            <ul>
+                <li><strong>Parcours en profondeur</strong> (Depth-First Search) :</li>
+                <ul>
+                    <li><strong>Pré-ordre</strong> : Visite du nœud courant, puis des sous-arbres gauche et droit.</li>
+                    <li><strong>En ordre</strong> : Visite du sous-arbre gauche, du nœud courant, puis du sous-arbre droit.</li>
+                    <li><strong>Post-ordre</strong> : Visite des sous-arbres gauche et droit, puis du nœud courant.</li>
+                </ul>
+                <li><strong>Parcours en largeur</strong> (Breadth-First Search) :</li>
+                <ul>
+                    <li>Parcours de chaque niveau de l’arbre un par un, en commençant par la racine, puis les nœuds enfants de gauche à droite.</li>
+                </ul>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">2. Explications et Pseudo-code pour chaque Type de Parcours</h3>
+        
+            <h4>Parcours en Profondeur – Pré-ordre, En Ordre, Post-ordre</h4>
+        
+            <h5>Pré-ordre</h5>
+            <p>Le parcours pré-ordre commence par le nœud courant, puis explore le sous-arbre gauche et enfin le sous-arbre droit. C'est utile dans des jeux où l’on doit visiter une action ou une quête principale avant de passer aux étapes suivantes.</p>
+            <pre><code>def parcours_pre_ordre(noeud):
+            if noeud is not None:
+                print(noeud.valeur)  # Visiter le nœud courant
+                parcours_pre_ordre(noeud.gauche)
+                parcours_pre_ordre(noeud.droit)
+            </code></pre>
+        
+            <h5>En Ordre</h5>
+            <p>Le parcours en ordre explore d'abord le sous-arbre gauche, puis le nœud courant, et enfin le sous-arbre droit. C'est couramment utilisé pour obtenir les valeurs d’un arbre binaire dans un ordre trié.</p>
+            <pre><code>def parcours_en_ordre(noeud):
+            if noeud is not None:
+                parcours_en_ordre(noeud.gauche)
+                print(noeud.valeur)  # Visiter le nœud courant
+                parcours_en_ordre(noeud.droit)
+            </code></pre>
+        
+            <h5>Post-ordre</h5>
+            <p>Le parcours post-ordre commence par explorer les sous-arbres gauche et droit, puis visite le nœud courant. Cela peut être utile pour des jeux où chaque action nécessite d'accomplir des sous-tâches avant de valider la tâche principale.</p>
+            <pre><code>def parcours_post_ordre(noeud):
+            if noeud is not None:
+                parcours_post_ordre(noeud.gauche)
+                parcours_post_ordre(noeud.droit)
+                print(noeud.valeur)  # Visiter le nœud courant
+            </code></pre>
+        
+            <h4>Parcours en Largeur (BFS)</h4>
+            <p>Dans le parcours en largeur, l’algorithme explore les nœuds niveau par niveau, en commençant par la racine. Cela peut être utile pour explorer chaque niveau de décision ou de quête dans un ordre croissant.</p>
+            <pre><code>from collections import deque
+        
+        def parcours_largeur(noeud):
+            queue = deque([noeud])  # Utilisation d'une file d'attente
+            while queue:
+                courant = queue.popleft()
+                print(courant.valeur)  # Visiter le nœud courant
+                if courant.gauche:
+                    queue.append(courant.gauche)
+                if courant.droit:
+                    queue.append(courant.droit)
+            </code></pre>
+        
+            <h4>Exemple d’Arbre :</h4>
+            <p>Considérons l’arbre suivant pour illustrer chaque type de parcours :</p>
+            <pre><code>       A
+             /     \
+            B       C
+           / \     / \
+          D   E   F   G
+            </code></pre>
+            <p>Les résultats des parcours seraient :</p>
+            <ul>
+                <li><strong>Pré-ordre :</strong> A, B, D, E, C, F, G</li>
+                <li><strong>En ordre :</strong> D, B, E, A, F, C, G</li>
+                <li><strong>Post-ordre :</strong> D, E, B, F, G, C, A</li>
+                <li><strong>Largeur :</strong> A, B, C, D, E, F, G</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">3. Mise en Pratique : Application au Jeu Vidéo</h3>
+            
+            <h4>Exercice Pratique :</h4>
+            <p>Imaginons que chaque nœud de cet arbre représente une <strong>quête</strong> dans un jeu. L’objectif est de parcourir toutes les quêtes dans un ordre spécifique :</p>
+            <ul>
+                <li><strong>Pré-ordre :</strong> Le joueur doit accomplir les quêtes principales avant d’entrer dans les sous-quêtes.</li>
+                <li><strong>En ordre :</strong> Le joueur doit accomplir toutes les quêtes de gauche à droite dans un ordre séquentiel.</li>
+                <li><strong>Post-ordre :</strong> Le joueur doit terminer toutes les sous-quêtes avant de terminer la quête principale.</li>
+                <li><strong>Largeur :</strong> Le joueur explore chaque niveau de l’arbre (comme explorer tous les niveaux d’une tour étage par étage).</li>
+            </ul>
+        
+            <h4>Implémentation en Python :</h4>
+            <p>Pour cet exercice, créez un arbre de quêtes, où chaque nœud contient une quête spécifique. Implémentez chaque type de parcours pour que le joueur puisse explorer les quêtes dans un ordre défini.</p>
+            
+            <pre><code>class Noeud:
+            def __init__(self, valeur):
+                self.valeur = valeur
+                self.gauche = None
+                self.droit = None
+        
+        # Créer l'arbre de quêtes
+        racine = Noeud("A")
+        racine.gauche = Noeud("B")
+        racine.droit = Noeud("C")
+        racine.gauche.gauche = Noeud("D")
+        racine.gauche.droit = Noeud("E")
+        racine.droit.gauche = Noeud("F")
+        racine.droit.droit = Noeud("G")
+            </code></pre>
+        
+            <p>Implémentez ensuite chaque parcours :</p>
+        
+            <pre><code># Parcours pré-ordre
+        parcours_pre_ordre(racine)
+        
+        # Parcours en ordre
+        parcours_en_ordre(racine)
+        
+        # Parcours post-ordre
+        parcours_post_ordre(racine)
+        
+        # Parcours en largeur
+        parcours_largeur(racine)
+            </code></pre>
+        
+            <h4>Défi Pratique :</h4>
+            <ul>
+                <li><strong>Étape 1 :</strong> Ajoutez des actions dans chaque quête et modifiez les parcours pour afficher l'action correspondante dans chaque nœud visité.</li>
+                <li><strong>Étape 2 :</strong> Modifiez l’arbre pour que certaines quêtes aient plusieurs sous-quêtes, puis testez chaque type de parcours.</li>
+                <li><strong>Étape 3 :</strong> Faites en sorte que le parcours en largeur (BFS) limite le joueur à explorer uniquement les quêtes d'un certain niveau avant de passer au niveau suivant.</li>
+            </ul>
+        
+            <h3 style="margin-top: 30px; margin-bottom: 20px;">Conclusion et Comparaison des Parcours d’Arbres</h3>
+        
+            <p>À la fin de cette séance, les élèves auront exploré plusieurs types de parcours d’arbres, chacun ayant ses propres applications et avantages. Ils comprendront comment appliquer ces parcours dans des contextes variés comme la gestion de quêtes et de niveaux dans les jeux vidéo.</p>
+        
+            <h4>Comparaison des Parcours :</h4>
+            <ul>
+                <li><strong>Pré-ordre :</strong> Visite immédiate des actions principales, suivi des sous-quêtes.</li>
+                <li><strong>En ordre :</strong> Exploration naturelle pour afficher un arbre binaire dans un ordre trié.</li>
+                <li><strong>Post-ordre :</strong> Exécution des sous-tâches avant de valider la tâche principale.</li>
+                <li><strong>Largeur :</strong> Parcours niveau par niveau, idéal pour explorer toutes les options accessibles au joueur avant de descendre plus loin.</li>
+            </ul>
+        
+            <h4>Discussion et Applications :</h4>
+            <p>Ces algorithmes de parcours sont utilisés non seulement dans les jeux, mais aussi dans d’autres domaines comme les bases de données et l’intelligence artificielle pour l’exploration de structures de décision et la recherche.</p>
+        </section>
         
     </main>
 
@@ -3545,7 +3708,95 @@
             'Séance 17 : Pratique - Exploration d’un Monde Ouvert (Jeu Vidéo) avec DFS',
             'Séance 18 : Applications Réelles des Graphes (Réseaux Sociaux, Chemins dans les Transports)',
             'Séance 19 : Introduction aux Arbres Binaires et leurs Applications',
-            'Séance 20 : Pratique - Utilisation d’arbres pour organiser une base de données de personnages de manga'
+            'Séance 20 : Pratique - Utilisation d’arbres pour organiser une base de données de personnages de manga',
+            'Séance 21 : Algorithmes de Parcours d’Arbres (Pré-ordre, En-ordre, Post-ordre)',
+            'Séance 22 : Approfondissement sur les Algorithmes de Parcours d’Arbres',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
         ];
     
         function isHoliday(date) {
