@@ -38,6 +38,14 @@
             display: block;
         }
 
+        a{
+            color: black;
+        }
+
+        a:hover{
+            color: orange;
+        }
+
         aside {
             position: fixed;
             left: 0;
@@ -201,7 +209,7 @@
                 <!-- Pluri Logiciel -->
                 <li><a href="#" onclick="showSession('session0')">Pluri Logiciel</a></li>
 
-                <!-- Cours -->
+                <!-- Cours
                 <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction au Cours et aux Objectifs de TIM</a></li>
                 <li><a href="#" onclick="showSession('session2')">Séance 2 : Prise en main de OpenOffice Writer (Traitement de texte)</a></li>
                 <li><a href="#" onclick="showSession('session3')">Séance 3 : Fonctionnalités avancées de OpenOffice Writer</a></li>
@@ -236,7 +244,7 @@
                 <li><a href="#" onclick="showSession('session32')">Séance 32 : Gestion de projet avec OpenOffice (Révision et Approfondissement)</a></li>
                 <li><a href="#" onclick="showSession('session33')">Séance 33 : Intégration des outils OpenOffice pour la gestion de projet (Mise en situation)</a></li>
                 <li><a href="#" onclick="showSession('session34')">Séance 34 : Optimisation des processus dans la gestion de projet</a></li>
-                <li><a href="#" onclick="showSession('session35')">Séance 35 : Collaboration et Partage de Projets avec OpenOffice</a></li>
+                <li><a href="#" onclick="showSession('session35')">Séance 35 : Collaboration et Partage de Projets avec OpenOffice</a></li> -->
             </ul>
         </nav>
     </aside>
@@ -5659,49 +5667,113 @@
             return today === date;
         }
 
+        // function generateCalendar() {
+        //     const calendarBody = document.getElementById('calendar-body');
+        //     const startDate = new Date('2024-09-02'); // Changement pour commencer par un lundi
+        //     const endDate = new Date('2025-07-12');
+            
+        //     let currentDate = startDate;
+        //     let sessionIndex = 0;
+
+        //     while (currentDate <= endDate) {
+        //         const dateString = currentDate.toISOString().split('T')[0];
+        //         const isHolidayDay = isHoliday(dateString);
+        //         const isVacationDay = isInVacation(dateString);
+        //         const vacationName = getVacationName(dateString);
+
+        //         const row = document.createElement('tr');
+        //         const dateCell = document.createElement('td');
+        //         const descriptionCell = document.createElement('td');
+
+        //         dateCell.textContent = formatFrenchDate(dateString);
+
+        //         if (isHolidayDay) {
+        //             descriptionCell.textContent = holidays[dateString];
+        //             row.classList.add('holiday');
+        //         } else if (isVacationDay) {
+        //             descriptionCell.textContent = vacationName;
+        //             row.classList.add('vacation');
+        //         } else {
+        //             descriptionCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+        //             sessionIndex++;
+        //         }
+
+        //         // Mettre en évidence la semaine en cours
+        //         if (isToday(dateString)) {
+        //             dateCell.classList.add('today');
+        //             descriptionCell.classList.add('today');
+        //         }
+
+        //         row.appendChild(dateCell);
+        //         row.appendChild(descriptionCell);
+        //         calendarBody.appendChild(row);
+
+        //         // Passer au lundi suivant
+        //         currentDate.setDate(currentDate.getDate() + 7);
+        //     }
+        // }
+
         function generateCalendar() {
             const calendarBody = document.getElementById('calendar-body');
-            const startDate = new Date('2024-09-02'); // Changement pour commencer par un lundi
+            const startDate = new Date('2024-09-01');  // Premier lundi de septembre 2024
             const endDate = new Date('2025-07-12');
             
             let currentDate = startDate;
             let sessionIndex = 0;
 
             while (currentDate <= endDate) {
-                const dateString = currentDate.toISOString().split('T')[0];
-                const isHolidayDay = isHoliday(dateString);
-                const isVacationDay = isInVacation(dateString);
-                const vacationName = getVacationName(dateString);
-
                 const row = document.createElement('tr');
-                const dateCell = document.createElement('td');
-                const descriptionCell = document.createElement('td');
 
-                dateCell.textContent = formatFrenchDate(dateString);
+                // Génération des jours (lundi)
+                ['Lundi'].forEach(() => {
+                    const currentDateString = currentDate.toISOString().split('T')[0];
+                    
+                    // Date (colonne de la date)
+                    const dateCell = document.createElement('td');
+                    dateCell.textContent = formatFrenchDate(currentDateString);
 
-                if (isHolidayDay) {
-                    descriptionCell.textContent = holidays[dateString];
-                    row.classList.add('holiday');
-                } else if (isVacationDay) {
-                    descriptionCell.textContent = vacationName;
-                    row.classList.add('vacation');
-                } else {
-                    descriptionCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-                    sessionIndex++;
-                }
+                    // Description ou séance (colonne des descriptions)
+                    const descCell = document.createElement('td');
+                    if (isHoliday(currentDateString)) {
+                        descCell.textContent = holidays[currentDateString];
+                        dateCell.classList.add('holiday');
+                        descCell.classList.add('holiday');
+                    } else if (isInVacation(currentDateString)) {
+                        descCell.textContent = getVacationName(currentDateString);
+                        row.classList.add('vacation');
+                    } else {
+                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
+                        sessionIndex++;
 
-                // Mettre en évidence la semaine en cours
-                if (isToday(dateString)) {
-                    dateCell.classList.add('today');
-                    descriptionCell.classList.add('today');
-                }
+                        // Création d'un lien cliquable pour les séances
+                        const link = document.createElement('a');
+                        link.textContent = sessionName;
+                        link.href = `#`; // Génère un ID basé sur le nom de la séance
+                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
+                        // link.classList.add('session-link'); // Ajout d'une classe pour le style éventuel
 
-                row.appendChild(dateCell);
-                row.appendChild(descriptionCell);
+                        descCell.appendChild(link);
+                    }
+
+                    // Mise en évidence du jour actuel
+                    if (isToday(currentDateString)) {
+                        dateCell.classList.add('today');
+                        descCell.classList.add('today');
+                    }
+
+                    // Ajout des cellules à la ligne
+                    row.appendChild(dateCell);
+                    row.appendChild(descCell);
+
+                    // Passer au jour suivant
+                    currentDate.setDate(currentDate.getDate() + 1);
+                });
+
+                // Ajouter la ligne au tableau
                 calendarBody.appendChild(row);
 
-                // Passer au lundi suivant
-                currentDate.setDate(currentDate.getDate() + 7);
+                // Passer au mercredi suivant
+                currentDate.setDate(currentDate.getDate() + 7); // Sauter au lundi suivant
             }
         }
 
@@ -5736,7 +5808,7 @@
 
         // Display the first session by default when page loads
         document.addEventListener('DOMContentLoaded', () => {
-            showSession("session1");
+            showSession("calendar");
         });
     </script>
 
