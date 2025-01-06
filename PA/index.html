@@ -5666,68 +5666,21 @@
             const today = new Date().toISOString().split('T')[0];
             return today === date;
         }
-
-        // function generateCalendar() {
-        //     const calendarBody = document.getElementById('calendar-body');
-        //     const startDate = new Date('2024-09-02'); // Changement pour commencer par un lundi
-        //     const endDate = new Date('2025-07-12');
-            
-        //     let currentDate = startDate;
-        //     let sessionIndex = 0;
-
-        //     while (currentDate <= endDate) {
-        //         const dateString = currentDate.toISOString().split('T')[0];
-        //         const isHolidayDay = isHoliday(dateString);
-        //         const isVacationDay = isInVacation(dateString);
-        //         const vacationName = getVacationName(dateString);
-
-        //         const row = document.createElement('tr');
-        //         const dateCell = document.createElement('td');
-        //         const descriptionCell = document.createElement('td');
-
-        //         dateCell.textContent = formatFrenchDate(dateString);
-
-        //         if (isHolidayDay) {
-        //             descriptionCell.textContent = holidays[dateString];
-        //             row.classList.add('holiday');
-        //         } else if (isVacationDay) {
-        //             descriptionCell.textContent = vacationName;
-        //             row.classList.add('vacation');
-        //         } else {
-        //             descriptionCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-        //             sessionIndex++;
-        //         }
-
-        //         // Mettre en évidence la semaine en cours
-        //         if (isToday(dateString)) {
-        //             dateCell.classList.add('today');
-        //             descriptionCell.classList.add('today');
-        //         }
-
-        //         row.appendChild(dateCell);
-        //         row.appendChild(descriptionCell);
-        //         calendarBody.appendChild(row);
-
-        //         // Passer au lundi suivant
-        //         currentDate.setDate(currentDate.getDate() + 7);
-        //     }
-        // }
-
+        
         function generateCalendar() {
             const calendarBody = document.getElementById('calendar-body');
-            const startDate = new Date('2024-09-01');  // Premier lundi de septembre 2024
+            const startDate = new Date('2024-09-02');  // Premier lundi de septembre 2024
             const endDate = new Date('2025-07-12');
             
             let currentDate = startDate;
             let sessionIndex = 0;
-
+            
             while (currentDate <= endDate) {
                 const row = document.createElement('tr');
 
                 // Génération des jours (lundi)
                 ['Lundi'].forEach(() => {
                     const currentDateString = currentDate.toISOString().split('T')[0];
-                    
                     // Date (colonne de la date)
                     const dateCell = document.createElement('td');
                     dateCell.textContent = formatFrenchDate(currentDateString);
@@ -5744,19 +5697,18 @@
                     } else {
                         const sessionName = sessions[sessionIndex] || 'Séance à définir';
                         sessionIndex++;
-
                         // Création d'un lien cliquable pour les séances
                         const link = document.createElement('a');
                         link.textContent = sessionName;
                         link.href = `#`; // Génère un ID basé sur le nom de la séance
                         link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
-                        // link.classList.add('session-link'); // Ajout d'une classe pour le style éventuel
 
                         descCell.appendChild(link);
                     }
-
+                    
                     // Mise en évidence du jour actuel
                     if (isToday(currentDateString)) {
+                        
                         dateCell.classList.add('today');
                         descCell.classList.add('today');
                     }
@@ -5764,15 +5716,12 @@
                     // Ajout des cellules à la ligne
                     row.appendChild(dateCell);
                     row.appendChild(descCell);
-
-                    // Passer au jour suivant
-                    currentDate.setDate(currentDate.getDate() + 1);
                 });
 
                 // Ajouter la ligne au tableau
                 calendarBody.appendChild(row);
 
-                // Passer au mercredi suivant
+                // Passer au lundi suivant
                 currentDate.setDate(currentDate.getDate() + 7); // Sauter au lundi suivant
             }
         }

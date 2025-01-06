@@ -38,6 +38,14 @@
             display: block;
         }
 
+        a{
+            color: black;
+        }
+
+        a:hover{
+            color: orange;
+        }
+
         aside {
             position: fixed;
             left: 0;
@@ -192,7 +200,7 @@
 
     <!-- Menu hamburger sur la gauche -->
     <aside id="menu">
-        <button class="hamburger" onclick="toggleMenu()">☰ Séances</button>
+        <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
         <nav id="session-nav">
             <ul>
                 <!-- CALENDRIER -->
@@ -201,7 +209,7 @@
                 <!-- Pluri Logiciel -->
                 <li><a href="#" onclick="showSession('session0')">Pluri Logiciel</a></li>
 
-                <!-- COURS -->
+                <!-- COURS
                 <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction aux TIC et au Multimédia</a></li>
                 <li><a href="#" onclick="showSession('session2')">Séance 2 : OpenOffice Writer - Création de documents</a></li>
                 <li><a href="#" onclick="showSession('session3')">Séance 3 : OpenOffice Writer - Fonctions Avancées</a></li>
@@ -237,7 +245,7 @@
                 <li><a href="#" onclick="showSession('session33')">Séance 33 : Réalisation d'un projet multimédia (web ou autre)</a></li>
                 <li><a href="#" onclick="showSession('session34')">Séance 34 : Finalisation et Présentation des Projets</a></li>
                 <li><a href="#" onclick="showSession('session35')">Séance 35 : Retour sur évaluation et correction</a></li>
-                <li><a href="#" onclick="showSession('session36')">Séance 36 : QCM - Évaluation finale du semestre 2</a></li>
+                <li><a href="#" onclick="showSession('session36')">Séance 36 : QCM - Évaluation finale du semestre 2</a></li> -->
             </ul>
         </nav>
     </aside>
@@ -5934,47 +5942,64 @@
 
         function generateCalendar() {
             const calendarBody = document.getElementById('calendar-body');
-            const startDate = new Date('2024-09-03'); // Changement pour commencer par un mardi
+            const startDate = new Date('2024-09-03');  // Premier mardi de septembre 2024
             const endDate = new Date('2025-07-12');
             
             let currentDate = startDate;
             let sessionIndex = 0;
 
             while (currentDate <= endDate) {
-                const dateString = currentDate.toISOString().split('T')[0];
-                const isHolidayDay = isHoliday(dateString);
-                const isVacationDay = isInVacation(dateString);
-                const vacationName = getVacationName(dateString);
-
                 const row = document.createElement('tr');
-                const dateCell = document.createElement('td');
-                const descriptionCell = document.createElement('td');
 
-                dateCell.textContent = formatFrenchDate(dateString);
+                // Génération des jours (mardi)
+                ['Mardi'].forEach(() => {
+                    const currentDateString = currentDate.toISOString().split('T')[0];
+                    
+                    // Date (colonne de la date)
+                    const dateCell = document.createElement('td');
+                    dateCell.textContent = formatFrenchDate(currentDateString);
 
-                if (isHolidayDay) {
-                    descriptionCell.textContent = holidays[dateString];
-                    row.classList.add('holiday');
-                } else if (isVacationDay) {
-                    descriptionCell.textContent = vacationName;
-                    row.classList.add('vacation');
-                } else {
-                    descriptionCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-                    sessionIndex++;
-                }
+                    // Description ou séance (colonne des descriptions)
+                    const descCell = document.createElement('td');
+                    if (isHoliday(currentDateString)) {
+                        descCell.textContent = holidays[currentDateString];
+                        dateCell.classList.add('holiday');
+                        descCell.classList.add('holiday');
+                    } else if (isInVacation(currentDateString)) {
+                        descCell.textContent = getVacationName(currentDateString);
+                        row.classList.add('vacation');
+                    } else {
+                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
+                        sessionIndex++;
 
-                // Mettre en évidence la semaine en cours
-                if (isToday(dateString)) {
-                    dateCell.classList.add('today');
-                    descriptionCell.classList.add('today');
-                }
+                        // Création d'un lien cliquable pour les séances
+                        const link = document.createElement('a');
+                        link.textContent = sessionName;
+                        link.href = `#`; // Génère un ID basé sur le nom de la séance
+                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
 
-                row.appendChild(dateCell);
-                row.appendChild(descriptionCell);
+                        descCell.appendChild(link);
+                    }
+
+                    // Mise en évidence du jour actuel
+                    if (isToday(currentDateString)) {
+                        dateCell.classList.add('today');
+                        descCell.classList.add('today');
+                    }
+
+                    // Ajout des cellules à la ligne
+                    row.appendChild(dateCell);
+                    row.appendChild(descCell);
+
+                    // Passer au jour suivant
+                    // currentDate.setDate(currentDate.getDate() + 1);
+                });
+
+                // Ajouter la ligne au tableau
                 calendarBody.appendChild(row);
 
                 // Passer au mardi suivant
-                currentDate.setDate(currentDate.getDate() + 7);
+                currentDate.setDate(currentDate.getDate() + 7); // Sauter au mardi suivant
             }
         }
 
@@ -6009,7 +6034,7 @@
 
         // Display the first session by default when page loads
         document.addEventListener('DOMContentLoaded', () => {
-            showSession('session1');
+            showSession('calendar');
         });
     </script>
 
