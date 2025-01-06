@@ -38,6 +38,14 @@
             display: block;
         }
 
+        a{
+            color: black;
+        }
+
+        a:hover{
+            color: orange;
+        }
+
         aside {
             position: fixed;
             left: 0;
@@ -217,7 +225,7 @@
                 <li><a href="#" onclick="showSession('programme3')">Programme potentiel Escape Game Intéractif</a></li>
 
                 <!-- Cours -->
-                <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à Python, variables, types de données</a></li>
+                <!-- <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à Python, variables, types de données</a></li>
                 <li><a href="#" onclick="showSession('session2')">Séance 2 : Pratique - Inventaire de jeu vidéo (gestion des objets)</a></li>
                 <li><a href="#" onclick="showSession('session3')">Séance 3 : Conditions (if, else, elif)</a></li>
                 <li><a href="#" onclick="showSession('session4')">Séance 4 : Pratique - Gestion des Personnages dans un Manga</a></li>
@@ -288,7 +296,7 @@
                 <li><a href="#" onclick="showSession('session69')">Séance 69 : Évaluation et Retour sur les Projets</a></li>
                 <li><a href="#" onclick="showSession('session70')">Séance 70 : Discussion sur les Apprentissages et les Améliorations Possibles</a></li>
                 <li><a href="#" onclick="showSession('session71')">Séance 71 : Activité de Clôture (Réflexion sur l’Année)</a></li>
-                <li><a href="#" onclick="showSession('session72')">Séance 72 : Retour d'expérience et perspectives pour l'avenir</a></li>
+                <li><a href="#" onclick="showSession('session72')">Séance 72 : Retour d'expérience et perspectives pour l'avenir</a></li> -->
             </ul>
         </nav>
     </aside>
@@ -12387,7 +12395,7 @@ for i in range(len(scores)):
 
         function generateCalendar() {
             const calendarBody = document.getElementById('calendar-body');
-            const startDate = new Date('2024-09-05');  // Premier jeudi de septembre 2024
+            const startDate = new Date('2024-09-04');  // Premier mercredi de septembre 2024
             const endDate = new Date('2025-07-12');
             
             let currentDate = startDate;
@@ -12396,64 +12404,56 @@ for i in range(len(scores)):
             while (currentDate <= endDate) {
                 const row = document.createElement('tr');
 
-                // Jeudi
-                const thursdayDateString = currentDate.toISOString().split('T')[0];
-                const thursdayCell = document.createElement('td');
-                thursdayCell.textContent = formatFrenchDate(thursdayDateString);
+                // Génération des jours (jeudi, vendredi)
+                ['Jeudi', 'Vendredi'].forEach(() => {
+                    const currentDateString = currentDate.toISOString().split('T')[0];
+                    
+                    // Date (colonne de la date)
+                    const dateCell = document.createElement('td');
+                    dateCell.textContent = formatFrenchDate(currentDateString);
 
-                const thursdayDescCell = document.createElement('td');
-                if (isHoliday(thursdayDateString)) {
-                    thursdayDescCell.textContent = holidays[thursdayDateString];
-                    thursdayCell.classList.add('holiday');
-                    thursdayDescCell.classList.add('holiday');
-                } else if (isInVacation(thursdayDateString)) {
-                    thursdayDescCell.textContent = getVacationName(thursdayDateString);
-                    row.classList.add('vacation');
-                } else {
-                    thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-                    sessionIndex++;
-                }
+                    // Description ou séance (colonne des descriptions)
+                    const descCell = document.createElement('td');
+                    if (isHoliday(currentDateString)) {
+                        descCell.textContent = holidays[currentDateString];
+                        dateCell.classList.add('holiday');
+                        descCell.classList.add('holiday');
+                    } else if (isInVacation(currentDateString)) {
+                        descCell.textContent = getVacationName(currentDateString);
+                        row.classList.add('vacation');
+                    } else {
+                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
+                        sessionIndex++;
 
-                // Mise en évidence du jour actuel
-                if (isToday(thursdayDateString)) {
-                    thursdayCell.classList.add('today');
-                    thursdayDescCell.classList.add('today');
-                }
+                        // Création d'un lien cliquable pour les séances
+                        const link = document.createElement('a');
+                        link.textContent = sessionName;
+                        link.href = `#`; // Génère un ID basé sur le nom de la séance
+                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
+                        // link.classList.add('session-link'); // Ajout d'une classe pour le style éventuel
 
-                // Vendredi
-                currentDate.setDate(currentDate.getDate() + 1);  // Vendredi
-                const fridayDateString = currentDate.toISOString().split('T')[0];
-                const fridayCell = document.createElement('td');
-                fridayCell.textContent = formatFrenchDate(fridayDateString);
+                        descCell.appendChild(link);
+                    }
 
-                const fridayDescCell = document.createElement('td');
-                if (isHoliday(fridayDateString)) {
-                    fridayDescCell.textContent = holidays[fridayDateString];
-                    fridayCell.classList.add('holiday');
-                    fridayDescCell.classList.add('holiday');
-                } else if (isInVacation(fridayDateString)) {
-                    fridayDescCell.textContent = getVacationName(fridayDateString);
-                    row.classList.add('vacation');
-                } else {
-                    fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-                    sessionIndex++;
-                }
+                    // Mise en évidence du jour actuel
+                    if (isToday(currentDateString)) {
+                        dateCell.classList.add('today');
+                        descCell.classList.add('today');
+                    }
 
-                // Mise en évidence du jour actuel
-                if (isToday(fridayDateString)) {
-                    fridayCell.classList.add('today');
-                    fridayDescCell.classList.add('today');
-                }
+                    // Ajout des cellules à la ligne
+                    row.appendChild(dateCell);
+                    row.appendChild(descCell);
 
-                // Ajout des cellules à la ligne
-                row.appendChild(thursdayCell);
-                row.appendChild(thursdayDescCell);
-                row.appendChild(fridayCell);
-                row.appendChild(fridayDescCell);
+                    // Passer au jour suivant
+                    currentDate.setDate(currentDate.getDate() + 1);
+                });
+
+                // Ajouter la ligne au tableau
                 calendarBody.appendChild(row);
 
-                // Passer au jeudi suivant
-                currentDate.setDate(currentDate.getDate() + 6);
+                // Passer au mercredi suivant
+                currentDate.setDate(currentDate.getDate() + 4); // Sauter au mercredi suivant
             }
         }
 
