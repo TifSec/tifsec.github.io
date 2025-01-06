@@ -190,6 +190,24 @@
         .rep {
             visibility: hidden;
         }
+
+        /* code {
+            background-color: #eef;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #eef;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        } */
+        .note {
+            background-color: #ffffcc;
+            padding: 10px;
+            border-left: 4px solid #ffcc00;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
@@ -4648,6 +4666,197 @@
                 </li>
             </ol>
         </section>
+
+        <section id="session45" class="content-section">
+            <h2>Introduction au routage postal</h2>
+            <p>Le routage postal est une méthode permettant de comprendre comment les données sont transférées sur Internet. Cette analogie simplifie les concepts complexes en les comparant à l'acheminement du courrier postal.</p>
+    
+            <h3>Activité 1 : Comparaison avec le courrier</h3>
+            <p>Imaginez que vous envoyez une lettre :</p>
+            <ol>
+                <li>Identifiez les éléments nécessaires pour qu'une lettre arrive à destination (adresse de l'expéditeur, adresse du destinataire, timbre).</li>
+                <li>Discutez en groupe des similitudes avec un paquet de données sur Internet.</li>
+            </ol>
+    
+            <h3>Les étapes du routage postal</h3>
+            <p>Les données sur Internet suivent plusieurs étapes similaires à celles du courrier :</p>
+            <ul>
+                <li><strong>Encapsulation</strong> : Ajout d'enveloppes contenant des informations comme l'adresse source et destination.</li>
+                <li><strong>Tri</strong> : Le courrier (ou les données) est trié par des centres de traitement (routeurs).</li>
+                <li><strong>Transport</strong> : Acheminement par des voies spécifiques (câbles, fibre optique, satellites).</li>
+                <li><strong>Livraison</strong> : Le message atteint son destinataire final.</li>
+            </ul>
+    
+            <h3>Activité 2 : Simulation de routage</h3>
+            <p>Formez des groupes et simulez un réseau de routage :</p>
+            <ul>
+                <li>Attribuez des rôles : expéditeur, destinataire, routeurs intermédiaires.</li>
+                <li>Utilisez des fiches pour représenter les paquets de données, en incluant des "adresses" source et destination.</li>
+                <li>Faites passer les paquets de routeur en routeur jusqu'à atteindre le destinataire.</li>
+            </ul>
+    
+            <h3>Adresses et protocoles</h3>
+            <p>Pour que le routage fonctionne, chaque paquet de données contient :</p>
+            <ul>
+                <li>Une <strong>adresse source</strong> : identifie l'expéditeur.</li>
+                <li>Une <strong>adresse destination</strong> : identifie le destinataire.</li>
+                <li>Des <strong>informations de protocole</strong> : indiquent comment le paquet doit être traité.</li>
+            </ul>
+    
+            <h3>Activité 3 : Identifier un itinéraire</h3>
+            <p>Utilisez la commande <code>tracert</code> (Windows) ou <code>traceroute</code> (Mac/Linux) pour tracer le chemin parcouru par un paquet de données jusqu'à un site web (exemple : <code>www.google.com</code>).</p>
+            <ul>
+                <li>Discutez des observations : combien de routeurs sont traversés ? Où se situent-ils ?</li>
+            </ul>
+    
+            <h3>Problèmes possibles</h3>
+            <p>Comme dans le courrier postal, des problèmes peuvent survenir :</p>
+            <ul>
+                <li><strong>Perte de paquets</strong> : Des données n'atteignent pas leur destination.</li>
+                <li><strong>Retards</strong> : Le temps de transit est plus long que prévu.</li>
+                <li><strong>Adresse incorrecte</strong> : Les paquets sont renvoyés à l'expéditeur.</li>
+            </ul>
+    
+            <h3>Activité 4 : Résolution de problèmes</h3>
+            <p>En groupe, imaginez des scénarios où des problèmes surviennent dans le routage. Proposez des solutions pour chaque situation.</p>
+    
+        </section>
+
+        <section id="session46" class="content-section" >
+            <h2>Introduction à l'adressage IP</h2>
+            <p>Une adresse IP (Internet Protocol) est un identifiant unique attribué à chaque appareil connecté à un réseau informatique qui utilise le protocole Internet. Elle permet aux appareils de communiquer entre eux sur un réseau local ou sur Internet.</p>
+            
+            <h3>Activité 1 : Identifier une adresse IP</h3>
+            <p>Regardez sur votre propre appareil :</p>
+            <ol>
+                <li>Sur Windows, ouvrez le terminal (cmd) et tapez <code>ipconfig</code>. Relevez l'adresse IPv4.</li>
+                <li>Sur Mac ou Linux, tapez <code>ifconfig</code> dans le terminal.</li>
+                <li>Notez votre adresse IP et partagez-la (sans les trois derniers chiffres) avec vos camarades.</li>
+            </ol>
+    
+            <h3>Les deux versions d'adresse IP</h3>
+            <p>La version IPv4 (Internet Protocol version 4) est constituée de 32 bits, divisés en quatre octets, et représentée sous forme décimale, comme ceci :</p>
+            <pre>192.168.1.1</pre>
+            <p>L'IPv6, introduit pour répondre au manque d'adresses IPv4, est constitué de 128 bits :</p>
+            <pre>2001:0db8:85a3:0000:0000:8a2e:0370:7334</pre>
+    
+            <h3>Activité 2 : Différence entre IPv4 et IPv6</h3>
+            <p>En groupe, recherchez :
+                <ul>
+                    <li>Combien d'adresses sont possibles avec IPv4 ?</li>
+                    <li>Combien avec IPv6 ?</li>
+                    <li>Quels avantages offre l'IPv6 par rapport à l'IPv4 ?</li>
+                </ul>
+            </p>
+    
+            <h3>Le rôle des adresses IP</h3>
+            <p>Les adresses IP ont deux fonctions principales :</p>
+            <ul>
+                <li><strong>Identification</strong> : Identifier de manière unique un appareil sur un réseau.</li>
+                <li><strong>Localisation</strong> : Permettre de localiser un appareil sur un réseau pour établir une communication.</li>
+            </ul>
+    
+            <h3>Activité 3 : Simulation de réseau</h3>
+            <p>Formez des groupes et simulez un petit réseau :</p>
+            <ul>
+                <li>Attribuez à chaque participant une adresse IP fictive.</li>
+                <li>Envoyez des "données" (messages écrits) entre les membres du réseau en précisant l'adresse IP du destinataire.</li>
+            </ul>
+    
+            <h3>Adresses IP publiques et privées</h3>
+            <p>Les adresses IP se divisent en deux catégories :</p>
+            <ul>
+                <li><strong>Adresses publiques</strong> : Utilisées pour identifier un appareil sur Internet.</li>
+                <li><strong>Adresses privées</strong> : Utilisées dans les réseaux locaux (exemples : 192.168.x.x, 10.x.x.x).</li>
+            </ul>
+    
+            <h3>Activité 4 : NAT (Network Address Translation)</h3>
+            <p>Discutez en groupe :
+                <ul>
+                    <li>Pourquoi le NAT est-il nécessaire dans un réseau domestique ?</li>
+                    <li>Quels problèmes pourrait-il poser ?</li>
+                </ul>
+            </p>
+            <div class="note">
+                <p><strong>Note :</strong> Le NAT est très utilisé dans les routeurs domestiques pour connecter plusieurs appareils à Internet via une seule connexion.</p>
+            </div>
+        </section>
+
+        <section id="session47" class="content-section">
+            <h2>Introduction au protocole TCP</h2>
+            <p>Le protocole TCP (Transmission Control Protocol) est un protocole de communication qui garantit la fiabilité des échanges de données entre deux appareils sur un réseau. Il est utilisé en conjonction avec le protocole IP dans la suite TCP/IP.</p>
+    
+            <h3>Activité 1 : Observer une connexion TCP avec le navigateur</h3>
+            <p>Vous pouvez observer une connexion TCP directement via votre navigateur :</p>
+            <ol>
+                <li>Ouvrez un navigateur web (comme Chrome ou Firefox).</li>
+                <li>Accédez à un site web (par exemple, <code>https://www.google.com</code>).</li>
+                <li>Ouvrez les outils de développement (clic droit sur la page > Inspecter > onglet "Réseau").</li>
+                <li>Rechargez la page (F5) et observez les requêtes dans l'onglet réseau :</li>
+                    <ul>
+                        <li>Cherchez une requête HTTP/HTTPS.</li>
+                        <li>Cliquez dessus pour voir les détails, notamment le protocole utilisé (TCP ou HTTPS qui repose sur TCP).</li>
+                    </ul>
+                <li>Discutez de ce que vous observez : Comment TCP garantit-il la fiabilité des échanges ?</li>
+            </ol>
+    
+            <h3>Le fonctionnement de TCP</h3>
+            <p>TCP fonctionne en trois étapes principales :</p>
+            <ul>
+                <li><strong>Établissement de la connexion</strong> : Utilisation du mécanisme <em>Three-Way Handshake</em>.</li>
+                <li><strong>Transfert de données</strong> : Envoi de segments de données, avec accusé de réception.</li>
+                <li><strong>Fermeture de la connexion</strong> : Libération des ressources réseau utilisées.</li>
+            </ul>
+    
+            <h3>Activité 2 : Simuler le Three-Way Handshake</h3>
+            <p>Formez des groupes pour simuler le fonctionnement du Three-Way Handshake :</p>
+            <ul>
+                <li>Un participant joue le rôle du client.</li>
+                <li>Un autre joue le rôle du serveur.</li>
+                <li>Effectuez les étapes suivantes :
+                    <ul>
+                        <li>Le client envoie un paquet <code>SYN</code>.</li>
+                        <li>Le serveur répond avec un paquet <code>SYN-ACK</code>.</li>
+                        <li>Le client répond avec un paquet <code>ACK</code>.</li>
+                    </ul>
+                </li>
+            </ul>
+    
+            <h3>Les avantages de TCP</h3>
+            <p>TCP offre plusieurs avantages :</p>
+            <ul>
+                <li>Fiabilité : Les données perdues sont retransmises.</li>
+                <li>Contrôle de flux : Évite la surcharge du récepteur.</li>
+                <li>Contrôle de congestion : Réduit les envois en cas de congestion du réseau.</li>
+            </ul>
+    
+            <h3>Activité 3 : Différencier TCP et UDP</h3>
+            <p>En groupe, comparez TCP et UDP (User Datagram Protocol) :</p>
+            <ul>
+                <li>Quels sont les avantages et inconvénients de chaque protocole ?</li>
+                <li>Dans quels cas utilisez-vous TCP plutôt qu'UDP, et vice versa ?</li>
+            </ul>
+    
+            <h3>Applications de TCP</h3>
+            <p>TCP est utilisé par de nombreuses applications et protocoles, tels que :</p>
+            <ul>
+                <li>HTTP/HTTPS (navigation web).</li>
+                <li>SMTP (courrier électronique).</li>
+                <li>FTP (transfert de fichiers).</li>
+            </ul>
+    
+            <h3>Activité 4 : Identifier les applications utilisant TCP</h3>
+            <p>À l'aide de votre ordinateur, identifiez les applications qui utilisent TCP :</p>
+            <ol>
+                <li>Sur Windows, utilisez la commande <code>netstat</code> dans le terminal.</li>
+                <li>Sur Mac ou Linux, utilisez également <code>netstat</code>.</li>
+                <li>Notez les applications et les ports qu'elles utilisent.</li>
+            </ol>
+    
+            <div class="note">
+                <p><strong>Note :</strong> Le protocole TCP est un élément fondamental d'Internet, assurant la fiabilité et la qualité des communications réseau.</p>
+            </div>
+        </section>
         
         <section id="session53" class="content-section">
             <h2 style="margin-top: 30px; margin-bottom: 20px;">Séance 53 : Conclusion et bilan de l’année</h2>
@@ -4726,7 +4935,7 @@
             
             <h4>Mot final :</h4>
             <p>Cette séance est une belle occasion de renforcer les liens au sein de la classe et de finir l'année sur une note positive, en célébrant les accomplissements de chacun. Prenez le temps de célébrer les réussites et d'inviter les élèves à regarder vers l'avenir avec enthousiasme et confiance.</p>
-        </section>        
+        </section>
     </main>
 
     <!-- <footer>
@@ -4798,9 +5007,9 @@
             'Séance 42 : Présentation des projets numériques',
             'Séance 43 : Révisions générales de fin d\'année',
             'Séance 44 : Grand QCM Final',
-            'Séance 45 : ',
-            'Séance 46 : ',
-            'Séance 47 : ',
+            'Séance 45 : Introduction au routage postal',
+            'Séance 46 : Introduction à l\'adressage IP',
+            'Séance 47 : Introduction au protocole TCP',
             'Séance 48 : ',
             'Séance 49 : ',
             'Séance 50 : ',
