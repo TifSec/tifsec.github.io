@@ -38,6 +38,14 @@
             display: block;
         }
 
+        a{
+            color: black;
+        }
+
+        a:hover{
+            color: orange;
+        }
+
         aside {
             position: fixed;
             left: 0;
@@ -207,7 +215,7 @@
                 <!-- Ressources -->
                 <li><a href="#" onclick="showSession('session0')">Ressources</a></li>
 
-                <!-- Cours -->
+                <!-- Cours
                 <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à la SNT</a></li>
                 <li><a href="#" onclick="showSession('session2')">Séance 2 : Histoire et définition d'Internet</a></li>
                 <li><a href="#" onclick="showSession('session3')">Séance 3 : Fonctionnement du Web et des Sites Web</a></li>
@@ -260,7 +268,7 @@
                 <li><a href="#" onclick="showSession('session50')"></a></li>
                 <li><a href="#" onclick="showSession('session51')"></a></li>
                 <li><a href="#" onclick="showSession('session52')"></a></li>
-                <li><a href="#" onclick="showSession('session53')">Séance 53 : Conclusion et bilan de l’année</a></li>
+                <li><a href="#" onclick="showSession('session53')">Séance 53 : Conclusion et bilan de l’année</a></li> -->
             </ul>
         </nav>
     </aside>
@@ -4842,7 +4850,125 @@
             return today === date;
         }
 
-        // A modifier pour mettre en place la nouvelle méthode
+        // function generateCalendar() {
+        //     const calendarBody = document.getElementById('calendar-body');
+        //     const startDate = new Date('2024-09-06');  // Commence le vendredi 6 septembre
+        //     const endDate = new Date('2025-07-12');
+            
+        //     let currentDate = startDate;
+        //     let sessionIndex = 0;
+        //     let firstLine = true; // Pour gérer le premier vendredi seul
+        //     let displayThursday = true; // Alterne l'affichage des jeudis
+
+        //     while (currentDate <= endDate) {
+        //         const row = document.createElement('tr');
+
+        //         if (firstLine) {
+        //             // Première ligne : uniquement le vendredi
+        //             const fridayDateString = currentDate.toISOString().split('T')[0];
+        //             const fridayCell = document.createElement('td');
+        //             const fridayDescCell = document.createElement('td');
+                    
+        //             fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+        //             if (isHoliday(fridayDateString)) {
+        //                 fridayDescCell.textContent = holidays[fridayDateString];
+        //                 fridayCell.classList.add('holiday');
+        //                 fridayDescCell.classList.add('holiday');
+        //             } else if (isInVacation(fridayDateString)) {
+        //                 fridayDescCell.textContent = getVacationName(fridayDateString);
+        //                 row.classList.add('vacation');
+        //             } else {
+        //                 fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+        //                 sessionIndex++;
+        //             }
+
+        //             if (isToday(fridayDateString)) {
+        //                 fridayCell.classList.add('today');
+        //                 fridayDescCell.classList.add('today');
+        //             }
+
+        //             // Cellules vides pour jeudi
+        //             row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
+        //             row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+        //             row.appendChild(fridayCell);
+        //             row.appendChild(fridayDescCell);
+
+        //             // Passer au jeudi suivant
+        //             currentDate.setDate(currentDate.getDate() + 6);
+        //             firstLine = false;
+        //         } else {
+        //             // Ligne suivante : jeudi et vendredi (alternance pour jeudi)
+        //             if (displayThursday) {
+        //                 // Affiche le jeudi
+        //                 const thursdayDateString = currentDate.toISOString().split('T')[0];
+        //                 const thursdayCell = document.createElement('td');
+        //                 const thursdayDescCell = document.createElement('td');
+                        
+        //                 thursdayCell.textContent = formatFrenchDate(thursdayDateString);
+
+        //                 if (isHoliday(thursdayDateString)) {
+        //                     thursdayDescCell.textContent = holidays[thursdayDateString];
+        //                     thursdayCell.classList.add('holiday');
+        //                     thursdayDescCell.classList.add('holiday');
+        //                 } else if (isInVacation(thursdayDateString)) {
+        //                     thursdayDescCell.textContent = getVacationName(thursdayDateString);
+        //                     row.classList.add('vacation');
+        //                 } else {
+        //                     thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+        //                     sessionIndex++;
+        //                 }
+
+        //                 if (isToday(thursdayDateString)) {
+        //                     thursdayCell.classList.add('today');
+        //                     thursdayDescCell.classList.add('today');
+        //                 }
+
+        //                 row.appendChild(thursdayCell);
+        //                 row.appendChild(thursdayDescCell);
+        //             } else {
+        //                 // Si jeudi est sauté, ajoute des cellules vides
+        //                 row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
+        //                 row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+        //             }
+
+        //             // Passe au vendredi
+        //             currentDate.setDate(currentDate.getDate() + 1);
+        //             const fridayDateString = currentDate.toISOString().split('T')[0];
+        //             const fridayCell = document.createElement('td');
+        //             const fridayDescCell = document.createElement('td');
+                    
+        //             fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+        //             if (isHoliday(fridayDateString)) {
+        //                 fridayDescCell.textContent = holidays[fridayDateString];
+        //                 fridayCell.classList.add('holiday');
+        //                 fridayDescCell.classList.add('holiday');
+        //             } else if (isInVacation(fridayDateString)) {
+        //                 fridayDescCell.textContent = getVacationName(fridayDateString);
+        //                 row.classList.add('vacation');
+        //             } else {
+        //                 fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+        //                 sessionIndex++;
+        //             }
+
+        //             if (isToday(fridayDateString)) {
+        //                 fridayCell.classList.add('today');
+        //                 fridayDescCell.classList.add('today');
+        //             }
+
+        //             row.appendChild(fridayCell);
+        //             row.appendChild(fridayDescCell);
+
+        //             // Passe au jeudi suivant (saute un jeudi sur deux)
+        //             currentDate.setDate(currentDate.getDate() + 6);
+        //             displayThursday = !displayThursday; // Alterne l'affichage des jeudis
+        //         }
+
+        //         calendarBody.appendChild(row);
+        //     }
+        // }
+
         function generateCalendar() {
             const calendarBody = document.getElementById('calendar-body');
             const startDate = new Date('2024-09-06');  // Commence le vendredi 6 septembre
@@ -4872,8 +4998,16 @@
                         fridayDescCell.textContent = getVacationName(fridayDateString);
                         row.classList.add('vacation');
                     } else {
-                        fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
                         sessionIndex++;
+
+                        // Création d'un lien cliquable pour les séances
+                        const link = document.createElement('a');
+                        link.textContent = sessionName;
+                        link.href = `#`; // Génère un ID basé sur le nom de la séance
+                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
+
+                        fridayDescCell.appendChild(link);
                     }
 
                     if (isToday(fridayDateString)) {
@@ -4898,7 +5032,7 @@
                         const thursdayCell = document.createElement('td');
                         const thursdayDescCell = document.createElement('td');
                         
-                        thursdayCell.textContent = formatFrenchDate(thursdayDateString);
+                        thursdayCell.textContent = formatFrenchDate(thursdayDateString);                       
 
                         if (isHoliday(thursdayDateString)) {
                             thursdayDescCell.textContent = holidays[thursdayDateString];
@@ -4908,8 +5042,16 @@
                             thursdayDescCell.textContent = getVacationName(thursdayDateString);
                             row.classList.add('vacation');
                         } else {
-                            thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+                            const sessionName = sessions[sessionIndex] || 'Séance à définir';
                             sessionIndex++;
+
+                            // Création d'un lien cliquable pour les séances
+                            const link = document.createElement('a');
+                            link.textContent = sessionName;
+                            link.href = `#`; // Génère un ID basé sur le nom de la séance
+                            link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
+
+                            thursdayDescCell.appendChild(link);
                         }
 
                         if (isToday(thursdayDateString)) {
@@ -4917,6 +5059,7 @@
                             thursdayDescCell.classList.add('today');
                         }
 
+                        // Ajout des cellules à la ligne
                         row.appendChild(thursdayCell);
                         row.appendChild(thursdayDescCell);
                     } else {
@@ -4941,8 +5084,16 @@
                         fridayDescCell.textContent = getVacationName(fridayDateString);
                         row.classList.add('vacation');
                     } else {
-                        fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
                         sessionIndex++;
+
+                        // Création d'un lien cliquable pour les séances
+                        const link = document.createElement('a');
+                        link.textContent = sessionName;
+                        link.href = `#`; // Génère un ID basé sur le nom de la séance
+                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
+
+                        fridayDescCell.appendChild(link);
                     }
 
                     if (isToday(fridayDateString)) {
@@ -4993,7 +5144,7 @@
 
         // Display the first session by default when page loads
         document.addEventListener('DOMContentLoaded', () => {
-            showSession('session1');
+            showSession('calendar');
         });
 
     </script>
