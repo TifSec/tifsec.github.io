@@ -6851,12 +6851,65 @@
             <p>Cette séance introduit deux design patterns essentiels en programmation orientée objet : le <strong>Singleton</strong> et le <strong>Factory</strong>. Les élèves apprendront comment utiliser ces patterns dans le développement d’un jeu vidéo pour simplifier la gestion des objets et optimiser le code.</p>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Qu'est-ce qu'un Design Pattern ?</h3>
-            <p>Un <strong>design pattern</strong> (ou patron de conception) est une solution standardisée pour résoudre des problèmes récurrents en développement logiciel. Les design patterns facilitent la maintenance, la compréhension et l'extensibilité du code en structurant les solutions de manière efficace.</p>
+            <p>Un <b>design pattern</b> (ou "patron de conception") est une solution réutilisable à un problème récurrent dans la programmation. En programmation orientée objet (POO), ces patrons servent de "plans" pour résoudre des problèmes courants, tout en respectant les bonnes pratiques. Ils ne sont pas des morceaux de code spécifiques mais plutôt des structures ou des idées qu'on peut adapter à son propre code.</p>
             <p>Les deux design patterns abordés aujourd'hui sont :</p>
             <ul>
-                <li><strong>Singleton :</strong> Assure qu'une classe n'ait qu'une seule instance et fournit un point d'accès global à cette instance.</li>
-                <li><strong>Factory :</strong> Simplifie la création d'objets en centralisant leur instanciation, permettant de choisir dynamiquement le type d'objet à créer.</li>
+                <li><strong>Singleton :</strong> Le <b>Singleton</b> est un design pattern qui garantit qu'une classe n'a qu'une seule instance tout au long de l'exécution du programme. Cela peut être utile, par exemple, pour un gestionnaire de base de données ou un logger.</li>
+                    <pre><code>
+class Singleton:
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super(Singleton, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
+# Exemple d'utilisation
+s1 = Singleton()
+s2 = Singleton()
+print(s1 is s2)  # True, car les deux variables pointent vers la même instance
+                    </code></pre>
+                <li><strong>Factory :</strong> Le <b>Factory</b> (ou "fabrique") est un design pattern qui centralise la création d'objets. Il permet de déléguer la logique de construction d'objets à une méthode dédiée, facilitant ainsi la maintenance et l'évolution du code.</li>
+                    <pre><code>
+class Animal:
+    def speak(self):
+        pass
+
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
+
+class AnimalFactory:
+    @staticmethod
+    def create_animal(animal_type):
+        if animal_type == "dog":
+            return Dog()
+        elif animal_type == "cat":
+            return Cat()
+        else:
+            raise ValueError("Animal type not supported")
+
+# Exemple d'utilisation
+factory = AnimalFactory()
+dog = factory.create_animal("dog")
+print(dog.speak())  # "Woof!"
+cat = factory.create_animal("cat")
+print(cat.speak())  # "Meow!"
+                    </code></pre>
             </ul>
+
+            <h4>Résumé rapide :</h4>
+            <p>
+                <ul>
+                    <li>Design Pattern : Solution standardisée pour résoudre des problèmes fréquents.</li>
+                    <li>Singleton : Une seule instance d'une classe dans tout le programme.</li>
+                    <li>Factory : Crée des objets selon un type, tout en cachant les détails de l'implémentation.</li>
+                </ul>
+            </p>
         
             <h3 style="margin-top: 30px; margin-bottom: 20px;">Design Pattern Singleton (40 min)</h3>
         
