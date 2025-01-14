@@ -224,8 +224,8 @@
                 <!-- Programme potentiel 3 : Application de gestion de mangas -->
                 <li><a href="#" onclick="showSession('programme3')">Programme potentiel Escape Game Intéractif</a></li>
 
-                <!-- Cours -->
-                <!-- <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à Python, variables, types de données</a></li>
+                <!-- Cours
+                <li><a href="#" onclick="showSession('session1')">Séance 1 : Introduction à Python, variables, types de données</a></li>
                 <li><a href="#" onclick="showSession('session2')">Séance 2 : Pratique - Inventaire de jeu vidéo (gestion des objets)</a></li>
                 <li><a href="#" onclick="showSession('session3')">Séance 3 : Conditions (if, else, elif)</a></li>
                 <li><a href="#" onclick="showSession('session4')">Séance 4 : Pratique - Gestion des Personnages dans un Manga</a></li>
@@ -4303,39 +4303,167 @@ for i in range(len(scores)):
         <section id="session28" class="content-section">
             <h2>Séance 28 : Pratique - Interroger une Base de Données d'Actualité (SQL)</h2>
         
-            <h3>Objectifs de la Séance</h3>
             <ul>
                 <li>Comprendre comment interroger une base de données à l'aide du langage SQL.</li>
                 <li>Apprendre à utiliser des requêtes SQL de base (<code>SELECT</code>, <code>WHERE</code>) pour récupérer des informations spécifiques.</li>
                 <li>Appliquer ces concepts en simulant une base de données d'actualité.</li>
             </ul>
         
-            <h3>Déroulement de la Séance</h3>
+            <h3>1. Création et utilisation d'une BDD SQLite avec Python</h3>
+            
+            <h4>Étape 1 : Connexion à SQLite</h4>
+
+            <p>
+                Pour SQLite, Python inclut nativement la bibliothèque sqlite3. Vous n'avez donc pas besoin d'installation supplémentaire. Pour d'autres bases de données, vous pouvez utiliser des bibliothèques comme :
+                <ul>
+                    <li>MySQL : pip install mysql-connector-python ou pip install pymysql</li>
+                    <li>PostgreSQL : pip install psycopg2</li>
+                    <li>SQL Server : pip install pyodbc</li>
+                </ul>
+                Pour plus de facilité et de portabilité, SQLite est souvent utilisé pour les petites applications ou les projets personnels, c'est donc celle que nous allons utiliser ici.
+            </p>
+
+            <p>Lorsque vous vous connectez à une base SQLite avec sqlite3.connect(), si le fichier de base de données n’existe pas, SQLite le crée automatiquement.</p>
+            
+            <pre><code>
+    import sqlite3
+
+    # Connexion à la base de données (crée le fichier si nécessaire)
+    connexion = sqlite3.connect('ma_base_de_donnees.db')
+
+    # Fermeture de la connexion
+    connexion.close()
+            </code></pre>
+
+            <p>Le fichier <b>ma_base_de_donnees.db</b> sera créé dans le même répertoire que le script Python.</p>
+
+            <p>Pour <b>MySQL</b> ou <b>PostgreSQL</b>, la connexion inclut des paramètres comme l'utilisateur, le mot de passe, et l'hôte.</p>
+
+            <h4>Étape 2 : Création de Tables</h4>
+
+            <p>Une fois la base de données créée, vous pouvez définir sa structure en utilisant des requêtes SQL pour créer des tables.</p>
+            <pre><code>
+    import sqlite3
+
+    # Connexion à la base de données
+    connexion = sqlite3.connect('ma_base_de_donnees.db')
+
+    # Création d'un curseur pour exécuter des commandes SQL
+    curseur = connexion.cursor()
+
+    # Création d'une table
+    curseur.execute('''
+    CREATE TABLE IF NOT EXISTS utilisateurs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nom TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        age INTEGER
+    )
+    ''')
+
+    # Sauvegarder les modifications
+    connexion.commit()
+
+    # Fermeture de la connexion
+    connexion.close()
+            </code></pre>
+
+            <p>
+                Ce script crée une table utilisateurs avec les colonnes suivantes :
+                <ul>
+                    <li>id : Identifiant unique, auto-incrémenté.</li>
+                    <li>nom : Nom de l'utilisateur (obligatoire).</li>
+                    <li>email : Adresse email unique (obligatoire).</li>
+                    <li>age : Âge de l'utilisateur (facultatif).</li>
+                </ul>
+            </p>
+
+            <h4>Étape 3 : Ajouter des Données</h4>
+
+            <p>Vous pouvez insérer des données dans la table avec des requêtes SQL.</p>
+
+            <pre><code>
+    import sqlite3
+
+    # Connexion à la base de données
+    connexion = sqlite3.connect('ma_base_de_donnees.db')
+
+    curseur = connexion.cursor()
+
+    # Insertion de données
+    curseur.execute('''
+    INSERT INTO utilisateurs (nom, email, age)
+    VALUES ('Alice Dupont', 'alice@example.com', 25)
+    ''')
+
+    curseur.execute('''
+    INSERT INTO utilisateurs (nom, email, age)
+    VALUES ('Bob Martin', 'bob@example.com', 30)
+    ''')
+
+    # Sauvegarder les modifications
+    connexion.commit()
+
+    # Fermeture de la connexion
+    connexion.close()
+            </code></pre>
+
+            <h4>Étape 4 : Lire les Données</h4>
+            
+            Vous pouvez interroger la base de données pour lire les données insérées.
+
+            <pre><code>
+    import sqlite3
+
+    # Connexion à la base de données
+    connexion = sqlite3.connect('ma_base_de_donnees.db')
+    curseur = connexion.cursor()
+
+    # Requête pour récupérer les données
+    curseur.execute('SELECT * FROM utilisateurs')
+
+    # Récupérer tous les résultats
+    resultats = curseur.fetchall()
+
+    # Afficher les résultats
+    for utilisateur in resultats:
+        print(f"ID: {utilisateur[0]}, Nom: {utilisateur[1]}, Email: {utilisateur[2]}, Âge: {utilisateur[3]}")
+
+    # Fermeture de la connexion
+    connexion.close()
+            </code></pre>
+
+            <h4>Étape 5 : Modifier ou Supprimer des Données</h4>
+            
+            Vous pouvez aussi mettre à jour ou supprimer des enregistrements.
+
+            <h5>Exemple : Mettre à jour un enregistrement</h5>
+
+            <pre><code>
+    curseur.execute('''
+    UPDATE utilisateurs
+    SET age = 26
+    WHERE nom = 'Alice Dupont'
+    ''')
+    connexion.commit()
+            </code></pre>
+
+            <h5>Exemple : Supprimer un enregistrement</h5>
+
+            <pre><code>
+    curseur.execute('''
+    DELETE FROM utilisateurs
+    WHERE nom = 'Bob Martin'
+    ''')
+    connexion.commit()
+            </code></pre>
         
-            <h4>1. Introduction à SQL et aux Bases de Données</h4>
-            <p><strong>Qu'est-ce qu'une base de données ?</strong><br>
-            Une base de données est un ensemble d'informations organisées de manière à pouvoir être facilement consultées, gérées et mises à jour. Dans le contexte de cette séance, la base de données contient des événements d'actualité.</p>
-        
-            <p><strong>SQL (Structured Query Language) :</strong><br>
-            SQL est un langage de programmation standard utilisé pour interagir avec des bases de données relationnelles. Il permet de créer, lire, mettre à jour et supprimer des données.</p>
-        
-            <p><strong>Principales Instructions SQL que nous allons utiliser :</strong></p>
-            <ul>
-                <li><code>SELECT</code> : Sert à interroger et récupérer des données d'une table.</li>
-                <li><code>WHERE</code> : Permet de filtrer les données selon certaines conditions.</li>
-                <li><code>LIMIT</code> : Limite le nombre de résultats retournés par une requête.</li>
-            </ul>
-        
-            <p><strong>Exemple Simple :</strong></p>
-            <pre><code>SELECT * FROM actualites;</code></pre>
-            <p>Cette requête sélectionne toutes les colonnes de la table <code>actualites</code>, qui contient des événements d'actualité.</p>
-        
-            <h4>2. Activité Pratique : Interroger une Base de Données d'Actualité</h4>
+            <h3>2. Activité Pratique : Interroger une Base de Données d'Actualité</h3>
         
             <p><strong>Objectif de l'activité :</strong><br>
             Utiliser SQL pour interroger une base de données contenant des informations sur des événements d'actualité. Les élèves vont exécuter différentes requêtes pour extraire des données spécifiques.</p>
         
-            <h5>Étape 1 : Simuler une Base de Données</h5>
+            <h4>Étape 1 : Simuler une Base de Données</h4>
             <p>Imaginez une table nommée <code>actualites</code> qui contient des événements d'actualité avec les colonnes suivantes :</p>
             <ul>
                 <li><strong>id</strong> (Identifiant de l'événement)</li>
@@ -4346,14 +4474,15 @@ for i in range(len(scores)):
             </ul>
         
             <p>Voici un exemple de structure de la table <code>actualites</code> :</p>
-            <pre><code>id    titre                     description                 date        categorie
+            <pre><code>
+        id    titre                         description                  date        categorie
         1     "Élections Présidentielles"   "Résultats des élections..." 2023-05-01  Politique
         2     "Coupe du Monde de Football"   "La finale de la Coupe..."   2023-12-18  Sport
         3     "Festival de Cannes"           "Le célèbre festival de..."  2023-05-14  Culture
         4     "Discours du Président"        "Un discours marquant..."    2023-07-01  Politique
             </code></pre>
         
-            <h5>Étape 2 : Requêtes de Base SQL</h5>
+            <h4>Étape 2 : Requêtes de Base SQL</h4>
             <p>Voici quelques requêtes que les élèves peuvent essayer pour interroger cette base de données :</p>
         
             <p>1. Récupérer tous les événements d'actualité :</p>
@@ -4370,7 +4499,7 @@ for i in range(len(scores)):
             <pre><code>SELECT * FROM actualites WHERE titre LIKE '%Coupe%';</code></pre>
             <p>Le mot-clé <code>LIKE</code> permet de rechercher des correspondances partielles dans le texte.</p>
         
-            <h5>Étape 3 : Exercices Pratiques</h5>
+            <h4>Étape 3 : Exercices Pratiques</h4>
         
             <p>1. <strong>Exercice 1 :</strong> Récupérer les événements survenus après le 1er juillet 2023 :</p>
             <pre><code>SELECT * FROM actualites WHERE date > '2023-07-01';</code></pre>
@@ -4380,17 +4509,6 @@ for i in range(len(scores)):
         
             <p>3. <strong>Exercice 3 :</strong> Requête pour rechercher un événement spécifique par mot-clé :</p>
             <pre><code>SELECT * FROM actualites WHERE titre LIKE '%Festival%';</code></pre>
-        
-            <h4>3. Discussion et Réflexion</h4>
-        
-            <h5>Discussion en groupe :</h5>
-            <p>Réfléchissez à comment vous pourriez utiliser des bases de données pour gérer des événements d'actualité dans un projet réel. Les élèves peuvent imaginer des fonctionnalités pour filtrer les événements par date, catégorie ou mot-clé.</p>
-        
-            <h5>Exemples de mise en contexte :</h5>
-            <ul>
-                <li>Une application d'actualité pourrait permettre aux utilisateurs de consulter les événements par thème ou de recevoir des notifications pour des événements récents.</li>
-                <li>Pour des projets plus avancés, il est possible d'envisager l'intégration de filtres pour les actualités régionales ou mondiales.</li>
-            </ul>
         </section>
 
         <section id="session29" class="content-section">
