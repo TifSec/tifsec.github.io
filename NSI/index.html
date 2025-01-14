@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -13,5 +13,286 @@
 </head>
 <body>
     <iframe src="Présentation de la spécialité NSI.pdf" frameborder="0"></iframe>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours : Créer un jeu en Python</title>
+    <style>
+        /* Utilisation d'une police moderne */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f6fa;
+            color: #2d3436;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            color: #2d3436;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #576574;
+            border-bottom: 2px solid #c8d6e5;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 30px;
+        }
+
+        h2, h3 {
+            font-size: 1.8rem;
+            color: #1e272e;
+        }
+
+        p, ul, pre {
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background-color: #ffffff;
+            padding: 15px;
+            border: 1px solid #dcdde1;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow-x: auto;
+            transition: background-color 0.3s ease;
+        }
+
+        pre:hover {
+            background-color: #f0f2f5;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        .section {
+            background: #ffffff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #dcdde1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .bonus {
+            background: #dff9fb;
+            color: #1e272e;
+            border: 1px solid #c7ecee;
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        a {
+            color: #00a8ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Effets visuels subtils */
+        h1, h2, h3 {
+            animation: fade-in 1s ease-in-out;
+        }
+
+        .section {
+            animation: slide-up 0.8s ease-in-out;
+        }
+
+        /* Animations */
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-up {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .code-block {
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #00a8ff;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: #007bb5;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Cours : Créer un jeu en Python</h1>
+    <p><strong>Objectifs :</strong></p>
+    <ul>
+        <li>Comprendre les bases de la programmation Python.</li>
+        <li>Manipuler des variables, des conditions et des boucles.</li>
+        <li>Créer un programme interactif fonctionnel.</li>
+    </ul>
+
+    <div class="section">
+        <h2>1. Introduction</h2>
+        <ul>
+            <li>Présentation du jeu : "Nous allons coder un jeu où l’ordinateur choisit un nombre secret, et vous devrez le deviner. Il vous dira si votre nombre est trop haut ou trop bas."</li>
+            <li>Concepts abordés :</li>
+            <ul>
+                <li>Les variables : pour stocker des informations.</li>
+                <li>Les conditions : pour vérifier si le joueur a trouvé le bon nombre.</li>
+                <li>Les boucles : pour que le joueur puisse continuer à deviner.</li>
+                <li>Les interactions utilisateur : grâce à <code>input()</code>.</li>
+            </ul>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>2 : Comprendre les bases du programme</h2>
+        <h3>Étape 1 : Initialisation</h3>
+        <p><strong>Explication :</strong> On utilise la bibliothèque <code>random</code> pour générer un nombre aléatoire.</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+            <pre>
+    import random
+
+    print("Bienvenue dans 'Devine le nombre' !")
+    print("Je pense à un nombre entre 1 et 20. À toi de deviner !")
+
+    # L'ordinateur choisit un nombre aléatoire
+    nombre_secret = random.randint(1, 20)
+            </pre>
+        </div>
+
+        <h3>Étape 2 : Ajouter une interaction utilisateur</h3>
+        <p><strong>Explication :</strong> On demande au joueur d'entrer un nombre, et le programme affiche ce nombre.</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+            <pre>
+# Demander au joueur d'entrer un nombre
+choix = int(input("Entre un nombre : "))
+print(f"Tu as choisi : {choix}")
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3 : Ajouter de la logique au jeu</h2>
+        <h3>Étape 3 : Vérifier si le joueur a trouvé le nombre</h3>
+        <p><strong>Explication :</strong> Utilisation des conditions <code>if</code>, <code>elif</code>, et <code>else</code> pour vérifier les réponses.</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+            <pre>
+    if choix < nombre_secret:
+        print("Trop bas !")
+    elif choix > nombre_secret:
+        print("Trop haut !")
+    else:
+        print("Bravo ! Tu as trouvé le nombre.")
+            </pre>
+        </div>
+
+        <h3>Étape 4 : Répéter avec une boucle</h3>
+        <p><strong>Explication :</strong> Une boucle <code>while</code> permet de rejouer jusqu'à trouver le bon nombre.</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+            <pre>
+    tentatives = 0
+    devine = False
+
+    while not devine:
+        choix = int(input("Entre un nombre : "))
+        tentatives += 1
+
+        if choix < nombre_secret:
+            print("Trop bas !")
+        elif choix > nombre_secret:
+            print("Trop haut !")
+        else:
+            print(f"Bravo ! Tu as trouvé en {tentatives} tentatives.")
+            devine = True
+            </pre>
+        </div>
+    </div>
+
+    <div class="section bonus">
+        <h2>4. Activité bonus : Personnalisation</h2>
+        <ul>
+            <li>Changer la plage du nombre :
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                    <pre>nombre_secret = random.randint(1, 50)</pre>
+                </div>
+            </li>
+            <li>Limiter le nombre d’essais :
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                    <pre>
+    if tentatives > 5:
+        print("Dommage, tu as utilisé tous tes essais !")
+        break
+                    </pre>
+                </div>
+            </li>
+            <li>Ajouter des messages amusants :
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copier</button>
+                    <pre>
+    if choix == 13:
+        print("C'est ton chiffre porte-bonheur ? Pas cette fois !")
+                    </pre>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        function copyCode(button) {
+            const pre = button.nextElementSibling;
+            const code = pre.textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = "Copié !";
+                setTimeout(() => button.textContent = "Copier", 2000);
+            });
+        }
+    </script>
+
 </body>
 </html>
