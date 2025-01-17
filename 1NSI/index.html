@@ -816,7 +816,9 @@
             <p><strong>Structure de l'Inventaire :</strong><br>
             Un inventaire pourrait être représenté par une liste de chaînes de caractères, où chaque chaîne représente un objet :</p>
         
-            <pre><code>inventaire = ["épée", "bouclier", "potion"]</code></pre>
+            <pre><code>
+        inventaire = ["épée", "bouclier", "potion"]
+            </code></pre>
         
             <h4>2. Activité Pratique : Créer un Inventaire</h4>
         
@@ -1545,7 +1547,7 @@
             <p><strong>Formule de base :</strong><br>
             Pour calculer la consommation d’essence d’un véhicule, nous utilisons la formule suivante :</p>
             <pre><code>
-            consommation_essence = (distance_parcourue / 100) * consommation_moyenne
+        consommation_essence = (distance_parcourue / 100) * consommation_moyenne
             </code></pre>
             <p>où :</p>
             <ul>
@@ -4255,20 +4257,29 @@ for i in range(len(scores)):
             <p><strong>Les principales instructions SQL :</strong></p>
             <ul>
                 <li><strong>CREATE TABLE :</strong> Crée une nouvelle table dans la base de données.</li>
-                <pre><code>CREATE TABLE joueurs (
+                <pre><code>
+        CREATE TABLE joueurs (
             id INT PRIMARY KEY,
             nom VARCHAR(100),
             email VARCHAR(100)
         );</code></pre>
                 <li><strong>INSERT INTO :</strong> Ajoute des données dans une table.</li>
-                <pre><code>INSERT INTO joueurs (id, nom, email)
-        VALUES (1, 'Alice', 'alice@example.com');</code></pre>
+                <pre><code>
+        INSERT INTO joueurs (id, nom, email)
+        VALUES (1, 'Alice', 'alice@example.com');
+                </code></pre>
                 <li><strong>SELECT :</strong> Récupère des données depuis une table.</li>
-                <pre><code>SELECT * FROM joueurs;</code></pre>
+                <pre><code>
+        SELECT * FROM joueurs;
+                </code></pre>
                 <li><strong>UPDATE :</strong> Modifie les données d'une table.</li>
-                <pre><code>UPDATE joueurs SET score = 1600 WHERE id = 1;</code></pre>
+                <pre><code>
+        UPDATE joueurs SET score = 1600 WHERE id = 1;
+                </code></pre>
                 <li><strong>DELETE :</strong> Supprime des données dans une table.</li>
-                <pre><code>DELETE FROM joueurs WHERE id = 1;</code></pre>
+                <pre><code>
+        DELETE FROM joueurs WHERE id = 1;
+                </code></pre>
             </ul>
         
             <h4>Exercice Pratique : Écrire des Instructions SQL</h4>
@@ -4326,13 +4337,13 @@ for i in range(len(scores)):
             <p>Lorsque vous vous connectez à une base SQLite avec sqlite3.connect(), si le fichier de base de données n’existe pas, SQLite le crée automatiquement.</p>
             
             <pre><code>
-    import sqlite3
+        import sqlite3
 
-    # Connexion à la base de données (crée le fichier si nécessaire)
-    connexion = sqlite3.connect('ma_base_de_donnees.db')
+        # Connexion à la base de données (crée le fichier si nécessaire)
+        connexion = sqlite3.connect('ma_base_de_donnees.db')
 
-    # Fermeture de la connexion
-    connexion.close()
+        # Fermeture de la connexion
+        connexion.close()
             </code></pre>
 
             <p>Le fichier <b>ma_base_de_donnees.db</b> sera créé dans le même répertoire que le script Python.</p>
@@ -4343,29 +4354,29 @@ for i in range(len(scores)):
 
             <p>Une fois la base de données créée, vous pouvez définir sa structure en utilisant des requêtes SQL pour créer des tables.</p>
             <pre><code>
-    import sqlite3
+        import sqlite3
 
-    # Connexion à la base de données
-    connexion = sqlite3.connect('ma_base_de_donnees.db')
+        # Connexion à la base de données
+        connexion = sqlite3.connect('ma_base_de_donnees.db')
 
-    # Création d'un curseur pour exécuter des commandes SQL
-    curseur = connexion.cursor()
+        # Création d'un curseur pour exécuter des commandes SQL
+        curseur = connexion.cursor()
 
-    # Création d'une table
-    curseur.execute('''
-    CREATE TABLE IF NOT EXISTS utilisateurs (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nom TEXT NOT NULL,
-        email TEXT UNIQUE NOT NULL,
-        age INTEGER
-    )
-    ''')
+        # Création d'une table
+        curseur.execute('''
+        CREATE TABLE IF NOT EXISTS utilisateurs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nom TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            age INTEGER
+        )
+        ''')
 
-    # Sauvegarder les modifications
-    connexion.commit()
+        # Sauvegarder les modifications
+        connexion.commit()
 
-    # Fermeture de la connexion
-    connexion.close()
+        # Fermeture de la connexion
+        connexion.close()
             </code></pre>
 
             <p>
@@ -4383,29 +4394,29 @@ for i in range(len(scores)):
             <p>Vous pouvez insérer des données dans la table avec des requêtes SQL.</p>
 
             <pre><code>
-    import sqlite3
+        import sqlite3
 
-    # Connexion à la base de données
-    connexion = sqlite3.connect('ma_base_de_donnees.db')
+        # Connexion à la base de données
+        connexion = sqlite3.connect('ma_base_de_donnees.db')
 
-    curseur = connexion.cursor()
+        curseur = connexion.cursor()
 
-    # Insertion de données
-    curseur.execute('''
-    INSERT INTO utilisateurs (nom, email, age)
-    VALUES ('Alice Dupont', 'alice@example.com', 25)
-    ''')
+        # Insertion de données
+        curseur.execute('''
+        INSERT INTO utilisateurs (nom, email, age)
+        VALUES ('Alice Dupont', 'alice@example.com', 25)
+        ''')
 
-    curseur.execute('''
-    INSERT INTO utilisateurs (nom, email, age)
-    VALUES ('Bob Martin', 'bob@example.com', 30)
-    ''')
+        curseur.execute('''
+        INSERT INTO utilisateurs (nom, email, age)
+        VALUES ('Bob Martin', 'bob@example.com', 30)
+        ''')
 
-    # Sauvegarder les modifications
-    connexion.commit()
+        # Sauvegarder les modifications
+        connexion.commit()
 
-    # Fermeture de la connexion
-    connexion.close()
+        # Fermeture de la connexion
+        connexion.close()
             </code></pre>
 
             <h4>Étape 4 : Lire les Données</h4>
@@ -4413,24 +4424,24 @@ for i in range(len(scores)):
             Vous pouvez interroger la base de données pour lire les données insérées.
 
             <pre><code>
-    import sqlite3
+        import sqlite3
 
-    # Connexion à la base de données
-    connexion = sqlite3.connect('ma_base_de_donnees.db')
-    curseur = connexion.cursor()
+        # Connexion à la base de données
+        connexion = sqlite3.connect('ma_base_de_donnees.db')
+        curseur = connexion.cursor()
 
-    # Requête pour récupérer les données
-    curseur.execute('SELECT * FROM utilisateurs')
+        # Requête pour récupérer les données
+        curseur.execute('SELECT * FROM utilisateurs')
 
-    # Récupérer tous les résultats
-    resultats = curseur.fetchall()
+        # Récupérer tous les résultats
+        resultats = curseur.fetchall()
 
-    # Afficher les résultats
-    for utilisateur in resultats:
-        print(f"ID: {utilisateur[0]}, Nom: {utilisateur[1]}, Email: {utilisateur[2]}, Âge: {utilisateur[3]}")
+        # Afficher les résultats
+        for utilisateur in resultats:
+            print(f"ID: {utilisateur[0]}, Nom: {utilisateur[1]}, Email: {utilisateur[2]}, Âge: {utilisateur[3]}")
 
-    # Fermeture de la connexion
-    connexion.close()
+        # Fermeture de la connexion
+        connexion.close()
             </code></pre>
 
             <h4>Étape 5 : Modifier ou Supprimer des Données</h4>
@@ -4440,22 +4451,22 @@ for i in range(len(scores)):
             <h5>Exemple : Mettre à jour un enregistrement</h5>
 
             <pre><code>
-    curseur.execute('''
-    UPDATE utilisateurs
-    SET age = 26
-    WHERE nom = 'Alice Dupont'
-    ''')
-    connexion.commit()
+        curseur.execute('''
+        UPDATE utilisateurs
+        SET age = 26
+        WHERE nom = 'Alice Dupont'
+        ''')
+        connexion.commit()
             </code></pre>
 
             <h5>Exemple : Supprimer un enregistrement</h5>
 
             <pre><code>
-    curseur.execute('''
-    DELETE FROM utilisateurs
-    WHERE nom = 'Bob Martin'
-    ''')
-    connexion.commit()
+        curseur.execute('''
+        DELETE FROM utilisateurs
+        WHERE nom = 'Bob Martin'
+        ''')
+        connexion.commit()
             </code></pre>
         
             <h3>2. Activité Pratique : Interroger une Base de Données d'Actualité</h3>
@@ -4475,7 +4486,7 @@ for i in range(len(scores)):
         
             <p>Voici un exemple de structure de la table <code>actualites</code> :</p>
             <pre><code>
-        id    titre                         description                  date        categorie
+        id              titre                         description           date     categorie
         1     "Élections Présidentielles"   "Résultats des élections..." 2023-05-01  Politique
         2     "Coupe du Monde de Football"   "La finale de la Coupe..."   2023-12-18  Sport
         3     "Festival de Cannes"           "Le célèbre festival de..."  2023-05-14  Culture
@@ -4486,29 +4497,43 @@ for i in range(len(scores)):
             <p>Voici quelques requêtes que les élèves peuvent essayer pour interroger cette base de données :</p>
         
             <p>1. Récupérer tous les événements d'actualité :</p>
-            <pre><code>SELECT * FROM actualites;</code></pre>
+            <pre><code>
+        SELECT * FROM actualites;
+            </code></pre>
         
             <p>2. Récupérer uniquement les événements dans la catégorie "Politique" :</p>
-            <pre><code>SELECT * FROM actualites WHERE categorie = 'Politique';</code></pre>
+            <pre><code>
+        SELECT * FROM actualites WHERE categorie = 'Politique';
+            </code></pre>
         
             <p>3. Récupérer les événements d'actualité les plus récents :</p>
-            <pre><code>SELECT * FROM actualites ORDER BY date DESC LIMIT 3;</code></pre>
+            <pre><code>
+        SELECT * FROM actualites ORDER BY date DESC LIMIT 3;
+            </code></pre>
             <p>Cette requête retourne les trois événements les plus récents en fonction de la date.</p>
         
             <p>4. Récupérer les événements d'actualité avec un titre contenant le mot "Coupe" :</p>
-            <pre><code>SELECT * FROM actualites WHERE titre LIKE '%Coupe%';</code></pre>
+            <pre><code>
+        SELECT * FROM actualites WHERE titre LIKE '%Coupe%';
+            </code></pre>
             <p>Le mot-clé <code>LIKE</code> permet de rechercher des correspondances partielles dans le texte.</p>
         
             <h4>Étape 3 : Exercices Pratiques</h4>
         
             <p>1. <strong>Exercice 1 :</strong> Récupérer les événements survenus après le 1er juillet 2023 :</p>
-            <pre><code>SELECT * FROM actualites WHERE date > '2023-07-01';</code></pre>
+            <pre><code>
+        SELECT * FROM actualites WHERE date > '2023-07-01';
+            </code></pre>
         
             <p>2. <strong>Exercice 2 :</strong> Rechercher tous les événements de la catégorie "Sport" :</p>
-            <pre><code>SELECT * FROM actualites WHERE categorie = 'Sport';</code></pre>
+            <pre><code>
+        SELECT * FROM actualites WHERE categorie = 'Sport';
+            </code></pre>
         
             <p>3. <strong>Exercice 3 :</strong> Requête pour rechercher un événement spécifique par mot-clé :</p>
-            <pre><code>SELECT * FROM actualites WHERE titre LIKE '%Festival%';</code></pre>
+            <pre><code>
+        SELECT * FROM actualites WHERE titre LIKE '%Festival%';
+            </code></pre>
         </section>
 
         <section id="session29" class="content-section">
@@ -4564,35 +4589,47 @@ for i in range(len(scores)):
             <h4>2. Requêtes SQL de Base</h4>
             <h5>1. Créer une Table (CREATE TABLE) :</h5>
             <p>Pour créer une table dans une base de données, vous utilisez la requête <code>CREATE TABLE</code>. Par exemple, pour créer la table <strong>joueurs</strong> :</p>
-            <pre><code>CREATE TABLE joueurs (
+            <pre><code>
+        CREATE TABLE joueurs (
             id INTEGER PRIMARY KEY,
             nom TEXT,
             score INTEGER
-        );</code></pre>
+        );
+            </code></pre>
             <p>Cette requête crée une table <strong>joueurs</strong> avec trois colonnes : <code>id</code> (clé primaire), <code>nom</code> (texte), et <code>score</code> (entier).</p>
         
             <h5>2. Insérer des Données (INSERT INTO) :</h5>
             <p>Pour insérer des données dans une table, vous utilisez la requête <code>INSERT INTO</code>. Par exemple, pour ajouter un nouveau joueur :</p>
-            <pre><code>INSERT INTO joueurs (id, nom, score) VALUES (1, 'Alice', 200);
+            <pre><code>
+        INSERT INTO joueurs (id, nom, score) VALUES (1, 'Alice', 200);
         INSERT INTO joueurs (id, nom, score) VALUES (2, 'Bob', 150);
-        INSERT INTO joueurs (id, nom, score) VALUES (3, 'Charlie', 180);</code></pre>
+        INSERT INTO joueurs (id, nom, score) VALUES (3, 'Charlie', 180);
+            </code></pre>
         
             <h5>3. Lire des Données (SELECT) :</h5>
             <p>La requête <code>SELECT</code> est utilisée pour récupérer des données depuis une table. Voici comment lire toutes les données de la table <strong>joueurs</strong> :</p>
-            <pre><code>SELECT * FROM joueurs;</code></pre>
+            <pre><code>
+        SELECT * FROM joueurs;
+            </code></pre>
             <p>Cela renverra tous les enregistrements dans la table.</p>
         
             <h5>4. Filtrer les Données (WHERE) :</h5>
             <p>Vous pouvez utiliser la clause <code>WHERE</code> pour filtrer les résultats. Par exemple, pour obtenir les joueurs ayant un score supérieur à 150 :</p>
-            <pre><code>SELECT * FROM joueurs WHERE score > 150;</code></pre>
+            <pre><code>
+        SELECT * FROM joueurs WHERE score > 150;
+            </code></pre>
         
             <h5>5. Mettre à Jour les Données (UPDATE) :</h5>
             <p>La requête <code>UPDATE</code> permet de modifier des données existantes. Par exemple, pour mettre à jour le score de Bob :</p>
-            <pre><code>UPDATE joueurs SET score = 160 WHERE nom = 'Bob';</code></pre>
+            <pre><code>
+        UPDATE joueurs SET score = 160 WHERE nom = 'Bob';
+            </code></pre>
         
             <h5>6. Supprimer des Données (DELETE FROM) :</h5>
             <p>La requête <code>DELETE FROM</code> permet de supprimer des données. Par exemple, pour supprimer l'enregistrement de Charlie :</p>
-            <pre><code>DELETE FROM joueurs WHERE nom = 'Charlie';</code></pre>
+            <pre><code>
+        DELETE FROM joueurs WHERE nom = 'Charlie';
+            </code></pre>
         
             <h4>3. Activité Pratique : Requêtes SQL sur une Base de Données Simple</h4>
             <p><strong>Objectif de l'activité :</strong><br>
@@ -4601,28 +4638,40 @@ for i in range(len(scores)):
             <h5>Instructions :</h5>
             <ol>
                 <li><strong>Créer une Table Joueurs :</strong> Demandez aux élèves d'exécuter la requête suivante pour créer la table des joueurs :</li>
-                <pre><code>CREATE TABLE joueurs (
+                <pre><code>
+        CREATE TABLE joueurs (
             id INTEGER PRIMARY KEY,
             nom TEXT,
             score INTEGER
-        );</code></pre>
+        );
+                </code></pre>
         
                 <li><strong>Insérer des Données :</strong> Les élèves doivent insérer des joueurs dans la base de données :</li>
-                <pre><code>INSERT INTO joueurs (id, nom, score) VALUES (1, 'Alice', 200);
+                <pre><code>
+        INSERT INTO joueurs (id, nom, score) VALUES (1, 'Alice', 200);
         INSERT INTO joueurs (id, nom, score) VALUES (2, 'Bob', 150);
-        INSERT INTO joueurs (id, nom, score) VALUES (3, 'Charlie', 180);</code></pre>
+        INSERT INTO joueurs (id, nom, score) VALUES (3, 'Charlie', 180);
+                </code></pre>
         
                 <li><strong>Lire les Données :</strong> Demandez-leur de récupérer toutes les données avec :</li>
-                <pre><code>SELECT * FROM joueurs;</code></pre>
+                <pre><code>
+        SELECT * FROM joueurs;
+                </code></pre>
         
                 <li><strong>Filtrer les Données :</strong> Les élèves doivent récupérer uniquement les joueurs ayant un score supérieur à 150 :</li>
-                <pre><code>SELECT * FROM joueurs WHERE score > 150;</code></pre>
+                <pre><code>
+        SELECT * FROM joueurs WHERE score > 150;
+                </code></pre>
         
                 <li><strong>Mettre à Jour les Données :</strong> Demandez-leur de mettre à jour le score de Bob à 160 :</li>
-                <pre><code>UPDATE joueurs SET score = 160 WHERE nom = 'Bob';</code></pre>
+                <pre><code>
+        UPDATE joueurs SET score = 160 WHERE nom = 'Bob';
+                </code></pre>
         
                 <li><strong>Supprimer des Données :</strong> Demandez aux élèves de supprimer l'enregistrement de Charlie :</li>
-                <pre><code>DELETE FROM joueurs WHERE nom = 'Charlie';</code></pre>
+                <pre><code>
+        DELETE FROM joueurs WHERE nom = 'Charlie';
+                </code></pre>
             </ol>
         
             <h4>4. Exercices Proposés</h4>
@@ -4674,7 +4723,8 @@ for i in range(len(scores)):
             Une table SQL pour les personnages pourrait inclure des champs comme le nom, l'âge, les compétences et le manga d'origine.</p>
         
             <p><strong>Structure de Table :</strong></p>
-            <pre><code>CREATE TABLE personnages (
+            <pre><code>
+        CREATE TABLE personnages (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nom TEXT NOT NULL,
             age INTEGER,
@@ -4691,7 +4741,8 @@ for i in range(len(scores)):
             <h5>Instructions :</h5>
             <ol>
                 <li><strong>Création de la Table :</strong> Créez une table SQL pour stocker les personnages de manga avec les informations suivantes : nom, âge, compétences, et manga d'origine.</li>
-                <pre><code>CREATE TABLE personnages (
+                <pre><code>
+        CREATE TABLE personnages (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nom TEXT NOT NULL,
             age INTEGER,
@@ -4701,7 +4752,8 @@ for i in range(len(scores)):
                 </code></pre>
         
                 <li><strong>Insérer des Personnages :</strong> Ajoutez des personnages à la base de données en utilisant la commande INSERT INTO.</li>
-                <pre><code>INSERT INTO personnages (nom, age, competences, manga)
+                <pre><code>
+        INSERT INTO personnages (nom, age, competences, manga)
         VALUES ('Naruto', 16, 'Rasengan, Kage Bunshin', 'Naruto');
         
         INSERT INTO personnages (nom, age, competences, manga)
@@ -4712,19 +4764,22 @@ for i in range(len(scores)):
                 </code></pre>
         
                 <li><strong>Interroger les Données :</strong> Affichez tous les personnages de la base de données avec la commande SELECT * FROM.</li>
-                <pre><code>SELECT * FROM personnages;
+                <pre><code>
+        SELECT * FROM personnages;
                 </code></pre>
         
                 <p>Cela affichera tous les personnages ajoutés dans la table.</p>
         
                 <li><strong>Mettre à Jour un Personnage :</strong> Modifiez les compétences d'un personnage avec la commande UPDATE.</li>
-                <pre><code>UPDATE personnages
+                <pre><code>
+        UPDATE personnages
         SET competences = 'Haki, Gear Fifth'
         WHERE nom = 'Luffy';
                 </code></pre>
         
                 <li><strong>Supprimer un Personnage :</strong> Supprimez un personnage avec la commande DELETE.</li>
-                <pre><code>DELETE FROM personnages
+                <pre><code>
+        DELETE FROM personnages
         WHERE nom = 'Saitama';
                 </code></pre>
             </ol>
@@ -4734,7 +4789,8 @@ for i in range(len(scores)):
             <h5>Exercice 1 : Insérer et Mettre à Jour des Personnages</h5>
             <p>Ajoutez deux nouveaux personnages à la base de données avec leurs compétences respectives.<br>
             Mettez à jour l'âge d'un personnage existant.</p>
-            <pre><code>INSERT INTO personnages (nom, age, competences, manga)
+            <pre><code>
+        INSERT INTO personnages (nom, age, competences, manga)
         VALUES ('Ichigo', 17, 'Bankai, Getsuga Tenshou', 'Bleach');
         
         UPDATE personnages
@@ -4744,7 +4800,8 @@ for i in range(len(scores)):
         
             <h5>Exercice 2 : Rechercher des Personnages d'un Manga Spécifique</h5>
             <p>Utilisez une requête SQL pour récupérer tous les personnages provenant d'un manga spécifique (par exemple, "Naruto").</p>
-            <pre><code>SELECT * FROM personnages
+            <pre><code>
+        SELECT * FROM personnages
         WHERE manga = 'Naruto';
             </code></pre>
         
@@ -4773,7 +4830,8 @@ for i in range(len(scores)):
             <h5>Qu'est-ce qu'un fichier CSV ?</h5>
             <p>CSV (Comma-Separated Values) est un format de fichier qui stocke les données sous forme de tableau. Chaque ligne représente un enregistrement et chaque valeur est séparée par une virgule.</p>
             <p><strong>Exemple CSV :</strong></p>
-            <pre><code>nom,age,competence
+            <pre><code>
+        nom,age,competence
         Naruto,16,Rasengan
         Sasuke,17,Sharingan
             </code></pre>
@@ -4781,7 +4839,8 @@ for i in range(len(scores)):
             <h5>Qu'est-ce qu'un fichier JSON ?</h5>
             <p>JSON (JavaScript Object Notation) est un format qui stocke des données sous forme de structure hiérarchique (objets et tableaux). Il est couramment utilisé pour échanger des données entre un serveur et une application web.</p>
             <p><strong>Exemple JSON :</strong></p>
-            <pre><code>[
+            <pre><code>
+        [
           {"nom": "Naruto", "age": 16, "competence": "Rasengan"},
           {"nom": "Sasuke", "age": 17, "competence": "Sharingan"}
         ]
@@ -4794,14 +4853,16 @@ for i in range(len(scores)):
         
             <h5>1. Créer un Fichier CSV :</h5>
             <p>Vous pouvez créer un fichier CSV appelé <code>personnages.csv</code> avec les données suivantes :</p>
-            <pre><code>nom,age,competence
+            <pre><code>
+        nom,age,competence
         Naruto,16,Rasengan
         Sasuke,17,Sharingan
         Sakura,16,Force
             </code></pre>
         
             <h5>2. Écrivez le Code pour Lire et Afficher les Données du Fichier CSV :</h5>
-            <pre><code>import csv
+            <pre><code>
+        import csv
         
         # Lecture du fichier CSV
         with open('personnages.csv', mode='r', newline='') as fichier_csv:
@@ -4811,7 +4872,8 @@ for i in range(len(scores)):
             </code></pre>
         
             <h5>3. Écrivez le Code pour Ajouter un Personnage au Fichier CSV :</h5>
-            <pre><code>import csv
+            <pre><code>
+        import csv
         
         # Ajout d'un personnage dans le fichier CSV
         nom = input("Entrez le nom du personnage : ")
@@ -4839,14 +4901,16 @@ for i in range(len(scores)):
         
             <h5>1. Créer un Fichier JSON :</h5>
             <p>Vous pouvez créer un fichier JSON appelé <code>evenements.json</code> avec le contenu suivant :</p>
-            <pre><code>[
+            <pre><code>
+        [
           {"titre": "Élection présidentielle", "date": "2024-04-10", "description": "Les résultats des élections."},
           {"titre": "Jeux Olympiques", "date": "2024-07-24", "description": "Ouverture des Jeux Olympiques."}
         ]
             </code></pre>
         
             <h5>2. Écrivez le Code pour Lire et Afficher les Données du Fichier JSON :</h5>
-            <pre><code>import json
+            <pre><code>
+        import json
         
         # Lecture du fichier JSON
         with open('evenements.json', mode='r') as fichier_json:
@@ -4856,7 +4920,8 @@ for i in range(len(scores)):
             </code></pre>
         
             <h5>3. Écrivez le Code pour Ajouter un Événement au Fichier JSON :</h5>
-            <pre><code>import json
+            <pre><code>
+        import json
         
         # Lecture du fichier JSON
         with open('evenements.json', mode='r') as fichier_json:
