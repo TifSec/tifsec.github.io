@@ -248,7 +248,7 @@
             
                 <li><a href="#" onclick="showSession('solution1')">1. Gestion Administrative et Conformité Réglementaire</a></li>
                 <li><a href="#" onclick="showSession('solution2')">2. Gestion des Coûts et Rentabilité</a></li>
-                <li><a href="#" onclick="showSession('solution3')">3. Planification et Organisation (a faire)</a></li>
+                <li><a href="#" onclick="showSession('solution3')">3. Planification et Organisation (en cours)</a></li>
                 <li><a href="#" onclick="showSession('solution4')">4. Communication et Marketing (a faire)</a></li>
                 <li><a href="#" onclick="showSession('solution5')">5. Gestion des Ressources et Performance Environnementale (a faire)</a></li>
                 <li><a href="#" onclick="showSession('solution6')">6. Suivi de la Main-d’œuvre et des Projets Collaboratifs (a faire)</a></li>
@@ -740,6 +740,363 @@
             <ul>
                 <li>Graphique linéaire des marges prévues sur plusieurs années.</li>
                 <li>Tableau des investissements nécessaires pour optimiser les semis/récoltes.</li>
+            </ul>
+        </section>
+
+        <section id="solution3" class="content-section">
+            <h2>3. Planification et Organisation</h2>
+
+            <h2>1. Modèle Excel : Calendrier des activités</h2>
+            <p>Un tableau Excel peut aider à planifier et suivre les activités agricoles en fonction des saisons, des parcelles, et des équipements nécessaires.</p>
+
+            <h3>Exemple de tableau de base :</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Activité</th>
+                        <th>Parcelle</th>
+                        <th>Équipement</th>
+                        <th>Responsable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15/03/2025</td>
+                        <td>Semis</td>
+                        <td>A1</td>
+                        <td>Tracteur</td>
+                        <td>Jean Dupont</td>
+                    </tr>
+                    <tr>
+                        <td>01/05/2025</td>
+                        <td>Irrigation</td>
+                        <td>B2</td>
+                        <td>Pompe</td>
+                        <td>Marie Lemoine</td>
+                    </tr>
+                    <tr>
+                        <td>15/06/2025</td>
+                        <td>Récolte</td>
+                        <td>A2</td>
+                        <td>Moissonneuse</td>
+                        <td>Jacques Martin</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Fonctionnalités avancées :</h3>
+            <h4>Formule de rappel automatique :</h4>
+            <pre>=SI(DATEDIF(AUJOURDHUI();A2;"d")<=7;"À faire bientôt";"")</pre>
+            <p>
+                Cela renvoie <strong>"À faire bientôt"</strong> si l'activité est prévue dans les 7 prochains jours.
+            </p>
+
+            <h4>Mise en forme conditionnelle :</h4>
+            <p>Colorer la ligne entière si une date est proche :</p>
+            <ul>
+                <li>Allez dans <strong>Format > Conditionnel > Gérer</strong>.</li>
+                <li>Formule : <code>DATEDIF(AUJOURDHUI();$A2;"d")<=7</code></li>
+                <li>Style : Appliquez une couleur d'arrière-plan (par exemple, orange).</li>
+            </ul>
+
+            <div style="background-color: lightgray; color: black;">
+                <h2>Créer un Graphique de Gantt dans LibreOffice</h2>
+
+                <h2>Étape 1 : Préparez vos données</h2>
+                <p>Ouvrez LibreOffice Calc et créez un tableau avec les colonnes suivantes :</p>
+                <ul>
+                    <li><strong>Tâche</strong></li>
+                    <li><strong>Date de début</strong></li>
+                    <li><strong>Durée (jours)</strong></li>
+                </ul>
+            
+                <h3>Exemple :</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tâche</th>
+                            <th>Date de début</th>
+                            <th>Durée (jours)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Semis</td>
+                            <td>15/03/2025</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Irrigation</td>
+                            <td>01/05/2025</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Récolte</td>
+                            <td>15/06/2025</td>
+                            <td>6</td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+                <h2>Étape 2 : Ajoutez une colonne pour les valeurs numériques des dates</h2>
+                <p>LibreOffice Calc ne comprend pas directement les dates dans un graphique. Convertissez les dates en nombres (valeurs internes) pour les utiliser.</p>
+                <p><strong>Ajoutez une colonne pour les Valeurs de date :</strong></p>
+                <p>Placez une formule pour convertir les dates, par exemple :</p>
+                <pre>=B2</pre>
+                <p>Cela transformera les dates en valeurs numériques.</p>
+            
+                <h3>Exemple mis à jour :</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tâche</th>
+                            <th>Date de début</th>
+                            <th>Durée (jours)</th>
+                            <th>Valeur numérique</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Semis</td>
+                            <td>15/03/2025</td>
+                            <td>3</td>
+                            <td>45025</td>
+                        </tr>
+                        <tr>
+                            <td>Irrigation</td>
+                            <td>01/05/2025</td>
+                            <td>3</td>
+                            <td>45072</td>
+                        </tr>
+                        <tr>
+                            <td>Récolte</td>
+                            <td>15/06/2025</td>
+                            <td>6</td>
+                            <td>45117</td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+                <h2>Étape 3 : Sélectionnez les données</h2>
+                <p>Sélectionnez les colonnes suivantes :</p>
+                <ul>
+                    <li>Les tâches (colonne A).</li>
+                    <li>Les valeurs numériques des dates (colonne D).</li>
+                    <li>La durée (colonne C).</li>
+                </ul>
+            
+                <h3>Exemple :</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tâche</th>
+                            <th>Valeur numérique</th>
+                            <th>Durée (jours)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Semis</td>
+                            <td>45025</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Irrigation</td>
+                            <td>45072</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Récolte</td>
+                            <td>45117</td>
+                            <td>6</td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+                <h2>Étape 4 : Insérez un graphique</h2>
+                <ol>
+                    <li>Insérez un graphique :</li>
+                    <ul>
+                        <li>Allez dans <strong>Insertion > Diagramme</strong>.</li>
+                        <li>Dans la fenêtre qui s'ouvre, choisissez <strong>Diagramme en barres</strong>.</li>
+                    </ul>
+                    <li><strong>Type de graphique :</strong> Choisissez <strong>Barres empilées horizontales</strong>.</li>
+                    <li><strong>Plage de données :</strong>
+                        <ul>
+                            <li>Vérifiez que la plage de données est correcte.</li>
+                            <li>Activez <strong>Première colonne comme étiquette</strong>.</li>
+                        </ul>
+                    </li>
+                    <li>Cliquez sur <strong>Terminer</strong>.</li>
+                </ol>
+            
+                <h2>Étape 5 : Personnalisez le graphique</h2>
+                <ol>
+                    <li><strong>Cliquez sur le graphique pour le modifier.</strong></li>
+                    <li>Ajoutez une deuxième série pour la durée :</li>
+                    <ul>
+                        <li>Faites un clic droit sur le graphique, sélectionnez <strong>Insérer des données</strong>.</li>
+                        <li>Ajoutez la colonne de <strong>Durée (jours)</strong> comme nouvelle série.</li>
+                    </ul>
+                    <li>Ajustez l'apparence :</li>
+                    <ul>
+                        <li>Mettez les barres représentant la "Date de début" en transparent ou d’une couleur neutre.</li>
+                        <li>Laissez les barres de "Durée" visibles pour représenter les tâches.</li>
+                    </ul>
+                </ol>
+            
+                <h2>Étape 6 : Ajoutez des étiquettes</h2>
+                <p><strong>Activez les étiquettes pour identifier les tâches :</strong></p>
+                <ul>
+                    <li>Faites un clic droit sur le graphique.</li>
+                    <li>Sélectionnez <strong>Insérer des étiquettes de données</strong>.</li>
+                </ul>
+            
+                <h2>Étape 7 : Finalisez et ajustez</h2>
+                <ul>
+                    <li>Ajustez les couleurs et les échelles si nécessaire :</li>
+                    <ul>
+                        <li>Double-cliquez sur les axes pour modifier leurs plages ou styles.</li>
+                        <li>Changez les couleurs des barres pour rendre le Gantt plus lisible.</li>
+                    </ul>
+                </ul>
+            
+                <h2>Résultat attendu</h2>
+                <p>Votre graphique de Gantt montrera chaque tâche comme une barre horizontale, positionnée selon sa date de début et s'étendant sur la durée prévue.</p>
+            </div>
+
+            <h4>Graphique d'activités :</h4>
+            <ul>
+                <li>Ajoutez un graphique Gantt pour visualiser les activités :</li>
+                <li>Utilisez une colonne "Durée" pour indiquer combien de jours chaque activité dure.</li>
+                <li>Créez un graphique empilé pour représenter les tâches sur une chronologie.</li>
+            </ul>
+
+            <h3>Tableau plus détaillé :</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date de début</th>
+                        <th>Date de fin</th>
+                        <th>Activité</th>
+                        <th>Parcelle</th>
+                        <th>Durée (jours)</th>
+                        <th>Équipement</th>
+                        <th>Responsable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15/03/2025</td>
+                        <td>17/03/2025</td>
+                        <td>Semis</td>
+                        <td>A1</td>
+                        <td>3</td>
+                        <td>Tracteur</td>
+                        <td>Jean Dupont</td>
+                    </tr>
+                    <tr>
+                        <td>01/05/2025</td>
+                        <td>03/05/2025</td>
+                        <td>Irrigation</td>
+                        <td>B2</td>
+                        <td>3</td>
+                        <td>Pompe</td>
+                        <td>Marie Lemoine</td>
+                    </tr>
+                    <tr>
+                        <td>15/06/2025</td>
+                        <td>20/06/2025</td>
+                        <td>Récolte</td>
+                        <td>A2</td>
+                        <td>6</td>
+                        <td>Moissonneuse</td>
+                        <td>Jacques Martin</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>2. Modèle PowerPoint : Plan de saison</h2>
+            <p>Une présentation PowerPoint peut être utilisée pour expliquer le plan de la saison aux collaborateurs, partenaires ou parties prenantes.</p>
+
+            <h3>Structure de la présentation :</h3>
+            <h4>Slide 1 : Vue d’ensemble du plan</h4>
+            <ul>
+                <li><strong>Objectifs principaux :</strong></li>
+                <ul>
+                    <li>"Maximiser les rendements pour les parcelles A1 et A2."</li>
+                    <li>"Réduire la consommation d'eau de 10 % pour l'irrigation."</li>
+                </ul>
+                <li>Inclure une image de l’exploitation (vue aérienne, carte des parcelles).</li>
+                <li>Ajoutez une citation inspirante sur l’importance de la planification.</li>
+            </ul>
+
+            <h4>Slide 2 : Planning mensuel</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mois</th>
+                        <th>Activité prévue</th>
+                        <th>Parcelle(s)</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mars</td>
+                        <td>Semis</td>
+                        <td>A1</td>
+                        <td>Vérifier le stock.</td>
+                    </tr>
+                    <tr>
+                        <td>Mai</td>
+                        <td>Irrigation</td>
+                        <td>B2</td>
+                        <td>Priorité aux jeunes plants.</td>
+                    </tr>
+                    <tr>
+                        <td>Juin</td>
+                        <td>Récolte</td>
+                        <td>A2</td>
+                        <td>S'assurer que les machines sont prêtes.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Slide 3 : Points critiques</h4>
+            <ul>
+                <li><strong>Risques :</strong></li>
+                <ul>
+                    <li>Retard des semis à cause des intempéries.</li>
+                    <li>Manque de disponibilité des équipements.</li>
+                </ul>
+                <li><strong>Solutions envisagées :</strong></li>
+                <ul>
+                    <li>Location d'équipements si panne.</li>
+                    <li>Achat de semences résistantes.</li>
+                </ul>
+            </ul>
+
+            <h4>Slide 4 : Avantages pour l’environnement et l’exploitation</h4>
+            <ul>
+                <li>"Optimisation des ressources permet une réduction de 15 % des intrants."</li>
+                <li>"Les rotations de cultures préviennent l'épuisement des sols."</li>
+                <li>Inclure un graphique circulaire montrant les économies réalisées.</li>
+            </ul>
+
+            <h4>Slide 5 : Conclusion et contacts</h4>
+            <ul>
+                <li><strong>Récapitulatif :</strong></li>
+                <ul>
+                    <li>Les dates clés.</li>
+                    <li>Les priorités.</li>
+                </ul>
+                <li><strong>Contacts importants :</strong></li>
+                <ul>
+                    <li>Responsable du projet.</li>
+                    <li>Fournisseurs ou partenaires (coopératives, techniciens).</li>
+                </ul>
             </ul>
         </section>
 
