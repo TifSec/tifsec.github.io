@@ -8740,6 +8740,131 @@ print(cat.speak())  # "Meow!"
         </section>
 
         <section id="session50" class="content-section">
+            <h2>Séance 51 : Requêtes SQL de base (SELECT, INSERT, UPDATE, DELETE)</h2>
+        
+            <h3>Objectif Global :</h3>
+            <p>Les élèves apprendront à utiliser les commandes SQL de base pour interagir avec une base de données. Ils seront capables de lire, insérer, mettre à jour et supprimer des données à l’aide des commandes <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, et <code>DELETE</code>.</p>
+        
+            <h3>Introduction à SQL (10 min)</h3>
+            <p>
+                SQL (Structured Query Language) est un langage utilisé pour interagir avec des bases de données relationnelles. Les bases de données stockent des informations de manière structurée dans des <strong>tables</strong>.
+            </p>
+            <p>Chaque table est composée de :</p>
+            <ul>
+                <li><strong>Colonnes :</strong> Définissent les types de données (ex. : nom, âge).</li>
+                <li><strong>Lignes :</strong> Représentent les enregistrements individuels.</li>
+            </ul>
+            <p>Exemple de table <code>Employes</code> :</p>
+            <pre><code>
+        +----+------------+--------+-------------+
+        | ID | Nom        | Age    | Poste       |
+        +----+------------+--------+-------------+
+        | 1  | Alice      | 30     | Développeur |
+        | 2  | Bob        | 35     | Manager     |
+        | 3  | Claire     | 28     | Analyste    |
+        +----+------------+--------+-------------+
+            </code></pre>
+        
+            <h3>1. Commande SELECT (20 min)</h3>
+            <h4>Qu’est-ce que <code>SELECT</code> ?</h4>
+            <p>La commande <code>SELECT</code> est utilisée pour lire ou récupérer des données dans une table.</p>
+        
+            <h4>Exemples de Requêtes <code>SELECT</code> :</h4>
+            <pre><code class="sql">
+        -- Récupérer toutes les colonnes de la table Employes
+        SELECT * FROM Employes;
+        
+        -- Récupérer uniquement le nom et le poste
+        SELECT Nom, Poste FROM Employes;
+        
+        -- Filtrer les résultats (employés ayant plus de 30 ans)
+        SELECT * FROM Employes WHERE Age > 30;
+            </code></pre>
+        
+            <h4>Exercice :</h4>
+            <ul>
+                <li>Affichez tous les employés avec leur poste.</li>
+                <li>Affichez uniquement les employés ayant le poste de "Manager".</li>
+                <li>Affichez les employés dont l’âge est inférieur à 30.</li>
+            </ul>
+        
+            <h3>2. Commande INSERT (20 min)</h3>
+            <h4>Qu’est-ce que <code>INSERT</code> ?</h4>
+            <p>La commande <code>INSERT</code> est utilisée pour ajouter de nouvelles lignes dans une table.</p>
+        
+            <h4>Exemples de Requêtes <code>INSERT</code> :</h4>
+            <pre><code class="sql">
+        -- Ajouter un nouvel employé
+        INSERT INTO Employes (Nom, Age, Poste) VALUES ('David', 40, 'Consultant');
+        
+        -- Ajouter un employé avec des valeurs partielles
+        INSERT INTO Employes (Nom, Poste) VALUES ('Eve', 'Designer');
+            </code></pre>
+        
+            <h4>Exercice :</h4>
+            <ul>
+                <li>Ajoutez un employé nommé "Sophie", âgé de 25 ans, au poste de "Développeur".</li>
+                <li>Ajoutez un employé nommé "John" sans préciser son âge, mais avec le poste "Analyste".</li>
+            </ul>
+        
+            <h3>3. Commande UPDATE (20 min)</h3>
+            <h4>Qu’est-ce que <code>UPDATE</code> ?</h4>
+            <p>La commande <code>UPDATE</code> est utilisée pour modifier les données existantes dans une table.</p>
+        
+            <h4>Exemples de Requêtes <code>UPDATE</code> :</h4>
+            <pre><code class="sql">
+        -- Modifier le poste de l'employé avec l'ID 1
+        UPDATE Employes SET Poste = 'Chef de Projet' WHERE ID = 1;
+        
+        -- Augmenter l'âge de tous les employés de 1 an
+        UPDATE Employes SET Age = Age + 1;
+        
+        -- Modifier le nom de l'employé nommé "Bob"
+        UPDATE Employes SET Nom = 'Robert' WHERE Nom = 'Bob';
+            </code></pre>
+        
+            <h4>Exercice :</h4>
+            <ul>
+                <li>Modifiez le poste de "Claire" pour qu’il devienne "Consultante".</li>
+                <li>Ajoutez 2 ans à l’âge de tous les employés.</li>
+            </ul>
+        
+            <h3>4. Commande DELETE (20 min)</h3>
+            <h4>Qu’est-ce que <code>DELETE</code> ?</h4>
+            <p>La commande <code>DELETE</code> est utilisée pour supprimer des lignes d’une table.</p>
+        
+            <h4>Exemples de Requêtes <code>DELETE</code> :</h4>
+            <pre><code class="sql">
+        -- Supprimer l'employé avec l'ID 3
+        DELETE FROM Employes WHERE ID = 3;
+        
+        -- Supprimer tous les employés ayant le poste de "Analyste"
+        DELETE FROM Employes WHERE Poste = 'Analyste';
+        
+        -- Supprimer tous les enregistrements de la table
+        DELETE FROM Employes;
+            </code></pre>
+        
+            <h4>Exercice :</h4>
+            <ul>
+                <li>Supprimez l’employé nommé "Eve".</li>
+                <li>Supprimez tous les employés ayant plus de 40 ans.</li>
+            </ul>
+        
+            <h3>Conclusion et Discussion (10 min)</h3>
+            <p>
+                Les élèves ont appris à utiliser les commandes SQL de base pour interagir avec une base de données relationnelle. Ces commandes permettent de :
+            </p>
+            <ul>
+                <li><strong>SELECT :</strong> Lire les données.</li>
+                <li><strong>INSERT :</strong> Ajouter des données.</li>
+                <li><strong>UPDATE :</strong> Modifier des données existantes.</li>
+                <li><strong>DELETE :</strong> Supprimer des données.</li>
+            </ul>
+            <p>Discussion : Quels sont les risques potentiels d’une mauvaise utilisation de <code>UPDATE</code> ou <code>DELETE</code>, et comment s’assurer que les requêtes sont sûres ?</p>
+        </section>
+
+        <section id="session51" class="content-section">
             <h2>Séance 50 : Pratique - Création d’une base de données pour gérer des scores de jeu vidéo</h2>
         
             <h3>Objectif Global :</h3>
@@ -8937,131 +9062,6 @@ print(cat.speak())  # "Meow!"
             <p>
                 Ce projet montre comment appliquer les bases de données pour gérer des données complexes, tout en intégrant des pratiques professionnelles.
             </p>
-        </section>
-
-        <section id="session51" class="content-section">
-            <h2>Séance 51 : Requêtes SQL de base (SELECT, INSERT, UPDATE, DELETE)</h2>
-        
-            <h3>Objectif Global :</h3>
-            <p>Les élèves apprendront à utiliser les commandes SQL de base pour interagir avec une base de données. Ils seront capables de lire, insérer, mettre à jour et supprimer des données à l’aide des commandes <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, et <code>DELETE</code>.</p>
-        
-            <h3>Introduction à SQL (10 min)</h3>
-            <p>
-                SQL (Structured Query Language) est un langage utilisé pour interagir avec des bases de données relationnelles. Les bases de données stockent des informations de manière structurée dans des <strong>tables</strong>.
-            </p>
-            <p>Chaque table est composée de :</p>
-            <ul>
-                <li><strong>Colonnes :</strong> Définissent les types de données (ex. : nom, âge).</li>
-                <li><strong>Lignes :</strong> Représentent les enregistrements individuels.</li>
-            </ul>
-            <p>Exemple de table <code>Employes</code> :</p>
-            <pre><code>
-        +----+------------+--------+-------------+
-        | ID | Nom        | Age    | Poste       |
-        +----+------------+--------+-------------+
-        | 1  | Alice      | 30     | Développeur |
-        | 2  | Bob        | 35     | Manager     |
-        | 3  | Claire     | 28     | Analyste    |
-        +----+------------+--------+-------------+
-            </code></pre>
-        
-            <h3>1. Commande SELECT (20 min)</h3>
-            <h4>Qu’est-ce que <code>SELECT</code> ?</h4>
-            <p>La commande <code>SELECT</code> est utilisée pour lire ou récupérer des données dans une table.</p>
-        
-            <h4>Exemples de Requêtes <code>SELECT</code> :</h4>
-            <pre><code class="sql">
-        -- Récupérer toutes les colonnes de la table Employes
-        SELECT * FROM Employes;
-        
-        -- Récupérer uniquement le nom et le poste
-        SELECT Nom, Poste FROM Employes;
-        
-        -- Filtrer les résultats (employés ayant plus de 30 ans)
-        SELECT * FROM Employes WHERE Age > 30;
-            </code></pre>
-        
-            <h4>Exercice :</h4>
-            <ul>
-                <li>Affichez tous les employés avec leur poste.</li>
-                <li>Affichez uniquement les employés ayant le poste de "Manager".</li>
-                <li>Affichez les employés dont l’âge est inférieur à 30.</li>
-            </ul>
-        
-            <h3>2. Commande INSERT (20 min)</h3>
-            <h4>Qu’est-ce que <code>INSERT</code> ?</h4>
-            <p>La commande <code>INSERT</code> est utilisée pour ajouter de nouvelles lignes dans une table.</p>
-        
-            <h4>Exemples de Requêtes <code>INSERT</code> :</h4>
-            <pre><code class="sql">
-        -- Ajouter un nouvel employé
-        INSERT INTO Employes (Nom, Age, Poste) VALUES ('David', 40, 'Consultant');
-        
-        -- Ajouter un employé avec des valeurs partielles
-        INSERT INTO Employes (Nom, Poste) VALUES ('Eve', 'Designer');
-            </code></pre>
-        
-            <h4>Exercice :</h4>
-            <ul>
-                <li>Ajoutez un employé nommé "Sophie", âgé de 25 ans, au poste de "Développeur".</li>
-                <li>Ajoutez un employé nommé "John" sans préciser son âge, mais avec le poste "Analyste".</li>
-            </ul>
-        
-            <h3>3. Commande UPDATE (20 min)</h3>
-            <h4>Qu’est-ce que <code>UPDATE</code> ?</h4>
-            <p>La commande <code>UPDATE</code> est utilisée pour modifier les données existantes dans une table.</p>
-        
-            <h4>Exemples de Requêtes <code>UPDATE</code> :</h4>
-            <pre><code class="sql">
-        -- Modifier le poste de l'employé avec l'ID 1
-        UPDATE Employes SET Poste = 'Chef de Projet' WHERE ID = 1;
-        
-        -- Augmenter l'âge de tous les employés de 1 an
-        UPDATE Employes SET Age = Age + 1;
-        
-        -- Modifier le nom de l'employé nommé "Bob"
-        UPDATE Employes SET Nom = 'Robert' WHERE Nom = 'Bob';
-            </code></pre>
-        
-            <h4>Exercice :</h4>
-            <ul>
-                <li>Modifiez le poste de "Claire" pour qu’il devienne "Consultante".</li>
-                <li>Ajoutez 2 ans à l’âge de tous les employés.</li>
-            </ul>
-        
-            <h3>4. Commande DELETE (20 min)</h3>
-            <h4>Qu’est-ce que <code>DELETE</code> ?</h4>
-            <p>La commande <code>DELETE</code> est utilisée pour supprimer des lignes d’une table.</p>
-        
-            <h4>Exemples de Requêtes <code>DELETE</code> :</h4>
-            <pre><code class="sql">
-        -- Supprimer l'employé avec l'ID 3
-        DELETE FROM Employes WHERE ID = 3;
-        
-        -- Supprimer tous les employés ayant le poste de "Analyste"
-        DELETE FROM Employes WHERE Poste = 'Analyste';
-        
-        -- Supprimer tous les enregistrements de la table
-        DELETE FROM Employes;
-            </code></pre>
-        
-            <h4>Exercice :</h4>
-            <ul>
-                <li>Supprimez l’employé nommé "Eve".</li>
-                <li>Supprimez tous les employés ayant plus de 40 ans.</li>
-            </ul>
-        
-            <h3>Conclusion et Discussion (10 min)</h3>
-            <p>
-                Les élèves ont appris à utiliser les commandes SQL de base pour interagir avec une base de données relationnelle. Ces commandes permettent de :
-            </p>
-            <ul>
-                <li><strong>SELECT :</strong> Lire les données.</li>
-                <li><strong>INSERT :</strong> Ajouter des données.</li>
-                <li><strong>UPDATE :</strong> Modifier des données existantes.</li>
-                <li><strong>DELETE :</strong> Supprimer des données.</li>
-            </ul>
-            <p>Discussion : Quels sont les risques potentiels d’une mauvaise utilisation de <code>UPDATE</code> ou <code>DELETE</code>, et comment s’assurer que les requêtes sont sûres ?</p>
         </section>
 
         <section id="session52" class="content-section">
@@ -13621,8 +13621,8 @@ print(cat.speak())  # "Meow!"
             'Séance 47 : Pratique - Réorganisation d’un projet pour améliorer l’efficacité et la gestion des ressources',
             'Séance 48 : Analyse des performances dans des projets orientés objet',
             'Séance 49 : Introduction aux bases de données relationnelles et SQL',
-            'Séance 50 : Pratique - Création d’une base de données pour gérer des scores de jeu vidéo',
-            'Séance 51 : Requêtes SQL de base (SELECT, INSERT, UPDATE, DELETE)',
+            'Séance 50 : Requêtes SQL de base (SELECT, INSERT, UPDATE, DELETE)',
+            'Séance 51 : Pratique - Création d’une base de données pour gérer des scores de jeu vidéo',
             'Séance 52 : Requêtes SQL avancées (JOIN, GROUP BY)',
             'Séance 53 : Pratique - Interrogation complexe d\'une base de données pour récupérer des données sur les personnages d’un manga',
             'Séance 54 : Optimisation des requêtes SQL',
