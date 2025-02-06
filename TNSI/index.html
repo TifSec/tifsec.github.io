@@ -13563,6 +13563,10 @@ print(cat.speak())  # "Meow!"
                 <li>Extension : Introduction aux API sécurisées avec des jetons d’authentification (Bearer Token).</li>
             </ul>
         </section>
+
+        <section id="adefinir" class="content-section">
+            <h2>Séance en cours de construction</h2>
+        </section>
     </main>
 
     <!-- <footer>
@@ -13770,14 +13774,21 @@ print(cat.speak())  # "Meow!"
                         descCell.textContent = getVacationName(currentDateString);
                         row.classList.add('vacation');
                     } else {
-                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
+                        const sessionName = sessions[sessionIndex];
                         sessionIndex++;
 
                         // Création d'un lien cliquable pour les séances
                         const link = document.createElement('a');
-                        link.textContent = sessionName;
+
+                        if(sessionName == ''){
+                            link.textContent = "Séance à définir";
+                            link.setAttribute("onclick","showSession('adefinir')");
+                        } else {
+                            link.textContent = sessionName;
+                            link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
+                        }
+
                         link.href = `#`; // Génère un ID basé sur le nom de la séance
-                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
 
                         descCell.appendChild(link);
                     }
