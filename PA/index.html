@@ -3759,7 +3759,7 @@
             <p>Ce cours a permis de développer une approche approfondie de la gestion de projet avec LibreOffice. La création et l’utilisation de diagrammes de Gantt facilitent la gestion visuelle des tâches et l’identification des points critiques du projet. Les participants sont maintenant capables de gérer des projets complexes en utilisant LibreOffice Calc pour planifier, suivre et visualiser les progrès de manière efficace.</p>
         </section>
 
-        <section id="session19" class="content-section">
+        <!-- <section id="session19" class="content-section">
             <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 19 : Introduction à la gestion des données numériques</h2>
             
             <p><strong>Objectifs :</strong></p>
@@ -4031,10 +4031,10 @@
                     <li>Suivre les échéances avec des fonctions conditionnelles et des mises à jour.</li>
                 </ul>
             </ul>
-        </section>
+        </section> -->
 
-        <section id="session21" class="content-section">
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 21 : Introduction à l'automatisation dans Calc</h2>
+        <section id="session19" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 19 : Introduction à l'automatisation dans Calc</h2>
             
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -4078,75 +4078,196 @@
                 <li>Macros : Pour automatiser une série d'actions répétées (comme la mise en forme de tableaux, l'ajout de données, ou la gestion de fichiers).</li>
             </ol>
             
-            <p><strong>Démo rapide :</strong> Démonstration d’un Exemple d’Automatisation Simple dans OpenOffice Calc</p>
-            <p>Pour cette démonstration, l'objectif est de montrer aux étudiants l'utilité de l'automatisation en réalisant deux tâches très simples et courantes :</p>
-            <ol>
-                <li>Calcul automatique de totaux de ventes dans un tableau (grâce aux formules de Calc).</li>
-                <li>Création et exécution d'une macro pour appliquer automatiquement une mise en forme à ce tableau (changement de couleur, ajout de bordures, etc.).</li>
-            </ol>
+            <h4>Étape 1 : Téléchargement du fichier de données</h4>
+            <a href="donnees_agricoles.ods">Le fichier de données à télécharger</a>
             
-            <h4>Étape 1 : Création du tableau des ventes et calcul automatique des totaux</h4>
-            <ol>
-                <li><strong>Créer un tableau de ventes :</strong>
+            <p>Les colonnes incluent :</p>
+
+            <ul>
+                <li><b>Ferme_ID</b> : Identifiant unique de chaque ferme.</li>
+                <li><b>Culture</b> : Type de culture cultivée (Blé, Maïs, Orge, Colza, Tournesol).</li>
+                <li><b>Surface (ha)</b> : Surface de la ferme en hectares (entre 5 et 50 ha).</li>
+                <li><b>Rendement (q/ha)</b> : Quantité récoltée en quintaux par hectare.</li>
+                <li><b>Coût_Production (€/ha)</b> : Coût de production par hectare.</li>
+                <li><b>Revenu_Total (€)</b> : Revenu total généré par la ferme.</li>
+                <li><b>Engrais (kg/ha)</b> : Quantité d’engrais utilisée par hectare.</li>
+                <li><b>Eau_Utilisée (m³/ha)</b> : Eau consommée par hectare.</li>
+                <li><b>Taux de Maladie (%)</b> : Pourcentage de maladies observées dans la culture.</li>
+                <li><b>Type de Sol</b> : Type de sol (Argileux, Sableux, Limonneux, Calcaire).</li>
+            </ul>
+
+            <h3>📌 Exercices de mise en forme pour le tableau</h3>
+
+            <h4>1️⃣ Appliquer un style de tableau professionnel</h4>
+
+            ✅ Objectif : Améliorer la lisibilité du tableau avec des couleurs et des bordures.
+
+            <ul>
+                📌 Exercice :
+                <li>Sélectionner tout le tableau (A1:J101).</li>
+                <li>Aller dans Format → AutoFormat de tableau.</li>
+                <li>Choisir un style préconçu (exemple : Bleu, Gris, Classique).</li>
+                <li>Cliquer sur OK pour appliquer le style.</li>
+            </ul>
+
+            <h4>2️⃣ Mettre en forme les en-têtes</h4>
+
+            ✅ Objectif : Rendre les titres de colonnes plus visibles.
+
+            <ul>
+                📌 Exercice :
+                <li>Sélectionner la ligne des titres (A1:J1).</li>
+                <li>Appliquer un fond coloré (bleu ou vert clair).</li>
+                <li>Mettre les titres en gras et en majuscules (Ctrl + B).</li>
+                <li>Centrer le texte (Alignement → Centré).</li>
+            </ul>
+
+            <h4>3️⃣ Ajuster la largeur des colonnes</h4>
+
+            ✅ Objectif : Éviter les coupures de texte et améliorer la présentation.
+
+            <ul>
+                📌 Exercice :
+                <li>Double-cliquer entre les lettres des colonnes pour ajuster automatiquement la taille.</li>
+                <li>Si nécessaire, ajuster manuellement pour garder une belle présentation.</li>
+            </ul>
+
+            <h4>4️⃣ Formater les nombres pour les rendre lisibles</h4>
+
+            ✅ Objectif : Afficher les valeurs monétaires et les pourcentages correctement.
+
+            <ul>
+                📌 Exercice :
+                <li>
                     <ul>
-                        <li>Ouvrez une nouvelle feuille de calcul dans OpenOffice Calc.</li>
-                        <li>Créez un tableau avec 3 colonnes : Produit, Quantité vendue, Prix unitaire.</li>
-                        <li>Remplissez quelques lignes avec des données fictives. Par exemple :</li>
-                        <pre><code>
-    Produit        Quantité vendue    Prix unitaire
-    Chaise                5                   50 €
-    Table                 2                  120 €
-    Lampe                10                   25 €
-                        </code></pre>
+                        Sélectionner les colonnes numériques :
+                        <li>Revenu Total (€) (F)</li>
+                        <li>Coût de production (€) (E)</li>
+                        <li>Prix du quintal (€) (K)</li>
                     </ul>
                 </li>
-                <li><strong>Ajouter une colonne "Total" pour les ventes :</strong> 
-                    <p>Ajoutez une quatrième colonne nommée <em>Total des ventes</em>, qui calculera automatiquement le montant total des ventes pour chaque produit. Utilisez la formule suivante dans la première cellule de la colonne Total des ventes (cellule D2) :</p>
-                    <pre><code>=B2*C2</code></pre>
-                    <p>Cela multiplie la Quantité vendue (colonne B) par le Prix unitaire (colonne C).</p>
-                </li>
-                <li><strong>Copier la formule sur toute la colonne :</strong> 
-                    <p>Copiez la formule pour toutes les lignes du tableau en sélectionnant la poignée de remplissage (petit carré en bas à droite de la cellule) et en l'étendant vers le bas.</p>
-                </li>
-                <li><strong>Calculer le total global des ventes :</strong> 
-                    <p>En bas de la colonne <em>Total des ventes</em>, ajoutez une formule pour calculer le total général des ventes :</p>
-                    <pre><code>=SOMME(D2:D4)</code></pre>
-                </li>
-            </ol>
-            
-            <h3>2. Utilisation des fonctions automatiques pour les calculs répétitifs</h3>
-            <p><strong>Fonctions automatiques courantes dans Calc :</strong></p>
+                <li>Aller dans Format → Cellules → Nombre.</li>
+                <li>Appliquer le format monétaire (€) avec deux décimales.</li>
+                <li>Pour "Taux de Maladie (%)", choisir le format pourcentage.</li>
+            </ul>
+
+            <h4>5️⃣ Appliquer une mise en forme conditionnelle</h4>
+
+            ✅ Objectif : Mettre en évidence les tâches rentables ou problématiques.
+
             <ul>
-                <li><strong>SOMME() :</strong> Additionne une plage de cellules automatiquement.</li>
-                <p>Exemple pratique : <pre><code>=SOMME(A1:A10)</code></pre> additionne toutes les valeurs des cellules A1 à A10.</p>
-                
-                <li><strong>MOYENNE() :</strong> Calcule la moyenne de valeurs dans une plage de cellules.</li>
-                <p>Exemple pratique : <pre><code>=MOYENNE(A1:A10)</code></pre> calcule la moyenne des cellules A1 à A10.</p>
-                
-                <li><strong>MIN() et MAX() :</strong> Identifient respectivement la plus petite et la plus grande valeur dans une plage de cellules.</li>
-                <p>Exemple pratique : <pre><code>=MAX(A1:A10)</code></pre> renvoie la valeur la plus élevée dans la plage A1 à A10.</p>
-                
-                <li><strong>SI() :</strong> Permet d’appliquer des conditions logiques dans des calculs.</li>
-                <p>Exemple pratique : <pre><code>=SI(A1>100; "Vente importante"; "Vente faible")</code></pre> vérifie si une valeur est supérieure à 100 et affiche un texte correspondant ("Vente importante" ou "Vente faible").</p>
+                📌 Exercice :
+                <li>Sélectionner la colonne "Taux de Maladie (%)" (I2:I101).</li>
+                <li>Aller dans Format → Conditionnel → Gérer.</li>
+                <li>Ajouter ces règles :
+                    <ul>
+                        <li>Si > 10% → Mettre le texte en rouge.</li>
+                        <li>Si ≤ 10% → Mettre le texte en vert.</li>
+                    </ul>
+                </li>
+                <li>
+                    Répéter cette opération pour :
+                    <ul>
+                        <li>"Revenu Total (€)" : en vert si > 20 000 €, en rouge si < 10 000 €.</li>
+                        <li>"Engrais (kg/ha)" : en rouge si > 250 kg (forte utilisation).</li>
+                    </ul>
+                </li>
             </ul>
             
-            <h4>Exercice pratique 1 :</h4>
+            <h4>6️⃣ Insérer un graphique dynamique</h4>
+
+            ✅ Objectif : Illustrer les données avec un graphique coloré.
+
             <ul>
-                <li>Créer un tableau de ventes avec des colonnes pour les produits, les quantités vendues et les prix.</li>
-                <li>Utiliser <pre><code>SOMME()</code></pre> pour calculer automatiquement le total des ventes.</li>
-                <li>Utiliser <pre><code>MOYENNE()</code></pre> pour calculer la moyenne des ventes par produit.</li>
-                <li>Utiliser <pre><code>SI()</code></pre> pour afficher "Bon résultat" si le total des ventes dépasse 100 €, ou "À améliorer" si le total est inférieur.</li>
+                📌 Exercice :
+                <li>Sélectionner les colonnes "Culture" et "Revenu Total (€)".</li>
+                <li>Aller dans Insertion → Diagramme.</li>
+                <li>Choisir "Graphique à colonnes".</li>
+                <li>Ajouter des titres et des couleurs attractives.</li>
+                <li>Déplacer le graphique en bas du tableau.</li>
             </ul>
-            
-            <h4>Exercice pratique 2 :</h4>
+
+            <h3>📌 Exercices pratiques</h3>
+
+            <h4>1️⃣ MIN et MAX : Trouver les valeurs extrêmes</h4>
+
             <ul>
-                <li>Ajouter les colonnes min et max pour identifier les plus petites et plus grandes valeurs des ventes dans une période donnée.</li>
-                <li>Comparer les résultats et discuter de l’importance de ces analyses dans la gestion d’entreprise.</li>
+                <li>Quel est le plus petit et le plus grand rendement agricole ?</li>
+                <li>Quelle est la plus petite et la plus grande surface agricole ?</li>
             </ul>
+
+            <h4>2️⃣ MOYENNE : Calculer des valeurs moyennes</h4>
+
+            <ul>
+                <li>Quelle est la moyenne du rendement agricole ?</li>
+                <li>Quel est le coût de production moyen par hectare ?</li>
+                <li>Quelle est la quantité moyenne d’eau utilisée par hectare ?</li>
+            </ul>
+
+            <h4> 3️⃣ SI : Conditionner les résultats</h4>
+
+            <ul>
+                <li>Ajoutez une colonne "Prix du quintal (€)".</li>
+                <li>
+                    Remplissez cette colonne avec des valeurs selon les cultures :
+                    <ul>
+                        <li>Blé : 20 €/q</li>
+                        <li>Maïs : 18 €/q</li>
+                        <li>Orge : 15 €/q</li>
+                        <li>Colza : 25 €/q</li>
+                        <li>Tournesol : 22 €/q</li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Remplissez la colonne "Revenu Total (€)" en utilisant la formule suivante :</h5>
+                    <i>Revenu Total = Surface X Rendement X Prix du quintal</i>
+                </li>
+            </ul>
+
+            <h5>Attribuer un commentaire basé sur le rendement :</h5>
+
+            <ul>
+                <li>Dans une colonne supplémentaire, afficher :</li>
+                <ul>
+                    <li>"Bon rendement" si le rendement est supérieur à 50 q/ha</li>
+                    <li>"Moyen" si le rendement est supérieur à 30 q/ha mais inférieur à 50 q/ha</li>
+                    <li>"Faible" si le rendement est inférieur à 30 q/ha</li>
+                </ul>
+            </ul>
+
+            <h5>Déterminer si une ferme est rentable :</h5>
             
-            <h4>Astuce pour la pratique :</h4>
-            <p>Encouragez les étudiants à tester d'autres formules comme <pre><code>SOMME.SI()</code></pre> (qui permet de faire une somme sous condition) ou <pre><code>MOYENNE.SI()</code></pre> (moyenne sous condition).</p>
-            
+            <ul>
+                <li>Afficher "Rentable" si le Revenu_Total est supérieur à 20 000 €, sinon "Non rentable".</li>
+                <li>Utiliser la coloration conditionnel pour colorer en vert si "Rentable" en rouge si "Pas Rentable"</li>
+            </ul>
+
+            <h4>4️⃣ SOMME : Additionner des valeurs</h4>
+
+            <ul>
+                <li>Quelle est la surface totale exploitée ?</li>
+                <li>Quelle est la quantité totale d’engrais utilisée sur toutes les fermes ?</li>
+                <li>Quel est le revenu total généré par l’ensemble des fermes ?</li>
+            </ul>
+
+            <h4>5️⃣ SOMME.SI : Somme conditionnelle</h4>
+
+            <ul>
+                <li>Quelle est la surface totale dédiée au blé ?</li>
+                <li>Quel est le total des revenus pour les cultures de maïs uniquement ?</li>
+                <li>Combien d’engrais est utilisé pour les sols sableux ?</li>
+            </ul>
+
+            <h4>6️⃣ MOYENNE.SI : Moyenne conditionnelle</h4>
+
+            <ul>
+                <li>Quel est le rendement moyen du blé ?</li>
+                <li>Quelle est la consommation moyenne d’eau pour les cultures de colza ?</li>
+                <li>Quel est le coût de production moyen des cultures ayant un taux de maladie inférieur à 5% ?</li>
+            </ul>
+
+            <p>
+
             <h3>3. Introduction aux macros dans Calc</h3>
             <p><strong>Qu'est-ce qu'une macro dans Calc ?</strong></p>
             <p>Une macro est une série d'actions ou d'instructions que Calc peut enregistrer et exécuter automatiquement. Une macro permet de répéter des tâches automatiquement, ce qui réduit la nécessité d'effectuer manuellement des actions répétitives.</p>
@@ -4259,8 +4380,8 @@
             <p><strong>Importance de l’automatisation :</strong> L’automatisation dans Calc permet de gagner du temps, de réduire les erreurs, et d'améliorer la productivité. Les macros sont des outils puissants pour automatiser des tâches complexes, notamment dans des projets de gestion de données ou des rapports réguliers.</p> -->
         </section>
 
-        <section id="session22" class="content-section">
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 22 : Automatisation avancée et optimisation des processus</h2>
+        <section id="session20" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 20 : Automatisation avancée et optimisation des processus</h2>
             
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -4466,8 +4587,8 @@
             <p><strong>Importance de l'automatisation avancée :</strong> Cette approche permet de gagner du temps dans la gestion de grandes quantités de données, et d'optimiser les processus de travail pour qu'ils soient plus rapides et fiables.</p>
         </section>
 
-        <section id="session23" class="content-section" style="visibility: hidden;">
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 23 : QCM - Évaluation sur l'automatisation et optimisation</h2>
+        <section id="session21" class="content-section" style="visibility: hidden;">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 21 : QCM - Évaluation sur l'automatisation et optimisation</h2>
             <p><strong>Questions à Choix Multiples (QCM)</strong></p>
         
             <ol>
@@ -4633,8 +4754,8 @@
             </ol>
         </section>
 
-        <section id="session24" class="content-section">
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 24 : Gestion des bases de données relationnelles</h2>
+        <section id="session22" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 22 : Gestion des bases de données relationnelles</h2>
             
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -4820,8 +4941,8 @@
             <p><strong>Importance des bases de données relationnelles :</strong> Elles permettent de simplifier la gestion de grandes quantités de données tout en évitant les redondances et facilitent les analyses croisées.</p>
         </section>
 
-        <section id="session25" class="content-section">
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 25 : Sécurisation des données et conformité RGPD</h2>
+        <section id="session23" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 23 : Sécurisation des données et conformité RGPD</h2>
             
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -4976,8 +5097,8 @@
         
         </section>
 
-        <section id="session26" class="content-section">
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 26 : Création d'outils d'aide à la décision (OAD) - Partie 1</h2>
+        <section id="session24" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 24 : Création d'outils d'aide à la décision (OAD) - Partie 1</h2>
             
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -5164,8 +5285,8 @@
             <p><strong>Astuce :</strong> Bien structurer les données dès le départ, car cela facilitera la création de tableaux croisés dynamiques et de graphiques dans les étapes suivantes.</p>
         </section>
 
-        <section id="session27" class="content-section">
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 27 : Création d'outils d'aide à la décision (OAD) - Partie 2</h2>
+        <section id="session25" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 25 : Création d'outils d'aide à la décision (OAD) - Partie 2</h2>
             
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -5518,8 +5639,8 @@
             </ul>
         </section>
 
-        <section id="session28" class="content-section" style="visibility: hidden;">
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 28 : QCM - Évaluation sur la création d'outils d'aide à la décision</h2>
+        <section id="session26" class="content-section" style="visibility: hidden;">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 26 : QCM - Évaluation sur la création d'outils d'aide à la décision</h2>
             
             <ol>
                 <li>Quel est l'objectif principal d'un outil d'aide à la décision (OAD) ?</li>
@@ -5684,8 +5805,8 @@
             </ol>
         </section>
 
-        <section id="session29" class="content-section">
-            <h2>Séance 29 : Création d'outils d'aide à la décision (OAD) - Partie 3</h2>
+        <section id="session27" class="content-section">
+            <h2>Séance 27 : Création d'outils d'aide à la décision (OAD) - Partie 3</h2>
             
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -5921,8 +6042,8 @@
             <p><strong>Objectif :</strong> Créer un tableau de bord dynamique dans Calc qui compare les ventes actuelles d'une entreprise à des objectifs prédéfinis. Utiliser des formules conditionnelles pour afficher des alertes visuelles lorsque les ventes sont inférieures à un certain seuil.</p>
         </section>
         
-        <section id="session30" class="content-section">
-            <h2>Séance 30 : Présentation et diffusion des résultats</h2>
+        <section id="session28" class="content-section">
+            <h2>Séance 28 : Présentation et diffusion des résultats</h2>
             
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -6052,8 +6173,8 @@
             <p><strong>Importance :</strong> Savoir présenter efficacement des résultats est essentiel dans le monde professionnel. Une présentation bien structurée et visuellement claire aide à communiquer les idées et les résultats de manière convaincante.</p>
         </section>
 
-        <section id="session31" class="content-section">
-            <h2>Séance 31 : Projet final intégrant l'ensemble des compétences</h2>
+        <section id="session29" class="content-section">
+            <h2>Séance 29 : Projet final intégrant l'ensemble des compétences</h2>
             
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -6190,8 +6311,8 @@
             <p><strong>Importance du projet :</strong> Cette activité reflète une situation réelle où il est crucial de collecter, organiser et présenter des données de manière claire et efficace.</p>
         </section>
         
-        <section id="session32" class="content-section">
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 32 : Gestion de projet avec OpenOffice (Révision et Approfondissement)</h2>
+        <section id="session30" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 30 : Gestion de projet avec OpenOffice (Révision et Approfondissement)</h2>
         
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -6288,8 +6409,8 @@
             <p>Ce projet pratique permet aux étudiants de consolider leurs compétences en gestion de projet avec OpenOffice. Ils apprendront à planifier, suivre et gérer un projet de manière professionnelle, tout en produisant des rapports clairs et efficaces.</p>
         </section>
         
-        <section id="session33" class="content-section">
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 33 : Intégration des outils OpenOffice pour la gestion de projet (Mise en situation)</h2>
+        <section id="session31" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 31 : Intégration des outils OpenOffice pour la gestion de projet (Mise en situation)</h2>
         
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -6386,8 +6507,8 @@
             <p>Cette mise en situation pratique permettra aux étudiants d’intégrer leurs compétences en gestion de projet avec les outils OpenOffice, tout en travaillant en équipe. Ils apprendront à planifier, suivre et ajuster un projet en temps réel, tout en générant des rapports et présentations professionnels.</p>
         </section>
 
-        <section id="session34" class="content-section">
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 34 : Optimisation des processus dans la gestion de projet</h2>
+        <section id="session32" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 32 : Optimisation des processus dans la gestion de projet</h2>
             
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -6489,8 +6610,8 @@
             <p>En optimisant l'utilisation d'OpenOffice, les étudiants apprendront à automatiser des tâches avec des macros, à améliorer la gestion des données avec des tableaux dynamiques, et à centraliser la gestion de projet en utilisant les liens entre Calc, Writer et Impress. Cela permettra une gestion de projet plus fluide, plus rapide, et plus précise.</p>
         </section>        
         
-        <section id="session35" class="content-section">
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 35 : Collaboration et Partage de Projets avec OpenOffice</h2>
+        <section id="session33" class="content-section">
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">Séance 33 : Collaboration et Partage de Projets avec OpenOffice</h2>
         
             <p><strong>Objectifs :</strong></p>
             <ul>
@@ -6633,23 +6754,23 @@
             'Séance 16 : Évaluation semestrielle n°1',
             'Séance 17 : Introduction à la Gestion de Projet avec LibreOffice',
             'Séance 18 : Approfondissement de la Gestion de Projet et Création de Diagramme de Gantt avec LibreOffice',
-            'Séance 19 : Introduction à la gestion des données numériques',
-            'Séance 20 : Évaluation sur la gestion des données et projets',
-            'Séance 21 : Introduction à l\'automatisation dans Calc',
-            'Séance 22 : Automatisation avancée et optimisation des processus',
-            'Séance 23 : QCM - Évaluation sur l\'automatisation et optimisation',
-            'Séance 24 : Gestion des bases de données relationnelles',
-            'Séance 25 : Sécurisation des données et conformité RGPD',
-            'Séance 26 : Création d\'outils d\'aide à la décision (OAD) - Partie 1',
-            'Séance 27 : Création d\'outils d\'aide à la décision (OAD) - Partie 2',
-            'Séance 28 : QCM - Évaluation sur la création d\'outils d\'aide à la décision',
-            'Séance 29 : Création d\'outils d\'aide à la décision (OAD) - Partie 3',
-            'Séance 30 : Présentation et diffusion des résultats',
-            'Séance 31 : Projet final intégrant l\'ensemble des compétences',
-            'Séance 32 : Gestion de projet avec OpenOffice (Révision et Approfondissement)',
-            'Séance 33 : Intégration des outils OpenOffice pour la gestion de projet (Mise en situation)',
-            'Séance 34 : Optimisation des processus dans la gestion de projet',
-            'Séance 35 : Collaboration et Partage de Projets avec OpenOffice',
+            'Séance 19 : Introduction à l\'automatisation dans Calc',
+            'Séance 20 : Automatisation avancée et optimisation des processus',
+            'Séance 21 : QCM - Évaluation sur l\'automatisation et optimisation',
+            'Séance 22 : Gestion des bases de données relationnelles',
+            'Séance 23 : Sécurisation des données et conformité RGPD',
+            'Séance 24 : Création d\'outils d\'aide à la décision (OAD) - Partie 1',
+            'Séance 25 : Création d\'outils d\'aide à la décision (OAD) - Partie 2',
+            'Séance 26 : QCM - Évaluation sur la création d\'outils d\'aide à la décision',
+            'Séance 27 : Création d\'outils d\'aide à la décision (OAD) - Partie 3',
+            'Séance 28 : Présentation et diffusion des résultats',
+            'Séance 29 : Projet final intégrant l\'ensemble des compétences',
+            'Séance 30 : Gestion de projet avec OpenOffice (Révision et Approfondissement)',
+            'Séance 31 : Intégration des outils OpenOffice pour la gestion de projet (Mise en situation)',
+            'Séance 32 : Optimisation des processus dans la gestion de projet',
+            'Séance 33 : Collaboration et Partage de Projets avec OpenOffice',
+            'Séance 34 : ',
+            'Séance 35 : ',
         ];
 
         function isHoliday(date) {

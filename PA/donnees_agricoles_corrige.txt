@@ -1,0 +1,70 @@
+📌 EXERCICES PRATIQUES
+1️⃣ MIN et MAX : Trouver les valeurs extrêmes
+Quel est le plus petit et le plus grand rendement agricole ?
+
+Utiliser =MIN(D2:D101) pour trouver le rendement minimum.
+Utiliser =MAX(D2:D101) pour trouver le rendement maximum.
+Quelle est la plus petite et la plus grande surface agricole ?
+
+=MIN(C2:C101)
+=MAX(C2:C101)
+2️⃣ MOYENNE : Calculer des valeurs moyennes
+Quelle est la moyenne du rendement agricole ?
+
+=MOYENNE(D2:D101)
+Quel est le coût de production moyen par hectare ?
+
+=MOYENNE(E2:E101)
+Quelle est la quantité moyenne d’eau utilisée par hectare ?
+
+=MOYENNE(H2:H101)
+3️⃣ SI : Conditionner les résultats
+Attribuer un commentaire basé sur le rendement :
+
+Dans une colonne supplémentaire, afficher "Bon rendement" si le rendement est supérieur à 50 q/ha, sinon afficher "Moyen ou Faible".
+=SI(D2>50;"Bon rendement";"Moyen ou Faible")
+Déterminer si une ferme est rentable :
+
+Afficher "Rentable" si le Revenu_Total est supérieur à 20 000 €, sinon "Non rentable".
+=SI(F2>20000;"Rentable";"Non rentable")
+4️⃣ SOMME : Additionner des valeurs
+Quelle est la surface totale exploitée ?
+
+=SOMME(C2:C101)
+Quelle est la quantité totale d’engrais utilisée sur toutes les fermes ?
+
+=SOMME(G2:G101)
+Quel est le revenu total généré par l’ensemble des fermes ?
+
+=SOMME(F2:F101)
+5️⃣ SOMME.SI : Somme conditionnelle
+Quelle est la surface totale dédiée au blé ?
+=SOMME.SI(B2:B101;"Blé";C2:C101)
+Quel est le total des revenus pour les cultures de maïs uniquement ?
+=SOMME.SI(B2:B101;"Maïs";F2:F101)
+Combien d’engrais est utilisé pour les sols sableux ?
+=SOMME.SI(J2:J101;"Sableux";G2:G101)
+6️⃣ MOYENNE.SI : Moyenne conditionnelle
+Quel est le rendement moyen du blé ?
+=MOYENNE.SI(B2:B101;"Blé";D2:D101)
+Quelle est la consommation moyenne d’eau pour les cultures de colza ?
+=MOYENNE.SI(B2:B101;"Colza";H2:H101)
+Quel est le coût de production moyen des cultures ayant un taux de maladie inférieur à 5% ?
+=MOYENNE.SI(I2:I101;"<5";E2:E101)
+
+✅ EXERCICE POUR LES ÉLÈVES :
+Ajoutez une colonne "Prix du quintal (€)".
+
+Remplissez cette colonne avec des valeurs réalistes selon les cultures :
+
+Blé : 20 €/q
+Maïs : 18 €/q
+Orge : 15 €/q
+Colza : 25 €/q
+Tournesol : 22 €/q
+Utilisez la fonction SI() pour automatiser la saisie :
+
+=SI(B2="Blé";20;SI(B2="Maïs";18;SI(B2="Orge";15;SI(B2="Colza";25;22))))
+Ajoutez la colonne "Revenu Calculé (€)" et appliquez la formule =C2 * D2 * K2.
+
+Comparez le "Revenu Calculé (€)" avec la colonne "Revenu Total (€)" existante.
