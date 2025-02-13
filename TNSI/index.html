@@ -190,6 +190,20 @@
         .rep {
             visibility: hidden;
         }
+
+        .container {
+            /* max-width: 800px; */
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .important {
+            background: yellow;
+            padding: 5px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -10231,7 +10245,7 @@ print(cat.speak())  # "Meow!"
             </p>
         </section>
 
-        <section id="session59" class="content-section">
+        <!-- <section id="session59" class="content-section">
             <h2>Séance 59 : Pratique - Amélioration de la performance des requêtes SQL avec indexation</h2>
         
             <h3>Objectif Global :</h3>
@@ -10375,8 +10389,115 @@ print(cat.speak())  # "Meow!"
                 <li>Bien que les index accélèrent les requêtes, ils peuvent ralentir les opérations d’insertion et de mise à jour. Utilisez-les avec modération et pertinence.</li>
                 <li>La commande <code>EXPLAIN</code> est un outil puissant pour analyser et optimiser les requêtes SQL.</li>
             </ul>
-        </section>
+        </section> -->
 
+        <section id="session59" class="content-section">
+            <div class="container">
+                <h2>Séance 59 : Schéma Relationnel</h2>
+                
+                <h3>1. Qu'est-ce qu'un schéma relationnel ?</h3>
+                <p>Un <strong>schéma relationnel</strong> est une représentation formelle des données d'une base de données relationnelle.</p>
+                
+                <h3>2. Définition des entités et des relations</h3>
+                <p>Dans une base de données, on modélise le monde réel sous forme de <strong>tables</strong>, appelées aussi <span class="important">entités</span>. Les relations entre ces entités sont décrites par des <strong>relations</strong>.</p>
+                
+                <h4>Exemple :</h4>
+                <p>Dans une école, nous avons des élèves et des cours :</p>
+                <ul>
+                    <li>L'entité <strong>Élève</strong> a des attributs : id, nom, prénom, classe.</li>
+                    <li>L'entité <strong>Cours</strong> a des attributs : id, nom, professeur.</li>
+                    <li>Un élève peut suivre plusieurs cours, et un cours peut être suivi par plusieurs élèves.</li>
+                </ul>
+                <p>Nous avons donc une relation <span class="important">"suivre"</span> entre Élève et Cours.</p>
+                
+                <h3>3. Notation et types de relations</h3>
+                <p>Les relations sont exprimées par des phrases avec des verbes à l’infinitif.</p>
+                <p>Exemple : "Un élève <span class="important">s'inscrire</span> à un cours".</p>
+                <p>On distingue plusieurs types de relations :</p>
+                <ul>
+                    <li><strong>1-1 (un à un)</strong> : Exemple : Un passeport appartient à un seul individu.</li>
+                    <li><strong>1-n (un à plusieurs)</strong> : Exemple : Un professeur enseigne plusieurs cours.</li>
+                    <li><strong>n-n (plusieurs à plusieurs)</strong> : Exemple : Un élève peut suivre plusieurs cours et un cours peut être suivi par plusieurs élèves.</li>
+                </ul>
+                <p>Notation sous forme relationnelle :</p>
+                <pre>
+        ÉLÈVE (id_élève, nom, prénom, classe)
+        COURS (id_cours, nom, professeur)
+        INSCRIPTION (id_élève, id_cours)
+                </pre>
+                <h4>Comment visualiser les relations ?</h4>
+                <p>Pour mieux comprendre les relations, utilisez des schémas entité-association avec des outils comme <a href="https://www.dbdesigner.net/" target="_blank" rel="noopener noreferrer">DB Designer</a> ou <a href="https://www.draw.io/" target="_blank" rel="noopener noreferrer">draw.io</a>.</p>
+                <p>
+                    Vous pouvez aussi passer d'une base de données à un graphique via les sites suivant :
+                    <ul>
+                        <li>
+                            <strong>Lucidchart</strong> : Cet outil de modélisation de base de données gratuit prend en charge des plateformes SGBD telles que MySQL, Oracle, PostgreSQL et Microsoft SQL Server. Vous pouvez importer la structure de votre base de données directement dans Lucidchart pour la visualiser sous forme de diagramme entité-association.  
+                            <a href="https://www.lucidchart.com/" target="_blank" rel="noopener noreferrer">LUCIDCHART.COM</a>
+                        </li>
+                        <li>
+                            <strong>DbSchema</strong> : DbSchema simplifie la conception et la gestion des bases de données, vous permettant de créer, visualiser et maintenir facilement vos structures de base de données. Il prend en charge l'ingénierie inverse du schéma à partir de bases de données locales, distantes ou dans le cloud.  
+                            <a href="https://dbschema.com/" target="_blank" rel="noopener noreferrer">DBSCHEMA.COM</a>
+                        </li>
+                        <li>
+                            <strong>dbdiagram.io</strong> : Un outil gratuit et simple qui vous aide à dessiner rapidement vos diagrammes de relations de base de données en utilisant un langage DSL simple.  
+                            <a href="https://dbdiagram.io/" target="_blank" rel="noopener noreferrer">DBDIAGRAM.IO</a>
+                        </li>
+                        <li>
+                            <strong>Creately</strong> : Un outil de conception de base de données en ligne qui permet de visualiser des systèmes de bases de données complexes avec un minimum d'effort. Il offre des bibliothèques de formes standard pour les bases de données et des centaines de modèles de diagrammes pré-dessinés.  
+                            <a href="https://creately.com/" target="_blank" rel="noopener noreferrer">CREATELY.COM</a>
+                        </li>
+                        <li>
+                            <strong>ONDA (ONline Database Architect)</strong> : Un outil web développé à l'Université de Coimbra qui permet la création de diagrammes entité-association, la visualisation de modèles physiques et la génération de code SQL pour divers moteurs de base de données.  
+                            <a href="https://arxiv.org/" target="_blank" rel="noopener noreferrer">ARXIV.ORG</a>
+                        </li>
+                    </ul>
+                </p>
+                <h3>4. Clés primaires et clés étrangères</h3>
+                <p>Les relations entre les tables sont gérées grâce aux <strong>clés primaires</strong> et <strong>clés étrangères</strong>.</p>
+                <ul>
+                    <li><span class="important">Clé primaire :</span> Identifie de manière unique un enregistrement dans une table.</li>
+                    <li><span class="important">Clé étrangère :</span> Fait référence à une clé primaire d'une autre table.</li>
+                </ul>
+                <pre>
+        CREATE TABLE Eleve (
+            id_élève INT PRIMARY KEY,
+            nom VARCHAR(50),
+            prénom VARCHAR(50),
+            classe VARCHAR(10)
+        );
+        
+        CREATE TABLE Cours (
+            id_cours INT PRIMARY KEY,
+            nom VARCHAR(50),
+            professeur VARCHAR(50)
+        );
+        
+        CREATE TABLE Inscription (
+            id_élève INT,
+            id_cours INT,
+            PRIMARY KEY (id_élève, id_cours),
+            FOREIGN KEY (id_élève) REFERENCES Eleve(id_élève),
+            FOREIGN KEY (id_cours) REFERENCES Cours(id_cours)
+        );
+                </pre>
+                
+                <h3>5. Exercices ludiques</h3>
+                <h4>Exercice 1 : Identifier les relations</h4>
+                <p>Une entreprise a des employés qui travaillent dans des départements. Chaque employé peut être dans un seul département, mais un département peut avoir plusieurs employés.</p>
+                <p><strong>Question :</strong> Identifiez les entités, leurs attributs et la relation entre elles.</p>
+                
+                <h4>Exercice 2 : Compléter la notation relationnelle</h4>
+                <p>Une université gère des étudiants, des matières et des enseignants. Chaque matière est enseignée par un enseignant et suivie par plusieurs étudiants.</p>
+                <p><strong>À vous de jouer !</strong></p>
+                
+                <h4>Exercice 3 : Construire un schéma relationnel</h4>
+                <p>Modélisez un système de location de voitures, en définissant les entités, les attributs et les relations.</p>
+                
+                <h3>Conclusion</h3>
+                <p>Le schéma relationnel permet de structurer une base de données et d'éviter les incohérences. En comprenant bien les relations et les clés, on peut modéliser efficacement n'importe quel système.</p>
+            </div>
+        </section>
+        
         <section id="session60" class="content-section">
             <h2>Séance 60 : Étude de cas sur les performances des bases de données dans un projet</h2>
         
@@ -13649,7 +13770,7 @@ print(cat.speak())  # "Meow!"
             'Séance 56 : Pratique - Réorganisation d’une base de données pour une meilleure gestion des données',
             'Séance 57 : Cas pratiques de normalisation dans des projets réels (jeu vidéo, actualité)',
             'Séance 58 : Introduction à l’indexation et optimisation des bases de données',
-            'Séance 59 : Pratique - Amélioration de la performance des requêtes SQL avec indexation',
+            'Séance 59 : Schéma Relationnel',
             'Séance 60 : Étude de cas sur les performances des bases de données dans un projet',
             'Séance 61 : Introduction à la cryptographie (chiffrement symétrique)',
             'Séance 62 : Pratique - Implémentation d’un chiffrement simple pour protéger les données d’un jeu vidéo',
