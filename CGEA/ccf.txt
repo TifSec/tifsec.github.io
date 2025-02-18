@@ -1,0 +1,37 @@
+prendre le CSV des données bruts
+l'ouvrir en vérifiant que les colonnes soient bien séparées comme il faut
+filtrer les données
+pour le fichier de températures, ne prendre que le département 43
+pour ce faire, sélectionner le tableau :
+données -> plus de filtres -> filtre standard
+une popup s'ouvre
+choisir de filtrer sur le code insee = 43
+développer le menu options
+cocher "copier le résultat vers :"
+cliquer sur le petit bouton en bas à droite de la fenêtre pour réduire
+choisir la cellule A1 de la feuille de travail
+ensuite, dans le menu données
+choisir définir la plage, ça selectionne tout le tableau
+il suffit de nommer notre plage de donner pour pouvoir la reselectionner n'importe quand
+créer une colonne année qui récupère l'année depuis la date
+créer une colonne mois qui récupère le mois depuis la date
+selectionner toutes les données pour créer le tableau croisé dynamique
+dans lignes insérer :
+- année
+- mois
+dans valeurs, insérer :
+- Tmin (changer la somme en min)
+- Tmax (changer la somme en max)
+- Tmoy (changer la somme en moy)
+Calcul de la température moyenne par année :
+d'abord, extraire les différentes années possible, pour ce faire :
+utiliser la fonction "unique()" combinée à "annee()"
+dans la feuille de Réponses, dans une cellule de préférence en première colonne
+écrire : unique(annee()) et se mettre entre les parenthèses
+se mettre dans la première feuille, sur la cellule A2 et faire CTRL + fleche du bas
+ça va sélectionner de la cellule A2 à la dernière ligne du tableau
+entrée pour valider, le tour est joué
+il ne reste plus qu'a mettre les formules :
+- min.si('plage de températures';'plage d'année';'l'année a trouver')
+- max.si('plage de températures';'plage d'année';'l'année a trouver')
+- moyenne.si('plage d'année';'l'année a trouver';'plage de température')
