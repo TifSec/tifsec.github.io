@@ -11093,7 +11093,141 @@ print(cat.speak())  # "Meow!"
                 <li><code>e</code> : un entier tel que <code>1 < e < φ(n)</code> et <code>e</code> soit copremier avec <code>φ(n)</code>.</li>
                 <li><code>d</code> : l’inverse modulaire de <code>e</code> modulo <code>φ(n)</code>.</li>
             </ul>
-        
+
+            <h4>Essayons de vulgariser...</h4>
+
+            <p>
+                Comment fonctionne la cryptographie avec des nombres premiers ? (RSA)
+                <br>
+                La cryptographie RSA repose sur l'utilisation de très grands nombres premiers pour sécuriser les messages. Voici une explication pas à pas de son fonctionnement :
+                <ol>
+                    <br>
+                    <li>
+                        Choisir deux grands nombres premiers (p et q)
+                        <br>
+                        Un ordinateur ou une personne choisit deux nombres premiers très grands, appelés p et q.
+                        <br><br>
+                        👉 Pourquoi des nombres premiers ?
+                        <br><br>
+                        Parce qu'il est très difficile de les retrouver une fois qu'on les a multipliés ensemble. Cette difficulté assure la sécurité du système.
+                    </li>
+                    <br>
+                    <li>
+                        Calculer un nombre spécial "n"
+                        <br>
+                        On multiplie les deux nombres premiers pour obtenir un nombre unique appelé n :
+                        <br><br>
+                        𝑛
+                        =
+                        𝑝
+                        ×
+                        𝑞
+                        <br>
+                        <!-- n=p×q -->
+                        <br>
+                        👉 Pourquoi ?
+                        <br><br>
+                        Car cet énorme nombre n servira de base aux clés de chiffrement et de déchiffrement.
+                    </li>
+                    <br>
+                    <li>
+                        Calculer une valeur appelée φ(n) (Phi de n)
+                        <br>
+                        On utilise une fonction mathématique spéciale, appelée fonction indicatrice d’Euler, qui nous donne :
+                        <br><br>
+                        𝜑
+                        (
+                        𝑛
+                        )
+                        =
+                        (
+                        𝑝
+                        −
+                        1
+                        )
+                        ×
+                        (
+                        𝑞
+                        −
+                        1
+                        )
+                        <br>
+                        <!-- φ(n)=(p−1)×(q−1) -->
+                        <br>
+                        👉 Pourquoi cette formule ?
+                        <br><br>
+                        Elle nous aide à choisir un nombre spécial pour le chiffrement.
+                    </li>
+                    <br>
+                    <li>
+                        Choisir une clé publique "e"
+                        <br>
+                        On choisit un nombre e, qui doit être :
+                        <br>
+                        ✅ Plus grand que 1 mais plus petit que φ(n).
+                        <br>
+                        ✅ N'avoir aucun facteur commun avec φ(n) (c'est-à-dire qu'il doit être "copremier" avec φ(n), c'est comme s'ils n'avaient pas de diviseurs en commun sauf 1).
+                        <br><br>
+                        👉 À quoi sert "e" ?
+                        <br><br>
+                        Il fait partie de la clé publique et sera utilisé pour chiffrer les messages.
+                    </li>
+                    <br>
+                    <li>
+                        Calculer une clé privée "d"
+                        <br>
+                        On trouve un nombre d, qui est un inverse modulaire de e par rapport à φ(n).
+                        <br>
+                        En termes simples, d est un nombre qui permet d’annuler l’effet de e lorsqu'on déchiffre un message.
+                        <br>
+                        Mathématiquement, d est calculé ainsi :
+                        <br><br>
+                        𝑑
+                        ×
+                        𝑒
+                        ≡
+                        1
+                         
+                        (
+                        mod 
+                        𝜑
+                        (
+                        𝑛
+                        )
+                        )
+                        <br>
+                        <!-- d×e≡1 (mod φ(n)) -->
+                        <br>
+                        👉 À quoi sert "d" ?
+                        <br><br>
+                        Il fait partie de la clé privée et permet de déchiffrer les messages.
+                    </li>
+                </ol>
+                <br>
+                En résumé :
+                <br><br>
+                1️⃣ On choisit deux grands nombres premiers (p et q).
+                <br>
+                2️⃣ On calcule n = p × q (qui sert à la clé publique et privée).
+                <br>
+                3️⃣ On trouve φ(n) = (p - 1) × (q - 1).
+                <br>
+                4️⃣ On choisit "e" (un nombre qui permet de chiffrer).
+                <br>
+                5️⃣ On calcule "d" (un nombre qui permet de déchiffrer).
+                <br>
+                6️⃣ La clé publique est (e, n) et la clé privée est (d, n).
+                <br><br>
+                💡 En utilisant ces clés :
+                <br><br>
+                La clé publique (e, n) est utilisée pour chiffrer les messages.
+                <br>
+                La clé privée (d, n) est utilisée pour les déchiffrer.
+                <br>
+                Pourquoi est-ce sécurisé ?
+                <br>
+                Parce que même si quelqu'un connaît n et e, il est extrêmement difficile de retrouver p et q (et donc d). C'est ce qui protège les messages chiffrés !</p>
+                <br>
             <h3>2. Implémentation Simplifiée de RSA (40 min)</h3>
         
             <h4>Étape 1 : Génération des Clés</h4>
