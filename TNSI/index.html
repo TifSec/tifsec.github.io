@@ -13861,6 +13861,1042 @@ print(cat.speak())  # "Meow!"
             </ul>
         </section>
 
+        <section id="session76" class="content-section">
+            <h2>Séance 76 : Modèle Client-Serveur et P2P (Peer-to-Peer)</h2>
+
+            <h3>Objectif Global :</h3>
+            <p>
+                Cette séance a pour but d’expliquer en détail les modèles de communication <strong>client-serveur</strong> et <strong>pair-à-pair (P2P)</strong>. 
+                Nous verrons comment ces architectures fonctionnent, leurs avantages et inconvénients, et nous les illustrerons à l’aide d’exemples concrets.
+            </p>
+
+            <h3>1. Modèle Client-Serveur</h3>
+
+            <h4>Définition</h4>
+            <p>
+                Le modèle <strong>client-serveur</strong> repose sur une structure centralisée où un serveur unique (ou un groupe de serveurs) fournit des services à plusieurs clients. 
+                Les clients demandent des informations ou des ressources, et le serveur les traite et répond aux requêtes.
+            </p>
+
+            <h4>Schéma Illustratif :</h4>
+            <p><img src="https://www.geonov.fr/fig/client-server/client-server-small.png" alt="Schéma Client-Serveur" width="600"></p>
+            <p><small>Illustration du modèle client-serveur où plusieurs clients communiquent avec un serveur central.</small></p>
+            <p><small><a href="https://www.geonov.fr/architecture-client-serveur/" target="_blank">Lien du graphique</a></small></p>
+
+            <h4>Exemples d’Utilisation :</h4>
+            <ul>
+                <li><strong>Web :</strong> Un navigateur (client) demande une page web à un serveur.</li>
+                <li><strong>Jeux en ligne :</strong> Un serveur de jeu gère les interactions entre joueurs.</li>
+                <li><strong>Services de messagerie :</strong> Les emails et chats centralisés (Gmail, Facebook Messenger).</li>
+            </ul>
+
+            <h4>Avantages :</h4>
+            <ul>
+                <li>Facile à sécuriser et administrer.</li>
+                <li>Fiabilité garantie si les serveurs sont bien gérés.</li>
+                <li>Permet un contrôle total sur les données.</li>
+            </ul>
+
+            <h4>Inconvénients :</h4>
+            <ul>
+                <li>Point unique de défaillance : si le serveur tombe, tous les clients sont affectés.</li>
+                <li>Coûteux en infrastructures (serveurs puissants, maintenance).</li>
+                <li>Peut devenir un goulot d’étranglement en cas de surcharge.</li>
+            </ul>
+
+            <h3>2. Modèle P2P (Peer-to-Peer)</h3>
+
+            <h4>Définition</h4>
+            <p>
+                Le modèle <strong>Peer-to-Peer (P2P)</strong> est une architecture distribuée où chaque participant (appelé <strong>pair</strong>) joue à la fois le rôle de client et de serveur.
+                Les pairs communiquent directement entre eux sans passer par un serveur centralisé.
+            </p>
+
+            <h4>Schéma Illustratif :</h4>
+            <p><img src="https://lh3.googleusercontent.com/proxy/vTVWa8LBlSHiNGBRp2_36YALTt5Wx9pHWfG33vwUnypnmeNON86JYKVihabRcgKNbkGIpHO-Aj1f9TR4VUSrK8SnbGbABLBubcJmBhUR" alt="Schéma P2P" width="600"></p>
+            <p><small>Illustration du modèle P2P où chaque pair échange directement avec les autres.</small></p>
+            <p><small><a href="http://princehenri.centerblog.net/5-le-peer-to-peer-une-technologie-inovante" target="_blank">Lien du graphique</a></small></p>
+
+            <h4>Exemples d’Utilisation :</h4>
+            <ul>
+                <li><strong>Partage de fichiers :</strong> BitTorrent, eMule, Kazaa.</li>
+                <li><strong>Cryptomonnaies :</strong> Bitcoin et blockchain.</li>
+                <li><strong>Messagerie décentralisée :</strong> Session, Tox, RetroShare.</li>
+            </ul>
+
+            <h4>Avantages :</h4>
+            <ul>
+                <li>Pas de point unique de défaillance : si un pair tombe, les autres continuent.</li>
+                <li>Évolutif sans besoin de serveurs coûteux.</li>
+                <li>Meilleure distribution de la charge.</li>
+            </ul>
+
+            <h4>Inconvénients :</h4>
+            <ul>
+                <li>Plus difficile à sécuriser (chaque pair est un potentiel point vulnérable).</li>
+                <li>Les performances varient en fonction de la connexion des pairs.</li>
+                <li>Gestion complexe des connexions et des fichiers.</li>
+            </ul>
+
+            <h3>3. Comparaison Client-Serveur vs P2P</h3>
+
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th>Critères</th>
+                    <th>Client-Serveur</th>
+                    <th>P2P</th>
+                </tr>
+                <tr>
+                    <td>Organisation</td>
+                    <td>Centralisée</td>
+                    <td>Décentralisée</td>
+                </tr>
+                <tr>
+                    <td>Fiabilité</td>
+                    <td>Le serveur doit être disponible</td>
+                    <td>Chaque pair peut fonctionner indépendamment</td>
+                </tr>
+                <tr>
+                    <td>Coût</td>
+                    <td>Infrastructure serveur coûteuse</td>
+                    <td>Réduction des coûts d’infrastructure</td>
+                </tr>
+                <tr>
+                    <td>Scalabilité</td>
+                    <td>Limité par la puissance du serveur</td>
+                    <td>Plus évolutif, chaque pair contribue</td>
+                </tr>
+                <tr>
+                    <td>Sécurité</td>
+                    <td>Facile à sécuriser</td>
+                    <td>Plus difficile (menace de machines non fiables)</td>
+                </tr>
+            </table>
+
+            <h3>4. Exercice Pratique : Mise en Œuvre d’un Client-Serveur en Python</h3>
+
+            <h4>Implémentation d’un Serveur TCP</h4>
+            <pre><code class="python">
+        import socket
+
+        serveur = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        serveur.bind(("127.0.0.1", 12345))
+        serveur.listen(1)
+
+        print("Serveur en attente de connexion...")
+
+        conn, addr = serveur.accept()
+        print(f"Connexion établie avec {addr}")
+
+        while True:
+            data = conn.recv(1024).decode()
+            if not data:
+                break
+            print(f"Message reçu : {data}")
+            conn.sendall("Message reçu !".encode())
+
+        conn.close()
+        serveur.close()
+            </code></pre>
+
+            <h4>Implémentation d’un Client TCP</h4>
+            <pre><code class="python">
+        import socket
+
+        client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client.connect(("127.0.0.1", 12345))
+
+        client.sendall("Bonjour, serveur !".encode())
+        reponse = client.recv(1024).decode()
+        print(f"Réponse du serveur : {reponse}")
+
+        client.close()
+            </code></pre>
+
+            <h3>5. Exercice : Mise en Œuvre d’une Communication P2P</h3>
+
+            <h4>Implémentation d’un Système P2P Simple</h4>
+            <pre><code class="python">
+        import socket
+
+        def pair_serveur():
+            serveur = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            serveur.bind(("127.0.0.1", 12345))
+            print("Pair en attente de messages...")
+
+            while True:
+                data, addr = serveur.recvfrom(1024)
+                print(f"Message reçu de {addr}: {data.decode()}")
+                serveur.sendto("Message reçu".encode(), addr)
+
+        def pair_client():
+            client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            client.sendto("Salut, pair !".encode(), ("127.0.0.1", 12345))
+            data, _ = client.recvfrom(1024)
+            print(f"Réponse : {data.decode()}")
+            </code></pre>
+
+            <h3>Conclusion</h3>
+            <p>
+                Cette séance a permis d'explorer deux architectures majeures et d'expérimenter des communications réseau en Python.
+            </p>
+        </section>
+
+        <section id="session77" class="content-section">
+            <h2>Séance 77 : Sécurisation des Échanges Réseau avec SSL/TLS</h2>
+
+            <h3>Objectif Global :</h3>
+            <p>
+                Cette séance a pour but d’expliquer le fonctionnement du protocole de sécurisation <strong>SSL/TLS</strong> et son importance pour la protection des communications sur Internet.
+                Nous verrons comment il fonctionne, les concepts de chiffrement, d'authentification et d'intégrité des données.
+                Enfin, nous mettrons en place une communication sécurisée en Python.
+            </p>
+        
+            <h3>1. Introduction à SSL/TLS</h3>
+        
+            <h4>Définition</h4>
+            <p>
+                <strong>SSL (Secure Sockets Layer)</strong> et <strong>TLS (Transport Layer Security)</strong> sont des protocoles qui garantissent la sécurité des communications sur un réseau.
+                TLS est une évolution de SSL et est aujourd’hui la norme utilisée pour protéger les connexions sur Internet.
+            </p>
+        
+            <h4>Schéma Illustratif :</h4>
+            <p><img src="https://learn.microsoft.com/fr-fr/azure/postgresql/flexible-server/media/concepts-networking/tls-1-2.png" alt="Schéma SSL/TLS" width="600"></p>
+            <p><small>Illustration du processus de handshake SSL/TLS entre un client et un serveur.</small></p>
+            <p><small><a href="https://learn.microsoft.com/fr-fr/azure/postgresql/flexible-server/concepts-networking-ssl-tls" target="_blank">Lien du graphique</a></small></p>
+        
+            <h4>Pourquoi SSL/TLS est-il important ?</h4>
+            <ul>
+                <li><strong>Chiffrement :</strong> Les données envoyées entre le client et le serveur sont protégées contre les interceptions.</li>
+                <li><strong>Authentification :</strong> Garantit que le client communique avec le bon serveur (évite les attaques de type "man-in-the-middle").</li>
+                <li><strong>Intégrité :</strong> Assure que les données ne sont pas altérées lors de la transmission.</li>
+            </ul>
+        
+            <h4>Exemples d’utilisation :</h4>
+            <ul>
+                <li>Sites web sécurisés avec HTTPS (ex: banques, e-commerce).</li>
+                <li>Messagerie instantanée (WhatsApp, Signal).</li>
+                <li>VPN et tunnels sécurisés.</li>
+            </ul>
+        
+            <h3>2. Fonctionnement de SSL/TLS</h3>
+        
+            <h4>Le Handshake TLS</h4>
+            <p>Le handshake TLS est le processus par lequel le client et le serveur établissent une connexion sécurisée. Il comprend plusieurs étapes :</p>
+            <ol>
+                <li><strong>Client Hello :</strong> Le client envoie une requête avec les versions TLS supportées et un identifiant unique.</li>
+                <li><strong>Server Hello :</strong> Le serveur répond avec la version TLS choisie et un certificat pour s’authentifier.</li>
+                <li><strong>Vérification du certificat :</strong> Le client vérifie la validité du certificat du serveur.</li>
+                <li><strong>Échange de clés :</strong> Une clé de session est générée pour chiffrer les échanges.</li>
+                <li><strong>Connexion sécurisée :</strong> Les données sont échangées sous forme chiffrée.</li>
+            </ol>
+        
+            <h4>Schéma du Handshake TLS :</h4>
+            <p><img src="https://www.researchgate.net/profile/Wazen-Shbair/publication/298065605/figure/fig1/AS:357056767905792@1462140375566/TLS-handshake-protocol.png" alt="Handshake TLS" width="600"></p>
+            <p><small><a href="https://www.researchgate.net/figure/TLS-handshake-protocol_fig1_298065605" target="_blank">Lien du graphique</a></small></p>
+
+            <h3>3. Sécurisation d’un Serveur avec SSL/TLS en Python</h3>
+        
+            <h4>Implémentation d’un Serveur Sécurisé</h4>
+            <p>Nous allons créer un serveur sécurisé avec <code>ssl</code> en Python.</p>
+        
+            <pre><code class="python">
+        import socket
+        import ssl
+        
+        # Création du socket serveur
+        serveur = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        serveur.bind(("127.0.0.1", 12345))
+        serveur.listen(5)
+        
+        # Chargement du certificat SSL
+        contexte_ssl = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+        contexte_ssl.load_cert_chain(certfile="cert.pem", keyfile="key.pem")
+        
+        # Acceptation des connexions sécurisées
+        while True:
+            conn, addr = serveur.accept()
+            secure_conn = contexte_ssl.wrap_socket(conn, server_side=True)
+            print(f"Connexion sécurisée de {addr}")
+            secure_conn.sendall("Connexion sécurisée avec SSL/TLS.".encode())
+            secure_conn.close()
+            </code></pre>
+        
+            <h4>Implémentation d’un Client Sécurisé</h4>
+            <pre><code class="python">
+        import socket
+        import ssl
+        
+        # Création du socket client
+        client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        contexte_ssl = ssl.create_default_context()
+        
+        # Connexion au serveur sécurisé
+        secure_client = contexte_ssl.wrap_socket(client, server_hostname="127.0.0.1")
+        secure_client.connect(("127.0.0.1", 12345))
+        
+        # Réception du message du serveur
+        print(secure_client.recv(1024).decode())
+        
+        secure_client.close()
+            </code></pre>
+        
+            <h4>Explication :</h4>
+            <ul>
+                <li>Le serveur charge un **certificat SSL** pour sécuriser la connexion.</li>
+                <li>Le client utilise **SSL/TLS** pour chiffrer les données envoyées et reçues.</li>
+            </ul>
+        
+            <h3>4. Obtenir un Certificat SSL</h3>
+            <p>Pour tester SSL en local, nous pouvons générer un certificat auto-signé :</p>
+        
+            <pre><code class="bash">
+        openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+            </code></pre>
+        
+            <p>Ce certificat pourra ensuite être utilisé pour chiffrer les échanges.</p>
+        
+            <h3>5. Problèmes Courants et Solutions</h3>
+        
+            <h4>Erreur : Certificat non valide</h4>
+            <p>Si vous utilisez un certificat auto-signé, le client peut le refuser. Pour contourner ce problème :</p>
+            <pre><code class="python">
+        contexte_ssl = ssl.create_default_context()
+        contexte_ssl.check_hostname = False
+        contexte_ssl.verify_mode = ssl.CERT_NONE
+            </code></pre>
+        
+            <h4>Expiration des certificats</h4>
+            <p>Les certificats expirent après une certaine période. Pour éviter les interruptions de service, utilisez <a href="https://letsencrypt.org/" target="_blank">Let's Encrypt</a>.</p>
+        
+            <h3>6. Comparaison HTTP vs HTTPS</h3>
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th>Critères</th>
+                    <th>HTTP</th>
+                    <th>HTTPS</th>
+                </tr>
+                <tr>
+                    <td>Sécurité</td>
+                    <td>Aucune, les données sont en clair</td>
+                    <td>Chiffrement avec TLS</td>
+                </tr>
+                <tr>
+                    <td>Authentification</td>
+                    <td>Non, risque d'attaques</td>
+                    <td>Oui, grâce aux certificats</td>
+                </tr>
+                <tr>
+                    <td>Utilisation</td>
+                    <td>Sites non sécurisés</td>
+                    <td>Banques, e-commerce, réseaux sociaux</td>
+                </tr>
+            </table>
+        
+            <h3>7. Conclusion</h3>
+            <p>
+                Grâce à cette séance, les élèves ont appris comment SSL/TLS sécurise les échanges réseau et comment l’implémenter en Python.
+                Comprendre ces concepts est essentiel pour développer des applications sécurisées et protéger les données des utilisateurs.
+            </p>
+        </section>
+
+        <section id="session78" class="content-section">
+            <h2>Séance 78 : Analyse des Attaques Réseau (DoS, Man-in-the-Middle)</h2>
+
+            <h3>Objectif Global :</h3>
+            <p>
+                Cette séance a pour but d'explorer les principales attaques réseau, en particulier les attaques <strong>DoS (Denial of Service)</strong> et <strong>Man-in-the-Middle (MITM)</strong>. 
+                Nous analyserons comment elles fonctionnent, leurs impacts, et les méthodes de prévention.
+            </p>
+        
+            <h3>1. Introduction aux Attaques Réseau</h3>
+        
+            <p>
+                Une attaque réseau vise à perturber, intercepter ou manipuler les communications entre des systèmes informatiques. 
+                Parmi les attaques les plus courantes, on trouve :
+            </p>
+            <ul>
+                <li><strong>Les attaques par Déni de Service (DoS / DDoS)</strong> : Elles visent à surcharger un serveur pour le rendre indisponible.</li>
+                <li><strong>Les attaques Man-in-the-Middle (MITM)</strong> : Elles permettent à un attaquant d'intercepter ou d'altérer des communications.</li>
+            </ul>
+        
+            <h3>2. Attaque par Déni de Service (DoS & DDoS)</h3>
+        
+            <h4>Définition</h4>
+            <p>
+                Une attaque <strong>Denial of Service (DoS)</strong> consiste à inonder un serveur de requêtes afin de l’empêcher de répondre aux utilisateurs légitimes.
+                Lorsqu'elle est effectuée depuis plusieurs machines simultanément, on parle de <strong>Distributed Denial of Service (DDoS)</strong>.
+            </p>
+        
+            <h4>Schéma Illustratif :</h4>
+            <p><img src="https://www.it-connect.fr/wp-content-itc/uploads/2022/08/Schema-attaque-DoS.png" alt="Schéma d'une attaque DoS" width="600"></p>
+            <p><small>Illustration d'une attaque DoS où un attaquant envoie un grand nombre de requêtes à un serveur pour le surcharger.</small></p>
+            <p><small><a href="https://www.it-connect.fr/quest-ce-quune-attaque-ddos/" target="_blank">Lien du graphique</a></small></p>
+        
+            <h4>Exemples d’attaques DoS :</h4>
+            <ul>
+                <li><strong>Attaque SYN Flood :</strong> L'attaquant envoie un grand nombre de requêtes de connexion TCP incomplètes.</li>
+                <li><strong>Attaque UDP Flood :</strong> Inondation du serveur avec des paquets UDP aléatoires.</li>
+                <li><strong>Attaque HTTP Flood :</strong> Envoi massif de requêtes HTTP pour surcharger un site web.</li>
+            </ul>
+        
+            <h4>Impact d’une attaque DoS :</h4>
+            <ul>
+                <li>Indisponibilité du service pour les utilisateurs légitimes.</li>
+                <li>Ralentissement des performances du serveur.</li>
+                <li>Perte financière et atteinte à la réputation de l’organisation ciblée.</li>
+            </ul>
+        
+            <h4>Exemple d’attaque DoS avec Python :</h4>
+            <pre><code class="python">
+        import socket
+        import time
+        
+        cible = "127.0.0.1"  # Adresse IP cible
+        port = 80  # Port cible
+        
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        message = b"Attaque DoS"
+        
+        while True:
+            sock.sendto(message, (cible, port))
+            print("Paquet envoyé !")
+            time.sleep(0.01)  # Pause pour ralentir l'attaque (à ne pas utiliser dans un vrai environnement)
+            </code></pre>
+        
+            <p><strong>ATTENTION :</strong> Ce code est à des fins éducatives uniquement. Il est illégal d’effectuer une attaque DoS sans autorisation.</p>
+        
+            <h4>Méthodes de Prévention :</h4>
+            <ul>
+                <li>Utilisation de pare-feu et de systèmes de détection d’intrusion (IDS).</li>
+                <li>Limitation du nombre de requêtes par adresse IP.</li>
+                <li>Mise en place d’un service de protection DDoS (Cloudflare, AWS Shield).</li>
+            </ul>
+        
+            <h3>3. Attaque Man-in-the-Middle (MITM)</h3>
+        
+            <h4>Définition</h4>
+            <p>
+                Une attaque <strong>Man-in-the-Middle (MITM)</strong> permet à un attaquant d’intercepter et de modifier les communications entre deux parties sans qu'elles ne s’en aperçoivent.
+            </p>
+        
+            <h4>Schéma Illustratif :</h4>
+            <p><img src="https://blog.lockself.com/hs-fs/hubfs/Sch%C3%A9ma%20attaque%20Man-in-the-middle-2.png?width=3840&height=2160&name=Sch%C3%A9ma%20attaque%20Man-in-the-middle-2.png" alt="Schéma MITM" width="600"></p>
+            <p><small>Illustration d'une attaque MITM où l'attaquant intercepte la communication entre deux parties.</small></p>
+            <p><small><a href="https://blog.lockself.com/attaque-par-homme-du-milieu" target="_blank">Lien du graphique</a></small></p>
+        
+            <h4>Exemples d’attaques MITM :</h4>
+            <ul>
+                <li><strong>Usurpation d’ARP (ARP Spoofing) :</strong> L’attaquant trompe les machines du réseau pour intercepter le trafic.</li>
+                <li><strong>Faux points d’accès Wi-Fi :</strong> Un pirate crée un Wi-Fi malveillant pour espionner les connexions.</li>
+                <li><strong>Injection HTTPS :</strong> Manipulation du trafic sécurisé pour insérer des scripts malveillants.</li>
+            </ul>
+        
+            <h4>Impact d’une attaque MITM :</h4>
+            <ul>
+                <li>Vol d’informations sensibles (mots de passe, données bancaires).</li>
+                <li>Modification du contenu des messages échangés.</li>
+                <li>Compromission de sessions utilisateur.</li>
+            </ul>
+        
+            <h4>Exemple d’attaque MITM avec Scapy (Python) :</h4>
+            <pre><code class="python">
+        from scapy.all import *
+        import os
+        
+        victime_ip = "192.168.1.10"
+        passerelle_ip = "192.168.1.1"
+        
+        def spoof(target_ip, spoof_ip):
+            packet = ARP(op=2, pdst=target_ip, hwdst=getmacbyip(target_ip), psrc=spoof_ip)
+            send(packet, verbose=False)
+        
+        while True:
+            spoof(victime_ip, passerelle_ip)
+            spoof(passerelle_ip, victime_ip)
+            time.sleep(2)
+            </code></pre>
+        
+            <p><strong>ATTENTION :</strong> Cette attaque est illégale sans autorisation et ne doit être utilisée que dans un cadre légal et éthique.</p>
+        
+            <h4>Méthodes de Prévention :</h4>
+            <ul>
+                <li>Utilisation de <strong>HTTPS</strong> pour sécuriser les communications.</li>
+                <li>Activation de la détection d’attaques ARP sur les routeurs.</li>
+                <li>Utilisation de VPN pour crypter le trafic réseau.</li>
+            </ul>
+        
+            <h3>4. Comparaison des Attaques DoS et MITM</h3>
+        
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th>Critères</th>
+                    <th>DoS/DDoS</th>
+                    <th>MITM</th>
+                </tr>
+                <tr>
+                    <td>Objectif</td>
+                    <td>Rendre un service indisponible</td>
+                    <td>Intercepter ou modifier des communications</td>
+                </tr>
+                <tr>
+                    <td>Impact</td>
+                    <td>Blocage de sites, services inaccessibles</td>
+                    <td>Vol d’informations, espionnage</td>
+                </tr>
+                <tr>
+                    <td>Prévention</td>
+                    <td>Protection DDoS, limitation des requêtes</td>
+                    <td>HTTPS, VPN, détection d’attaques ARP</td>
+                </tr>
+            </table>
+        
+            <h3>Conclusion</h3>
+            <p>
+                Cette séance a permis d’analyser deux attaques réseau majeures. 
+                Nous avons vu comment elles fonctionnent, leurs conséquences et les méthodes de protection. 
+                Il est essentiel de comprendre ces attaques pour mieux sécuriser les systèmes informatiques.
+            </p>
+        </section>
+
+        <section id="session79" class="content-section">
+            <h2>Séance 79 : Utilisation des Algorithmes de Chiffrement dans les Applications Réseau</h2>
+
+            <h3>Objectif Global :</h3>
+            <p>
+                Cette séance a pour but de comprendre le fonctionnement du chiffrement dans les applications réseau. 
+                Nous allons étudier les principes du chiffrement **symétrique** et **asymétrique**, leurs différences, 
+                et les appliquer dans des communications sécurisées en Python.
+            </p>
+        
+            <h3>1. Introduction au Chiffrement</h3>
+        
+            <h4>Pourquoi Chiffrer les Communications Réseau ?</h4>
+            <p>
+                Les communications sur Internet peuvent être interceptées par des pirates informatiques. Le chiffrement permet de :
+            </p>
+            <ul>
+                <li>Protéger la confidentialité des données.</li>
+                <li>Garantir l’intégrité des messages échangés.</li>
+                <li>Empêcher les attaques de type "Man-in-the-Middle".</li>
+            </ul>
+        
+            <h3>2. Algorithmes de Chiffrement</h3>
+        
+            <h4>Chiffrement Symétrique</h4>
+            <p>
+                Le chiffrement symétrique utilise une <strong>clé unique</strong> pour chiffrer et déchiffrer un message. 
+                L’expéditeur et le destinataire doivent tous deux posséder cette clé secrète.
+            </p>
+        
+            <h4>Exemples d’algorithmes :</h4>
+            <ul>
+                <li><strong>AES (Advanced Encryption Standard)</strong> : Utilisé pour la plupart des communications sécurisées.</li>
+                <li><strong>DES (Data Encryption Standard)</strong> : Ancien standard, aujourd’hui obsolète.</li>
+                <li><strong>ChaCha20</strong> : Utilisé pour des performances élevées.</li>
+            </ul>
+        
+            <h4>Avantages :</h4>
+            <ul>
+                <li>Rapide et efficace.</li>
+                <li>Requiert peu de ressources.</li>
+            </ul>
+        
+            <h4>Inconvénients :</h4>
+            <ul>
+                <li>La clé doit être partagée en toute sécurité.</li>
+                <li>Si la clé est compromise, toutes les communications sont vulnérables.</li>
+            </ul>
+        
+            <h4>Implémentation du Chiffrement Symétrique en Python</h4>
+            <pre><code class="python">
+        from cryptography.fernet import Fernet
+        
+        # Générer une clé secrète
+        cle_secrete = Fernet.generate_key()
+        cipher = Fernet(cle_secrete)
+        
+        # Chiffrement du message
+        message = "Données confidentielles"
+        message_chiffre = cipher.encrypt(message.encode())
+        
+        # Déchiffrement du message
+        message_dechiffre = cipher.decrypt(message_chiffre).decode()
+        
+        print(f"Message original : {message}")
+        print(f"Message chiffré : {message_chiffre}")
+        print(f"Message déchiffré : {message_dechiffre}")
+            </code></pre>
+        
+            <h3>3. Chiffrement Asymétrique</h3>
+        
+            <h4>Définition</h4>
+            <p>
+                Le chiffrement asymétrique utilise une **paire de clés** : 
+                une clé publique pour chiffrer les messages et une clé privée pour les déchiffrer.
+            </p>
+        
+            <h4>Exemples d’algorithmes :</h4>
+            <ul>
+                <li><strong>RSA (Rivest-Shamir-Adleman)</strong> : Utilisé pour le chiffrement des e-mails et SSL/TLS.</li>
+                <li><strong>ECC (Elliptic Curve Cryptography)</strong> : Plus rapide et sécurisé pour les mobiles.</li>
+            </ul>
+        
+            <h4>Avantages :</h4>
+            <ul>
+                <li>Permet un échange sécurisé sans partager une clé secrète.</li>
+                <li>Utilisé pour les signatures numériques et l’authentification.</li>
+            </ul>
+        
+            <h4>Inconvénients :</h4>
+            <ul>
+                <li>Plus lent que le chiffrement symétrique.</li>
+                <li>Requiert des clés plus grandes pour une sécurité équivalente.</li>
+            </ul>
+        
+            <h4>Implémentation du Chiffrement Asymétrique en Python</h4>
+            <pre><code class="python">
+        from cryptography.hazmat.primitives.asymmetric import rsa
+        from cryptography.hazmat.primitives import serialization
+        from cryptography.hazmat.primitives.asymmetric import padding
+        from cryptography.hazmat.primitives import hashes
+        
+        # Générer une paire de clés
+        cle_privee = rsa.generate_private_key(
+            public_exponent=65537,
+            key_size=2048
+        )
+        cle_publique = cle_privee.public_key()
+        
+        # Chiffrement avec la clé publique
+        message = b"Message secret"
+        message_chiffre = cle_publique.encrypt(
+            message,
+            padding.OAEP(
+                mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                algorithm=hashes.SHA256(),
+                label=None
+            )
+        )
+        
+        # Déchiffrement avec la clé privée
+        message_dechiffre = cle_privee.decrypt(
+            message_chiffre,
+            padding.OAEP(
+                mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                algorithm=hashes.SHA256(),
+                label=None
+            )
+        )
+        
+        print(f"Message chiffré : {message_chiffre}")
+        print(f"Message déchiffré : {message_dechiffre.decode()}")
+            </code></pre>
+        
+            <h3>4. Application : Communication Sécurisée en Réseau</h3>
+        
+            <h4>Scénario :</h4>
+            <p>
+                Un client envoie un message chiffré au serveur. Le serveur déchiffre et répond.
+            </p>
+        
+            <h4>Code du Serveur :</h4>
+            <pre><code class="python">
+        import socket
+        from cryptography.fernet import Fernet
+        
+        # Générer une clé
+        cle_secrete = Fernet.generate_key()
+        cipher = Fernet(cle_secrete)
+        
+        serveur = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        serveur.bind(("127.0.0.1", 12345))
+        serveur.listen(1)
+        
+        print("Serveur en attente...")
+        conn, addr = serveur.accept()
+        message_recu = conn.recv(1024)
+        message_dechiffre = cipher.decrypt(message_recu).decode()
+        
+        print(f"Message reçu : {message_dechiffre}")
+        
+        conn.sendall(cipher.encrypt("Réponse sécurisée".encode()))
+        conn.close()
+        serveur.close()
+            </code></pre>
+        
+            <h4>Code du Client :</h4>
+            <pre><code class="python">
+        import socket
+        from cryptography.fernet import Fernet
+        
+        # Récupérer la clé
+        cipher = Fernet(cle_secrete)
+        
+        client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client.connect(("127.0.0.1", 12345))
+        
+        message = "Données sécurisées"
+        client.sendall(cipher.encrypt(message.encode()))
+        
+        reponse_chiffree = client.recv(1024)
+        reponse = cipher.decrypt(reponse_chiffree).decode()
+        
+        print(f"Réponse du serveur : {reponse}")
+        
+        client.close()
+            </code></pre>
+        
+            <h3>Conclusion</h3>
+            <p>
+                Nous avons exploré les concepts du chiffrement et leur application aux communications réseau.
+                Le chiffrement symétrique est rapide, tandis que l’asymétrique permet des échanges sécurisés sans partage de clé secrète.
+            </p>
+        </section>
+
+        <section id="session80" class="content-section">
+            <h2>Séance 80 : Création et Gestion des Tokens d’Authentification</h2>
+
+            <h3>Objectif Global :</h3>
+            <p>
+                Cette séance a pour but de comprendre ce que sont les <strong>tokens d’authentification</strong>, comment ils fonctionnent et comment les utiliser pour sécuriser une application.
+                Nous allons explorer l’authentification basée sur des tokens, notamment avec le standard <strong>JWT (JSON Web Token)</strong>.
+            </p>
+        
+            <h3>1. Introduction aux Tokens d’Authentification</h3>
+        
+            <h4>Qu’est-ce qu’un Token d’Authentification ?</h4>
+            <p>
+                Un <strong>token d’authentification</strong> est une chaîne de caractères générée pour prouver l’identité d’un utilisateur lors de la connexion à une application.
+                Une fois généré, le token est envoyé au client, qui l’utilise pour accéder aux ressources sécurisées sans avoir à s’authentifier à chaque requête.
+            </p>
+        
+            <h4>Pourquoi Utiliser des Tokens ?</h4>
+            <ul>
+                <li><strong>Stateless :</strong> Contrairement aux sessions classiques, le serveur ne stocke pas d’état de connexion.</li>
+                <li><strong>Sécurisé :</strong> Un token est signé et ne peut pas être modifié sans la clé de signature.</li>
+                <li><strong>Facilité d’intégration :</strong> Utilisé par les API REST, le token permet une authentification entre services.</li>
+            </ul>
+        
+            <h4>Exemples d’Utilisation :</h4>
+            <ul>
+                <li>Authentification des utilisateurs sur une API.</li>
+                <li>Gestion des sessions sans cookies.</li>
+                <li>Autorisation d’accès aux ressources sécurisées.</li>
+            </ul>
+        
+            <h3>2. Introduction à JSON Web Token (JWT)</h3>
+        
+            <h4>Qu’est-ce qu’un JWT ?</h4>
+            <p>
+                Le <strong>JSON Web Token (JWT)</strong> est un format de token sécurisé utilisé pour l’authentification et l’échange d’informations entre deux parties.
+                Il est composé de trois parties encodées en <code>base64</code> :
+            </p>
+            <ul>
+                <li><strong>Header :</strong> Contient le type de token et l’algorithme de signature.</li>
+                <li><strong>Payload :</strong> Contient les informations de l’utilisateur.</li>
+                <li><strong>Signature :</strong> Vérifie l’intégrité du token.</li>
+            </ul>
+        
+            <h4>Schéma d’un JWT :</h4>
+            <pre><code>
+        eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9  // Header
+        .
+        eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFsaWNlIiwiaWF0IjoxNTE2MjM5MDIyfQ  // Payload
+        .
+        SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c  // Signature
+            </code></pre>
+        
+            <h4>Exemple de Payload :</h4>
+            <pre><code class="json">
+        {
+            "sub": "1234567890",
+            "name": "Alice",
+            "iat": 1516239022
+        }
+            </code></pre>
+        
+            <h3>3. Implémentation d’un Système d’Authentification avec JWT (40 min)</h3>
+        
+            <h4>Installation des Bibliothèques :</h4>
+            <p>Nous allons utiliser <code>pyjwt</code> pour générer et valider des JWT en Python.</p>
+            <pre><code class="bash">
+        pip install pyjwt
+            </code></pre>
+        
+            <h4>Génération d’un JWT :</h4>
+            <pre><code class="python">
+        import jwt
+        import datetime
+        
+        SECRET_KEY = "supersecret"
+        
+        def generer_token(utilisateur):
+            """Génère un token JWT pour un utilisateur"""
+            expiration = datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+            payload = {
+                "sub": utilisateur,
+                "exp": expiration,
+                "iat": datetime.datetime.utcnow()
+            }
+            token = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
+            return token
+        
+        # Génération d’un token pour Alice
+        token = generer_token("alice@example.com")
+        print("Token JWT :", token)
+            </code></pre>
+        
+            <h4>Vérification et Décodage d’un JWT :</h4>
+            <pre><code class="python">
+        def verifier_token(token):
+            """Vérifie et décode un token JWT"""
+            try:
+                payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+                return payload
+            except jwt.ExpiredSignatureError:
+                return "Erreur : Token expiré"
+            except jwt.InvalidTokenError:
+                return "Erreur : Token invalide"
+        
+        # Vérification du token
+        print(verifier_token(token))
+            </code></pre>
+        
+            <h3>4. Sécurisation et Bonnes Pratiques (30 min)</h3>
+        
+            <h4>1. Ne Jamais Stocker un Token en Clair</h4>
+            <p>Les tokens doivent être stockés de manière sécurisée, par exemple :</p>
+            <ul>
+                <li>Sur le client : dans <code>localStorage</code> (si HTTPS) ou via un cookie sécurisé.</li>
+                <li>Sur le serveur : uniquement la clé secrète.</li>
+            </ul>
+        
+            <h4>2. Mettre une Expiration aux Tokens</h4>
+            <p>
+                Pour limiter les risques de vol de tokens, on définit une durée de vie courte (ex. 1 heure), et on utilise des tokens de rafraîchissement (<strong>refresh tokens</strong>) pour prolonger l’accès.
+            </p>
+        
+            <h4>3. Signer les Tokens avec une Clé Sécurisée</h4>
+            <p>Utilisez des clés robustes et changez-les régulièrement.</p>
+        
+            <h3>5. Comparaison JWT vs Session Classique</h3>
+        
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th>Critères</th>
+                    <th>JWT</th>
+                    <th>Session classique</th>
+                </tr>
+                <tr>
+                    <td>Stockage</td>
+                    <td>Sur le client</td>
+                    <td>Sur le serveur</td>
+                </tr>
+                <tr>
+                    <td>État du serveur</td>
+                    <td>Stateless (sans état)</td>
+                    <td>Stateful (avec état)</td>
+                </tr>
+                <tr>
+                    <td>Scalabilité</td>
+                    <td>Facile à déployer</td>
+                    <td>Besoin de stocker des sessions</td>
+                </tr>
+                <tr>
+                    <td>Sécurité</td>
+                    <td>Risque si mal sécurisé</td>
+                    <td>Plus contrôlé</td>
+                </tr>
+            </table>
+        
+            <h3>6. Exercice Pratique : Authentification avec Flask et JWT</h3>
+        
+            <h4>Installation :</h4>
+            <pre><code class="bash">
+        pip install flask flask-jwt-extended
+            </code></pre>
+        
+            <h4>Implémentation :</h4>
+            <pre><code class="python">
+        from flask import Flask, jsonify
+        from flask_jwt_extended import create_access_token, jwt_required, JWTManager
+        
+        app = Flask(__name__)
+        app.config["JWT_SECRET_KEY"] = "supersecret"
+        jwt = JWTManager(app)
+        
+        @app.route("/login", methods=["POST"])
+        def login():
+            token = create_access_token(identity="Alice")
+            return jsonify(access_token=token)
+        
+        @app.route("/protected", methods=["GET"])
+        @jwt_required()
+        def protected():
+            return jsonify(message="Accès autorisé")
+        
+        if __name__ == "__main__":
+            app.run(debug=True)
+            </code></pre>
+        
+            <h3>Conclusion</h3>
+            <p>
+                Nous avons appris comment fonctionnent les tokens d’authentification et comment les utiliser pour sécuriser une API.
+            </p>
+        </section>
+
+        <section id="session81" class="content-section">
+            <h2>Séance 81 : Mise en place d’une infrastructure réseau sécurisée</h2>
+
+            <h3>Objectif Global :</h3>
+            <p>
+                Cette séance vise à apprendre comment concevoir et sécuriser une infrastructure réseau. 
+                Les élèves découvriront les principes de la **sécurité des réseaux**, les **bonnes pratiques**, et comment mettre en place une **architecture sécurisée** en entreprise.
+            </p>
+        
+            <h3>1. Introduction à la Sécurité des Réseaux</h3>
+        
+            <h4>Pourquoi sécuriser un réseau ?</h4>
+            <p>
+                Un réseau informatique est exposé à diverses menaces (piratage, vol de données, attaques DDoS, malwares, etc.). Il est essentiel de mettre en place des mesures de sécurité pour protéger les données et garantir la continuité des services.
+            </p>
+        
+            <h4>Principaux Risques :</h4>
+            <ul>
+                <li><strong>Intrusions :</strong> Accès non autorisé aux systèmes.</li>
+                <li><strong>Vol de données :</strong> Piratage des informations sensibles.</li>
+                <li><strong>Attaques DDoS :</strong> Surcharge des serveurs pour les rendre inaccessibles.</li>
+                <li><strong>Malwares :</strong> Virus, ransomwares, chevaux de Troie.</li>
+                <li><strong>Ingénierie sociale :</strong> Tentatives de manipulation pour obtenir des accès (phishing).</li>
+            </ul>
+        
+            <h3>2. Architecture d’un Réseau Sécurisé</h3>
+        
+            <h4>Schéma Typique d’une Infrastructure Réseau Sécurisée :</h4>
+            <p><img src="https://www.it-connect.fr/wp-content-itc/uploads/2021/12/schema-dmz-04.png" alt="Schéma d'une infrastructure réseau sécurisée" width="600"></p>
+            <p><small>Exemple d’une infrastructure réseau sécurisée avec un pare-feu et une zone DMZ.</small></p>
+            <p><small><a href="https://www.it-connect.fr/informatique-cest-quoi-une-dmz/" target="_blank">Lien du graphique</a></small></p>
+        
+            <h4>Composants Clés :</h4>
+            <ul>
+                <li><strong>Pare-feu (Firewall) :</strong> Filtre le trafic entrant et sortant pour bloquer les connexions suspectes.</li>
+                <li><strong>DMZ (Zone Démilitarisée) :</strong> Espace sécurisé entre le réseau interne et Internet (utilisé pour les serveurs web, mail, etc.).</li>
+                <li><strong>VLAN (Virtual LAN) :</strong> Sépare logiquement les services pour limiter les accès entre machines.</li>
+                <li><strong>VPN (Virtual Private Network) :</strong> Permet aux utilisateurs distants de se connecter en toute sécurité.</li>
+                <li><strong>Serveurs sécurisés :</strong> Hébergent les applications sensibles avec des contrôles d’accès stricts.</li>
+            </ul>
+        
+            <h3>3. Bonnes Pratiques pour Sécuriser un Réseau</h3>
+        
+            <h4>Contrôle des Accès</h4>
+            <ul>
+                <li>Utiliser des mots de passe robustes et l’authentification multifactorielle (MFA).</li>
+                <li>Restreindre les accès aux ressources sensibles (serveurs, bases de données).</li>
+                <li>Appliquer le principe du **moindre privilège** (limiter les droits utilisateurs au strict nécessaire).</li>
+            </ul>
+        
+            <h4>Mise en Place d’un Pare-feu</h4>
+            <ul>
+                <li>Bloquer tout trafic non essentiel.</li>
+                <li>Autoriser uniquement les ports et protocoles nécessaires.</li>
+                <li>Mettre en place des règles spécifiques pour les applications internes.</li>
+            </ul>
+        
+            <h4>Chiffrement des Communications</h4>
+            <ul>
+                <li>Utiliser HTTPS (TLS) pour sécuriser les échanges web.</li>
+                <li>Configurer un VPN pour les connexions à distance.</li>
+                <li>Activer le chiffrement des emails sensibles.</li>
+            </ul>
+        
+            <h4>Surveillance et Journalisation</h4>
+            <ul>
+                <li>Surveiller les connexions suspectes via un IDS (Intrusion Detection System).</li>
+                <li>Analyser les logs des pare-feu et serveurs régulièrement.</li>
+                <li>Mettre en place une alerte en cas d’anomalies.</li>
+            </ul>
+        
+            <h3>4. Exercice Pratique : Mise en Place d’un Pare-feu avec Iptables</h3>
+        
+            <h4>Configuration de Base :</h4>
+            <pre><code class="bash">
+        # Autoriser uniquement les connexions SSH (port 22), HTTP (port 80), et HTTPS (port 443)
+        sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+        sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+        sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+        
+        # Bloquer tout le reste
+        sudo iptables -P INPUT DROP
+        sudo iptables -P FORWARD DROP
+        sudo iptables -P OUTPUT ACCEPT
+        
+        # Sauvegarder la configuration
+        sudo iptables-save > /etc/iptables/rules.v4
+            </code></pre>
+        
+            <h4>Test :</h4>
+            <pre><code class="bash">
+        # Vérifier les règles appliquées
+        sudo iptables -L -v
+            </code></pre>
+        
+            <h3>5. Exercice Pratique : Mise en Place d’un VPN avec OpenVPN</h3>
+        
+            <p>
+                Un VPN permet de créer un tunnel sécurisé entre un utilisateur distant et le réseau interne d’une entreprise. Voici un aperçu de l’installation d’OpenVPN :
+            </p>
+        
+            <h4>Installation d’OpenVPN :</h4>
+            <pre><code class="bash">
+        # Installation d’OpenVPN
+        sudo apt update && sudo apt install openvpn -y
+            </code></pre>
+        
+            <h4>Démarrage du Service :</h4>
+            <pre><code class="bash">
+        # Lancer OpenVPN
+        sudo systemctl start openvpn
+        sudo systemctl enable openvpn
+            </code></pre>
+        
+            <h3>6. Surveillance du Réseau avec Wireshark</h3>
+        
+            <p>
+                Wireshark est un outil d’analyse du trafic réseau qui permet de détecter les anomalies et les attaques potentielles.
+            </p>
+        
+            <h4>Installation :</h4>
+            <pre><code class="bash">
+        sudo apt install wireshark
+            </code></pre>
+        
+            <h4>Capture de Trafic :</h4>
+            <pre><code class="bash">
+        sudo wireshark
+            </code></pre>
+        
+            <h3>7. Conclusion</h3>
+            <p>
+                Cette séance a permis d’explorer les **fondamentaux de la sécurité des réseaux**, avec des pratiques concrètes comme la mise en place d’un pare-feu, d’un VPN et l’analyse du trafic réseau.
+            </p>
+            <ul>
+                <li>Les infrastructures réseau doivent être sécurisées avec des <strong>pare-feu</strong> et des <strong>contrôles d’accès</strong>.</li>
+                <li>Le <strong>chiffrement</strong> est essentiel pour protéger les communications.</li>
+                <li>Les outils comme <strong>Wireshark</strong> permettent de surveiller l’activité du réseau et détecter les menaces.</li>
+            </ul>
+        
+            <h3>Défi pour Aller Plus Loin :</h3>
+            <p>
+                Les élèves doivent créer un script qui :
+            </p>
+            <ul>
+                <li>Ajoute automatiquement des règles de pare-feu adaptées à leur réseau.</li>
+                <li>Vérifie si un utilisateur se connecte avec un VPN.</li>
+                <li>Génère un rapport d’activité du réseau.</li>
+            </ul>
+        </section>
+
         <section id="adefinir" class="content-section">
             <h2>Séance en cours de construction</h2>
         </section>
@@ -13966,12 +15002,12 @@ print(cat.speak())  # "Meow!"
             'Séance 73 : Introduction aux protocoles réseau (TCP, UDP, IP) et modèle OSI',
             'Séance 74 : Les adresses IP et le routage',
             'Séance 75 : Protocole HTTP et API REST',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
+            'Séance 76 : Modèle Client-Serveur et P2P (Peer-to-Peer)',
+            'Séance 77 : Sécurisation des échanges réseau avec SSL/TLS.',
+            'Séance 78 : Analyse des Attaques Réseau (DoS, Man-in-the-Middle)',
+            'Séance 79 : Utilisation des Algorithmes de Chiffrement dans les Applications Réseau',
+            'Séance 80 : Création et Gestion des Tokens d’Authentification',
+            'Séance 81 : Mise en place d’une infrastructure réseau sécurisée',
             '',
             '',
             '',
