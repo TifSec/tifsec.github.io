@@ -2367,11 +2367,32 @@
                 <div style="padding-left: 20px;">
                     <ul>
                         <li>La première feuille regroupe les données brut (nom de la feuille → données_brut)</li>
-                        <li>la deuxième feuille sera pour les données travaillées (nom de la feuille → données_travail)</li>
+                        <li>La deuxième feuille sera pour les données travaillées (nom de la feuille → données_travail)</li>
+                        <li>La troisième feuille sera pour les différents tableaux et graphiques (nom de la feuille → réponse)</li>
+                        <li>Le reste devra être écrit directement sur le sujet</li>
                     </ul>
                 </div>
                 <br>
                 <li>Mettre en qualité les données (convertir les points en virgules, supprimer les données inutiles [Code INSEE département, Département, etc.]), et faire apparaître votre tableau.</li>
+                <div style="padding-left: 40px;">
+                    <ul>
+                        <li>Pour cette partie, il va falloir copier les données à partir de la feuille (donées_brut) vers la feuille (données_travail) et les mettre en forme.</li>
+                        <li>Pour ce faire :</li>
+                        <li>Selectionner toutes les données (CTRL + A)</li>
+                        <li>Dans le menu "Données" -> plus de filtres -> filtres standards</li>
+                        <li>Dans la colonne "Nom de champ" -> Choisir "Département"</li>
+                        <li>Dans la colonne "Condition" -> On peux laisser "="</li>
+                        <li>Dans la colonne "Valeur" -> On écris "Cantal" (attention a la casse, c'est à dire, respect des majuscules et des minuscules)</li>
+                        <li>Appuyer sur le "+" à côté d'"Options", afin de faire apparaitre le reste de la fenêtre</li>
+                        <li>Laisser coché la case "La plage contient des étiquettes de colonne"</li>
+                        <li>Cocher la case "Copier le résultat vers :", cela va permettre d'éditer le champ du dessous</li>
+                        <li>Appuyer sur le bouton tout à droite du champ (Réduire)</li>
+                        <li>Aller sur la feuille "donnée_travail" et selectionner la première cellule (A1)</li>
+                        <li>Votre champs devrait contenir quelque chose comme : "$données_travail.$A$1"</li>
+                        <li>Cliquer à nouveau sur le bouton à droite du champs, ça va faire apparaitre le menu à nouveau</li>
+                        <li>Cliquer sur "OK" pour finir, vos données seront copié dans la nouvelle feuille, et seulement les données du Cantal.</li>
+                    </ul>
+                </div>
                 <br>
                 <li>Analyse des températures :</li>
                 <br>
@@ -2381,7 +2402,17 @@
                         <div style="padding-left: 60px;">
                             <ul>
                                 <li>Ajouter une colonne « année » et extraire l’année de la date</li>
+                                <div style="padding-left: 80px;">
+                                    <ul>
+                                        <li>Pour extraire l'année, il faut utiliser la formule "=ANNEE()"</li>
+                                    </ul>
+                                </div>
                                 <li>Ajouter une colonne « mois » et extraire le mois de la date</li>
+                                <div style="padding-left: 80px;">
+                                    <ul>
+                                        <li>Pour extraire l'année, il faut utiliser la formule "=MOIS()"</li>
+                                    </ul>
+                                </div>
                             </ul>
                         </div>
                         <br>
@@ -2389,12 +2420,33 @@
                         <div style="padding-left: 60px;">
                             <ul>
                                 <li>Créer un tableau récapitulatif avec une ligne par année</li>
-                                <li>Insérer une colonne pour la moyenne des températures minimales et la remplir</li>
-                                <li>Insérer une colonne pour la moyenne des températures maximales et la remplir</li>
-                                <li>Insérer une colonne pour la moyenne des températures moyennes et la remplir</li>
-                                <li>Insérer une colonne pour comptabiliser les jours de gel (inférieur à 0 °C) et la remplir</li>
-                                <li>Insérer une colonne pour comptabiliser les jours de canicule (supérieur à 30 °C) et la remplir</li>
+                                <div style="padding-left: 80px;">
+                                    <ul>
+                                        <li>Pour ce faire, vous allez utiliser la formule "UNIQUE()"</li>
+                                        <li>Vous allez mettre entre les parenthèse, la colonne "Année" de la feuille "Données_travail"</li>
+                                    </ul>
+                                </div>
+                                <li>Insérer une colonne pour la moyenne des températures minimales et la remplir (Nom colonne -> Moyenne T° Min)</li>
+                                <li>Insérer une colonne pour la moyenne des températures maximales et la remplir (Nom colonne -> Moyenne T° Max)</li>
+                                <li>Insérer une colonne pour la moyenne des températures moyennes et la remplir (Nom colonne -> Moyenne T° Moy)</li>
+                                <li>Insérer une colonne pour comptabiliser les jours de gel (inférieur à 0 °C) et la remplir (Nom colonne -> Jours de Gel)</li>
+                                <li>Insérer une colonne pour comptabiliser les jours de canicule (supérieur à 30 °C) et la remplir (Nom colonne -> Jours de Canicule)</li>
                                 <li>Afficher le nombre de jours total de gel et le nombre de jours total de canicule</li>
+                                <div style="padding-left: 80px;">
+                                    <li>Pour ce faire, il va falloir ajouter 2 nouvelles colonnes dans la feuille "Données_travail"</li>
+                                    <li>La première colonne pour les jours de gel (Nom colonne -> Jours de Gel)</li>
+                                    <li>Utilisez la formule "SI()" pour marquer une température inférieur à 0 (1 si vrai, 0 si faux)</li>
+                                    <li>La deuxième colonne pour les jours de canicule (Nom colonne -> Jours de Canicule)</li>
+                                    <li>Utilisez la formule "SI()" pour marquer une température supérieur à 30 (1 si vrai, 0 si faux)</li>
+                                    <li>Ensuite, vous devrez utiliser la formule "SOMME.SI()" dans le tableau de la feuille "Réponses"</li>
+                                    <li>La formule fonctionne de la manière suivante :</li>
+                                    <li>Le premier paramètre est pour la plage de données qui sera traité, ici, nous voulons la somme des jours par années, donc la colonne "Année"</li>
+                                    <li>Le deuxième paramètre est pour la données à chercher, ici, l'année</li>
+                                    <li>Le troisième paramètre est pour la valeur dont vous devez faire la somme, ici, les jours de gel / canicule</li>
+                                    <li>Vous aurez quelque chose comme : "SOMME.SI('Données_travail'.E:E;RéponseA2;'Données_travail'.G:G)"</li>
+                                </div>
+                                <li>Pour finir, a la fin de votre tableau, ajouter une ligne pour afficher le nombre de jour de gel / canicule total, sur la période (2018-2024)</li>
+                            </ul>
                         </div>
                         <br>
                         <li>Faire ressortir visuellement les informations</li>
