@@ -10435,6 +10435,12 @@ for i in range(len(scores)):
                 </li>
                 <li>Quel choix d'objets maximise la valeur totale sans dépasser 50 kg ?</li>
             </ul>
+
+            <h3>Quel est le but de cet algorithme ?</h3>
+
+            <p>
+                Le but de l'algorithme glouton pour le problème du sac à dos fractionnaire est de maximiser la valeur totale des objets placés dans un sac à dos, tout en respectant une contrainte de capacité (poids maximal). Il fonctionne en prenant en priorité les objets ayant le meilleur rapport valeur/poids, quitte à ne prendre qu'une fraction de l'objet si la capacité restante ne permet pas de le prendre en entier. Cette approche est efficace et optimale dans le cas fractionnaire, mais peut être sous-optimale dans la version classique (non-fractionnaire).
+            </p>
         
             <h3>Étape 1 : Approche gloutonne pour le sac fractionnaire</h3>
             <p>
@@ -10465,15 +10471,54 @@ for i in range(len(scores)):
         
             <h4>Explications :</h4>
             <ul>
+                <li>
+                    Détail des composants
+                    <ul style="margin-left: 40px;">
+                        <li>
+                            <b>sorted(objets, ...)</b>
+                            <br>
+                            Cette fonction retourne une nouvelle liste triée à partir de la liste objets.
+                        </li>
+                        <li>
+                            <b>key=lambda x: x[0] / x[1]</b>
+                            <br>
+                            On fournit une fonction lambda (une fonction anonyme) qui indique sur quoi trier les éléments.
+                            <br>
+                            Ici, x est un élément de la liste objets, donc un tuple (valeur, poids).
+                            <br><br>
+                            x[0] = valeur de l'objet
+                            <br><br>
+                            x[1] = poids de l'objet
+                            <br><br>
+                            Donc x[0] / x[1] = valeur par unité de poids
+                            <br><br>
+                            On trie donc les objets selon leur rentabilité.
+                        </li>
+                        <li>
+                            <b>reverse=True</b>
+                            <br>
+                            Ceci indique qu’on veut un tri décroissant, donc du plus rentable au moins rentable.
+                        </li>
+                    </ul>
+                </li>
                 <li><strong>Tri :</strong> Les objets sont triés par leur ratio valeur/poids.</li>
                 <li><strong>Fractionnement :</strong> Si un objet dépasse la capacité restante, on prend une fraction de cet objet.</li>
             </ul>
         
             <h3>Exercices pratiques</h3>
             <ol>
-                <li>Ajoutez un nouvel objet avec une valeur et un poids différents et testez le programme.</li>
-                <li>Changez la capacité du sac à dos et observez les résultats.</li>
-                <li>Essayez de résoudre le problème manuellement avec les mêmes données.</li>
+                <li>
+                    Ajoutez un nouvel objet avec une valeur et un poids différents et testez le programme.
+                </li>
+                <li>
+                    Changez la capacité du sac à dos et observez les résultats.
+                </li>
+                <li>
+                    Pouvez-vous construire un jeu de données (au moins 3 objets) pour lequel l'algorithme glouton ne donne pas le résultat optimal, même en version fractionnaire ? Expliquez pourquoi.
+                </li>
+                <li>
+                    Proposez un scénario réaliste (autre que des objets physiques) où on pourrait appliquer un algorithme glouton semblable. Décrivez les "objets", leur "valeur" et leur "poids" dans votre contexte.
+                </li>
             </ol>
         
             <h3>Étape 2 : Identifier les limites</h3>
@@ -10488,8 +10533,91 @@ for i in range(len(scores)):
                 La méthode gloutonne choisirait l'objet 1 (90/10 = 9), mais l'optimum serait de prendre l'objet 2.
             </p>
         
-            <h3>Activité de groupe</h3>
-            <p>En binôme, créez une liste d'objets avec des valeurs et des poids, puis échangez avec un autre groupe pour résoudre leur problème.</p>
+            <h3>Recherches</h3>
+            <ul>
+                <li>
+                    <b>Version non-fractionnaire</b> : Recherchez des stratégies pour résoudre le problème du sac à dos sans fractionnement. Quels algorithmes peuvent être utilisés ?
+                </li>
+                <li>
+                    <b>Programmation dynamique</b> : Qu'est-ce que c'est ? Pourquoi est-elle adaptée aux problèmes d'optimisation comme le sac à dos ? Trouvez un exemple simple.
+                </li>
+                <li>
+                    <b>Complexité algorithmique</b> : Quelle est la complexité du problème du sac à dos ? Pourquoi est-ce un problème difficile ? Qu'est-ce qu'un problème NP-complet ?
+                </li>
+                <li>
+                    <b>Autres problèmes liés</b> : Identifiez un autre problème d'optimisation (hors sac à dos) résolu avec des méthodes similaires. En quoi est-il comparable ?
+                </li>
+            </ul>
+            <!-- <div>
+                ✅ 1. Version non-fractionnaire : stratégies et algorithmes
+                Problème : On ne peut plus prendre une fraction d’un objet. Chaque objet est soit pris en entier, soit ignoré.
+
+                Stratégies possibles :
+
+                Programmation dynamique : approche la plus utilisée, elle permet d’explorer efficacement toutes les combinaisons possibles en mémorisant les sous-problèmes déjà résolus.
+
+                Recherche exhaustive (brute force) : tester toutes les combinaisons d’objets possibles. Très coûteux en temps de calcul.
+
+                Approche gloutonne (non optimale) : bien qu’elle fonctionne pour la version fractionnaire, elle peut donner un résultat sous-optimal ici.
+
+                Méthodes approximatives ou heuristiques : utiles quand on a beaucoup d’objets (ex. : algorithmes génétiques, recherche locale).
+
+                ✅ 2. Programmation dynamique : définition et exemple
+                Définition : La programmation dynamique est une méthode algorithmique qui résout des problèmes en les décomposant en sous-problèmes qui se répètent, en mémorisant les résultats intermédiaires pour ne pas les recalculer.
+
+                Pourquoi est-elle adaptée ? Le problème du sac à dos présente des choix multiples avec des redondances (les mêmes sous-ensembles apparaissent plusieurs fois). La programmation dynamique évite les recalculs inutiles et garantit une solution optimale.
+
+                Exemple simple (pseudo-code) :
+
+                python
+                Copier
+                Modifier
+                # poids_max : capacité du sac
+                # objets : liste de (valeur, poids)
+                # dp[i][w] : valeur maximale avec les i premiers objets et une capacité w
+
+                for i in range(n+1):
+                    for w in range(poids_max+1):
+                        if i == 0 or w == 0:
+                            dp[i][w] = 0
+                        elif objets[i-1][1] <= w:
+                            dp[i][w] = max(objets[i-1][0] + dp[i-1][w - objets[i-1][1]], dp[i-1][w])
+                        else:
+                            dp[i][w] = dp[i-1][w]
+                ✅ 3. Complexité algorithmique du problème du sac à dos
+                Le problème du sac à dos non-fractionnaire est NP-complet.
+
+                Cela signifie qu’il est très difficile à résoudre de manière efficace (en temps polynomial) pour de grandes instances.
+
+                Il n’existe pas d’algorithme connu qui soit rapide pour tous les cas (sauf si P=NP).
+
+                Pourquoi est-ce difficile ?
+
+                Le nombre de combinaisons possibles d’objets est exponentiel (2^n).
+
+                Il faut tester de nombreuses combinaisons pour être sûr de trouver la meilleure solution.
+
+                ✅ 4. Autres problèmes liés
+                Problème comparable : Problème du voyageur de commerce (TSP)
+
+                Définition : Trouver le plus court chemin pour visiter une série de villes une seule fois et revenir au point de départ.
+
+                Points communs avec le sac à dos :
+
+                Optimisation d’un critère (distance, valeur, etc.).
+
+                Grand nombre de combinaisons possibles.
+
+                Résolu par des approches similaires : programmation dynamique, approches exactes, heuristiques, gloutons.
+
+                Autres exemples possibles :
+
+                Problème d’affectation
+
+                Problème de partition
+
+                Problème de couverture de sommets
+            </div> -->
         </section>
 
         <section id="session48" class="content-section">
@@ -10557,22 +10685,135 @@ for i in range(len(scores)):
             </pre>
         
             <h3>Exercices pratiques</h3>
-            <ol>
-                <li>Ajoutez un nouvel objet et observez comment cela modifie les résultats.</li>
-                <li>Changez la capacité du sac et testez à nouveau.</li>
-                <li>Essayez de résoudre le problème manuellement pour de petites instances.</li>
-            </ol>
-        
-            <h3>Activité de groupe</h3>
-            <p>
-                En binôme, écrivez une table pour résoudre un problème avec 4 objets et une capacité de 10. Comparez vos résultats avec ceux de vos camarades.
-            </p>
-        
-            <h3>Conclusion</h3>
-            <p>
-                La programmation dynamique garantit une solution optimale pour le problème classique du sac à dos, mais elle peut être coûteuse en mémoire et en temps. 
-                Il est important de bien choisir la méthode selon le problème.
-            </p>
+            <pre style="background-color: transparent; color: black;">
+                Manipulation de données
+                Ajoutez un nouvel objet à la liste (par exemple (70, 15)) et observez comment cela modifie la valeur maximale et les objets sélectionnés.
+
+                Modifiez la capacité du sac à 40, 60, puis 100. Que se passe-t-il ?
+
+                Supprimez un objet et prévoyez l’impact avant d’exécuter. Vérifiez ensuite.
+
+                Résolution manuelle
+                objets = [(20, 4), (40, 6), (60, 10)]
+                capacite = 10
+
+                → Créez la table table[i][w] sur word et déduisez les objets pris.
+
+                Recherches
+                Pourquoi utilise-t-on la programmation dynamique ici ? Rédiger une réponse argumentée (efficacité, récursivité, stockage).
+
+                Comparer avec la version fractionnaire du problème. Expliquer pourquoi la solution diffère (lien avec la séance précédente).
+
+                Quels types de problèmes réels peuvent être modélisés par le problème du sac à dos ? (planification, investissement, logistique...) → à rechercher par binômes et à présenter en 3 minutes.
+
+                Défi code
+                Modifiez le programme pour :
+
+                Afficher le tableau table sous forme lisible.
+
+                Colorier (ou marquer) les cellules utilisées pour le calcul de la solution optimale.
+
+                Ajouter un système de nom pour les objets, ex : [('épée', 60, 10), ('potion', 100, 20)]
+
+                Bonus réflexion
+                Peut-on résoudre ce problème sans tableau en utilisant une stratégie récursive ? Pourquoi est-ce inefficace ?
+            </pre>
+
+            <!-- <div>
+                🧪 Manipulation de données
+                ✅ Ajout de l’objet (70, 15)
+                Liste originale : [(60, 10), (100, 20), (120, 30)]
+                Ajout : (70, 15)
+                Capacité : 50
+
+                Valeur maximale sans l’objet : 220 (objets (100, 20) + (120, 30))
+                Valeur maximale avec l’objet : 230 (objets (100, 20) + (70, 15) + (60, 10) → trop lourd, donc non pris ensemble)
+
+                Objets pris (optimaux) : (120, 30) + (100, 20)
+                ✅ Conclusion : L’objet ajouté n’est pas sélectionné, car moins intéressant que les deux plus gros.
+
+                ✅ Modifier la capacité
+                Capacité 40 → valeur maximale = 160 (objets (100, 20) + (60, 10))
+
+                Capacité 60 → valeur maximale = 280 (tous les objets sauf le plus léger : (100, 20) + (120, 30) + (60, 10) → trop lourd ensemble)
+
+                Capacité 100 → on peut tout prendre, mais la combinaison optimale reste la même, car le poids total des 4 objets dépasse 100.
+
+                ✅ Supprimer un objet
+                Supposons qu’on supprime (100, 20) :
+
+                Capacité 50
+
+                Liste restante : (60, 10), (120, 30), (70, 15)
+
+                Valeur maximale : 190 ((70, 15) + (120, 30))
+
+                Conclusion : Supprimer un objet important (comme le plus rentable) fait baisser la valeur maximale.
+
+                📝 Résolution manuelle
+                Données : objets = [(20, 4), (40, 6), (60, 10)], capacite = 10
+
+                i\w	0	1	2	3	4	5	6	7	8	9	10
+                0	0	0	0	0	0	0	0	0	0	0	0
+                1	0	0	0	0	20	20	20	20	20	20	20
+                2	0	0	0	0	20	20	40	40	40	40	60
+                3	0	0	0	0	20	20	40	40	40	40	60
+                ➡️ Valeur max = 60, objets pris : (60, 10)
+
+                🔍 Recherches
+                ✅ Pourquoi utiliser la programmation dynamique ?
+                Elle évite de recalculer les mêmes sous-problèmes (contrairement à la récursion brute).
+
+                Elle permet de résoudre efficacement des problèmes combinatoires comme celui-ci en temps polynomial.
+
+                Elle utilise une table mémoire pour stocker les solutions intermédiaires.
+
+                ✅ Comparaison avec la version fractionnaire
+                Fractionnaire : on peut prendre une partie d’un objet → tri par rapport valeur/poids → solution gloutonne.
+
+                Classique : on prend les objets en entier → une solution gloutonne peut être sous-optimale.
+
+                Exemple :
+
+                Valeurs/poids = (100, 20), (60, 10), (120, 30)
+
+                Fractionnaire : on prend 2 objets pleins et une fraction du 3e
+
+                Classique : pas possible → on optimise autrement (programmation dynamique).
+
+                ✅ Problèmes réels modélisables
+                Choix d’équipements en randonnée (sac à dos réel !)
+
+                Répartition budgétaire : comment investir avec un budget limité
+
+                Logistique : chargement optimal de camions
+
+                Planification de tâches limitées dans le temps ou en ressources
+
+                👨‍💻 Défi code
+                ✅ Affichage lisible de la table :
+                python
+                Copier
+                Modifier
+                for ligne in table:
+                    print(ligne)
+                ✅ Marquer les cellules utilisées :
+                Ajouter un second tableau ou insérer un symbole (*) dans les cellules faisant partie du chemin de la solution.
+
+                ✅ Ajouter des noms aux objets :
+                python
+                Copier
+                Modifier
+                objets = [("épée", 60, 10), ("potion", 100, 20), ("bouclier", 120, 30)]
+                # Adaptation du code :
+                valeur, poids = objets[i - 1][1], objets[i - 1][2]
+                💭 Bonus réflexion
+                Peut-on résoudre ce problème sans tableau en utilisant une stratégie récursive ? Pourquoi est-ce inefficace ?
+
+                Oui, on peut utiliser une fonction récursive qui essaye toutes les combinaisons d’objets.
+                Mais cette méthode a une complexité exponentielle (2^n), donc devient vite très lente dès qu’il y a plus de 20 objets.
+                ➡️ La programmation dynamique évite ça en mémorisant les résultats intermédiaires.
+            </div> -->
         </section>
 
         <section id="session49" class="content-section">
