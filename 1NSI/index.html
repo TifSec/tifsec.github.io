@@ -11109,6 +11109,114 @@ for i in range(len(scores)):
                 <li><code>if choix == "1":</code> : Si l'utilisateur choisit de se déplacer à gauche, le serveur modifie la position du joueur en soustrayant 1 de la coordonnée x (<code>position_joueur[0]</code>).</li>
                 <li><code>break</code> : Le programme sort de la boucle si le joueur choisit "0" pour quitter.</li>
             </ul>
+
+            <h3>Avant d'aller plus loin</h3>
+
+            <pre style="background-color: white; color: black;">
+                <h3>Présentation du modèle TCP/IP</h3>
+                <h4>Qu'est-ce que TCP/IP ?</h4>
+                <p>
+                    TCP/IP est comme le langage que les ordinateurs utilisent pour communiquer entre eux sur Internet.
+                    Les couches du modèle TCP/IP :
+
+                    Couche Application :
+
+                    C'est là où les applications (comme votre navigateur web ou une application de messagerie) interagissent avec le réseau.
+                    Exemple : Quand vous envoyez un email, c'est cette couche qui prépare le message.
+                    Couche Transport :
+
+                    Elle s'assure que les données arrivent correctement à destination.
+                    Elle utilise des protocoles comme TCP (Transmission Control Protocol) pour garantir que les données ne sont pas perdues.
+                    Couche Internet :
+
+                    Elle gère l'adressage et le routage des paquets de données.
+                    Elle utilise les adresses IP pour identifier les appareils sur le réseau.
+                    Couche Accès réseau :
+
+                    Elle gère la transmission physique des données sur le réseau.
+                    C'est comme les câbles Ethernet ou les ondes Wi-Fi qui transportent les données.
+                    Adresses IP
+                    Qu'est-ce qu'une adresse IP ?
+
+                    Une adresse IP est comme une adresse postale pour les ordinateurs sur un réseau.
+                    Elle permet d'identifier chaque appareil connecté à Internet.
+                    Comment obtenir l'adresse IP locale ?
+
+                    Vous pouvez trouver l'adresse IP locale de votre ordinateur en utilisant des commandes comme ipconfig sur Windows ou ifconfig sur macOS/Linux.
+                    Phase 2 : Création d'un serveur en Python
+                    Qu'est-ce qu'un serveur ?
+
+                    Un serveur est un programme qui attend et répond aux demandes des clients.
+                    Créer un serveur TCP simple :
+
+                    Nous allons utiliser Python pour créer un serveur qui écoute sur une adresse IP et un port spécifiques.
+                </p>
+            </pre>
+            <pre><code>
+                import socket
+
+                # Créer un socket TCP/IP
+                server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+                # Lier le socket à une adresse IP et un port
+                server_address = ('127.0.0.1', 65432)  # '127.0.0.1' est l'adresse locale
+                server_socket.bind(server_address)
+
+                # Écouter les connexions entrantes
+                server_socket.listen(1)
+
+                print(f"Le serveur écoute sur {server_address}")
+
+                while True:
+                    # Attendre une connexion
+                    connection, client_address = server_socket.accept()
+                    try:
+                        print(f"Connexion établie avec {client_address}")
+
+                        # Recevoir les données
+                        data = connection.recv(1024)
+                        print(f"Données reçues : {data.decode()}")
+
+                        # Envoyer une réponse
+                        connection.sendall(b"Message reçu")
+
+                    finally:
+                        # Fermer la connexion
+                        connection.close()
+            </pre></code>
+            <pre style="background-color: white; color: black;">
+            <h3>Phase 3 : Création d'un client en Python</h3>
+            <h4>Qu'est-ce qu'un client ?</h4>
+            <p>
+                Un client est un programme qui envoie des demandes à un serveur.
+                Créer un client TCP simple :
+
+                Nous allons utiliser Python pour créer un client qui se connecte au serveur et envoie des données.
+            </p>
+            </pre>
+            <pre><code>
+                import socket
+
+                # Créer un socket TCP/IP
+                client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+                # Se connecter au serveur
+                server_address = ('127.0.0.1', 65432)  # Remplacez par l'adresse IP du serveur
+                client_socket.connect(server_address)
+
+                try:
+                    # Envoyer des données
+                    message = "Bonjour, serveur !"
+                    client_socket.sendall(message.encode())
+
+                    # Recevoir la réponse
+                    data = client_socket.recv(1024)
+                    print(f"Réponse du serveur : {data.decode()}")
+
+                finally:
+                    # Fermer la connexion
+                    client_socket.close()
+            </pre></code>
         
             <h4>2. Personnalisez le Programme :</h4>
             <p>Ajoutez plus d'options, comme la possibilité de ramasser des objets ou de combattre des ennemis.</p>
