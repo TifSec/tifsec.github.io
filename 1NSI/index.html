@@ -12142,6 +12142,101 @@ for i in range(len(scores)):
             Cette formule s'applique à chaque lettre du message. Le déchiffrement consiste à faire l'opération inverse.</p>
         
             <h3>3. Activité Pratique : Implémenter le Chiffrement de César</h3>
+            <h4>Avant de commencer :</h4>
+            <p>
+                Nous allons tenter de mettre en place un système de communication direct entre deux joueurs dans un jeu vidéo.
+                Chaque joueur pourra envoyer des messages chiffrés à l'autre joueur, qui pourra les déchiffrer à l'aide d'une clé de chiffrement, puis vous devrez implémenter 
+                un système de déchiffrement pour lire les messages reçus et pour les déchiffrer.
+            </p>
+            <h5>Serveur (recepteur) -> un seul élève</h5>
+            <pre>
+                <code>
+import socket
+import threading
+
+HOST = '0.0.0.0'
+PORT = 12345
+
+clients = []
+
+def broadcast(message, sender_socket):
+    for client in clients:
+        if client != sender_socket:
+            try:
+                client.send(message)
+            except:
+                clients.remove(client)
+
+def handle_client(client_socket):
+    while True:
+        try:
+            message = client_socket.recv(1024)
+            broadcast(message, client_socket)
+        except:
+            clients.remove(client_socket)
+            break
+
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind((HOST, PORT))
+server.listen(5)
+print("Serveur lancé, en attente de connexions...")
+
+while True:
+    client_socket, addr = server.accept()
+    print(f"Connexion de {addr}")
+    clients.append(client_socket)
+    thread = threading.Thread(target=handle_client, args=(client_socket,))
+    thread.start()
+                </code>
+            </pre>
+            <h5>Client (émetteur) -> tous les élèves</h5>
+            <pre>
+                <code>
+   import socket
+import threading
+
+def cesar_chiffrer(message, decalage):
+    resultat = ""
+    for c in message:
+        if c.isalpha():
+            base = ord('A') if c.isupper() else ord('a')
+            resultat += chr((ord(c) - base + decalage) % 26 + base)
+        else:
+            resultat += c
+    return resultat
+
+def cesar_dechiffrer(message, decalage):
+    return cesar_chiffrer(message, -decalage)
+
+def recevoir_messages(sock):
+    while True:
+        try:
+            data = sock.recv(1024).decode()
+            print("\nMessage reçu :", data)
+            cle = int(input("Clé pour déchiffrer : "))
+            print("Message déchiffré :", cesar_dechiffrer(data, cle))
+        except:
+            print("Déconnecté du serveur.")
+            break
+
+HOST = input("Adresse IP du serveur : ")
+PORT = 12345
+pseudo = input("Ton prénom : ")
+
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect((HOST, PORT))
+
+# Démarre le thread de réception
+thread = threading.Thread(target=recevoir_messages, args=(client,))
+thread.start()
+
+while True:
+    message = input("Ton message : ")
+    cle = int(input("Clé de chiffrement : "))
+    message_chiffre = cesar_chiffrer(f"[{pseudo}] {message}", cle)
+    client.send(message_chiffre.encode())
+                </code>
+            </pre>
             <h4>Objectif de l'activité :</h4>
             <p>Écrire un programme qui permet de chiffrer et de déchiffrer des messages en utilisant le chiffrement de César. Ce programme simulera l'échange sécurisé de messages entre joueurs dans un jeu vidéo.</p>
         
