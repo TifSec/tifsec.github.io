@@ -312,14 +312,14 @@
     <main id="content">
         <!-- Calendrier -->
         <section id="calendar" class="content-section">
-            <h2>Calendrier NSI 1ere - 2024/2025</h2>
+            <h2>Calendrier NSI 1ere - 2025/2026</h2>
             <table class="calendar">
                 <thead>
                     <tr>
-                        <th>Date Jeudi</th>
-                        <th>Cours Jeudi</th>
-                        <th>Date Vendredi</th>
-                        <th>Cours Vendredi</th>
+                        <th>Date Mardi</th>
+                        <th>Cours Mardi</th>
+                        <th>Date Mercredi</th>
+                        <th>Cours Mercredi</th>
                     </tr>
                 </thead>
                 <tbody id="calendar-body">
@@ -16076,27 +16076,28 @@ while True:
     </main>
 
     <!-- <footer>
-        <p>&copy; 2024 Programme NSI 1ere</p>
+        <p>&copy; Programme NSI 1ere</p>
     </footer> -->
 
     <script>
         const holidays = {
-            '2024-11-11': 'Armistice 1918',
-            '2024-12-25': 'Noël',
-            '2025-01-01': 'Jour de l\'An',
-            '2025-04-21': 'Lundi de Pâques',
-            '2025-05-01': 'Fête du Travail',
-            '2025-05-08': 'Victoire 1945',
-            '2025-05-29': 'Ascension',
-            '2025-06-09': 'Lundi de Pentecôte'
+            '2025-11-01': 'Toussaint',
+            '2025-11-11': 'Armistice 1918',
+            '2025-12-25': 'Noël',
+            '2026-01-01': 'Jour de l\'An',
+            '2026-04-06': 'Lundi de Pâques',
+            '2026-05-01': 'Fête du Travail',
+            '2026-05-08': 'Victoire 1945',
+            '2026-05-14': 'Ascension',
+            '2026-05-25': 'Lundi de Pentecôte',
         };
 
         const vacations = [
-            { start: '2024-10-19', end: '2024-11-03', name: 'Vacances de la Toussaint' },
-            { start: '2024-12-21', end: '2025-01-05', name: 'Vacances de Noël' },
-            { start: '2025-02-22', end: '2025-03-09', name: 'Vacances d\'hiver' },
-            { start: '2025-04-19', end: '2025-05-04', name: 'Vacances de printemps' },
-            { start: '2025-07-05', end: '2025-09-02', name: 'Vacances d\'été' }
+            { start: '2025-10-18', end: '2025-11-02', name: 'Vacances de la Toussaint' },
+            { start: '2025-12-20', end: '2026-01-04', name: 'Vacances de Noël' },
+            { start: '2026-02-07', end: '2026-02-22', name: 'Vacances d\'hiver' },
+            { start: '2026-04-04', end: '2026-04-19', name: 'Vacances de printemps' },
+            { start: '2026-07-04', end: '2026-09-01', name: 'Vacances d\'été' }
         ];
 
         const sessions = [
@@ -16253,8 +16254,8 @@ while True:
 
         function generateCalendar() {
             const calendarBody = document.getElementById('calendar-body');
-            const startDate = new Date('2024-09-05');  // Premier jeudi de septembre 2024
-            const endDate = new Date('2025-07-12');
+            const startDate = new Date('2025-09-02');  // Premier mardi de septembre 2025
+            const endDate = new Date('2026-07-09');
             
             let currentDate = startDate;
             let sessionIndex = 0;
@@ -16262,8 +16263,8 @@ while True:
             while (currentDate <= endDate) {
                 const row = document.createElement('tr');
 
-                // Génération des jours (jeudi, vendredi)
-                ['Jeudi', 'Vendredi'].forEach(() => {
+                // Génération des jours (mardi, mercredi)
+                ['Mardi', 'Mercredi'].forEach(() => {
                     const currentDateString = currentDate.toISOString().split('T')[0];
                     
                     // Date (colonne de la date)

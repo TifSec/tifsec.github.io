@@ -354,10 +354,10 @@
             <table class="calendar">
                 <thead>
                     <tr>
-                        <th>Date Jeudi</th>
-                        <th>Cours Jeudi</th>
-                        <th>Date Vendredi</th>
-                        <th>Cours Vendredi</th>
+                        <th>Date Lundi</th>
+                        <th>Cours Lundi</th>
+                        <th>Date Mardi</th>
+                        <th>Cours Mardi</th>
                     </tr>
                 </thead>
                 <tbody id="calendar-body">
@@ -4990,22 +4990,23 @@
 
     <script>
         const holidays = {
-            '2024-11-11': 'Armistice 1918',
-            '2024-12-25': 'Noël',
-            '2025-01-01': 'Jour de l\'An',
-            '2025-04-21': 'Lundi de Pâques',
-            '2025-05-01': 'Fête du Travail',
-            '2025-05-08': 'Victoire 1945',
-            '2025-05-29': 'Ascension',
-            '2025-06-09': 'Lundi de Pentecôte'
+            '2025-11-01': 'Toussaint',
+            '2025-11-11': 'Armistice 1918',
+            '2025-12-25': 'Noël',
+            '2026-01-01': 'Jour de l\'An',
+            '2026-04-06': 'Lundi de Pâques',
+            '2026-05-01': 'Fête du Travail',
+            '2026-05-08': 'Victoire 1945',
+            '2026-05-14': 'Ascension',
+            '2026-05-25': 'Lundi de Pentecôte',
         };
 
         const vacations = [
-            { start: '2024-10-19', end: '2024-11-03', name: 'Vacances de la Toussaint' },
-            { start: '2024-12-21', end: '2025-01-05', name: 'Vacances de Noël' },
-            { start: '2025-02-22', end: '2025-03-09', name: 'Vacances d\'hiver' },
-            { start: '2025-04-19', end: '2025-05-04', name: 'Vacances de printemps' },
-            { start: '2025-07-05', end: '2025-09-02', name: 'Vacances d\'été' }
+            { start: '2025-10-18', end: '2025-11-02', name: 'Vacances de la Toussaint' },
+            { start: '2025-12-20', end: '2026-01-04', name: 'Vacances de Noël' },
+            { start: '2026-02-07', end: '2026-02-22', name: 'Vacances d\'hiver' },
+            { start: '2026-04-04', end: '2026-04-19', name: 'Vacances de printemps' },
+            { start: '2026-07-04', end: '2026-09-01', name: 'Vacances d\'été' }
         ];
 
         const sessions = [
@@ -5226,19 +5227,19 @@
 
         function generateCalendar() {
             const calendarBody = document.getElementById('calendar-body');
-            const startDate = new Date('2024-09-06');  // Commence le vendredi 6 septembre
-            const endDate = new Date('2025-07-12');
+            const startDate = new Date('2025-09-02');  // Commence le mardi 2 septembre
+            const endDate = new Date('2026-07-08');
             
             let currentDate = startDate;
             let sessionIndex = 0;
-            let firstLine = true; // Pour gérer le premier vendredi seul
-            let displayThursday = true; // Alterne l'affichage des jeudis
+            let firstLine = true; // Pour gérer le premier lundi seul
+            let displayThursday = true; // Alterne l'affichage des mardi
 
             while (currentDate <= endDate) {
                 const row = document.createElement('tr');
 
                 if (firstLine) {
-                    // Première ligne : uniquement le vendredi
+                    // Première ligne : uniquement le mardi
                     const fridayDateString = currentDate.toISOString().split('T')[0];
                     const fridayCell = document.createElement('td');
                     const fridayDescCell = document.createElement('td');
@@ -5270,19 +5271,19 @@
                         fridayDescCell.classList.add('today');
                     }
 
-                    // Cellules vides pour jeudi
-                    row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-                    row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+                    // Cellules vides pour lundi
+                    row.appendChild(document.createElement('td')); // Cellule vide pour la date du lundi
+                    row.appendChild(document.createElement('td')); // Cellule vide pour le cours du lundi
                     row.appendChild(fridayCell);
                     row.appendChild(fridayDescCell);
 
-                    // Passer au jeudi suivant
+                    // Passer au lundi suivant
                     currentDate.setDate(currentDate.getDate() + 6);
                     firstLine = false;
                 } else {
-                    // Ligne suivante : jeudi et vendredi (alternance pour jeudi)
+                    // Ligne suivante : lundi et mardi (alternance pour lundi)
                     if (displayThursday) {
-                        // Affiche le jeudi
+                        // Affiche le lundi
                         const thursdayDateString = currentDate.toISOString().split('T')[0];
                         const thursdayCell = document.createElement('td');
                         const thursdayDescCell = document.createElement('td');
@@ -5318,12 +5319,12 @@
                         row.appendChild(thursdayCell);
                         row.appendChild(thursdayDescCell);
                     } else {
-                        // Si jeudi est sauté, ajoute des cellules vides
-                        row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-                        row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+                        // Si lundi est sauté, ajoute des cellules vides
+                        row.appendChild(document.createElement('td')); // Cellule vide pour la date du lundi
+                        row.appendChild(document.createElement('td')); // Cellule vide pour le cours du lundi
                     }
 
-                    // Passe au vendredi
+                    // Passe au mardi
                     currentDate.setDate(currentDate.getDate() + 1);
                     const fridayDateString = currentDate.toISOString().split('T')[0];
                     const fridayCell = document.createElement('td');
@@ -5359,9 +5360,9 @@
                     row.appendChild(fridayCell);
                     row.appendChild(fridayDescCell);
 
-                    // Passe au jeudi suivant (saute un jeudi sur deux)
+                    // Passe au lundi suivant (saute un lundi sur deux)
                     currentDate.setDate(currentDate.getDate() + 6);
-                    displayThursday = !displayThursday; // Alterne l'affichage des jeudis
+                    displayThursday = !displayThursday; // Alterne l'affichage des lundi
                 }
 
                 calendarBody.appendChild(row);
