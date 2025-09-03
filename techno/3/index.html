@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programme Technologie 3ème</title>
     <style>
+        :root{
+            --accent:#0b6fa8;
+            --muted:#6b7280;
+            --ok:#16a34a;
+            --warn:#f59e0b;
+            --danger:#ef4444;
+            --glass: rgba(11,111,168,0.06);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -246,6 +255,125 @@
             width: 45%;
             border-radius: 10px;
         }
+
+        .timeline{
+            display:flex;
+            flex-direction:column;
+            gap:8px
+        }
+
+        .time-row{
+            display:flex;
+            gap:12px;
+            align-items:flex-start
+        }
+
+        .time{
+            width:64px;
+            font-weight:700;
+            color:var(--accent)
+        }
+
+        .activity{
+            flex:1
+        }
+
+        .section-title{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            margin-bottom:10px
+        }
+
+        .pill{
+            padding:6px 10px;
+            border-radius:999px;
+            background:var(--accent);
+            color:white;
+            font-weight:600;
+            font-size:0.85rem
+        }
+
+        .section-title{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            margin-bottom:10px
+        }
+
+        .small{
+            font-size:0.9rem;
+            color:var(--muted)
+        }
+
+        .tile{
+            border-radius:10px;
+            padding:10px;
+            background:linear-gradient(180deg,#fff,#fbfeff);
+            border:1px solid #eef6fb
+        }
+
+        .student-sheet{
+            background:#fbfeff;
+            border-left:4px solid var(--accent);
+            padding:10px;
+            border-radius:6px
+        }
+
+        .quiz{
+            display:grid;
+            gap:8px
+        }
+
+        button.cta{
+            background:var(--accent);
+            color:#fff;
+            border:0;
+            padding:10px 14px;
+            border-radius:8px;
+            font-weight:700;
+            cursor:pointer
+        }
+
+        .tile{
+            border-radius:10px;
+            padding:10px;
+            background:linear-gradient(180deg,#fff,#fbfeff);
+            border:1px solid #eef6fb
+        }
+
+        .checklist{
+            display:grid;
+            gap:6px
+        }
+
+        .ok{
+            color:var(--ok);
+            font-weight:700
+        }
+
+        .warn{
+            color:var(--warn);
+            font-weight:700
+        }
+
+        .danger{
+            color:var(--danger);
+            font-weight:700
+        }
+        
+        pre{
+            background:#0f172a;
+            color:white;
+            padding:10px;
+            border-radius:8px;
+            overflow:auto;
+            font-size:0.9rem
+        }
+
+        details{
+            margin-top:8px
+        }
     </style>
 </head>
 <body>
@@ -285,6 +413,137 @@
         </section>
 
         <section id="session1" class="content-section">
+            <h2>Séance 1 — Sécurité & organisation du poste</h2>
+            <h3>Objectif : installer un poste sûr et appliquer les règles d’atelier.</h3>
+
+            <div class="section-title">
+            <div class="pill">Objectifs</div>
+            </div>
+            <ul>
+            <li>Connaître les règles de sécurité de l’atelier (équipement, comportement, procédures d’urgence).</li>
+            <li>Savoir organiser son poste de travail : zone propre, zone outil, zone matériau, zone stockage.</li>
+            <li>Être capable d’identifier 8 signes / pictogrammes de sécurité et expliquer leur sens.</li>
+            <li>Appliquer la checklist d’installation du poste sans aide (évaluation formative).</li>
+            </ul>
+
+            <hr style="margin:12px 0">
+
+            <div class="section-title">
+            <div class="pill">Compétences visées</div>
+            </div>
+            <ul>
+            <li>Responsabilité et sécurité en milieu technique.</li>
+            <li>Organisation et méthodologie du travail.</li>
+            <li>Communication : expliquer oralement les règles à un pair.</li>
+            </ul>
+
+            <hr style="margin:12px 0">
+
+            <h3>Qu’est-ce que la technologie en 3ᵉ ?</h3>
+            La technologie est une discipline du cycle 4 (5ᵉ – 4ᵉ – 3ᵉ). En 3ᵉ, elle constitue la dernière étape avant le lycée et a plusieurs rôles :
+            <h4>1. Donner du sens aux sciences</h4>
+            <ul>
+                <li>On part des objets techniques du quotidien (smartphone, vélo électrique, imprimante 3D, etc.).</li>
+                <li>On analyse leur fonctionnement, leurs composants, leurs énergies.</li>
+                <li>On comprend aussi leurs impacts sur l’environnement et la société.</li>
+            </ul>
+            👉 Exemple : Pourquoi une trottinette électrique doit-elle être rechargée si souvent ? Quels matériaux la composent ?
+            <h4>2. Développer la pensée informatique et la programmation</h4>
+            <ul>
+                <li>Les élèves programment des systèmes simples (cartes électroniques type Arduino/Micro:bit, robots, capteurs).</li>
+                <li>Ils apprennent à raisonner en algorithmes (si… alors…, boucles, variables).</li>
+            </ul>
+            👉 Exemple : Faire allumer une LED quand il fait sombre, ou programmer un robot pour éviter un obstacle.
+            <h4>3. Concevoir et réaliser un projet</h4>
+            <ul>
+                <li>C’est l’aboutissement du cycle 4 : les élèves travaillent en groupe pour imaginer, modéliser, fabriquer et tester un objet ou système technique.</li>
+                <li>Ils utilisent des outils numériques (CAO 3D, simulation, prototypage).</li>
+            </ul>
+            👉 Exemple : concevoir un objet utile à l’école et en fabriquer un prototype (support de tablette, capteur d’ouverture de porte…).
+            <h4>4. Se préparer à l’orientation</h4>
+            <ul>
+                <li>La technologie en 3ᵉ ouvre sur la découverte des métiers et des formations techniques, industrielles, numériques.</li>
+                <li>C’est aussi une matière du DNB (Diplôme National du Brevet) (contrôle continu + parfois épreuve orale de projet).</li>
+            </ul>
+            <h4>📊 Ce que les élèves acquièrent</h4>
+            <ul>
+                <li>Analyser un objet technique.</li>
+                <li>Comprendre énergie, mécanique, informatique, matériaux.</li>
+                <li>Concevoir en groupe un objet ou un projet.</li>
+                <li>Programmer et utiliser des outils numériques.</li>
+                <li>Travailler en équipe et présenter un projet.</li>
+            </ul>
+            👉 En résumé :
+            <br>
+            La technologie en 3ᵉ, c’est une discipline qui relie sciences, outils numériques et créativité. Elle apprend à comprendre comment les objets qui nous entourent fonctionnent et comment en inventer de nouveaux, tout en respectant la sécurité, l’environnement et le travail collaboratif.
+            <br><br>
+            <strong>« Quel est l’objet technologique qui a le plus changé votre quotidien ? »</strong>
+            <br><br>
+            <h3>Les pictogrammes de sécurité</h3>
+            <figure style="text-align: center;">
+                <img src="Pictogrammes-de-securite.png" alt="différents pictogrammes de sécurité.png">
+                <figcaption>Obligation (bleu), Interdiction (rouge), Secours/évacuation (vert), Avertissement (jaune)</figcaption>
+            </figure>
+            <br>
+            <h4>Quelques exemples :</h4>
+            <table>
+                <tr>
+                    <td>
+                        <figure style="text-align: center;">
+                            <img src="panneaux_obligation.png" alt="des panneaux d'obligation">
+                            <figcaption>Quelques panneaux d'obligation</figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure style="text-align: center;">
+                            <img src="panneaux_interdiction_et_lutte_incendie.png" alt="des panneaux d'interdictions et de lutte contre l'incendie">
+                            <figcaption>Quelques panneaux d'interdictions et de lutte contre l'incendie</figcaption>
+                        </figure>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <figure style="text-align: center;">
+                            <img src="panneaux_sauvetage_ou_secours.png" alt="des panneaux de sauvetage / secours / évacuation">
+                            <figcaption>Quelques panneaux de sauvetage / secours / évacuation</figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure style="text-align: center;">
+                            <img src="panneaux_avertissement.png" alt="des panneaux d'avertissement">
+                            <figcaption>Quelques panneaux d'avertissement</figcaption>
+                        </figure>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <h3>Organisation du poste de travail</h3>
+            <h4>1.Où ranger ses affaires</h4>
+            <ul>
+                <li>Cartable et affaires personnelles : doivent rester à un endroit précis (ex. sous le bureau ou à un espace défini, pas dans les allées).</li>
+                <li>Cahier de techno / feuille : posé bien droit sur le bureau pour prendre des notes.</li>
+                <li>Matériel collectif : chaque boîte d’outils, boîte de vis, lunettes de protection → montrer l’endroit exact où ils sont rangés dans la salle.</li>
+            </ul>
+            <h4>2. Comment circuler en sécurité</h4>
+            <ul>
+                <li>Toujours marcher, jamais courir (risque de chute avec outils/matériaux).</li>
+                <li>Ne pas bloquer les allées → montrer la zone de circulation principale (chemin vers la porte, vers les armoires).</li>
+                <li>Respect de la distance de sécurité : pas de regroupement autour d’une machine en marche.</li>
+                <li>Rappel des issues de secours (montrer la porte de sortie, le plan d’évacuation).</li>
+            </ul>
+            <h4>3. Comment manipuler le petit matériel</h4>
+            <ul>
+                <li>Tournevis/pinces : toujours tenus par le manche, jamais utilisés pour “jouer” ou pointer vers quelqu’un.</li>
+                <li>Vis/écrous : garder dans une coupelle, pas en vrac sur la table (évite les pertes et accidents).</li>
+                <li>Lunettes de protection : doivent être portées quand on manipule outils, matériaux ou prototypes.</li>
+                <li>Gants : seulement si consigne donnée → expliquer qu’ils protègent mais qu’ils ne doivent pas être utilisés n’importe quand (risque de gêner les gestes fins).</li>
+            </ul>
+            <br>
+            <strong>« Quelle règle de sécurité est la plus importante selon vous ? Pourquoi ? »</strong>
+        </section>
+
+        <section id="session2" class="content-section">
+            
         </section>
     </main>
 
@@ -314,7 +573,7 @@
         ];
 
         const sessions = [
-            'Séance 1 : ',
+            'Séance 1 : 1er cours, présentations',
             'Séance 2 : ',
             'Séance 3 : ',
             'Séance 4 : ',
