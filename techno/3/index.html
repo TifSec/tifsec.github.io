@@ -724,7 +724,7 @@
             <p>
                 Même si on ne poste que de petites choses, mises bout à bout elles permettent de retracer notre vie. Voilà pourquoi il faut apprendre à gérer notre identité et nos traces.
             </p>
-            <p>
+            <!-- <p>
                 Maintenant, nous allons voir comment PIX peut nous aider à comprendre et protéger notre identité numérique.
             </p>
             <h4>3. Création du profil PIX élève</h4>
@@ -735,10 +735,19 @@
                 <li>Validation et arrivée sur le tableau de bord</li>
                 <li>Choisir un avatar qui reflète votre prudence numérique (ex. : ninja = discret, super-héros = protecteur)</li>
             </ol>
-            <h4>4. Parcours d’entraînement PIX “Identité & traces”</h4>
+            <h4>4.  “Identité & traces”</h4> -->
         </section>
 
         <section id="session4" class="content-section">
+            <h2>Parcours d’entraînement PIX</h2>
+            <p>
+                Connectez-vous a PIX via l'ENT.
+                <br><br>
+                Faire le parcours d'entrées en 3°
+            </p>
+        </section>
+
+        <section id="session5" class="content-section">
             <h2>Netiquette, RGPD & droits d’auteur</h2>
             <h3>Objectifs pédagogiques :</h3>
             <ul>
@@ -864,7 +873,7 @@
             </p>
         </section>
 
-        <section id="session5" class="content-section">
+        <section id="session6" class="content-section">
             <h2>Découvrir le micro:bit (simulateur) : entrées/sorties, événements</h2>
             <h3>Objectifs pédagogiques :</h3>
             <ul>
@@ -931,6 +940,76 @@
                 <li>Défi maison (volontaire) : créer chez soi (ou terminer en classe) un programme qui affiche ses initiales quand on appuie sur A, et un smiley quand on secoue.</li>
             </ul>
         </section>
+
+        <section id="session7" class="content-section">
+            <h2>Variables, conditions et boucles (jeu de réflexe)</h2>
+            <h3>Objectifs pédagogiques :</h3>
+            <ul>
+                <li>Comprendre ce qu’est une variable et savoir en créer une.</li>
+                <li>Utiliser une condition (si … alors … sinon …) pour tester une situation.</li>
+                <li>Découvrir la notion de boucle (répétition d’actions).</li>
+                <li>Créer un mini-jeu de réflexe sur le simulateur micro:bit.</li>
+            </ul>
+            <p>
+                Matériel : <a href="https://makecode.microbit.org/" target="_blank" rel="noopener noreferrer">https://makecode.microbit.org/</a>
+            </p>
+            <h4>1. Mise en situation</h4>
+            <p>
+                Tu es à un jeu télé, on t’affiche un signal lumineux : si tu appuies assez vite, tu gagnes ! Comment l’ordinateur sait-il qui a réagi en premier ?
+                <br><br>
+                Aujourd’hui, on va programmer ce genre de jeu avec le micro:bit.
+            </p>
+            <h4>2. Découverte des notions</h4>
+            <h5>a) Variables</h5>
+            <p>
+                Une variable, c’est une boîte dans laquelle on peut stocker une information (un nombre, un texte…).
+                <br>
+                Dans MakeCode → Variables → Créer une variable → l’appeler "score".
+            </p>
+            <h5>b) Conditions</h5>
+            <p>
+                Une condition, c’est un test qui permet de faire des choix dans le programme.
+                <br>
+                Exemple : si le score est supérieur à 5, afficher "Gagné", sinon afficher "Perdu".
+                <br>
+                Dans MakeCode → Logique → "si ... alors ... sinon ..."
+            </p>
+            <h5>c) Boucles</h5>
+            <p>
+                Une boucle, c’est une action qui se répète plusieurs fois.
+                <br>
+                Exemple : afficher un cœur 5 fois.
+                <br>
+                Dans MakeCode → Boucles → "répéter ... fois" ou "toujours"
+            </p>
+            <h4>3. Activité pratique – Construire le jeu de réflexe</h4>
+            <h5>Étape 1 – Préparer le signal (événement)</h5>
+            <ul>
+                Dans MakeCode :
+                <li>Utiliser “lorsque A+B pressés” → début du jeu.</li>
+                <li>Ajouter une pause aléatoire (bloc “attendre … ms” avec valeur aléatoire entre 1000 et 5000).</li>
+                <li>Afficher une icône (ex. cœur) après cette pause.</li>
+                → Ce sera le signal : les joueurs doivent appuyer rapidement sur A ou B.
+            </ul>
+            <h5>Étape 2 – Détecter qui gagne (conditions)</h5>
+            <ul>
+                <li>Dans Entrées → utiliser “lorsque le bouton A est pressé”.</li>
+                <li>Faire pareil pour B.</li>
+            </ul>
+            <h5>Étape 3 – Ajouter le score (variables)</h5>
+            <ul>
+                <li>Créer une variable scoreA et scoreB.</li>
+                <li>Quand A gagne → changer scoreA de 1.</li>
+                <li>Quand B gagne → changer scoreB de 1.</li>
+                <li>Afficher le score sur la matrice LED.</li>
+            </ul>
+            <h5>Étape 4 – Boucle de manches</h5>
+            <ul>
+                Utiliser une boucle “répéter 5 fois” :
+                <li>Chaque manche → pause aléatoire → affichage signal → attente réaction.</li>
+                En fin de boucle → afficher le joueur avec le plus haut score.
+            </ul>
+        </section>
     </main>
 
     <!-- <footer>
@@ -961,55 +1040,55 @@
         const sessions = [
             'Séance 1 : 1er cours, présentations',
             'Séance 2 : Prise en main & diagnostic (CRCN) • règles de vie & sécurité numérique',
-            'Séance 3 : PIX entraînement : identité & traces – créer son profil élève',
-            'Séance 4 : Netiquette, RGPD & droits d’auteur',
-            'Séance 5 : Découvrir le micro:bit (simulateur) : entrées/sorties, événements',
-            // 'Séance 6 : Variables, conditions et boucles (jeu de réflexe)',
-            // 'Séance 7 : Capteurs virtuels (température, lumière) • journal de bord',
-            // 'Séance 8 : Fonctions & débogage (pas-à-pas) • défi \'réaction\'',
-            // 'Séance 9 : Concevoir une IHM simple (A/B + icônes) • défi \'chrono\'',
-            // 'Séance 10 : Algorithmes avec capteur de mouvement (compte-pas virtuel)',
-            // 'Séance 11 : Communication radio (simulateur) • mini‑chat de poche',
-            // 'Séance 12 : Projet guidé : station météo de poche (simulateur)',
-            // 'Séance 13 : Projet libre encadré : gadget utile (prototype logiciel)',
-            // 'Séance 14 : Tests, critères de performance & présentation express (pitch 1 min)',
-            // 'Séance 15 : Prise en main CAO 3D (Tinkercad) : primitives & contraintes',
-            // 'Séance 16 : Créer une pièce simple : adaptateur de câble (tolérances, cotes)',
-            // 'Séance 17 : Assemblage virtuel : emboîtement (alignements, collisions)',
-            // 'Séance 18 : Schémas & normalisation : cotation sur capture 3D',
-            // 'Séance 19 : Circuits virtuels : capteur + LED (Tinkercad Circuits)',
-            // 'Séance 20 : Simulation : mesurer, relever, analyser (tableau de mesures)',
-            // 'Séance 21 : Mécanismes : engrenages virtuels – rapport de transmission',
-            // 'Séance 22 : Du besoin au modèle : mini‑cahier des charges + esquisses',
-            // 'Séance 23 : Iterer : améliorer la pièce (poids, solidité) • test de contrainte',
-            // 'Séance 24 : Rendu & documentation : export STL + fiche technique',
-            // 'Séance 25 : Observer un service numérique du quotidien (étude d’usage)',
-            // 'Séance 26 : Cycle de vie d’un objet (ACV simplifiée) & indicateurs',
-            // 'Séance 27 : Énergie & efficacité : ordre de grandeur (comparaisons)',
-            // 'Séance 28 : Qualité, fiabilité, sécurité d’usage : retours d’expérience',
-            // 'Séance 29 : Choisir entre 3 solutions : critères & pondération (tableur)',
-            // 'Séance 30 : Données & IA : biais, exemples et précautions (atelier)',
-            // 'Séance 31 : Réseaux : comment circule l’info ? (schéma fonctionnel)',
-            // 'Séance 32 : Oral éclair : argumenter un choix technologique',
-            // 'Séance 33 : Lancer le projet fil rouge : besoin réel au collège (brainstorming)',
-            // 'Séance 34 : Analyse fonctionnelle (diagramme des interacteurs, FAST simplifié)',
-            // 'Séance 35 : Cahier des charges fonctionnel (exigences/critères/indicateurs)',
-            // 'Séance 36 : Recherche de solutions (veille + inspirations + croquis)',
-            // 'Séance 37 : Choix technique (matrice de décision) & planning (Kanban)',
-            // 'Séance 38 : Prototype virtuel 1 : maquette 3D OU programme de preuve',
-            // 'Séance 39 : Tests virtuels & mesures (critères BO) • reporter résultats',
-            // 'Séance 40 : Itération design : améliorer ergonomie & durabilité',
-            // 'Séance 41 : Préparer la communication (affiche/diaporama/vidéo courte)',
-            // 'Séance 42 : Préparer l’oral type DNB : support & trame',
-            // 'Séance 43 : Répétitions (feed-back entre pairs) & finalisation',
-            // 'Séance 44 : Soutenance interne + exposition numérique (galerie ENT)',
-            // 'Séance 45 : Évaluation intermédiaire (compétences) + consolidation',
-            // 'Séance 46 : Parcours PIX ciblés (sécurité, données, contenus)',
-            // 'Séance 47 : Certification PIX (créneau 1) – selon organisation établissement',
-            // 'Séance 48 : Certification PIX (créneau 2 / rattrapage)',
-            // 'Séance 49 : Retour sur PIX & remédiations personnalisées',
-            // 'Séance 50 : Bilan de fin d’année & valorisation du portfolio',
-            // 'Séance 51 : Réserve / atelier libre',
+            'Séance 3 : Identité & traces',
+            'Séance 4 : PIX entraînement',
+            'Séance 5 : Netiquette, RGPD & droits d’auteur',
+            'Séance 6 : Découvrir le micro:bit (simulateur) : entrées/sorties, événements',
+            'Séance 7 : Variables, conditions et boucles (jeu de réflexe)',
+            // 'Séance 8 : Capteurs virtuels (température, lumière) • journal de bord',
+            // 'Séance 9 : Fonctions & débogage (pas-à-pas) • défi \'réaction\'',
+            // 'Séance 10 : Concevoir une IHM simple (A/B + icônes) • défi \'chrono\'',
+            // 'Séance 11 : Algorithmes avec capteur de mouvement (compte-pas virtuel)',
+            // 'Séance 12 : Communication radio (simulateur) • mini‑chat de poche',
+            // 'Séance 13 : Projet guidé : station météo de poche (simulateur)',
+            // 'Séance 14 : Projet libre encadré : gadget utile (prototype logiciel)',
+            // 'Séance 15 : Tests, critères de performance & présentation express (pitch 1 min)',
+            // 'Séance 16 : Prise en main CAO 3D (Tinkercad) : primitives & contraintes',
+            // 'Séance 17 : Créer une pièce simple : adaptateur de câble (tolérances, cotes)',
+            // 'Séance 18 : Assemblage virtuel : emboîtement (alignements, collisions)',
+            // 'Séance 19 : Schémas & normalisation : cotation sur capture 3D',
+            // 'Séance 20 : Circuits virtuels : capteur + LED (Tinkercad Circuits)',
+            // 'Séance 21 : Simulation : mesurer, relever, analyser (tableau de mesures)',
+            // 'Séance 22 : Mécanismes : engrenages virtuels – rapport de transmission',
+            // 'Séance 23 : Du besoin au modèle : mini‑cahier des charges + esquisses',
+            // 'Séance 24 : Iterer : améliorer la pièce (poids, solidité) • test de contrainte',
+            // 'Séance 25 : Rendu & documentation : export STL + fiche technique',
+            // 'Séance 26 : Observer un service numérique du quotidien (étude d’usage)',
+            // 'Séance 27 : Cycle de vie d’un objet (ACV simplifiée) & indicateurs',
+            // 'Séance 28 : Énergie & efficacité : ordre de grandeur (comparaisons)',
+            // 'Séance 29 : Qualité, fiabilité, sécurité d’usage : retours d’expérience',
+            // 'Séance 30 : Choisir entre 3 solutions : critères & pondération (tableur)',
+            // 'Séance 31 : Données & IA : biais, exemples et précautions (atelier)',
+            // 'Séance 32 : Réseaux : comment circule l’info ? (schéma fonctionnel)',
+            // 'Séance 33 : Oral éclair : argumenter un choix technologique',
+            // 'Séance 34 : Lancer le projet fil rouge : besoin réel au collège (brainstorming)',
+            // 'Séance 35 : Analyse fonctionnelle (diagramme des interacteurs, FAST simplifié)',
+            // 'Séance 36 : Cahier des charges fonctionnel (exigences/critères/indicateurs)',
+            // 'Séance 37 : Recherche de solutions (veille + inspirations + croquis)',
+            // 'Séance 38 : Choix technique (matrice de décision) & planning (Kanban)',
+            // 'Séance 39 : Prototype virtuel 1 : maquette 3D OU programme de preuve',
+            // 'Séance 40 : Tests virtuels & mesures (critères BO) • reporter résultats',
+            // 'Séance 41 : Itération design : améliorer ergonomie & durabilité',
+            // 'Séance 42 : Préparer la communication (affiche/diaporama/vidéo courte)',
+            // 'Séance 43 : Préparer l’oral type DNB : support & trame',
+            // 'Séance 44 : Répétitions (feed-back entre pairs) & finalisation',
+            // 'Séance 45 : Soutenance interne + exposition numérique (galerie ENT)',
+            // 'Séance 46 : Évaluation intermédiaire (compétences) + consolidation',
+            // 'Séance 47 : Parcours PIX ciblés (sécurité, données, contenus)',
+            // 'Séance 48 : Certification PIX (créneau 1) – selon organisation établissement',
+            // 'Séance 49 : Certification PIX (créneau 2 / rattrapage)',
+            // 'Séance 50 : Retour sur PIX & remédiations personnalisées',
+            // 'Séance 51 : Bilan de fin d’année & valorisation du portfolio',
             // 'Séance 52 : Réserve / atelier libre',
             // 'Séance 53 : Réserve / atelier libre'
         ];
