@@ -1010,6 +1010,210 @@
                 En fin de boucle → afficher le joueur avec le plus haut score.
             </ul>
         </section>
+
+        <section id="session8" class="content-section">
+            <h2>Capteurs virtuels (température, lumière)</h2>
+            <h3>Objectifs pédagogiques :</h3>
+            <ul>
+                <li>Comprendre ce qu’est un capteur et à quoi il sert.</li>
+                <li>Utiliser les blocs MakeCode pour lire les valeurs des capteurs température et lumière.</li>
+                <li>Afficher et analyser les valeurs sur le simulateur.</li>
+            </ul>
+            <h4>1. Mise en situation</h4>
+            <p>
+                “Comment ton smartphone sait-il qu’il fait nuit pour activer le mode sombre ? Comment sait-il ta température quand tu poses un capteur médical connecté ?”
+            </p>
+            <h4>2. Découverte des capteurs</h4>
+            p>
+                Un capteur, c’est un dispositif qui mesure une grandeur physique (température, lumière, mouvement…) et la transforme en une valeur numérique que l’ordinateur peut comprendre.
+                <br>
+                Exemples de capteurs courants :
+                <ul>
+                    <li>Thermomètre (température)</li>
+                    <li>Photocellule (lumière)</li>
+                    <li>Accéléromètre (mouvement)</li>
+                    <li>Gyroscope (orientation)</li>
+                    <li>Microphone (son)</li>
+                </ul>
+                Les capteurs sont partout : dans les smartphones, les montres connectées, les voitures, les objets domotiques…
+                <br><br>
+                Faites une rapide recherche en ligne pour trouver a quoi ressemble un capteur de température et un capteur de lumière.
+            </p>
+            <ul>
+                Dans MakeCode :
+                <li>Aller dans Entrées.</li>
+                <li>Repérer : “température (°C)” et “niveau d'intensité lumineuse'”.</li>
+            </ul>
+            <ul>
+                Explication simple :
+                <li>Le capteur transforme une grandeur du monde réel (température, lumière) en une valeur numérique.</li>
+                <li>Ces valeurs peuvent être affichées sur la matrice LED ou stockées dans une variable.</li>
+            </ul>
+            <ul>
+                Exemple guidé :
+                <li>Bloc “toujours” → afficher nombre → insérer capteur température.</li>
+                <li>Résultat sur le simulateur : la LED défile avec une valeur en °C.</li>
+            </ul>
+            <h4>3. Activité pratique</h4>
+            <ul>
+                Programme :
+                <li>Lorsqu’on appuie sur bouton A → afficher la température.</li>
+                <li>Lorsqu’on appuie sur bouton B → afficher la luminosité.</li>
+            </ul>
+            <ul>
+                Défi :
+                <li>Défi 1 : programmer le micro:bit pour qu’il affiche un ☀️ si luminosité > 150 et 🌙 sinon.</li>
+                <li>Défi 2 : programmer un avertisseur de température : si > 30°C → afficher (dans les icones déjà présentes) le visage "faché", sinon le visage "heureux".</li>
+            </ul>
+            <h4>4. Pour finir</h4>
+            <ul>
+                <li>Un capteur mesure une grandeur physique (température, lumière, mouvement…) et la transforme en une valeur numérique.</li>
+                <li>Le micro:bit convertit cette grandeur en valeur numérique (ex. 23 °C, luminosité = 120).</li>
+                <li>On peut utiliser ces valeurs dans un programme pour afficher des informations ou prendre des décisions (conditions).</li>
+                <li>Exemples de capteurs : température, lumière, accéléromètre, gyroscope, microphone.</li>
+                <li>Petit défi (facultatif) : imaginer une application utile d’un capteur.</li>
+            </ul>
+        </section>
+
+        <section id="session9" class="content-section">
+            <h2>Fonctions & débogage (pas-à-pas) • Défi “réaction”</h2>
+            <h3>Objectifs pédagogiques :</h3>
+            <ul>
+                <li>Comprendre ce qu’est une fonction et pourquoi elle est utile.</li>
+                <li>Apprendre à déboguer un programme pas-à-pas.</li>
+                <li>Réaliser un mini-jeu de réaction rapide en utilisant une fonction.</li>
+            </ul>
+            <h4>1. Mise en situation</h4>
+            <p>
+                Si nous prennons l'exemple de l'appareil photo, pour simplifier disons que c'est une fonction, la "fonction appareil photo".
+                <br><br>
+                Quand tu appuie sur l'appli "appareil photo" de ton téléphone, ton appareil photo se met en route et tu peux prendre une photo. Quand tu es dans une application qui te demande si tu veux prendre une photo (Instagram, Snapchat, etc...), c'est la même chose, ton appareil photo se met en route et tu peux prendre une photo...
+                <br>
+                C'est parce que la fonction "appareil photo" est déjà programmée dans ton téléphone. Et les développeur ne s'amuse pas à la recréer à chaque fois qu'ils veulent l'utiliser dans une application.
+                <br><br>
+                Ce serait comme dire a un utilisateur de voiture, qu'il doit lui même fabriquer sa voiture si il veut se déplacer. Ce serait long et compliqué.
+            </p>
+            <p>
+                “Quand tu appuies sur le bouton de ton micro:bit, plusieurs actions se passent : afficher une image, jouer un son, etc. Plutôt que de répéter les mêmes blocs à chaque fois, on peut créer une fonction qui regroupe toutes ces actions.”
+            </p>
+            <h4>2. Découverte des fonctions</h4>
+            <ul>
+                Explication simple :
+                <li>Une fonction est un petit programme à l’intérieur du programme, qu’on peut appeler quand on en a besoin.</li>
+                <li>Ça permet d’éviter de répéter les mêmes blocs plusieurs fois, et de rendre le programme plus clair.</li>
+            </ul>
+            <ul>
+                Exemple quotidien :
+                <li>Imaginons un robot cuisine "intelligent"</li>
+                <li>Nous voulons faire des pâtes (ce qui demande de mélanger de l'eau, de la farine, des oeufs, du sel...)</li>
+                <li>Vous devez commencer par tel et tel ingrédient, puis ajouter la suite, etc etc...</li>
+                <li>Maintenant imaginons que ce robot sache exactement quand mélanger quoi avec quoi, et ce, peu importe le nombre de fois que vous lui demandez</li>
+                <li>C'est un peu comme s'il avait une fonction "pâtes", il saura faire, sans que vous n'ayez a répéter toutes les étapes</li>
+            </ul>
+            <ul>
+                Manipulation guidée :
+                <li>Dans MakeCode → onglet Avancé → Fonctions.</li>
+                <li>Créer une fonction appelée afficherDépart.</li>
+                <li>Dedans → afficher un compte à rebours : 3 → 2 → 1 → GO.</li>
+                <li>Appeler la fonction quand on appuie sur A.</li>
+                <li>Test → cliquer sur A dans le simulateur → la fonction se joue.</li>
+            </ul>
+            <h4>3. Le débogage pas-à-pas</h4>
+            <ul>
+                Explication simple :
+                <li>Le débogage, c’est chercher et corriger les erreurs dans un programme.</li>
+                <li>Le pas-à-pas permet d’exécuter le programme une étape à la fois pour mieux comprendre ce qui se passe.</li>
+            </ul>
+            <ul>
+                Dans MakeCode, activer le mode débogage pas-à-pas :
+                <li>Cliquer sur la petite coccinelle.</li>
+                <li>Le programme avance bloc par bloc, on voit quelles instructions s’exécutent.</li>
+            </ul>
+            <h4>4. Activité principale – Jeu “réaction”</h4>
+            <ul>
+                Étape 1 – Préparer le signal
+                <li>Quand on appuie sur A+B → appeler la fonction afficherDépart (compte à rebours).</li>
+                <li>Ensuite → attendre un temps aléatoire (pause entre 1000 et 5000 ms).</li>
+                <li>Puis → afficher une LED “!” comme signal.</li>
+            </ul>
+            <ul>
+                Étape 2 – Réagir vite
+                <li>Événement : bouton A pressé → mesurer le temps de réaction.</li>
+                <li>Créer une variable départ → stocker temps quand le signal apparaît.</li>
+                <li>Créer une variable réaction → stocker temps quand A est pressé.</li>
+                <li>Calculer la différence = temps de réaction.</li>
+                <li>Afficher le résultat sur LED.</li>
+            </ul>
+            <ul>
+                Étape 3 – Déboguer ensemble
+                <li>Vérifier étape par étape</li>
+                <li>Est-ce que la fonction s’est lancée ?</li>
+                <li>Est-ce que la variable départ s’est bien mise à jour ?</li>
+                <li>Est-ce que le calcul est correct ?</li>
+                <li>Chaque binômes devra en suite expliquer à la classe, où et pourquoi ils ont du debugger</li>
+            </ul>
+        </section>
+
+        <section id="session10" class="content-section">
+            <h2>Concevoir une IHM simple (A/B + icônes) • Défi “chrono”</h2>
+            <h3>Objectifs pédagogiques :</h3>
+            <ul>
+                <li>Comprendre ce qu’est une IHM et son importance pour l’utilisateur.</li>
+                <li>Concevoir une interface simple avec les boutons A, B et des icônes.</li>
+                <li>Programmer un chronomètre de poche (défi “chrono”) en utilisant des variables.</li>
+            </ul>
+            <h4>1. Mise en situation</h4>
+            <p><i><b>Imagine une télécommande sans bouton marqué : comment savoir lequel allume le son, lequel change la chaîne, etc ?</b></i></p>
+            <br>
+            <p>L’IHM sert à dialoguer avec l’objet technique. Si elle est mal conçue, l’utilisateur se perd.</p>
+            <h4>2. Découverte guidée – Concevoir une IHM sur micro:bit</h4>
+            <ul>
+                Explication simple :
+                <ul>
+                    Sur le micro:bit, l’IHM se limite à :
+                    <li>Boutons A et B (entrées).</li>
+                    <li>Affichage LED (sortie).</li>
+                    On peut donc définir des “raccourcis” clairs → ex. : A = démarrer, B = arrêter, A+B = remettre à zéro.
+                </ul>
+                Manipulation guidée :
+                <ul>
+                    Nous verrons comment créer une IHM simple, nottament :
+                    <li>Afficher une icône ⏱ quand le chrono démarre.</li>
+                    <li>Afficher un carré ou un X quand il s’arrête.</li>
+                    <li>Afficher un cœur ♥️ quand il est remis à zéro.</li>
+                </ul>
+            </ul>
+            <h4>3. Activité principale – Défi “Chrono”</h4>
+            <ul>
+                Étape 1 – Créer les variables
+                <li>Créer une variable chrono pour stocker le temps.</li>
+            </ul>
+            <ul>
+                Étape 2 – Programmer le démarrage (bouton A)
+                <li>Quand A est pressé :</li>
+                <li>Réinitialiser chrono à 0.</li>
+                <li>Afficher ⏱.</li>
+                <li>Démarrer une boucle qui augmente chrono toutes les 100 ms.</li>
+            </ul>
+            <ul>
+                Étape 3 – Programmer l’arrêt (bouton B)
+                <li>Quand B est pressé :</li>
+                <li>Arrêter la boucle (ou mettre un booléen “enCours = faux”).</li>
+                <li>Afficher un carré ou un X</li>
+                <li>Afficher le nombre stocké dans chrono.</li>
+            </ul>
+            <ul>
+                Étape 4 – Réinitialisation (A+B)
+                <li>Quand A+B sont pressés :</li>
+                <li>Remettre chrono à 0.</li>
+                <li>Afficher ♥️.</li>
+            </ul>
+            <ul>
+                Étape 5 – Test & amélioration
+                <li>Tester le programme.</li>
+                <li>Pensez à des améliorations possibles</li>
+            </ul>
+        </section>
     </main>
 
     <!-- <footer>
@@ -1045,9 +1249,9 @@
             'Séance 5 : Netiquette, RGPD & droits d’auteur',
             'Séance 6 : Découvrir le micro:bit (simulateur) : entrées/sorties, événements',
             'Séance 7 : Variables, conditions et boucles (jeu de réflexe)',
-            // 'Séance 8 : Capteurs virtuels (température, lumière) • journal de bord',
-            // 'Séance 9 : Fonctions & débogage (pas-à-pas) • défi \'réaction\'',
-            // 'Séance 10 : Concevoir une IHM simple (A/B + icônes) • défi \'chrono\'',
+            'Séance 8 : Capteurs virtuels (température, lumière)',
+            'Séance 9 : Fonctions & débogage (pas-à-pas) • défi \'réaction\'',
+            'Séance 10 : Concevoir une IHM simple (A/B + icônes) • défi \'chrono\'',
             // 'Séance 11 : Algorithmes avec capteur de mouvement (compte-pas virtuel)',
             // 'Séance 12 : Communication radio (simulateur) • mini‑chat de poche',
             // 'Séance 13 : Projet guidé : station météo de poche (simulateur)',
