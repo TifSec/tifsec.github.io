@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme Technologie 3ème</title>
+    <style>
+        :root{
+            --accent:#0b6fa8;
+            --muted:#6b7280;
+            --ok:#16a34a;
+            --warn:#f59e0b;
+            --danger:#ef4444;
+            --glass: rgba(11,111,168,0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Calibri, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        main {
+            margin-left: 200px;
+            padding: 20px;
+            min-height: 80vh;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        a{
+            color: black;
+        }
+
+        a:hover{
+            color: orange;
+        }
+
+        aside {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            transition: width 0.3s ease;
+            overflow-y: auto;
+            scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
+        }
+
+        aside::-webkit-scrollbar {
+            display: none; /* Masque la barre de défilement pour Chrome, Safari, et Opera */
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            padding: 10px;
+        }
+
+        aside ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        /* Style pour l'élément de menu actif (séance en cours) */
+        aside ul li a.active {
+            background-color: #4CAF50; /* Couleur pour l'élément actif */
+            color: white;
+            font-weight: bold;
+        }
+
+        aside ul li a:hover {
+            background-color: #555;
+        }
+
+        .hamburger {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h2, h3, h4, h5{
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        h3{
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+        }
+
+        h4, h5, p, ul{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .image{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Styles spécifiques pour le calendrier */
+        table.calendar {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .current-week {
+            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
+        }
+
+        pre{
+            background-color: black;
+            color: white;
+        }
+
+        .today {
+            background-color: #007BFF; /* Bleu vif pour le jour actuel */
+            color: white; /* Texte blanc pour le contraste */
+        }
+
+        .vacation {
+            background-color: #B2E4A6; /* Vert pastel pour les vacances */
+            color: black; /* Texte noir ou foncé pour la lisibilité */
+        }
+
+        .holiday {
+            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
+            color: white; /* Texte blanc ou clair */
+        }
+
+        iframe{
+            width: 87vw;
+            height: 42vw;
+        }
+
+        .rep {
+            visibility: hidden;
+        }
+
+        /* code {
+            background-color: #eef;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #eef;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        } */
+
+        .note {
+            background-color: #ffffcc;
+            padding: 10px;
+            border-left: 4px solid #ffcc00;
+            margin: 20px 0;
+        }
+
+        .container {
+            /* max-width: 800px; */
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        a button:hover {
+            background-color: #e06e2b;
+        }
+
+        .show-site {
+            width: 100%;
+            height: 100%;
+            zoom: 0.5;
+            border-radius: 10px;
+        }
+
+        .show-site-div {
+            text-align: center;
+            border: 1px solid #ccc;
+            width: 45%;
+            border-radius: 10px;
+        }
+
+        .timeline{
+            display:flex;
+            flex-direction:column;
+            gap:8px
+        }
+
+        .time-row{
+            display:flex;
+            gap:12px;
+            align-items:flex-start
+        }
+
+        .time{
+            width:64px;
+            font-weight:700;
+            color:var(--accent)
+        }
+
+        .activity{
+            flex:1
+        }
+
+        .section-title{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            margin-bottom:10px
+        }
+
+        .pill{
+            padding:6px 10px;
+            border-radius:999px;
+            background:var(--accent);
+            color:white;
+            font-weight:600;
+            font-size:0.85rem
+        }
+
+        .section-title{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            margin-bottom:10px
+        }
+
+        .small{
+            font-size:0.9rem;
+            color:var(--muted)
+        }
+
+        .tile{
+            border-radius:10px;
+            padding:10px;
+            background:linear-gradient(180deg,#fff,#fbfeff);
+            border:1px solid #eef6fb
+        }
+
+        .student-sheet{
+            background:#fbfeff;
+            border-left:4px solid var(--accent);
+            padding:10px;
+            border-radius:6px
+        }
+
+        .quiz{
+            display:grid;
+            gap:8px
+        }
+
+        button.cta{
+            background:var(--accent);
+            color:#fff;
+            border:0;
+            padding:10px 14px;
+            border-radius:8px;
+            font-weight:700;
+            cursor:pointer
+        }
+
+        .tile{
+            border-radius:10px;
+            padding:10px;
+            background:linear-gradient(180deg,#fff,#fbfeff);
+            border:1px solid #eef6fb
+        }
+
+        .checklist{
+            display:grid;
+            gap:6px
+        }
+
+        .ok{
+            color:var(--ok);
+            font-weight:700
+        }
+
+        .warn{
+            color:var(--warn);
+            font-weight:700
+        }
+
+        .danger{
+            color:var(--danger);
+            font-weight:700
+        }
+        
+        pre{
+            background:#0f172a;
+            color:white;
+            padding:10px;
+            border-radius:8px;
+            overflow:auto;
+            font-size:0.9rem
+        }
+
+        details{
+            margin-top:8px
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Programme Technologie 3ème</h1>
+    </header>
+
+    <!-- Menu hamburger sur la gauche -->
+    <aside id="menu">
+        <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
+        <nav id="session-nav">
+            <ul>
+                <!-- CALENDRIER -->
+                <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="content">
+        <!-- Calendrier -->
+        <section id="calendar" class="content-section">
+            <h2>Calendrier Technologie 3ème - 2025/2026</h2>
+            <table class="calendar">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Cours</th>
+                        <th>Date</th>
+                        <th>Cours</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                    <!-- Les lignes du calendrier seront générées ici par JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="" class="content-section">
+            <h2>Séance 1 — Sécurité & organisation du poste</h2>
+            <h3>Objectif : installer un poste sûr et appliquer les règles d’atelier.</h3>
+
+            <div class="section-title">
+            <div class="pill">Objectifs</div>
+            </div>
+            <ul>
+            <li>Connaître les règles de sécurité de l’atelier (équipement, comportement, procédures d’urgence).</li>
+            <li>Savoir organiser son poste de travail : zone propre, zone outil, zone matériau, zone stockage.</li>
+            <li>Être capable d’identifier 8 signes / pictogrammes de sécurité et expliquer leur sens.</li>
+            <li>Appliquer la checklist d’installation du poste sans aide (évaluation formative).</li>
+            </ul>
+
+            <hr style="margin:12px 0">
+
+            <div class="section-title">
+            <div class="pill">Compétences visées</div>
+            </div>
+            <ul>
+            <li>Responsabilité et sécurité en milieu technique.</li>
+            <li>Organisation et méthodologie du travail.</li>
+            <li>Communication : expliquer oralement les règles à un pair.</li>
+            </ul>
+
+            <hr style="margin:12px 0">
+
+            <h3>Qu’est-ce que la technologie en 3ᵉ ?</h3>
+            La technologie est une discipline du cycle 4 (5ᵉ – 4ᵉ – 3ᵉ). En 3ᵉ, elle constitue la dernière étape avant le lycée et a plusieurs rôles :
+            <h3>1. Donner du sens aux sciences</h3>
+            <ul>
+                <li>On part des objets techniques du quotidien (smartphone, vélo électrique, imprimante 3D, etc.).</li>
+                <li>On analyse leur fonctionnement, leurs composants, leurs énergies.</li>
+                <li>On comprend aussi leurs impacts sur l’environnement et la société.</li>
+            </ul>
+            👉 Exemple : Pourquoi une trottinette électrique doit-elle être rechargée si souvent ? Quels matériaux la composent ?
+            <h3>2. Développer la pensée informatique et la programmation</h3>
+            <ul>
+                <li>Les élèves programment des systèmes simples (cartes électroniques type Arduino/Micro:bit, robots, capteurs).</li>
+                <li>Ils apprennent à raisonner en algorithmes (si… alors…, boucles, variables).</li>
+            </ul>
+            👉 Exemple : Faire allumer une LED quand il fait sombre, ou programmer un robot pour éviter un obstacle.
+            <h3>3. Concevoir et réaliser un projet</h3>
+            <ul>
+                <li>C’est l’aboutissement du cycle 4 : les élèves travaillent en groupe pour imaginer, modéliser, fabriquer et tester un objet ou système technique.</li>
+                <li>Ils utilisent des outils numériques (CAO 3D, simulation, prototypage).</li>
+            </ul>
+            👉 Exemple : concevoir un objet utile à l’école et en fabriquer un prototype (support de tablette, capteur d’ouverture de porte…).
+            <h3>4. Se préparer à l’orientation</h3>
+            <ul>
+                <li>La technologie en 3ᵉ ouvre sur la découverte des métiers et des formations techniques, industrielles, numériques.</li>
+                <li>C’est aussi une matière du DNB (Diplôme National du Brevet) (contrôle continu + parfois épreuve orale de projet).</li>
+            </ul>
+            <h3>📊 Ce que les élèves acquièrent</h3>
+            <ul>
+                <li>Analyser un objet technique.</li>
+                <li>Comprendre énergie, mécanique, informatique, matériaux.</li>
+                <li>Concevoir en groupe un objet ou un projet.</li>
+                <li>Programmer et utiliser des outils numériques.</li>
+                <li>Travailler en équipe et présenter un projet.</li>
+            </ul>
+            👉 En résumé :
+            <br>
+            La technologie en 3ᵉ, c’est une discipline qui relie sciences, outils numériques et créativité. Elle apprend à comprendre comment les objets qui nous entourent fonctionnent et comment en inventer de nouveaux, tout en respectant la sécurité, l’environnement et le travail collaboratif.
+            <br><br>
+            <strong>« Quel est l’objet technologique qui a le plus changé votre quotidien ? »</strong>
+            <br><br>
+            <h3>Les pictogrammes de sécurité</h3>
+            <figure style="text-align: center;">
+                <img src="Pictogrammes-de-securite.png" alt="différents pictogrammes de sécurité.png">
+                <figcaption>Obligation (bleu), Interdiction (rouge), Secours/évacuation (vert), Avertissement (jaune)</figcaption>
+            </figure>
+            <br>
+            <h3>Quelques exemples :</h3>
+            <table>
+                <tr>
+                    <td>
+                        <figure style="text-align: center;">
+                            <img src="panneaux_obligation.png" alt="des panneaux d'obligation">
+                            <figcaption>Quelques panneaux d'obligation</figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure style="text-align: center;">
+                            <img src="panneaux_interdiction_et_lutte_incendie.png" alt="des panneaux d'interdictions et de lutte contre l'incendie">
+                            <figcaption>Quelques panneaux d'interdictions et de lutte contre l'incendie</figcaption>
+                        </figure>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <figure style="text-align: center;">
+                            <img src="panneaux_sauvetage_ou_secours.png" alt="des panneaux de sauvetage / secours / évacuation">
+                            <figcaption>Quelques panneaux de sauvetage / secours / évacuation</figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure style="text-align: center;">
+                            <img src="panneaux_avertissement.png" alt="des panneaux d'avertissement">
+                            <figcaption>Quelques panneaux d'avertissement</figcaption>
+                        </figure>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <h3>Organisation du poste de travail</h3>
+            <h3>1.Où ranger ses affaires</h3>
+            <ul>
+                <li>Cartable et affaires personnelles : doivent rester à un endroit précis (ex. sous le bureau ou à un espace défini, pas dans les allées).</li>
+                <li>Cahier de techno / feuille : posé bien droit sur le bureau pour prendre des notes.</li>
+                <li>Matériel collectif : chaque boîte d’outils, boîte de vis, lunettes de protection → montrer l’endroit exact où ils sont rangés dans la salle.</li>
+            </ul>
+            <h3>2. Comment circuler en sécurité</h3>
+            <ul>
+                <li>Toujours marcher, jamais courir (risque de chute avec outils/matériaux).</li>
+                <li>Ne pas bloquer les allées → montrer la zone de circulation principale (chemin vers la porte, vers les armoires).</li>
+                <li>Respect de la distance de sécurité : pas de regroupement autour d’une machine en marche.</li>
+                <li>Rappel des issues de secours (montrer la porte de sortie, le plan d’évacuation).</li>
+            </ul>
+            <h3>3. Comment manipuler le petit matériel</h3>
+            <ul>
+                <li>Tournevis/pinces : toujours tenus par le manche, jamais utilisés pour “jouer” ou pointer vers quelqu’un.</li>
+                <li>Vis/écrous : garder dans une coupelle, pas en vrac sur la table (évite les pertes et accidents).</li>
+                <li>Lunettes de protection : doivent être portées quand on manipule outils, matériaux ou prototypes.</li>
+                <li>Gants : seulement si consigne donnée → expliquer qu’ils protègent mais qu’ils ne doivent pas être utilisés n’importe quand (risque de gêner les gestes fins).</li>
+            </ul>
+            <br>
+            <strong>« Quelle règle de sécurité est la plus importante selon vous ? Pourquoi ? »</strong>
+        </section>
+
+        <section id="session1" class="content-section">
+            
+        </section>
+
+        <section id="session2" class="content-section">
+            <h2>Prise en main & diagnostic (CRCN) / Règles de vie & sécurité numérique</h2>
+            <h3>Objectifs pédagogiques :</h3>
+            <ul>
+                <li>Découvrir l’organisation du labo numérique et les règles de fonctionnement.</li>
+                <li>Réaliser un diagnostic initial CRCN (auto-positionnement).</li>
+                <li>Connaître et appliquer les règles de vie numérique (sécurité, RGPD, traces).</li>
+            </ul>
+            <h3>1. Accueil & mise en situation</h3>
+            <ul>
+                <li>Question : “Votre téléphone / ordi sait-il plus de choses sur vous que vos parents ?”</li>
+                <li>Cette année, on apprendra comment maîtriser ses usages numériques.</li>
+            </ul>
+            <h3>2. Règles de vie du labo numérique</h3>
+            <ul>
+                <li>Respect du matériel : pas de nourriture/boissons, manipulation soigneuse.</li>
+                <li>Respect des autres : écoute, entraide, pas de dérangement.</li>
+                <li>Utilisation des ressources : sites autorisés, pas de téléchargement non autorisé.</li>
+                <li>Gestion des comptes : ne pas partager ses identifiants, se déconnecter après usage.</li>
+            </ul>
+            <h3>3. Diagnostic CRCN</h3>
+            <p><i><b>CRCN : Cadre de Référence des Compétences Numérique</b></i></p>
+            <p>
+                Comme vous êtes en binomes, vous allez faire le diagnostic CRCN <strong>chacun de votre côté</strong> (15-20 min).
+                <br>
+                Un élève depuis son smartphone, l'autre depuis l'ordinateur.
+            </p>
+            <br>
+            <p>Scannez le QRCode suivant :</p>
+            <br>
+            <img class="image" src="quiziniere_diag_crcn_3e.png" alt="QRCode pour le quiz CRCN">
+            <br>
+            <p>
+                Ou bien via le lien suivant : 
+                <a href="https://www.quiziniere.com/diffusions/BZ24K2" target="_blank" rel="noopener noreferrer">Quiziniere - Diagnostic CRCN</a>
+            </p>
+            <p><i><b>Barème & profils</b></i></p>
+            <ul>
+                <li>0–4 bonnes réponses → Distrait (attention aux pratiques à risque → travail de l’année).</li>
+                <li>5–7 bonnes réponses → Bidouilleur (connaissances, mais doit sécuriser davantage ses usages).</li>
+                <li>8–10 bonnes réponses → Explorateur prudent (bonne maîtrise, quelques points à renforcer).</li>
+            </ul>
+            <h3>4. Mini-jeu : “Qui suis-je numérique ?”</h3>
+            <p>
+                Par groupe, vous allez piocher un rôle parmis les suivant : 
+                <br>
+                <ul>
+                    <li>Un smartphone</li>
+                    <li>Google</li>
+                    <li>Une appli de jeux</li>
+                    <li>Un site de shopping</li>
+                    <li>TikTok</li>
+                    <li>Un prof de techno</li>
+                    <li>Un ami de classe</li>
+                    <li>Un pirate informatique</li>
+                    <li>Ton fournisseur d’accès internet</li>
+                    <li>Les parents</li>
+                    <li>Une appli météo</li>
+                    <li>Snapchat</li>
+                    <li>YouTube</li>
+                    <li>Banque en ligne</li>
+                    <li>Une caméra de vidéosurveillance</li>
+                    <li>Ton collège (PRONOTE)</li>
+                </ul>
+                Règle : chacun doit dire “Moi, je sais que tu as…” et inventer une donnée plausible selon son rôle.
+                <br>
+                Exemple : “Moi, en tant que Google, je sais que tu as cherché ‘chaussures pas chères’ hier soir”.
+                <br>
+                Exemple : “Moi, en tant que l’appli de jeux, je sais ton score et le temps que tu passes à jouer”.
+                <br>
+                Chaque élève donne 1 info puis passe la parole.
+                <br>
+                <ul>
+                    Discussion : 
+                    <li>On voit que beaucoup d’acteurs différents possèdent des données sur nous.</li>
+                    <li>Certains sont “de confiance” (ex. ENT, parents), d’autres plus risqués (appli gratuite, pirate).</li>
+                    <li>Conclusion : tout ce que je fais laisse une trace numérique.</li>
+                </ul>
+                <ul>
+                    Débrief & bonnes pratiques
+                    <li>Régler la confidentialité de ses comptes (public/privé).</li>
+                    <li>Utiliser des mots de passe forts (et différents).</li>
+                    <li>Réfléchir avant de poster : une fois en ligne, difficile d’effacer.</li>
+                </ul>
+            </p>
+            <h3>5. Conclusion & trace écrite</h3>
+            <ul>
+                Synthèse collective
+                <li>Règles de vie du labo numérique (5 règles phares).</li>
+                <li>Diagnostic CRCN → chacun a un profil de départ, pas une note.</li>
+                <li>Traces numériques : toujours penser avant de publier/cliquer.</li>
+            </ul>
+            <ul>
+                3 bonnes pratiques :
+                <li>Respecter le matériel et les camarades.</li>
+                <li>Protéger mes données (mots de passe, prudence mails).</li>
+                <li>Réfléchir avant de poster → une publication est publique et durable.</li>
+            </ul>
+        </section>
+
+        <section id="session3" class="content-section">
+            <h2>PIX entraînement : identité & traces – créer son profil élève</h2>
+            <h3>Objectifs pédagogiques :</h3>
+            <ul>
+                <li>Comprendre ce qu’est l’identité numérique et les traces laissées en ligne.</li>
+                <li>Créer et personnaliser son profil élève sur PIX (avec ENT ou code établissement).</li>
+                <li>Réaliser un premier parcours d’entraînement sur l’identité et la sécurité.</li>
+            </ul>
+            <h3>1. Mise en situation</h3>
+            <img class="image" src="faux_profils.png" alt="images de 3 faux profils">
+            <p><i><b>Si un employeur, un prof, ou un inconnu tombe sur ces infos… que saura-t-il de cette personne ?</b></i></p>
+            <ul>
+                Montrer que même à partir de quelques fragments de traces numériques, on peut déjà déduire :
+                <li>L’âge approximatif.</li>
+                <li>Les centres d’intérêt.</li>
+                <li>Les lieux fréquentés.</li>
+                <li>Les habitudes (horaires, langage, style).</li>
+            </ul>
+            <p><i><b>Nos publications, même banales, forment une identité numérique qui peut être consultée et interprétée par d’autres.</b></i></p>
+            <h3>2. Jeu rapide : “Ton double numérique”</h3>
+            <p>
+                Chaque groupe de 6 va ce voir attribuer un profil parmis les suivants :
+                <table>
+                    <tr>
+                        <td>Léo, 14 ans</td>
+                        <td>Camille, 15 ans</td>
+                        <td>Yanis, 14 ans</td>
+                        <td>Sarah, 13 ans</td>
+                        <td>Enzo, 15 ans</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Pseudo : Gamer42</li>
+                                <li>Post Insta : “Toujours au stade le samedi !”</li>
+                                <li>Commentaire YouTube : “Trop bien ce tuto guitare 🎸”</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Pseudo TikTok : dancequeen15</li>
+                                <li>Vidéo : mini chorégraphie dans sa chambre (affiche d’un groupe connu au mur).</li>
+                                <li>Like sur un compte cuisine : “recettes rapides”.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Pseudo Discord : NightOwl2009</li>
+                                <li>Message : “RDV 23h sur le serveur Minecraft”</li>
+                                <li>Tweet : “J’ai raté le bus encore 😅”</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Compte Insta : photo de montagne avec la mention “Au ski avec la famille ❄️ #Auvergne”.</li>
+                                <li>Commentaire : “Tellement fan de ce groupe K-pop ❤️”.</li>
+                                <li>Profil Spotify partagé : playlist “Révisions 2025”.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Post Facebook (fictif) : “À la fête du village hier, trop bien !”.</li>
+                                <li>Like sur une page de gaming : “Fortnite France”.</li>
+                                <li>Commentaire YouTube : “Je cherche un tuto vélo BMX !”.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </p>
+            <p>
+                À partir des quelques traces de ce personnage, reconstituez son portrait numérique. Qui est-il ? Quels sont ses centres d’intérêt ? Ses habitudes ? Peut-on deviner où il habite ou ce qu’il aime faire ?
+            </p> 
+            <p>
+                Vous n'aviez que 3 petites informations, mais vous avez déjà pu en déduire pas mal de choses. Imaginez si quelqu’un avait accès à toutes vos publications, likes, commentaires, photos… Il pourrait se faire une idée assez précise de qui vous êtes.
+            </p>
+            <p>
+                Même si on ne poste que de petites choses, mises bout à bout elles permettent de retracer notre vie. Voilà pourquoi il faut apprendre à gérer notre identité et nos traces.
+            </p>
+            <!-- <p>
+                Maintenant, nous allons voir comment PIX peut nous aider à comprendre et protéger notre identité numérique.
+            </p>
+            <h3>3. Création du profil PIX élève</h3>
+            <ol>
+                <li>Connexion sur PIX</li>
+                <li>Saisie du code campagne</li>
+                <li>Création du profil personnel (pseudo sécurisé, mot de passe, e-mail scolaire si nécessaire)</li>
+                <li>Validation et arrivée sur le tableau de bord</li>
+                <li>Choisir un avatar qui reflète votre prudence numérique (ex. : ninja = discret, super-héros = protecteur)</li>
+            </ol>
+            <h3>4.  “Identité & traces”</h3> -->
+        </section>
+
+        <section id="session4" class="content-section">
+            <h2>Parcours d’entraînement PIX</h2>
+            <p>
+                Connectez-vous a PIX via l'ENT.
+                <br><br>
+                Faire le parcours d'entrées en 3°
+            </p>
+        </section>
+
+        <section id="session5" class="content-section">
+            <h2>Netiquette, RGPD & droits d’auteur</h2>
+            <h3>Objectifs pédagogiques :</h3>
+            <ul>
+                <li>Connaître les principales règles de netiquette (comportement en ligne).</li>
+                <li>Comprendre les grandes lignes du RGPD et leurs conséquences pour les élèves.</li>
+                <li>Identifier ce qui relève du droit d’auteur et des licences (images, musiques, logiciels).</li>
+            </ul>
+            <h3>1. Mise en situation</h3>
+            <p>
+                D'après le chat de discussion ci-dessous :
+                <ul>
+                    <li>Player_One : SALUT TLM !!!!!!!!</li>
+                    <li>DarkWolf : ptdrrrr t’es nul au jeu 😂😂😂</li>
+                    <li>QueenStar : arrête de spam sérieux…</li>
+                    <li>Player_One : JE FAIS CE QUE JE VEUX !!!!!</li>
+                    <li>NoobMaster : 😂😂😂😂😂😂😂😂😂😂</li>
+                </ul>
+                <hr>
+                <ul>
+                    <li>Si vous êtes dans cette conversation, comment vous sentez-vous ?</li>
+                    <li>Est-ce que vous avez envie de continuer à parler avec eux ?</li>
+                    <li>Qu’est-ce qui vous gêne le plus : les majuscules, les insultes, le spam ?</li>
+                </ul>
+            </p>
+            <p>
+                Ces comportements arrivent souvent en ligne : 
+                <ul>
+                    <li>majuscules = crier</li>
+                    <li>moqueries = cyberharcèlement</li>
+                    <li>spam = polluer la discussion</li>
+                </ul>
+            </p>
+            <p>
+                Aujourd’hui, on va apprendre à être un internaute responsable et protégé : on va parler de netiquette (la politesse en ligne), du RGPD (la loi qui protège nos données), et du droit d’auteur (respecter le travail des autres).
+            </p>
+            <h3>2. La netiquette</h3>
+            <h5>Activité : Vrai ou Faux express</h5>
+            <ul>
+                <li>Répondez aux affirmations suivantes en levant la main gauche pour VRAI et droite pour FAUX.</li>
+                <li>Justifiez votre réponse</li>
+            </ul>
+            <ul>
+                Affirmations :
+                <li>J’écris toujours en MAJUSCULE pour montrer que je suis motivé. <span style="color: transparent;">→ Faux : en ligne, MAJ = crier.</span></li>
+                <li>Je cite mes sources quand je reprends une info. <span style="color: transparent;">→ Vrai : respecter les autres, éviter les fake news.</span></li>
+                <li>Je réponds poliment même si je ne suis pas d’accord. <span style="color: transparent;">→ Vrai : respect = netiquette.</span></li>
+                <li>Je spamme des emojis pour faire rire. <span style="color: transparent;">Faux : ça pollue la discussion.</span></li>
+                <li>Je respecte la vie privée des autres et je ne publie pas leurs photos sans accord.<span style="color: transparent;">→ Vrai.</span></li>
+                <li>Je trolle dans les commentaires, c’est juste pour rigoler.<span style="color: transparent;">→ Faux : c’est blessant, considéré comme du cyberharcèlement.</span></li>
+            </ul>
+            <h5>Mini charte de netiquette :</h5>
+            <ul>
+                <li>J’écris clairement, sans cris ni spam.</li>
+                <li>Je respecte les autres (pas d’insultes, pas de moqueries).</li>
+                <li>Je cite mes sources et je vérifie les infos.</li>
+                <li>Je demande l’accord avant de publier une photo/vidéo d’autrui.</li>
+                <li>J’accepte les opinions différentes, sans agressivité.</li>
+            </ul>
+            <h3>3. Le RGPD</h3>
+            <p>
+                Le RGPD, c’est une loi européenne de 2018 qui protège nos données personnelles.
+                <br>
+                RGPD signifie ...
+                <br>
+                Qu'est-ce qu'une donnée personnelle ?
+                <br>
+                <span style="color: transparent;">prénom, photo, adresse, numéro de téléphone, géolocalisation, etc.</span>
+            </p>
+            <h5>“RGPD ou pas RGPD ?”</h5>
+            <p>
+                Suivant les situations suivantes, dire si c'est autorisé par le RGPD, si oui, sous quelles conditions (accord, info claire, droit de retrait)
+                <ul>
+                    <li>Un site de jeux en ligne te demande ton adresse mail pour créer un compte.</li>
+                    <li>Une appli de sport trace tes pas et trajets GPS en arrière-plan.</li>
+                    <li>Ton camarade veut publier une photo de classe sur Instagram.</li>
+                    <li>Un site marchand te demande ton âge avant d’accéder à une page.</li>
+                    <li>Une école stocke ton bulletin de notes dans l’ENT.</li>
+                    <li>Un réseau social te propose de supprimer ton compte si tu le souhaites.</li>
+                </ul>
+                <span style="color: transparent;">Adresse mail → autorisé si accord clair + but précis.</span>
+                <span style="color: transparent;">Photo → il faut l’accord de la personne.</span>
+                <span style="color: transparent;">GPS → autorisé si info claire et possibilité de désactiver.</span>
+            </p>
+            <h5>A retenir</h5>
+            <ul>
+                <li>Mes données = à moi.</li>
+                <li>Je dois être informé clairement si elles sont collectées.</li>
+                <li>Je peux demander à les corriger ou à les supprimer (droit à l’oubli).</li>
+            </ul>
+            <h3>4. Le droit d’auteur</h3>
+            <p><i><b>Quand tu trouves une image ou une musique sur internet, as-tu le droit de l’utiliser librement ?</b></i></p>
+            <p>
+                Parmis les situations suivantes, dire si c'est autorisé par le droit d'auteur, si oui, sous quelles conditions (accord, mention de l'auteur, usage non commercial) :
+                <ul>
+                    <li>Télécharger une musique pour la mettre dans mon diaporama d’oral DNB.<span style="color: transparent;">❌ Non (sauf musique libre de droits).</span></li>
+                    <li>Copier une image de Google pour la coller dans un rapport.<span style="color: transparent;">❌ Non (Google n’est pas une banque d’images libres).</span></li>
+                    <li>Utiliser une photo libre de droits (Creative Commons) avec mention de l’auteur.<span style="color: transparent;">✅ Oui (avec respect de la licence et mention).</span></li>
+                    <li>Partager sur TikTok un extrait de film avec ma voix en fond.<span style="color: transparent;">❌ Non (film protégé, même avec voix).</span></li>
+                    <li>Utiliser un logiciel cracké pour faire mes devoirs.<span style="color: transparent;">❌ Non (piratage, illégal, virus possibles).</span></li>
+                </ul>
+            </p>
+            <p>
+                <img class="image" src="Cc.logo.white.svg.png" alt="logo Creative Commons">
+                <br>
+                <a href="https://creativecommons.org/" target="_blank" rel="noopener noreferrer">creativecommons.org</a>
+                <br>
+                <span style="color: transparent;">
+                    Creative Commons = licences qui permettent de partager et réutiliser des œuvres (images, musiques, vidéos, textes) sous certaines conditions (mention de l’auteur, pas d’usage commercial, etc.).
+                </span>
+                <h5>Important, à retenir</h5>
+                <ul>
+                    <li>CC = licences libres qui permettent de réutiliser à certaines conditions.</li>
+                    <li>Toujours lire la licence (ex. CC-BY → obligation de citer l’auteur).</li>
+                    <li>Toujours citer la source même pour les images libres.</li>
+                    <li>Tout contenu appartient à son auteur → il faut respecter ses droits.</li>
+                    <li>On peut utiliser des contenus libres (Creative Commons, libres de droits) à condition de citer l’auteur.</li>
+                    <li>Copier / pirater = interdit et risqué (virus, sanctions).</li>
+                </ul>
+            </p>
+            <h5>Petit défi</h5>
+            <p>
+                Chercher une image libre de droits (Pixabay, Unsplash, Wikimedia Commons) et la mettre dans un document Writer avec la mention correcte.
+            </p>
+        </section>
+
+        <section id="session6" class="content-section">
+            <h2>Découvrir le micro:bit (simulateur) : entrées/sorties, événements</h2>
+            <h3>Objectifs pédagogiques :</h3>
+            <ul>
+                <li>Comprendre la notion d’entrée (capteurs, boutons), sortie (affichage LED, son).</li>
+                <li>Découvrir le principe d’événement (action qui déclenche un programme).</li>
+                <li>Manipuler le simulateur MakeCode micro:bit pour créer un premier programme simple.</li>
+            </ul>
+            <h3>1. Mise en situation</h3>
+            <p><i><b>Sur un téléphone, que se passe-t-il si l'on appuies sur le bouton volume + ? Si l'on tourne le téléphone ?</b></i></p>
+            <br>
+            <span style="color: transparent;">chaque action → un événement → une réaction</span>
+            <h3>2. Découverte de l’interface MakeCode</h3>
+            <ol>
+                <li>Allez sur le site <a href="https://makecode.microbit.org/" target="_blank" rel="noopener noreferrer">makecode.microbit.org</a></li>
+                <li>Créer un nouveau projet.</li>
+                <li>Repérer le simulateur micro:bit à gauche (LED + boutons A et B).</li>
+                <li>Repérer les blocs (Entrées, Sorties, Boucles, Variables…).</li>
+                <li>Petit défi express : trouver le bloc “lorsque le bouton A est pressé” et l’amener sur la zone de travail.</li>
+            </ol>
+            <h3>3. Entrées / sorties : premiers essais</h3>
+            <h5>Activité guidée :</h5>
+            <ul>
+                <li>Supprimer les blocs présent dans l'éditeur (les déplacer sur la gauche dans la barre de blocs)</li>
+                <li>Ajouter un bloc “lorsque le bouton A est pressé” dans l'éditeur.</li>
+                <li>Glisser un bloc “afficher LED : cœur” dans le bloc précédent.</li>
+                <li>Tester → cliquer sur bouton A du simulateur (tout à gauche de l'écran) → 💡 l’écran LED s’allume.</li>
+            </ul>
+            <h5>Explication :</h5>
+            <ul>
+                <li>Entrée = bouton A pressé.</li>
+                <li>Événement = le micro:bit détecte cette action.</li>
+                <li>Sortie = l’affichage du cœur sur la matrice de LED.</li>
+            </ul>
+            <ul>
+                Défi 1
+                <li>Ajouter une autre sortie → quand on appuie sur le bouton B → afficher une croix.</li>
+                <li>Tester.</li>
+                Défi 2
+                <li>Ajouter une autre sortie → quand on appuie sur les boutons A et B en même temps → afficher un smiley.</li>
+                <li>Tester.</li>
+            </ul>
+            <h3>4. Jouer avec d’autres événements</h3>
+            <ul>
+                <li>Chercher dans la catégorie “Entrées” → “lorsque secoué”.</li>
+                <li>Ajouter le bloc “lorsque secoué”.</li>
+                <li>En sortie → afficher un dé (nombre aléatoire de 1 à 6).</li>
+                <li>Test → secouer le micro:bit virtuel → les nombres changent.</li>
+                à quoi ça pourrait servir ?
+                <br>
+                Défi 3
+                <br>
+                Inventer une mini-application avec un événement au choix (toucher logo, secouer, bouton A/B…) et une sortie originale (affichage LED, son).
+            </ul>
+            <h3>5. Mise en commun & trace écrite</h3>
+            <ul>
+                <li>Chaque binôme montre rapidement son idée</li>
+                <li>Trace écrite (fichier dans dossier commun) :</li>
+                <ol>
+                    <li>Entrée = ce que détecte l’objet (bouton, mouvement…).</li>
+                    <li>Sortie = ce que renvoie l’objet (lumière, son, texte…).</li>
+                    <li>Événement = action qui déclenche le programme (ex. bouton A pressé).</li>
+                    Exemeple : A → cœur ; B → croix ; secoué → dé aléatoire.
+                </ol>
+                <li>Défi maison (volontaire) : créer chez soi (ou terminer en classe) un programme qui affiche ses initiales quand on appuie sur A, et un smiley quand on secoue.</li>
+            </ul>
+        </section>
+
+        <section id="session7" class="content-section">
+            <h2>Variables, conditions et boucles (jeu de réflexe)</h2>
+            <h3>Objectifs pédagogiques :</h3>
+            <ul>
+                <li>Comprendre ce qu’est une variable et savoir en créer une.</li>
+                <li>Utiliser une condition (si … alors … sinon …) pour tester une situation.</li>
+                <li>Découvrir la notion de boucle (répétition d’actions).</li>
+                <li>Créer un mini-jeu de réflexe sur le simulateur micro:bit.</li>
+            </ul>
+            <p>
+                Matériel : <a href="https://makecode.microbit.org/" target="_blank" rel="noopener noreferrer">https://makecode.microbit.org/</a>
+            </p>
+            <h3>1. Mise en situation</h3>
+            <p>
+                Tu es à un jeu télé, on t’affiche un signal lumineux : si tu appuies assez vite, tu gagnes ! Comment l’ordinateur sait-il qui a réagi en premier ?
+                <br><br>
+                Aujourd’hui, on va programmer ce genre de jeu avec le micro:bit.
+            </p>
+            <h3>2. Découverte des notions</h3>
+            <h5>a) Variables</h5>
+            <p>
+                Une variable, c’est une boîte dans laquelle on peut stocker une information (un nombre, un texte…).
+                <br>
+                Dans MakeCode → Variables → Créer une variable → l’appeler "score".
+            </p>
+            <h5>b) Conditions</h5>
+            <p>
+                Une condition, c’est un test qui permet de faire des choix dans le programme.
+                <br>
+                Exemple : si le score est supérieur à 5, afficher "Gagné", sinon afficher "Perdu".
+                <br>
+                Dans MakeCode → Logique → "si ... alors ... sinon ..."
+            </p>
+            <h5>c) Boucles</h5>
+            <p>
+                Une boucle, c’est une action qui se répète plusieurs fois.
+                <br>
+                Exemple : afficher un cœur 5 fois.
+                <br>
+                Dans MakeCode → Boucles → "répéter ... fois" ou "toujours"
+            </p>
+            <h3>3. Activité pratique – Construire le jeu de réflexe</h3>
+            <h5>Étape 1 – Préparer le signal (événement)</h5>
+            <ul>
+                Dans MakeCode :
+                <li>Utiliser “lorsque A+B pressés” → début du jeu.</li>
+                <li>Ajouter une pause aléatoire (bloc “attendre … ms” avec valeur aléatoire entre 1000 et 5000).</li>
+                <li>Afficher une icône (ex. cœur) après cette pause.</li>
+                → Ce sera le signal : les joueurs doivent appuyer rapidement sur A ou B.
+            </ul>
+            <h5>Étape 2 – Détecter qui gagne (conditions)</h5>
+            <ul>
+                <li>Dans Entrées → utiliser “lorsque le bouton A est pressé”.</li>
+                <li>Faire pareil pour B.</li>
+            </ul>
+            <h5>Étape 3 – Ajouter le score (variables)</h5>
+            <ul>
+                <li>Créer une variable scoreA et scoreB.</li>
+                <li>Quand A gagne → changer scoreA de 1.</li>
+                <li>Quand B gagne → changer scoreB de 1.</li>
+                <li>Afficher le score sur la matrice LED.</li>
+            </ul>
+            <h5>Étape 4 – Boucle de manches</h5>
+            <ul>
+                Utiliser une boucle “répéter 5 fois” :
+                <li>Chaque manche → pause aléatoire → affichage signal → attente réaction.</li>
+                En fin de boucle → afficher le joueur avec le plus haut score.
+            </ul>
+        </section>
+
+        <section id="session8" class="content-section">
+            <h2>Capteurs virtuels (température, lumière)</h2>
+            <h3>Objectifs pédagogiques :</h3>
+            <ul>
+                <li>Comprendre ce qu’est un capteur et à quoi il sert.</li>
+                <li>Utiliser les blocs MakeCode pour lire les valeurs des capteurs température et lumière.</li>
+                <li>Afficher et analyser les valeurs sur le simulateur.</li>
+            </ul>
+            <h3>1. Mise en situation</h3>
+            <p>
+                “Comment ton smartphone sait-il qu’il fait nuit pour activer le mode sombre ? Comment sait-il ta température quand tu poses un capteur médical connecté ?”
+            </p>
+            <h3>2. Découverte des capteurs</h3>
+            p>
+                Un capteur, c’est un dispositif qui mesure une grandeur physique (température, lumière, mouvement…) et la transforme en une valeur numérique que l’ordinateur peut comprendre.
+                <br>
+                Exemples de capteurs courants :
+                <ul>
+                    <li>Thermomètre (température)</li>
+                    <li>Photocellule (lumière)</li>
+                    <li>Accéléromètre (mouvement)</li>
+                    <li>Gyroscope (orientation)</li>
+                    <li>Microphone (son)</li>
+                </ul>
+                Les capteurs sont partout : dans les smartphones, les montres connectées, les voitures, les objets domotiques…
+                <br><br>
+                Faites une rapide recherche en ligne pour trouver a quoi ressemble un capteur de température et un capteur de lumière.
+            </p>
+            <ul>
+                Dans MakeCode :
+                <li>Aller dans Entrées.</li>
+                <li>Repérer : “température (°C)” et “niveau d'intensité lumineuse'”.</li>
+            </ul>
+            <ul>
+                Explication simple :
+                <li>Le capteur transforme une grandeur du monde réel (température, lumière) en une valeur numérique.</li>
+                <li>Ces valeurs peuvent être affichées sur la matrice LED ou stockées dans une variable.</li>
+            </ul>
+            <ul>
+                Exemple guidé :
+                <li>Bloc “toujours” → afficher nombre → insérer capteur température.</li>
+                <li>Résultat sur le simulateur : la LED défile avec une valeur en °C.</li>
+            </ul>
+            <h3>3. Activité pratique</h3>
+            <ul>
+                Programme :
+                <li>Lorsqu’on appuie sur bouton A → afficher la température.</li>
+                <li>Lorsqu’on appuie sur bouton B → afficher la luminosité.</li>
+            </ul>
+            <ul>
+                Défi :
+                <li>Défi 1 : programmer le micro:bit pour qu’il affiche un ☀️ si luminosité > 150 et 🌙 sinon.</li>
+                <li>Défi 2 : programmer un avertisseur de température : si > 30°C → afficher (dans les icones déjà présentes) le visage "faché", sinon le visage "heureux".</li>
+            </ul>
+            <h3>4. Pour finir</h3>
+            <ul>
+                <li>Un capteur mesure une grandeur physique (température, lumière, mouvement…) et la transforme en une valeur numérique.</li>
+                <li>Le micro:bit convertit cette grandeur en valeur numérique (ex. 23 °C, luminosité = 120).</li>
+                <li>On peut utiliser ces valeurs dans un programme pour afficher des informations ou prendre des décisions (conditions).</li>
+                <li>Exemples de capteurs : température, lumière, accéléromètre, gyroscope, microphone.</li>
+                <li>Petit défi (facultatif) : imaginer une application utile d’un capteur.</li>
+            </ul>
+        </section>
+
+        <section id="session9" class="content-section">
+            <h2>Fonctions & débogage (pas-à-pas) • Défi “réaction”</h2>
+            <h3>Objectifs pédagogiques :</h3>
+            <ul>
+                <li>Comprendre ce qu’est une fonction et pourquoi elle est utile.</li>
+                <li>Apprendre à déboguer un programme pas-à-pas.</li>
+                <li>Réaliser un mini-jeu de réaction rapide en utilisant une fonction.</li>
+            </ul>
+            <h3>1. Mise en situation</h3>
+            <p>
+                Si nous prennons l'exemple de l'appareil photo, pour simplifier disons que c'est une fonction, la "fonction appareil photo".
+                <br><br>
+                Quand tu appuie sur l'appli "appareil photo" de ton téléphone, ton appareil photo se met en route et tu peux prendre une photo. Quand tu es dans une application qui te demande si tu veux prendre une photo (Instagram, Snapchat, etc...), c'est la même chose, ton appareil photo se met en route et tu peux prendre une photo...
+                <br>
+                C'est parce que la fonction "appareil photo" est déjà programmée dans ton téléphone. Et les développeur ne s'amuse pas à la recréer à chaque fois qu'ils veulent l'utiliser dans une application.
+                <br><br>
+                Ce serait comme dire a un utilisateur de voiture, qu'il doit lui même fabriquer sa voiture si il veut se déplacer. Ce serait long et compliqué.
+            </p>
+            <p>
+                “Quand tu appuies sur le bouton de ton micro:bit, plusieurs actions se passent : afficher une image, jouer un son, etc. Plutôt que de répéter les mêmes blocs à chaque fois, on peut créer une fonction qui regroupe toutes ces actions.”
+            </p>
+            <h3>2. Découverte des fonctions</h3>
+            <ul>
+                Explication simple :
+                <li>Une fonction est un petit programme à l’intérieur du programme, qu’on peut appeler quand on en a besoin.</li>
+                <li>Ça permet d’éviter de répéter les mêmes blocs plusieurs fois, et de rendre le programme plus clair.</li>
+            </ul>
+            <ul>
+                Exemple quotidien :
+                <li>Imaginons un robot cuisine "intelligent"</li>
+                <li>Nous voulons faire des pâtes (ce qui demande de mélanger de l'eau, de la farine, des oeufs, du sel...)</li>
+                <li>Vous devez commencer par tel et tel ingrédient, puis ajouter la suite, etc etc...</li>
+                <li>Maintenant imaginons que ce robot sache exactement quand mélanger quoi avec quoi, et ce, peu importe le nombre de fois que vous lui demandez</li>
+                <li>C'est un peu comme s'il avait une fonction "pâtes", il saura faire, sans que vous n'ayez a répéter toutes les étapes</li>
+            </ul>
+            <ul>
+                Manipulation guidée :
+                <li>Dans MakeCode → onglet Avancé → Fonctions.</li>
+                <li>Créer une fonction appelée afficherDépart.</li>
+                <li>Dedans → afficher un compte à rebours : 3 → 2 → 1 → GO.</li>
+                <li>Appeler la fonction quand on appuie sur A.</li>
+                <li>Test → cliquer sur A dans le simulateur → la fonction se joue.</li>
+            </ul>
+            <h3>3. Le débogage pas-à-pas</h3>
+            <ul>
+                Explication simple :
+                <li>Le débogage, c’est chercher et corriger les erreurs dans un programme.</li>
+                <li>Le pas-à-pas permet d’exécuter le programme une étape à la fois pour mieux comprendre ce qui se passe.</li>
+            </ul>
+            <ul>
+                Dans MakeCode, activer le mode débogage pas-à-pas :
+                <li>Cliquer sur la petite coccinelle.</li>
+                <li>Le programme avance bloc par bloc, on voit quelles instructions s’exécutent.</li>
+            </ul>
+            <h3>4. Activité principale – Jeu “réaction”</h3>
+            <ul>
+                Étape 1 – Préparer le signal
+                <li>Quand on appuie sur A+B → appeler la fonction afficherDépart (compte à rebours).</li>
+                <li>Ensuite → attendre un temps aléatoire (pause entre 1000 et 5000 ms).</li>
+                <li>Puis → afficher une LED “!” comme signal.</li>
+            </ul>
+            <ul>
+                Étape 2 – Réagir vite
+                <li>Événement : bouton A pressé → mesurer le temps de réaction.</li>
+                <li>Créer une variable départ → stocker temps quand le signal apparaît.</li>
+                <li>Créer une variable réaction → stocker temps quand A est pressé.</li>
+                <li>Calculer la différence = temps de réaction.</li>
+                <li>Afficher le résultat sur LED.</li>
+            </ul>
+            <ul>
+                Étape 3 – Déboguer ensemble
+                <li>Vérifier étape par étape</li>
+                <li>Est-ce que la fonction s’est lancée ?</li>
+                <li>Est-ce que la variable départ s’est bien mise à jour ?</li>
+                <li>Est-ce que le calcul est correct ?</li>
+                <li>Chaque binômes devra en suite expliquer à la classe, où et pourquoi ils ont du debugger</li>
+            </ul>
+        </section>
+
+        <section id="session10" class="content-section">
+            <h2>Concevoir une IHM simple (A/B + icônes) • Défi “chrono”</h2>
+            <h3>Objectifs pédagogiques :</h3>
+            <ul>
+                <li>Comprendre ce qu’est une IHM et son importance pour l’utilisateur.</li>
+                <li>Concevoir une interface simple avec les boutons A, B et des icônes.</li>
+                <li>Programmer un chronomètre de poche (défi “chrono”) en utilisant des variables.</li>
+            </ul>
+            <h3>1. Mise en situation</h3>
+            <p><i><b>Imagine une télécommande sans bouton marqué : comment savoir lequel allume le son, lequel change la chaîne, etc ?</b></i></p>
+            <br>
+            <p>L’IHM sert à dialoguer avec l’objet technique. Si elle est mal conçue, l’utilisateur se perd.</p>
+            <h3>2. Découverte guidée – Concevoir une IHM sur micro:bit</h3>
+            <ul>
+                Explication simple :
+                <ul>
+                    Sur le micro:bit, l’IHM se limite à :
+                    <li>Boutons A et B (entrées).</li>
+                    <li>Affichage LED (sortie).</li>
+                    On peut donc définir des “raccourcis” clairs → ex. : A = démarrer, B = arrêter, A+B = remettre à zéro.
+                </ul>
+                Manipulation guidée :
+                <ul>
+                    Nous verrons comment créer une IHM simple, nottament :
+                    <li>Afficher une icône ⏱ quand le chrono démarre.</li>
+                    <li>Afficher un carré ou un X quand il s’arrête.</li>
+                    <li>Afficher un cœur ♥️ quand il est remis à zéro.</li>
+                </ul>
+            </ul>
+            <h3>3. Activité principale – Défi “Chrono”</h3>
+            <ul>
+                Étape 1 – Créer les variables
+                <li>Créer une variable chrono pour stocker le temps.</li>
+            </ul>
+            <ul>
+                Étape 2 – Programmer le démarrage (bouton A)
+                <li>Quand A est pressé :</li>
+                <li>Réinitialiser chrono à 0.</li>
+                <li>Afficher ⏱.</li>
+                <li>Démarrer une boucle qui augmente chrono toutes les 100 ms.</li>
+            </ul>
+            <ul>
+                Étape 3 – Programmer l’arrêt (bouton B)
+                <li>Quand B est pressé :</li>
+                <li>Arrêter la boucle (ou mettre un booléen “enCours = faux”).</li>
+                <li>Afficher un carré ou un X</li>
+                <li>Afficher le nombre stocké dans chrono.</li>
+            </ul>
+            <ul>
+                Étape 4 – Réinitialisation (A+B)
+                <li>Quand A+B sont pressés :</li>
+                <li>Remettre chrono à 0.</li>
+                <li>Afficher ♥️.</li>
+            </ul>
+            <ul>
+                Étape 5 – Test & amélioration
+                <li>Tester le programme.</li>
+                <li>Pensez à des améliorations possibles</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2025-2026 Technologie 3ème</p>
+    </footer> -->
+
+    <script>
+        const holidays = {
+            '2025-11-01': 'Toussaint',
+            '2025-11-11': 'Armistice 1918',
+            '2025-12-25': 'Noël',
+            '2026-01-01': 'Jour de l\'An',
+            '2026-04-06': 'Lundi de Pâques',
+            '2026-05-01': 'Fête du Travail',
+            '2026-05-08': 'Victoire 1945',
+            '2026-05-14': 'Ascension',
+            '2026-05-25': 'Lundi de Pentecôte',
+        };
+
+        const vacations = [
+            { start: '2025-10-18', end: '2025-11-02', name: 'Vacances de la Toussaint' },
+            { start: '2025-12-20', end: '2026-01-04', name: 'Vacances de Noël' },
+            { start: '2026-02-07', end: '2026-02-22', name: 'Vacances d\'hiver' },
+            { start: '2026-04-04', end: '2026-04-19', name: 'Vacances de printemps' },
+            { start: '2026-07-04', end: '2026-09-01', name: 'Vacances d\'été' }
+        ];
+
+        const sessions = [
+            'Séance 1 : 1er cours, présentations',
+            'Séance 2 : Prise en main & diagnostic (CRCN) • règles de vie & sécurité numérique',
+            'Séance 3 : Identité & traces',
+            'Séance 4 : PIX entraînement',
+            'Séance 5 : Netiquette, RGPD & droits d’auteur',
+            'Séance 6 : Découvrir le micro:bit (simulateur) : entrées/sorties, événements',
+            'Séance 7 : Variables, conditions et boucles (jeu de réflexe)',
+            'Séance 8 : Capteurs virtuels (température, lumière)',
+            'Séance 9 : Fonctions & débogage (pas-à-pas) • défi \'réaction\'',
+            'Séance 10 : Concevoir une IHM simple (A/B + icônes) • défi \'chrono\'',
+            // 'Séance 11 : Algorithmes avec capteur de mouvement (compte-pas virtuel)',
+            // 'Séance 12 : Communication radio (simulateur) • mini‑chat de poche',
+            // 'Séance 13 : Projet guidé : station météo de poche (simulateur)',
+            // 'Séance 14 : Projet libre encadré : gadget utile (prototype logiciel)',
+            // 'Séance 15 : Tests, critères de performance & présentation express (pitch 1 min)',
+            // 'Séance 16 : Prise en main CAO 3D (Tinkercad) : primitives & contraintes',
+            // 'Séance 17 : Créer une pièce simple : adaptateur de câble (tolérances, cotes)',
+            // 'Séance 18 : Assemblage virtuel : emboîtement (alignements, collisions)',
+            // 'Séance 19 : Schémas & normalisation : cotation sur capture 3D',
+            // 'Séance 20 : Circuits virtuels : capteur + LED (Tinkercad Circuits)',
+            // 'Séance 21 : Simulation : mesurer, relever, analyser (tableau de mesures)',
+            // 'Séance 22 : Mécanismes : engrenages virtuels – rapport de transmission',
+            // 'Séance 23 : Du besoin au modèle : mini‑cahier des charges + esquisses',
+            // 'Séance 24 : Iterer : améliorer la pièce (poids, solidité) • test de contrainte',
+            // 'Séance 25 : Rendu & documentation : export STL + fiche technique',
+            // 'Séance 26 : Observer un service numérique du quotidien (étude d’usage)',
+            // 'Séance 27 : Cycle de vie d’un objet (ACV simplifiée) & indicateurs',
+            // 'Séance 28 : Énergie & efficacité : ordre de grandeur (comparaisons)',
+            // 'Séance 29 : Qualité, fiabilité, sécurité d’usage : retours d’expérience',
+            // 'Séance 30 : Choisir entre 3 solutions : critères & pondération (tableur)',
+            // 'Séance 31 : Données & IA : biais, exemples et précautions (atelier)',
+            // 'Séance 32 : Réseaux : comment circule l’info ? (schéma fonctionnel)',
+            // 'Séance 33 : Oral éclair : argumenter un choix technologique',
+            // 'Séance 34 : Lancer le projet fil rouge : besoin réel au collège (brainstorming)',
+            // 'Séance 35 : Analyse fonctionnelle (diagramme des interacteurs, FAST simplifié)',
+            // 'Séance 36 : Cahier des charges fonctionnel (exigences/critères/indicateurs)',
+            // 'Séance 37 : Recherche de solutions (veille + inspirations + croquis)',
+            // 'Séance 38 : Choix technique (matrice de décision) & planning (Kanban)',
+            // 'Séance 39 : Prototype virtuel 1 : maquette 3D OU programme de preuve',
+            // 'Séance 40 : Tests virtuels & mesures (critères BO) • reporter résultats',
+            // 'Séance 41 : Itération design : améliorer ergonomie & durabilité',
+            // 'Séance 42 : Préparer la communication (affiche/diaporama/vidéo courte)',
+            // 'Séance 43 : Préparer l’oral type DNB : support & trame',
+            // 'Séance 44 : Répétitions (feed-back entre pairs) & finalisation',
+            // 'Séance 45 : Soutenance interne + exposition numérique (galerie ENT)',
+            // 'Séance 46 : Évaluation intermédiaire (compétences) + consolidation',
+            // 'Séance 47 : Parcours PIX ciblés (sécurité, données, contenus)',
+            // 'Séance 48 : Certification PIX (créneau 1) – selon organisation établissement',
+            // 'Séance 49 : Certification PIX (créneau 2 / rattrapage)',
+            // 'Séance 50 : Retour sur PIX & remédiations personnalisées',
+            // 'Séance 51 : Bilan de fin d’année & valorisation du portfolio',
+            // 'Séance 52 : Réserve / atelier libre',
+            // 'Séance 53 : Réserve / atelier libre'
+        ];
+
+        function isHoliday(date) {
+            return holidays[date] !== undefined;
+        }
+
+        function isInVacation(date) {
+            const parsedDate = new Date(date);
+            return vacations.some(vacation => {
+                const startDate = new Date(vacation.start);
+                const endDate = new Date(vacation.end);
+                return parsedDate >= startDate && parsedDate <= endDate;
+            });
+        }
+
+        function getVacationName(date) {
+            const parsedDate = new Date(date);
+            const vacation = vacations.find(vacation => {
+                const startDate = new Date(vacation.start);
+                const endDate = new Date(vacation.end);
+                return parsedDate >= startDate && parsedDate <= endDate;
+            });
+            return vacation ? vacation.name : '';
+        }
+
+        function formatFrenchDate(date) {
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return new Date(date).toLocaleDateString('fr-FR', options);
+        }
+
+        function isCurrentWeek(date) {
+            const currentDate = new Date();
+            const firstDayOfWeek = new Date(date);
+            const lastDayOfWeek = new Date(firstDayOfWeek);
+            lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
+            return currentDate >= firstDayOfWeek && currentDate <= lastDayOfWeek;
+        }
+
+        function isToday(date) {
+            const today = new Date().toISOString().split('T')[0];
+            return today === date;
+        }
+
+        // function generateCalendar() {
+        //     const calendarBody = document.getElementById('calendar-body');
+        //     const startDate = new Date('2024-09-06');  // Commence le vendredi 6 septembre
+        //     const endDate = new Date('2025-07-12');
+            
+        //     let currentDate = startDate;
+        //     let sessionIndex = 0;
+        //     let firstLine = true; // Pour gérer le premier vendredi seul
+        //     let displayThursday = true; // Alterne l'affichage des jeudis
+
+        //     while (currentDate <= endDate) {
+        //         const row = document.createElement('tr');
+
+        //         if (firstLine) {
+        //             // Première ligne : uniquement le vendredi
+        //             const fridayDateString = currentDate.toISOString().split('T')[0];
+        //             const fridayCell = document.createElement('td');
+        //             const fridayDescCell = document.createElement('td');
+                    
+        //             fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+        //             if (isHoliday(fridayDateString)) {
+        //                 fridayDescCell.textContent = holidays[fridayDateString];
+        //                 fridayCell.classList.add('holiday');
+        //                 fridayDescCell.classList.add('holiday');
+        //             } else if (isInVacation(fridayDateString)) {
+        //                 fridayDescCell.textContent = getVacationName(fridayDateString);
+        //                 row.classList.add('vacation');
+        //             } else {
+        //                 fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+        //                 sessionIndex++;
+        //             }
+
+        //             if (isToday(fridayDateString)) {
+        //                 fridayCell.classList.add('today');
+        //                 fridayDescCell.classList.add('today');
+        //             }
+
+        //             // Cellules vides pour jeudi
+        //             row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
+        //             row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+        //             row.appendChild(fridayCell);
+        //             row.appendChild(fridayDescCell);
+
+        //             // Passer au jeudi suivant
+        //             currentDate.setDate(currentDate.getDate() + 6);
+        //             firstLine = false;
+        //         } else {
+        //             // Ligne suivante : jeudi et vendredi (alternance pour jeudi)
+        //             if (displayThursday) {
+        //                 // Affiche le jeudi
+        //                 const thursdayDateString = currentDate.toISOString().split('T')[0];
+        //                 const thursdayCell = document.createElement('td');
+        //                 const thursdayDescCell = document.createElement('td');
+                        
+        //                 thursdayCell.textContent = formatFrenchDate(thursdayDateString);
+
+        //                 if (isHoliday(thursdayDateString)) {
+        //                     thursdayDescCell.textContent = holidays[thursdayDateString];
+        //                     thursdayCell.classList.add('holiday');
+        //                     thursdayDescCell.classList.add('holiday');
+        //                 } else if (isInVacation(thursdayDateString)) {
+        //                     thursdayDescCell.textContent = getVacationName(thursdayDateString);
+        //                     row.classList.add('vacation');
+        //                 } else {
+        //                     thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+        //                     sessionIndex++;
+        //                 }
+
+        //                 if (isToday(thursdayDateString)) {
+        //                     thursdayCell.classList.add('today');
+        //                     thursdayDescCell.classList.add('today');
+        //                 }
+
+        //                 row.appendChild(thursdayCell);
+        //                 row.appendChild(thursdayDescCell);
+        //             } else {
+        //                 // Si jeudi est sauté, ajoute des cellules vides
+        //                 row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
+        //                 row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+        //             }
+
+        //             // Passe au vendredi
+        //             currentDate.setDate(currentDate.getDate() + 1);
+        //             const fridayDateString = currentDate.toISOString().split('T')[0];
+        //             const fridayCell = document.createElement('td');
+        //             const fridayDescCell = document.createElement('td');
+                    
+        //             fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+        //             if (isHoliday(fridayDateString)) {
+        //                 fridayDescCell.textContent = holidays[fridayDateString];
+        //                 fridayCell.classList.add('holiday');
+        //                 fridayDescCell.classList.add('holiday');
+        //             } else if (isInVacation(fridayDateString)) {
+        //                 fridayDescCell.textContent = getVacationName(fridayDateString);
+        //                 row.classList.add('vacation');
+        //             } else {
+        //                 fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+        //                 sessionIndex++;
+        //             }
+
+        //             if (isToday(fridayDateString)) {
+        //                 fridayCell.classList.add('today');
+        //                 fridayDescCell.classList.add('today');
+        //             }
+
+        //             row.appendChild(fridayCell);
+        //             row.appendChild(fridayDescCell);
+
+        //             // Passe au jeudi suivant (saute un jeudi sur deux)
+        //             currentDate.setDate(currentDate.getDate() + 6);
+        //             displayThursday = !displayThursday; // Alterne l'affichage des jeudis
+        //         }
+
+        //         calendarBody.appendChild(row);
+        //     }
+        // }
+
+        function generateCalendar() {
+            const calendarBody = document.getElementById('calendar-body');
+            const startDate = new Date('2025-09-04');  // Commence le jeudi 4 septembre
+            const endDate = new Date('2026-07-09');
+            
+            let currentDate = startDate;
+            let sessionIndex = 0;
+            let firstLine = true; // Pour gérer le premier jeudi seul
+            let displayThursday = true; // Alterne l'affichage des jeudis
+
+            while (currentDate <= endDate) {
+                const row = document.createElement('tr');
+
+                if (firstLine) {
+                    // Première ligne : uniquement le jeudi
+                    const fridayDateString = currentDate.toISOString().split('T')[0];
+                    const fridayCell = document.createElement('td');
+                    const fridayDescCell = document.createElement('td');
+                    
+                    fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+                    if (isHoliday(fridayDateString)) {
+                        fridayDescCell.textContent = holidays[fridayDateString];
+                        fridayCell.classList.add('holiday');
+                        fridayDescCell.classList.add('holiday');
+                    } else if (isInVacation(fridayDateString)) {
+                        fridayDescCell.textContent = getVacationName(fridayDateString);
+                        row.classList.add('vacation');
+                    } else {
+                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
+                        sessionIndex++;
+
+                        // Création d'un lien cliquable pour les séances
+                        const link = document.createElement('a');
+                        link.textContent = sessionName;
+                        link.href = `#`; // Génère un ID basé sur le nom de la séance
+                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
+
+                        fridayDescCell.appendChild(link);
+                    }
+
+                    if (isToday(fridayDateString)) {
+                        fridayCell.classList.add('today');
+                        fridayDescCell.classList.add('today');
+                    }
+
+                    // Cellules vides pour jeudi
+                    row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
+                    row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+                    row.appendChild(fridayCell);
+                    row.appendChild(fridayDescCell);
+
+                    // Passer au jeudi suivant
+                    currentDate.setDate(currentDate.getDate() + 7);
+                    firstLine = false;
+                } else {
+                    // Ligne suivante : jeudi séance 1 et jeudi séance 2 (alternance pour jeudi)
+                    if (displayThursday) {
+                        // Affiche le jeudi
+                        const thursdayDateString = currentDate.toISOString().split('T')[0];
+                        const thursdayCell = document.createElement('td');
+                        const thursdayDescCell = document.createElement('td');
+                        
+                        thursdayCell.textContent = formatFrenchDate(thursdayDateString);                       
+
+                        if (isHoliday(thursdayDateString)) {
+                            thursdayDescCell.textContent = holidays[thursdayDateString];
+                            thursdayCell.classList.add('holiday');
+                            thursdayDescCell.classList.add('holiday');
+                        } else if (isInVacation(thursdayDateString)) {
+                            thursdayDescCell.textContent = getVacationName(thursdayDateString);
+                            row.classList.add('vacation');
+                        } else {
+                            const sessionName = sessions[sessionIndex] || 'Séance à définir';
+                            sessionIndex++;
+
+                            // Création d'un lien cliquable pour les séances
+                            const link = document.createElement('a');
+                            link.textContent = sessionName;
+                            link.href = `#`; // Génère un ID basé sur le nom de la séance
+                            link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
+
+                            thursdayDescCell.appendChild(link);
+                        }
+
+                        if (isToday(thursdayDateString)) {
+                            thursdayCell.classList.add('today');
+                            thursdayDescCell.classList.add('today');
+                        }
+
+                        // Ajout des cellules à la ligne
+                        row.appendChild(thursdayCell);
+                        row.appendChild(thursdayDescCell);
+                    } else {
+                        // Si jeudi est sauté, ajoute des cellules vides
+                        row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
+                        row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+                    }
+
+                    // Passe a la deuxième séance du jeudi
+                    currentDate.setDate(currentDate.getDate());
+                    const fridayDateString = currentDate.toISOString().split('T')[0];
+                    const fridayCell = document.createElement('td');
+                    const fridayDescCell = document.createElement('td');
+                    
+                    fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+                    if (isHoliday(fridayDateString)) {
+                        fridayDescCell.textContent = holidays[fridayDateString];
+                        fridayCell.classList.add('holiday');
+                        fridayDescCell.classList.add('holiday');
+                    } else if (isInVacation(fridayDateString)) {
+                        fridayDescCell.textContent = getVacationName(fridayDateString);
+                        row.classList.add('vacation');
+                    } else {
+                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
+                        sessionIndex++;
+
+                        // Création d'un lien cliquable pour les séances
+                        const link = document.createElement('a');
+                        link.textContent = sessionName;
+                        link.href = `#`; // Génère un ID basé sur le nom de la séance
+                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
+
+                        fridayDescCell.appendChild(link);
+                    }
+
+                    if (isToday(fridayDateString)) {
+                        fridayCell.classList.add('today');
+                        fridayDescCell.classList.add('today');
+                    }
+
+                    row.appendChild(fridayCell);
+                    row.appendChild(fridayDescCell);
+
+                    // Passe au jeudi suivant (saute un jeudi sur deux)
+                    currentDate.setDate(currentDate.getDate() + 7);
+                    displayThursday = !displayThursday; // Alterne l'affichage des jeudis
+                }
+
+                calendarBody.appendChild(row);
+            }
+        }
+
+        // Générer le calendrier au chargement de la page
+        generateCalendar();
+
+        // Toggle menu visibility
+        function toggleMenu() {
+            const menu = document.getElementById("session-nav");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+
+        // Show selected session content
+        function showSession(sessionId) {
+            const sessions = document.querySelectorAll('.content-section');
+            sessions.forEach(session => {
+                session.classList.remove('active');
+                if (session.id === sessionId) {
+                    session.classList.add('active');
+                }
+            });
+
+            // Mettre en évidence la séance active dans le menu
+            const menuLinks = document.querySelectorAll('#session-nav a');
+            menuLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick').includes(sessionId)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Display the first session by default when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            showSession('calendar');
+        });
+
+    </script>
+
+</body>
+</html>
