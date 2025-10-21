@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme Technologie 5ème</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Calibri, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        main {
+            margin-left: 200px;
+            padding: 20px;
+            min-height: 80vh;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        a{
+            color: black;
+        }
+
+        a:hover{
+            color: orange;
+        }
+
+        aside {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            transition: width 0.3s ease;
+            overflow-y: auto;
+            scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
+        }
+
+        aside::-webkit-scrollbar {
+            display: none; /* Masque la barre de défilement pour Chrome, Safari, et Opera */
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            padding: 10px;
+        }
+
+        aside ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        /* Style pour l'élément de menu actif (séance en cours) */
+        aside ul li a.active {
+            background-color: #4CAF50; /* Couleur pour l'élément actif */
+            color: white;
+            font-weight: bold;
+        }
+
+        aside ul li a:hover {
+            background-color: #555;
+        }
+
+        .hamburger {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h2, h3, h4, h5{
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        h3{
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+        }
+
+        h4, h5, p, ul{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .image{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        section ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Styles spécifiques pour le calendrier */
+        table.calendar {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .current-week {
+            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
+        }
+
+        pre{
+            background-color: black;
+            color: white;
+        }
+
+        .today {
+            background-color: #007BFF; /* Bleu vif pour le jour actuel */
+            color: white; /* Texte blanc pour le contraste */
+        }
+
+        .vacation {
+            background-color: #B2E4A6; /* Vert pastel pour les vacances */
+            color: black; /* Texte noir ou foncé pour la lisibilité */
+        }
+
+        .holiday {
+            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
+            color: white; /* Texte blanc ou clair */
+        }
+
+        iframe{
+            width: 87vw;
+            height: 42vw;
+        }
+
+        .rep {
+            visibility: hidden;
+        }
+
+        /* code {
+            background-color: #eef;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #eef;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        } */
+
+        .note {
+            background-color: #ffffcc;
+            padding: 10px;
+            border-left: 4px solid #ffcc00;
+            margin: 20px 0;
+        }
+
+        .container {
+            /* max-width: 800px; */
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        a button:hover {
+            background-color: #e06e2b;
+        }
+
+        .show-site {
+            width: 100%;
+            height: 100%;
+            zoom: 0.5;
+            border-radius: 10px;
+        }
+
+        .show-site-div {
+            text-align: center;
+            border: 1px solid #ccc;
+            width: 45%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Programme Technologie 5ème</h1>
+    </header>
+
+    <!-- Menu hamburger sur la gauche -->
+    <aside id="menu">
+        <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
+        <nav id="session-nav">
+            <ul>
+                <!-- CALENDRIER -->
+                <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="content">
+        <!-- Calendrier -->
+        <section id="calendar" class="content-section">
+            <h2>Calendrier Technologie 5ème - 2025/2026</h2>
+            <table class="calendar">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Cours</th>
+                        <th>Date</th>
+                        <th>Cours</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                    <!-- Les lignes du calendrier seront générées ici par JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="session1" class="content-section">
+            
+        </section>
+
+        <section id="session2" class="content-section">
+            <h2>Accueil : Règles, prise en main et sécurité numérique</h2>
+            <h3>1. Accueil et mise en place</h3>
+            <ul>
+                <li>Disposition en binômes fixes (pour l’année).</li>
+                <li>Présentation rapide : “Cette année, vous allez surtout <i>faire</i> : modéliser, programmer, tester, créer des projets utiles au collège.”</li>
+            </ul>
+            <h3>2. Découverte et règles du labo numérique</h3>
+            <ul>
+                <li>Identifier les éléments de la salle (ordinateurs, imprimante 3D si dispo, rangements, extincteur, prises, tableau).</li>
+                <li>Discussion rapide : “Quels risques possibles ici ?” (chute, câble, matériel fragile, données…).</li>
+            </ul>
+            <h3>3. Prise en main des postes</h3>
+            <ul>
+                <li>Allumer les ordinateurs et se connecter</li>
+                <li>
+                    Télécharger le document modèle avec le lien suivant : 
+                    <a href="https://drive.google.com/drive/folders/13y5yDJ_RzcvTd7fgTC6b0RbketXoXf7M?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        <i>Document à télécharger</i>
+                    </a>
+                </li>
+                <li>Renommez le comme suit : presentation_nom_prenom</li>
+                <li>
+                    Ouvrez le et remplissez le avec les infos suivantes:
+                    <ul>
+                        <li>Nom</li>
+                        <li>Prénom</li>
+                        <li>Hobby / Passions</li>
+                        <li>Ce que vous voudriez faire comme études</li>
+                        <li>Où vous voulez faire vos études</li>
+                        <li>Ce que vous voudriez faire comme métiers plus tard</li>
+                        <li>Pourquoi faire ce métiers</li>
+                    </ul>
+                    Sauvegardez le document
+                </li>
+                <li>
+                    Copiez le dans le drive de la classe à l'adresse suivante (directement depuis l'ordinateur) : 
+                    <br>
+                    \Espace d'échange\Techno
+                </li>
+                <li>Changez de poste et vérifiez que votre fichier s'y trouve</li>
+            </ul>
+            <h3>4. Quiz sécurité & RGPD</h3>
+            <ul>
+                <li>Peut-on donner son mot de passe à son ami ?</li>
+                <li>Que faire si on reçoit un mail bizarre avec une pièce jointe ?</li>
+                <li>Quelles infos sont “données personnelles” ? (nom, photo, adresse, notes scolaires)</li>
+                <li>Ai-je le droit de publier la photo d’un camarade sans son accord ?</li>
+                <li>Pourquoi faut-il verrouiller sa session ?</li>
+                <li>Si l’ordi bugge, que dois-je faire ?</li>
+                <li>Que veut dire “RGPD” ? (Réponse simplifiée : loi européenne qui protège nos données).</li>
+                <li>Exemple concret : choisir un bon mot de passe (fort vs faible).</li>
+            </ul>
+            <h3>5. Clôture et trace écrite</h3>
+            <ul>
+                <li>Résumer des points-clés :</li>
+                <ul>
+                    <li>Règles du labo.</li>
+                    <li>Identifiants personnels</li>
+                    <li>RGPD</li>
+                </ul>
+            </ul>
+            <ul>
+                <li>Créer une fiche mémo (à mettre dans le drive partagé, nommé "nom_prenom_memo") avec :</li>
+                <ul>
+                    <li>3 règles de sécurité labo.</li>
+                    <li>2 règles RGPD.</li>
+                    <li>1 mot de passe solide qui, selon vous, est fort.</li>
+                </ul>
+            </ul>
+        </section>
+
+        <section id="session3" class="content-section">
+            <h2>Diagnostic CRCN + organisation en binômes, découverte du portfolio numérique</h2>
+            <h3>1. Mise en route</h3>
+            <ul>
+                <li>
+                    Rendez-vous sur le site suivant :
+                    <br>
+                    <a href="https://app.wooclap.com/events/AJOMII/live-session" target="_blank" rel="noopener noreferrer">Wooclap</a>
+                </li>
+                <li>Une dernière question : As-tu déjà créé un document en ligne collaboratif ?</li>
+            </ul>
+            <h3>2. Diagnostic CRCN individuel</h3>
+            <p>
+                Comme vous êtes en binomes, vous allez faire le diagnostic CRCN <strong>chacun de votre côté</strong> (15-20 min).
+                <br>
+                Un élève depuis son smartphone, l'autre depuis l'ordinateur.
+            </p>
+            <!-- <br>
+            <p>Scannez le QRCode suivant :</p>
+            <br> -->
+            <!-- <img src="quiziniere_CRCN.png" alt="QRCode pour le quiz CRCN"> -->
+            <br>
+            <p>
+                Ou bien via le lien suivant : 
+                <a href="https://www.quiziniere.com/diffusions/JB2EXO" target="_blank" rel="noopener noreferrer">Quiziniere - Diagnostic CRCN</a>
+            </p>
+            <h3>3. Découverte du portfolio numérique</h3>
+            <p>
+                <b>
+                    Le portfolio est notre mémoire numérique : il servira à archiver vos projets, vos tests, vos comptes rendus et vos réussites tout au long de l’année. À la fin, il montrera vos progrès et vous servira pour valider vos compétences CRCN.
+                </b>
+            </p>
+            <p>Dans votre dossier partagé sur le réseaux du lycée :</p>
+            <ol>
+                <li>
+                    Créez un dossier commun
+                    <ul>
+                        <li>Nommez le : "Portfolio Techno 5e - [Nom de binôme]"</li>
+                        <li>Vous pouvez utiliser vos 2 prénoms, vos 2 noms, un nom d'équipe (ex : équipe pluton), etc...</li>
+                    </ul>
+                </li>
+                <li>
+                    Ajouter un document collaboratif dans ce dossier
+                    <ul>
+                        <li>Nommez le fichier : "Carnet de bord S0"</li>
+                        <li>Dans ce document, écrire la phrase d'introduction : "<i>Nous sommes [prénoms] et notre défi sera de travailler en équipe toute l’année !</i>"</li>
+                    </ul>
+                </li>
+                <li>
+                    Insérer une ressource externe
+                    <ul>
+                        <li>Chaque binôme cherche une image libre de droits (Pixabay, Unsplash, Pexels).</li>
+                        <li>L’image doit représenter un objet technique ou un mot-clé de la séance (énergie, numérique, robot, école…).</li>
+                        <li>Ils la glissent dans leur dossier portfolio.</li>
+                    </ul>
+                </li>
+                <li>
+                    Faire une capture d’écran
+                    <ul>
+                        <li>Faites une capture d’écran de votre dossier portfolio et collez-la dans le carnet de bord.</li>
+                        <li>Si nécessaire, utilisez la combinaison de touches (Windows : Win + Shift + S, Mac : Cmd + Shift + 4).</li>
+                    </ul>
+                </li>
+            </ol>
+            <br>
+            <p>S'il vous reste du temps, chaque binôme choisit un emoji ou une icône comme “logo d’équipe” qu’il place en première page de son carnet de bord.</p>
+            <br>
+            <p>
+                Chaque binôme doit avoir en fin de séance :
+                <ul>
+                    <li>un dossier Portfolio "Techno 5e – [Nom du binôme]"</li>
+                    <li>
+                        un fichier "Carnet de bord S0" contenant :
+                        <ul>
+                            <li>la phrase d’introduction</li>
+                            <li>une image libre de droits</li>
+                            <li>une capture d’écran du portfolio</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+
+        <section id="session4" class="content-section">
+            <h2>Inventaire d’objets du collège</h2>
+            <h3>Compétences visées :</h3>
+            <ul>
+                <li>Identifier la fonction d’usage d’un objet technique.</li>
+                <li>Relier un objet technique aux besoins et aux usagers.</li>
+                <li>Décrire simplement un système technique par ses fonctions principales.</li>
+                <li>Travailler en groupe et collaborer avec des outils numériques.</li>
+            </ul>
+            <h3>Objectifs pédagogiques</h3>
+            <ul>
+                <li>Comprendre que tout objet technique existe pour répondre à un besoin humain.</li>
+                <li>Savoir distinguer usager, besoin, fonction d’usage.</li>
+                <li>Produire un inventaire collaboratif d’objets du collège en utilisant un outil numérique partagé.</li>
+            </ul>
+            <h3>1. Mise en situation</h3>
+            <p><i><b>"Si demain on devait construire un nouveau collège, quels objets faudrait-il absolument prévoir pour bien fonctionner ?"</b></i></p>
+            <p>
+                Au tableau, introduire les notions suivantes : 
+                <ul>
+                    <li>Besoin : le besoin auquel réponds l'objet</li>
+                    <li>Usager : qui en profite, l'utilise</li>
+                    <li>Fonction d’usage : action rendue par l’objet pour répondre au besoin → exemple : une chaise → permet de s’asseoir.</li>
+                </ul>
+            </p>
+            <h3>2. Activité pratique par binômes</h3>
+            <p>Télécharger le document suivant : <a href="objets_college.ods" target="_blank" rel="noopener noreferrer">Objets_collège.ods (format LibreOffice)</a></p>
+            <p>
+                Consigne : 
+                <ol>
+                    En binôme, vous allez recenser 3 objets du collège. Pour chacun, vous devez indiquer :
+                    <li>Nom de l’objet</li>
+                    <li>Besoin auquel il répond</li>
+                    <li>Qui est l’usager principal</li>
+                    <li>Fonction d’usage (ce que l’objet permet de faire)</li>
+                    <li>Que se passerait-il si cet objet n’existait pas ?</li>
+                </ol>
+                <i><b>N'hésitez pas à être créatifs et à chercher des objets originaux !</b></i>
+            </p>
+            <h3>3. Mise en commun</h3>
+            <ul>
+                <li>Définir un élève-secrétaire pour alimenter une grande fiche de synthèse (fichier Calc)</li>
+                <li>Chaque binôme présente 1 objet marquant à la classe (rapide pitch de 1 min)</li>
+                <li>
+                    Discussion guidée :
+                    <ul>
+                        <li>Quels besoins sont les plus souvent cités ?</li>
+                        <li>Y a-t-il des objets spécifiques aux profs ? Aux élèves ? Aux agents techniques ?</li>
+                        <li>Peut-on classer les objets selon leur fonction (se nourrir, apprendre, se déplacer, sécurité, confort) ?</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>
+                <i><b>S'il reste du temps : </b></i>
+                <ul>
+                    <li>Jeu “Objet mystère” : un élève décrit le besoin et la fonction → les autres devinent l’objet.</li>
+                    <li>
+                        Défi express : trouver un objet du collège qui a plusieurs usagers différents (ex. ordinateur → prof pour préparer cours, élève pour apprendre, agent pour maintenance).
+                    </li>
+                    <li>Pour les plus rapides : comparer deux objets qui répondent au même besoin (ex. tableau blanc / vidéoprojecteur).</li>
+                </ul>
+            </p>
+            <h3>4. Conclusion</h3>
+            <p>
+                <b>
+                    Un <i>objet technique</i> est créé par l’homme pour répondre à un <i>besoin</i>. Il est utilisé par un ou plusieurs <i>usagers</i> et remplit une <i>fonction d’usage</i>. Dans le collège, on trouve de nombreux objets techniques qui facilitent la vie quotidienne et l’apprentissage.
+                </b>
+            </p>
+        </section>
+
+        <section id="session5" class="content-section">
+            <h2>Cycle de vie d’un objet (ACV simplifiée) et critères de choix</h2>
+            <p>
+                L'Analyse de cycle de vie (ACV) est une méthode d'évaluation visant à quantifier les impacts environnementaux d'un produit ou d'un service, dans un objectif d'éco-conception ou pour choisir parmi plusieurs produits ou services le plus performant.
+            </p>
+            <h3>Compétences visées :</h3>
+            <ul>
+                <li>Identifier les étapes principales du cycle de vie d’un objet technique.</li>
+                <li>Relier un objet à ses impacts (énergie, matières, déchets).</li>
+                <li>Utiliser des critères de choix simples (prix, réparabilité, énergie).</li>
+                <li>Coopérer et argumenter dans un débat/activité.</li>
+            </ul>
+            <h3>Objectifs pédagogiques</h3>
+            <ul>
+                <li>Comprendre que chaque objet a une “vie” depuis sa fabrication jusqu’à son recyclage.</li>
+                <li>Découvrir que nos choix d’objets influencent l’environnement, l’économie et la société.</li>
+                <li>Savoir analyser et comparer 2 objets similaires avec des critères simples.</li>
+            </ul>
+            <h3>1. Accroche & découverte</h3>
+            <a href="https://www.youtube.com/watch?v=erGnf7ws20E&t=136s" target="_blank" rel="noopener noreferrer">Vidéo Youtube : Life of a Plastic Bottle</a>
+            <br>
+            <p>
+                <ul>
+                    Questions :
+                    <li>Que s’est-il passé AVANT que je boive cette eau ?</li>
+                    <li>Que va-t-il se passer APRÈS ?</li>
+                </ul>
+            </p>
+            <p>En fait, un objet technique comme cette bouteille a une vie. On appelle cela le cycle de vie. On le représente en 5 étapes.</p>
+            <ol>
+                Introduction des notions de cycle de vie (simplifié en 5 étapes) :
+                <li>Matières premières</li>
+                <li>Fabrication</li>
+                <li>Transport/distribution</li>
+                <li>Utilisation</li>
+                <li>Fin de vie (réemploi, recyclage, déchets)</li>
+            </ol>
+            <img class="image" src="cycle_vie_objet.png" alt="Cycle de vie d'un objet technique" width="800" height="700">
+            <h5>Mini-activité ludique</h5>
+            <p>
+                Avec un objet du quotidient (stylo, canette, cahier, ...).
+                <br>
+                Qui peut raconter son cycle de vie ?
+            </p>
+            <h3>2. Activité pratique par groupes</h3>
+            <h5>Étape A – Fichier à compléter</h5>
+            <ul>
+                <li>Chosir un objet parmi les objets suivant : smartphone, chaise en plastique, vêtement, ampoule LED, ordinateur portable, trotinette électrique</li>
+                <li>
+                    Téléchargez le document suivant : 
+                    <a href="cycle_vie_objet.ods">cycle_vie_objet.ods</a>
+                </li>
+                <li>En vous basant sur l'exemple de la bouteille en plastique, remplir le document</li>
+                <li>Enregistrez le dans votre dossier partagé</li>
+            </ul>
+            <ul>
+                Bonus ludique :
+                <li>Dessine un pictogramme par étape (ex. une mine pour matières, une usine pour fabrication, un camion pour transport).</li>
+                <li>Imagine ce qui se passerait si ton objet disparaissait demain : quelles solutions trouverions-nous pour remplacer son usage ?</li>
+            </ul>
+            <h5>Étape B – Comparaison de deux objets</h5>
+            <p>
+                Objectif :
+                <br>
+                Savoir analyser et comparer deux objets techniques en utilisant des critères simples pour comprendre pourquoi un choix peut être plus durable qu’un autre.
+            </p>
+            <ul>
+                <li>
+                    <p>
+                        Chaque groupe se met avec un autre groupe, puis vous devez chosir une paire d'objets à comparer parmi les suivantes :
+                        <ul>
+                            <li>Ampoule à incandescence 💡 vs Ampoule LED 💡</li>
+                            <li>Ordinateur neuf 💻 vs Ordinateur reconditionné ♻️</li>
+                            <li>Vélo classique 🚲 vs Trottinette électrique 🛴</li>
+                            <li>Bouteille plastique 🥤 vs Gourde en métal 🥤</li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    Créez un document LibreOffice Calc et remplissez le avec les colonnes suivantes :
+                    <ul>
+                        <li>Critères</li>
+                        <li>Objet 1</li>
+                        <li>Objet 2</li>
+                    </ul>
+                </li>
+                <li>
+                    Puis avec les lignes suivantes :
+                    <ul>
+                        <li>Prix</li>
+                        <li>Consommation d'énergie</li>
+                        <li>Réparabilité</li>
+                        <li>Durée de vie</li>
+                        <li>Fin de vie</li>
+                    </ul>
+                    Votre tableau doit ressembler à ceci :
+                    <br>
+                    <img class="image" src="comparateur_objets.png" alt="Tableau comparatif d'objets techniques" width="400" height="200">
+                </li>
+                <li>
+                    Chaque groupe présente son duo d’objets et le critère le plus marquant, cette comparaison sera sous forme de “Conseil d’achat du collège” → chaque groupe doit convaincre la classe que son objet est le meilleur choix pour équiper l’établissement.
+                </li>
+                <li>Défi rapide : citer un objet du quotidien et imaginer une amélioration pour réduire son impact (ex. chaussures réparables, gourde personnalisable).</li>
+            </ul>
+            <h3>3. Conclusion</h3>
+            <p>
+                <b>Trace écrite (simplifiée)</b>
+                <br>
+                « Tout objet technique a un cycle de vie : matières premières, fabrication, transport, utilisation, fin de vie.
+                Pour choisir entre deux objets, on peut comparer plusieurs critères : prix, énergie, réparabilité, durée de vie, recyclage.
+                Un choix raisonné permet de limiter l’impact sur l’environnement et de favoriser le développement durable. »
+            </p>
+        </section>
+
+        <section id="session6" class="content-section">
+            <h2>Comparaison d’OST – tableau de critères & scénario d’usage raisonné</h2>
+            <h3>Compétences visées</h3>
+            <ul>
+                <li>Identifier et hiérarchiser des critères de choix d’un objet technique.</li>
+                <li>Comparer plusieurs solutions à partir d’un tableau de critères.</li>
+                <li>Décrire un scénario d’usage raisonné (choix argumenté et adapté au contexte).</li>
+                <li>Travailler en groupe et argumenter ses choix.</li>
+            </ul>
+            <h3>1. Accroche</h3>
+            <p>
+                Que pouvez-vous me dire sur les deux objets suivants ?
+                <ul>
+                    <li>Bouteille plastique</li>
+                    <li>Gourde en métal</li>
+                </ul>
+                <i><b>Si le collège devait équiper chaque élève, lequel choisiriez-vous ? Pourquoi ?</b></i>
+            </p>
+            <h3>2. Activité pratique en groupes</h3>
+            <h4>Étape A – Tableau comparatif</h4>
+            <ul>
+                Chaque groupe choisi 2 ou 3 objets OST à comparer.
+                <ul>
+                    Exemples possibles (au choix)
+                    <li><b>Vélo classique</b> vs <b>Trottinette électrique</b></li>
+                    <li><b>Cahier papier</b> vs <b>Tablette numérique</b></li>
+                    <li><b>Ampoule LED</b> vs <b>Ampoule fluocompacte*</b> vs <b>Ampoule incandescente</b></li>
+                    <li><b>Clé USB</b> vs <b>Cloud</b></li>
+                    * L'ampoule fluorescente compacte ou ampoule fluocompacte est une ampoule constituée d'un tube contenant de l'argon et de la vapeur de mercure. Ces deux composants produisent de la lumière UV invisible lorsqu'ils sont traversés par le courant électrique.
+                </ul>
+                <ul>
+                    Critères à compléter par les élèves :
+                    <li>Prix à l’achat</li>
+                    <li>Consommation d’énergie</li>
+                    <li>Impact environnemental (déchets, recyclage)</li>
+                    <li>Durée de vie</li>
+                    <li>Facilité d’utilisation</li>
+                    <li>Réparabilité / maintenance</li>
+                </ul>
+            </ul>
+            Exemple de tableau à compléter :
+            <table>
+                <tr>
+                    <td style="background-color: #4CAF50; color: white; font-weight: bold;">Critères</td>
+                    <td style="background-color: #4CAF50; color: white; font-weight: bold;">Objet A (ex. Gourde métal)</td>
+                    <td style="background-color: #4CAF50; color: white; font-weight: bold;">Objet B (ex. Bouteille plastique)</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #555; color: white; font-weight: bold;">Prix à l’achat</td>
+                    <td>Élevé à l’achat (10€)</td>
+                    <td>Faible (0,5€)</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #555; color: white; font-weight: bold;">Consommation d’énergie</td>
+                    <td>Pour la fabrication, élevè, pour le recyclage, très élevè</td>
+                    <td>Pour la fabrication, élevè, pour le recyclage, très élevè</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #555; color: white; font-weight: bold;">Impact environnemental</td>
+                    <td>Recyclable, peu de déchets</td>
+                    <td>Recyclable, beaucoup de déchets plastiques</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #555; color: white; font-weight: bold;">Durée de vie</td>
+                    <td>Plusieurs années</td>
+                    <td>Usage limité</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #555; color: white; font-weight: bold;">Facilité d'usage</td>
+                    <td>Réutilisable, à nettoyer</td>
+                    <td>Pratique, jetable</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #555; color: white; font-weight: bold;">Réparabilité / Maintenance</td>
+                    <td>Non (mais solide)</td>
+                    <td>Non</td>
+                </tr>
+            </table>
+            <h4>Étape B – Scénario d’usage raisonné</h4>
+            <p>
+                Chaque groupe doit imaginer un scénario d’usage pour son objet, en répondant aux questions suivantes :
+                <ul>
+                    <li>Dans quel contexte cet objet sera-t-il utilisé ? (école, maison, transport...)</li>
+                    <li>Qui sont les usagers principaux ? (élèves, professeurs, personnel...)</li>
+                    <li>Quels sont les besoins spécifiques à ce contexte ? (mobilité, stockage, éclairage...)</li>
+                    <li>Pourquoi cet objet est-il le meilleur choix dans ce contexte ? (avantages par rapport aux autres solutions)</li>
+                </ul>
+                Exemple de scénario :
+                <br>
+                <p>
+                    <i>
+                        <b>
+                            « Nous choisissons la gourde en métal pour les élèves car même si elle coûte plus cher à l’achat, elle dure plusieurs années et réduit les déchets plastiques. C’est un choix plus durable pour l’environnement et le collège. »
+                        </b>
+                    </i>
+                </p>
+            <h3>3. Mise en commun</h3>
+            <ul>
+                <li>Chaque groupe lit son scénario d’usage raisonné.</li>
+                <li>Tous les critères ont-ils la même importance ?</li>
+                <li>Peut-on dire qu’il existe un « meilleur » choix universel ?</li>
+                <li>En quoi le contexte d’usage (argent disponible, contraintes, environnement) influence-t-il la décision ?</li>
+            </ul>
+            <ul>
+                Variante ludique / différenciation :
+                <li>
+                    <b>Débat mouvant :</b> l’enseignant lit une affirmation (« La tablette est meilleure que le cahier papier »). Les élèves se placent physiquement à gauche/droite de la salle selon leur avis → chaque camp doit convaincre l’autre avec ses arguments.
+                </li>
+                <li>
+                    <b>Jeu “Conseil municipal du collège” :</b> chaque groupe représente un acteur différent (élève, professeur, agent, gestionnaire). Ils doivent défendre un choix d’objet en fonction de leur rôle.
+                </li>
+            </ul>
+        </section>
+
+        <section id="session7" class="content-section">
+            <h2>Cartographie “boîte noire” – entrées / sorties d’un système simple</h2>
+            <h3>Compétences visées :</h3>
+            <ul>
+                <li>Identifier les éléments d’entrée et de sortie d’un système technique.</li>
+                <li>Représenter un système par un schéma de type boîte noire.</li>
+                <li>Comprendre que l’intérieur (fonctionnement détaillé) n’est pas toujours nécessaire pour décrire un système.</li>
+                <li>Travailler en groupe et communiquer une solution.</li>
+            </ul>
+            <h3>1. Accroche & découverte</h3>
+            <br>
+            <img class="image" src="boite_noire.drawio.png" alt="Schéma d'une boite noire, avec un point d'interrogation au milieu, une flèche d'entrée et une flèche de sortie">
+            <p><i><b>« Quand vous pédalez sur un vélo, qu’est-ce qui entre dans le vélo ? Qu’est-ce qui en sort ? »</b></i></p>
+            <ul>
+                Réponses attendues :
+                <li>Entrées → énergie musculaire, action de pédaler, information (pilote qui dirige).</li>
+                <li>Sorties → mouvement des roues, déplacement, bruit, lumière (si dynamo).</li>
+            </ul>
+            <p><b>C'est le principe de la “boîte noire” : on ne s’intéresse pas à ce qu’il y a à l’intérieur, mais seulement à ce qui entre et ce qui sort.</b></p>
+            <p><b>Dispositif réel ou théorique dont on ignore ou veut ignorer la structure et le fonctionnement pour ne s'intéresser qu'aux fonctions qu'il remplit.</b></p>
+            <h3>2. Activité pratique</h3>
+            <h4>Étape A – Exemple guidé</h4>
+            <p>
+                Prenons un exemple simple : une lampe de bureau.
+                <ul>
+                    <li>Quelles sont les entrées ? (ex. énergie électrique, interrupteur)</li>
+                    <li>Quelles sont les sorties ? (ex. lumière, chaleur)</li>
+                </ul>
+                Schéma de boîte noire :
+                <br>
+                <img class="image" src="boite_noire_exo.drawio.png" alt="">
+            </p>
+            <h4>Étape B – Mise en pratique</h4>
+            <p>Choisissez un objet technique parmi une liste proposée ou dans votre environnement de classe.</p>
+            <ul>
+                Liste proposée :
+                <li>Ventilateur</li>
+                <li>Micro-ondes</li>
+                <li>Ordinateur portable</li>
+                <li>Imprimante 3D</li>
+                <li>Smartphone</li>
+                <li>Machine à café</li>
+                <li>Radiateur</li>
+            </ul>
+            <ol>
+                Mission :
+                <li>Remplir un schéma de boîte noire avec au moins 3 entrées et 3 sorties.</li>
+                <li>Dessiner ou compléter le schéma sur une feuille (ou version numérique avec un outil simple type Draw.io).</li>
+                <li>Donner un titre clair à votre schéma, ex : « Boîte noire d’un smartphone ».</li>
+            </ol>
+            <h4>Étape C - Jeu “devine mon objet”</h4>
+            <p>Un groupe lit ses entrées/sorties, les autres doivent deviner l’objet technique.</p>
+            <h3>3. Mise en commun & discussion</h3>
+            <ul>
+                <li>Quelles entrées reviennent souvent (ex. énergie électrique) ?</li>
+                <li>Quelles sorties peuvent être positives (lumière, mouvement) ou négatives (bruit, chaleur, pollution) ?</li>
+                <li>Pourquoi cette représentation est utile pour comparer des systèmes ?</li>
+            </ul>
+        </section>
+
+        <section id="session8" class="content-section">
+            <h2>Tinkercad – prise en main, primitives, alignement, groupage</h2>
+            <h3>Compétences visées :</h3>
+            <ul>
+                <li>Utiliser un logiciel de CAO 3D en ligne.</li>
+                <li>Manipuler des primitives géométriques (cube, cylindre, sphère, cône…).</li>
+                <li>Réaliser des opérations simples : déplacer, redimensionner, aligner, grouper.</li>
+                <li>Développer la créativité et la rigueur dans une activité ludique.</li>
+            </ul>
+            <h3>1. Accroche</h3>
+            <p><i><b>« Savez-vous comment on fabrique un objet avec une imprimante 3D ? »</b></i></p>
+            <p>A la maison, vous regarderez comment fonctionne une imprimante 3D filament (FDM) et une imprimante 3D résine (SLA)</p>
+            <p>Avant d’imprimer, il faut modéliser en 3D. Aujourd’hui, on découvre l’outil Tinkercad.</p>
+            <h3>2. Découverte guidée</h3>
+            <ul>
+                <li>Allez sur le site suivant : <a href="https://www.tinkercad.com/classrooms/kyvju0Sjlap/activities/kIQkXnyM2IF" target="_blank" rel="noopener noreferrer">Tinkercad de la classe</a></li>
+                <li>Vous devez avoir accès au cours : "Intro à la modélisation 3D"</li>
+                <li>Faire les différents tuto proposés (15 en tout, très court)</li>
+            </ul>
+        </section>
+
+        <section id="session9" class="content-section">
+            <h2>Cotation simple & contraintes – Reproduire une pièce à l’échelle</h2>
+            <h3>Compétences visées :</h3>
+            <ul>
+                <li>Lire et comprendre une cotation simple (dimensions en mm).</li>
+                <li>Utiliser les outils de mesure et de redimensionnement dans Tinkercad.</li>
+                <li>Reproduire une pièce à l’échelle réelle à partir d’un schéma.</li>
+                <li>Développer rigueur et précision dans la conception.</li>
+            </ul>
+            <h3>1. Accroche & découverte</h3>
+            <p><i><b>Si je vous demande de modéliser un cube, comment être sûr que vous allez tous le faire de la même taille ?</b></i></p>
+            <p>Chacun choisit une taille → risque d’erreurs → introduction de la cotation.</p>
+            <h3>2. Découverte guidée (pas-à-pas)</h3>
+            <ol>
+                <li>Ajouter un cube.</li>
+                <li>Afficher ses dimensions (poignées blanches avec valeur numérique).</li>
+                <li>Modifier les valeurs pour obtenir exactement 30 × 20 × 10 mm. (30 de long, 20 de large, 10 de haut)</li>
+                <li>Ajouter une deuxième forme (ex. cylindre Ø10 mm (diamètre), hauteur 20 mm).</li>
+                <li>Vérifier les mesures avec l’outil règle de Tinkercad.</li>
+            </ol>
+            <h3>3. Activité pratique</h3>
+            <ul>
+                <li>Retourner sur Tinkercad (<a href="https://www.tinkercad.com/joinclass/6NRFE2TGK" target="_blank" rel="noopener noreferrer">Tinkercad de la classe</a>)</li>
+                <li>Faire l'activité : "Modélisation partie 1"</li>
+            </ul>
+        </section>
+
+        <section id="session10" class="content-section">
+            <h2>Importer une image-guide & extrusions – Créer un support de badge</h2>
+            <h3>Compétences visées :</h3>
+            <ul>
+                <li>Importer et utiliser une image-guide dans un logiciel de CAO.   </li>
+                <li>Créer une forme par extrusion à partir d’un dessin.</li>
+                <li>Concevoir un objet personnalisé et fonctionnel (support de badge).</li>
+                <li>Développer créativité et autonomie dans un projet simple.</li>
+            </ul>
+            <h3>1. Accroche</h3>
+            <p><i><b>« Comment pourrait-on créer ce badge dans Tinkercad ? »</b></i></p>
+            <p>Aujourd’hui, on va apprendre à importer une image 2D et la transformer en objet 3D.</p>
+            <h3>2. Découverte guidée – Import & extrusion</h3>
+            <ul>
+                <li>Allez sur la page suivante : <a href="https://www.svgrepo.com/svg/535739/wifi" target="_blank" rel="noopener noreferrer">Wifi SVG</a></li>
+                <li>Cliquer sur "Download SVG vector"</li>
+                <li>Retournez sur Tinkercad : <a href="https://www.tinkercad.com/joinclass/6NRFE2TGK" target="_blank" rel="noopener noreferrer">Tinkercad de la classe</a></li>
+                <li>Dans Tinkercad</li>
+                <li>Créez une nouvelle conception 3D</li>
+                <li>Cliquer sur Importer → Choisir un fichier et prenez le .svg que vous venez de télécharger</li>
+                <li>Modifiez la taille pour qu'il fasse 30mm par 30mm</li>
+                <li>L’image devient un volume extrudé (épaisseur par défaut).</li>
+                <li>Ajuster la hauteur (par ex. 2 mm).</li>
+                <li>Ajouter un rectangle de base (ex. 40 × 60 mm, épaisseur 3 mm).</li>
+                <li>Poser le logo extrudé sur le rectangle (outil alignement).</li>
+                <li>Ajouter un trou circulaire Ø5 mm pour l’accroche du badge.</li>
+                <li>Grouper le tout → badge complet !</li>
+            </ul>
+            <h3>3. Activité pratique – Créer son badge</h3>
+            <ul>
+                Étape A – Importation et extrusion
+                <li>Chaque élève choisit un logo ou des initiales à importer (recherche sur le web)</li>
+                <li>L’importer dans Tinkercad et l’extruder à la bonne hauteur.</li>
+                Étape B – Support de badge
+                <li>Créer un rectangle base (taille libre, mais max. 60 mm).</li>
+                <li>Poser le logo extrudé dessus.</li>
+                <li>Ajouter un trou pour accroche (5 mm min).</li>
+                <li>Grouper le tout.</li>
+                Étape C – Bonus créatif
+                <li>Ajouter un texte extrudé (prénom, pseudo).</li>
+                <li>Choisir une forme originale (ovale, étoile).</li>
+                <li>Décorer avec plusieurs logos.</li>
+                Étape D – Sauvegarde pour impression 3D
+                <li>Exporter en STL (bouton Exporter →  .STL).</li>
+                <li>Peut prendre un certain temps...</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2025-2026 Technologie 5ème</p>
+    </footer> -->
+
+    <script>
+        const holidays = {
+            '2025-11-01': 'Toussaint',
+            '2025-11-11': 'Armistice 1918',
+            '2025-12-25': 'Noël',
+            '2026-01-01': 'Jour de l\'An',
+            '2026-04-06': 'Lundi de Pâques',
+            '2026-05-01': 'Fête du Travail',
+            '2026-05-08': 'Victoire 1945',
+            '2026-05-14': 'Ascension',
+            '2026-05-25': 'Lundi de Pentecôte',
+        };
+
+        const vacations = [
+            { start: '2025-10-18', end: '2025-11-02', name: 'Vacances de la Toussaint' },
+            { start: '2025-12-20', end: '2026-01-04', name: 'Vacances de Noël' },
+            { start: '2026-02-07', end: '2026-02-22', name: 'Vacances d\'hiver' },
+            { start: '2026-04-04', end: '2026-04-19', name: 'Vacances de printemps' },
+            { start: '2026-07-04', end: '2026-09-01', name: 'Vacances d\'été' }
+        ];
+
+        const sessions = [
+            'Séance 1 : 1er cours, présentations',
+            'Séance 2 : Accueil : Règles, prise en main et sécurité numérique',
+            'Séance 3 : Diagnostic CRCN + organisation en binômes, découverte du portfolio numérique',
+            'Séance 4 : Inventaire d\'objets du collège : fonctions d\'usage, besoins, usagers (fiche collaborative)',
+            'Séance 5 : Cycle de vie d’un objet (ACV simplifiée) et critères de choix (prix, réparabilité, énergie)',
+            'Séance 6 : Comparaison d’OST : tableau de critères, scénario d’usage raisonné',
+            'Séance 7 : Cartographie \'boîte noire\' : entrées/sorties d’un système simple (ex. VMC, vélo, smartphone)',
+            'Séance 8 : Tinkercad : prise en main, primitives, alignement, groupage',
+            'Séance 9 : Cotation simple & contraintes : reproduire une pièce à l’échelle',
+            'Séance 10 : Importer une image-guide, extrusions : créer un support de badge',
+            // 'Séance 11 : Assemblages virtuels : tolérances, symétrie, duplication',
+            // 'Séance 12 : Export STL, notions d’impression 3D (sans imprimer) : orientation & supports (simulateur)',
+            // 'Séance 13 : Mini-défi : améliorer l’ergonomie d’un accessoire (avant/après)',
+            // 'Séance 14 : Découvrir la chaîne d’info : capteur → traitement → actionneur (cas du parking)',
+            // 'Séance 15 : MakeCode micro:bit (simulateur) : entrées boutons, sorties LEDs, variables',
+            // 'Séance 16 : Capteurs : luminosité/accéléromètre, mesures et affichage',
+            // 'Séance 17 : Événements & boucles : minuterie, compteur, états',
+            // 'Séance 18 : Test & validation : protocole de tests, relever des écarts',
+            // 'Séance 19 : Défi : alarme de casier (simulateur) avec critères de réussite',
+            // 'Séance 20 : Algorithme en langage naturel → Scratch (séquences & conditions)',
+            // 'Séance 21 : Variables, opérateurs, capteurs clavier/souris : jeu très simple',
+            // 'Séance 22 : Décomposer un problème : sous-programmes (blocs personnalisés)',
+            // 'Séance 23 : Gérer les événements & l’IHM : écrans, messages, ergonomie',
+            // 'Séance 24 : Tests utilisateurs en binômes : grille d’observation et correctifs',
+            // 'Séance 25 : Défi : mini-jeu éducatif (score, niveaux)',
+            // 'Séance 26 : Relever des mesures (simulateur) ; saisir & représenter (diagrammes)',
+            // 'Séance 27 : Traiter des données : moyenne, seuils, règle de décision',
+            // 'Séance 28 : Tracer une courbe de tests ; interpréter les écarts/erreurs',
+            // 'Séance 29 : Dossier technique court : présenter le résultat et la décision',
+            // 'Séance 30 : Découverte Tinkercad Circuits : LED, résistance, breadboard virtuelle',
+            // 'Séance 31 : Arduino blocs : lire un bouton, piloter une LED (sans code texte)',
+            // 'Séance 32 : Capteurs analogiques (LDR) : seuil et déclenchement',
+            // 'Séance 33 : Actionneur : servo (angle) ; sécurité & alimentation',
+            // 'Séance 34 : Protocole de validation : cahier des charges simple',
+            // 'Séance 35 : Défi : feu tricolore intelligent (priorité bus scolaire)',
+            // 'Séance 36 : Usages quotidiens de l’IA, chaînes de recommandation ; identifier des biais',
+            // 'Séance 37 : Expérience guidée : classer des images/sons, discuter des erreurs et des limites',
+            // 'Séance 38 : Lancer le projet : besoin, usagers, critères (revue de projet 0)',
+            // 'Séance 39 : Idéation (sketch-storming) & choix d’une solution',
+            // 'Séance 40 : Cahier des charges fonctionnel (boîte noire MEI)',
+            // 'Séance 41 : Architecture (schémas/maquettes filaires, Gantt simplifié)',
+            // 'Séance 42 : Prototype 1 : maquette 3D/IHM de principe',
+            // 'Séance 43 : Prototype 2 : programmation (Scratch/MakeCode)',
+            // 'Séance 44 : Intégration : données & tests (tableur)',
+            // 'Séance 45 : Itérations de conception : correction des défauts',
+            // 'Séance 46 : Préparer la com’ : affiche A3/diapo technique',
+            // 'Séance 47 : Revue de projet 1 : démonstration encadrée',
+            // 'Séance 48 : Finalisation du prototype virtuel',
+            // 'Séance 49 : Répétition générale (oraux)',
+            // 'Séance 50 : Soutenances (groupe 1) & feedback croisés',
+            // 'Séance 51 : Soutenances (groupe 2) & feedback croisés',
+            // 'Séance 52 : Améliorations & publication sur ENT/Padlet (portfolios)',
+            // 'Séance 53 : Réserve / atelier libre'
+        ];
+
+        function isHoliday(date) {
+            return holidays[date] !== undefined;
+        }
+
+        function isInVacation(date) {
+            const parsedDate = new Date(date);
+            return vacations.some(vacation => {
+                const startDate = new Date(vacation.start);
+                const endDate = new Date(vacation.end);
+                return parsedDate >= startDate && parsedDate <= endDate;
+            });
+        }
+
+        function getVacationName(date) {
+            const parsedDate = new Date(date);
+            const vacation = vacations.find(vacation => {
+                const startDate = new Date(vacation.start);
+                const endDate = new Date(vacation.end);
+                return parsedDate >= startDate && parsedDate <= endDate;
+            });
+            return vacation ? vacation.name : '';
+        }
+
+        function formatFrenchDate(date) {
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return new Date(date).toLocaleDateString('fr-FR', options);
+        }
+
+        function isCurrentWeek(date) {
+            const currentDate = new Date();
+            const firstDayOfWeek = new Date(date);
+            const lastDayOfWeek = new Date(firstDayOfWeek);
+            lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
+            return currentDate >= firstDayOfWeek && currentDate <= lastDayOfWeek;
+        }
+
+        function isToday(date) {
+            const today = new Date().toISOString().split('T')[0];
+            return today === date;
+        }
+
+        // function generateCalendar() {
+        //     const calendarBody = document.getElementById('calendar-body');
+        //     const startDate = new Date('2024-09-06');  // Commence le vendredi 6 septembre
+        //     const endDate = new Date('2025-07-12');
+            
+        //     let currentDate = startDate;
+        //     let sessionIndex = 0;
+        //     let firstLine = true; // Pour gérer le premier vendredi seul
+        //     let displayThursday = true; // Alterne l'affichage des jeudis
+
+        //     while (currentDate <= endDate) {
+        //         const row = document.createElement('tr');
+
+        //         if (firstLine) {
+        //             // Première ligne : uniquement le vendredi
+        //             const fridayDateString = currentDate.toISOString().split('T')[0];
+        //             const fridayCell = document.createElement('td');
+        //             const fridayDescCell = document.createElement('td');
+                    
+        //             fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+        //             if (isHoliday(fridayDateString)) {
+        //                 fridayDescCell.textContent = holidays[fridayDateString];
+        //                 fridayCell.classList.add('holiday');
+        //                 fridayDescCell.classList.add('holiday');
+        //             } else if (isInVacation(fridayDateString)) {
+        //                 fridayDescCell.textContent = getVacationName(fridayDateString);
+        //                 row.classList.add('vacation');
+        //             } else {
+        //                 fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+        //                 sessionIndex++;
+        //             }
+
+        //             if (isToday(fridayDateString)) {
+        //                 fridayCell.classList.add('today');
+        //                 fridayDescCell.classList.add('today');
+        //             }
+
+        //             // Cellules vides pour jeudi
+        //             row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
+        //             row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+        //             row.appendChild(fridayCell);
+        //             row.appendChild(fridayDescCell);
+
+        //             // Passer au jeudi suivant
+        //             currentDate.setDate(currentDate.getDate() + 6);
+        //             firstLine = false;
+        //         } else {
+        //             // Ligne suivante : jeudi et vendredi (alternance pour jeudi)
+        //             if (displayThursday) {
+        //                 // Affiche le jeudi
+        //                 const thursdayDateString = currentDate.toISOString().split('T')[0];
+        //                 const thursdayCell = document.createElement('td');
+        //                 const thursdayDescCell = document.createElement('td');
+                        
+        //                 thursdayCell.textContent = formatFrenchDate(thursdayDateString);
+
+        //                 if (isHoliday(thursdayDateString)) {
+        //                     thursdayDescCell.textContent = holidays[thursdayDateString];
+        //                     thursdayCell.classList.add('holiday');
+        //                     thursdayDescCell.classList.add('holiday');
+        //                 } else if (isInVacation(thursdayDateString)) {
+        //                     thursdayDescCell.textContent = getVacationName(thursdayDateString);
+        //                     row.classList.add('vacation');
+        //                 } else {
+        //                     thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+        //                     sessionIndex++;
+        //                 }
+
+        //                 if (isToday(thursdayDateString)) {
+        //                     thursdayCell.classList.add('today');
+        //                     thursdayDescCell.classList.add('today');
+        //                 }
+
+        //                 row.appendChild(thursdayCell);
+        //                 row.appendChild(thursdayDescCell);
+        //             } else {
+        //                 // Si jeudi est sauté, ajoute des cellules vides
+        //                 row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
+        //                 row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+        //             }
+
+        //             // Passe au vendredi
+        //             currentDate.setDate(currentDate.getDate() + 1);
+        //             const fridayDateString = currentDate.toISOString().split('T')[0];
+        //             const fridayCell = document.createElement('td');
+        //             const fridayDescCell = document.createElement('td');
+                    
+        //             fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+        //             if (isHoliday(fridayDateString)) {
+        //                 fridayDescCell.textContent = holidays[fridayDateString];
+        //                 fridayCell.classList.add('holiday');
+        //                 fridayDescCell.classList.add('holiday');
+        //             } else if (isInVacation(fridayDateString)) {
+        //                 fridayDescCell.textContent = getVacationName(fridayDateString);
+        //                 row.classList.add('vacation');
+        //             } else {
+        //                 fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
+        //                 sessionIndex++;
+        //             }
+
+        //             if (isToday(fridayDateString)) {
+        //                 fridayCell.classList.add('today');
+        //                 fridayDescCell.classList.add('today');
+        //             }
+
+        //             row.appendChild(fridayCell);
+        //             row.appendChild(fridayDescCell);
+
+        //             // Passe au jeudi suivant (saute un jeudi sur deux)
+        //             currentDate.setDate(currentDate.getDate() + 6);
+        //             displayThursday = !displayThursday; // Alterne l'affichage des jeudis
+        //         }
+
+        //         calendarBody.appendChild(row);
+        //     }
+        // }
+
+        function generateCalendar() {
+            const calendarBody = document.getElementById('calendar-body');
+            const startDate = new Date('2025-09-04');  // Commence le jeudi 4 septembre
+            const endDate = new Date('2026-07-09');
+            
+            let currentDate = startDate;
+            let sessionIndex = 0;
+            let firstLine = true; // Pour gérer le premier jeudi seul
+            let displayThursday = true; // Alterne l'affichage des jeudis
+
+            while (currentDate <= endDate) {
+                const row = document.createElement('tr');
+
+                if (firstLine) {
+                    // Première ligne : uniquement le jeudi
+                    const fridayDateString = currentDate.toISOString().split('T')[0];
+                    const fridayCell = document.createElement('td');
+                    const fridayDescCell = document.createElement('td');
+                    
+                    fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+                    if (isHoliday(fridayDateString)) {
+                        fridayDescCell.textContent = holidays[fridayDateString];
+                        fridayCell.classList.add('holiday');
+                        fridayDescCell.classList.add('holiday');
+                    } else if (isInVacation(fridayDateString)) {
+                        fridayDescCell.textContent = getVacationName(fridayDateString);
+                        row.classList.add('vacation');
+                    } else {
+                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
+                        sessionIndex++;
+
+                        // Création d'un lien cliquable pour les séances
+                        const link = document.createElement('a');
+                        link.textContent = sessionName;
+                        link.href = `#`; // Génère un ID basé sur le nom de la séance
+                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
+
+                        fridayDescCell.appendChild(link);
+                    }
+
+                    if (isToday(fridayDateString)) {
+                        fridayCell.classList.add('today');
+                        fridayDescCell.classList.add('today');
+                    }
+
+                    // Cellules vides pour jeudi
+                    row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
+                    row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+                    row.appendChild(fridayCell);
+                    row.appendChild(fridayDescCell);
+
+                    // Passer au jeudi suivant
+                    currentDate.setDate(currentDate.getDate() + 7);
+                    firstLine = false;
+                } else {
+                    // Ligne suivante : jeudi séance 1 et jeudi séance 2 (alternance pour jeudi)
+                    if (displayThursday) {
+                        // Affiche le jeudi
+                        const thursdayDateString = currentDate.toISOString().split('T')[0];
+                        const thursdayCell = document.createElement('td');
+                        const thursdayDescCell = document.createElement('td');
+                        
+                        thursdayCell.textContent = formatFrenchDate(thursdayDateString);                       
+
+                        if (isHoliday(thursdayDateString)) {
+                            thursdayDescCell.textContent = holidays[thursdayDateString];
+                            thursdayCell.classList.add('holiday');
+                            thursdayDescCell.classList.add('holiday');
+                        } else if (isInVacation(thursdayDateString)) {
+                            thursdayDescCell.textContent = getVacationName(thursdayDateString);
+                            row.classList.add('vacation');
+                        } else {
+                            const sessionName = sessions[sessionIndex] || 'Séance à définir';
+                            sessionIndex++;
+
+                            // Création d'un lien cliquable pour les séances
+                            const link = document.createElement('a');
+                            link.textContent = sessionName;
+                            link.href = `#`; // Génère un ID basé sur le nom de la séance
+                            link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
+
+                            thursdayDescCell.appendChild(link);
+                        }
+
+                        if (isToday(thursdayDateString)) {
+                            thursdayCell.classList.add('today');
+                            thursdayDescCell.classList.add('today');
+                        }
+
+                        // Ajout des cellules à la ligne
+                        row.appendChild(thursdayCell);
+                        row.appendChild(thursdayDescCell);
+                    } else {
+                        // Si jeudi est sauté, ajoute des cellules vides
+                        row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
+                        row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
+                    }
+
+                    // Passe a la deuxième séance du jeudi
+                    currentDate.setDate(currentDate.getDate());
+                    const fridayDateString = currentDate.toISOString().split('T')[0];
+                    const fridayCell = document.createElement('td');
+                    const fridayDescCell = document.createElement('td');
+                    
+                    fridayCell.textContent = formatFrenchDate(fridayDateString);
+
+                    if (isHoliday(fridayDateString)) {
+                        fridayDescCell.textContent = holidays[fridayDateString];
+                        fridayCell.classList.add('holiday');
+                        fridayDescCell.classList.add('holiday');
+                    } else if (isInVacation(fridayDateString)) {
+                        fridayDescCell.textContent = getVacationName(fridayDateString);
+                        row.classList.add('vacation');
+                    } else {
+                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
+                        sessionIndex++;
+
+                        // Création d'un lien cliquable pour les séances
+                        const link = document.createElement('a');
+                        link.textContent = sessionName;
+                        link.href = `#`; // Génère un ID basé sur le nom de la séance
+                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
+
+                        fridayDescCell.appendChild(link);
+                    }
+
+                    if (isToday(fridayDateString)) {
+                        fridayCell.classList.add('today');
+                        fridayDescCell.classList.add('today');
+                    }
+
+                    row.appendChild(fridayCell);
+                    row.appendChild(fridayDescCell);
+
+                    // Passe au jeudi suivant (saute un jeudi sur deux)
+                    currentDate.setDate(currentDate.getDate() + 7);
+                    displayThursday = !displayThursday; // Alterne l'affichage des jeudis
+                }
+
+                calendarBody.appendChild(row);
+            }
+        }
+
+        // Générer le calendrier au chargement de la page
+        generateCalendar();
+
+        // Toggle menu visibility
+        function toggleMenu() {
+            const menu = document.getElementById("session-nav");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+
+        // Show selected session content
+        function showSession(sessionId) {
+            const sessions = document.querySelectorAll('.content-section');
+            sessions.forEach(session => {
+                session.classList.remove('active');
+                if (session.id === sessionId) {
+                    session.classList.add('active');
+                }
+            });
+
+            // Mettre en évidence la séance active dans le menu
+            const menuLinks = document.querySelectorAll('#session-nav a');
+            menuLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick').includes(sessionId)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Display the first session by default when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            showSession('calendar');
+        });
+
+    </script>
+
+</body>
+</html>
