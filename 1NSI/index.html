@@ -140,6 +140,11 @@
             text-align: center;
         }
 
+        thead{
+            background-color: #4CAF50;
+            color: white;
+        }
+
         img {
             max-width: 100%;
             height: auto;
@@ -1200,8 +1205,8 @@
             Créer un programme qui simule la consommation d'essence d'un véhicule, en demandant à l'utilisateur la distance parcourue et la consommation moyenne du véhicule.</p>
         
             <h5>Instructions :</h5>
-            <p>1. Exemple de code pour simuler la consommation d'essence :</p>
-            <pre><code>
+            <p>1. Code pour simuler la consommation d'essence :</p>
+            <!-- <pre><code>
         # Initialisation des variables
         total_essence = 0
         distance_totale = 0
@@ -1244,7 +1249,7 @@
         
             <h5>Calcul :</h5>
             <p>La formule <code>(distance / 100) * consommation_moyenne</code> calcule la quantité d'essence utilisée pour chaque trajet, en fonction de la distance parcourue et de la consommation moyenne du véhicule.</p>
-        
+             -->
             <p>2. Testez votre programme :</p>
             <p>Lancez votre programme et testez avec différentes distances pour voir comment la consommation d'essence est calculée et accumulée pour plusieurs trajets.</p>
         
@@ -1569,127 +1574,7 @@
         </section>
 
         <section id="session8" class="content-section">
-            <h2>Séance 8 : Pratique - Suivi d’Épisodes de Manga</h2>
-        
-            <h3>Objectifs de la Séance</h3>
-            <ul>
-                <li>Appliquer les boucles, conditions, et la gestion de données avec les listes et les dictionnaires.</li>
-                <li>Écrire un programme permettant de suivre les épisodes regardés pour différents mangas.</li>
-                <li>Créer une interaction simple où l'utilisateur peut ajouter, afficher et modifier les informations sur les mangas et les épisodes.</li>
-            </ul>
-        
-            <h3>Déroulement de la Séance</h3>
-        
-            <h4>1. Introduction au Suivi d'Épisodes</h4>
-            <p><strong>Contexte du suivi des épisodes :</strong><br>
-            Dans la pratique quotidienne des fans de manga, il est courant de suivre les épisodes regardés pour plusieurs séries. Ce programme permettra à l'utilisateur de stocker et de consulter ces informations.</p>
-        
-            <p><strong>Objectif de l'exercice :</strong></p>
-            <ul>
-                <li>Ajouter un manga avec le nombre d'épisodes regardés.</li>
-                <li>Modifier le nombre d'épisodes déjà visionnés pour un manga.</li>
-                <li>Afficher la liste des mangas et le nombre d'épisodes visionnés.</li>
-            </ul>
-        
-            <h4>2. Activité Pratique : Suivi des Épisodes</h4>
-        
-            <h5>Objectif de l'activité :</h5>
-            <p>Créer un programme interactif pour gérer le suivi des épisodes de mangas.</p>
-        
-            <h5>Instructions :</h5>
-            <p>1. Écrivez le code suivant :</p>
-        
-            <pre><code>
-        # Dictionnaire pour stocker les mangas et le nombre d'épisodes vus
-        mangas = {}
-        
-        # Boucle principale du programme
-        while True:
-            print("\nOptions :")
-            print("1. Ajouter un nouveau manga")
-            print("2. Modifier le nombre d'épisodes vus")
-            print("3. Afficher la liste des mangas")
-            print("0. Quitter")
-            
-            choix = input("Entrez votre choix (1/2/3/0) : ")
-            
-            # Ajouter un nouveau manga
-            if choix == "1":
-                titre = input("Entrez le titre du manga : ")
-                episodes = int(input(f"Combien d'épisodes avez-vous vus de {titre} ? "))
-                mangas[titre] = episodes
-                print(f"{titre} a été ajouté avec {episodes} épisodes vus.")
-            
-            # Modifier le nombre d'épisodes pour un manga existant
-            elif choix == "2":
-                titre = input("Entrez le titre du manga à modifier : ")
-                if titre in mangas:
-                    nouveaux_episodes = int(input(f"Combien d'épisodes avez-vous vus maintenant pour {titre} ? "))
-                    mangas[titre] = nouveaux_episodes
-                    print(f"Le nombre d'épisodes vus pour {titre} a été mis à jour.")
-                else:
-                    print(f"{titre} n'est pas dans la liste des mangas.")
-            
-            # Afficher la liste des mangas et des épisodes
-            elif choix == "3":
-                print("Liste des mangas suivis :")
-                for titre, episodes in mangas.items():
-                    print(f"{titre}: {episodes} épisodes vus")
-            
-            # Quitter le programme
-            elif choix == "0":
-                print("Merci d'avoir utilisé le gestionnaire de suivi d'épisodes.")
-                break
-            
-            # Gestion d'un choix invalide
-            else:
-                print("Choix invalide. Essayez encore.")
-            </code></pre>
-        
-            <h5>Explications du Code :</h5>
-            <ul>
-                <li><strong>Dictionnaire mangas :</strong> Ce dictionnaire stocke chaque manga (la clé est le titre du manga) et le nombre d'épisodes visionnés (la valeur).</li>
-                <li><strong>Boucle <code>while True</code> :</strong> Crée une boucle infinie qui permet à l'utilisateur de continuer à interagir avec le programme jusqu'à ce qu'il décide de quitter (grâce à l'option 0).</li>
-                <li><strong>Choix dans le menu :</strong></li>
-                <ul>
-                    <li><strong>Option 1 :</strong> Ajoute un nouveau manga avec le nombre d'épisodes visionnés.</li>
-                    <li><strong>Option 2 :</strong> Permet de modifier le nombre d'épisodes pour un manga déjà ajouté.</li>
-                    <li><strong>Option 3 :</strong> Affiche tous les mangas suivis avec le nombre d'épisodes vus.</li>
-                    <li><strong>Option 0 :</strong> Quitte le programme.</li>
-                </ul>
-            </ul>
-        
-            <h4>3. Exercices Supplémentaires et Personnalisation</h4>
-            
-            <h5>Exercice 1 : Supprimer un Manga</h5>
-            <p>Ajoutez une option pour que l'utilisateur puisse supprimer un manga de la liste s'il ne souhaite plus le suivre.</p>
-        
-            <p><strong>Piste de solution :</strong></p>
-            <pre><code>
-        elif choix == "4":  # Supprimer un manga
-            titre = input("Entrez le titre du manga à supprimer : ")
-            if titre in mangas:
-                del mangas[titre]
-                print(f"{titre} a été supprimé de la liste.")
-            else:
-                print(f"{titre} n'est pas dans la liste.")
-            </code></pre>
-        
-            <h5>Exercice 2 : Ajouter des informations supplémentaires</h5>
-            <p>Modifiez le programme pour inclure des informations supplémentaires, comme le nombre total d'épisodes de la série et un statut indiquant si le manga est terminé ou en cours.</p>
-        
-            <p><strong>Piste de solution :</strong></p>
-            <pre><code>
-        mangas[titre] = {
-            'episodes_vus': episodes,
-            'episodes_totaux': total_episodes,
-            'statut': statut  # par exemple : 'en cours' ou 'terminé'
-        }
-            </code></pre>
-        </section>
-
-        <section id="session9" class="content-section">
-            <h2>Séance 9 : Introduction aux Dictionnaires</h2>
+            <h2>Séance 8 : Introduction aux Dictionnaires</h2>
         
             <h3>Objectifs de la Séance</h3>
             <ul>
@@ -1819,6 +1704,126 @@
             </ul>
         </section>
 
+        <section id="session9" class="content-section">
+            <h2>Séance 9 : Pratique - Suivi d’Épisodes de Manga</h2>
+        
+            <h3>Objectifs de la Séance</h3>
+            <ul>
+                <li>Appliquer les boucles, conditions, et la gestion de données avec les listes et les dictionnaires.</li>
+                <li>Écrire un programme permettant de suivre les épisodes regardés pour différents mangas.</li>
+                <li>Créer une interaction simple où l'utilisateur peut ajouter, afficher et modifier les informations sur les mangas et les épisodes.</li>
+            </ul>
+        
+            <h3>Déroulement de la Séance</h3>
+        
+            <h4>1. Introduction au Suivi d'Épisodes</h4>
+            <p><strong>Contexte du suivi des épisodes :</strong><br>
+            Dans la pratique quotidienne des fans de manga, il est courant de suivre les épisodes regardés pour plusieurs séries. Ce programme permettra à l'utilisateur de stocker et de consulter ces informations.</p>
+        
+            <p><strong>Objectif de l'exercice :</strong></p>
+            <ul>
+                <li>Ajouter un manga avec le nombre d'épisodes regardés.</li>
+                <li>Modifier le nombre d'épisodes déjà visionnés pour un manga.</li>
+                <li>Afficher la liste des mangas et le nombre d'épisodes visionnés.</li>
+            </ul>
+        
+            <h4>2. Activité Pratique : Suivi des Épisodes</h4>
+        
+            <h5>Objectif de l'activité :</h5>
+            <p>Créer un programme interactif pour gérer le suivi des épisodes de mangas.</p>
+        
+            <!-- <h5>Instructions :</h5>
+            <p>1. Écrivez le code suivant :</p>
+        
+            <pre><code>
+        # Dictionnaire pour stocker les mangas et le nombre d'épisodes vus
+        mangas = {}
+        
+        # Boucle principale du programme
+        while True:
+            print("\nOptions :")
+            print("1. Ajouter un nouveau manga")
+            print("2. Modifier le nombre d'épisodes vus")
+            print("3. Afficher la liste des mangas")
+            print("0. Quitter")
+            
+            choix = input("Entrez votre choix (1/2/3/0) : ")
+            
+            # Ajouter un nouveau manga
+            if choix == "1":
+                titre = input("Entrez le titre du manga : ")
+                episodes = int(input(f"Combien d'épisodes avez-vous vus de {titre} ? "))
+                mangas[titre] = episodes
+                print(f"{titre} a été ajouté avec {episodes} épisodes vus.")
+            
+            # Modifier le nombre d'épisodes pour un manga existant
+            elif choix == "2":
+                titre = input("Entrez le titre du manga à modifier : ")
+                if titre in mangas:
+                    nouveaux_episodes = int(input(f"Combien d'épisodes avez-vous vus maintenant pour {titre} ? "))
+                    mangas[titre] = nouveaux_episodes
+                    print(f"Le nombre d'épisodes vus pour {titre} a été mis à jour.")
+                else:
+                    print(f"{titre} n'est pas dans la liste des mangas.")
+            
+            # Afficher la liste des mangas et des épisodes
+            elif choix == "3":
+                print("Liste des mangas suivis :")
+                for titre, episodes in mangas.items():
+                    print(f"{titre}: {episodes} épisodes vus")
+            
+            # Quitter le programme
+            elif choix == "0":
+                print("Merci d'avoir utilisé le gestionnaire de suivi d'épisodes.")
+                break
+            
+            # Gestion d'un choix invalide
+            else:
+                print("Choix invalide. Essayez encore.")
+            </code></pre>
+        
+            <h5>Explications du Code :</h5>
+            <ul>
+                <li><strong>Dictionnaire mangas :</strong> Ce dictionnaire stocke chaque manga (la clé est le titre du manga) et le nombre d'épisodes visionnés (la valeur).</li>
+                <li><strong>Boucle <code>while True</code> :</strong> Crée une boucle infinie qui permet à l'utilisateur de continuer à interagir avec le programme jusqu'à ce qu'il décide de quitter (grâce à l'option 0).</li>
+                <li><strong>Choix dans le menu :</strong></li>
+                <ul>
+                    <li><strong>Option 1 :</strong> Ajoute un nouveau manga avec le nombre d'épisodes visionnés.</li>
+                    <li><strong>Option 2 :</strong> Permet de modifier le nombre d'épisodes pour un manga déjà ajouté.</li>
+                    <li><strong>Option 3 :</strong> Affiche tous les mangas suivis avec le nombre d'épisodes vus.</li>
+                    <li><strong>Option 0 :</strong> Quitte le programme.</li>
+                </ul>
+            </ul> -->
+        
+            <h4>3. Exercices Supplémentaires et Personnalisation</h4>
+            
+            <h5>Exercice 1 : Supprimer un Manga</h5>
+            <p>Ajoutez une option pour que l'utilisateur puisse supprimer un manga de la liste s'il ne souhaite plus le suivre.</p>
+        
+            <p><strong>Piste de solution :</strong></p>
+            <pre><code>
+        elif choix == "4":  # Supprimer un manga
+            titre = input("Entrez le titre du manga à supprimer : ")
+            if titre in mangas:
+                del mangas[titre]
+                print(f"{titre} a été supprimé de la liste.")
+            else:
+                print(f"{titre} n'est pas dans la liste.")
+            </code></pre>
+        
+            <h5>Exercice 2 : Ajouter des informations supplémentaires</h5>
+            <p>Modifiez le programme pour inclure des informations supplémentaires, comme le nombre total d'épisodes de la série et un statut indiquant si le manga est terminé ou en cours.</p>
+        
+            <p><strong>Piste de solution :</strong></p>
+            <pre><code>
+        mangas[titre] = {
+            'episodes_vus': episodes,
+            'episodes_totaux': total_episodes,
+            'statut': statut  # par exemple : 'en cours' ou 'terminé'
+        }
+            </code></pre>
+        </section>
+
         <section id="session10" class="content-section">
             <h2>Séance 10 : Pratique - Enregistrement des Scores de Jeu Vidéo</h2>
         
@@ -1847,7 +1852,7 @@
             <h5>Objectif de l'activité :</h5>
             <p>Écrire un programme qui permet d'enregistrer plusieurs scores de joueurs et de les afficher à la fin.</p>
         
-            <h5>Instructions :</h5>
+            <!-- <h5>Instructions :</h5>
             <p>1. Écrivez le code suivant :</p>
 <pre style="visibility: hidden;"><code># Liste pour stocker les scores
 scores = []
@@ -1892,7 +1897,7 @@ for i in range(len(scores)):
                 <ul>
                     <li><code>for i in range(len(scores)):</code> : Parcourt la liste des scores et affiche le score de chaque joueur.</li>
                 </ul>
-            </ul>
+            </ul> -->
         
             <h5>2. Testez votre programme :</h5>
             <p>Lancez le programme et entrez plusieurs scores pour voir comment ils sont enregistrés et affichés.</p>
@@ -1937,7 +1942,7 @@ for i in range(len(scores)):
         </section>
 
         <section id="session11" class="content-section">
-            <h2>Récapitulatif des Structures de Données</h2>
+            <h2>Séance 11 : Récapitulatif des Structures de Données</h2>
         
             <h3>Objectifs de la Séance</h3>
             <ul>
@@ -1979,7 +1984,7 @@ for i in range(len(scores)):
             <h5>Thème 1 : Jeux Vidéo - Gestion de l'Inventaire</h5>
             <p><strong>Exercice :</strong><br>Créez un programme qui gère un inventaire dans un jeu vidéo. L'inventaire sera une liste d'objets. Chaque objet aura un nom, une catégorie (ex : arme, potion, etc.), et une quantité. L'utilisateur doit pouvoir ajouter, retirer et afficher les objets dans l'inventaire.</p>
             
-            <pre><code>
+            <!-- <pre><code>
         inventaire = []
         
         # Ajout d'un objet
@@ -1989,12 +1994,12 @@ for i in range(len(scores)):
         # Affichage de l'inventaire
         for item in inventaire:
             print(f"Objet: {item['nom']}, Catégorie: {item['categorie']}, Quantité: {item['quantite']}")
-            </code></pre>
+            </code></pre> -->
         
             <h5>Thème 2 : Manga - Suivi de Collection</h5>
             <p><strong>Exercice :</strong><br>Créez un programme qui permet de suivre une collection de mangas. Chaque manga sera représenté par un dictionnaire avec des informations comme le titre, l'auteur, et le nombre de volumes. Les mangas seront stockés dans une liste.</p>
         
-            <pre><code>
+            <!-- <pre><code>
         collection = []
         
         # Ajout d'un manga
@@ -2004,12 +2009,12 @@ for i in range(len(scores)):
         # Affichage de la collection
         for manga in collection:
             print(f"Titre: {manga['titre']}, Auteur: {manga['auteur']}, Volumes: {manga['volumes']}")
-            </code></pre>
+            </code></pre> -->
         
             <h5>Thème 3 : Vie Réelle - Suivi de Budget</h5>
             <p><strong>Exercice :</strong><br>Créez un programme qui gère un budget personnel. Chaque dépense sera stockée sous forme de tuple avec une description et un montant. Les dépenses seront stockées dans une liste, et le programme devra calculer le total des dépenses.</p>
         
-            <pre><code>
+            <!-- <pre><code>
         depenses = []
         
         # Ajout d'une dépense
@@ -2019,12 +2024,12 @@ for i in range(len(scores)):
         # Calcul et affichage du total
         total = sum(montant for _, montant in depenses)
         print(f"Total des dépenses: {total} €")
-            </code></pre>
+            </code></pre> -->
         
             <h5>Thème 4 : Actualité - Suivi des Articles</h5>
             <p><strong>Exercice :</strong><br>Créez un programme qui permet de suivre les articles d'actualité lus. Chaque article sera stocké dans un dictionnaire avec des informations comme le titre, l'auteur, et la date de publication. Les articles seront stockés dans une liste.</p>
         
-            <pre><code>
+            <!-- <pre><code>
         articles = []
         
         # Ajout d'un article
@@ -2034,7 +2039,7 @@ for i in range(len(scores)):
         # Affichage des articles
         for article in articles:
             print(f"Titre: {article['titre']}, Auteur: {article['auteur']}, Date: {article['date']}")
-            </code></pre>
+            </code></pre> -->
         
             <h4>3. Discussion et Réflexion</h4>
         
@@ -2050,7 +2055,7 @@ for i in range(len(scores)):
         </section>
 
         <section id="session12" class="content-section">
-            <h2>Projet Pratique - Combinaison de Listes, Tuples et Dictionnaires (Mangas et Jeux Vidéo)</h2>
+            <h2>Séance 12 : Projet Pratique - Combinaison de Listes, Tuples et Dictionnaires (Mangas et Jeux Vidéo)</h2>
         
             <h3>Objectifs de la Séance</h3>
             <ul>
@@ -2081,7 +2086,7 @@ for i in range(len(scores)):
         
             <h6>1. Structure de Données :</h6>
             <p>Utilisez un dictionnaire pour stocker les personnages. Chaque personnage est une clé, et les informations comme le nom, l'âge, les compétences et l'inventaire sont stockées sous forme de tuples ou de listes.</p>
-            <p>Par exemple, un dictionnaire de personnages pourrait ressembler à ceci :</p>
+            <!-- <p>Par exemple, un dictionnaire de personnages pourrait ressembler à ceci :</p>
             <pre><code>personnages = {
             "Naruto": {
                 "age": 16,
@@ -2095,11 +2100,11 @@ for i in range(len(scores)):
                 "competences": ("Maître Épée", "Bouclier Hylien"),
                 "inventaire": {"Épée": 1, "Potion": 3}
             }
-        }</code></pre>
+        }</code></pre> -->
         
             <h6>2. Ajout et Gestion de Personnages :</h6>
             <p>Le programme doit permettre d'ajouter des personnages en saisissant leurs informations (nom, âge, compétences, inventaire).</p>
-            <p>Exemple de code pour ajouter un personnage :</p>
+            <!-- <p>Exemple de code pour ajouter un personnage :</p>
             <pre><code>nom = input("Entrez le nom du personnage : ")
         age = int(input(f"Quel est l'âge de {nom} ? "))
         role = input(f"Quel est le rôle de {nom} ? ")
@@ -2120,11 +2125,11 @@ for i in range(len(scores)):
             "inventaire": inventaire
         }
         
-        print(f"Le personnage {nom} a été ajouté avec succès.")</code></pre>
+        print(f"Le personnage {nom} a été ajouté avec succès.")</code></pre> -->
         
             <h6>3. Affichage des Informations :</h6>
             <p>Permettez à l'utilisateur d'afficher les informations de tous les personnages, y compris leur nom, leur âge, leurs compétences et leur inventaire.</p>
-            <p>Exemple d'affichage :</p>
+            <!-- <p>Exemple d'affichage :</p>
             <pre><code>for nom, info in personnages.items():
             print(f"Personnage : {nom}")
             print(f"  Âge : {info['age']}")
@@ -2132,10 +2137,10 @@ for i in range(len(scores)):
             print(f"  Compétences : {', '.join(info['competences'])}")
             print(f"  Inventaire :")
             for objet, quantite in info['inventaire'].items():
-                print(f"    {objet} : {quantite}")</code></pre>
+                print(f"    {objet} : {quantite}")</code></pre> -->
         
             <h6>4. Exercice Personnalisé :</h6>
-            <p>Proposez aux élèves d'ajouter des fonctionnalités supplémentaires, comme :</p>
+            <p>Ajouter des fonctionnalités supplémentaires, comme :</p>
             <ul>
                 <li>Permettre de modifier le nombre d'objets dans l'inventaire.</li>
                 <li>Ajouter une fonctionnalité de combat où les personnages utilisent leurs compétences ou objets.</li>
@@ -2310,7 +2315,7 @@ for i in range(len(scores)):
             
             <h5>Exercice 1 : Jeux Vidéo - Calculer le Score Final</h5>
             <p><strong>Exercice :</strong> Créez une fonction qui prend en paramètres le score d'un joueur et un bonus, et qui retourne le score final. Le programme doit demander à l'utilisateur de saisir un score et un bonus, puis afficher le score final.</p>
-            <pre><code>
+            <!-- <pre><code>
     def calculer_score(score, bonus):
         return score + bonus
     
@@ -2318,11 +2323,11 @@ for i in range(len(scores)):
     bonus = int(input("Entrez le bonus : "))
     score_final = calculer_score(score, bonus)
     print(f"Le score final est : {score_final}")
-            </code></pre>
+            </code></pre> -->
             
             <h5>Exercice 2 : Manga - Calcul de la Progression de Lecture</h5>
             <p><strong>Exercice :</strong> Créez une fonction qui prend en paramètres le nombre de chapitres lus et le nombre total de chapitres, et qui retourne la progression en pourcentage. Le programme doit demander à l'utilisateur ces informations et afficher le pourcentage de progression.</p>
-            <pre><code>
+            <!-- <pre><code>
     def calculer_progression(chapitres_lus, chapitres_totaux):
         return (chapitres_lus / chapitres_totaux) * 100
     
@@ -2330,11 +2335,11 @@ for i in range(len(scores)):
     chapitres_totaux = int(input("Entrez le nombre total de chapitres : "))
     progression = calculer_progression(chapitres_lus, chapitres_totaux)
     print(f"Vous avez lu {progression:.2f}% du manga.")
-            </code></pre>
+            </code></pre> -->
             
             <h5>Exercice 3 : Vie Réelle - Calcul de Budget Restant</h5>
             <p><strong>Exercice :</strong> Créez une fonction qui prend en paramètres les revenus et les dépenses, et qui retourne le montant restant. Le programme doit demander à l'utilisateur de saisir ses revenus et ses dépenses, puis afficher le budget restant.</p>
-            <pre><code>
+            <!-- <pre><code>
     def calculer_budget(revenus, depenses):
         return revenus - depenses
     
@@ -2342,11 +2347,11 @@ for i in range(len(scores)):
     depenses = float(input("Entrez vos dépenses : "))
     budget_restant = calculer_budget(revenus, depenses)
     print(f"Le budget restant est : {budget_restant:.2f} euros")
-            </code></pre>
+            </code></pre> -->
             
             <h5>Exercice 4 : Actualité - Calculer le Pourcentage de Participation Électorale</h5>
             <p><strong>Exercice :</strong> Créez une fonction qui prend en paramètres le nombre de votants et le nombre total d'électeurs, et qui retourne le pourcentage de participation. Le programme doit demander à l'utilisateur ces informations et afficher le pourcentage de participation.</p>
-            <pre><code>
+            <!-- <pre><code>
     def calculer_participation(votants, electeurs_totaux):
         return (votants / electeurs_totaux) * 100
     
@@ -2354,7 +2359,7 @@ for i in range(len(scores)):
     electeurs_totaux = int(input("Entrez le nombre total d'électeurs : "))
     participation = calculer_participation(votants, electeurs_totaux)
     print(f"Le pourcentage de participation est : {participation:.2f}%")
-            </code></pre>
+            </code></pre> -->
             
             <h4>3. Discussion et Réflexion</h4>
             <h5>Discussion en groupe :</h5>
@@ -2398,7 +2403,7 @@ for i in range(len(scores)):
             <p><strong>Objectif de l'activité :</strong><br>
             Créer un programme qui gère un inventaire de jeu vidéo, permettant d'ajouter, de retirer et d'afficher les objets.</p>
         
-            <h5>Instructions :</h5>
+            <!-- <h5>Instructions :</h5>
             <p>1. Écrivez le code suivant :</p>
             <pre><code>
         # Initialisation de l'inventaire
@@ -2455,7 +2460,7 @@ for i in range(len(scores)):
                 <li><code>retirer_objet(objet)</code> : Retire un objet de l'inventaire s'il existe. Sinon, un message d'erreur est affiché.</li>
                 <li><code>afficher_inventaire()</code> : Affiche tous les objets présents dans l'inventaire.</li>
                 <li><strong>Boucle Principale :</strong> Un menu permet à l'utilisateur d'ajouter, retirer ou afficher les objets de l'inventaire, ou de quitter le programme.</li>
-            </ul>
+            </ul> -->
         
             <h5>3. Testez votre programme :</h5>
             <p>Lancez votre programme et essayez d'ajouter, de retirer et d'afficher des objets dans l'inventaire. Vérifiez également comment le programme gère les cas où vous essayez de retirer un objet qui n'est pas présent.</p>
@@ -2509,7 +2514,7 @@ for i in range(len(scores)):
             <p><strong>Objectif de l'activité :</strong><br>
             Créer un programme qui permet d'ajouter, de modifier et d'afficher les informations des personnages d'un manga.</p>
         
-            <h5>Instructions :</h5>
+            <!-- <h5>Instructions :</h5>
             <p>1. Écrivez le code suivant :</p>
             <pre><code>
         # Initialisation de la liste de personnages
@@ -2622,7 +2627,7 @@ for i in range(len(scores)):
         
             <h5>Conclusion :</h5>
             <p>Cette technique permet de s'assurer que toutes les compétences dans la liste sont propres et formatées correctement, évitant ainsi des erreurs lors de la manipulation ou de l'affichage.</p>
-        
+         -->
             <h4>3. Testez votre programme :</h4>
             <p>Lancez votre programme et essayez d'ajouter différents personnages, puis affichez la liste pour voir les résultats.</p>
         
@@ -2671,7 +2676,7 @@ for i in range(len(scores)):
             <p><strong>Objectif de l'activité :</strong><br>
             Créer un programme qui simule une quête, permettant à l'utilisateur de faire des choix et de voir les conséquences de ses actions.</p>
             
-            <h5>Instructions :</h5>
+            <!-- <h5>Instructions :</h5>
             <p>1. Écrivez le code suivant :</p>
             <pre><code>
         def choix_action():
@@ -2714,7 +2719,7 @@ for i in range(len(scores)):
                 <li><code>explorer_forets()</code> : Simule l'exploration de la forêt et affiche un message sur le trésor trouvé.</li>
                 <li><code>entrer_ville()</code> : Simule l'entrée dans la ville et le dialogue avec un villageois.</li>
                 <li><strong>Boucle Principale :</strong> <code>while True:</code> Crée une boucle infinie pour que le joueur puisse continuer à faire des choix. Les conditions vérifient le choix de l'utilisateur et appellent la fonction appropriée.</li>
-            </ul>
+            </ul> -->
         
             <p>2. Testez votre programme :</p>
             <p>Lancez votre programme et essayez les différentes options pour voir comment les résultats changent en fonction de vos choix.</p>
@@ -2735,77 +2740,8 @@ for i in range(len(scores)):
         </section>
 
         <section id="session18" class="content-section">
-            <h2>Pratique - Statistiques sur l’actualité (par exemple, cas COVID)</h2>
-        
-            <h3>Objectifs de la Séance</h3>
-            <ul>
-                <li>Appliquer les concepts de boucles et de manipulation de données pour traiter des statistiques réelles.</li>
-                <li>Analyser des données sous forme de listes et effectuer des calculs simples comme des moyennes, des totaux et des pourcentages.</li>
-                <li>Comprendre comment représenter les données actuelles en utilisant des outils de programmation.</li>
-            </ul>
-        
-            <h3>Déroulement de la Séance</h3>
-        
-            <h4>1. Introduction aux Statistiques et à l'Actualité (20 minutes)</h4>
-            <p><strong>Présentation de l'actualité liée au COVID :</strong></p>
-            <p>Discutez des données disponibles pendant la pandémie, comme le nombre de nouveaux cas, de décès ou de guérisons sur une période donnée (par jour ou par semaine).</p>
-            <p><strong>Pourquoi analyser des données ?</strong></p>
-            <p>Analyser des données permet de comprendre les tendances, comme une augmentation ou une diminution des cas, et de prendre des décisions informées.</p>
-            <p><strong>Données Simplifiées :</strong></p>
-            <p>Pour cet exercice, les élèves utiliseront une liste de données représentant le nombre de cas quotidiens de COVID sur une semaine donnée.</p>
-        
-            <h4>2. Activité Pratique : Analyse des Cas de COVID sur une Semaine (40 minutes)</h4>
-        
-            <h5>Objectif de l'activité :</h5>
-            <p>Écrire un programme qui permet à l'utilisateur de saisir le nombre de nouveaux cas de COVID chaque jour pendant une semaine, puis calculer des statistiques comme la somme totale des cas, la moyenne des cas par jour, et identifier le jour avec le plus grand nombre de cas.</p>
-        
-            <h5>Instructions :</h5>
-            <pre><code>
-                # Initialisation de la liste pour stocker les cas de chaque jour
-                cas_covid = []
-                
-                # Saisie des cas pour chaque jour de la semaine (7 jours)
-                for jour in range(7):
-                    cas = int(input(f"Entrez le nombre de cas pour le jour {jour + 1} : "))
-                    cas_covid.append(cas)
-                
-                # Calcul de la somme totale des cas sur la semaine
-                total_cas = sum(cas_covid)
-                print(f"Nombre total de cas sur la semaine : {total_cas}")
-                
-                # Calcul de la moyenne des cas par jour
-                moyenne_cas = total_cas / len(cas_covid)
-                print(f"Moyenne de cas par jour : {moyenne_cas:.2f}")
-                
-                # Identification du jour avec le plus grand nombre de cas
-                jour_max_cas = cas_covid.index(max(cas_covid)) + 1
-                print(f"Le jour avec le plus grand nombre de cas est le jour {jour_max_cas} avec {max(cas_covid)} cas.")
-            </code></pre>
-        
-            <h5>2. Testez votre programme :</h5>
-            <p>Saisissez des données fictives pour chaque jour de la semaine et vérifiez que le programme affiche les bonnes statistiques (somme totale, moyenne, jour avec le maximum de cas).</p>
-        
-            <h5>3. Personnalisez votre programme :</h5>
-            <p>Ajoutez des fonctionnalités supplémentaires, comme le calcul du pourcentage d'augmentation ou de diminution des cas par rapport au jour précédent.</p>
-        
-            <h4>3. Exercices Supplémentaires et Discussion (20 minutes)</h4>
-        
-            <h5>Exercice Supplémentaire : Tendance des Cas</h5>
-            <p>Modifiez le programme pour qu'il affiche si le nombre de cas a augmenté ou diminué par rapport au jour précédent.</p>
-        
-            <h5>Exemple de Code :</h5>
-            <pre><code>
-                for jour in range(1, len(cas_covid)):
-                    if cas_covid[jour] > cas_covid[jour - 1]:
-                        print(f"Le jour {jour + 1}, les cas ont augmenté par rapport au jour précédent.")
-                    elif cas_covid[jour] < cas_covid[jour - 1]:
-                        print(f"Le jour {jour + 1}, les cas ont diminué par rapport au jour précédent.")
-                    else:
-                        print(f"Le jour {jour + 1}, le nombre de cas est resté identique.")
-            </code></pre>
-        
-            <h5>Discussion :</h5>
-            <p>Réfléchissez à d'autres statistiques que vous pourriez calculer à partir de ces données. Comment ces informations pourraient-elles être utiles pour les autorités sanitaires ou le public ?</p>
+            <h2>Évaluation</h2>
+
         </section>     
 
         <section id="session19" class="content-section">
@@ -2824,7 +2760,7 @@ for i in range(len(scores)):
             
             <h4>2. Activité Pratique : Calcul d’un Budget Familial</h4>
             <p><strong>Objectif de l'activité :</strong> Créer un programme interactif qui demande à l'utilisateur de saisir des revenus et des dépenses jusqu'à ce qu'il choisisse d'arrêter, puis affiche le solde final.</p>
-            <p><strong>Instructions :</strong></p>
+            <!-- <p><strong>Instructions :</strong></p>
             <pre><code>
     total_revenus = 0
     total_depenses = 0
@@ -2866,7 +2802,7 @@ for i in range(len(scores)):
                 <li><strong>Boucle pour les revenus :</strong> L'utilisateur entre ses revenus dans une boucle while qui continue jusqu'à ce qu'il entre 0 pour terminer. Chaque revenu est ajouté à la variable total_revenus.</li>
                 <li><strong>Boucle pour les dépenses :</strong> Le processus est identique pour les dépenses, avec une autre boucle while qui continue jusqu'à ce que l'utilisateur entre 0.</li>
                 <li><strong>Calcul du solde final :</strong> Le solde est calculé en soustrayant les dépenses totales des revenus totaux. Le programme affiche ensuite si le solde est positif (excédent) ou négatif (déficit).</li>
-            </ul>
+            </ul> -->
             
             <h4>2. Testez votre programme :</h4>
             <p>Lancez le programme et testez différentes entrées de revenus et de dépenses pour voir si le solde est correctement calculé et affiché.</p>
@@ -2906,7 +2842,7 @@ for i in range(len(scores)):
                 Une fois que l'utilisateur a terminé d'entrer ses dépenses (par exemple, en entrant 0 comme montant), le programme affiche un récapitulatif qui liste toutes les catégories et les montants dépensés dans chacune.</li>
             </ol>
         
-            <h4>Code Complet : Catégorisation des Dépenses</h4>
+            <!-- <h4>Code Complet : Catégorisation des Dépenses</h4>
             <pre><code>
     # Initialisation du dictionnaire des dépenses
     depenses = {}
@@ -2948,7 +2884,7 @@ for i in range(len(scores)):
                 Si la catégorie existe déjà, on met à jour la valeur en ajoutant le montant actuel au total existant. Sinon, on crée une nouvelle entrée.</li>
                 <li><strong>Affichage du récapitulatif :</strong><br>
                 Après que l'utilisateur ait terminé d'entrer les dépenses, le programme affiche un récapitulatif des montants dépensés pour chaque catégorie.</li>
-            </ol>
+            </ol> -->
         
             <h3>Exercice 2 : Prévisions</h3>
             <p><strong>Objectif de l'Exercice :</strong> Prévisions pour le Mois Suivant</p>
@@ -2962,7 +2898,7 @@ for i in range(len(scores)):
                 <li><strong>Affichage du Solde Estimé</strong></li>
             </ol>
         
-            <h4>Exemple de Code pour Gérer les Prévisions</h4>
+            <!-- <h4>Exemple de Code pour Gérer les Prévisions</h4>
             <pre><code>
     # Étape 1 : Saisie des revenus et dépenses actuels
     total_revenus = 0
@@ -3010,7 +2946,7 @@ for i in range(len(scores)):
         print(f"Votre solde estimé pour le mois suivant est de {solde_estime:.2f}€. Vous serez en excédent.")
     else:
         print(f"Votre solde estimé pour le mois suivant est de {solde_estime:.2f}€. Vous serez en déficit.")
-            </code></pre>
+            </code></pre> -->
         </section>
 
         <section id="session20" class="content-section">
@@ -3055,7 +2991,7 @@ for i in range(len(scores)):
                 <li>Afficher les résultats après chaque tour.</li>
             </ul>
         
-            <p><strong>Exemple de Début :</strong></p>
+            <!-- <p><strong>Exemple de Début :</strong></p>
             <pre><code># Initialisation des points de vie
         pv_joueur = 100
         pv_ennemi = 100
@@ -3079,7 +3015,7 @@ for i in range(len(scores)):
             print("Vous avez perdu la bataille.")
         else:
             print("Vous avez gagné la bataille !")
-            </code></pre>
+            </code></pre> -->
         
             <h5>Thème 2 : Manga - Création d'un Personnage</h5>
             <p><strong>Exercice :</strong> Créez un programme où l'utilisateur peut créer un personnage de manga. Le personnage aura un nom, un âge, et des compétences. Décomposez le problème en plusieurs étapes.</p>
@@ -3091,7 +3027,7 @@ for i in range(len(scores)):
                 <li>Afficher le résumé du personnage créé.</li>
             </ul>
         
-            <p><strong>Exemple de Début :</strong></p>
+            <!-- <p><strong>Exemple de Début :</strong></p>
             <pre><code># Informations de base
         nom = input("Entrez le nom du personnage : ")
         age = int(input("Entrez l'âge du personnage : "))
@@ -3109,7 +3045,7 @@ for i in range(len(scores)):
         print("Compétences :")
         for c in competences:
             print("-", c)
-            </code></pre>
+            </code></pre> -->
         
             <h5>Thème 3 : Vie Réelle - Planification de Courses</h5>
             <p><strong>Exercice :</strong> Créez un programme pour planifier des courses alimentaires. L'utilisateur entre ses produits, puis il peut afficher la liste complète des courses.</p>
@@ -3121,7 +3057,7 @@ for i in range(len(scores)):
                 <li>Afficher la liste complète des courses.</li>
             </ul>
         
-            <p><strong>Exemple de Début :</strong></p>
+            <!-- <p><strong>Exemple de Début :</strong></p>
             <pre><code># Initialisation de la liste des courses
         courses = []
         
@@ -3136,7 +3072,7 @@ for i in range(len(scores)):
         for produit in courses:
             print("-", produit)
         print(f"Nombre total d'articles : {len(courses)}")
-            </code></pre>
+            </code></pre> -->
         
             <h5>Thème 4 : Actualité - Suivi des Résultats Électoraux</h5>
             <p><strong>Exercice :</strong> Créez un programme où l'utilisateur suit les résultats d'une élection. Il doit pouvoir entrer les votes pour plusieurs candidats et obtenir le total des votes à la fin.</p>
@@ -3148,7 +3084,7 @@ for i in range(len(scores)):
                 <li>Afficher le total des votes pour chaque candidat.</li>
             </ul>
         
-            <p><strong>Exemple de Début :</strong></p>
+            <!-- <p><strong>Exemple de Début :</strong></p>
             <pre><code># Initialisation des votes
         votes = {}
         
@@ -3163,7 +3099,7 @@ for i in range(len(scores)):
         print("Résultats des votes :")
         for candidat, nb_votes in votes.items():
             print(f"{candidat} : {nb_votes} votes")
-            </code></pre>
+            </code></pre> -->
         
             <h4>3. Discussion et Réflexion</h4>
             <h5>Discussion en groupe :</h5>
@@ -3203,7 +3139,7 @@ for i in range(len(scores)):
             <h5>Objectif de l'activité :</h5>
             <p>Créer un programme qui permet à l'utilisateur de gérer un inventaire avancé d'objets, en ajoutant ou en retirant des objets, en consultant l'inventaire et en affichant les objets avec leurs quantités.</p>
             
-            <h5>Instructions :</h5>
+            <!-- <h5>Instructions :</h5>
             <p>1. Exemple de Code :</p>
             <pre><code>inventaire = []  # Liste qui contiendra les objets et quantités
         
@@ -3271,7 +3207,7 @@ for i in range(len(scores)):
                 <li><strong>Ajout d'Objet :</strong> Le programme vérifie d'abord si l'objet est déjà dans l'inventaire. Si c'est le cas, il augmente la quantité, sinon il l'ajoute avec la nouvelle quantité.</li>
                 <li><strong>Retrait d'Objet :</strong> Lorsqu'un objet est retiré, le programme vérifie s'il existe dans l'inventaire et si la quantité à retirer est possible. Si l'objet n'existe pas, un message est affiché.</li>
                 <li><strong>Affichage de l'Inventaire :</strong> Le programme parcourt la liste d'objets et affiche chaque objet avec la quantité associée. Si l'inventaire est vide, un message spécifique est affiché.</li>
-            </ul>
+            </ul> -->
         
             <h4>3. Exercices Avancés Proposés</h4>
             <h5>Exercice 1 : Limitation de Quantité</h5>
@@ -3283,7 +3219,7 @@ for i in range(len(scores)):
             <h5>Exercice 3 : Tâches de Quête</h5>
             <p>Intégrez une fonction qui permet à l'utilisateur d'accepter des quêtes qui nécessitent des objets spécifiques. Si l'inventaire contient l'objet requis, le joueur peut terminer la quête.</p>
             
-            <h4>Exercice 1 : Limitation de Quantité dans l'Inventaire</h4>
+            <!-- <h4>Exercice 1 : Limitation de Quantité dans l'Inventaire</h4>
         
             <h5>Objectif :</h5>
             <p>Modifier le programme de gestion d’inventaire pour ajouter une limite de 99 objets par type. Si l’utilisateur essaie d’ajouter des objets au-delà de cette limite, afficher un message et ne pas permettre l'ajout.</p>
@@ -3550,7 +3486,7 @@ for i in range(len(scores)):
                 <li><strong>Inventaire :</strong> L'inventaire est organisé par catégories (armes, potions, armures), chaque catégorie contenant une liste d'objets.</li>
                 <li><strong>Quêtes :</strong> Les quêtes sont stockées dans un dictionnaire, chaque quête ayant un nom et un objet requis pour être terminée.</li>
                 <li><strong>Fonction accepter_quete() :</strong> Permet à l'utilisateur de vérifier s'il possède l'objet requis pour terminer une quête.</li>
-            </ul>
+            </ul> -->
         </section>
 
         <section id="session22" class="content-section">
@@ -3558,113 +3494,253 @@ for i in range(len(scores)):
         
             <h3>Objectifs de la Séance</h3>
             <ul>
-                <li>Comprendre le concept de modularité et la réutilisation de code dans un programme.</li>
-                <li>Apprendre à diviser des tâches complexes en blocs plus simples et réutilisables.</li>
-                <li>Pratiquer la structuration du code pour rendre les parties du programme facilement modifiables et réutilisables.</li>
+                <li>Comprendre l’intérêt de découper un programme en modules</li>
+                <li>Créer, importer et utiliser des fonctions et des modules Python</li>
+                <li>Structurer un projet Python en plusieurs fichiers</li>
+                <li>Comprendre la notion de réutilisation de code (bibliothèques, import, etc.)</li>
             </ul>
         
-            <h3>Déroulement de la Séance</h3>
-        
-            <h4>1. Introduction à la Modularité</h4>
-            <p><strong>Qu'est-ce que la modularité ?</strong><br>
-            La modularité consiste à diviser un programme en plusieurs parties distinctes, appelées modules, qui peuvent être réutilisées dans d'autres contextes. Cela permet de rendre le code plus clair, plus facile à maintenir et à réutiliser.</p>
-        
-            <p><strong>Réutilisation du Code :</strong><br>
-            Au lieu de réécrire le même bloc de code plusieurs fois, on peut organiser le programme pour qu'une même partie de code soit utilisée dans différents endroits.</p>
-        
-            <p>Exemple Simple : Si un programme demande plusieurs fois à l'utilisateur d'entrer des nombres et de les additionner, il est plus simple de structurer le code pour réutiliser cette logique à différents endroits du programme.</p>
-        
-            <h4>2. Activité Pratique : Réutilisation de Code pour des Scénarios Divers</h4>
-            <p>Les élèves peuvent choisir un exercice parmi les quatre thèmes proposés ci-dessous, chacun étant conçu pour appliquer les concepts de modularité et de réutilisation de code avec des blocs simples (sans utiliser encore les fonctions).</p>
-        
-            <h5>Thème 1 : Jeux Vidéo - Gestion de Quêtes Répétées</h5>
-            <p><strong>Exercice :</strong> Créez un programme qui simule plusieurs quêtes dans un jeu vidéo. L'utilisateur doit pouvoir :</p>
+            <h3>Partie théorique</h3>
             <ul>
-                <li>Choisir une quête (explorer une forêt ou entrer dans une ville).</li>
-                <li>Répéter l'action plusieurs fois.</li>
-                <li>Afficher un message différent pour chaque choix.</li>
+                Pourquoi découper son programme ?
+                <li>Un programme long est difficile à lire et à maintenir.</li>
+                <li>La modularité consiste à découper le code en blocs cohérents : chaque bloc réalise une tâche précise.</li>
+                <ul>
+                    Avantages :
+                    <li>réutilisation du code (éviter la duplication)</li>
+                    <li>travail collaboratif facilité</li>
+                    <li>débogage plus simple</li>
+                    <li>amélioration de la lisibilité</li>
+                </ul>
             </ul>
-        
-            <p><strong>Exemple de Code :</strong></p>
-            <pre><code>
-        for i in range(3):  # Répéter la quête trois fois
-            print("Choisissez une quête :")
-            print("1. Explorer la forêt")
-            print("2. Entrer dans la ville")
-        
-            choix = input("Entrez votre choix (1/2) : ")
-        
-            if choix == "1":
-                print("Vous explorez la forêt et trouvez un trésor !")
-            elif choix == "2":
-                print("Vous entrez dans la ville et rencontrez un marchand.")
-            else:
-                print("Choix invalide.")
-            </code></pre>
-        
-            <p><strong>Exercice de Personnalisation :</strong> Les élèves peuvent modifier le programme pour ajouter d'autres actions répétées et varier les résultats des quêtes.</p>
-        
-            <h5>Thème 2 : Manga - Réutilisation des Chapitres</h5>
-            <p><strong>Exercice :</strong> Écrivez un programme qui permet à l'utilisateur de suivre les chapitres lus de plusieurs mangas. Le programme doit permettre :</p>
+            <h4>Exemple :</h4>
+            <table>
+                <thead>
+                    <td>programme non modulaire</td>
+                    <td>programme modulaire</td>
+                </thead>
+                <tr>
+                    <td>
+                        <pre style="text-align: left;">
+                            <code>
+a = int(input("Nombre 1 : "))
+b = int(input("Nombre 2 : "))
+print("Somme :", a + b)
+print("Produit :", a * b)
+                            </code>
+                        </pre>
+                    </td>
+                    <td>
+                        <pre style="text-align: left;">
+                            <code>
+def addition(a, b):
+    return a + b
+
+def produit(a, b):
+    return a * b
+
+def main():
+    a = int(input("Nombre 1 : "))
+    b = int(input("Nombre 2 : "))
+    print("Somme :", addition(a, b))
+    print("Produit :", produit(a, b))
+
+main()
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+            </table>
             <ul>
-                <li>De saisir plusieurs mangas et chapitres lus à la suite.</li>
-                <li>D'afficher la liste des mangas et des chapitres après chaque ajout.</li>
+                Les modules Python
+                <li>Un module est un fichier .py contenant des définitions (fonctions, variables, classes).</li>
+                <li>On peut importer un module pour réutiliser son contenu.</li>
+                <table>
+                    <tr>
+                        <td>
+                            <pre style="text-align: left;">
+                                <code>
+import math
+print(math.sqrt(16))  # racine carrée
+                                </code>
+                            </pre>
+                        </td>
+                        <td>
+                            <pre style="text-align: left;">
+                                <code>
+from random import randint
+print(randint(1, 6))  # lancer de dé
+                                </code>
+                            </pre>
+                        </td>
+                    </tr>
+                </table>
+                <li>
+                    Il est aussi possible de créer son propre module :
+                    <ol>
+                        <li>Créer un dossier "projet", puis dans ce dossier :</li>
+                        <li>
+                            Créer un fichier outils.py :
+                        </li>
+                        <li>
+                            Écrire le code suivant :
+                            <pre>
+                                <code>
+def bonjour(nom):
+    print(f"Salut {nom} !")
+                                </code>
+                            </pre>
+                        </li>
+                        <li>Créer un fichier main.py</li>
+                        <li>
+                            Utiliser votre outils.py dans un autre fichier :
+                            <pre>
+                                <code>
+import outils
+outils.bonjour("Alice")
+                                </code>
+                            </pre>
+                        </li>
+                    </ol>
+                </li>
             </ul>
-        
-            <p><strong>Exemple de Code :</strong></p>
-            <pre><code>
-        for i in range(3):  # Permet à l'utilisateur de saisir les données pour 3 mangas
-            titre = input("Entrez le titre du manga : ")
-            chapitres = int(input(f"Combien de chapitres avez-vous lus de {titre} ? "))
-        
-            print(f"{titre}: {chapitres} chapitres lus")
-            </code></pre>
-        
-            <p><strong>Exercice de Personnalisation :</strong> Les élèves peuvent ajouter une option pour modifier le nombre de chapitres lus ou supprimer un manga de la liste.</p>
-        
-            <h5>Thème 3 : Vie Réelle - Réutilisation pour Gérer des Dépenses</h5>
-            <p><strong>Exercice :</strong> Créez un programme qui permet à l'utilisateur de saisir plusieurs dépenses à la suite. Le programme doit :</p>
             <ul>
-                <li>Ajouter chaque dépense au total.</li>
-                <li>Afficher le total des dépenses après chaque saisie.</li>
+                Organisation d’un projet
+                <li>
+                    Exemple d’un petit projet :
+                    <pre>
+                        <code>
+mon_projet/
+│
+├── main.py
+├── math_utils.py
+└── affichage.py
+                        </code>
+                    </pre>
+                </li>
+                <li>
+                    Chaque fichier a une responsabilité :
+                    <ul>
+                        <li>math_utils.py : fonctions de calcul.</li>
+                        <li>affichage.py : fonctions d’affichage.</li>
+                        <li>main.py : programme principal.</li>
+                    </ul>
+                </li>
             </ul>
-        
-            <p><strong>Exemple de Code :</strong></p>
-            <pre><code>
-        total_depenses = 0
-        
-        for i in range(3):  # Permet à l'utilisateur de saisir 3 dépenses
-            depense = float(input("Entrez le montant de la dépense : "))
-            total_depenses += depense
-            print(f"Dépense ajoutée. Total des dépenses : {total_depenses}")
-            </code></pre>
-        
-            <p><strong>Exercice de Personnalisation :</strong> Les élèves peuvent modifier le programme pour suivre un nombre variable de dépenses, et ajouter des vérifications pour s'assurer que les montants entrés sont positifs.</p>
-        
-            <h5>Thème 4 : Actualité - Réutilisation dans le Suivi des Événements</h5>
-            <p><strong>Exercice :</strong> Écrivez un programme qui permet de suivre plusieurs événements d'actualité. Le programme doit :</p>
+            <h3>Partie pratique</h3>
             <ul>
-                <li>Demander à l'utilisateur de saisir plusieurs événements à la suite.</li>
-                <li>Afficher la liste des événements saisis après chaque entrée.</li>
+                Activité 1 — Création de fonctions réutilisables
+                <li>Créer un fichier outils.py contenant :</li>
+                <pre>
+                    <code>
+def est_pair(n):
+    return n % 2 == 0
+                    </code>
+                </pre>
+                <li>Dans un autre fichier test_outils.py, importer le module et tester :</li>
+                <pre>
+                    <code>
+import outils
+
+for i in range(1, 11):
+    print(i, "pair ?" , outils.est_pair(i))
+                    </code>
+                </pre>
             </ul>
-        
-            <p><strong>Exemple de Code :</strong></p>
-            <pre><code>
-        for i in range(3):  # Permet à l'utilisateur de saisir 3 événements
-            evenement = input("Entrez un événement d'actualité : ")
-            print(f"Événement saisi : {evenement}")
-            </code></pre>
-        
-            <p><strong>Exercice de Personnalisation :</strong> Les élèves peuvent ajouter une option pour modifier ou supprimer un événement de la liste.</p>
-        
-            <h4>3. Discussion et Réflexion</h4>
-            <p><strong>Discussion en groupe :</strong> Réfléchissez à d'autres situations où vous pourriez appliquer le concept de modularité dans vos programmes. Comment pouvez-vous organiser vos blocs de code pour rendre votre programme plus simple et plus lisible ?</p>
-        
-            <h5>Exemples de mise en contexte :</h5>
             <ul>
-                <li><strong>Jeux vidéo :</strong> La modularité peut aider à organiser les quêtes, les combats, et la gestion d'inventaire.</li>
-                <li><strong>Applications de gestion :</strong> Pour une application de gestion de lectures ou de dépenses, la modularité permet de réutiliser la logique pour afficher des informations ou mettre à jour des données.</li>
+                Activité 2 — Mini-projet : Calculatrice modulaire
+                <li>Organisation suggérée :</li>
+                <pre>
+                    <code>
+calculatrice/
+├── main.py
+├── operations.py
+└── interface.py
+
+                    </code>
+                </pre>
+                <li>operations.py</li>
+                <pre>
+                    <code>
+def addition(a, b): return a + b
+def soustraction(a, b): return a - b
+def multiplication(a, b): return a * b
+def division(a, b):
+    if b == 0:
+        return "Erreur : division par zéro"
+    return a / b
+                    </code>
+                </pre>
+                <li>interface.py</li>
+                <pre>
+                    <code>
+def demander_nombres():
+    a = float(input("Entrez un nombre : "))
+    b = float(input("Entrez un autre nombre : "))
+    return a, b
+                    </code>
+                </pre>
+                <li>main.py</li>
+                <pre>
+                    <code>
+import operations
+import interface
+
+a, b = interface.demander_nombres()
+print("Somme :", operations.addition(a, b))
+print("Produit :", operations.multiplication(a, b))
+                    </code>
+                </pre>
+                <li>Variante : ajouter un menu interactif avec une boucle.</li>
             </ul>
+            <ul>
+                Activité 3 — Réutilisation d’un module externe
+                <li>On peut utiliser des bibliothèques Python existantes.</li>
+                <li>Comme :</li>
+                <pre>
+                    <code>
+import random
+print(random.choice(["pierre", "feuille", "ciseaux"]))
+                    </code>
+                </pre>
+                <li>Ou encore :</li>
+                <pre>
+                    <code>
+import datetime
+print(datetime.date.today())
+                    </code>
+                </pre>
+                <li>Trouver un module utile (ex: statistics, os, time) et de proposer un mini-script qui l’utilise</li>
+            </ul>
+            <h3>Auto-test / Évaluation</h3>
+            <ol>
+                <li>Quelle est la différence entre une fonction et un module ?</li>
+                <li>À quoi sert l’instruction import ?</li>
+                <li>Que se passe-t-il si deux modules contiennent une fonction du même nom ?</li>
+                <li>
+                    Écrire un programme main.py qui importe un module aire.py contenant des fonctions :
+                    <ul>
+                        <li>aire_carre(c)</li>
+                        <li>aire_rectangle(L, l)</li>
+                    </ul>
+                    Et qui affiche leurs résultats.
+                </li>
+            </ol>
+            <h3>Synthèse</h3>
+            <table>
+                <thead>
+                    <td>Modularité</td>
+                    <td>Module</td>
+                    <td>Importation</td>
+                    <td>Réutilisation</td>
+                </thead>
+                <tr>
+                    <td>découper le code en morceaux autonomes pour le rendre plus clair, plus réutilisable et plus facile à maintenir.</td>
+                    <td>fichier .py contenant des fonctions ou classes que l’on peut importer.</td>
+                    <td>permet de réutiliser du code sans le réécrire.</td>
+                    <td>principe clé en programmation : écrire une fois, utiliser plusieurs fois.</td>
+                </tr>
+            </table>
         </section>
 
         <section id="session23" class="content-section">
@@ -16108,8 +16184,8 @@ while True:
             'Séance 5 : Pratique - Simuler la consommation d’essence (vie réelle)',
             'Séance 6 : Introduction aux listes et tuples',
             'Séance 7 : Opérations sur les listes (ajout, suppression, recherche)',
-            'Séance 8 : Pratique - Suivi d’épisodes de manga',
-            'Séance 9 : Introduction aux dictionnaires.',
+            'Séance 8 : Introduction aux dictionnaires.',
+            'Séance 9 : Pratique - Suivi d’épisodes de manga',
             'Séance 10 : Pratique - Enregistrement des scores de jeu vidéo.',
             'Séance 11 : Récapitulatif des structures de données.',
             'Séance 12 : Projet pratique - Combinaison de listes, tuples, dictionnaires (mangas et jeux vidéos).',
@@ -16118,7 +16194,7 @@ while True:
             'Séance 15 : Pratique - Inventaire de jeu vidéo (gestion des objets)',
             'Séance 16 : Pratique - Gestion des personnages dans un manga',
             'Séance 17 : Pratique - Simuler des quêtes dans un jeu vidéo',
-            'Séance 18 : Pratique - Statistiques sur l’actualité (par exemple, cas COVID)',
+            'Séance 18 : Évaluation',
             'Séance 19 : Pratique - Calcul d’un budget familial (vie réelle)',
             'Séance 20 : Décomposition d\'un problème en sous-problèmes',
             'Séance 21 : Pratique - Gestion d’un inventaire de jeu vidéo avancé',
