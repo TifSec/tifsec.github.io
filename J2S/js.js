@@ -106,9 +106,17 @@ games.forEach(g => observer.observe(g));
 document.addEventListener('keydown', (e)=>{
     if(e.key === 'Tab') document.body.classList.add('kbd');
 });
-    // Vérification rapide : si le composant n'est pas chargé, afficher un message dans la console
-window.addEventListener('DOMContentLoaded', ()=>{
-    if(!customElements.get('model-viewer')){
-    console.warn('model-viewer non initialisé — vérifiez votre connexion réseau ou le blocage des scripts externes.');
-    }
-});
+
+// Handles loading the events for <model-viewer>'s slotted progress bar
+const onProgress = (event) => {
+  const progressBar = event.target.querySelector('.progress-bar');
+  const updatingBar = event.target.querySelector('.update-bar');
+  updatingBar.style.width = `${event.detail.totalProgress * 100}%`;
+  if (event.detail.totalProgress === 1) {
+    progressBar.classList.add('hide');
+    event.target.removeEventListener('progress', onProgress);
+  } else {
+    progressBar.classList.remove('hide');
+  }
+};
+document.querySelector('model-viewer').addEventListener('progress', onProgress);
