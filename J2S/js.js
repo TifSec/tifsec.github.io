@@ -69,6 +69,14 @@ $$('[data-zoom]').forEach((btn, idx) =>{
     })
 })
 
+// Plein écran pour les modèles 3D
+$$('[data-fullscreen]').forEach(btn =>{
+    btn.addEventListener('click', (e)=>{
+    const mv = e.currentTarget.closest('.item').querySelector('model-viewer');
+    if(mv && mv.requestFullscreen){ mv.requestFullscreen(); }
+    })
+})
+
 // Contrôles lightbox
 lbPrev.addEventListener('click', ()=> show(-1));
 lbNext.addEventListener('click', ()=> show(1));
@@ -97,4 +105,10 @@ games.forEach(g => observer.observe(g));
 // Accessibilité: focus visible sur clic clavier
 document.addEventListener('keydown', (e)=>{
     if(e.key === 'Tab') document.body.classList.add('kbd');
+});
+    // Vérification rapide : si le composant n'est pas chargé, afficher un message dans la console
+window.addEventListener('DOMContentLoaded', ()=>{
+    if(!customElements.get('model-viewer')){
+    console.warn('model-viewer non initialisé — vérifiez votre connexion réseau ou le blocage des scripts externes.');
+    }
 });
