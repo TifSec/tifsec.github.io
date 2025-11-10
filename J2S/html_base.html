@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inserts de jeux de société – Portfolio</title>
+  <meta name="description" content="Portfolio de créations originales d'inserts pour jeux de société : photos, plans 3D et prototypes." />
+  <style>
+    /* -----------------------------
+       Thème & variables
+    ------------------------------*/
+    :root{
+      --bg: #0e0f12;
+      --panel: #151821;
+      --panel-2:#1c2030;
+      --text: #f5f7fb;
+      --muted:#b7bfd6;
+      --accent:#e0a74f; /* doré meeple */
+      --accent-2:#7cc6fe; /* bleu dé */
+      --ring: 0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent);
+      --radius:16px;
+      --shadow: 0 8px 30px rgba(0,0,0,.35);
+      --max: 1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text); background: var(--bg);
+      background-image:
+        radial-gradient(transparent 0 6px, #0b0c10 7px),
+        linear-gradient(45deg, rgba(255,255,255,.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.02) 75%),
+        linear-gradient(45deg, rgba(255,255,255,.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.02) 75%);
+      background-size: 12px 12px, 40px 40px, 40px 40px;
+      background-position: 0 0, 0 0, 20px 20px; /* subtil damier rappel plateau */
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 16px}
+
+    /* -----------------------------
+       Header + nav
+    ------------------------------*/
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(8px);
+      background: color-mix(in srgb, var(--bg) 70%, #000 30% / .6);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .topbar{display:flex; align-items:center; gap:14px; padding:12px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.3px}
+    .brand-logo{display:grid; place-items:center; width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow:var(--shadow)}
+    .brand-logo svg{width:22px; height:22px; filter: drop-shadow(0 2px 6px rgba(0,0,0,.3));}
+    .spacer{flex:1}
+    .search{position:relative; width:min(520px, 60vw)}
+    .search input{width:100%; padding:10px 40px 10px 14px; border-radius:999px; border:1px solid rgba(255,255,255,.08); background:var(--panel); color:var(--text); outline:none}
+    .search input:focus{box-shadow: var(--ring); border-color: color-mix(in srgb, var(--accent) 30%, #fff 0%)}
+    .search .icon{position:absolute; right:12px; top:50%; transform:translateY(-50%); opacity:.8}
+
+    /* -----------------------------
+       Hero banner
+    ------------------------------*/
+    .hero{position:relative; overflow:hidden; border-radius:calc(var(--radius) + 6px); margin:18px 0 12px; background: linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 100%); border:1px solid rgba(255,255,255,.06)}
+    .hero-inner{display:flex; gap:24px; padding:32px; align-items:center}
+    .hero h1{margin:0; font-size:clamp(22px, 3.2vw, 38px)}
+    .hero p{margin:.5rem 0 0; color:var(--muted)}
+    .hero-badges{display:flex; gap:8px; margin-top:12px}
+    .badge{padding:6px 10px; border-radius:999px; border:1px dashed rgba(255,255,255,.15); background:rgba(255,255,255,.04); font-size:12px}
+
+    /* -----------------------------
+       Layout: sidebar (right) + content
+    ------------------------------*/
+    .layout{display:grid; grid-template-columns: 1fr minmax(220px, 260px); gap:20px}
+    @media (max-width: 980px){ .layout{grid-template-columns: 1fr} .sidebar{position:static} }
+
+    .sidebar{position:sticky; top:92px; align-self:start; height:fit-content}
+    .menu{padding:14px; border-radius:var(--radius); background:var(--panel); border:1px solid rgba(255,255,255,.06)}
+    .menu h3{margin:0 0 10px; font-size:14px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted)}
+    .menu a{display:flex; align-items:center; gap:8px; padding:9px 10px; border-radius:10px; font-size:15px; opacity:.9}
+    .menu a:hover, .menu a.active{background:var(--panel-2)}
+
+    /* -----------------------------
+       Cards / sections par jeu
+    ------------------------------*/
+    section.game{scroll-margin-top:96px}
+    .card{border:1px solid rgba(255,255,255,.06); background:var(--panel); border-radius:var(--radius); padding:16px; margin:14px 0; box-shadow:var(--shadow)}
+    .card-header{display:flex; gap:14px; align-items:center; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,.06)}
+    .pill{font-size:12px; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.09)}
+    .card-title{font-size:20px; margin:0}
+    .card-meta{display:flex; gap:8px; margin-left:auto}
+
+    /* Galerie */
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:10px; margin-top:12px}
+    .grid .item{position:relative; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.08); background:#0b0c10}
+    .grid .item img{display:block; width:100%; height:220px; object-fit:cover}
+    .grid .item .tag{position:absolute; left:8px; top:8px; font-size:12px; background:rgba(0,0,0,.45); padding:4px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.15)}
+    .grid .item .zoom{position:absolute; right:8px; bottom:8px; background:rgba(0,0,0,.5); padding:6px; border-radius:10px}
+
+    /* Grilles responsives (4-3-2 colonnes) */
+    .cols-4 { grid-column: span 3 }
+    @media (max-width: 1100px){ .cols-4{ grid-column: span 4 } }
+    @media (max-width: 760px){ .grid .item img{height:180px} .cols-4{ grid-column: span 6 } }
+
+    /* Lightbox */
+    .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.8); display:none; align-items:center; justify-content:center; z-index:100}
+    .lightbox.open{display:flex}
+    .lightbox .frame{position:relative; width:min(92vw, 1100px); height:min(86vh, 760px); background:#000; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.2)}
+    .lightbox img{width:100%; height:100%; object-fit:contain; background:#000}
+    .lightbox .close, .lightbox .prev, .lightbox .next{
+      position:absolute; top:10px; background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.2); padding:10px; border-radius:10px; cursor:pointer
+    }
+    .lightbox .close{right:10px}
+    .lightbox .prev{left:10px; top:50%; transform:translateY(-50%)}
+    .lightbox .next{right:10px; top:50%; transform:translateY(-50%)}
+
+    /* Footer */
+    footer{margin:28px 0 40px}
+    .footer-inner{display:grid; gap:10px; grid-template-columns: 1fr 1fr; align-items:center; padding-top:16px; border-top:1px solid rgba(255,255,255,.08)}
+    .legal{color:var(--muted); font-size:14px}
+    .links{justify-self:end; display:flex; gap:14px}
+    @media (max-width: 760px){ .footer-inner{grid-template-columns:1fr} .links{justify-self:start} }
+      /* 3D viewer */
+    .item.model3d{background:#000}
+    .item.model3d model-viewer{width:100%; height:220px; background:#000}
+    @media (max-width:760px){ .item.model3d model-viewer{height:180px} }
+  </style>
+</head>
+<body>
+  <!-- Header / nav -->
+  <header>
+    <div class="container topbar">
+      <a class="brand" href="#top" aria-label="Accueil">
+        <span class="brand-logo" aria-hidden="true">
+          <!-- meeple+dice pictogram -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo">
+            <path d="M6 10.5c1-2.5 2.5-3.75 6-3.75s5 1.25 6 3.75c.3.7-.2 1.5-1 1.5h-10c-.8 0-1.3-.8-1-1.5z" fill="white" fill-opacity=".9"/>
+            <rect x="12.5" y="12.5" width="8" height="8" rx="2" stroke="white" stroke-opacity=".9"/>
+            <circle cx="14.5" cy="14.5" r=".9" fill="white"/>
+            <circle cx="18.5" cy="16.5" r=".9" fill="white"/>
+            <circle cx="16.5" cy="18.5" r=".9" fill="white"/>
+          </svg>
+        </span>
+        <span>Inserts · Portfolio</span>
+      </a>
+      <div class="spacer"></div>
+      <nav>
+        <a href="#top" class="pill" title="Accueil">Accueil</a>
+      </nav>
+      <form class="search" role="search" onsubmit="event.preventDefault()">
+        <input id="search" type="search" placeholder="Rechercher un jeu, une mécanique, un éditeur…" aria-label="Recherche" />
+        <span class="icon" aria-hidden="true">🔎</span>
+      </form>
+    </div>
+  </header>
+
+  <!-- Hero banner -->
+  <div class="container">
+    <section class="hero" id="top" aria-label="Présentation">
+      <div class="hero-inner">
+        <div>
+          <h1>Inserts sur-mesure pour jeux de société</h1>
+          <p>Découvrez mes créations : rangements optimisés, plans 3D et photos détaillées. Idéal pour protéger vos composants et accélérer la mise en place.</p>
+          <div class="hero-badges">
+            <span class="badge">Photographies & rendus 3D</span>
+            <span class="badge">Prototypes à venir</span>
+            <span class="badge">Design modulable</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Layout: contenu + menu latéral droite -->
+    <div class="layout">
+      <!-- Contenu principal: sections par jeu -->
+      <main id="content" aria-live="polite">
+        <!-- =====================
+             Exemple 1 : Jeu A
+        ======================-->
+        <section class="game" id="jeu-a" data-title="Wingspan" data-tags="engine-building oiseau stonemaier cartes" aria-labelledby="jeu-a-title">
+          <article class="card">
+            <header class="card-header">
+              <h2 class="card-title" id="jeu-a-title">Wingspan</h2>
+              <span class="pill" title="Type de boîte">Boîte standard</span>
+              <div class="card-meta">
+                <span class="pill">#cartes</span>
+                <span class="pill">#plateaux</span>
+                <span class="pill">#jetons</span>
+              </div>
+            </header>
+            <div class="grid">
+              <!-- Images multiples du même produit -->
+              <figure class="item cols-4" data-group="jeu-a">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200" alt="Insert : vue d'ensemble"/>
+                <figcaption class="tag">Photo</figcaption>
+                <button class="zoom" aria-label="Agrandir" data-zoom>⤢</button>
+              </figure>
+              <!-- Plan 3D interactif -->
+              <figure class="item cols-4 model3d" data-group="jeu-a">
+                <!-- <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" camera-controls auto-rotate shadow-intensity="1" touch-action="pan-y" ar environment-image="neutral" alt="Plan 3D interactif – Wingspan"> -->
+                  <!-- Fallback si non supporté -->
+                  <!-- <div style="display:grid;place-items:center;height:100%;color:#fff;padding:10px;text-align:center">Votre navigateur ne prend pas en charge l'affichage 3D. Essayez la dernière version de Chrome, Edge, Safari ou Firefox.</div> -->
+                <!-- </model-viewer> -->
+                 <model-viewer src="images/prey_another_day/PAD_1.glb" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">
+                    <div class="progress-bar hide" slot="progress-bar">
+                        <div class="update-bar"></div>
+                    </div>
+                    </model-viewer>
+                <figcaption class="tag">3D interactif</figcaption>
+                <button class="zoom" aria-label="Plein écran" data-fullscreen>⛶</button>
+              </figure>
+              <figure class="item cols-4" data-group="jeu-a">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=1200" alt="Compartiments cartes"/>
+                <figcaption class="tag">Photo</figcaption>
+                <button class="zoom" aria-label="Agrandir" data-zoom>⤢</button>
+              </figure>
+              <figure class="item cols-4" data-group="jeu-a">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=1200" alt="Plan 3D – bac à dés"/>
+                <figcaption class="tag">Plan 3D</figcaption>
+                <button class="zoom" aria-label="Agrandir" data-zoom>⤢</button>
+              </figure>
+              <figure class="item cols-4" data-group="jeu-a">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1527430253228-e93688616381?w=1200" alt="Plan 3D – organisation intérieure"/>
+                <figcaption class="tag">Plan 3D</figcaption>
+                <button class="zoom" aria-label="Agrandir" data-zoom>⤢</button>
+              </figure>
+            </div>
+          </article>
+        </section>
+
+        <!-- =====================
+             Exemple 2 : Jeu B
+        ======================-->
+        <section class="game" id="jeu-b" data-title="Ark Nova" data-tags="zoo cartes plateau puzzle cranio" aria-labelledby="jeu-b-title">
+          <article class="card">
+            <header class="card-header">
+              <h2 class="card-title" id="jeu-b-title">Ark Nova</h2>
+              <span class="pill">Boîte large</span>
+              <div class="card-meta">
+                <span class="pill">#organizers</span>
+                <span class="pill">#plateaux joueurs</span>
+              </div>
+            </header>
+            <div class="grid">
+              <figure class="item cols-4" data-group="jeu-b">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=1200" alt="Insert : modules empilables"/>
+                <figcaption class="tag">Photo</figcaption>
+                <button class="zoom" aria-label="Agrandir" data-zoom>⤢</button>
+              </figure>
+              <figure class="item cols-4" data-group="jeu-b">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1555618568-2fae3c2e92d8?w=1200" alt="Plan 3D : casiers jetons"/>
+                <figcaption class="tag">Plan 3D</figcaption>
+                <button class="zoom" aria-label="Agrandir" data-zoom>⤢</button>
+              </figure>
+              <figure class="item cols-4" data-group="jeu-b">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1596495578065-8a35b96e0613?w=1200" alt="Photo : test d'assemblage"/>
+                <figcaption class="tag">Photo</figcaption>
+                <button class="zoom" aria-label="Agrandir" data-zoom>⤢</button>
+              </figure>
+              <figure class="item cols-4" data-group="jeu-b">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=1200" alt="Plan 3D : vue éclatée"/>
+                <figcaption class="tag">Plan 3D</figcaption>
+                <button class="zoom" aria-label="Agrandir" data-zoom>⤢</button>
+              </figure>
+            </div>
+          </article>
+        </section>
+
+        <!-- =====================
+             Exemple 3 : Jeu C
+        ======================-->
+        <section class="game" id="jeu-c" data-title="Cascadia" data-tags="tuiles nature puzzle family aes" aria-labelledby="jeu-c-title">
+          <article class="card">
+            <header class="card-header">
+              <h2 class="card-title" id="jeu-c-title">Cascadia</h2>
+              <span class="pill">Boîte standard</span>
+              <div class="card-meta">
+                <span class="pill">#tuiles</span>
+                <span class="pill">#jetons</span>
+              </div>
+            </header>
+            <div class="grid">
+              <figure class="item cols-4" data-group="jeu-c">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?w=1200" alt="Photo : casiers hexagonaux"/>
+                <figcaption class="tag">Photo</figcaption>
+                <button class="zoom" aria-label="Agrandir" data-zoom>⤢</button>
+              </figure>
+              <figure class="item cols-4" data-group="jeu-c">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1200" alt="Plan 3D : cales anti-jeu"/>
+                <figcaption class="tag">Plan 3D</figcaption>
+                <button class="zoom" aria-label="Agrandir" data-zoom>⤢</button>
+              </figure>
+              <figure class="item cols-4" data-group="jeu-c">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1200" alt="Photo : vue de dessus"/>
+                <figcaption class="tag">Photo</figcaption>
+                <button class="zoom" aria-label="Agrandir" data-zoom>⤢</button>
+              </figure>
+              <figure class="item cols-4" data-group="jeu-c">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200" alt="Plan 3D : empilement"/>
+                <figcaption class="tag">Plan 3D</figcaption>
+                <button class="zoom" aria-label="Agrandir" data-zoom>⤢</button>
+              </figure>
+            </div>
+          </article>
+        </section>
+      </main>
+
+      <!-- Menu latéral (droite) : liste des jeux -->
+      <aside class="sidebar" aria-label="Navigation des jeux">
+        <div class="menu" id="sideMenu">
+          <h3>Jeux</h3>
+          <a href="#jeu-a">Wingspan</a>
+          <a href="#jeu-b">Ark Nova</a>
+          <a href="#jeu-c">Cascadia</a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-inner">
+        <div class="legal">© <span id="year"></span> Inserts – Créations originales. Tous droits réservés.</div>
+        <div class="links">
+          <a class="pill" href="#top">Haut de page ↑</a>
+          <a class="pill" href="mailto:contact@exemple.com">Contact</a>
+          <a class="pill" href="#" title="Mentions légales">Mentions légales</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Aperçu image">
+    <button class="close" id="lbClose" aria-label="Fermer">✕</button>
+    <button class="prev" id="lbPrev" aria-label="Image précédente">◀</button>
+    <div class="frame">
+      <img id="lbImg" alt="Aperçu" />
+    </div>
+    <button class="next" id="lbNext" aria-label="Image suivante">▶</button>
+  </div>
+
+  <script>
+    // ==============================
+    // Utilitaires
+    // ==============================
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    // Année footer
+    $('#year').textContent = new Date().getFullYear();
+
+    // ==============================
+    // Recherche (filtrage live)
+    // ==============================
+    const searchInput = $('#search');
+    const games = $$('.game');
+    const sideLinks = $$('#sideMenu a');
+
+    function normalize(s){ return (s || '').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu,''); }
+
+    function applyFilter(q){
+      const nq = normalize(q);
+      games.forEach(section => {
+        const title = normalize(section.dataset.title);
+        const tags = normalize(section.dataset.tags);
+        const match = !nq || title.includes(nq) || tags.includes(nq);
+        section.style.display = match ? '' : 'none';
+      });
+      // activer / désactiver les liens du menu
+      sideLinks.forEach(a => {
+        const id = a.getAttribute('href').slice(1);
+        const sec = document.getElementById(id);
+        a.classList.toggle('active', sec && sec.style.display !== 'none');
+      })
+    }
+    searchInput.addEventListener('input', (e)=> applyFilter(e.target.value));
+
+    // ==============================
+    // Lightbox simple
+    // ==============================
+    const lightbox = $('#lightbox');
+    const lbImg = $('#lbImg');
+    const lbPrev = $('#lbPrev');
+    const lbNext = $('#lbNext');
+    const lbClose = $('#lbClose');
+
+    let currentGroup = [];
+    let currentIndex = 0;
+
+    function openLightbox(src, groupEls, index){
+      currentGroup = groupEls.map(el => $('img', el).src);
+      currentIndex = index;
+      lbImg.src = src;
+      lightbox.classList.add('open');
+    }
+    function closeLightbox(){ lightbox.classList.remove('open'); lbImg.src=''; }
+    function show(delta){
+      if(!currentGroup.length) return;
+      currentIndex = (currentIndex + delta + currentGroup.length) % currentGroup.length;
+      lbImg.src = currentGroup[currentIndex];
+    }
+
+    // Ouvrir depuis les boutons
+    $$('[data-zoom]').forEach((btn, idx) =>{
+      btn.addEventListener('click', (e)=>{
+        const fig = e.currentTarget.closest('.item');
+        const groupName = fig.dataset.group;
+        const groupEls = $$(`.item[data-group="${groupName}"]`);
+        const index = groupEls.indexOf(fig);
+        openLightbox($('img', fig).src, groupEls, index);
+      })
+    })
+
+    // Plein écran pour les modèles 3D
+    $$('[data-fullscreen]').forEach(btn =>{
+      btn.addEventListener('click', (e)=>{
+        const mv = e.currentTarget.closest('.item').querySelector('model-viewer');
+        if(mv && mv.requestFullscreen){ mv.requestFullscreen(); }
+      })
+    })
+
+    // Contrôles lightbox
+    lbPrev.addEventListener('click', ()=> show(-1));
+    lbNext.addEventListener('click', ()=> show(1));
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+    window.addEventListener('keydown', (e)=>{
+      if(!lightbox.classList.contains('open')) return;
+      if(e.key === 'Escape') closeLightbox();
+      if(e.key === 'ArrowLeft') show(-1);
+      if(e.key === 'ArrowRight') show(1);
+    });
+
+    // ==============================
+    // Améliorations UX légères
+    // ==============================
+    // surligner lien actif au scroll
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry =>{
+        const id = entry.target.id;
+        const link = $(`#sideMenu a[href="#${id}"]`);
+        if(link){ link.classList.toggle('active', entry.isIntersecting); }
+      })
+    }, {rootMargin: "-40% 0px -55% 0px", threshold: 0});
+    games.forEach(g => observer.observe(g));
+
+    // Accessibilité: focus visible sur clic clavier
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Tab') document.body.classList.add('kbd');
+    });
+      // Vérification rapide : si le composant n'est pas chargé, afficher un message dans la console
+    window.addEventListener('DOMContentLoaded', ()=>{
+      if(!customElements.get('model-viewer')){
+        console.warn('model-viewer non initialisé — vérifiez votre connexion réseau ou le blocage des scripts externes.');
+      }
+    });
+  </script>
+  <!-- Composant Web pour l'affichage 3D -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+</body>
+</html>
