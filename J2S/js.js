@@ -121,58 +121,71 @@ const onProgress = (event) => {
 };
 document.querySelector('model-viewer').addEventListener('progress', onProgress);
 
+// ==============================
+// Déferrement des modèles 3D <model-viewer>
+// ==============================
 (function(){
-    // sections de jeux (réutilise la NodeList déjà présente si besoin)
-    const sections = Array.from(document.querySelectorAll('.game'));
-
-    function markDeferred3D(section){
-      const figs = Array.from(section.querySelectorAll('.grid .item'));
-      figs.forEach(fig =>{
-        const cap = fig.querySelector('.tag');
-        const img = fig.querySelector('img');
-        if(cap && /plan\s*3d/i.test(cap.textContent) && img){
-          if(!fig.dataset.kind){ fig.dataset.kind = '3d'; }
-          if(!img.dataset.src){ img.dataset.src = img.getAttribute('src'); }
-          img.removeAttribute('src');             // ne pas charger au départ
-          fig.classList.add('hidden','deferred3d');
+    function markDeferredMV(section){
+        var figs = Array.from(section.querySelectorAll('.grid .item.model3d'));
+        figs.forEach(function(fig){
+            var mv = fig.querySelector('model-viewer');
+            if(!mv) return;
+            if(!mv.dataset.src && mv.getAttribute('src')){
+                mv.dataset.src = mv.getAttribute('src');
+            }
+            mv.removeAttribute('src'); // empêche le chargement initial
+            fig.classList.add('hidden','deferred3d');
+        });
         }
-      });
-    }
 
     function ensureToggleButton(section){
-      const header = section.querySelector('.card-header');
-      if(!header || header.querySelector('.toggle3d')) return;
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'pill toggle3d';
-      btn.textContent = 'Afficher les plans 3D';
-      btn.setAttribute('aria-expanded', 'false');
-      btn.addEventListener('click', ()=> toggle3D(section, btn));
-      header.appendChild(btn);
-    }
+        var header = section.querySelector('.card-header');
+        if(!header) return;
+        if(header.querySelector('.toggle3d')) return;
+        var has3D = section.querySelector('.grid .item.model3d');
+        if(!has3D) return;
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'pill toggle3d';
+        btn.textContent = 'Afficher les plans 3D';
+        btn.setAttribute('aria-expanded','false');
+        btn.addEventListener('click', function(){ toggle3D(section, btn); });
+        header.appendChild(btn);
+        }
 
     function toggle3D(section, btn){
-      const figs = Array.from(section.querySelectorAll('.grid .item.deferred3d'));
-      const hidden = figs.every(f => f.classList.contains('hidden'));
-      if(hidden){
-        // Afficher et CHARGER à la demande
-        figs.forEach(f =>{
-          const img = f.querySelector('img');
-          if(img && !img.getAttribute('src') && img.dataset.src){
-            img.setAttribute('src', img.dataset.src);
-          }
-          f.classList.remove('hidden');
-        });
-        btn.textContent = 'Masquer les plans 3D';
-        btn.setAttribute('aria-expanded', 'true');
-      }else{
-        // Re-masquer (images restent en cache)
-        figs.forEach(f => f.classList.add('hidden'));
-        btn.textContent = 'Afficher les plans 3D';
-        btn.setAttribute('aria-expanded', 'false');
-      }
+        var figs = Array.from(section.querySelectorAll('.grid .item.model3d'));
+        var hidden = figs.every(function(f){ return f.classList.contains('hidden'); });
+        if(hidden){
+            figs.forEach(function(f){
+                var mv = f.querySelector('model-viewer');
+                if(mv && !mv.getAttribute('src') && mv.dataset.src){ mv.setAttribute('src', mv.dataset.src); }
+                f.classList.remove('hidden');
+            });
+            btn.textContent = 'Masquer les plans 3D';
+            btn.setAttribute('aria-expanded','true');
+        }else{
+            figs.forEach(function(f){ f.classList.add('hidden'); });
+            btn.textContent = 'Afficher les plans 3D';
+            btn.setAttribute('aria-expanded','false');
+        }
     }
 
-    // Init pour chaque section
-    sections.forEach(section => { markDeferred3D(section); ensureToggleButton(section); });
-  })();
+    // Plein écran pour les boutons data-fullscreen
+    function bindFullscreen(){
+        Array.from(document.querySelectorAll('[data-fullscreen]')).forEach(function(btn){
+            btn.addEventListener('click', function(e){
+                var fig = e.currentTarget.closest('.item');
+                var mv = fig ? fig.querySelector('model-viewer') : null;
+                var target = mv || fig;
+                if(target && target.requestFullscreen){ target.requestFullscreen(); }
+            });
+        });
+    }
+    // Init
+    Array.from(document.querySelectorAll('.game')).forEach(function(section){
+        markDeferredMV(section);
+        ensureToggleButton(section);
+    });
+    bindFullscreen();
+})();
