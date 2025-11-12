@@ -120,3 +120,59 @@ const onProgress = (event) => {
   }
 };
 document.querySelector('model-viewer').addEventListener('progress', onProgress);
+
+(function(){
+    // sections de jeux (réutilise la NodeList déjà présente si besoin)
+    const sections = Array.from(document.querySelectorAll('.game'));
+
+    function markDeferred3D(section){
+      const figs = Array.from(section.querySelectorAll('.grid .item'));
+      figs.forEach(fig =>{
+        const cap = fig.querySelector('.tag');
+        const img = fig.querySelector('img');
+        if(cap && /plan\s*3d/i.test(cap.textContent) && img){
+          if(!fig.dataset.kind){ fig.dataset.kind = '3d'; }
+          if(!img.dataset.src){ img.dataset.src = img.getAttribute('src'); }
+          img.removeAttribute('src');             // ne pas charger au départ
+          fig.classList.add('hidden','deferred3d');
+        }
+      });
+    }
+
+    function ensureToggleButton(section){
+      const header = section.querySelector('.card-header');
+      if(!header || header.querySelector('.toggle3d')) return;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'pill toggle3d';
+      btn.textContent = 'Afficher les plans 3D';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', ()=> toggle3D(section, btn));
+      header.appendChild(btn);
+    }
+
+    function toggle3D(section, btn){
+      const figs = Array.from(section.querySelectorAll('.grid .item.deferred3d'));
+      const hidden = figs.every(f => f.classList.contains('hidden'));
+      if(hidden){
+        // Afficher et CHARGER à la demande
+        figs.forEach(f =>{
+          const img = f.querySelector('img');
+          if(img && !img.getAttribute('src') && img.dataset.src){
+            img.setAttribute('src', img.dataset.src);
+          }
+          f.classList.remove('hidden');
+        });
+        btn.textContent = 'Masquer les plans 3D';
+        btn.setAttribute('aria-expanded', 'true');
+      }else{
+        // Re-masquer (images restent en cache)
+        figs.forEach(f => f.classList.add('hidden'));
+        btn.textContent = 'Afficher les plans 3D';
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    // Init pour chaque section
+    sections.forEach(section => { markDeferred3D(section); ensureToggleButton(section); });
+  })();
