@@ -125,67 +125,130 @@ document.querySelector('model-viewer').addEventListener('progress', onProgress);
 // Déferrement des modèles 3D <model-viewer>
 // ==============================
 (function(){
+    let modelViewerLoaded = false;
+
+    // Charger model-viewer dynamiquement
+    function loadModelViewerScripts(){
+      if(modelViewerLoaded) return;
+      modelViewerLoaded = true;
+      const mod = document.createElement('script');
+      mod.type = 'module';
+      mod.src = 'https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js';
+      document.head.appendChild(mod);
+      const nomod = document.createElement('script');
+      nomod.setAttribute('nomodule', '');
+      nomod.src = 'https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js';
+      document.head.appendChild(nomod);
+    }
+
     function markDeferredMV(section){
-        var figs = Array.from(section.querySelectorAll('.grid .item.model3d'));
-        figs.forEach(function(fig){
-            var mv = fig.querySelector('model-viewer');
-            if(!mv) return;
-            if(!mv.dataset.src && mv.getAttribute('src')){
-                mv.dataset.src = mv.getAttribute('src');
-            }
-            mv.removeAttribute('src'); // empêche le chargement initial
-            fig.classList.add('hidden','deferred3d');
-        });
+      const figs = Array.from(section.querySelectorAll('.grid .item.model3d'));
+      figs.forEach(fig =>{
+        const mv = fig.querySelector('model-viewer');
+        if(!mv) return;
+        if(!mv.dataset.src && mv.getAttribute('src')){
+          mv.dataset.src = mv.getAttribute('src');
         }
+        mv.removeAttribute('src'); // empêche le chargement initial
+        fig.classList.add('hidden','deferred3d');
+      });
+    }
 
     function ensureToggleButton(section){
-        var header = section.querySelector('.card-header');
-        if(!header) return;
-        if(header.querySelector('.toggle3d')) return;
-        var has3D = section.querySelector('.grid .item.model3d');
-        if(!has3D) return;
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'pill toggle3d';
-        btn.textContent = 'Afficher les plans 3D';
-        btn.setAttribute('aria-expanded','false');
-        btn.addEventListener('click', function(){ toggle3D(section, btn); });
-        header.appendChild(btn);
-        }
+      const header = section.querySelector('.card-header');
+      if(!header || header.querySelector('.toggle3d')) return;
+      const has3D = section.querySelector('.grid .item.model3d');
+      if(!has3D) return;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'pill toggle3d';
+      btn.textContent = 'Afficher les plans 3D';
+      btn.setAttribute('aria-expanded','false');
+      btn.addEventListener('click', ()=> toggle3D(section, btn));
+      header.appendChild(btn);
+    }
 
     function toggle3D(section, btn){
-        var figs = Array.from(section.querySelectorAll('.grid .item.model3d'));
-        var hidden = figs.every(function(f){ return f.classList.contains('hidden'); });
-        if(hidden){
-            figs.forEach(function(f){
-                var mv = f.querySelector('model-viewer');
-                if(mv && !mv.getAttribute('src') && mv.dataset.src){ mv.setAttribute('src', mv.dataset.src); }
-                f.classList.remove('hidden');
-            });
-            btn.textContent = 'Masquer les plans 3D';
-            btn.setAttribute('aria-expanded','true');
-        }else{
-            figs.forEach(function(f){ f.classList.add('hidden'); });
-            btn.textContent = 'Afficher les plans 3D';
-            btn.setAttribute('aria-expanded','false');
-        }
+      const figs = Array.from(section.querySelectorAll('.grid .item.model3d'));
+      const hidden = figs.every(f => f.classList.contains('hidden'));
+      if(hidden){
+        // Charger model-viewer si pas encore présent
+        loadModelViewerScripts();
+
+        figs.forEach(f =>{
+          const mv = f.querySelector('model-viewer');
+          if(mv && !mv.getAttribute('src') && mv.dataset.src){
+            mv.setAttribute('src', mv.dataset.src);
+          }
+          f.classList.remove('hidden');
+        });
+        btn.textContent = 'Masquer les plans 3D';
+        btn.setAttribute('aria-expanded','true');
+      }else{
+        figs.forEach(f => f.classList.add('hidden'));
+        btn.textContent = 'Afficher les plans 3D';
+        btn.setAttribute('aria-expanded','false');
+      }
     }
 
-    // Plein écran pour les boutons data-fullscreen
+    // Plein écran
     function bindFullscreen(){
-        Array.from(document.querySelectorAll('[data-fullscreen]')).forEach(function(btn){
-            btn.addEventListener('click', function(e){
-                var fig = e.currentTarget.closest('.item');
-                var mv = fig ? fig.querySelector('model-viewer') : null;
-                var target = mv || fig;
-                if(target && target.requestFullscreen){ target.requestFullscreen(); }
-            });
+      document.querySelectorAll('[data-fullscreen]').forEach(btn =>{
+        btn.addEventListener('click', e =>{
+          const fig = e.currentTarget.closest('.item');
+          const mv = fig ? fig.querySelector('model-viewer') : null;
+          const target = mv || fig;
+          if(target && target.requestFullscreen) target.requestFullscreen();
         });
+      });
     }
+
     // Init
-    Array.from(document.querySelectorAll('.game')).forEach(function(section){
-        markDeferredMV(section);
-        ensureToggleButton(section);
+    Array.from(document.querySelectorAll('.game')).forEach(section =>{
+      markDeferredMV(section);
+      ensureToggleButton(section);
     });
     bindFullscreen();
+})();
+
+// Ajout d'un loader aux modèles 3D
+(function(){
+    function addLoader(fig){
+        let loader = fig.querySelector('.loader3d');
+        if(loader) return loader;
+        loader = document.createElement('div');
+        loader.className = 'loader3d';
+        loader.innerHTML = '<span class="spinner" aria-hidden="true"></span><span class="txt">Chargement du modèle…</span>';
+        fig.appendChild(loader);
+        return loader;
+    }
+
+    function bindModelViewer(fig){
+        const mv = fig.querySelector('model-viewer');
+        if(!mv) return;
+        const loader = addLoader(fig);
+        const show = ()=>{ if(loader) loader.style.display = 'grid'; };
+        const hide = ()=>{ if(loader) loader.style.display = 'none'; };
+        if(mv.getAttribute('src')) show();
+        mv.addEventListener('load', hide);
+        mv.addEventListener('error', ()=>{
+            if(loader){ loader.classList.add('error'); const t=loader.querySelector('.txt'); if(t) t.textContent='Erreur de chargement'; }
+        });
+        const obs = new MutationObserver((muts)=>{
+            muts.forEach(m=>{ if(m.attributeName==='src' && mv.getAttribute('src')) show(); });
+        });
+        obs.observe(mv, {attributes:true});
+    }
+
+    // Init sur tous les blocs 3D existants
+    document.querySelectorAll('.item.model3d').forEach(bindModelViewer);
+    // Plein écran (si non déjà relié)
+    document.querySelectorAll('[data-fullscreen]').forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+            const fig = e.currentTarget.closest('.item');
+            const mv = fig ? fig.querySelector('model-viewer') : null;
+            const target = mv || fig;
+            if(target && target.requestFullscreen){ target.requestFullscreen(); }
+        });
+    });
 })();
