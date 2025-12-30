@@ -4,399 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programme Technologie 3ème</title>
-    <style>
-        :root{
-            --accent:#0b6fa8;
-            --muted:#6b7280;
-            --ok:#16a34a;
-            --warn:#f59e0b;
-            --danger:#ef4444;
-            --glass: rgba(11,111,168,0.06);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Calibri, sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        main {
-            margin-left: 200px;
-            padding: 20px;
-            min-height: 80vh;
-        }
-
-        .content-section {
-            display: none;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        a{
-            color: black;
-        }
-
-        a:hover{
-            color: orange;
-        }
-
-        aside {
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 200px;
-            background-color: #333;
-            color: white;
-            padding-top: 20px;
-            transition: width 0.3s ease;
-            overflow-y: auto;
-            scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
-        }
-
-        aside::-webkit-scrollbar {
-            display: none; /* Masque la barre de défilement pour Chrome, Safari, et Opera */
-        }
-
-        aside ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        aside ul li {
-            padding: 10px;
-        }
-
-        aside ul li a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-        }
-
-        /* Style pour l'élément de menu actif (séance en cours) */
-        aside ul li a.active {
-            background-color: #4CAF50; /* Couleur pour l'élément actif */
-            color: white;
-            font-weight: bold;
-        }
-
-        aside ul li a:hover {
-            background-color: #555;
-        }
-
-        .hamburger {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 15px;
-            text-align: left;
-            cursor: pointer;
-        }
-
-        footer {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        h2, h3, h4, h5{
-            text-align: center;
-        }
-
-        h2 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        h3{
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 8px;
-        }
-
-        h4, h5, p, ul{
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        .image{
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        ul {
-            list-style-type: square;
-            margin-left: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-
-        thead {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Styles spécifiques pour le calendrier */
-        table.calendar {
-            margin: 20px auto;
-            border-collapse: collapse;
-            width: 80%;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ccc;
-        }
-
-        .current-week {
-            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
-        }
-
-        pre{
-            background-color: black;
-            color: white;
-        }
-
-        .today {
-            background-color: #007BFF; /* Bleu vif pour le jour actuel */
-            color: white; /* Texte blanc pour le contraste */
-        }
-
-        .vacation {
-            background-color: #B2E4A6; /* Vert pastel pour les vacances */
-            color: black; /* Texte noir ou foncé pour la lisibilité */
-        }
-
-        .holiday {
-            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
-            color: white; /* Texte blanc ou clair */
-        }
-
-        iframe{
-            width: 87vw;
-            height: 42vw;
-        }
-
-        .rep {
-            visibility: hidden;
-        }
-
-        /* code {
-            background-color: #eef;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-
-        pre {
-            background-color: #eef;
-            padding: 10px;
-            border-radius: 4px;
-            overflow-x: auto;
-        } */
-
-        .note {
-            background-color: #ffffcc;
-            padding: 10px;
-            border-left: 4px solid #ffcc00;
-            margin: 20px 0;
-        }
-
-        .container {
-            /* max-width: 800px; */
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        a button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        a button:hover {
-            background-color: #e06e2b;
-        }
-
-        .show-site {
-            width: 100%;
-            height: 100%;
-            zoom: 0.5;
-            border-radius: 10px;
-        }
-
-        .show-site-div {
-            text-align: center;
-            border: 1px solid #ccc;
-            width: 45%;
-            border-radius: 10px;
-        }
-
-        .timeline{
-            display:flex;
-            flex-direction:column;
-            gap:8px
-        }
-
-        .time-row{
-            display:flex;
-            gap:12px;
-            align-items:flex-start
-        }
-
-        .time{
-            width:64px;
-            font-weight:700;
-            color:var(--accent)
-        }
-
-        .activity{
-            flex:1
-        }
-
-        .section-title{
-            display:flex;
-            align-items:center;
-            gap:10px;
-            margin-bottom:10px
-        }
-
-        .pill{
-            padding:6px 10px;
-            border-radius:999px;
-            background:var(--accent);
-            color:white;
-            font-weight:600;
-            font-size:0.85rem
-        }
-
-        .section-title{
-            display:flex;
-            align-items:center;
-            gap:10px;
-            margin-bottom:10px
-        }
-
-        .small{
-            font-size:0.9rem;
-            color:var(--muted)
-        }
-
-        .tile{
-            border-radius:10px;
-            padding:10px;
-            background:linear-gradient(180deg,#fff,#fbfeff);
-            border:1px solid #eef6fb
-        }
-
-        .student-sheet{
-            background:#fbfeff;
-            border-left:4px solid var(--accent);
-            padding:10px;
-            border-radius:6px
-        }
-
-        .quiz{
-            display:grid;
-            gap:8px
-        }
-
-        button.cta{
-            background:var(--accent);
-            color:#fff;
-            border:0;
-            padding:10px 14px;
-            border-radius:8px;
-            font-weight:700;
-            cursor:pointer
-        }
-
-        .tile{
-            border-radius:10px;
-            padding:10px;
-            background:linear-gradient(180deg,#fff,#fbfeff);
-            border:1px solid #eef6fb
-        }
-
-        .checklist{
-            display:grid;
-            gap:6px
-        }
-
-        .ok{
-            color:var(--ok);
-            font-weight:700
-        }
-
-        .warn{
-            color:var(--warn);
-            font-weight:700
-        }
-
-        .danger{
-            color:var(--danger);
-            font-weight:700
-        }
-        
-        pre{
-            background:#0f172a;
-            color:white;
-            padding:10px;
-            border-radius:8px;
-            overflow:auto;
-            font-size:0.9rem
-        }
-
-        details{
-            margin-top:8px
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -1512,12 +1120,342 @@
         </section>
 
         <section id="session22" class="content-section">
-            <h2>PIX n°2 :</h2>
-            <h3>Code : HDTLBZ591</h3>
+            <h2>Séance 22 : Introduction : concevoir un support de smartphone</h2>
+            <h3>Thème 3 – Création, conception, réalisation</h3>
+            <h3>Compétence visée : Analyser un besoin, formuler des contraintes, préparer une conception</h3>
+            <b>Objectifs d’apprentissage</b>
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>Un objet technique est conçu pour répondre à un besoin.</li>
+                <li>Concevoir = passer par des étapes : besoin → contraintes → critères → idée de solution.</li>
+                <li>Un support de smartphone a des contraintes : stabilité, angle, dimensions, sécurité, usage, etc.</li>
+            </ul>
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Décrire un besoin avec une phrase claire.</li>
+                <li>Lister des contraintes et les classer (usage / sécurité / dimensions / matériaux).</li>
+                <li>Produire une première proposition de solution (croquis simple + choix d’idée).</li>
+                <li>Rendre un document numérique propre (avec titre, tableau, images éventuelles).</li>
+            </ul>
+            <h3>1. Lancement — Donner le contexte (2 min)</h3>
+            <p><i><b>On va concevoir un support de smartphone utile au quotidien.</b></i></p>
+            <i><b>Contrainte de départ : </b></i>
+            <ol>
+                <li>Il doit tenir un smartphone en position portrait et paysage.</li>
+                <li>Il doit permettre un angle de lecture (ex : 30° à 70°).</li>
+                <li>Il doit tenir sur une table sans glisser facilement.</li>
+            </ol>
+            <h3>2. Step 1 — Définir le besoin (5 min)</h3>
+            <p>
+                <ol>
+                    <li>Créer un document LibreOffice Writer.</li>
+                    <li>Nommez le "3e_S22_nom1_nom2" (pas de prénom)</li>
+                    <li>
+                        Ouvrez le document et y mettre OBLIGATOIREMENT les informations suivantes:
+                        <ol>
+                            <li>Séance 22 : Introduction : concevoir un support de smartphone</li>
+                            <li>Nom et prénom des membres du groupe</li>
+                        </ol>
+                    </li>
+                    <li><b>Seulement après avoir fait cela, vous pouvez continuer.</b></li>
+                    <li>Écrire (ou copier) la phrase suivante : "Un utilisateur a besoin d’un support de smartphone pour…"</li>
+                    <li>Notez 2 exemples concret et utiles.</li>
+                </ol>
+            </p>
+            <div style="visibility: hidden;">
+                <p>
+                    Exemples :
+                    <ul>
+                        <li>“…regarder une vidéo sans tenir le téléphone.”</li>
+                        <li>“…suivre une recette en cuisine.”</li>
+                        <li>“…faire une visio sans bouger l’appareil.”</li>
+                        <li>“…poser le smartphone en charge sur un bureau.”</li>
+                    </ul>
+                    <i>Interdit : “pour faire joli” (trop vague), “pour tout faire” (trop large).</i>
+                </p>
+            </div>
+            <h3>3. Step 2 — Lister les contraintes (10 min)</h3>
+            <p>Copier sur votre document et remplir le tableau suivant:</p>
+            <table>
+                <thead>
+                    <td>Catégories</td>
+                    <td>Contraintes (phrase courte)</td>
+                </thead>
+                <tr>
+                    <td>Usage</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Dimensions</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Sécurité</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Stabilité</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Fabrication</td>
+                    <td></td>
+                </tr>
+            </table>
+            <p>
+                Vous pouvez vous <i><b>AIDER</b></i> des <i><b>EXEMPLES</b></i> suivants :
+                <ul>
+                    Usage :
+                    <li>Le smartphone doit être facile à poser et à retirer.</li>
+                    <li>Le support doit fonctionner en portrait et paysage.</li>
+                    <li>Permettre un angle de vue réglable (ex : 30° à 70°).</li>
+                </ul>
+                <ul>
+                    Dimensions :
+                    <li>Compatible avec un smartphone “classique” (≈ 6–7 pouces).</li>
+                    <li>Ne pas dépasser une certaine taille (ex : 12 cm x 12 cm au sol).</li>
+                </ul>
+                <ul>
+                    Sécurité :
+                    <li>Ne pas rayer le smartphone.</li>
+                    <li>Ne pas bloquer les boutons ou la prise de charge.</li>
+                    <li>Ne pas basculer si on touche l’écran.</li>
+                </ul>
+                <ul>
+                    Stabilité :
+                    <li>Tenir sur une surface plane sans glisser facilement.</li>
+                    <li>Résister à une légère poussée (ex : tapoter l'écran).</li>
+                </ul>
+                <ul>
+                    Fabrication :
+                    <li>Utiliser des matériaux simples (carton, bois, plastique, métal).</li>
+                    <li>Facile à découper et assembler.</li>
+                    <li>Doit être imprimable en 3D.</li>
+                    <li>Formes simples (pas trop fines, pas de pièces impossibles).</li>
+                </ul>
+                <i><b>Mettre au moins 8 contraintes dans votre tableau (toutes catégories confondues).</b></i>
+            </p>
+            <h3>4. Step 3 — Transformer en critères mesurables (15 min)</h3>
+            <p>
+                Copiez sur votre document et remplir le tableau suivant en vous aidant du tableau précédent :
+                <table>
+                    <thead>
+                        <td>Critère (mesurable)</td>
+                        <td>Attendu (chiffre ou condition)</td>
+                    </thead>
+                    <tr>
+                        <td>Angle de lecture</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Stabilité</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Compatibilité</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Solidité</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Encombrement</td>
+                        <td></td>
+                    </tr>
+                </table>
+                <i><b>Objectif : au moins 5 critères.</b></i>
+            </p>
+            <h3>5. Step 4 — Première idée de solution (15 min)</h3>
+            <p>
+                <b>Consigne :</b>
+                Faire un croquis très simple (avec paint) d’un support de smartphone qui répond au besoin et aux contraintes listées précédemment.
+                <br><br>
+                Ajouter le croquis dans votre document (insérer une image).
+                <br><br>
+                Sous le croquis, ajouter 2 phrases :
+                <ul>
+                    <li>Une phrase expliquant pourquoi vous avez choisi cette idée -> "Notre idée est ..."</li>
+                    <li>Une phrase expliquant comment votre idée répond au besoin et aux contraintes -> "Elle respecte (au moins) 2 contraintes : ...</li>
+                </ul>
+                <i><b>Sauvegarder votre travail et déposer le document dans l’espace d’échange.</b></i>
+            </p>
+            <h3>À copier à la main (5 min)</h3>
+            <p><i><b>
+                « Concevoir un objet technique, c’est répondre à un besoin. Pour cela, on identifie des contraintes (usage, dimensions, sécurité, fabrication…) puis on les transforme en critères mesurables pour vérifier si la solution fonctionne. Aujourd’hui, j’ai défini le besoin d’un support de smartphone, listé ses contraintes et proposé une première idée de solution. »
+            </b></i></p>
         </section>
 
         <section id="session23" class="content-section">
+            <h2>Séance 23 : Identifier les besoins et contraintes du support</h2>
+            <h3>Thème 3 — Création, conception, réalisation</h3>
+            <h3>Compétence visée : Analyser un besoin, formuler des contraintes, préparer une conception</h3>
+            <b>Objectifs d’apprentissage</b>
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>Un besoin s’exprime sous la forme : « permettre à l’utilisateur de… ».</li>
+                <li>Les contraintes sont des obligations techniques ou d’usage à respecter.</li>
+                <li>Les contraintes peuvent être classées par catégories (dimensions, sécurité, ergonomie, fabrication…).</li>
+                <li>Ce travail constitue la base du cahier des charges.</li>
+            </ul>
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Rédiger un besoin principal clair et précis.</li>
+                <li>Identifier et classer des contraintes réalistes liées à un objet technique.</li>
+                <li>Produire un document structuré, exploitable pour la suite du projet.</li>
+            </ul>
+            <p>
+                <i><b>Pourquoi ce cours en particulier ?</b></i>
+                <br>
+                En technologie, on ne conçoit pas un objet “au hasard”.
+                <br>
+                Avant de dessiner ou fabriquer, il faut écrire précisément ce que l’objet doit faire et ce qu’il doit respecter.
+                <br>
+                Cette séance transforme les idées vues précédemment en un document de référence, utilisé par la suite comme le ferait un concepteur ou un ingénieur.
+            </p>
+            <h3>1. Rappel express du contexte (5 min)</h3>
+            <p><i><b>« Vous devez concevoir un support de smartphone, à utiliser à la maison. »</b></i></p>
+            <div style="visibility: hidden;">
+                <ul>
+                    Préciser :
+                    <li>Le type d'objet</li>
+                    <li>L'utilisateur</li>
+                    <li>Le contexte d'utilisation</li>
+                </ul>
+            </div>
+            <p><i><b>« Aujourd’hui, vous allez écrire le document de base du projet : besoins et contraintes. »</b></i></p>
+            <h3>2. Rédiger le besoin principal (10 min)</h3>
+            <p>
+                <ol>
+                    <li>Créer un document LibreOffice Writer.</li>
+                    <li>Nommez le "3e_S23_nom1_nom2" (pas de prénom)</li>
+                    <li>
+                        Ouvrez le document et y mettre OBLIGATOIREMENT les informations suivantes:
+                        <ol>
+                            <li>Séance 23 : Identifier les besoins et contraintes du support</li>
+                            <li>Nom et prénom des membres du groupe</li>
+                        </ol>
+                    </li>
+                    <li><b>Seulement après avoir fait cela, vous pouvez continuer.</b></li>
+                    <li>
+                        Compléter la phrase suivante sans la modifier :
+                        <br>
+                        Besoin principal :
+                        <br>
+                        Le support doit permettre à l’utilisateur de … son smartphone afin de …
+                    </li>
+                    <li>Vous pouvez vous aider des exemples suivants :
+                        <ul>
+                            <li>Utiliser un verbe d’action (maintenir, poser, incliner, stabiliser…)</li>
+                            <li>Préciser un usage concret (vidéo, visioconférence, lecture…)</li>
+                        </ul>
+                    </li>
+                    <li><i><b>Une seule phrase</b></i>, claire, compréhensible.</li>
+                </ol>
+            </p>
+            <h3>3. Identifier les besoins secondaires (5 min)</h3>
+            <p>
+                Toujours sur votre document, indiquez 3 besoins secondaires que le support doit également satisfaire :
+                <ul>
+                    <li>permettre l’utilisation en mode portrait/paysage</li>
+                    <li>être compatible avec une coque</li>
+                    <li>permettre la recharge du smartphone</li>
+                    <li>être facilement transportable</li>
+                    <li>offrir un angle de vision confortable</li>
+                </ul>
+                <i><b>En choisir 3 et les reformuler correctement dans le document.</b></i>
+            </p>
+            <h3>4. Identifier et classer les contraintes (20 min)</h3>
+            <p>
+                Copier sur votre document et remplir le tableau suivant:
+                <table>
+                    <thead>
+                        <td>Type de contrainte</td>
+                        <td>Contrainte formulée clairement</td>
+                        <td>Pourquoi cette contrainte est importante</td>
+                    </thead>
+                    <tr>
+                        <td>Dimensions</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Stabilité / sécurité</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Ergonomie</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Fabrication</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Matériaux / solidité</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Esthétique</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </p>
+            <ol>
+                Règles imposées:
+                <li>8 contraintes minimum</li>
+                <li>au moins 4 types différents</li>
+                <li>chaque contrainte commence par : « Le support doit… »</li>
+            </ol>
+            <ul>
+                Aide-mémoire:
+                <li>taille du smartphone</li>
+                <li>stabilité sur une table</li>
+                <li>accès aux boutons</li>
+                <li>impression 3D possible</li>
+                <li>solidité</li>
+                <li>sécurité</li>
+                <li>apparence</li>
+            </ul>
+            <h3>5. Hiérarchisation et conclusion (5 min)</h3>
+            <p>
+                Dernière consigne écrite :
+                <br><br>
+                « Indiquez les 2 contraintes les plus importantes selon vous et justifiez votre choix. »
+            </p>
+            <p style="visibility: hidden;">
+                Objectif : montrer que toutes les contraintes n’ont pas le même poids.
+            </p>
+            <h3>À copier à la main</h3>
+            <p>
+                « Avant de concevoir un objet technique, il faut identifier le besoin principal et les contraintes à respecter. Le besoin décrit ce que l’objet doit permettre à l’utilisateur de faire. Les contraintes sont des limites liées à l’usage, à la sécurité, à la fabrication ou à la solidité. Aujourd’hui, j’ai formalisé les besoins et contraintes d’un support de smartphone pour préparer son cahier des charges. »
+            </p>
+        </section>
+
+        <section id="session24" class="content-section">
+            <h3>Séance 24 : Rédiger un cahier des charges simple</h3>
+        </section>
+
+        <section id="session25" class="content-section">
             
+        </section>
+
+        <section id="session26" class="content-section">
+            
+        </section>
+
+        <section id="session27" class="content-section">
+            
+        </section>
+
+        <section id="session28" class="content-section">
+            <h2>PIX n°2 :</h2>
+            <h3>Code : HDTLBZ591</h3>
         </section>
     </main>
 
@@ -1525,425 +1463,7 @@
         <p>&copy; 2025-2026 Technologie 3ème</p>
     </footer> -->
 
-    <script>
-        const holidays = {
-            '2025-11-01': 'Toussaint',
-            '2025-11-11': 'Armistice 1918',
-            '2025-12-25': 'Noël',
-            '2026-01-01': 'Jour de l\'An',
-            '2026-04-06': 'Lundi de Pâques',
-            '2026-05-01': 'Fête du Travail',
-            '2026-05-08': 'Victoire 1945',
-            '2026-05-14': 'Ascension',
-            '2026-05-25': 'Lundi de Pentecôte',
-        };
-
-        const vacations = [
-            { start: '2025-10-18', end: '2025-11-02', name: 'Vacances de la Toussaint' },
-            { start: '2025-12-20', end: '2026-01-04', name: 'Vacances de Noël' },
-            { start: '2026-02-07', end: '2026-02-22', name: 'Vacances d\'hiver' },
-            { start: '2026-04-04', end: '2026-04-19', name: 'Vacances de printemps' },
-            { start: '2026-07-04', end: '2026-09-01', name: 'Vacances d\'été' }
-        ];
-
-        const sessions = [
-            'Séance 1 : Introduction : le téléphone, un objet technique du quotidien',
-            'Séance 2 : Identifier les besoins et fonctions d’usage d’un téléphone',
-            'Séance 3 : Les grandes étapes de l’évolution du téléphone',
-            'Séance 4 : Du combiné au smartphone : transformations techniques',
-            'Séance 5 : Comparer les solutions techniques d’hier et d’aujourd’hui',
-            'Séance 6 : Étude de l’énergie et de l’information dans le smartphone',
-            'Séance 7 : Impact sociétal et environnemental du smartphone',
-            'Séance 8 : QCM n°1 – Les objets et systèmes techniques : évolution du téléphone',
-            'Séance 9 : PIX 1',
-            'Séance 10 : Séance libre avant vacances',
-            'Séance 11 : Classe absente',
-            'Séance 12 : Classe absente',
-            'Séance 13 : Classe absente',
-            'Séance 14 : Identifier les fonctions principales d’un véhicule autonome',
-            'Séance 15 : Repérer les sous-systèmes',
-            'Séance 16 : Étudier l’alimentation et la propulsion',
-            'Séance 17 : Comprendre la collecte et le traitement des données',
-            'Séance 18 : Étudier le comportement du système',
-            'Séance 19 : Tracer les trajectoires, interpréter les signaux',
-            'Séance 20 : Identifier et justifier une panne simulée (à finir)',
-            'Séance 21 : Ajuster les paramètres de fonctionnement',
-            // 'Séance 19 : QCM n°2 – Structure et comportement du véhicule autonome',
-            // 'Séance 20 : PIX 2',
-            // 'Séance 21 : Séance libre avant vacances',
-            // 'Séance 22 : Introduction : concevoir un support de smartphone',
-            // 'Séance 23 : Identifier les besoins et contraintes du support',
-            // 'Séance 24 : Rédiger un cahier des charges simple',
-            // 'Séance 25 : Découverte de la modélisation 3D (Tinkercad)',
-            // 'Séance 26 : Créer les premières formes de son support',
-            // 'Séance 27 : PIX 3',
-            // 'Séance 28 : Séance libre avant vacances',
-            // 'Séance 29 : Finaliser la modélisation 3D du support',
-            // 'Séance 30 : Préparer la fabrication : exporter, vérifier les contraintes',
-            // 'Séance 31 : QCM n°3 – Conception et réalisation 3D',
-            // 'Séance 32 : Lancer la fabrication (impression 3D, découpe laser)',
-            // 'Séance 33 : Ajuster et tester le prototype',
-            // 'Séance 34 : Améliorer son prototype : ergonomie, solidité, design',
-            // 'Séance 35 : Présenter son support de smartphone (compte rendu oral)',
-            // 'Séance 36 : PIX 4',
-            // 'Séance 37 : Séance libre avant vacances',
-            // 'Séance 38 : Programmation de la Voiture autonome miniature (initiation)',
-            // 'Séance 39 : Mise en œuvre : test des comportements programmés',
-            // 'Séance 40 : QCM n°4 – Robotique et automatisation',
-            // 'Séance 41 : Projet final : création libre à partir du support de smartphone',
-            // 'Séance 42 : Fabrication et test du projet libre',
-            // 'Séance 43 : Présentation orale et compte rendu numérique',
-            // 'Séance 44 : Étude globale : les objets connectés du quotidien',
-            // 'Séance 45 : Impacts environnementaux et recyclage des objets connectés',
-            // 'Séance 46 : QCM n°5 – Synthèse annuelle',
-            // 'Séance 47 : Préparation du projet final de fin d’année',
-            // 'Séance 48 : Réalisation et tests finaux',
-            // 'Séance 49 : Rapport de projet (document numérique ou oral)',
-            // 'Séance 50 : Révisions pour le DNB Technologie',
-            // 'Séance 51 : Simulation d’évaluation DNB',
-            // 'Séance 52 : PIX 5',
-            // 'Séance 53 : Séance libre avant grandes vacances'
-        ];
-
-        function isHoliday(date) {
-            return holidays[date] !== undefined;
-        }
-
-        function isInVacation(date) {
-            const parsedDate = new Date(date);
-            return vacations.some(vacation => {
-                const startDate = new Date(vacation.start);
-                const endDate = new Date(vacation.end);
-                return parsedDate >= startDate && parsedDate <= endDate;
-            });
-        }
-
-        function getVacationName(date) {
-            const parsedDate = new Date(date);
-            const vacation = vacations.find(vacation => {
-                const startDate = new Date(vacation.start);
-                const endDate = new Date(vacation.end);
-                return parsedDate >= startDate && parsedDate <= endDate;
-            });
-            return vacation ? vacation.name : '';
-        }
-
-        function formatFrenchDate(date) {
-            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-            return new Date(date).toLocaleDateString('fr-FR', options);
-        }
-
-        function isCurrentWeek(date) {
-            const currentDate = new Date();
-            const firstDayOfWeek = new Date(date);
-            const lastDayOfWeek = new Date(firstDayOfWeek);
-            lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
-            return currentDate >= firstDayOfWeek && currentDate <= lastDayOfWeek;
-        }
-
-        function isToday(date) {
-            const today = new Date().toISOString().split('T')[0];
-            return today === date;
-        }
-
-        // function generateCalendar() {
-        //     const calendarBody = document.getElementById('calendar-body');
-        //     const startDate = new Date('2024-09-06');  // Commence le vendredi 6 septembre
-        //     const endDate = new Date('2025-07-12');
-            
-        //     let currentDate = startDate;
-        //     let sessionIndex = 0;
-        //     let firstLine = true; // Pour gérer le premier vendredi seul
-        //     let displayThursday = true; // Alterne l'affichage des jeudis
-
-        //     while (currentDate <= endDate) {
-        //         const row = document.createElement('tr');
-
-        //         if (firstLine) {
-        //             // Première ligne : uniquement le vendredi
-        //             const fridayDateString = currentDate.toISOString().split('T')[0];
-        //             const fridayCell = document.createElement('td');
-        //             const fridayDescCell = document.createElement('td');
-                    
-        //             fridayCell.textContent = formatFrenchDate(fridayDateString);
-
-        //             if (isHoliday(fridayDateString)) {
-        //                 fridayDescCell.textContent = holidays[fridayDateString];
-        //                 fridayCell.classList.add('holiday');
-        //                 fridayDescCell.classList.add('holiday');
-        //             } else if (isInVacation(fridayDateString)) {
-        //                 fridayDescCell.textContent = getVacationName(fridayDateString);
-        //                 row.classList.add('vacation');
-        //             } else {
-        //                 fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-        //                 sessionIndex++;
-        //             }
-
-        //             if (isToday(fridayDateString)) {
-        //                 fridayCell.classList.add('today');
-        //                 fridayDescCell.classList.add('today');
-        //             }
-
-        //             // Cellules vides pour jeudi
-        //             row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-        //             row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
-        //             row.appendChild(fridayCell);
-        //             row.appendChild(fridayDescCell);
-
-        //             // Passer au jeudi suivant
-        //             currentDate.setDate(currentDate.getDate() + 6);
-        //             firstLine = false;
-        //         } else {
-        //             // Ligne suivante : jeudi et vendredi (alternance pour jeudi)
-        //             if (displayThursday) {
-        //                 // Affiche le jeudi
-        //                 const thursdayDateString = currentDate.toISOString().split('T')[0];
-        //                 const thursdayCell = document.createElement('td');
-        //                 const thursdayDescCell = document.createElement('td');
-                        
-        //                 thursdayCell.textContent = formatFrenchDate(thursdayDateString);
-
-        //                 if (isHoliday(thursdayDateString)) {
-        //                     thursdayDescCell.textContent = holidays[thursdayDateString];
-        //                     thursdayCell.classList.add('holiday');
-        //                     thursdayDescCell.classList.add('holiday');
-        //                 } else if (isInVacation(thursdayDateString)) {
-        //                     thursdayDescCell.textContent = getVacationName(thursdayDateString);
-        //                     row.classList.add('vacation');
-        //                 } else {
-        //                     thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-        //                     sessionIndex++;
-        //                 }
-
-        //                 if (isToday(thursdayDateString)) {
-        //                     thursdayCell.classList.add('today');
-        //                     thursdayDescCell.classList.add('today');
-        //                 }
-
-        //                 row.appendChild(thursdayCell);
-        //                 row.appendChild(thursdayDescCell);
-        //             } else {
-        //                 // Si jeudi est sauté, ajoute des cellules vides
-        //                 row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-        //                 row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
-        //             }
-
-        //             // Passe au vendredi
-        //             currentDate.setDate(currentDate.getDate() + 1);
-        //             const fridayDateString = currentDate.toISOString().split('T')[0];
-        //             const fridayCell = document.createElement('td');
-        //             const fridayDescCell = document.createElement('td');
-                    
-        //             fridayCell.textContent = formatFrenchDate(fridayDateString);
-
-        //             if (isHoliday(fridayDateString)) {
-        //                 fridayDescCell.textContent = holidays[fridayDateString];
-        //                 fridayCell.classList.add('holiday');
-        //                 fridayDescCell.classList.add('holiday');
-        //             } else if (isInVacation(fridayDateString)) {
-        //                 fridayDescCell.textContent = getVacationName(fridayDateString);
-        //                 row.classList.add('vacation');
-        //             } else {
-        //                 fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-        //                 sessionIndex++;
-        //             }
-
-        //             if (isToday(fridayDateString)) {
-        //                 fridayCell.classList.add('today');
-        //                 fridayDescCell.classList.add('today');
-        //             }
-
-        //             row.appendChild(fridayCell);
-        //             row.appendChild(fridayDescCell);
-
-        //             // Passe au jeudi suivant (saute un jeudi sur deux)
-        //             currentDate.setDate(currentDate.getDate() + 6);
-        //             displayThursday = !displayThursday; // Alterne l'affichage des jeudis
-        //         }
-
-        //         calendarBody.appendChild(row);
-        //     }
-        // }
-
-        function generateCalendar() {
-            const calendarBody = document.getElementById('calendar-body');
-            const startDate = new Date('2025-09-04');  // Commence le jeudi 4 septembre
-            const endDate = new Date('2026-07-09');
-            
-            let currentDate = startDate;
-            let sessionIndex = 0;
-            let firstLine = true; // Pour gérer le premier jeudi seul
-            let displayThursday = true; // Alterne l'affichage des jeudis
-
-            while (currentDate <= endDate) {
-                const row = document.createElement('tr');
-
-                if (firstLine) {
-                    // Première ligne : uniquement le jeudi
-                    const fridayDateString = currentDate.toISOString().split('T')[0];
-                    const fridayCell = document.createElement('td');
-                    const fridayDescCell = document.createElement('td');
-                    
-                    fridayCell.textContent = formatFrenchDate(fridayDateString);
-
-                    if (isHoliday(fridayDateString)) {
-                        fridayDescCell.textContent = holidays[fridayDateString];
-                        fridayCell.classList.add('holiday');
-                        fridayDescCell.classList.add('holiday');
-                    } else if (isInVacation(fridayDateString)) {
-                        fridayDescCell.textContent = getVacationName(fridayDateString);
-                        row.classList.add('vacation');
-                    } else {
-                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
-                        sessionIndex++;
-
-                        // Création d'un lien cliquable pour les séances
-                        const link = document.createElement('a');
-                        link.textContent = sessionName;
-                        link.href = `#`; // Génère un ID basé sur le nom de la séance
-                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
-
-                        fridayDescCell.appendChild(link);
-                    }
-
-                    if (isToday(fridayDateString)) {
-                        fridayCell.classList.add('today');
-                        fridayDescCell.classList.add('today');
-                    }
-
-                    // Cellules vides pour jeudi
-                    row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-                    row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
-                    row.appendChild(fridayCell);
-                    row.appendChild(fridayDescCell);
-
-                    // Passer au jeudi suivant
-                    currentDate.setDate(currentDate.getDate() + 7);
-                    firstLine = false;
-                } else {
-                    // Ligne suivante : jeudi séance 1 et jeudi séance 2 (alternance pour jeudi)
-                    if (displayThursday) {
-                        // Affiche le jeudi
-                        const thursdayDateString = currentDate.toISOString().split('T')[0];
-                        const thursdayCell = document.createElement('td');
-                        const thursdayDescCell = document.createElement('td');
-                        
-                        thursdayCell.textContent = formatFrenchDate(thursdayDateString);                       
-
-                        if (isHoliday(thursdayDateString)) {
-                            thursdayDescCell.textContent = holidays[thursdayDateString];
-                            thursdayCell.classList.add('holiday');
-                            thursdayDescCell.classList.add('holiday');
-                        } else if (isInVacation(thursdayDateString)) {
-                            thursdayDescCell.textContent = getVacationName(thursdayDateString);
-                            row.classList.add('vacation');
-                        } else {
-                            const sessionName = sessions[sessionIndex] || 'Séance à définir';
-                            sessionIndex++;
-
-                            // Création d'un lien cliquable pour les séances
-                            const link = document.createElement('a');
-                            link.textContent = sessionName;
-                            link.href = `#`; // Génère un ID basé sur le nom de la séance
-                            link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
-
-                            thursdayDescCell.appendChild(link);
-                        }
-
-                        if (isToday(thursdayDateString)) {
-                            thursdayCell.classList.add('today');
-                            thursdayDescCell.classList.add('today');
-                        }
-
-                        // Ajout des cellules à la ligne
-                        row.appendChild(thursdayCell);
-                        row.appendChild(thursdayDescCell);
-                    } else {
-                        // Si jeudi est sauté, ajoute des cellules vides
-                        row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-                        row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
-                    }
-
-                    // Passe a la deuxième séance du jeudi
-                    currentDate.setDate(currentDate.getDate());
-                    const fridayDateString = currentDate.toISOString().split('T')[0];
-                    const fridayCell = document.createElement('td');
-                    const fridayDescCell = document.createElement('td');
-                    
-                    fridayCell.textContent = formatFrenchDate(fridayDateString);
-
-                    if (isHoliday(fridayDateString)) {
-                        fridayDescCell.textContent = holidays[fridayDateString];
-                        fridayCell.classList.add('holiday');
-                        fridayDescCell.classList.add('holiday');
-                    } else if (isInVacation(fridayDateString)) {
-                        fridayDescCell.textContent = getVacationName(fridayDateString);
-                        row.classList.add('vacation');
-                    } else {
-                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
-                        sessionIndex++;
-
-                        // Création d'un lien cliquable pour les séances
-                        const link = document.createElement('a');
-                        link.textContent = sessionName;
-                        link.href = `#`; // Génère un ID basé sur le nom de la séance
-                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
-
-                        fridayDescCell.appendChild(link);
-                    }
-
-                    if (isToday(fridayDateString)) {
-                        fridayCell.classList.add('today');
-                        fridayDescCell.classList.add('today');
-                    }
-
-                    row.appendChild(fridayCell);
-                    row.appendChild(fridayDescCell);
-
-                    // Passe au jeudi suivant (saute un jeudi sur deux)
-                    currentDate.setDate(currentDate.getDate() + 7);
-                    displayThursday = !displayThursday; // Alterne l'affichage des jeudis
-                }
-
-                calendarBody.appendChild(row);
-            }
-        }
-
-        // Générer le calendrier au chargement de la page
-        generateCalendar();
-
-        // Toggle menu visibility
-        function toggleMenu() {
-            const menu = document.getElementById("session-nav");
-            menu.style.display = menu.style.display === "block" ? "none" : "block";
-        }
-
-        // Show selected session content
-        function showSession(sessionId) {
-            const sessions = document.querySelectorAll('.content-section');
-            sessions.forEach(session => {
-                session.classList.remove('active');
-                if (session.id === sessionId) {
-                    session.classList.add('active');
-                }
-            });
-
-            // Mettre en évidence la séance active dans le menu
-            const menuLinks = document.querySelectorAll('#session-nav a');
-            menuLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('onclick').includes(sessionId)) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Display the first session by default when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            showSession('calendar');
-        });
-
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
