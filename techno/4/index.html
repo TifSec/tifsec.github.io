@@ -4,272 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programme Technologie 4ème</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Calibri, sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        main {
-            margin-left: 200px;
-            padding: 20px;
-            min-height: 80vh;
-        }
-
-        .content-section {
-            display: none;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        a{
-            color: black;
-        }
-
-        a:hover{
-            color: orange;
-        }
-
-        aside {
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 200px;
-            background-color: #333;
-            color: white;
-            padding-top: 20px;
-            transition: width 0.3s ease;
-            overflow-y: auto;
-            scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
-        }
-
-        aside::-webkit-scrollbar {
-            display: none; /* Masque la barre de défilement pour Chrome, Safari, et Opera */
-        }
-
-        aside ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        aside ul li {
-            padding: 10px;
-        }
-
-        aside ul li a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-        }
-
-        /* Style pour l'élément de menu actif (séance en cours) */
-        aside ul li a.active {
-            background-color: #4CAF50; /* Couleur pour l'élément actif */
-            color: white;
-            font-weight: bold;
-        }
-
-        aside ul li a:hover {
-            background-color: #555;
-        }
-
-        .hamburger {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 15px;
-            text-align: left;
-            cursor: pointer;
-        }
-
-        footer {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        h2, h3, h4, h5{
-            text-align: center;
-        }
-
-        h2 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        h3{
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 8px;
-        }
-
-        h4, h5, p, ul{
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        .image{
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        ul {
-            list-style-type: square;
-            margin-left: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-
-        thead {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Styles spécifiques pour le calendrier */
-        table.calendar {
-            margin: 20px auto;
-            border-collapse: collapse;
-            width: 80%;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ccc;
-        }
-
-        .current-week {
-            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
-        }
-
-        /* pre{
-            background-color: black;
-            color: white;
-        } */
-
-        .today {
-            background-color: #007BFF; /* Bleu vif pour le jour actuel */
-            color: white; /* Texte blanc pour le contraste */
-        }
-
-        .vacation {
-            background-color: #B2E4A6; /* Vert pastel pour les vacances */
-            color: black; /* Texte noir ou foncé pour la lisibilité */
-        }
-
-        .holiday {
-            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
-            color: white; /* Texte blanc ou clair */
-        }
-
-        iframe{
-            width: 87vw;
-            height: 42vw;
-        }
-
-        .rep {
-            visibility: hidden;
-        }
-
-        code {
-            background-color: #eef;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-
-        pre {
-            background-color: #eef;
-            padding: 10px;
-            border-radius: 4px;
-            overflow-x: auto;
-            text-align: left;
-        }
-
-        .note {
-            background-color: #ffffcc;
-            padding: 10px;
-            border-left: 4px solid #ffcc00;
-            margin: 20px 0;
-        }
-
-        .container {
-            /* max-width: 800px; */
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        a button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        a button:hover {
-            background-color: #e06e2b;
-        }
-
-        .show-site {
-            width: 100%;
-            height: 100%;
-            zoom: 0.5;
-            border-radius: 10px;
-        }
-
-        .show-site-div {
-            text-align: center;
-            border: 1px solid #ccc;
-            width: 45%;
-            border-radius: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -936,427 +671,758 @@
         <section id="session21" class="content-section">
             <h2>Séance libre avant vacances.</h2>
         </section>
+
+        <section id="session22" class="content-section">
+            <h2>Séance 22 – Présentation du projet : mini-serre connectée</h2>
+            <h3>Thème : Création, conception, réalisation, innovations technologiques</h3>
+            <h3>Compétence visée : Imaginer, concevoir et réaliser une solution technique répondant à un besoin</h3>
+            <b>Objectifs d’apprentissage</b>
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>Comprendre ce qu’est un projet technique.</li>
+                <li>Savoir qu’un projet répond à un besoin réel et respecte des contraintes.</li>
+                <li>Identifier les grandes étapes d’un projet technologique (besoin → conception → réalisation → tests).</li>
+            </ul>
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Comprendre un problème technique concret.</li>
+                <li>Identifier les fonctions principales d’un objet à concevoir.</li>
+                <li>Commencer à formaliser des idées dans un document numérique structuré.</li>
+            </ul>
+            <h3>Pourquoi ce cours</h3>
+            <p>
+                En technologie, on ne se contente pas d’étudier des objets existants : on apprend aussi à imaginer et concevoir des solutions techniques.
+                <br>
+                La mini-serre connectée servira de support unique pour apprendre à concevoir, modéliser, programmer et tester un objet technique réel, étape par étape.
+            </p>
+            <h3>Mise en situation : comprendre le problème (10 min)</h3>
+            <p>
+                <ul>
+                    Certaines plantes ont besoin d’un environnement précis pour bien pousser :
+                    <li>de l’humidité</li>
+                    <li>une température adaptée</li>
+                    <li>une ventilation</li>
+                    <li>...</li>
+                </ul>
+                Comment peut-on aider une plante à pousser correctement, même quand on n’est pas là ?
+            </p>
+            <div style="visibility: hidden;">
+                <ul>
+                    <li>Que se passe-t-il si on oublie d’arroser ?</li>
+                    <li>Peut-on automatiser certaines actions ?</li>
+                </ul>
+            </div>
+            <h3>Présentation du projet (10 min)</h3>
+            <ul>
+                Objectif du projet :
+                <li>Concevoir une mini-serre connectée capable :
+                    <ul>
+                        <li>de mesurer la température et/ou l’humidité,</li>
+                        <li>d’afficher des informations,</li>
+                        <li>et de déclencher une action simple (ventilation, alerte, arrosage simulé).</li>
+                    </ul>
+                </li>
+                <li>Ce que les élèves vont faire dans les prochaines séances :</li>
+                <ul>
+                    <li>réfléchir au besoin,</li>
+                    <li>concevoir les pièces (modélisation 3D),</li>
+                    <li>programmer la carte Micro:bit,</li>
+                    <li>tester et améliorer la solution.</li>
+                </ul>
+                <li>Ce que les élèves ne feront pas :</li>
+                <ul>
+                    <li>pas de bricolage dangereux,</li>
+                    <li>pas de matériel complexe,</li>
+                    <li>pas de projet irréalisable.</li>
+                </ul>
+            </ul>
+            <h3>Travail sur ordinateur : comprendre le projet (20 min)</h3>
+            <ol>
+                <li>Créer un document LibreOffice Writer.</li>
+                <li>Nommez le "4e_S22_nom1_nom2" (pas de prénom)</li>
+                <li>
+                    Ouvrez le document et y mettre OBLIGATOIREMENT les informations suivantes:
+                    <ol>
+                        <li>Séance 22 – Présentation du projet : mini-serre connectée</li>
+                        <li>Nom et prénom des membres du groupe</li>
+                    </ol>
+                </li>
+                <li><b>Seulement après avoir fait cela, vous pouvez continuer.</b></li>
+                <li>Compléter les parties suivantes:</li>
+                <ol>
+                    <li>
+                        Le problème à résoudre:
+                        <ul style="visibility: hidden;">
+                            <li>Expliquer en quelques lignes pourquoi une serre peut être utile pour une plante.</li>
+                        </ul>
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Le besoin principal:
+                        <ul style="visibility: hidden;">
+                            <li>Permettre à une plante de pousser dans de bonnes conditions sans surveillance permanente.</li>
+                        </ul>
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Fonctions attendues de la mini-serre:
+                        <ul style="visibility: hidden;">
+                            <li>Mesurer la température</li>
+                            <li>Mesurer l’humidité</li>
+                            <li>Informer l’utilisateur</li>
+                            <li>Réagir automatiquement</li>
+                        </ul>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Contraintes du projet:
+                        <ul style="visibility: hidden;">
+                            <li>Utiliser une carte Micro:bit</li>
+                            <li>Être de petite taille</li>
+                            <li>Être utilisable en classe</li>
+                            <li>Être simple et sûr</li>
+                        </ul>
+                        <ul>
+                            <li>Utiliser une carte Micro:bit</li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </li>
+                </ol>
+            </ol>
+            <h3>À copier à la main</h3>
+            <p>
+                Aujourd’hui, nous avons découvert le projet de mini-serre connectée.
+                <br>
+                Un projet technique sert à répondre à un besoin réel en respectant des contraintes.
+                <br>
+                Nous avons identifié le problème à résoudre, le besoin principal et les fonctions attendues de la mini-serre.
+                <br>
+                Ce projet nous permettra d’apprendre à concevoir, modéliser et programmer un objet technique.
+            </p>
+        </section>
+
+        <section id="session23" class="content-section">
+            <h2>Séance 23 : Identifier les besoins et contraintes de la serre</h2>
+            <h3>Thème : Création, conception, réalisation, innovations technologiques</h3>
+            <h3>Compétence visée : Imaginer, concevoir et réaliser une solution technique répondant à un besoin</h3>
+            <b>Objectifs d’apprentissage</b>
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>Comprendre ce qu’est un besoin à l’origine d’un objet technique.</li>
+                <li>Comprendre ce qu’est une contrainte (technique, dimensionnelle, énergétique, économique, environnementale).</li>
+                <li>Découvrir le rôle du cahier des charges dans un projet technologique.</li>
+            </ul>
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Identifier le besoin principal auquel doit répondre une mini-serre.</li>
+                <li>Identifier et formuler des contraintes réalistes liées à l’objet.</li>
+                <li>Rédiger un document numérique structuré listant besoins et contraintes.</li>
+            </ul>
+            <h3>Pourquoi ce cours</h3>
+            <p>
+                Avant de concevoir ou de fabriquer un objet technique, il est indispensable de savoir exactement à quoi il doit servir et dans quelles limites.
+                <br>
+                Sans besoins clairement identifiés ni contraintes précisées, un objet peut être inutile, inefficace ou impossible à réaliser.
+                <br>
+                Cette étape est donc la base de tout projet technologique.
+            </p>
+            <h3>Mise en situation : comprendre le problème (10 min)</h3>
+            <div style="visibility: hidden;">
+                <ul>
+                    L’enseignant projette une image d’une serre et pose les questions suivantes à l’oral :
+                    <li>Pourquoi utilise-t-on une serre ?</li>
+                    <li>Quels problèmes permet-elle de résoudre ?</li>
+                    <li>Que se passerait-il si on n’en utilisait pas ?</li>
+                </ul>
+                <ul>
+                    Mise en évidence collective :
+                    <li>protéger les plantes</li>
+                    <li>favoriser leur croissance</li>
+                    <li>contrôler l’environnement (température, humidité…)</li>
+                </ul>
+            </div>
+            <p>
+                Nous allons concevoir une mini-serre connectée. Avant de la fabriquer ou de la programmer, nous devons d’abord définir précisément le besoin et les contraintes.
+            </p>
+            <h3>Recherche guidée sur ordinateur (15 min)</h3>
+            <ul>
+                Sur Internet, rechercher :
+                <li>à quoi sert une serre,</li>
+                <li>quelles conditions sont nécessaires à la croissance d’une plante.</li>
+                <li>ne fermez pas les fenêtres de recherche, vous allez les utiliser juste aprés</li>
+            </ul>
+            <h3>Rédaction du document : besoins et contraintes (20 min)</h3>
+            <ol>
+                <li>Créer un document LibreOffice Writer.</li>
+                <li>Nommez le "4e_S23_nom1_nom2" (pas de prénom)</li>
+                <li>
+                    Ouvrez le document et y mettre OBLIGATOIREMENT les informations suivantes:
+                    <ol>
+                        <li>Séance 23 : Identifier les besoins et contraintes de la serre</li>
+                        <li>Nom et prénom des membres du groupe</li>
+                    </ol>
+                </li>
+                <li><b>Seulement après avoir fait cela, vous pouvez continuer.</b></li>
+                <li>
+                    Le document doit contenir 3 parties clairement identifiées :
+                    <ol>
+                        <li>
+                            Le besoin principal
+                            <br>
+                            <p style="visibility: hidden;">
+                                Le besoin est de permettre à une plante de pousser dans de bonnes conditions, même lorsque l’environnement extérieur n’est pas favorable.
+                            </p>
+                        </li>
+                        <li>
+                            Les besoins secondaires
+                            <ul style="visibility: hidden;">
+                                <li>maintenir une température adaptée,</li>
+                                <li>maintenir une humidité suffisante,</li>
+                                <li>protéger la plante du froid ou du vent,</li>
+                                <li>permettre le suivi des conditions de culture.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Les contraintes
+                            <ul>
+                                Contraintes techniques :
+                                <div style="visibility: hidden;">
+                                    <li>utiliser une carte Micro:bit,</li>
+                                    <li>utiliser des capteurs simples (température, humidité).</li>
+                                </div>
+                                Contraintes dimensionnelles :
+                                <div style="visibility: hidden;">
+                                    <li>tenir sur une table,</li>
+                                    <li>être transportable.</li>
+                                </div>
+                                Contraintes énergétiques :
+                                <div style="visibility: hidden;">
+                                    <li>alimentation par USB ou piles.</li>
+                                </div>
+                                Contraintes de sécurité :
+                                <div style="visibility: hidden;">
+                                    <li>pas de danger électrique,</li>
+                                    <li>pas de pièces coupantes.</li>
+                                </div>
+                                Contraintes économiques :
+                                <div style="visibility: hidden;">
+                                    <li>utiliser du matériel limité et réutilisable.</li>
+                                </div>
+                                <li>Enregistrer votre document dans l'espace d'échange</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <h3>À copier à la main</h3>
+            <p>
+                Aujourd’hui, nous avons identifié les besoins et les contraintes de la mini-serre connectée.
+                <br>
+                Le besoin principal est de permettre à une plante de pousser dans de bonnes conditions.
+                <br>
+                Les contraintes sont les limites à respecter pour concevoir l’objet, comme la taille, l’énergie, la sécurité ou le matériel utilisé.
+                <br>
+                Cette étape est indispensable avant de concevoir, modéliser et programmer un objet technique.
+            </p>
+        </section>
+
+        <section id="session24" class="content-section">
+            <h2>Séance 24 : Croquis et idées de conception</h2>
+            <h3>Thème : Création, conception, réalisation, innovations technologiques</h3>
+            <h3>Compétence visée : Imaginer, concevoir et réaliser une solution technique répondant à un besoin</h3>
+            <b>Objectifs d’apprentissage</b>
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>Un croquis sert à explorer des idées rapidement (ce n’est pas un dessin artistique).</li>
+                <li>Une solution technique doit respecter un besoin et des contraintes (dimensions, sécurité, coût, solidité, usage).</li>
+                <li>Avant de modéliser en 3D ou fabriquer, on passe par une étape de recherche d’idées et de choix argumenté.</li>
+            </ul>
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Proposer au moins 2 idées de mini-serre (formes/organisation) à partir du cahier des charges.</li>
+                <li>Réaliser un croquis simple (vue de face + vue de dessus) avec des annotations utiles.</li>
+                <li>Produire et rendre un document numérique clair : idées + croquis + justification du choix.</li>
+            </ul>
+            <h3>Pourquoi ce cours</h3>
+            <p>
+                Parce que la mini-serre connectée ne se “devine” pas : il faut d’abord imaginer plusieurs solutions, puis choisir la meilleure en fonction des contraintes.
+                <br>
+                Cette étape évite de perdre du temps en modélisation 3D et permet de concevoir un objet réalisable et fonctionnel.
+            </p>
+            <h3>Rappel du besoin et des contraintes (5 min)</h3>
+            <ul>
+                <li>
+                    But : protéger une petite plante et mesurer au moins température (et/ou humidité) avec Micro:bit, avec affichage/alerte.
+                </li>
+                <li>
+                    Contraintes (exemples simples à garder) :
+                    <ul>
+                        <li>la plante doit entrer (taille imposée par toi : ex. pot Ø 8–10 cm)</li>
+                        <li>le capteur doit être placé correctement</li>
+                        <li>la serre doit pouvoir s’ouvrir (accès plante)</li>
+                        <li>stable, pas coupante, réalisable en classe</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>Aujourd’hui, vous proposez des idées et vous les dessinez clairement.</p>
+            <h3>Création du document à rendre (5 min)</h3>
+            <ol>
+                <li>Créer un document LibreOffice Writer.</li>
+                <li>Nommez le "4e_S24_nom1_nom2" (pas de prénom)</li>
+                <li>
+                    Ouvrez le document et y mettre OBLIGATOIREMENT les informations suivantes:
+                    <ol>
+                        <li>Séance 24 : Croquis et idées de conception</li>
+                        <li>Nom et prénom des membres du groupe</li>
+                    </ol>
+                </li>
+                <li><b>Seulement après avoir fait cela, vous pouvez continuer.</b></li>
+                <li>
+                    Le document doit contenir ces 4 sections :
+                    <ol>
+                        <li>Idée 1 : description rapide (3 lignes)</li>
+                        <li>Idée 2 : description rapide (3 lignes)</li>
+                        <li>Croquis annotés (dessins intégrés)</li>
+                        <li>Choix final et justification (5 lignes)</li>
+                    </ol>
+                </li>
+            </ol>
+            <h3>Recherche d’inspiration guidée (10 min)</h3>
+            <ul>
+                <li>Sur ordinateur, recherche rapide d’exemples pour nourrir les idées (sans copier un modèle exact)</li>
+                <li>
+                    Consigne stricte (simple) :
+                    <ul>
+                        <li>trouver 2 images maximum qui inspirent (formes, ouverture, ventilation)</li>
+                        <li>noter sous chaque image : ce que j’aime / ce que je n’aime pas (1 phrase)</li>
+                    </ul>
+                </li>
+                <li>Insèrer les images dans le document</li>
+            </ul>
+            <h3>Croquis (15 min)</h3>
+            <ul>
+                <li>
+                    Sur feuille (ou directement sur paint), chaque binôme réalise 2 croquis (un par idée) :
+                    <ul>
+                        <li>Vue de face (forme générale + ouverture)</li>
+                        <li>Vue de dessus (placement plante + emplacement Micro:bit/capteur)</li>
+                    </ul>
+                </li>
+                <li>
+                    Annotations obligatoires (3 minimum) :
+                    <ul>
+                        <li>où est la plante ?</li>
+                        <li>où est le capteur / Micro:bit ?</li>
+                        <li>comment ça s’ouvre ?</li>
+                        <li>où passe l’air ? (aération)</li>
+                        <li>comment c’est stable ? (socle)</li>
+                    </ul>
+                </li>
+                <li>Insérez les croquis dans le document</li>
+            </ul>
+            <h3>Choix et justification (10 min)</h3>
+            <ul>
+                Dans la section “Choix final”, ils choisissent une idée et remplissent la phrase modèle :
+                <li>Nous choisissons l’idée ___ parce que…</li>
+                <li>Elle respecte la contrainte (taille) car…</li>
+                <li>Elle respecte la contrainte (accès plante) car…</li>
+                <li>Elle respecte la contrainte (capteur) car…</li>
+                <li>Elle est réalisable en classe car…</li>
+                <li>Sauvegarder le document dans l'espace d'échange</li>
+            </ul>
+            <h3>À copier à la main</h3>
+            <p>
+                Aujourd’hui, nous avons cherché des idées et réalisé des croquis pour concevoir une mini-serre connectée.
+                <br>
+                Un croquis sert à représenter rapidement une solution technique et à réfléchir à son fonctionnement.
+                <br>
+                Nous avons proposé deux idées, dessiné une vue de face et une vue de dessus, puis ajouté des annotations (ouverture, emplacement de la plante et du capteur).
+                <br>
+                Enfin, nous avons choisi la meilleure idée en la justifiant avec les contraintes du cahier des charges.
+            </p>
+        </section>
+
+        <section id="session25" class="content-section">
+            <h2>Diffusé le jour du test</h2>
+        </section>
+
+        <section id="session26" class="content-section">
+            <h2>Séance 26 : Découverte du logiciel de modélisation 3D</h2>
+            <h3>Thème : Création, conception, réalisation, innovations technologiques</h3>
+            <h3>Compétence visée : Concevoir et représenter une solution technique (modéliser une pièce en 3D à partir d’un besoin et de contraintes simples)</h3>
+            <b>Objectifs d’apprentissage</b>
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>Un objet technique peut être conçu en 3D avant d’être fabriqué.</li>
+                <li>Un modèle 3D est composé de formes simples (cylindre, pavé, trou) qu’on assemble.</li>
+                <li>Une pièce 3D respecte des dimensions (mm) et des contraintes (épaisseur, stabilité, emplacement de composants).</li>
+            </ul>
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Se connecter à Tinkercad et se repérer dans l’interface (vue, zoom, déplacement).</li>
+                <li>Créer une pièce simple en 3D à partir d’une consigne.</li>
+                <li>Modifier des dimensions (longueur, largeur, hauteur) et utiliser l’outil “trou”.</li>
+                <li>Exporter / partager un travail et fournir une preuve (captures d’écran + lien).</li>
+            </ul>
+            <h3>Pourquoi ce cours</h3>
+            <p>
+                Parce qu’avant de fabriquer (impression 3D, découpe, maquette), on doit concevoir et vérifier la pièce : dimensions, emplacement, cohérence. La modélisation 3D permet de tester sur ordinateur et de corriger facilement avant de passer au réel.
+            </p>
+            <h3>1. Mise en route et objectif (5 min)</h3>
+            <ul>
+                <li>Aujourd’hui, on apprend à modéliser, et pour les plus rapide, on modélisera aussi une première pièce utile à la mini-serre.</li>
+                <li>Rendez-vous sur le site web suivant: <a href="https://www.tinkercad.com/" target="_blank" rel="noopener noreferrer">Tinkercad</a></li>
+                <li>Apprendre les bases du logiciel</li>
+                <li>Modéliser un “socle/support” pour un capteur (ou un petit élément de serre).</li>
+            </ul>
+            <h3>2. Prise en main de l’espace 3D (20 min)</h3>
+            <p>Faire les tutos suivant: "Place It", "View It", "Size It" et "Group It", utile pour la suite du cours</p>
+            <h3>3. Modélisation guidée : le socle (20 min)</h3>
+            <ol>
+                Étape A — Créer la base
+                <li>Glisser un pavé (Box) sur le plan.</li>
+                <li>
+                    Régler les dimensions :
+                    <ul>
+                        <li>Longueur : 80 mm</li>
+                        <li>Largeur : 50 mm</li>
+                        <li>Hauteur : 6 mm</li>
+                    </ul>
+                    Renommer l’objet : Base
+                </li>
+                Étape B — Percer 2 trous (passage de vis ou colliers)
+                <li>Glisser un cylindre, le passer en mode Trou.</li>
+                <li>Diamètre : 6 mm, hauteur : 6 mm.</li>
+                <li>Le placer à 10 mm du bord gauche, centré en largeur.</li>
+                <li>Dupliquer le trou et placer le second à 10 mm du bord droit.</li>
+                <li>Sélectionner Base + 2 trous → Grouper (pour percer).</li>
+                Étape C — Faire une “encoche câble” (option simple, mais utile)
+                <li>Glisser une Box en mode Trou.</li>
+                <li>Dimensions : 20 mm x 8 mm x 6 mm</li>
+                <li>Placer l’encoche sur un bord (au milieu).</li>
+                <li>Grouper.</li>
+            </ol>
+            <p>Grosso modo, votre plaque doit a peu près ressembler à ça :</p>
+            <br>
+            <img src="plaque_mini_serre_connectee.png" alt="">
+            <br>
+            <p>Vous n'êtes pas obligé de faire la même chose, faites en fonction de votre design.</p>
+            <h3>4. Rendu et rangement numérique (5 min)</h3>
+            <ol>
+                <li>Créer un document LibreOffice Writer.</li>
+                <li>Nommez le "4e_S26_nom1_nom2" (pas de prénom)</li>
+                <li>
+                    Ouvrez le document et y mettre OBLIGATOIREMENT les informations suivantes:
+                    <ol>
+                        <li>Séance 26 : Découverte du logiciel de modélisation 3D</li>
+                        <li>Nom et prénom des membres du groupe</li>
+                    </ol>
+                </li>
+                <li><b>Seulement après avoir fait cela, vous pouvez continuer.</b></li>
+                <li>Prenez un screen de la vue de face (avec l'encoche)</li>
+                <li>Mettez le dans votre document avec comme légende: "Vue de face"</li>
+                <li>Prenez un screen de la vue de dessus</li>
+                <li>Mettez le dans votre document avec comme légende: "Vue de dessus"</li>
+                <li>
+                    Copiez le tableau suivant:
+                    <table>
+                        <thead>
+                            <td>Élément</td>
+                            <td>Dimension</td>
+                            <td>Pourquoi c’est important</td>
+                        </thead>
+                        <tr>
+                            <td>Base</td>
+                            <td>80 x 50 x 6 mm</td>
+                            <td>stabilité et place disponible</td>
+                        </tr>
+                        <tr>
+                            <td>Trous</td>
+                            <td>Ø 6 mm</td>
+                            <td>fixation / passage collier</td>
+                        </tr>
+                        <tr>
+                            <td>Encoche</td>
+                            <td>20 x 8 mm</td>
+                            <td>passage d’un câble</td>
+                        </tr>
+                    </table>
+                    Ce tableau vous aide à garder une trace de ce que vous faites, et pourquoi vous le faites.
+                </li>
+                <li>Enregistrez le travail dans le dossier de partage</li>
+            </ol>
+            <h3>À copier à la main</h3>
+            <p>
+                Aujourd’hui, nous avons découvert la modélisation 3D avec Tinkercad.
+                <br>
+                Nous avons appris à nous repérer dans un espace 3D, à créer une forme simple, à régler ses dimensions en millimètres et à utiliser un “trou” pour enlever de la matière.
+                <br>
+                Nous avons modélisé un socle utile pour la mini-serre connectée, puis nous avons enregistré et partagé notre travail.
+                <br>
+                La modélisation 3D permet de concevoir et vérifier une pièce avant de la fabriquer.
+            </p>
+        </section>
+
+        <section id="session27" class="content-section">
+            <h2>Séance 27 : Modéliser les pièces de la mini-serre</h2>
+            <h3>Thème : Création, conception, réalisation, innovations technologiques</h3>
+            <h3>Compétence visée : Concevoir et représenter une solution technique (modélisation 3D)</h3>
+            <b>Objectifs d’apprentissage</b>
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>Une pièce 3D se construit à partir de formes simples (solides) qu’on dimensionne, positionne et assemble.</li>
+                <li>En modélisation, on doit respecter des contraintes : dimensions, épaisseur, emboîtement, passage des câbles, stabilité.</li>
+                <li>Un objet fabriqué (impression 3D) a besoin de règles simples : épaisseur minimale, trous, ajustements.</li>
+            </ul>
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Utiliser Tinkercad pour créer une pièce avec des cotes précises.</li>
+                <li>Réaliser un assemblage simple (ajout / alignement / groupement).</li>
+                <li>Produire et rendre un fichier 3D (lien Tinkercad + export STL) + captures d’écran.</li>
+            </ul>
+            <h3>Pourquoi ce cours</h3>
+            <p>
+                Pour fabriquer (ou préparer à fabriquer) une mini-serre, il faut des pièces qui s’emboîtent et qui respectent des dimensions réelles. La modélisation 3D permet de passer de l’idée à une pièce précise, testable et améliorable.
+            </p>
+            <h3>Mise en route (5 min)</h3>
+            <p>
+                Aujourd’hui, vous modélisez une pièce utile de la mini-serre, avec des dimensions précises.
+                <br>
+                Objectif de l’heure : une pièce simple, propre, et mesurée (pas besoin de faire “beau”, besoin de faire “juste”).
+            </p>
+            <h3>Consignes de modélisation (5 min)</h3>
+            <p>
+                Pièce à modéliser aujourd’hui : le socle (plateau) de la mini-serre.
+                <br>
+                C’est la pièce la plus simple et la plus utile : elle sert de base, et on peut ensuite y ajouter parois/couvercle.
+                <br>
+                <ul>
+                    Dimensions conseillées (simples et réalistes) :
+                    <li>Plateau : 120 mm x 80 mm</li>
+                    <li>Épaisseur : 3 mm</li>
+                    <li>Rebords (cadre) : hauteur 10 mm, épaisseur 3 mm</li>
+                    <li>2 trous pour passage câble / capteur : diamètre 6 mm</li>
+                </ul>
+            </p>
+            <h3>Travail sur Tinkercad (30 min)</h3>
+            <ol>
+                <li>Créer un document LibreOffice Writer.</li>
+                <li>Nommez le "4e_S27_nom1_nom2" (pas de prénom)</li>
+                <li>
+                    Ouvrez le document et y mettre OBLIGATOIREMENT les informations suivantes:
+                    <ol>
+                        <li>Séance 27 : Modéliser les pièces de la mini-serre</li>
+                        <li>Nom et prénom des membres du groupe</li>
+                    </ol>
+                </li>
+                <li><b>Seulement après avoir fait cela, vous pouvez continuer.</b></li>
+                <li>
+                    Étape A — Créer le plateau (8 min)
+                    <ol>
+                        <li>Ouvrir Tinkercad → Créer un nouveau design</li>
+                        <li>En bas à droite : régler les unités en millimètres</li>
+                        <li>Glisser Box (boîte) sur le plan</li>
+                        <li>
+                            Régler les dimensions :
+                            <ul>
+                                <li>L = 120</li>
+                                <li>l = 80</li>
+                                <li>h = 3</li>
+                            </ul>
+                        </li>
+                        Renommer l’objet : Plateau
+                    </ol>
+                </li>
+                <li>
+                    Étape B — Créer le cadre (rebords) (12 min)
+                    <ol>
+                        Objectif : faire un “cadre” autour du plateau (pour tenir les parois).
+                        <li>Glisser une nouvelle Box</li>
+                        <li>
+                            Mettre :
+                            <ul>
+                                <li>L = 120</li>
+                                <li>l = 80</li>
+                                <li>h = 10</li>
+                            </ul>
+                        </li>
+                        <li>Dupliquer cette box (CTRL+D)</li>
+                        <li>
+                            Sur la copie :
+                            <ul>
+                                <li>passer en Hole (trou)</li>
+                                <li>
+                                    mettre :
+                                    <ul>
+                                        <li>L = 114</li>
+                                        <li>l = 74</li>
+                                        <li>h = 10</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Sélectionner les 2 formes → Aligner (outil “Align”)
+                            <ul>
+                                <li>centrer sur X et Y</li>
+                            </ul>
+                        </li>
+                        <li>Sélectionner les 2 → Group</li>
+                        <li>Renommer : Cadre</li>
+                    </ol>
+                </li>
+                <li>
+                    Étape C — Poser le cadre sur le plateau (5 min)
+                    <ol>
+                        <li>Mettre le cadre au-dessus du plateau</li>
+                        <li>Sélectionner plateau + cadre → Aligner</li>
+                        <li>
+                            Vérifier que le cadre est bien “posé” (hauteur) :
+                            <ul>
+                                <li>le plateau fait 3 mm</li>
+                                <li>le cadre commence au-dessus du plateau (ou tu peux les fusionner)</li>
+                            </ul>
+                        </li>
+                        <li>Sélectionner le tout → Group (si tu veux une pièce unique)</li>
+                    </ol>
+                </li>
+                <li>
+                    Étape D — Ajouter 2 trous pour les câbles (5 min)
+                    <ol>
+                        <li>Glisser un Cylinder</li>
+                        <li>Le mettre en Hole</li>
+                        <li>
+                            Régler :
+                            <ul>
+                                <li>diamètre 6 mm</li>
+                                <li>hauteur 15 mm (pour traverser)</li>
+                            </ul>
+                        </li>
+                        <li>Placer près d’un bord (pas trop près : laisser 5 mm de marge)</li>
+                        <li>Dupliquer pour faire le second trou</li>
+                        <li>Sélectionner tout → Group</li>
+                    </ol>
+                </li>
+            </ol>
+            <h3>Contrôle qualité + rendu (10 min)</h3>
+            <ul>
+                Check-list à faire AVANT de rendre (2 min)
+                <li>Les dimensions du plateau sont correctes (120 x 80 x 3)</li>
+                <li>Il y a un cadre (rebords) de 10 mm</li>
+                <li>Il y a 2 trous (6 mm) visibles</li>
+                <li>Les objets sont groupés (si demandé)</li>
+            </ul>
+            <ul>
+                Dans votre document, ajoutez:
+                <li>Lien Tinkercad</li>
+                <li>
+                    2 captures d’écran
+                    <ul>
+                        <li>Vue de dessus</li>
+                        <li>Vue en perspective isométrique (en diagonal, vue de dessus/face/côté, de façon a voir toute la pièce modélisée)</li>
+                    </ul>
+                </li>
+                <li>
+                    Copier le tableau suivant (avec vos valeurs si différentes):
+                    <table>
+                        <thead>
+                            <td>Élément</td>
+                            <td>Valeur</td>
+                        </thead>
+                        <tr>
+                            <td>Nom de la pièce</td>
+                            <td>Socle (plateau + rebords)</td>
+                        </tr>
+                        <tr>
+                            <td>Dimensions</td>
+                            <td>120 x 80 x 13 (au total)</td>
+                        </tr>
+                        <tr>
+                            <td>Rôle</td>
+                            <td>Base de la mini-serre, support des parois + passage des câbles</td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+            <h3>À copier à la main</h3>
+            <p>
+                Aujourd’hui, nous avons modélisé une pièce de la mini-serre connectée sur Tinkercad.
+                <br>
+                Nous avons appris à créer des formes simples, à saisir des dimensions précises et à assembler des éléments (aligner, percer, grouper).
+                <br>
+                Nous avons réalisé un socle avec un plateau, des rebords et des trous pour le passage de câbles.
+                <br>
+                La modélisation 3D permet de représenter une solution technique avant de la fabriquer et de vérifier qu’elle respecte les contraintes.
+            </p>
+        </section>
+
+        <section id="session28" class="content-section">
+            <h2>Séance 24 : Croquis et idées de conception</h2>
+            <h3>Thème : Création, conception, réalisation, innovations technologiques</h3>
+            <h3>Compétence visée : Imaginer, concevoir et réaliser une solution technique répondant à un besoin</h3>
+            <b>Objectifs d’apprentissage</b>
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>Un croquis sert à explorer des idées rapidement (ce n’est pas un dessin artistique).</li>
+                <li>Une solution technique doit respecter un besoin et des contraintes (dimensions, sécurité, coût, solidité, usage).</li>
+                <li>Avant de modéliser en 3D ou fabriquer, on passe par une étape de recherche d’idées et de choix argumenté.</li>
+            </ul>
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Proposer au moins 2 idées de mini-serre (formes/organisation) à partir du cahier des charges.</li>
+                <li>Réaliser un croquis simple (vue de face + vue de dessus) avec des annotations utiles.</li>
+                <li>Produire et rendre un document numérique clair : idées + croquis + justification du choix.</li>
+            </ul>
+            <h3>Pourquoi ce cours</h3>
+            <p>
+                Parce que la mini-serre connectée ne se “devine” pas : il faut d’abord imaginer plusieurs solutions, puis choisir la meilleure en fonction des contraintes.
+                <br>
+                Cette étape évite de perdre du temps en modélisation 3D et permet de concevoir un objet réalisable et fonctionnel.
+            </p>
+        </section>
+
+        <section id="session29" class="content-section">
+            <h2>Séance 24 : Croquis et idées de conception</h2>
+            <h3>Thème : Création, conception, réalisation, innovations technologiques</h3>
+            <h3>Compétence visée : Imaginer, concevoir et réaliser une solution technique répondant à un besoin</h3>
+            <b>Objectifs d’apprentissage</b>
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>Un croquis sert à explorer des idées rapidement (ce n’est pas un dessin artistique).</li>
+                <li>Une solution technique doit respecter un besoin et des contraintes (dimensions, sécurité, coût, solidité, usage).</li>
+                <li>Avant de modéliser en 3D ou fabriquer, on passe par une étape de recherche d’idées et de choix argumenté.</li>
+            </ul>
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Proposer au moins 2 idées de mini-serre (formes/organisation) à partir du cahier des charges.</li>
+                <li>Réaliser un croquis simple (vue de face + vue de dessus) avec des annotations utiles.</li>
+                <li>Produire et rendre un document numérique clair : idées + croquis + justification du choix.</li>
+            </ul>
+            <h3>Pourquoi ce cours</h3>
+            <p>
+                Parce que la mini-serre connectée ne se “devine” pas : il faut d’abord imaginer plusieurs solutions, puis choisir la meilleure en fonction des contraintes.
+                <br>
+                Cette étape évite de perdre du temps en modélisation 3D et permet de concevoir un objet réalisable et fonctionnel.
+            </p>
+        </section>
     </main>
 
     <!-- <footer>
         <p>&copy; 2025-2026 Technologie 4ème</p>
     </footer> -->
 
-    <script>
-        const holidays = {
-            '2025-11-01': 'Toussaint',
-            '2025-11-11': 'Armistice 1918',
-            '2025-12-25': 'Noël',
-            '2026-01-01': 'Jour de l\'An',
-            '2026-04-06': 'Lundi de Pâques',
-            '2026-05-01': 'Fête du Travail',
-            '2026-05-08': 'Victoire 1945',
-            '2026-05-14': 'Ascension',
-            '2026-05-25': 'Lundi de Pentecôte',
-        };
-
-        const vacations = [
-            { start: '2025-10-18', end: '2025-11-02', name: 'Vacances de la Toussaint' },
-            { start: '2025-12-20', end: '2026-01-04', name: 'Vacances de Noël' },
-            { start: '2026-02-07', end: '2026-02-22', name: 'Vacances d\'hiver' },
-            { start: '2026-04-04', end: '2026-04-19', name: 'Vacances de printemps' },
-            { start: '2026-07-04', end: '2026-09-01', name: 'Vacances d\'été' }
-        ];
-
-        const sessions = [
-            'Séance 1 : 1er cours, présentations',
-            'Séance 2 : Découverte du vélo électrique : à quoi sert-il ?',
-            'Séance 3 : Les besoins auxquels répond le vélo électrique',
-            'Séance 4 : Fonctions d’usage et fonctions techniques',
-            'Séance 5 : Identifier les entrées/sorties du système vélo',
-            'Séance 6 : QCM n°1 – Analyse externe et usages',
-            'Séance 7 : Évolution du vélo à travers le temps',
-            'Séance 8 : L’énergie et les matériaux du vélo',
-            'Séance 9 : Les impacts environnementaux et sociétaux',
-            'Séance 10 : Rappel du premier thème & introduction du second thème',
-            'Séance 11 : Séance libre avant vacances',
-            'Séance 12 : Structure interne d’un robot aspirateur',
-            'Séance 13 : Les chaînes d’énergie du robot aspirateur',
-            'Séance 14 : Les chaînes d’information : capteurs et actionneurs',
-            'Séance 15 : QCM n°2 – Chaînes d’énergie et d’information',
-            'Séance 16 : Identifier un dysfonctionnement',
-            'Séance 17 : Comment se déplace le robot ?',
-            'Séance 18 : L’énergie électrique du robot : stockage et recharge',
-            'Séance 19 : Introduction à la programmation du robot',
-            'Séance 20 : QCM n°3 – Structure et comportement',
-            'Séance 21 : Séance libre avant vacances',
-            // 'Séance 22 : Présentation du projet : mini-serre connectée',
-            // 'Séance 23 : Identifier les besoins et contraintes de la serre',
-            // 'Séance 24 : Croquis et idées de conception',
-            // 'Séance 25 : Découverte du logiciel de modélisation 3D',
-            // 'Séance 26 : Modéliser les pièces de la mini-serre',
-            // 'Séance 27 : Contraintes dimensionnelles et assemblage',
-            // 'Séance 28 : QCM n°4 – Modélisation 3D',
-            // 'Séance 29 : Séance libre avant vacances',
-            // 'Séance 30 : Introduction à la programmation de la serre',
-            // 'Séance 31 : Capteurs d’humidité et de température',
-            // 'Séance 32 : Actionneurs : ventilation et arrosage',
-            // 'Séance 33 : QCM n°5 – Capteurs et actionneurs',
-            // 'Séance 34 : Variables, conditions et boucles',
-            // 'Séance 35 : Tester le programme de la serre',
-            // 'Séance 36 : QCM n°6 – Programmation de la serre',
-            // 'Séance 37 : Assemblage complet de la mini-serre',
-            // 'Séance 38 : Séance libre avant vacances',
-            // 'Séance 39 : Validation et essais de la mini-serre',
-            // 'Séance 40 : Analyse des résultats et ajustements',
-            // 'Séance 41 : Présentation du projet final (oral)',
-            // 'Séance 42 : QCM n°7 – Validation du projet',
-            // 'Séance 43 : Découverte des métiers liés à la conception',
-            // 'Séance 44 : Découverte d’un fablab et de ses outils',
-            // 'Séance 45 : Améliorer la mini-serre : idées d’évolution',
-            // 'Séance 46 : QCM n°8 – Synthèse du thème 3',
-            // 'Séance 47 : Bilan des apprentissages & portfolio numérique',
-            // 'Séance 48 : Préparation de l’exposition des projets',
-            // 'Séance 49 : Exposition des travaux',
-            // 'Séance 50 : QCM n°9 – Synthèse annuelle',
-            // 'Séance 51 : Projets libres',
-            // 'Séance 52 : Séance libre avant vacances'
-        ];
-
-        function isHoliday(date) {
-            return holidays[date] !== undefined;
-        }
-
-        function isInVacation(date) {
-            const parsedDate = new Date(date);
-            return vacations.some(vacation => {
-                const startDate = new Date(vacation.start);
-                const endDate = new Date(vacation.end);
-                return parsedDate >= startDate && parsedDate <= endDate;
-            });
-        }
-
-        function getVacationName(date) {
-            const parsedDate = new Date(date);
-            const vacation = vacations.find(vacation => {
-                const startDate = new Date(vacation.start);
-                const endDate = new Date(vacation.end);
-                return parsedDate >= startDate && parsedDate <= endDate;
-            });
-            return vacation ? vacation.name : '';
-        }
-
-        function formatFrenchDate(date) {
-            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-            return new Date(date).toLocaleDateString('fr-FR', options);
-        }
-
-        function isCurrentWeek(date) {
-            const currentDate = new Date();
-            const firstDayOfWeek = new Date(date);
-            const lastDayOfWeek = new Date(firstDayOfWeek);
-            lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
-            return currentDate >= firstDayOfWeek && currentDate <= lastDayOfWeek;
-        }
-
-        function isToday(date) {
-            const today = new Date().toISOString().split('T')[0];
-            return today === date;
-        }
-
-        // function generateCalendar() {
-        //     const calendarBody = document.getElementById('calendar-body');
-        //     const startDate = new Date('2024-09-06');  // Commence le vendredi 6 septembre
-        //     const endDate = new Date('2025-07-12');
-            
-        //     let currentDate = startDate;
-        //     let sessionIndex = 0;
-        //     let firstLine = true; // Pour gérer le premier vendredi seul
-        //     let displayThursday = true; // Alterne l'affichage des jeudis
-
-        //     while (currentDate <= endDate) {
-        //         const row = document.createElement('tr');
-
-        //         if (firstLine) {
-        //             // Première ligne : uniquement le vendredi
-        //             const fridayDateString = currentDate.toISOString().split('T')[0];
-        //             const fridayCell = document.createElement('td');
-        //             const fridayDescCell = document.createElement('td');
-                    
-        //             fridayCell.textContent = formatFrenchDate(fridayDateString);
-
-        //             if (isHoliday(fridayDateString)) {
-        //                 fridayDescCell.textContent = holidays[fridayDateString];
-        //                 fridayCell.classList.add('holiday');
-        //                 fridayDescCell.classList.add('holiday');
-        //             } else if (isInVacation(fridayDateString)) {
-        //                 fridayDescCell.textContent = getVacationName(fridayDateString);
-        //                 row.classList.add('vacation');
-        //             } else {
-        //                 fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-        //                 sessionIndex++;
-        //             }
-
-        //             if (isToday(fridayDateString)) {
-        //                 fridayCell.classList.add('today');
-        //                 fridayDescCell.classList.add('today');
-        //             }
-
-        //             // Cellules vides pour jeudi
-        //             row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-        //             row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
-        //             row.appendChild(fridayCell);
-        //             row.appendChild(fridayDescCell);
-
-        //             // Passer au jeudi suivant
-        //             currentDate.setDate(currentDate.getDate() + 6);
-        //             firstLine = false;
-        //         } else {
-        //             // Ligne suivante : jeudi et vendredi (alternance pour jeudi)
-        //             if (displayThursday) {
-        //                 // Affiche le jeudi
-        //                 const thursdayDateString = currentDate.toISOString().split('T')[0];
-        //                 const thursdayCell = document.createElement('td');
-        //                 const thursdayDescCell = document.createElement('td');
-                        
-        //                 thursdayCell.textContent = formatFrenchDate(thursdayDateString);
-
-        //                 if (isHoliday(thursdayDateString)) {
-        //                     thursdayDescCell.textContent = holidays[thursdayDateString];
-        //                     thursdayCell.classList.add('holiday');
-        //                     thursdayDescCell.classList.add('holiday');
-        //                 } else if (isInVacation(thursdayDateString)) {
-        //                     thursdayDescCell.textContent = getVacationName(thursdayDateString);
-        //                     row.classList.add('vacation');
-        //                 } else {
-        //                     thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-        //                     sessionIndex++;
-        //                 }
-
-        //                 if (isToday(thursdayDateString)) {
-        //                     thursdayCell.classList.add('today');
-        //                     thursdayDescCell.classList.add('today');
-        //                 }
-
-        //                 row.appendChild(thursdayCell);
-        //                 row.appendChild(thursdayDescCell);
-        //             } else {
-        //                 // Si jeudi est sauté, ajoute des cellules vides
-        //                 row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-        //                 row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
-        //             }
-
-        //             // Passe au vendredi
-        //             currentDate.setDate(currentDate.getDate() + 1);
-        //             const fridayDateString = currentDate.toISOString().split('T')[0];
-        //             const fridayCell = document.createElement('td');
-        //             const fridayDescCell = document.createElement('td');
-                    
-        //             fridayCell.textContent = formatFrenchDate(fridayDateString);
-
-        //             if (isHoliday(fridayDateString)) {
-        //                 fridayDescCell.textContent = holidays[fridayDateString];
-        //                 fridayCell.classList.add('holiday');
-        //                 fridayDescCell.classList.add('holiday');
-        //             } else if (isInVacation(fridayDateString)) {
-        //                 fridayDescCell.textContent = getVacationName(fridayDateString);
-        //                 row.classList.add('vacation');
-        //             } else {
-        //                 fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-        //                 sessionIndex++;
-        //             }
-
-        //             if (isToday(fridayDateString)) {
-        //                 fridayCell.classList.add('today');
-        //                 fridayDescCell.classList.add('today');
-        //             }
-
-        //             row.appendChild(fridayCell);
-        //             row.appendChild(fridayDescCell);
-
-        //             // Passe au jeudi suivant (saute un jeudi sur deux)
-        //             currentDate.setDate(currentDate.getDate() + 6);
-        //             displayThursday = !displayThursday; // Alterne l'affichage des jeudis
-        //         }
-
-        //         calendarBody.appendChild(row);
-        //     }
-        // }
-
-        function generateCalendar() {
-            const calendarBody = document.getElementById('calendar-body');
-            const startDate = new Date('2025-09-04');  // Commence le jeudi 4 septembre
-            const endDate = new Date('2026-07-09');
-            
-            let currentDate = startDate;
-            let sessionIndex = 0;
-            let firstLine = true; // Pour gérer le premier jeudi seul
-            let displayThursday = true; // Alterne l'affichage des jeudis
-
-            while (currentDate <= endDate) {
-                const row = document.createElement('tr');
-
-                if (!firstLine) {
-                    // Première ligne : uniquement le jeudi
-                    const fridayDateString = currentDate.toISOString().split('T')[0];
-                    const fridayCell = document.createElement('td');
-                    const fridayDescCell = document.createElement('td');
-                    
-                    fridayCell.textContent = formatFrenchDate(fridayDateString);
-
-                    if (isHoliday(fridayDateString)) {
-                        fridayDescCell.textContent = holidays[fridayDateString];
-                        fridayCell.classList.add('holiday');
-                        fridayDescCell.classList.add('holiday');
-                    } else if (isInVacation(fridayDateString)) {
-                        fridayDescCell.textContent = getVacationName(fridayDateString);
-                        row.classList.add('vacation');
-                    } else {
-                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
-                        sessionIndex++;
-
-                        // Création d'un lien cliquable pour les séances
-                        const link = document.createElement('a');
-                        link.textContent = sessionName;
-                        link.href = `#`; // Génère un ID basé sur le nom de la séance
-                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
-
-                        fridayDescCell.appendChild(link);
-                    }
-
-                    if (isToday(fridayDateString)) {
-                        fridayCell.classList.add('today');
-                        fridayDescCell.classList.add('today');
-                    }
-
-                    // Cellules vides pour jeudi
-                    row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-                    row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
-                    row.appendChild(fridayCell);
-                    row.appendChild(fridayDescCell);
-
-                    // Passer au jeudi suivant
-                    currentDate.setDate(currentDate.getDate() + 7);
-                    firstLine = false;
-                } else {
-                    // Ligne suivante : jeudi séance 1 et jeudi séance 2 (alternance pour jeudi)
-                    if (displayThursday) {
-                        // Affiche le jeudi
-                        const thursdayDateString = currentDate.toISOString().split('T')[0];
-                        const thursdayCell = document.createElement('td');
-                        const thursdayDescCell = document.createElement('td');
-                        
-                        thursdayCell.textContent = formatFrenchDate(thursdayDateString);                       
-
-                        if (isHoliday(thursdayDateString)) {
-                            thursdayDescCell.textContent = holidays[thursdayDateString];
-                            thursdayCell.classList.add('holiday');
-                            thursdayDescCell.classList.add('holiday');
-                        } else if (isInVacation(thursdayDateString)) {
-                            thursdayDescCell.textContent = getVacationName(thursdayDateString);
-                            row.classList.add('vacation');
-                        } else {
-                            const sessionName = sessions[sessionIndex] || 'Séance à définir';
-                            sessionIndex++;
-
-                            // Création d'un lien cliquable pour les séances
-                            const link = document.createElement('a');
-                            link.textContent = sessionName;
-                            link.href = `#`; // Génère un ID basé sur le nom de la séance
-                            link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
-
-                            thursdayDescCell.appendChild(link);
-                        }
-
-                        if (isToday(thursdayDateString)) {
-                            thursdayCell.classList.add('today');
-                            thursdayDescCell.classList.add('today');
-                        }
-
-                        // Ajout des cellules à la ligne
-                        row.appendChild(thursdayCell);
-                        row.appendChild(thursdayDescCell);
-                    } else {
-                        // Si jeudi est sauté, ajoute des cellules vides
-                        row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-                        row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
-                    }
-
-                    // Passe a la deuxième séance du jeudi
-                    currentDate.setDate(currentDate.getDate());
-                    const fridayDateString = currentDate.toISOString().split('T')[0];
-                    const fridayCell = document.createElement('td');
-                    const fridayDescCell = document.createElement('td');
-                    
-                    fridayCell.textContent = formatFrenchDate(fridayDateString);
-
-                    if (isHoliday(fridayDateString)) {
-                        fridayDescCell.textContent = holidays[fridayDateString];
-                        fridayCell.classList.add('holiday');
-                        fridayDescCell.classList.add('holiday');
-                    } else if (isInVacation(fridayDateString)) {
-                        fridayDescCell.textContent = getVacationName(fridayDateString);
-                        row.classList.add('vacation');
-                    } else {
-                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
-                        sessionIndex++;
-
-                        // Création d'un lien cliquable pour les séances
-                        const link = document.createElement('a');
-                        link.textContent = sessionName;
-                        link.href = `#`; // Génère un ID basé sur le nom de la séance
-                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
-
-                        fridayDescCell.appendChild(link);
-                    }
-
-                    if (isToday(fridayDateString)) {
-                        fridayCell.classList.add('today');
-                        fridayDescCell.classList.add('today');
-                    }
-
-                    row.appendChild(fridayCell);
-                    row.appendChild(fridayDescCell);
-
-                    // Passe au jeudi suivant (saute un jeudi sur deux)
-                    currentDate.setDate(currentDate.getDate() + 7);
-                    displayThursday = !displayThursday; // Alterne l'affichage des jeudis
-                }
-
-                calendarBody.appendChild(row);
-            }
-        }
-
-        // Générer le calendrier au chargement de la page
-        generateCalendar();
-
-        // Toggle menu visibility
-        function toggleMenu() {
-            const menu = document.getElementById("session-nav");
-            menu.style.display = menu.style.display === "block" ? "none" : "block";
-        }
-
-        // Show selected session content
-        function showSession(sessionId) {
-            const sessions = document.querySelectorAll('.content-section');
-            sessions.forEach(session => {
-                session.classList.remove('active');
-                if (session.id === sessionId) {
-                    session.classList.add('active');
-                }
-            });
-
-            // Mettre en évidence la séance active dans le menu
-            const menuLinks = document.querySelectorAll('#session-nav a');
-            menuLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('onclick').includes(sessionId)) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Display the first session by default when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            showSession('calendar');
-        });
-
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
