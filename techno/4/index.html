@@ -1368,27 +1368,151 @@
         </section>
 
         <section id="session28" class="content-section">
-            <h2>Séance 24 : Croquis et idées de conception</h2>
+            <h2>Séance 28 : Contraintes dimensionnelles et assemblage</h2>
             <h3>Thème : Création, conception, réalisation, innovations technologiques</h3>
-            <h3>Compétence visée : Imaginer, concevoir et réaliser une solution technique répondant à un besoin</h3>
+            <h3>Compétence visée : Valider une solution technique (par mesures, essais, ajustements)</h3>
             <b>Objectifs d’apprentissage</b>
             <ul>
                 <b>Ce que les élèves vont apprendre (connaissances) :</b>
-                <li>Un croquis sert à explorer des idées rapidement (ce n’est pas un dessin artistique).</li>
-                <li>Une solution technique doit respecter un besoin et des contraintes (dimensions, sécurité, coût, solidité, usage).</li>
-                <li>Avant de modéliser en 3D ou fabriquer, on passe par une étape de recherche d’idées et de choix argumenté.</li>
+                <li>Une pièce conçue “au millimètre” ne s’assemble pas toujours en vrai : il faut prévoir des jeux d’assemblage (tolérances).</li>
+                <li>Les principales contraintes dimensionnelles d’un objet fabriqué (ex. impression 3D ou découpe) : épaisseur minimale, diamètres, hauteurs, alignements, encombrement.</li>
+                <li>Un assemblage se vérifie avec des mesures et un test d’emboîtement (même virtuel) avant fabrication.</li>
             </ul>
             <ul>
                 <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
-                <li>Proposer au moins 2 idées de mini-serre (formes/organisation) à partir du cahier des charges.</li>
-                <li>Réaliser un croquis simple (vue de face + vue de dessus) avec des annotations utiles.</li>
-                <li>Produire et rendre un document numérique clair : idées + croquis + justification du choix.</li>
+                <li>Modéliser un corps de serre (4 parois) à partir d’une base existante dans Tinkercad.</li>
+                <li>Prévoir un jeu pour que deux pièces s’emboîtent (ex. languette / fente, couvercle / base).</li>
+                <li>Réaliser un assemblage virtuel (aligner, superposer, vérifier collisions).</li>
+                <li>Produire et rendre un document de validation (mesures + captures + décisions).</li>
             </ul>
             <h3>Pourquoi ce cours</h3>
             <p>
-                Parce que la mini-serre connectée ne se “devine” pas : il faut d’abord imaginer plusieurs solutions, puis choisir la meilleure en fonction des contraintes.
-                <br>
-                Cette étape évite de perdre du temps en modélisation 3D et permet de concevoir un objet réalisable et fonctionnel.
+                Parce qu’une mini-serre ne tient pas debout avec une base seule : il faut construire un corps cohérent, puis vérifier que ça s’emboîte correctement. C’est exactement la démarche d’un projet réel : concevoir → vérifier → corriger.
+            </p>
+            <h3>Lancement + consigne de production (5 min)</h3>
+            <ol>
+                À la fin de l’heure, vous devez rendre :
+                <li>un modèle 3D avec la base + le corps (parois)</li>
+                <li>un document avec 2 captures + un tableau de mesures + une conclusion</li>
+            </ol>
+            <h3>Modéliser le corps (parois) (25 min)</h3>
+            <ol>
+                <li>
+                    Étape A — Rappels de paramètres (2 min)
+                    <ul>
+                        <li>Épaisseur paroi : 3 mm</li>
+                        <li>Hauteur paroi : 60 mm (ajuste si tu veux plus bas)</li>
+                        <li>Jeu d’assemblage : 0,5 mm (idée clé : “il faut un petit jeu”)</li>
+                    </ul>
+                </li>
+                <li>
+                    Étape B — Créer les 4 parois (15 min)
+                    <ol>
+                        Dans Tinkercad :
+                        <li>Dupliquent la base pour conserver une version “propre” (sécurité).</li>
+                        <li>
+                            Créent une paroi : un pavé (box) de :
+                            <ul>
+                                <li>longueur = longueur base (ou légèrement moins selon choix d’assemblage)</li>
+                                <li>épaisseur = 3 mm</li>
+                                <li>hauteur = 60 mm</li>
+                            </ul>
+                        </li>
+                        <li>Dupliquent et positionnent pour obtenir les 4 côtés.</li>
+                        <ul>
+                            <li>Les parois se posent sur le bord intérieur de la base (plus stable).</li>
+                            <li>Les élèves alignent à l’aide de Aligner puis ajustent en déplaçant doucement.</li>
+                        </ul>
+                    </ol>
+                </li>
+                <li>
+                    Étape C — Faire une “ouverture” (option simple) (8 min)
+                    <ul>
+                        Pour rendre le corps réaliste et utile :
+                        <li>Faire une fenêtre (trou rectangulaire) sur une paroi (forme “hole” + group).</li>
+                        <li>Faire un passage de câble en bas (petit rectangle troué), (Ça servira plus tard pour les capteurs Micro:bit / câble / ventilation.)</li>
+                    </ul>
+                </li>
+            </ol>
+            <h3>Mini-vérification d’assemblage (15 min)</h3>
+            <ul>
+                Vérification 1 — Mesures (5 min)
+                <li>
+                    Les élèves mesurent et notent :
+                    <ul>
+                        <li>longueur extérieure du corps</li>
+                        <li>largeur extérieure du corps</li>
+                        <li>épaisseur paroi</li>
+                        <li>hauteur paroi</li>
+                    </ul>
+                </li>
+                <li>
+                    Vérification 2 — Test d’emboîtement (10 min)
+                    <ul>
+                        Les élèves doivent montrer que :
+                        <li>le corps est bien posé (ou encastré) sur la base</li>
+                        <li>il n’y a pas de “morceaux qui se croisent” (collisions visibles)</li>
+                        <li>le corps est centré et droit</li>
+                        S’ils voient un problème :
+                        <li>Ils corrigent en changeant une seule dimension (ex. réduire 1 mm), puis re-testent.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3>Rendu (5 min)</h3>
+            <ol>
+                <li>Créer un document LibreOffice Writer.</li>
+                <li>Nommez le "4e_S28_nom1_nom2" (pas de prénom)</li>
+                <li>
+                    Ouvrez le document et y mettre OBLIGATOIREMENT les informations suivantes:
+                    <ol>
+                        <li>Séance 28 : Contraintes dimensionnelles et assemblage</li>
+                        <li>Nom et prénom des membres du groupe</li>
+                    </ol>
+                </li>
+                <li><b>Seulement après avoir fait cela, vous pouvez continuer.</b></li>
+                <li>
+                    Dans votre document, mettre:
+                    <ul>
+                        <li>Capture 1 : vue générale base + corps</li>
+                        <li>Capture 2 : zoom sur un angle (on voit l’épaisseur + l’emboîtement)</li>
+                        <li>
+                            Tableau de mesures:
+                            <table>
+                                <thead>
+                                    <td>Mesure</td>
+                                    <td>Valeur</td>
+                                </thead>
+                                <tr>
+                                    <td>Hauteur paroi</td>
+                                    <td>... mm</td>
+                                </tr>
+                                <tr>
+                                    <td>Épaisseur paroi</td>
+                                    <td>... mm</td>
+                                </tr>
+                                <tr>
+                                    <td>Longueur corps</td>
+                                    <td>... mm</td>
+                                </tr>
+                                <tr>
+                                    <td>Largeur corps</td>
+                                    <td>... mm</td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li>
+                            Conclusion (2 lignes):
+                            <ul>
+                                <li>Notre corps s’assemble avec la base : OUI/NON</li>
+                                <li>Correction faite : … (ou ‘aucune’)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <h3>À copier à la main</h3>
+            <p>
+                Aujourd’hui, nous avons modélisé le corps (les parois) de la mini-serre connectée à partir de la base. Nous avons choisi une hauteur et une épaisseur de paroi, puis nous avons positionné les pièces pour former un ensemble cohérent. Nous avons appris à vérifier un assemblage grâce aux mesures et à un test d’assemblage virtuel sur ordinateur. Si nécessaire, nous avons corrigé des dimensions pour améliorer l’emboîtement.
             </p>
         </section>
 
