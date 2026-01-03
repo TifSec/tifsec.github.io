@@ -4,271 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programme Technologie 5ème</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Calibri, sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        main {
-            margin-left: 200px;
-            padding: 20px;
-            min-height: 80vh;
-        }
-
-        .content-section {
-            display: none;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        a{
-            color: black;
-        }
-
-        a:hover{
-            color: orange;
-        }
-
-        aside {
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 200px;
-            background-color: #333;
-            color: white;
-            padding-top: 20px;
-            transition: width 0.3s ease;
-            overflow-y: auto;
-            scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
-        }
-
-        aside::-webkit-scrollbar {
-            display: none; /* Masque la barre de défilement pour Chrome, Safari, et Opera */
-        }
-
-        aside ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        aside ul li {
-            padding: 10px;
-        }
-
-        aside ul li a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-        }
-
-        /* Style pour l'élément de menu actif (séance en cours) */
-        aside ul li a.active {
-            background-color: #4CAF50; /* Couleur pour l'élément actif */
-            color: white;
-            font-weight: bold;
-        }
-
-        aside ul li a:hover {
-            background-color: #555;
-        }
-
-        .hamburger {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 15px;
-            text-align: left;
-            cursor: pointer;
-        }
-
-        footer {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        h2, h3, h4, h5{
-            text-align: center;
-        }
-
-        h2 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        h3{
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 8px;
-        }
-
-        h4, h5, p, ul{
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        .image{
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        section ul {
-            list-style-type: square;
-            margin-left: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-
-        thead {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Styles spécifiques pour le calendrier */
-        table.calendar {
-            margin: 20px auto;
-            border-collapse: collapse;
-            width: 80%;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ccc;
-        }
-
-        .current-week {
-            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
-        }
-
-        pre{
-            background-color: black;
-            color: white;
-        }
-
-        .today {
-            background-color: #007BFF; /* Bleu vif pour le jour actuel */
-            color: white; /* Texte blanc pour le contraste */
-        }
-
-        .vacation {
-            background-color: #B2E4A6; /* Vert pastel pour les vacances */
-            color: black; /* Texte noir ou foncé pour la lisibilité */
-        }
-
-        .holiday {
-            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
-            color: white; /* Texte blanc ou clair */
-        }
-
-        iframe{
-            width: 87vw;
-            height: 42vw;
-        }
-
-        .rep {
-            visibility: hidden;
-        }
-
-        /* code {
-            background-color: #eef;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-
-        pre {
-            background-color: #eef;
-            padding: 10px;
-            border-radius: 4px;
-            overflow-x: auto;
-        } */
-
-        .note {
-            background-color: #ffffcc;
-            padding: 10px;
-            border-left: 4px solid #ffcc00;
-            margin: 20px 0;
-        }
-
-        .container {
-            /* max-width: 800px; */
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        a button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        a button:hover {
-            background-color: #e06e2b;
-        }
-
-        .show-site {
-            width: 100%;
-            height: 100%;
-            zoom: 0.5;
-            border-radius: 10px;
-        }
-
-        .show-site-div {
-            text-align: center;
-            border: 1px solid #ccc;
-            width: 45%;
-            border-radius: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -1224,428 +960,366 @@
         <section id="session21" class="content-section">
             <h2>Repos avant les vacances</h2>
         </section>
+
+        <section id="session22" class="content-section">
+            <h2>Séance 22 : Introduction à la démarche de projet (porte-clé connecté)</h2>
+            <h3>Thème : Création, conception, réalisation, innovations</h3>
+            <h3>Compétence visée : Comprendre et appliquer une démarche de projet technique / Identifier un besoin, une fonction, des contraintes</h3>
+            <b>Objectifs d’apprentissage</b>
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>Ce qu’est une démarche de projet technique</li>
+                <li>Les grandes étapes d’un projet (du besoin à la réalisation)</li>
+                <li>Le rôle du cahier des charges</li>
+            </ul>
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Lire et comprendre une démarche de projet</li>
+                <li>Associer chaque étape à son objectif</li>
+                <li>Présenter ces étapes dans un document numérique structuré</li>
+            </ul>
+            <h3>Pourquoi ce cours</h3>
+            Jusqu’à présent, les élèves ont surtout analysé des objets existants.
+            <br>
+            À partir de maintenant, ils vont concevoir et réaliser leur propre objet technique.
+            <br>
+            Avant de fabriquer ou programmer quoi que ce soit, il est indispensable de :
+            <ul>
+                <li>comprendre ce qu’est une démarche de projet,</li>
+                <li>savoir dans quel ordre on travaille,</li>
+                <li>et pourquoi on ne commence jamais par la fabrication.</li>
+            </ul>
+            Cette séance sert donc de fondation à tout le projet du porte-clé connecté.
+            <h3>Mise en situation (5 min)</h3>
+            <p>
+                Si je vous demande de fabriquer un porte-clé connecté maintenant, que faites-vous en premier ?
+            </p>
+            <p style="visibility: hidden;">
+                En technologie, on ne travaille pas au hasard. On suit une démarche de projet.
+            </p>
+            <h3>Découverte de la démarche de projet (10 min)</h3>
+            <ol>
+                Les étapes classiques :
+                <li>Identifier le besoin</li>
+                <li>Définir les fonctions</li>
+                <li>Rédiger le cahier des charges</li>
+                <li>Imaginer des solutions</li>
+                <li>Concevoir (dessin / 3D)</li>
+                <li>Réaliser et programmer</li>
+                <li>Tester et améliorer</li>
+            </ol>
+            <table>
+                <thead>
+                    <td>Étape</td>
+                    <td>Définition</td>
+                </thead>
+                <tr>
+                    <td>Identifier le besoin</td>
+                    <td>
+                        C’est la première étape du projet.
+                        <br>
+                        On cherche à comprendre à quoi va servir l’objet et pourquoi il est utile.
+                        <br>
+                        Exemple : avoir un porte-clé qui donne une information à son utilisateur.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Définir les fonctions</td>
+                    <td>
+                        On précise ce que l’objet doit faire pour répondre au besoin.
+                        <br>
+                        Ces actions sont appelées fonctions.
+                        <br>
+                        Exemple : s’allumer, afficher un message, émettre un signal.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Rédiger le cahier des charges</td>
+                    <td>
+                        On écrit les règles à respecter pour fabriquer l’objet.
+                        <br>
+                        On y trouve les fonctions attendues et les contraintes (taille, solidité, coût, sécurité…).
+                        <br>
+                        Le cahier des charges sert de guide tout au long du projet.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Imaginer des solutions</td>
+                    <td>
+                        On réfléchit à plusieurs idées possibles pour répondre au cahier des charges.
+                        <br>
+                        On peut faire des croquis, des schémas ou discuter des différentes solutions.
+                        <br>
+                        On ne fabrique pas encore.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Concevoir la solution</td>
+                    <td>
+                        On choisit la meilleure solution et on la représente précisément.
+                        <br>
+                        Cela peut être un dessin, un schéma ou une modélisation 3D sur ordinateur.
+                        <br>
+                        L’objet commence à prendre forme, mais il n’est pas encore fabriqué.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Réaliser et programmer</td>
+                    <td>
+                        On fabrique l’objet et on programme son fonctionnement si nécessaire.
+                        <br>
+                        Exemple : impression 3D du porte-clé et programmation du micro:bit.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tester et améliorer</td>
+                    <td>
+                        On vérifie si l’objet fonctionne comme prévu.
+                        <br>
+                        Si ce n’est pas le cas, on corrige et améliore la solution.
+                        <br>
+                        Un projet n’est jamais parfait du premier coup.
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <i><b>Pour résumer :</b></i> La démarche de projet est une suite d’étapes qui permet de concevoir et réaliser un objet technique de façon organisée, en partant d’un besoin jusqu’aux tests du produit final.
+            </p>
+            <h3>Création du document (20 min)</h3>
+            <ol>
+                <li>Créer un document LibreOffice Writer.</li>
+                <li>Nommez le "5e_S22_nom1_nom2" (pas de prénom)</li>
+                <li>
+                    Ouvrez le document et y mettre OBLIGATOIREMENT les informations suivantes:
+                    <ol>
+                        <li>Séance 22 : Introduction à la démarche de projet (porte-clé connecté)</li>
+                        <li>Nom et prénom des membres du groupe</li>
+                    </ol>
+                </li>
+                <li><b>Seulement après avoir fait cela, vous pouvez continuer.</b></li>
+                <li>Explique avec tes mots ce qu’est une démarche de projet technique (3 à 4 lignes maximum)</li>
+                <li>Copier et remplir le tableau suivant:</li>
+                <table>
+                    <thead>
+                        <td>Étape</td>
+                        <td>Ce que l’on fait</td>
+                    </thead>
+                    <tr>
+                        <td>Besoin</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Cahier des charges</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Conception</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Réalisation</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Tests</td>
+                        <td></td>
+                    </tr>
+                </table>
+                Les réponses doivent être simples, pas encyclopédiques.
+            </ol>
+            <h3>Application au porte-clé connecté (10 min)</h3>
+            <ul>
+                Nouvelle partie dans le document :
+                <li>Titre : Application au porte-clé connecté</li>
+                <li>
+                    Questions à compléter :
+                    <ol>
+                        <li>Quel besoin pourrait satisfaire un porte-clé connecté ?</li>
+                        <li>Cite une fonction possible (ex : informer, signaler, alerter).</li>
+                        <li>Cite deux contraintes possibles (ex : taille, solidité, autonomie).</li>
+                    </ol>
+                </li>
+                <li>Enregistrer votre document dans l'espace d'échange</li>
+            </ul>
+            <h3>À écrire à la main</h3>
+            <p>
+                Aujourd’hui, j’ai appris ce qu’est une démarche de projet technique.
+                <br>
+                J’ai compris qu’on commence par identifier un besoin, puis qu’on définit des contraintes avant de fabriquer.
+                <br>
+                J’ai découvert les étapes d’un projet et je les ai appliquées au porte-clé connecté que nous allons "réaliser".
+            </p>
+        </section>
+
+        <section id="session23" class="content-section">
+            <h2>Séance 23 : Cahier des charges : besoins et contraintes</h2>
+            <h3>Thème : Création, conception, réalisation, innovations</h3>
+            <h3>Compétence visée : Définir un besoin et formaliser des contraintes</h3>
+            <b>Objectifs d’apprentissage</b>
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>Ce qu’est un cahier des charges.</li>
+                <li>La différence entre un besoin et une contrainte.</li>
+                <li>
+                    Les principaux types de contraintes :
+                    <ul>
+                        <li>dimensionnelles</li>
+                        <li>techniques</li>
+                        <li>esthétiques</li>
+                        <li>d’usage</li>
+                        <li>de sécurité</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Analyser un besoin lié à un objet technique.</li>
+                <li>Lister des contraintes réalistes.</li>
+                <li>Rédiger un cahier des charges simple sous forme de tableau.</li>
+                <li>Produire un document numérique structuré à rendre.</li>
+            </ul>
+            <h3>Pourquoi ce cours</h3>
+            Avant de concevoir ou fabriquer un objet technique, il est indispensable de savoir précisément ce que l’on veut réaliser.
+            <br>
+            Le cahier des charges sert à définir :
+            <ul>
+                <li>le besoin auquel l’objet doit répondre ;</li>
+                <li>les contraintes que l’objet doit respecter (taille, solidité, sécurité, coût, esthétique…).</li>
+            </ul>
+            Ce document permet de concevoir un objet utile, réalisable et adapté, et évite de fabriquer “au hasard”.
+            <h3>Introduction et vocabulaire (10 min)</h3>
+            <ul>
+                <li>Besoin : <span style="visibility: hidden;">ce que l’objet doit permettre de faire.</span></li>
+                <li>Contrainte : <span style="visibility: hidden;">une règle ou une limite que l’objet doit respecter.</span></li>
+            </ul>
+            <ul style="visibility: hidden;">
+                Exemple: 
+                <li>Besoin : accrocher des clés et afficher une information</li>
+                <li>Contrainte : tenir dans la poche</li>
+            </ul>
+            <h3>Présentation du projet support (5 min)</h3>
+            <p>
+                Nous allons concevoir un porte-clé connecté qui intègre un micro:bit et qui sera fabriqué plus tard.
+                <br>
+                Aujourd’hui, nous allons définir ce qu’il doit faire et ce qu’il doit respecter.
+            </p>
+            <h3>Création du document numérique (5 min)</h3>
+            <ol>
+                <li>Créer un document LibreOffice Writer.</li>
+                <li>Nommez le "5e_S23_nom1_nom2" (pas de prénom)</li>
+                <li>
+                    Ouvrez le document et y mettre OBLIGATOIREMENT les informations suivantes:
+                    <ol>
+                        <li>Séance 23 : Cahier des charges : besoins et contraintes</li>
+                        <li>Nom et prénom des membres du groupe</li>
+                    </ol>
+                </li>
+                <li><b>Seulement après avoir fait cela, vous pouvez continuer.</b></li>
+            </ol>
+            <h3>Rédaction du besoin (10 min)</h3>
+            <p>
+                Écrire un court paragraphe répondant à la question : À quoi doit servir le porte-clé connecté ?
+            </p>
+            <ul>
+                Pour vous aider:
+                <li>À qui est destiné l’objet ?</li>
+                <li>Que doit-il permettre de faire ?</li>
+                <li>Dans quelle situation sera-t-il utilisé ?</li>
+                3 à 4 phrases maximum, simples et compréhensibles.
+            </ul>
+            <h3>Tableau des contraintes (15 min)</h3>
+            Copier et compléter le tableau suivant:
+            <table>
+                <thead>
+                    <td>Type de contrainte</td>
+                    <td>Description</td>
+                </thead>
+                <tr>
+                    <td>Dimensionnelle</td>
+                    <td><span style="visibility: hidden;">Le porte-clé doit tenir dans une poche</span></td>
+                </tr>
+                <tr>
+                    <td>Technique</td>
+                    <td><span style="visibility: hidden;">Il doit contenir un micro:bit</span></td>
+                </tr>
+                <tr>
+                    <td>Sécurité</td>
+                    <td><span style="visibility: hidden;">Il ne doit pas avoir d’arêtes coupantes</span></td>
+                </tr>
+                <tr>
+                    <td>Esthétique</td>
+                    <td><span style="visibility: hidden;">Il doit avoir une forme simple</span></td>
+                </tr>
+                <tr>
+                    <td>Usage</td>
+                    <td><span style="visibility: hidden;">Il doit être facile à accrocher</span></td>
+                </tr>
+            </table>
+            Formulez avec vos mots, ajoutez des contraintes personnelles si vous le souhaitez.
+            <h3>À écrire à la main</h3>
+            <p>
+                Aujourd’hui, j’ai appris ce qu’est un cahier des charges.
+                <br>
+                J’ai compris la différence entre un besoin et une contrainte.
+                <br>
+                J’ai rédigé le cahier des charges d’un porte-clé connecté, en définissant ce qu’il doit faire et ce qu’il doit respecter.
+            </p>
+        </section>
+
+        <section id="session24" class="content-section">
+            <h2>Séance 24 : Prise en main de Tinkercad</h2>
+            <h3>Thème : Création, conception, réalisation, innovations</h3>
+            <h3>Compétence visée : Concevoir une solution technique (modélisation numérique)</h3>
+            <b>Objectifs d’apprentissage</b>
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>À quoi sert la modélisation 3D dans un projet technique.</li>
+                <li>Les zones principales de Tinkercad : plan de travail, formes, vue, outils.</li>
+                <li>Les actions indispensables : déplacer / tourner / redimensionner, aligner, group(=grouper), hole (= trou).</li>
+            </ul>
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Se connecter à Tinkercad et créer un projet.</li>
+                <li>Réaliser une pièce 3D simple et propre (une “plaque porte-clé”).</li>
+                <li>Exporter une capture d’écran et déposer un document de rendu sur l'espace d'échange.</li>
+            </ul>
+            <h3>Pourquoi ce cours</h3>
+            Pour pouvoir concevoir l’objet du projet (une coque/support pour micro:bit), les élèves doivent d’abord savoir se repérer dans Tinkercad et maîtriser les actions de base : placer, dimensionner, aligner, regrouper.
+        </section>
+        <h3>Création du document numérique (5 min)</h3>
+        <ol>
+            <li>Créer un document LibreOffice Writer.</li>
+            <li>Nommez le "5e_S24_nom1_nom2" (pas de prénom)</li>
+            <li>
+                Ouvrez le document et y mettre OBLIGATOIREMENT les informations suivantes:
+                <ol>
+                    <li>Séance 24 : Prise en main de Tinkercad</li>
+                    <li>Nom et prénom des membres du groupe</li>
+                </ol>
+            </li>
+            <li><b>Seulement après avoir fait cela, vous pouvez continuer.</b></li>
+            <li>Pour ceux qui sont par 2, faire un exercice chacun votre tour, en expliquant ce que vous faites et comment vous le faites.</li>
+            <li>A la fin de chaque exercice, faire un screen et le coller dans le document, avec le titre du tuto fait.</li>
+        </ol>
+        <h3>Tinkercad</h3>
+        <p>
+            Allez ici: <a href="https://www.tinkercad.com/" target="_blank" rel="noopener noreferrer">Tinkercad</a>
+            <br>
+            Vous allez avoir un code pour pouvoir entrer dans la classe.
+            <br>
+            Faire les tutos listés en mettant un screen de chaque tuto finis, dans le document du cours
+        </p>
+        <h3>À écrire à la main</h3>
+        <p>
+            Aujourd’hui, j’ai appris à utiliser Tinkercad pour créer une forme en 3D. J’ai su modifier des dimensions, déplacer des objets et utiliser un “trou” pour percer une pièce. J’ai aussi utilisé l’alignement et le groupage pour obtenir une pièce propre. J’ai terminé en faisant une capture d’écran et en rendant mon travail.
+        </p>
     </main>
 
     <!-- <footer>
         <p>&copy; 2025-2026 Technologie 5ème</p>
     </footer> -->
 
-    <script>
-        const holidays = {
-            '2025-11-01': 'Toussaint',
-            '2025-11-11': 'Armistice 1918',
-            '2025-12-25': 'Noël',
-            '2026-01-01': 'Jour de l\'An',
-            '2026-04-06': 'Lundi de Pâques',
-            '2026-05-01': 'Fête du Travail',
-            '2026-05-08': 'Victoire 1945',
-            '2026-05-14': 'Ascension',
-            '2026-05-25': 'Lundi de Pentecôte',
-        };
-
-        const vacations = [
-            { start: '2025-10-18', end: '2025-11-02', name: 'Vacances de la Toussaint' },
-            { start: '2025-12-20', end: '2026-01-04', name: 'Vacances de Noël' },
-            { start: '2026-02-07', end: '2026-02-22', name: 'Vacances d\'hiver' },
-            { start: '2026-04-04', end: '2026-04-19', name: 'Vacances de printemps' },
-            { start: '2026-07-04', end: '2026-09-01', name: 'Vacances d\'été' }
-        ];
-
-        const sessions = [
-            'Séance 1 : 1er cours, présentations',
-            'Séance 2 : Découvrir le vélo : objet technique ou naturel ?',
-            'Séance 3 : Les besoins à l’origine du vélo',
-            'Séance 4 : Fonctions d’usage et fonctions techniques',
-            'Séance 5 : Évolution du vélo dans le temps',
-            'Séance 6 : Étude des matériaux du vélo',
-            'Séance 7 : La transmission de mouvement (chaîne, pédalier, roues)',
-            'Séance 8 : Chaîne d’énergie du vélo : transformation et stockage',
-            'Séance 9 : Chaîne d’information : vélo connecté / compteur',
-            'Séance 10 : Séance libre avant vacances',
-            'Séance 11 : Observer et démonter une lampe de bureau',
-            'Séance 12 : Lire un schéma fonctionnel : fonctionnement d’une lampe',
-            'Séance 13 : Chaîne d’énergie d’une lampe connectée',
-            'Séance 14 : Chaîne d’information : capteurs et commande',
-            'Séance 15 : Programmer une lampe automatique (détection de mouvement)',
-            'Séance 16 : Les objets connectés autour de nous',
-            'Séance 17 : Dépanner une lampe : diagnostic d’un dysfonctionnement',
-            'Séance 18 : Mini-projet : créer une mini-lampe de bureau commandée',
-            'Séance 19 : Mini-projet : créer un objet connecté avec micro:bit',
-            'Séance 20 : QCM 2 – Bilan Thème 2',
-            'Séance 21 : Séance libre avant vacances',
-            // 'Séance 22 : Introduction à la démarche de projet (porte-clé connecté)',
-            // 'Séance 23 : Cahier des charges : besoins et contraintes',
-            // 'Séance 24 : Prise en main de Tinkercad : primitives et alignement',
-            // 'Séance 25 : Créer la base du porte-clé en 3D',
-            // 'Séance 26 : Ajouter un logement pour composant électronique',
-            // 'Séance 27 : Cotation simple et contraintes de fabrication',
-            // 'Séance 28 : QCM 3 – Bilan conception / réalisation',
-            // 'Séance 29 : Séance libre avant vacances',
-            // 'Séance 30 : Préparation à l’impression 3D',
-            // 'Séance 31 : Fabrication du porte-clé (impression 3D)',
-            // 'Séance 32 : Programmer le micro:bit du porte-clé connecté (affichage LED)',
-            // 'Séance 33 : Ajouter un capteur : porte-clé qui réagit à la lumière',
-            // 'Séance 34 : Assembler le micro:bit et la coque imprimée',
-            // 'Séance 35 : Tester et corriger le prototype',
-            // 'Séance 36 : Ajouter une fonction : porte-clé qui clignote à la détection de mouvement',
-            // 'Séance 37 : QCM 4 – Bilan projets 1 et 2',
-            // 'Séance 38 : Séance libre avant vacances',
-            // 'Séance 39 : Projet : créer une boîte à messages lumineuse (micro:bit radio)',
-            // 'Séance 40 : Projet : créer un capteur d’environnement portable',
-            // 'Séance 41 : Projet : fabriquer un support imprimé pour le capteur',
-            // 'Séance 42 : Test, évaluation et partage des projets',
-            // 'Séance 43 : Mini-défi : fabriquer un objet utile avec un micro:bit',
-            // 'Séance 44 : Mini-défi 2 : capteur, lumière, ou son',
-            // 'Séance 45 : Réalisation du défi final (au choix des élèves)',
-            // 'Séance 46 : Présentation orale du projet et explication du code',
-            // 'Séance 47 : QCM 5 – Évaluation finale',
-            // 'Séance 48 : Séances de découverte, défis facultatifs, rattrapage, présentation publique, exposition',
-            // 'Séance 49 : Séances de découverte, défis facultatifs, rattrapage, présentation publique, exposition',
-            // 'Séance 50 : Séances de découverte, défis facultatifs, rattrapage, présentation publique, exposition',
-            // 'Séance 51 : Séances de découverte, défis facultatifs, rattrapage, présentation publique, exposition',
-            // 'Séance 52 : Séances de découverte, défis facultatifs, rattrapage, présentation publique, exposition',
-            // 'Séance 53 : Séance libre avant vacances',
-        ];
-
-        function isHoliday(date) {
-            return holidays[date] !== undefined;
-        }
-
-        function isInVacation(date) {
-            const parsedDate = new Date(date);
-            return vacations.some(vacation => {
-                const startDate = new Date(vacation.start);
-                const endDate = new Date(vacation.end);
-                return parsedDate >= startDate && parsedDate <= endDate;
-            });
-        }
-
-        function getVacationName(date) {
-            const parsedDate = new Date(date);
-            const vacation = vacations.find(vacation => {
-                const startDate = new Date(vacation.start);
-                const endDate = new Date(vacation.end);
-                return parsedDate >= startDate && parsedDate <= endDate;
-            });
-            return vacation ? vacation.name : '';
-        }
-
-        function formatFrenchDate(date) {
-            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-            return new Date(date).toLocaleDateString('fr-FR', options);
-        }
-
-        function isCurrentWeek(date) {
-            const currentDate = new Date();
-            const firstDayOfWeek = new Date(date);
-            const lastDayOfWeek = new Date(firstDayOfWeek);
-            lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
-            return currentDate >= firstDayOfWeek && currentDate <= lastDayOfWeek;
-        }
-
-        function isToday(date) {
-            const today = new Date().toISOString().split('T')[0];
-            return today === date;
-        }
-
-        // function generateCalendar() {
-        //     const calendarBody = document.getElementById('calendar-body');
-        //     const startDate = new Date('2024-09-06');  // Commence le vendredi 6 septembre
-        //     const endDate = new Date('2025-07-12');
-            
-        //     let currentDate = startDate;
-        //     let sessionIndex = 0;
-        //     let firstLine = true; // Pour gérer le premier vendredi seul
-        //     let displayThursday = true; // Alterne l'affichage des jeudis
-
-        //     while (currentDate <= endDate) {
-        //         const row = document.createElement('tr');
-
-        //         if (firstLine) {
-        //             // Première ligne : uniquement le vendredi
-        //             const fridayDateString = currentDate.toISOString().split('T')[0];
-        //             const fridayCell = document.createElement('td');
-        //             const fridayDescCell = document.createElement('td');
-                    
-        //             fridayCell.textContent = formatFrenchDate(fridayDateString);
-
-        //             if (isHoliday(fridayDateString)) {
-        //                 fridayDescCell.textContent = holidays[fridayDateString];
-        //                 fridayCell.classList.add('holiday');
-        //                 fridayDescCell.classList.add('holiday');
-        //             } else if (isInVacation(fridayDateString)) {
-        //                 fridayDescCell.textContent = getVacationName(fridayDateString);
-        //                 row.classList.add('vacation');
-        //             } else {
-        //                 fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-        //                 sessionIndex++;
-        //             }
-
-        //             if (isToday(fridayDateString)) {
-        //                 fridayCell.classList.add('today');
-        //                 fridayDescCell.classList.add('today');
-        //             }
-
-        //             // Cellules vides pour jeudi
-        //             row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-        //             row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
-        //             row.appendChild(fridayCell);
-        //             row.appendChild(fridayDescCell);
-
-        //             // Passer au jeudi suivant
-        //             currentDate.setDate(currentDate.getDate() + 6);
-        //             firstLine = false;
-        //         } else {
-        //             // Ligne suivante : jeudi et vendredi (alternance pour jeudi)
-        //             if (displayThursday) {
-        //                 // Affiche le jeudi
-        //                 const thursdayDateString = currentDate.toISOString().split('T')[0];
-        //                 const thursdayCell = document.createElement('td');
-        //                 const thursdayDescCell = document.createElement('td');
-                        
-        //                 thursdayCell.textContent = formatFrenchDate(thursdayDateString);
-
-        //                 if (isHoliday(thursdayDateString)) {
-        //                     thursdayDescCell.textContent = holidays[thursdayDateString];
-        //                     thursdayCell.classList.add('holiday');
-        //                     thursdayDescCell.classList.add('holiday');
-        //                 } else if (isInVacation(thursdayDateString)) {
-        //                     thursdayDescCell.textContent = getVacationName(thursdayDateString);
-        //                     row.classList.add('vacation');
-        //                 } else {
-        //                     thursdayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-        //                     sessionIndex++;
-        //                 }
-
-        //                 if (isToday(thursdayDateString)) {
-        //                     thursdayCell.classList.add('today');
-        //                     thursdayDescCell.classList.add('today');
-        //                 }
-
-        //                 row.appendChild(thursdayCell);
-        //                 row.appendChild(thursdayDescCell);
-        //             } else {
-        //                 // Si jeudi est sauté, ajoute des cellules vides
-        //                 row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-        //                 row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
-        //             }
-
-        //             // Passe au vendredi
-        //             currentDate.setDate(currentDate.getDate() + 1);
-        //             const fridayDateString = currentDate.toISOString().split('T')[0];
-        //             const fridayCell = document.createElement('td');
-        //             const fridayDescCell = document.createElement('td');
-                    
-        //             fridayCell.textContent = formatFrenchDate(fridayDateString);
-
-        //             if (isHoliday(fridayDateString)) {
-        //                 fridayDescCell.textContent = holidays[fridayDateString];
-        //                 fridayCell.classList.add('holiday');
-        //                 fridayDescCell.classList.add('holiday');
-        //             } else if (isInVacation(fridayDateString)) {
-        //                 fridayDescCell.textContent = getVacationName(fridayDateString);
-        //                 row.classList.add('vacation');
-        //             } else {
-        //                 fridayDescCell.textContent = sessions[sessionIndex] || 'Séance à définir';
-        //                 sessionIndex++;
-        //             }
-
-        //             if (isToday(fridayDateString)) {
-        //                 fridayCell.classList.add('today');
-        //                 fridayDescCell.classList.add('today');
-        //             }
-
-        //             row.appendChild(fridayCell);
-        //             row.appendChild(fridayDescCell);
-
-        //             // Passe au jeudi suivant (saute un jeudi sur deux)
-        //             currentDate.setDate(currentDate.getDate() + 6);
-        //             displayThursday = !displayThursday; // Alterne l'affichage des jeudis
-        //         }
-
-        //         calendarBody.appendChild(row);
-        //     }
-        // }
-
-        function generateCalendar() {
-            const calendarBody = document.getElementById('calendar-body');
-            const startDate = new Date('2025-09-04');  // Commence le jeudi 4 septembre
-            const endDate = new Date('2026-07-09');
-            
-            let currentDate = startDate;
-            let sessionIndex = 0;
-            let firstLine = true; // Pour gérer le premier jeudi seul
-            let displayThursday = true; // Alterne l'affichage des jeudis
-
-            while (currentDate <= endDate) {
-                const row = document.createElement('tr');
-
-                if (firstLine) {
-                    // Première ligne : uniquement le jeudi
-                    const fridayDateString = currentDate.toISOString().split('T')[0];
-                    const fridayCell = document.createElement('td');
-                    const fridayDescCell = document.createElement('td');
-                    
-                    fridayCell.textContent = formatFrenchDate(fridayDateString);
-
-                    if (isHoliday(fridayDateString)) {
-                        fridayDescCell.textContent = holidays[fridayDateString];
-                        fridayCell.classList.add('holiday');
-                        fridayDescCell.classList.add('holiday');
-                    } else if (isInVacation(fridayDateString)) {
-                        fridayDescCell.textContent = getVacationName(fridayDateString);
-                        row.classList.add('vacation');
-                    } else {
-                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
-                        sessionIndex++;
-
-                        // Création d'un lien cliquable pour les séances
-                        const link = document.createElement('a');
-                        link.textContent = sessionName;
-                        link.href = `#`; // Génère un ID basé sur le nom de la séance
-                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
-
-                        fridayDescCell.appendChild(link);
-                    }
-
-                    if (isToday(fridayDateString)) {
-                        fridayCell.classList.add('today');
-                        fridayDescCell.classList.add('today');
-                    }
-
-                    // Cellules vides pour jeudi
-                    row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-                    row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
-                    row.appendChild(fridayCell);
-                    row.appendChild(fridayDescCell);
-
-                    // Passer au jeudi suivant
-                    currentDate.setDate(currentDate.getDate() + 7);
-                    firstLine = false;
-                } else {
-                    // Ligne suivante : jeudi séance 1 et jeudi séance 2 (alternance pour jeudi)
-                    if (displayThursday) {
-                        // Affiche le jeudi
-                        const thursdayDateString = currentDate.toISOString().split('T')[0];
-                        const thursdayCell = document.createElement('td');
-                        const thursdayDescCell = document.createElement('td');
-                        
-                        thursdayCell.textContent = formatFrenchDate(thursdayDateString);                       
-
-                        if (isHoliday(thursdayDateString)) {
-                            thursdayDescCell.textContent = holidays[thursdayDateString];
-                            thursdayCell.classList.add('holiday');
-                            thursdayDescCell.classList.add('holiday');
-                        } else if (isInVacation(thursdayDateString)) {
-                            thursdayDescCell.textContent = getVacationName(thursdayDateString);
-                            row.classList.add('vacation');
-                        } else {
-                            const sessionName = sessions[sessionIndex] || 'Séance à définir';
-                            sessionIndex++;
-
-                            // Création d'un lien cliquable pour les séances
-                            const link = document.createElement('a');
-                            link.textContent = sessionName;
-                            link.href = `#`; // Génère un ID basé sur le nom de la séance
-                            link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
-
-                            thursdayDescCell.appendChild(link);
-                        }
-
-                        if (isToday(thursdayDateString)) {
-                            thursdayCell.classList.add('today');
-                            thursdayDescCell.classList.add('today');
-                        }
-
-                        // Ajout des cellules à la ligne
-                        row.appendChild(thursdayCell);
-                        row.appendChild(thursdayDescCell);
-                    } else {
-                        // Si jeudi est sauté, ajoute des cellules vides
-                        row.appendChild(document.createElement('td')); // Cellule vide pour la date du jeudi
-                        row.appendChild(document.createElement('td')); // Cellule vide pour le cours du jeudi
-                    }
-
-                    // Passe a la deuxième séance du jeudi
-                    currentDate.setDate(currentDate.getDate());
-                    const fridayDateString = currentDate.toISOString().split('T')[0];
-                    const fridayCell = document.createElement('td');
-                    const fridayDescCell = document.createElement('td');
-                    
-                    fridayCell.textContent = formatFrenchDate(fridayDateString);
-
-                    if (isHoliday(fridayDateString)) {
-                        fridayDescCell.textContent = holidays[fridayDateString];
-                        fridayCell.classList.add('holiday');
-                        fridayDescCell.classList.add('holiday');
-                    } else if (isInVacation(fridayDateString)) {
-                        fridayDescCell.textContent = getVacationName(fridayDateString);
-                        row.classList.add('vacation');
-                    } else {
-                        const sessionName = sessions[sessionIndex] || 'Séance à définir';
-                        sessionIndex++;
-
-                        // Création d'un lien cliquable pour les séances
-                        const link = document.createElement('a');
-                        link.textContent = sessionName;
-                        link.href = `#`; // Génère un ID basé sur le nom de la séance
-                        link.setAttribute("onclick","showSession('session"+sessionIndex+"')");
-
-                        fridayDescCell.appendChild(link);
-                    }
-
-                    if (isToday(fridayDateString)) {
-                        fridayCell.classList.add('today');
-                        fridayDescCell.classList.add('today');
-                    }
-
-                    row.appendChild(fridayCell);
-                    row.appendChild(fridayDescCell);
-
-                    // Passe au jeudi suivant (saute un jeudi sur deux)
-                    currentDate.setDate(currentDate.getDate() + 7);
-                    displayThursday = !displayThursday; // Alterne l'affichage des jeudis
-                }
-
-                calendarBody.appendChild(row);
-            }
-        }
-
-        // Générer le calendrier au chargement de la page
-        generateCalendar();
-
-        // Toggle menu visibility
-        function toggleMenu() {
-            const menu = document.getElementById("session-nav");
-            menu.style.display = menu.style.display === "block" ? "none" : "block";
-        }
-
-        // Show selected session content
-        function showSession(sessionId) {
-            const sessions = document.querySelectorAll('.content-section');
-            sessions.forEach(session => {
-                session.classList.remove('active');
-                if (session.id === sessionId) {
-                    session.classList.add('active');
-                }
-            });
-
-            // Mettre en évidence la séance active dans le menu
-            const menuLinks = document.querySelectorAll('#session-nav a');
-            menuLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('onclick').includes(sessionId)) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Display the first session by default when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            showSession('calendar');
-        });
-
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
