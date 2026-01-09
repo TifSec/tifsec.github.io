@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme BTS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Classe de BTS</h1>
+    </header>
+
+    <main id="content">
+        <div>
+            <h3>Contexte</h3>
+            <p>
+                Vous travaillez dans un centre équestre. Vous devez suivre les chevaux en pension et le chiffre d’affaires que cela génère. On va utiliser le tableur comme un vrai outil de gestion.
+            </p>
+            <h3>Exercice 1 – Pensions des chevaux</h3>
+            <ol>
+                <li>Créez un document Excel</li>
+                <li>Enregistrez le sous "Pension_chevaux_nom-élève_prénom-élève" (relevé à la fin de la séance)</li>
+                <li>Nommez la première feuille: Exercice_1</li>
+                <li>Copiez le tableau suivant:</li>
+                <img src="tableau_exercice_1.png" alt="">
+                <li>
+                    Mettre en forme:
+                    <ul>
+                        <li>En-têtes en gras, centrées</li>
+                        <li>Colonnes E, H en format monétaire</li>
+                        <li>Ajuster les largeurs.</li>
+                    </ul>
+                </li>
+                <li>Dans H2, calculer le CA total en tenant compte de la remise: CA = Tarif mensuel × Nb de mois × (1 – Remise/100)<span style="visibility: hidden;">Classique: =E2*F2*(1-G2/100) | Formule: =PRODUIT(E2;F2*(1-G2/100))</span></li>
+                <li>Copier la formule de H2 vers le bas jusqu’à H13.</li>
+                <li>
+                    On considère qu’un client est VIP si le CA total de son cheval est supérieur ou égal à 2 500 €.
+                    <ul>
+                        <li>
+                            Dans I2, écrire une formule qui affiche :
+                            <ul>
+                                <li>"VIP" si H2>=2500</li>
+                                <li>"Standard" sinon<span style="visibility: hidden;">=SI(H2>=2500;"VIP";"Standard")</span></li>
+                            </ul>
+                        </li>
+                        <li>Recopier jusqu’à I13.</li>
+                    </ul>
+                </li>
+                <li>Créer une petite zone de récapitulatif à côté (par ex. à partir de K2) :</li>
+                <li>Recopiez le tableau suivant:</li>
+                <img src="tableau2_exercice_1.png" alt="">
+                <li>En L2, calculer le CA total du centre (somme de la colonne H)<span style="visibility: hidden;">=SOMME(H2:H13)</span></li>
+                <li>En L3, calculer le nombre total de chevaux (nombre de lignes de données)<span style="visibility: hidden;">=NB(H2:H13) Toutes les cellules sont numériques</span></li>
+                <li>En L4, chercher le tarif mensuel minimum (colonne E)<span style="visibility: hidden;">=MIN(E2:E13)</span></li>
+                <li>En L5, chercher le tarif mensuel maximum<span style="visibility: hidden;">=MAX(E2:E13)</span></li>
+                <li>En L6, combien de chevaux sont en Box ? :<span style="visibility: hidden;">=NB.SI(D2:D13;"Box")</span></li>
+                <li>En L7, calculez le tarif mensuel moyen :<span style="visibility: hidden;">=MOYENNE(E2:E13)</span></li>
+                <li>En L8, calculez le CA moyen par cheval :<span style="visibility: hidden;">=MOYENNE(H2:H13)</span></li>
+                <li>
+                    Interpréter les valeurs:
+                    <ul>
+                        <li>En moyenne, un cheval rapporte combien sur la période ?</li>
+                        <li>Le tarif moyen, il est plus proche du pré ou du box ?</li>
+                    </ul>
+                </li>
+                <li>Ajouter un en-tête en J1 : "CA arrondi €"</li>
+                <li>En J2, arrondir le CA total à l’euro près (pas de décimales)<span style="visibility: hidden;">=ARRONDI(H2;0)</span></li>
+                <li>Recopier jusqu’à J13.</li>
+            </ol>
+            <h3>Exercice 2 – Activités du centre équestre & graphique</h3>
+            <ol>
+                <li>Créez une nouvelle feuille dans le document en cours</li>
+                <li>Nommez la feuille: Exercice_2</li>
+                <li>Copiez le tableau suivant:</li>
+                <img src="tableau_exercice_2.png" alt="">
+                <li>
+                    Mettre en forme:
+                    <ul>
+                        <li>Dates alignées au centre</li>
+                        <li>Colonnes E, F en €</li>
+                        <li>En-têtes en gras.</li>
+                    </ul>
+                </li>
+                <li>Dans F2, calculer la recette</li>
+                <span style="visibility: hidden;">Classique: =D2*E2 | Formule: =PRODUIT(D2;E2)</span>
+                <li>Recopier jusqu’à F11.</li>
+                <li>Créer une zone récap en H :</li>
+                <li>Copiez le tableau suivant:</li>
+                <img src="tableau2_exercice_2.png" alt="">
+                <li>I2 : somme de toutes les recettes (colonne F)<span style="visibility: hidden;">=SOMME(F2:F11)</span></li>
+                <li>I3 : nombre total de cavaliers (somme de D)<span style="visibility: hidden;">=SOMME(D2:D11)</span></li>
+                <li>I4 : plus petite recette<span style="visibility: hidden;">=MIN(F2:F11)</span></li>
+                <li>I5 : plus grande recette<span style="visibility: hidden;">=MAX(F2:F11)</span></li>
+                <li>I6 : nombre d’activités réalisées (nombre de lignes)<span style="visibility: hidden;">=NB(F2:F11)</span></li>
+                <li>I7 : nombre moyen de cavaliers/séance<span style="visibility: hidden;">=MOYENNE(D2:D11)</span></li>
+                <li>I8 : Recette moyenne par activité<span style="visibility: hidden;">=MOYENNE(F2:F11)</span></li>
+                <li>
+                    Interpréter les valeurs:
+                    <ul>
+                        <li>On a en moyenne X cavaliers par activité. Est-ce que ça vous semble beaucoup / peu ?</li>
+                        <li>La recette moyenne par activité est de …€. Quelles activités sont au-dessus de la moyenne ?</li>
+                    </ul>
+                </li>
+                <li>Ajouter un en-tête en G1 : "Grosse séance ?"</li>
+                <li>Si le nombre de cavaliers est ≥ 8, alors afficher "Oui", sinon "Non".<span style="visibility: hidden;">=SI(D2>=8;"Oui";"Non")</span></li>
+                <li>Recopier jusqu’à G11.</li>
+                <li>Faire un graphique de la recettes par type d’activité<span style="visibility: hidden;">Sélectionner B1:B11 et F1:F11. | Insertion → Graphique → Histogramme.</span></li>
+                <li>Donnez comme titre a votre graphique : Recette par activité.</li>
+            </ol>
+            <h3>Exercice 3 – Gestion d’un centre équestre</h3>
+            <h3>Partie 1</h3>
+            <ol>
+                <li>Créez une nouvelle feuille dans le document en cours</li>
+                <li>Nommez la feuille: Exercice_3-1</li>
+                <li>Copiez le tableau suivant:</li>
+                <img src="tableau3_exercice_1.png" alt="">
+                <li>
+                    Mettre en forme:
+                    <ul>
+                        <li>En-têtes en gras</li>
+                        <li>Colonnes C, E en format monétaire</li>
+                        <li>Centrer la colonne D.</li>
+                    </ul>
+                </li>
+                <li>En E2, calculer le Total mensuel<span style="visibility: hidden;">Classique: =C2*D2 | Formule: =PRODUIT(C2;D2)</span></li>
+                <li>À partir de G2, copiez le tableau suivant:</li>
+                <img src="tableau3_exercice_2.png" alt="">
+                <li>En H2, calculer le total des dépenses :<span style="visibility: hidden;">=SOMME(E2:E13)</span></li>
+                <li>En H3, afficher la plus petite dépense (sur la colonne E) :<span style="visibility: hidden;">=MIN(E2:E13)</span></li>
+                <li>En H4, afficher la dépense la plus élevée :<span style="visibility: hidden;">=MAX(E2:E13)</span></li>
+                <li>En H5, afficher le nombre de lignes de dépenses :<span style="visibility: hidden;">=NB(E2:E13)</span></li>
+                <li>On veut repérer les lignes dont le total mensuel dépasse 1 000 €.</li>
+                <li>Ajouter un en-tête en F1 : "Grosse dépense ?"</li>
+                <li>En F2, écrire une formule qui affiche : "Oui" si E2>1000, sinon "Non"<span style="visibility: hidden;">=SI(E2>1000;"Oui";"Non")</span></li>
+                <li>Recopier la formule jusqu’à F13.</li>
+                <li>Mise en forme conditionnelle, colorer les “Oui” vert et les "Non" en rouge.</li>
+            </ol>
+            <h3>Partie 1</h3>
+            <ol>
+                <li>Créez une nouvelle feuille dans le document en cours</li>
+                <li>Nommez la feuille: Exercice_3-2</li>
+                <li>Copiez le tableau suivant:</li>
+                <img src="tableau3_exercice_3.png" alt="">
+                <li>
+                    Mettre en forme:
+                    <ul>
+                        <li>Mettre les en-têtes en gras</li>
+                        <li>Mettre C, E en normal, D, F en €</li>
+                    </ul>
+                </li>
+                <li>Calculer la recette totale: Nb de clients × Prix moyen × Nb de séances.<span style="visibility: hidden;">Classique: =C1*D1*E1 | Formule: =PRODUIT(C1;D1;E1)</span></li>
+                <li>Recopier jusqu’en bas.</li>
+                <li>Créer une zone récapitulatif à partir de H2 :</li>
+                <li>Copiez le tableau suivant:</li>
+                <img src="tableau3_exercice_4.png" alt="">
+                <li>I2 : somme de toutes les recettes (colonne F)<span style="visibility: hidden;">=SOMME(F17:F27)</span></li>
+                <li>I3 : plus petite recette ligne par ligne<span style="visibility: hidden;">=MIN(F17:F27)</span></li>
+                <li>I4 : plus grande recette ligne par ligne<span style="visibility: hidden;">=MAX(F17:F27)</span></li>
+                <li>I5 : nombre de lignes de recettes<span style="visibility: hidden;">=NB(F17:F27)</span></li>
+                <li>I6 : la recette moyenne / activité<span style="visibility: hidden;">=MOYENNE(F17:F27)</span></li>
+                <li>On considère qu’une activité est “phare” si sa recette totale est ≥ 2 500 €.</li>
+                <li>Ajouter un en-tête en colonne G1: "Activité phare ?"</li>
+                <li>En G2, écrire une formule qui affiche : "Oui" si F2>2500, sinon "Non"<span style="visibility: hidden;">=SI(F2>=2500;"Oui";"Non")</span></li>
+                <li>Recopier jusqu’en bas.</li>
+            </ol>
+        </div>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2025-2026 Technologie 3ème</p>
+    </footer> -->
+    </script>
+
+</body>
+</html>
