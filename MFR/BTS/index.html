@@ -13,7 +13,7 @@
     </header>
 
     <main id="content">
-        <div>
+        <!-- <div>
             <h3>Contexte</h3>
             <p>
                 Vous travaillez dans un centre équestre. Vous devez suivre les chevaux en pension et le chiffre d’affaires que cela génère. On va utiliser le tableur comme un vrai outil de gestion.
@@ -137,7 +137,7 @@
                 <li>Recopier la formule jusqu’à F13.</li>
                 <li>Mise en forme conditionnelle, colorer les “Oui” vert et les "Non" en rouge.</li>
             </ol>
-            <h3>Partie 1</h3>
+            <h3>Partie 2</h3>
             <ol>
                 <li>Créez une nouvelle feuille dans le document en cours</li>
                 <li>Nommez la feuille: Exercice_3-2</li>
@@ -165,6 +165,344 @@
                 <li>En G2, écrire une formule qui affiche : "Oui" si F2>2500, sinon "Non"<span style="visibility: hidden;">=SI(F2>=2500;"Oui";"Non")</span></li>
                 <li>Recopier jusqu’en bas.</li>
             </ol>
+        </div> -->
+        <div>
+            <h2>OAD & gestion de chevaux</h2>
+            <h3>1. Accroche & définition</h3>
+            <ul>
+                Dans vos écuries / centres équestres / élevages, quels outils numériques sont utilisés pour aider à décider :
+                <li>qui / quand / avec quoi nourrir ?</li>
+                <li>quand sortir au paddock ?</li>
+                <li>suivre la santé / les soins ?</li>
+                <li>gérer les cours / les chevaux ?</li>
+            </ul>
+            <h3>2. Panorama d’OAD “cheval”</h3>
+            <table>
+                <thead>
+                    <td>Type d’OAD équin</td>
+                    <td>Exemple francophone</td>
+                    <td>À quoi ça sert ? (phrase simple)</td>
+                </thead>
+                <tr>
+                    <td>Gestion d’écurie / centre</td>
+                    <td>
+                        <a href="https://www.gestion-equestre-celeris.fr/" target="_blank" rel="noopener noreferrer">Céléris</a>, 
+                        <a href="https://equimondo.fr/logiciel-de-gestion-ecurie-de-proprietaire.php" target="_blank" rel="noopener noreferrer">Equimodo</a>, 
+                        <a href="https://www.kavalog.com/" target="_blank" rel="noopener noreferrer">Kavalog</a>, 
+                        <a href="https://www.smartjack.fr/" target="_blank" rel="noopener noreferrer">Smart Jack</a>, 
+                        <a href="https://www.equitop-solutions.com/" target="_blank" rel="noopener noreferrer">Équitop Solutions</a>, 
+                        <a href="https://www.mes-ecuries.com/" target="_blank" rel="noopener noreferrer">Mes-écuries.com</a>, 
+                        <a href="https://www.equionline.fr/" target="_blank" rel="noopener noreferrer">Equionline</a>, 
+                        <a href="https://cavasoft.fr/" target="_blank" rel="noopener noreferrer">Cavasoft</a>
+                    </td>
+                    <td>Gérer chevaux, cavaliers, plannings, factures, registres.</td>
+                </tr>
+                <tr>
+                    <td>Suivi santé / quotidien chevaux</td>
+                    <td>
+                        <a href="https://valkae.fr/" target="_blank" rel="noopener noreferrer">Valkae</a>, 
+                        <a href="https://www.groomy-app.com/fr/fonctionnalites/particuliers.html" target="_blank" rel="noopener noreferrer">Groomy</a>, 
+                        <a href="https://www.equitazone.com/" target="_blank" rel="noopener noreferrer">Equitazone</a>, 
+                        <a href="https://chevalandco.fr/annonce/appli-suivi-sante-nutrition-du-cheval/" target="_blank" rel="noopener noreferrer">Ekiday</a>
+                    </td>
+                    <td>Centraliser soins, rendez-vous, poids, activité, rappels.</td>
+                </tr>
+                <tr>
+                    <td>Bien-être / évaluation</td>
+                    <td><a href="https://www.ifce.fr/ifce/application-cheval-bien-etre-mesurez-le-bien-etre-de-vos-equides/" target="_blank" rel="noopener noreferrer">Cheval Bien-Être (IFCE)</a></td>
+                    <td>Évaluer le bien-être avec des indicateurs scientifiques.</td>
+                </tr>
+                <tr>
+                    <td>Suivi orthopédique / locomotion</td>
+                    <td><a href="https://hippotypose.fr/" target="_blank" rel="noopener noreferrer">Hippotypose</a></td>
+                    <td>Aider véto / maréchal à suivre l’orthopédie du cheval.</td>
+                </tr>
+            </table>
+            <a href="https://www.hudada.fr/blog/application-gratuites-chevaux/18/" target="_blank" rel="noopener noreferrer">Article regroupant d'autres applis / logiciels / ...</a>
+            <p>
+                Aujourd’hui, certains outils utilisent des capteurs et même de l’IA pour analyser le mouvement, repérer des anomalies, ou suivre le poulinage en continu.
+            </p>
+            <p>
+                Tous ces outils, qu’ils soient simples ou très modernes, font la même chose : ils récupèrent des données, appliquent des règles ou des modèles, et proposent des indicateurs ou une décision pour aider le gérant, l’éleveur ou le vétérinaire.
+            </p>
+            <ul>
+                D'après vous:
+                <li>Quels avantages pour le gérant d’écurie ou l’éleveur ? (gain de temps, meilleure individualisation de la ration, suivi des soins, traçabilité…)</li>
+                <li>Quels risques ou limites ? (dépendance aux outils, coût, besoin de données fiables, ne pas remplacer le jugement humain)</li>
+                Tout ça repose sur des règles, des modèles et des données. On va en faire une version simplifiée dans Excel pour un problème très concret d’écurie.
+            </ul>
+            <h3>3. Choix du mini-OAD Excel</h3>
+            <p>
+                On va se mettre dans la peau d’un gérant d’écurie / centre équestre (Fictif bien sûr, je n'ai aucune vraie idée du fonctionnement de ce genre de centre).
+                <br>
+                Vous avez plusieurs chevaux en pension ou en club.
+                <br>
+                Pour chacun, régulièrement vous vous demandez :
+                <ul>
+                    <li>Est-ce que je dois augmenter la ration ?</li>
+                    <li>Est-ce que la ration est OK comme ça ?</li>
+                    <li>Ou au contraire, est-ce que je dois un peu réduire ?</li>
+                </ul>
+                Ça, c’est typiquement une décision.
+                <br>
+                Aujourd’hui, on va essayer de fabriquer un mini Outil d’Aide à la Décision dans Excel qui, à partir de quelques informations sur un cheval, va vous proposer :
+                <ul>
+                    <li>Augmenter la ration</li>
+                    <li>Ration OK</li>
+                    <li>Réduire la ration</li>
+                </ul>
+                On ne va pas rentrer dans la ration hyper technique avec tous les nutriments, mais on va partir de quelques choses simples, qu’un soigneur peut observer tous les jours.
+                <ul>
+                    On va regarder 4 critères :
+                    <li>Le type de cheval : est-ce que c’est un poney rustique, un cheval “normal”, ou un cheval sensible / de sport ?</li>
+                    <li>Le niveau de travail : est-ce qu’il ne fait rien, un peu, moyen, ou beaucoup ?</li>
+                    <li>La note d’état corporel : en gros, est-ce qu’il est trop maigre, correct, ou trop gras ?</li>
+                    <li>L’évolution récente : est-ce qu’il perd, est-ce qu’il reste stable, ou est-ce qu’il prend du poids / de l’état ?</li>
+                </ul>
+                Imaginez un poney rustique, qui ne travaille presque pas, note 4 en état (bien rond), et qui prend encore du poids.
+                <br>
+                Intuitivement, vous ne vous dites pas ‘on augmente la ration’, hein ?
+                <br>
+                Maintenant, imaginez un cheval de sport sensible, qui travaille beaucoup, note 2 (un peu creux), et qui perd encore.
+                <br>
+                Là, on se dit plutôt : ‘Attention, il faut peut-être augmenter un peu la ration.’
+                <br>
+                Attention, ce qu’on va construire aujourd’hui dans Excel, ce n’est pas un logiciel de nutrition professionnelle, ce n’est pas un outil vétérinaire, c’est un mini-OAD <b>pédagogique</b>.
+                <ul>
+                    Le but, c’est de voir comment on passe :
+                    <li>de critères observables sur le cheval</li>
+                    <li>à des scores et des calculs dans Excel</li>
+                    <li>puis à une décision simple : augmenter / OK / réduire</li>
+                </ul>
+                Donc, on ne va pas l’utiliser pour modifier vraiment les rations dans une écurie, mais pour comprendre comment raisonne un OAD.
+                <br>
+                Les vrais OAD de nutrition équine prennent en compte beaucoup plus de paramètres (types de fourrage, analyses, maladie, âge, etc.) et sont souvent validés par des nutritionnistes.
+                <br>
+                Nous, aujourd’hui, on fait une version simplifiée pour comprendre le principe.
+            </p>
+            <h3>4. Construction du mini-OAD Excel “Gestion ration cheval”</h3>
+            <h4>Structurer la feuille</h4>
+            <ol>
+                <li>Créez un document Excel nommé: "Exercice_OAD".</li>
+                <li>Renommez la feuille active: "OAD_Ration_Cheval"</li>
+                <li>Copiez le tableau suivant: (vous pouvez le copier-colle dans Excel, tout ce qui est entre paranthèses n'est pas à écrire, c'est à titre indicatif)</li>
+                <table>
+                    <tr>
+                        <td>ENTRÉES CHEVAL</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Nom du cheval</td>
+                        <td>(texte)</td>
+                    </tr>
+                    <tr>
+                        <td>Type de cheval</td>
+                        <td>(liste : Rustique / Standard / Sensible)</td>
+                    </tr>
+                    <tr>
+                        <td>Niveau de travail</td>
+                        <td>(liste : Repos / Léger / Modéré / Intense)</td>
+                    </tr>
+                    <tr>
+                        <td>Note d’état corporel (1–5)</td>
+                        <td>(liste ou saisie)</td>
+                    </tr>
+                    <tr>
+                        <td>Évolution récente</td>
+                        <td>(liste : Perd / Stable / Prend)</td>
+                    </tr>
+                </table>
+                <li>Ajoutez une feuille à votre document</li>
+                <li>Renommez cette feuille: "OAD_listes"</li>
+                <li>Nous allons voir comment créer des listes déroulantes dans Excel:</li>
+                <li>
+                    Ajoutez le tableau suivant:
+                    <br>
+                    Score “type de cheval” :
+                    <table>
+                        <thead>
+                            <td>Type cheval</td>
+                            <td>Score</td>
+                        </thead>
+                        <tr>
+                            <td>Rustique</td>
+                            <td>-1</td>
+                        </tr>
+                        <tr>
+                            <td>Standard</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Sensible</td>
+                            <td>+1</td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    Ajoutez le tableau suivant (à côté, en dessous, où vous voulez):
+                    <br>
+                    Score “niveau de travail” :
+                    <table>
+                        <thead>
+                            <td>Travail</td>
+                            <td>Score</td>
+                        </thead>
+                        <tr>
+                            <td>Repos</td>
+                            <td>-1</td>
+                        </tr>
+                        <tr>
+                            <td>Léger</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Modéré</td>
+                            <td>+1</td>
+                        </tr>
+                        <tr>
+                            <td>Intense</td>
+                            <td>+2</td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    Ajoutez le tableau suivant (à côté, en dessous, où vous voulez):
+                    <br>
+                    Score “NEC (note état corporel)”:
+                    <table>
+                        <thead>
+                            <td>NEC</td>
+                            <td>Score</td>
+                        </thead>
+                        <tr>
+                            <td>1 ou 2 (trop maigre)</td>
+                            <td>+2</td>
+                        </tr>
+                        <tr>
+                            <td>3 (correct)</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>4 ou 5 (trop gras)</td>
+                            <td>-2</td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    Retournez sur la première feuille et ajouter, en dessous du premier tableau, en sautant une ligne, le tableau suivant:
+                    <br>
+                    CALCUL & RÉSULTAT:
+                    <table>
+                        <tr>
+                            <td>Score type cheval</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Score travail</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Score NEC</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Score évolution</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><b>Score total</b></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Seuil “Augmenter”</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Seuil “Réduire”</td>
+                            <td>-3</td>
+                        </tr>
+                        <tr>
+                            <td><b>Décision sur la ration</b></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <i><b>Les seuils sont à ajuster selon ce que vous voulez obtenir comme logique</b></i>
+                </li>
+            </ol>
+            <h4>Créer les listes</h4>
+            <p>
+                Pour créer une liste déroulante dans Excel, on utilise la fonctionnalité "Validation des données" qui se trouve dans le menu "Données".
+            </p>
+            <ol>
+                Pour ce faire, vous allez:
+                <li>Dans la feuille "OAD_Ration_Cheval": sélectionnez la cellule où vous voulez créer la liste déroulante (B3, en face de "Type de cheval")</li>
+                <li>Cliquez sur "Validation des données" <img src="validation_des_donnees.png" alt=""> dans le menu "Données"</li>
+                <li>Dans la liste déroulante "Autoriser:" sélectionnez "Liste"</li>
+                <li>Dans "Source:", cliquez sur la petite flèche vers le haut <img src="fleche_haut.png" alt=""></li>
+                <li>Allez sur la feuille "OAD_listes" et sélectionnez les cellules de A2 à A5 (si vous avez fait comme moi, sinon, prennez le premier tableau sans le titre "Score 'type de cheval':")</li>
+                <li>Validez en appuyant 2 fois sur la touche "Entré"</li>
+                <li>Faites la même chose pour le reste du tableau de la feuille "OAD_Ration_Cheval"</li>
+                <li>Vous devriez avoir 4 listes déroulantes pour remplir les cellules de votre tableau</li>
+            </ol>
+            <h4>Formules</h4>
+            <p>
+                Maintenant, on va remplir les cellules de la partie "CALCUL & RÉSULTAT" avec des formules.
+            </p>
+            <ol>
+                <li>Dans la cellule B9, on va chercher le score correspondant au type de cheval, pour ce faire, on va utiliser la fonction RECHERCHEV</li>
+                <li>La formule est la suivante : =RECHERCHEV(B3;OAD_listes!A3:B5;2;FAUX)</li>
+                <li>Explications :</li>
+                <ul>
+                    <li>B3 : la valeur à chercher (le type de cheval sélectionné)</li>
+                    <li>OAD_listes!A3:B5 : la plage où chercher (le tableau des types de cheval et leurs scores)</li>
+                    <li>2 : le numéro de la colonne dans la plage où se trouve le score</li>
+                    <li>FAUX : pour une correspondance exacte</li>
+                </ul>
+                <li>Maintenant, chaque fois que l'on changera la valeur dans la liste déroulante, le score correspondant s'affichera automatiquement dans la cellule B9</li>
+                <li>Faire pareil pour le score de travail et le score NEC</li>
+                <li>Pour le "Score d'évolution", on va partir sur: =SI(B6="Perd";2;SI(B6="Prend";-2;0))</li>
+                <li>Comme pour les listes précédantes, quand on change la valeur de la liste "Évolution récente", le score correspondant s'affichera automatiquement dans la cellule B12</li>
+                <li>Le "Score total" sera la somme des scores du dessus: =SOMME(B9:B12)</li>
+                <li>
+                    <ul>
+                        La logique proposée ici est très simple et ne reflète pas la complexité réelle de la nutrition équine.
+                        <li>Si le score est supérieur ou égal au seuil "Augmenter", on augmente la ration</li>
+                        <li>Si le score est inférieur ou égal au seuil "Réduire", on réduit la ration</li>
+                        <li>Si le score est entre les deux seuils, on laisse la ration inchangée</li>
+                    </ul>
+                </li>
+                <li>La décision sur la ration est donc basée sur le score total et le seuil: =SI(B13>=B14;"Augmenter la ration";SI(B13<=B15;"Réduire la ration";"Ration OK"))</li>
+            </ol>
+            <h4>Mise en forme “outil”</h4>
+            <ul>
+                <li>Mettre un titre en haut : “Mini OAD – Ajustement simplifié de la ration d’un cheval en pension”</li>
+                <li>Colorer en léger les cellules à saisir</li>
+                <li>Encadrer les cellules</li>
+                <li>
+                    Mise en forme conditionnelle sur la cellule de décision sur la ration:
+                    <ul>
+                        Si:
+                        <li>“Augmenter la ration” → fond orange</li>
+                        <li>“Ration OK” → fond vert</li>
+                        <li>“Réduire la ration” → fond rouge</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3>5. Tests de cas & discussion</h3>
+            <ol>
+                Testez votre mini-OAD avec différents types de chevaux et niveaux de travail, avec les cas suivants (et ceux que vous voulez):
+                <li>Cheval A : poney rustique au repos, NEC 4, prend du poids. -> Attendu : score plutôt négatif → Réduire la ration.</li>
+                <li>Cheval B : cheval de sport sensible, travail intense, NEC 2, perd du poids. -> Attendu : score positif → Augmenter la ration.</li>
+                <li>Cheval C : cheval standard en travail modéré, NEC 3, stable. -> Attendu : Ration OK.</li>
+            </ol>
+            <ul>
+                Discussion :
+                <li>Est-ce que la décision vous semble cohérente ?</li>
+                <li>Si on change un seuil (ex. Augmenter = 2), qu’est-ce que ça fait ?</li>
+                <li>Quels sont les avantages d’un tel outil pour un gérant d’écurie ? (gain de temps, standardisation des décisions, aide à la réflexion)</li>
+                <li>Quelles sont les limites de ce mini-OAD ? (simplification excessive, ne remplace pas l’expertise humaine, dépendance aux données saisies)</li>
+                <li>Comment pourrait-on améliorer cet OAD ? (ajout de plus de critères, intégration de données réelles, validation par un expert en nutrition équine)</li>
+            </ul>
         </div>
     </main>
 
