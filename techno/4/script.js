@@ -48,6 +48,9 @@ const sessions = [
     'Séance 27 : Modéliser les pièces de la mini-serre',
     'Séance 28 : Contraintes dimensionnelles et assemblage',
     'Séance 29 : Séance libre avant les vacances',
+    'Séance 30 : Modélisation des fenêtres de la serre',
+    'Séance 31 : Modélisation du toit de la serre',
+
     // 'Séance 30 : Introduction à la programmation de la serre',
     // 'Séance 31 : Capteurs d’humidité et de température',
     // 'Séance 32 : Actionneurs : ventilation et arrosage',
