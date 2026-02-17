@@ -47,6 +47,17 @@ const sessions = [
     'Séance 26 : Ajouter un logement pour composant électronique',
     'Séance 27 : Cotation simple et contraintes de fabrication',
     'Séance 28 : QCM 3 – Bilan conception / réalisation',
+    'Séance 29 : Modélisation du porte-clé en 3D : prise des mesures',
+    'Séance 30 : Modélisation du porte-clé en 3D : la base 1/2',
+    'Séance 31 : Modélisation du porte-clé en 3D : la base 2/2',
+    'Séance 32 : Modélisation du porte-clé en 3D : la base, derniers ajustements et détails',
+    'Séance 33 : Modélisation du porte-clé en 3D : créer un moyen de fermer le porte-clé',
+    'Séance 34 : ',
+    'Séance 35 : ',
+    'Séance 36 : ',
+    'Séance 37 : ',
+
+
     // 'Séance 29 : Séance libre avant vacances',
     // 'Séance 30 : Préparation à l’impression 3D',
     // 'Séance 31 : Fabrication du porte-clé (impression 3D)',
