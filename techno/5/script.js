@@ -51,11 +51,11 @@ const sessions = [
     'Séance 30 : Modélisation du porte-clé en 3D : la base 1/2',
     'Séance 31 : Modélisation du porte-clé en 3D : la base 2/2',
     'Séance 32 : Modélisation du porte-clé en 3D : la base, derniers ajustements et détails',
-    'Séance 33 : Modélisation du porte-clé en 3D : créer un moyen de fermer le porte-clé',
-    'Séance 34 : ',
-    'Séance 35 : ',
-    'Séance 36 : ',
-    'Séance 37 : ',
+    'Séance 33 : Les différents types de liaisons mécaniques',
+    'Séance 34 : Modélisation des différents types de liaisons mécaniques',
+    'Séance 35 : Modélisation du porte-clé en 3D : créer un moyen de fermer le porte-clé',
+    'Séance 36 : Modélisation du porte-clé en 3D : dernières corrections et préparation à l’impression',
+    'Séance 37 : Séance libre avant les vacances',
 
 
     // 'Séance 29 : Séance libre avant vacances',
