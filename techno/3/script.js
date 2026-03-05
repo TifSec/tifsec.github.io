@@ -56,8 +56,8 @@ const sessions = [
     'Séance 32 : Créer les premières formes de son support',
     'Séance 33 : Modélisation support téléphone - suite',
     'Séance 34 : Finaliser la modélisation 3D du support',
-    'Séance 35 : Classe absente - Lycée agricole de Saint-Chely',
-    'Séance 36 : Classe absente - Lycée agricole de Saint-Chely',
+    'Séance 35 : Les différents types de liaisons mécaniques',
+    'Séance 36 : Modélisation des différents types de liaisons mécaniques',
     'Séance 37 : Séance libre avant vacances',
     // Vacances de printemps
     // 'Séance 38 : Aurillac Visite de l’IUT Lycée Monnet Mermoz et Cortat ',
