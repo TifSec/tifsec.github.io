@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Calibri, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        main {
+            margin-left: 200px;
+            padding: 20px;
+            min-height: 80vh;
+        }
+
+        a{
+            color: black;
+        }
+
+        a:hover{
+            color: orange;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        aside {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            transition: width 0.3s ease;
+            overflow-y: auto;
+            scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
+        }
+
+        aside::-webkit-scrollbar {
+            display: none; /* Masque la barre de défilement pour Chrome, Safari, et Opera */
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            padding: 10px;
+        }
+
+        aside ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        /* Style pour l'élément de menu actif (séance en cours) */
+        aside ul li a.active {
+            background-color: #4CAF50; /* Couleur pour l'élément actif */
+            color: white;
+            font-weight: bold;
+        }
+
+        aside ul li a:hover {
+            background-color: #555;
+        }
+
+        .hamburger {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h2, h3, h4, h5{
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        h4, h5, p, ul{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Styles spécifiques pour le calendrier */
+        table.calendar {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .current-week {
+            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
+        }
+
+        pre{
+            background-color: black;
+            color: white;
+        }
+
+        .today {
+            background-color: #007BFF; /* Bleu vif pour le jour actuel */
+            color: white; /* Texte blanc pour le contraste */
+        }
+
+        .vacation {
+            background-color: #B2E4A6; /* Vert pastel pour les vacances */
+            color: black; /* Texte noir ou foncé pour la lisibilité */
+        }
+
+        .holiday {
+            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
+            color: white; /* Texte blanc ou clair */
+        }
+
+        iframe{
+            width: 87vw;
+            height: 42vw;
+        }
+
+        .rep {
+            visibility: hidden;
+        }
+
+        .container {
+            /* max-width: 800px; */
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .important {
+            background: yellow;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Programme NSI Tle</h1>
+    </header>
+    <aside id="menu">
+        <nav id="session-nav">
+            <ul>
+                <li><a href="#" onclick="showSession('seance1')">Séance 1</a></li>
+                <li><a href="#" onclick="showSession('seance2')">Séance 2</a></li>
+                <li><a href="#" onclick="showSession('seance3')">Séance 3</a></li>
+                <li><a href="#" onclick="showSession('seance4')">Séance 4</a></li>
+                <li><a href="#" onclick="showSession('seance5')">Séance 5</a></li>
+                <li><a href="#" onclick="showSession('seance6')">Séance 6</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main id="content">
+        <section id="seance1" class="content-section">
+            <a href="renforcement/Séance_1.docx">Télécharger la séance 1 au format docx</a>
+            <iframe src="renforcement/Séance_1.pdf" frameborder="0"></iframe>
+        </section>
+        <section id="seance2" class="content-section">
+            <a href="renforcement/Séance_2.docx">Télécharger la séance 2 au format docx</a>
+            <iframe src="renforcement/Séance_2.pdf" frameborder="0"></iframe>
+        </section>
+        <section id="seance3" class="content-section">
+            <a href="renforcement/Séance_3.docx">Télécharger la séance 3 au format docx</a>
+            <iframe src="renforcement/Séance_3.pdf" frameborder="0"></iframe>
+        </section>
+        <section id="seance4" class="content-section">
+            <a href="renforcement/Séance_4.docx">Télécharger la séance 4 au format docx</a>
+            <iframe src="renforcement/Séance_4.pdf" frameborder="0"></iframe>
+        </section>
+        <section id="seance5" class="content-section">
+            <a href="renforcement/Séance_5.docx">Télécharger la séance 5 au format docx</a>
+            <iframe src="renforcement/Séance_5.pdf" frameborder="0"></iframe>
+        </section>
+        <section id="seance6" class="content-section">
+            <a href="renforcement/Séance_6.docx">Télécharger la séance 6 au format docx</a>
+            <iframe src="renforcement/Séance_6.pdf" frameborder="0"></iframe>
+        </section>
+    </main>
+    <script>
+        // Show selected session content
+        function showSession(sessionId) {
+            const sessions = document.querySelectorAll('.content-section');
+            sessions.forEach(session => {
+                session.classList.remove('active');
+                if (session.id === sessionId) {
+                    session.classList.add('active');
+                }
+            });
+
+            // Mettre en évidence la séance active dans le menu
+            const menuLinks = document.querySelectorAll('#session-nav a');
+            menuLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick').includes(sessionId)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
