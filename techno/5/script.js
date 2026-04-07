@@ -61,6 +61,17 @@ const sessions = [
     'Séance 40 : La chaîne d’information d’un objet technique',
     'Séance 41 : Modifier un programme existant (micro:bit)',
     'Séance 42 : Tester un objet technique avec un protocole',
+    'Séance 43 : Identifier un dysfonctionnement et corriger un programme',
+    'Séance 44 : Faire communiquer des objets techniques (micro:bit radio)',
+    'Séance 45 : Données et cybersécurité (usage responsable)',
+    'Séance 46 : Planifier un mini-projet technique',
+    'Séance 47 : Définir le besoin et le cahier des charges',
+    'Séance 48 : Concevoir la solution technique',
+    'Séance 49 : Réaliser et programmer la solution technique',
+    'Séance 50 : Tester et améliorer la solution technique',
+    'Séance 51 : Corriger et améliorer le programme',
+    'Séance 52 : Présenter et expliquer un projet technique',
+    'Séance 53 : Séance libre avant grandes vacances'
 ];
 
 function isHoliday(date) {
