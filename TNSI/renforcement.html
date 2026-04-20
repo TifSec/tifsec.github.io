@@ -91,26 +91,6 @@
             background-color: #555;
         }
 
-        .hamburger {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 15px;
-            text-align: left;
-            cursor: pointer;
-        }
-
-        footer {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
         h2, h3, h4, h5{
             text-align: center;
         }
@@ -135,9 +115,16 @@
             border: 1px solid black;
         }
 
-        th, td {
-            padding: 10px;
+        thead{
             text-align: center;
+            font-weight: bold;
+            font-size: larger;
+            color: #f4f4f4;
+            background-color: #4CAF50;
+        }
+
+        table td{
+            padding: 20px;
         }
 
         img {
@@ -145,64 +132,9 @@
             height: auto;
         }
 
-        /* Styles spécifiques pour le calendrier */
-        table.calendar {
-            margin: 20px auto;
-            border-collapse: collapse;
-            width: 80%;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ccc;
-        }
-
-        .current-week {
-            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
-        }
-
-        pre{
-            background-color: black;
-            color: white;
-        }
-
-        .today {
-            background-color: #007BFF; /* Bleu vif pour le jour actuel */
-            color: white; /* Texte blanc pour le contraste */
-        }
-
-        .vacation {
-            background-color: #B2E4A6; /* Vert pastel pour les vacances */
-            color: black; /* Texte noir ou foncé pour la lisibilité */
-        }
-
-        .holiday {
-            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
-            color: white; /* Texte blanc ou clair */
-        }
-
         iframe{
             width: 87vw;
             height: 42vw;
-        }
-
-        .rep {
-            visibility: hidden;
-        }
-
-        .container {
-            /* max-width: 800px; */
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .important {
-            background: yellow;
-            padding: 5px;
-            border-radius: 5px;
         }
     </style>
 </head>
@@ -213,36 +145,80 @@
     <aside id="menu">
         <nav id="session-nav">
             <ul>
-                <li><a href="#" onclick="showSession('seance0')">Séance Assertions</a></li>
-                <li><a href="#" onclick="showSession('seance1')">Séance 1</a></li>
-                <li><a href="#" onclick="showSession('seance2')">Séance 2</a></li>
-                <li><a href="#" onclick="showSession('seance3')">Séance 3</a></li>
-                <li><a href="#" onclick="showSession('seance4')">Séance 4</a></li>
-                <li><a href="#" onclick="showSession('seance5')">Séance 5</a></li>
-                <li><a href="#" onclick="showSession('seance6')">Séance 6</a></li>
-                <li><a href="#" onclick="showSession('seance7')">Séance 7</a></li>
-                <li><a href="#" onclick="showSession('seance8')">Séance 8</a></li>
-                <li><a href="#" onclick="showSession('seance9')">Séance 9</a></li>
-                <li><a href="#" onclick="showSession('seance10')">Séance 10</a></li>
-                <li><a href="#" onclick="showSession('seance11')">Séance 11</a></li>
-                <li><a href="#" onclick="showSession('seance12')">Séance 12</a></li>
-                <li><a href="#" onclick="showSession('seance13')">Séance 13</a></li>
-                <li><a href="#" onclick="showSession('seance13-2')">Séance 13-2</a></li>
-                <li><a href="#" onclick="showSession('seance14')">Séance 14</a></li>
-                <li><a href="#" onclick="showSession('seance15')">Séance 15</a></li>
-                <li><a href="#" onclick="showSession('seance16')">Séance 16</a></li>
-                <li><a href="#" onclick="showSession('seance17')">Séance 17</a></li>
-                <li><a href="#" onclick="showSession('seance18')">Séance 18</a></li>
-                <li><a href="#" onclick="showSession('seance19')">Séance 19</a></li>
-                <li><a href="#" onclick="showSession('seance19-1')">Séance 19-1</a></li>
-                <li><a href="#" onclick="showSession('seance19-2')">Séance 19-2</a></li>
-                <li><a href="#" onclick="showSession('seance19-3')">Séance 19-3</a></li>
-                <li><a href="#" onclick="showSession('seance19-4')">Séance 19-4</a></li>
-                <li><a href="#" onclick="showSession('seance19-5')">Séance 19-5</a></li>
+                <li><a href="#" onclick="showSession('tab_seances')">Tableau</a></li>
+                
+                
             </ul>
         </nav>
     </aside>
     <main id="content">
+        <section id="tab_seances" class="content-section active">
+            <table>
+                <thead>
+                    <td>Bases de Python</td>
+                    <td>SQL</td>
+                </thead>
+                <tr>
+                    <td>
+                        <a href="#" onclick="showSession('seance0')">Séance 0 : Comprendre et utiliser les assertions</a><br>
+                        <a href="#" onclick="showSession('seance1')">Séance 1 : Lire un programme simple sans paniquer</a><br>
+                        <a href="#" onclick="showSession('seance2')">Séance 2 : Comprendre les conditions en Python</a><br>
+                        <a href="#" onclick="showSession('seance3')">Séance 3 : Comprendre les boucles en Python</a><br>
+                        <a href="#" onclick="showSession('seance4')">Séance 4 : Comprendre et écrire une fonction simple</a><br>
+                        <a href="#" onclick="showSession('seance5')">Séance 5 : Comprendre et parcourir une liste</a><br>
+                        <a href="#" onclick="showSession('seance6')">Séance 6 : Compter et additionner dans une liste</a><br>
+                        <a href="#" onclick="showSession('seance7')">Séance 7 : Rechercher une valeur dans une liste</a><br>
+                        <a href="#" onclick="showSession('seance8')">Séance 8 : Chercher le maximum d’une liste</a><br>
+                    </td>
+                    <td>
+                        <a href="#" onclick="showSession('seance9')">Séance 9 : Comprendre une table dans une base de données relationnelle</a><br>
+                        <a href="#" onclick="showSession('seance10')">Séance 10 : Lire une requête SQL simple</a><br>
+                        <a href="#" onclick="showSession('seance11')">Séance 11 : Écrire une requête SQL simple/a><br>
+                        <a href="#" onclick="showSession('seance12')">Séance 12 : S’entraîner sur des exercices SQL type bac</a><br>
+                        <a href="#" onclick="showSession('seance13')">Séance 13 : Comprendre le principe d’une jointure</a><br>
+                        <a href="#" onclick="showSession('seance13-1')">Séance 13-1 : Comprendre le principe d’une jointure (suite)</a><br>
+                        <a href="#" onclick="showSession('seance14')">Séance 14 : Lire et écrire une requête simple avec jointure</a><br>
+                        <a href="#" onclick="showSession('seance15')">Séance 15 : S’entraîner sur des exercices SQL type bac avec jointures</a><br>
+                        <a href="#" onclick="showSession('seance16')">Séance 16 : Ajouter, modifier et supprimer des données en SQL</a><br>
+                        <a href="#" onclick="showSession('seance17')">Séance 17 : Créer une table avec CREATE TABLE</a><br>
+                    </td>
+                </tr>
+                <thead>
+                    <td>Récursivité</td>
+                    <td>Réseaux</td>
+                </thead>
+                <tr>
+                    <td>
+                        <a href="#" onclick="showSession('seance18')">Séance 18 : Comprendre le principe de la récursivit</a><br>
+                    </td>
+                    <td>
+                        <a href="#" onclick="showSession('seance19')">Séance 19 : Bases des réseaux — adresse IP, /24, adresse réseau et routeur</a><br>
+                        <a href="#" onclick="showSession('seance19-1')">Séance 19-1 : Routeur, interfaces réseau, protocoles et Filius</a><br>
+                        <a href="#" onclick="showSession('seance19-2')">Séance 19-2 : Tables de routage, interface de sortie, métrique et RIP</a><br>
+                        <a href="#" onclick="showSession('seance19-3')">Séance 19-3 : Chemins, panne d’un routeur et mise à jour d’une table de routage</a><br>
+                        <a href="#" onclick="showSession('seance19-4')">Séance 19-4 : OSPF, coût des liaisons et choix du meilleur chemin</a><br>
+                        <a href="#" onclick="showSession('seance19-5')">Séance 19-5 : Synthèse Réseaux et entraînement type bac</a><br>
+                    </td>
+                </tr>
+                <thead>
+                    <td>Les graphes</td>
+                    <td>Les arbres</td>
+                </thead>
+                <tr>
+                    <td>
+                        <a href="#" onclick="showSession('seance20')">Séance 20 : Bases des graphes</a><br>
+                        <a href="#" onclick="showSession('seance21')">Séance 21 : Représentations des graphes — matrice d’adjacence et liste d’adjacence</a><br>
+                        <a href="#" onclick="showSession('seance22')">Séance 22 : Parcours et exercices sur graphes</a><br>
+                    </td>
+                    <td>
+                        <a href="#" onclick="showSession('seance23')">Séance 23 : Bases des arbres</a><br>
+                        <a href="#" onclick="showSession('seance24')">Séance 24 : Parcours d’arbres, taille, hauteur et arbres binaires</a><br>
+                        <a href="#" onclick="showSession('seance25')">Séance 25 : Synthèse et entraînement type bac sur graphes et arbres</a><br>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <!-- Début des différents cours -->
         <section id="seance0" class="content-section">
             <a href="renforcement/Séance_assertions.docx">Télécharger la séance 0</a>
             <iframe src="renforcement/Séance_assertions.pdf" frameborder="0"></iframe>
@@ -299,9 +275,9 @@
             <a href="renforcement/Séance_13.docx">Télécharger la séance 13</a>
             <iframe src="renforcement/Séance_13.pdf" frameborder="0"></iframe>
         </section>
-        <section id="seance13-2" class="content-section">
-            <a href="renforcement/Séance_13-2.pdf">Télécharger la séance 13-2</a>
-            <iframe src="renforcement/Séance_13-2.pdf" frameborder="0"></iframe>
+        <section id="seance13-1" class="content-section">
+            <a href="renforcement/Séance_13-1.pdf">Télécharger la séance 13-1</a>
+            <iframe src="renforcement/Séance_13-1.pdf" frameborder="0"></iframe>
         </section>
         <section id="seance14" class="content-section">
             <a href="renforcement/Séance_14.docx">Télécharger la séance 14</a>
@@ -354,7 +330,32 @@
             <a href="renforcement/Séance_19-5.odt">Télécharger la séance 19-5</a>
             <iframe src="renforcement/Séance_19-5.pdf" frameborder="0"></iframe>
         </section>
+        <section id="seance20" class="content-section">
+            <a href="renforcement/Séance_20.odt">Télécharger la séance 20</a>
+            <iframe src="renforcement/Séance_20.pdf" frameborder="0"></iframe>
+        </section>
+        <section id="seance21" class="content-section">
+            <a href="renforcement/Séance_21.odt">Télécharger la séance 21</a>
+            <iframe src="renforcement/Séance_21.pdf" frameborder="0"></iframe>
+        </section>
+        <section id="seance22" class="content-section">
+            <a href="renforcement/Séance_22.odt">Télécharger la séance 22</a>
+            <iframe src="renforcement/Séance_22.pdf" frameborder="0"></iframe>
+        </section>
+        <section id="seance23" class="content-section">
+            <a href="renforcement/Séance_23.odt">Télécharger la séance 23</a>
+            <iframe src="renforcement/Séance_23.pdf" frameborder="0"></iframe>
+        </section>
+        <section id="seance24" class="content-section">
+            <a href="renforcement/Séance_24.odt">Télécharger la séance 24</a>
+            <iframe src="renforcement/Séance_24.pdf" frameborder="0"></iframe>
+        </section>
+        <section id="seance25" class="content-section">
+            <a href="renforcement/Séance_25.odt">Télécharger la séance 25</a>
+            <iframe src="renforcement/Séance_25.pdf" frameborder="0"></iframe>
+        </section>
     </main>
+    <!-- Début du JS pour afficher / masquer les cours -->
     <script>
         // Show selected session content
         function showSession(sessionId) {
