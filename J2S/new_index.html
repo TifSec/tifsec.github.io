@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>J2S Inserts — Inserts 3D pour jeux de société</title>
+  <meta name="description" content="Inserts 3D pour jeux de société : rangement optimisé, setup plus rapide, versions sur mesure et fabrication soignée." />
+  <style>
+    :root {
+      --bg: #0f1115;
+      --bg-soft: #171a21;
+      --panel: rgba(255,255,255,0.05);
+      --panel-strong: rgba(255,255,255,0.08);
+      --text: #f4f6fb;
+      --muted: #b8c0d4;
+      --line: rgba(255,255,255,0.1);
+      --accent: #d6b16f;
+      --accent-2: #7dd3b0;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 24px;
+      --radius-lg: 32px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(214,177,111,0.12), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(125,211,176,0.09), transparent 26%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(15,17,21,0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), #f0dfb1);
+      color: #111;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 48px;
+      padding: 0 1.2rem;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font: inherit;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--text);
+      color: #11151c;
+      box-shadow: var(--shadow);
+    }
+    .btn-secondary {
+      border-color: var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+    }
+    .btn-accent {
+      background: var(--accent-2);
+      color: #0f1115;
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: 4rem 0 3rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2.5rem;
+      align-items: center;
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(214,177,111,0.12);
+      border: 1px solid rgba(214,177,111,0.2);
+      color: #f0d7aa;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      max-width: 12ch;
+      margin-bottom: 1.2rem;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.12rem;
+      max-width: 60ch;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.9rem;
+      max-width: 720px;
+    }
+
+    .mini-card,
+    .card,
+    .product,
+    .feature,
+    .step,
+    .contact-box {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .mini-card {
+      border-radius: 18px;
+      padding: 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-visual {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr 0.9fr;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      padding: 1.2rem;
+    }
+
+    .card h3 { font-size: 1.4rem; margin-bottom: 0.35rem; }
+    .muted { color: var(--muted); }
+    .tiny { font-size: 0.92rem; color: var(--muted); }
+
+    .placeholder {
+      min-height: 270px;
+      border-radius: 22px;
+      border: 1px dashed rgba(255,255,255,0.14);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 1rem;
+      color: #8c96ad;
+    }
+
+    .stack {
+      display: grid;
+      gap: 1rem;
+    }
+
+    section { padding: 4rem 0; }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .section-title p {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.8rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 0;
+    }
+
+    .features {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .feature, .step {
+      border-radius: 22px;
+      padding: 1.3rem;
+    }
+
+    .catalog-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 0.7rem 1rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+      font: inherit;
+    }
+
+    .chip.active,
+    .chip:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--text);
+    }
+
+    .products {
+      display: grid;
+      gap: 1.4rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .product {
+      border-radius: 28px;
+      padding: 1rem;
+      transition: 0.25s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-4px);
+      background: var(--panel-strong);
+    }
+
+    .product-image {
+      min-height: 220px;
+      border-radius: 22px;
+      border: 1px dashed rgba(255,255,255,0.14);
+      background: #131720;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #7e88a0;
+      padding: 1rem;
+    }
+
+    .product-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .price {
+      background: rgba(214,177,111,0.12);
+      color: #f0d7aa;
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+
+    .tag {
+      padding: 0.42rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .steps {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .number {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(214,177,111,0.14);
+      color: #f0d7aa;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .contact-wrap {
+      display: grid;
+      gap: 1.2rem;
+      grid-template-columns: 1.2fr 0.8fr;
+      padding: 1.4rem;
+      border-radius: 32px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box {
+      border-radius: 28px;
+      padding: 1.2rem;
+      background: rgba(8,10,14,0.35);
+    }
+
+    .field {
+      width: 100%;
+      margin-bottom: 0.9rem;
+      padding: 0.95rem 1rem;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font: inherit;
+    }
+
+    .field::placeholder { color: #8791a8; }
+    textarea.field { min-height: 130px; resize: vertical; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .contact-wrap,
+      .features,
+      .products,
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero-visual { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .nav { flex-wrap: wrap; padding: 0.7rem 0; }
+      .nav-links { width: 100%; justify-content: center; flex-wrap: wrap; }
+      .hero-grid,
+      .features,
+      .products,
+      .steps,
+      .contact-wrap,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero { padding-top: 2.6rem; }
+      h1 { max-width: none; }
+      .section-title { align-items: start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#accueil" class="brand">
+        <span class="brand-mark">J2S</span>
+        <span>J2S Inserts</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#catalogue">Catalogue</a>
+        <a href="#sur-mesure">Sur mesure</a>
+        <a href="#apropos">À propos</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Inserts 3D pour jeux de société</span>
+          <h1>Range mieux. Installe plus vite. Joue davantage.</h1>
+          <p class="lead">
+            Des inserts élégants et robustes pour transformer la boîte de ton jeu en une expérience plus fluide, plus belle et plus pratique.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#catalogue">Voir la boutique</a>
+            <a class="btn btn-secondary" href="#sur-mesure">Demander du sur-mesure</a>
+          </div>
+          <div class="mini-grid">
+            <div class="mini-card">Fabrication 3D soignée</div>
+            <div class="mini-card">Compatibilités détaillées</div>
+            <div class="mini-card">Expédition sécurisée</div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <article class="card">
+            <p class="tiny">Produit vedette</p>
+            <h3>Insert premium</h3>
+            <div class="placeholder">Ajoute ici une vraie photo produit ou un rendu 3D</div>
+            <p class="tiny" style="margin-top: 1rem;">Setup rapide • Boîte optimisée • Rangement net</p>
+          </article>
+          <div class="stack">
+            <article class="card" style="background: rgba(125,211,176,0.12);">
+              <p class="tiny" style="color:#c9f3e4;">Promesse</p>
+              <h3 style="font-size:1.15rem; margin-bottom:0;">Un insert ne vend pas juste du rangement. Il vend du temps de jeu gagné.</h3>
+            </article>
+            <article class="card">
+              <p class="tiny">Ce qu’il faut montrer</p>
+              <ul class="muted" style="padding-left: 1.1rem; margin-bottom: 0;">
+                <li>Boîte ouverte</li>
+                <li>Tous les bacs sortis</li>
+                <li>Mise en place sur table</li>
+                <li>Cartes sleevées / non sleevées</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container features">
+        <article class="feature">Mise en place plus rapide</article>
+        <article class="feature">Rangement net et durable</article>
+        <article class="feature">Fabrication soignée en impression 3D</article>
+        <article class="feature">Design pensé pour de vraies parties</article>
+        <article class="feature">Possibilité de personnalisation</article>
+        <article class="feature">Expédition protégée et claire</article>
+      </div>
+    </section>
+
+    <section id="catalogue">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <p>Catalogue</p>
+            <h2>Des inserts pensés pour de vraies tables de jeu</h2>
+          </div>
+          <div class="catalog-toolbar">
+            <button class="chip active" data-filter="all">Tous</button>
+            <button class="chip" data-filter="expert">Experts</button>
+            <button class="chip" data-filter="famille">Familiaux</button>
+          </div>
+        </div>
+
+        <div class="products">
+          <article class="product" data-category="expert">
+            <div class="product-image">Photo principale du produit</div>
+            <div class="product-head">
+              <h3>Insert premium pour Terraforming Mars</h3>
+              <span class="price">À partir de 29 €</span>
+            </div>
+            <p class="muted">Rangement optimisé, mise en place rapide, compatibilité sleeves selon version.</p>
+            <div class="tags">
+              <span class="tag">PLA / PETG</span>
+              <span class="tag">Setup rapide</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-primary" href="#contact">Voir la fiche</a>
+              <a class="btn btn-secondary" href="#contact">Commander</a>
+            </div>
+          </article>
+
+          <article class="product" data-category="famille">
+            <div class="product-image">Photo principale du produit</div>
+            <div class="product-head">
+              <h3>Insert modulaire pour Wingspan</h3>
+              <span class="price">À partir de 24 €</span>
+            </div>
+            <p class="muted">Bacs joueurs et ressources pensés pour passer de la boîte à la table en quelques secondes.</p>
+            <div class="tags">
+              <span class="tag">PLA</span>
+              <span class="tag">Facile à utiliser</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-primary" href="#contact">Voir la fiche</a>
+              <a class="btn btn-secondary" href="#contact">Commander</a>
+            </div>
+          </article>
+
+          <article class="product" data-category="expert">
+            <div class="product-image">Photo principale du produit</div>
+            <div class="product-head">
+              <h3>Insert deluxe pour Ark Nova</h3>
+              <span class="price">À partir de 39 €</span>
+            </div>
+            <p class="muted">Organisation dense et élégante pour protéger les éléments et fluidifier le rangement.</p>
+            <div class="tags">
+              <span class="tag">PETG</span>
+              <span class="tag">Transport sécurisé</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-primary" href="#contact">Voir la fiche</a>
+              <a class="btn btn-secondary" href="#contact">Commander</a>
+            </div>
+          </article>
+
+          <article class="product" data-category="expert">
+            <div class="product-image">Photo principale du produit</div>
+            <div class="product-head">
+              <h3>Insert deluxe pour Ark Nova</h3>
+              <span class="price">À partir de 39 €</span>
+            </div>
+            <p class="muted">Organisation dense et élégante pour protéger les éléments et fluidifier le rangement.</p>
+            <div class="tags">
+              <span class="tag">PETG</span>
+              <span class="tag">Transport sécurisé</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-primary" href="#contact">Voir la fiche</a>
+              <a class="btn btn-secondary" href="#contact">Commander</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <p>Fonctionnement</p>
+            <h2>Un parcours simple, clair, efficace</h2>
+          </div>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <div class="number">1</div>
+            <h3>Choisis ton jeu</h3>
+            <p class="muted">Navigue par jeu, éditeur, complexité ou format de boîte.</p>
+          </article>
+          <article class="step">
+            <div class="number">2</div>
+            <h3>Découvre l’insert</h3>
+            <p class="muted">Photos, dimensions, compatibilités, sleeves, extensions et détails de rangement.</p>
+          </article>
+          <article class="step">
+            <div class="number">3</div>
+            <h3>Reçois et joue</h3>
+            <p class="muted">Déballe, range, installe plus vite et profite d’une table plus propre.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="sur-mesure">
+      <div class="container contact-wrap">
+        <div>
+          <p style="color: var(--accent-2); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem;">Sur mesure</p>
+          <h2 style="font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; letter-spacing: -0.03em;">Tu veux un insert pour un jeu moins courant ?</h2>
+          <p class="lead" style="max-width: 58ch; margin-bottom: 1rem;">
+            Propose un projet personnalisé avec photos de la boîte, contenu, dimensions, présence d’extensions et usage de protège-cartes.
+          </p>
+          <div class="tags">
+            <span class="tag">Dimensions de boîte</span>
+            <span class="tag">Extensions</span>
+            <span class="tag">Sleeves</span>
+            <span class="tag">Préférences de rangement</span>
+          </div>
+        </div>
+
+        <div class="contact-box" id="contact">
+          <h3>Demande rapide</h3>
+          <form id="contact-form">
+            <input class="field" type="text" name="jeu" placeholder="Nom du jeu" required />
+            <input class="field" type="email" name="email" placeholder="Email" required />
+            <textarea class="field" name="message" placeholder="Décris ton besoin" required></textarea>
+            <button class="btn btn-accent" type="submit" style="width: 100%;">Envoyer la demande</button>
+          </form>
+          <p id="form-message" class="tiny" style="margin-top: 0.8rem;"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="apropos">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <p>À propos</p>
+            <h2>Une boutique pensée pour les joueurs exigeants</h2>
+          </div>
+        </div>
+        <article class="card">
+          <p class="lead" style="margin-bottom: 0; max-width: 75ch;">
+            Ici, l’objectif n’est pas seulement d’imprimer des pièces. Il s’agit de concevoir des inserts utiles, beaux et pratiques, qui améliorent réellement l’expérience de jeu, la préparation de la table et le rangement en fin de partie.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>© 2026 J2S Inserts — Tous droits réservés</div>
+      <div>GitHub Pages • HTML/CSS/JS statique</div>
+    </div>
+  </footer>
+
+  <script>
+    const chips = document.querySelectorAll('.chip');
+    const products = document.querySelectorAll('.product');
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const filter = chip.dataset.filter;
+
+        products.forEach(product => {
+          const show = filter === 'all' || product.dataset.category === filter;
+          product.style.display = show ? 'block' : 'none';
+        });
+      });
+    });
+
+    const form = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      formMessage.textContent = 'Formulaire prêt. Sur GitHub Pages, relie-le à Formspree, Netlify Forms, Basin ou un mailto personnalisé.';
+    });
+  </script>
+</body>
+</html>
