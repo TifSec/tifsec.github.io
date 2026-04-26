@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme 3ème</title>
+    <style>
+        :root{
+            --accent:#0b6fa8;
+            --muted:#6b7280;
+            --ok:#16a34a;
+            --warn:#f59e0b;
+            --danger:#ef4444;
+            --glass: rgba(11,111,168,0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Calibri, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        main {
+            margin-left: 20px;
+            padding: 20px;
+            min-height: 80vh;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        a{
+            color: black;
+        }
+
+        a:hover{
+            color: orange;
+        }
+
+        aside {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            transition: width 0.3s ease;
+            overflow-y: auto;
+            scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
+        }
+
+        aside::-webkit-scrollbar {
+            display: none; /* Masque la barre de défilement pour Chrome, Safari, et Opera */
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            padding: 10px;
+        }
+
+        aside ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        /* Style pour l'élément de menu actif (séance en cours) */
+        aside ul li a.active {
+            background-color: #4CAF50; /* Couleur pour l'élément actif */
+            color: white;
+            font-weight: bold;
+        }
+
+        aside ul li a:hover {
+            background-color: #555;
+        }
+
+        .hamburger {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h2, h3, h4, h5{
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        h3{
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+        }
+
+        h4, h5, p, ul{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .image{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        thead {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Styles spécifiques pour le calendrier */
+        table.calendar {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .current-week {
+            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
+        }
+
+        pre{
+            background-color: black;
+            color: white;
+        }
+
+        .today {
+            background-color: #007BFF; /* Bleu vif pour le jour actuel */
+            color: white; /* Texte blanc pour le contraste */
+        }
+
+        .vacation {
+            background-color: #B2E4A6; /* Vert pastel pour les vacances */
+            color: black; /* Texte noir ou foncé pour la lisibilité */
+        }
+
+        .holiday {
+            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
+            color: white; /* Texte blanc ou clair */
+        }
+
+        iframe{
+            width: 87vw;
+            height: 42vw;
+        }
+
+        .rep {
+            visibility: hidden;
+        }
+
+        /* code {
+            background-color: #eef;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #eef;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        } */
+
+        .note {
+            background-color: #ffffcc;
+            padding: 10px;
+            border-left: 4px solid #ffcc00;
+            margin: 20px 0;
+        }
+
+        .container {
+            /* max-width: 800px; */
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        a button:hover {
+            background-color: #e06e2b;
+        }
+
+        .show-site {
+            width: 100%;
+            height: 100%;
+            zoom: 0.5;
+            border-radius: 10px;
+        }
+
+        .show-site-div {
+            text-align: center;
+            border: 1px solid #ccc;
+            width: 45%;
+            border-radius: 10px;
+        }
+
+        .timeline{
+            display:flex;
+            flex-direction:column;
+            gap:8px
+        }
+
+        .time-row{
+            display:flex;
+            gap:12px;
+            align-items:flex-start
+        }
+
+        .time{
+            width:64px;
+            font-weight:700;
+            color:var(--accent)
+        }
+
+        .activity{
+            flex:1
+        }
+
+        .section-title{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            margin-bottom:10px
+        }
+
+        .pill{
+            padding:6px 10px;
+            border-radius:999px;
+            background:var(--accent);
+            color:white;
+            font-weight:600;
+            font-size:0.85rem
+        }
+
+        .section-title{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            margin-bottom:10px
+        }
+
+        .small{
+            font-size:0.9rem;
+            color:var(--muted)
+        }
+
+        .tile{
+            border-radius:10px;
+            padding:10px;
+            background:linear-gradient(180deg,#fff,#fbfeff);
+            border:1px solid #eef6fb
+        }
+
+        .student-sheet{
+            background:#fbfeff;
+            border-left:4px solid var(--accent);
+            padding:10px;
+            border-radius:6px
+        }
+
+        .quiz{
+            display:grid;
+            gap:8px
+        }
+
+        button.cta{
+            background:var(--accent);
+            color:#fff;
+            border:0;
+            padding:10px 14px;
+            border-radius:8px;
+            font-weight:700;
+            cursor:pointer
+        }
+
+        .tile{
+            border-radius:10px;
+            padding:10px;
+            background:linear-gradient(180deg,#fff,#fbfeff);
+            border:1px solid #eef6fb
+        }
+
+        .checklist{
+            display:grid;
+            gap:6px
+        }
+
+        .ok{
+            color:var(--ok);
+            font-weight:700
+        }
+
+        .warn{
+            color:var(--warn);
+            font-weight:700
+        }
+
+        .danger{
+            color:var(--danger);
+            font-weight:700
+        }
+
+        pre{
+            background:#0f172a;
+            color:white;
+            padding:10px;
+            border-radius:8px;
+            overflow:auto;
+            font-size:0.9rem
+        }
+
+        details{
+            margin-top:8px
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Classe de 3ème</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Séance : Découvrir PowerPoint / Impress et créer une présentation attrayante</h2>
+            <h3>Compétence visée : Réaliser une présentation numérique claire, structurée et agréable à regarder</h3>
+
+            <b>Objectifs d’apprentissage</b>
+
+            <ul>
+                <b>Ce que les élèves vont apprendre (connaissances) :</b>
+                <li>PowerPoint et LibreOffice Impress sont des logiciels qui permettent de créer des diaporamas.</li>
+                <li>Une présentation numérique est composée de plusieurs diapositives.</li>
+                <li>Chaque diapositive doit transmettre une idée principale.</li>
+                <li>Une présentation réussie doit être lisible, organisée et agréable à regarder.</li>
+                <li>Les images, les titres, les couleurs et la mise en page permettent de rendre une présentation plus attractive.</li>
+                <li>Une présentation ne doit pas contenir trop de texte : elle accompagne une explication orale.</li>
+            </ul>
+
+            <ul>
+                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
+                <li>Ouvrir PowerPoint ou LibreOffice Impress.</li>
+                <li>Créer une nouvelle présentation.</li>
+                <li>Ajouter, supprimer et déplacer des diapositives.</li>
+                <li>Modifier le titre et le texte d’une diapositive.</li>
+                <li>Insérer une image dans une diapositive.</li>
+                <li>Changer la mise en page d’une diapositive.</li>
+                <li>Choisir des couleurs et une police lisibles.</li>
+                <li>Créer une présentation courte sur un voyage scolaire.</li>
+                <li>Enregistrer et exporter une présentation en PDF.</li>
+            </ul>
+
+            <h3>Pourquoi ce cours</h3>
+            <p>
+                Une présentation numérique est un outil très utilisé au collège, au lycée, en entreprise ou lors d’un exposé.
+                Mais pour être efficace, elle doit être bien construite.
+                Avant de créer une belle présentation, il faut d’abord savoir utiliser les fonctions de base du logiciel :
+                créer une diapositive, écrire un titre, ajouter une image, organiser les pages et enregistrer son travail.
+                Dans cette séance de deux heures, vous allez d’abord apprendre les bases de PowerPoint ou Impress,
+                puis vous utiliserez ces compétences pour présenter un voyage scolaire récent.
+            </p>
+
+            <h3>Organisation générale de la séance</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Temps</th>
+                        <th>Activité</th>
+                        <th>Objectif</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1h</td><td>Apprendre les bases de PowerPoint / Impress + créer une présentation attrayante</td><td>Savoir utiliser le logiciel et comprendre les règles de présentation</td></tr>
+                    <tr><td>1h</td><td>Préparer puis réaliser une présentation sur le voyage scolaire</td><td>Créer un diaporama structuré et prêt à être présenté</td></tr>
+                </tbody>
+            </table>
+
+            <h3>1) Lancement + consigne de fichier</h3>
+            <p>
+                <ul>
+                    <li>Avant de commencer :</li>
+                    <li>Ouvrir PowerPoint ou LibreOffice Impress</li>
+                    <li>Créer une nouvelle présentation</li>
+                    <li>Nom du fichier : <code>3e_S53_Nom1_Nom2_VoyageScolaire_V1</code></li>
+                </ul>
+            </p>
+
+            <p>
+                <b>Objectif du jour :</b> apprendre à utiliser PowerPoint ou Impress, puis créer une présentation attractive sur le voyage scolaire.
+            </p>
+
+            <h3>2) Première partie — Découvrir le logiciel PowerPoint / Impress</h3>
+            <p>
+                PowerPoint et LibreOffice Impress fonctionnent presque de la même manière.
+                Le document créé s’appelle une présentation.
+                Une présentation est composée de plusieurs pages appelées diapositives.
+            </p>
+
+            <p><b>Vocabulaire à connaître :</b></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mot</th>
+                        <th>Définition simple</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Présentation</td><td>Document composé de plusieurs diapositives</td></tr>
+                    <tr><td>Diapositive</td><td>Page d’un diaporama</td></tr>
+                    <tr><td>Diaporama</td><td>Mode qui permet d’afficher la présentation en plein écran</td></tr>
+                    <tr><td>Mise en page</td><td>Organisation des éléments sur une diapositive</td></tr>
+                    <tr><td>Zone de texte</td><td>Emplacement où l’on peut écrire</td></tr>
+                    <tr><td>Transition</td><td>Effet entre deux diapositives</td></tr>
+                    <tr><td>Animation</td><td>Effet appliqué à un texte ou une image</td></tr>
+                </tbody>
+            </table>
+
+            <h3>3) Les bases à apprendre pas à pas</h3>
+            <p>
+                Le but est de comprendre les fonctions principales du logiciel avant de commencer le vrai travail.
+            </p>
+
+            <h4>A. Créer une nouvelle présentation</h4>
+            <ul>
+                <li>Ouvrir PowerPoint ou LibreOffice Impress</li>
+                <li>Choisir une présentation vierge ou un modèle simple</li>
+                <li>Observer l’écran : la diapositive au centre, la liste des diapositives à gauche, les outils en haut</li>
+            </ul>
+
+            <h4>B. Écrire dans une diapositive</h4>
+            <ul>
+                <li>Cliquer dans la zone de titre</li>
+                <li>Écrire un titre court</li>
+                <li>Cliquer dans la zone de texte</li>
+                <li>Écrire quelques mots ou une courte phrase</li>
+                <li>Modifier la taille du texte si nécessaire</li>
+            </ul>
+
+            <h4>C. Ajouter une nouvelle diapositive</h4>
+            <ul>
+                <li>Cliquer sur <b>Nouvelle diapositive</b></li>
+                <li>Choisir une mise en page simple</li>
+                <li>Ajouter un titre</li>
+                <li>Ajouter un court texte</li>
+            </ul>
+
+            <h4>D. Supprimer ou déplacer une diapositive</h4>
+            <ul>
+                <li>Cliquer sur une diapositive dans la colonne de gauche</li>
+                <li>Pour supprimer : clic droit → supprimer</li>
+                <li>Pour déplacer : cliquer-glisser la diapositive à l’endroit voulu</li>
+            </ul>
+
+            <h4>E. Insérer une image</h4>
+            <ul>
+                <li>Cliquer sur <b>Insertion</b></li>
+                <li>Choisir <b>Image</b></li>
+                <li>Sélectionner une image enregistrée sur l’ordinateur</li>
+                <li>Redimensionner l’image avec les coins</li>
+                <li>Ne pas étirer l’image pour éviter de la déformer</li>
+            </ul>
+
+            <h4>F. Modifier l’apparence</h4>
+            <ul>
+                <li>Changer la taille du titre</li>
+                <li>Mettre certains mots en gras</li>
+                <li>Choisir une couleur de texte lisible</li>
+                <li>Changer la couleur de fond si besoin</li>
+                <li>Aligner correctement les éléments</li>
+            </ul>
+
+            <h4>G. Lancer le diaporama</h4>
+            <ul>
+                <li>Cliquer sur <b>Diaporama</b></li>
+                <li>Lancer depuis le début</li>
+                <li>Utiliser les flèches du clavier pour avancer ou revenir en arrière</li>
+                <li>Appuyer sur Échap pour quitter le diaporama</li>
+            </ul>
+
+            <h4>H. Enregistrer et exporter</h4>
+            <ul>
+                <li>Cliquer sur <b>Fichier</b> → <b>Enregistrer sous</b></li>
+                <li>Choisir le bon dossier</li>
+                <li>Nommer correctement le fichier</li>
+            </ul>
+
+            <h3>4) Mini-exercice guidé : créer 3 diapositives d’entraînement</h3>
+            <p>
+                Avant de commencer la vraie présentation, réaliser un petit entraînement.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Diapositive</th>
+                        <th>Travail demandé</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Diapo 1</td><td>Écrire un titre et les noms des élèves du groupe</td></tr>
+                    <tr><td>Diapo 2</td><td>Ajouter un titre, une courte phrase et une image (prise sur le web si besoin)</td></tr>
+                    <tr><td>Diapo 3</td><td>Changer la mise en page, ajouter une image et quelques mots-clés</td></tr>
+                </tbody>
+            </table>
+
+            <p><b>But de l’exercice :</b></p>
+            <ul>
+                <li>Savoir ajouter une diapositive</li>
+                <li>Savoir écrire du texte</li>
+                <li>Savoir insérer une image</li>
+                <li>Savoir déplacer et redimensionner les éléments</li>
+                <li>Savoir lancer le diaporama</li>
+            </ul>
+
+            <h3>5) Deuxième partie — Comment créer une présentation attrayante ?</h3>
+            <p>
+                Une présentation attrayante est une présentation que l’on comprend rapidement et que l’on a envie de regarder.
+                Elle doit être claire, simple et bien organisée.
+            </p>
+
+            <p><b>Les règles importantes :</b></p>
+            <ul>
+                <li><b>Une diapositive = une idée principale</b></li>
+                <li>Un titre court et visible</li>
+                <li>Peu de texte</li>
+                <li>Des mots-clés plutôt que des longs paragraphes</li>
+                <li>Des images utiles et de bonne qualité</li>
+                <li>Des couleurs lisibles</li>
+                <li>La même police et le même style sur toute la présentation</li>
+                <li>Des éléments bien alignés</li>
+                <li>Pas trop d’animations</li>
+            </ul>
+
+            <p><b>Exemple de mauvais choix :</b></p>
+            <ul>
+                <li>Mettre un paragraphe entier sur une seule diapositive</li>
+                <li>Utiliser une écriture trop petite</li>
+                <li>Mettre du texte jaune sur un fond blanc</li>
+                <li>Ajouter plusieurs animations inutiles</li>
+                <li>Utiliser des images floues ou déformées</li>
+            </ul>
+
+            <p><b>Exemple de bon choix :</b></p>
+            <ul>
+                <li>Un grand titre</li>
+                <li>3 ou 4 mots-clés</li>
+                <li>Une grande image de bonne qualité</li>
+                <li>Une couleur de fond simple</li>
+                <li>Une mise en page propre et équilibrée</li>
+            </ul>
+
+            <h3>6) Préparer la présentation du voyage scolaire</h3>
+            <p>
+                Avant de créer toutes les diapositives, il faut préparer les idées.
+                Votre présentation doit raconter le voyage scolaire comme une petite histoire :
+                où vous êtes allés, ce que vous avez fait, ce que vous avez découvert et ce que vous avez retenu.
+            </p>
+
+            <p><b>Compléter le tableau suivant :</b></p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Élément à préparer</th>
+                        <th>Réponse</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Nom du voyage scolaire</td><td>…</td></tr>
+                    <tr><td>Lieu du voyage</td><td>…</td></tr>
+                    <tr><td>Date ou période</td><td>…</td></tr>
+                    <tr><td>Objectif du voyage</td><td>…</td></tr>
+                    <tr><td>Activité ou visite n°1</td><td>…</td></tr>
+                    <tr><td>Activité ou visite n°2</td><td>…</td></tr>
+                    <tr><td>Activité ou visite n°3</td><td>…</td></tr>
+                    <tr><td>Moment le plus marquant</td><td>…</td></tr>
+                    <tr><td>Ce que vous avez appris</td><td>…</td></tr>
+                    <tr><td>Votre avis sur le voyage</td><td>…</td></tr>
+                </tbody>
+            </table>
+
+            <h3>7) Structure obligatoire de la présentation</h3>
+            <p>
+                Votre présentation doit contenir au minimum 7 diapositives.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Diapositive</th>
+                        <th>Contenu attendu</th>
+                        <th>Conseil de mise en page</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Diapo 1</td>
+                        <td>Titre du voyage, noms, classe, date</td>
+                        <td>Grand titre + image ou fond simple</td>
+                    </tr>
+                    <tr>
+                        <td>Diapo 2</td>
+                        <td>Présentation du voyage : lieu, durée, objectif</td>
+                        <td>Carte, photo du lieu ou 3 informations clés</td>
+                    </tr>
+                    <tr>
+                        <td>Diapo 3</td>
+                        <td>Le départ ou l’arrivée</td>
+                        <td>Photo + quelques mots-clés</td>
+                    </tr>
+                    <tr>
+                        <td>Diapo 4</td>
+                        <td>Une première activité ou visite</td>
+                        <td>Image principale + texte court</td>
+                    </tr>
+                    <tr>
+                        <td>Diapo 5</td>
+                        <td>Une deuxième activité ou visite</td>
+                        <td>Deux images ou une image + liste courte</td>
+                    </tr>
+                    <tr>
+                        <td>Diapo 6</td>
+                        <td>Ce que vous avez appris</td>
+                        <td>3 idées importantes bien visibles</td>
+                    </tr>
+                    <tr>
+                        <td>Diapo 7</td>
+                        <td>Conclusion et avis sur le voyage</td>
+                        <td>Phrase courte + image finale</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>8) Réalisation de la présentation sur le logiciel</h3>
+            <p>
+                Vous devez maintenant créer votre présentation finale dans PowerPoint ou Impress.
+            </p>
+
+            <p><b>Consignes obligatoires :</b></p>
+            <ul>
+                <li>Créer au minimum 7 diapositives</li>
+                <li>Mettre un titre sur chaque diapositive</li>
+                <li>Utiliser des textes courts</li>
+                <li>Insérer au moins 4 images</li>
+                <li>Ne pas déformer les images</li>
+                <li>Utiliser une police lisible</li>
+                <li>Utiliser des couleurs lisibles</li>
+                <li>Garder le même style sur toute la présentation</li>
+                <li>Vérifier l’ordre des diapositives</li>
+                <li>Enregistrer régulièrement le travail</li>
+            </ul>
+
+            <p><b>Conseil important :</b></p>
+            <ul>
+                <li>Le diaporama ne doit pas tout dire à votre place.</li>
+                <li>Il doit donner les idées principales pour accompagner votre présentation orale.</li>
+            </ul>
+
+            <h3>9) Améliorer la présentation avant le rendu</h3>
+            <p>
+                Une fois toutes les diapositives créées, prendre le temps d’améliorer la présentation.
+            </p>
+
+            <p><b>À vérifier :</b></p>
+            <ul>
+                <li>Les titres sont-ils assez grands ?</li>
+                <li>Les textes sont-ils faciles à lire ?</li>
+                <li>Les images sont-elles nettes ?</li>
+                <li>Les images ne sont-elles pas déformées ?</li>
+                <li>Les couleurs sont-elles agréables ?</li>
+                <li>Les diapositives sont-elles dans le bon ordre ?</li>
+                <li>Le style est-il cohérent du début à la fin ?</li>
+                <li>La conclusion est-elle présente ?</li>
+            </ul>
+
+            <h3>10) Grille de vérification</h3>
+            <p>
+                Avant de rendre le travail, compléter mentalement ou sur papier la grille suivante.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Critère</th>
+                        <th>Oui / Non</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Je sais ajouter une nouvelle diapositive</td><td>…</td></tr>
+                    <tr><td>Je sais écrire un titre et du texte</td><td>…</td></tr>
+                    <tr><td>Je sais insérer une image</td><td>…</td></tr>
+                    <tr><td>Je sais déplacer et redimensionner les éléments</td><td>…</td></tr>
+                    <tr><td>La présentation contient au moins 7 diapositives</td><td>…</td></tr>
+                    <tr><td>Chaque diapositive possède un titre</td><td>…</td></tr>
+                    <tr><td>Les textes sont courts et lisibles</td><td>…</td></tr>
+                    <tr><td>Il y a au moins 4 images</td><td>…</td></tr>
+                    <tr><td>Les images ne sont pas déformées</td><td>…</td></tr>
+                    <tr><td>Les couleurs permettent une bonne lecture</td><td>…</td></tr>
+                    <tr><td>La présentation suit un ordre logique</td><td>…</td></tr>
+                    <tr><td>Le fichier est correctement nommé</td><td>…</td></tr>
+                    <tr><td>Le fichier est exporté en PDF</td><td>…</td></tr>
+                </tbody>
+            </table>
+
+            <h3>11) Rendu en fin de séance</h3>
+            <ul>
+                <li>Votre présentation doit contenir :</li>
+                <ul>
+                    <li>Une diapositive de titre</li>
+                    <li>Une présentation du voyage</li>
+                    <li>Des diapositives sur les activités ou moments importants</li>
+                    <li>Des images</li>
+                    <li>Des textes courts</li>
+                    <li>Une conclusion</li>
+                </ul>
+                <li>Enregistrer le fichier modifiable :</li>
+                <li><code>3e_S53_Nom1_Nom2_VoyageScolaire_V1.pptx</code> ou <code>3e_S53_Nom1_Nom2_VoyageScolaire_V1.odp</code></li>
+                <li>Exporter aussi en PDF :</li>
+                <li><code>3e_S53_Nom1_Nom2_VoyageScolaire_V1.pdf</code></li>
+                <li>Déposer les deux fichiers dans un drive personnel</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
