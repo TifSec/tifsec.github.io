@@ -63,7 +63,7 @@ const sessions = [
     'Séance 38 : Aurillac Visite de l’IUT Lycée Monnet Mermoz et Cortat',
     'Séance 39 : Aurillac Visite de l’IUT Lycée Monnet Mermoz et Cortat',
     'Séance 40 : Les différents types de liaisons mécaniques',
-    'Séance 41 : Élèves Saint-Flour Antigone',
+    'Séance 41 : Entrainement PIX',
     'Séance 42 : Élèves Saint-Flour Antigone',
     'Séance 43 : PIX Certification',
     'Séance 44 : Modélisation des différents types de liaisons mécaniques',
