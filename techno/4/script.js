@@ -62,7 +62,7 @@ const sessions = [
     'Séance 41 : Créer une table de données exploitable (structurer)',
     'Séance 42 : CSV + tableur : importer, trier, filtrer',
     'Séance 43 : Calculs utiles dans le tableur : min / max / moyenne + choix d’un seuil',
-    'Séance 44 : Classe absente',
+    'Séance 44 : Créer et mettre en forme un tableau dans Calc',
     'Séance 45 : Classe absente',
     'Séance 46 : Graphique + interprétation : comprendre le comportement à partir des données',
     'Séance 47 : Du tableur au programme : régler un comportement (seuil d’alerte)',

@@ -45,11 +45,11 @@
 # print(f"il y a {occurence_lettre(chaine, lettre)} fois la lettre -> {lettre}")
 
 ## Raphael ##
-def est_palindrome(chaine):
-    while len(chaine)>=2:
-        if chaine[0] != chaine[-1]
-            return False
-        chaine = chaine[1:-1]
-    return True
+# def est_palindrome(chaine):
+#     while len(chaine)>=2:
+#         if chaine[0] != chaine[-1]
+#             return False
+#         chaine = chaine[1:-1]
+#     return True
 
-est_palindrome("kayak")
+# est_palindrome("kayak")
