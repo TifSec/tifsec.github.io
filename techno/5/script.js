@@ -1,21 +1,21 @@
 const holidays = {
-    '2025-11-01': 'Toussaint',
-    '2025-11-11': 'Armistice 1918',
-    '2025-12-25': 'Noël',
-    '2026-01-01': 'Jour de l\'An',
-    '2026-04-06': 'Lundi de Pâques',
-    '2026-05-01': 'Fête du Travail',
-    '2026-05-08': 'Victoire 1945',
-    '2026-05-14': 'Ascension',
-    '2026-05-25': 'Lundi de Pentecôte',
+    '2026-11-01': 'Toussaint',
+    '2026-11-11': 'Armistice 1918',
+    '2026-12-25': 'Noël',
+    '2027-01-01': 'Jour de l\'An',
+    '2027-04-06': 'Lundi de Pâques',
+    '2027-05-01': 'Fête du Travail',
+    '2027-05-08': 'Victoire 1945',
+    '2027-05-14': 'Ascension',
+    '2027-05-25': 'Lundi de Pentecôte',
 };
 
 const vacations = [
-    { start: '2025-10-18', end: '2025-11-02', name: 'Vacances de la Toussaint' },
-    { start: '2025-12-20', end: '2026-01-04', name: 'Vacances de Noël' },
-    { start: '2026-02-07', end: '2026-02-22', name: 'Vacances d\'hiver' },
-    { start: '2026-04-04', end: '2026-04-19', name: 'Vacances de printemps' },
-    { start: '2026-07-04', end: '2026-09-01', name: 'Vacances d\'été' }
+    { start: '2026-10-23', end: '2026-11-08', name: 'Vacances de la Toussaint' },
+    { start: '2025-12-18', end: '2027-01-03', name: 'Vacances de Noël' },
+    { start: '2027-02-19', end: '2027-02-06', name: 'Vacances d\'hiver' },
+    { start: '2027-04-22', end: '2027-05-09', name: 'Vacances de printemps' },
+    { start: '2027-07-04', end: '2027-09-01', name: 'Vacances d\'été' }
 ];
 
 const sessions = [
@@ -236,8 +236,8 @@ function isToday(date) {
 
 function generateCalendar() {
     const calendarBody = document.getElementById('calendar-body');
-    const startDate = new Date('2025-09-04');  // Commence le jeudi 4 septembre
-    const endDate = new Date('2026-07-09');
+    const startDate = new Date('2026-09-04');  // Commence le vendredi 4 septembre
+    const endDate = new Date('2027-07-04');
     
     let currentDate = startDate;
     let sessionIndex = 0;
@@ -248,7 +248,7 @@ function generateCalendar() {
         const row = document.createElement('tr');
 
         if (firstLine) {
-            // Première ligne : uniquement le jeudi
+            // Première ligne : uniquement le vendredi
             const fridayDateString = currentDate.toISOString().split('T')[0];
             const fridayCell = document.createElement('td');
             const fridayDescCell = document.createElement('td');
