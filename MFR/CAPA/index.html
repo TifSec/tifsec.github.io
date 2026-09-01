@@ -3,516 +3,334 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programme Certificat d’Aptitude Professionnelle Agricole</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Programme TIM CAPa 2</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js"></script>
 </head>
 <body>
 
-    <header>
-        <h1>Classe CAPA Palefrenier Soigneur</h1>
+    <header class="course-header">
+        <h1>TIM - CAPa 2</h1>
+
+        <button class="menu-button" onclick="toggleSessionMenu()">
+            ☰ Séances
+        </button>
+        <h2>Bienvenue en TIM !</h2>
+        <nav id="session-menu">
+            <a href="#" onclick="showSession('home'); return false;">🏠 Accueil</a>
+            <div id="session-list"></div>
+        </nav>
     </header>
 
     <main id="content">
-        <!-- <div>
-            <h3>Contexte</h3>
-            <p>
-                Vous travaillez dans un centre équestre. Vous devez suivre les chevaux en pension et le chiffre d’affaires que cela génère. On va utiliser le tableur comme un vrai outil de gestion.
-            </p>
-            <h3>Exercice 1 – Pensions des chevaux</h3>
-            <ol>
-                <li>Créez un document Excel</li>
-                <li>Enregistrez le sous "Pension_chevaux_nom-élève_prénom-élève" (relevé à la fin de la séance)</li>
-                <li>Nommez la première feuille: Exercice_1</li>
-                <li>Copiez le tableau suivant:</li>
-                <img src="tableau_exercice_1.png" alt="">
-                <li>
-                    Mettre en forme:
-                    <ul>
-                        <li>En-têtes en gras, centrées</li>
-                        <li>Colonnes E, H en format monétaire</li>
-                        <li>Ajuster les largeurs.</li>
-                    </ul>
-                </li>
-                <li>Dans H2, calculer le CA total en tenant compte de la remise: CA = Tarif mensuel × Nb de mois × (1 – Remise/100)<span style="visibility: hidden;">Classique: =E2*F2*(1-G2/100) | Formule: =PRODUIT(E2;F2*(1-G2/100))</span></li>
-                <li>Copier la formule de H2 vers le bas jusqu’à H13.</li>
-                <li>
-                    On considère qu’un client est VIP si le CA total de son cheval est supérieur ou égal à 2 500 €.
-                    <ul>
-                        <li>
-                            Dans I2, écrire une formule qui affiche :
-                            <ul>
-                                <li>"VIP" si H2>=2500</li>
-                                <li>"Standard" sinon<span style="visibility: hidden;">=SI(H2>=2500;"VIP";"Standard")</span></li>
-                            </ul>
-                        </li>
-                        <li>Recopier jusqu’à I13.</li>
-                    </ul>
-                </li>
-                <li>Créer une petite zone de récapitulatif à côté (par ex. à partir de K2) :</li>
-                <li>Recopiez le tableau suivant:</li>
-                <img src="tableau2_exercice_1.png" alt="">
-                <li>En L2, calculer le CA total du centre (somme de la colonne H)<span style="visibility: hidden;">=SOMME(H2:H13)</span></li>
-                <li>En L3, calculer le nombre total de chevaux (nombre de lignes de données)<span style="visibility: hidden;">=NB(H2:H13) Toutes les cellules sont numériques</span></li>
-                <li>En L4, chercher le tarif mensuel minimum (colonne E)<span style="visibility: hidden;">=MIN(E2:E13)</span></li>
-                <li>En L5, chercher le tarif mensuel maximum<span style="visibility: hidden;">=MAX(E2:E13)</span></li>
-                <li>En L6, combien de chevaux sont en Box ? :<span style="visibility: hidden;">=NB.SI(D2:D13;"Box")</span></li>
-                <li>En L7, calculez le tarif mensuel moyen :<span style="visibility: hidden;">=MOYENNE(E2:E13)</span></li>
-                <li>En L8, calculez le CA moyen par cheval :<span style="visibility: hidden;">=MOYENNE(H2:H13)</span></li>
-                <li>
-                    Interpréter les valeurs:
-                    <ul>
-                        <li>En moyenne, un cheval rapporte combien sur la période ?</li>
-                        <li>Le tarif moyen, il est plus proche du pré ou du box ?</li>
-                    </ul>
-                </li>
-                <li>Ajouter un en-tête en J1 : "CA arrondi €"</li>
-                <li>En J2, arrondir le CA total à l’euro près (pas de décimales)<span style="visibility: hidden;">=ARRONDI(H2;0)</span></li>
-                <li>Recopier jusqu’à J13.</li>
-            </ol>
-            <h3>Exercice 2 – Activités du centre équestre & graphique</h3>
-            <ol>
-                <li>Créez une nouvelle feuille dans le document en cours</li>
-                <li>Nommez la feuille: Exercice_2</li>
-                <li>Copiez le tableau suivant:</li>
-                <img src="tableau_exercice_2.png" alt="">
-                <li>
-                    Mettre en forme:
-                    <ul>
-                        <li>Dates alignées au centre</li>
-                        <li>Colonnes E, F en €</li>
-                        <li>En-têtes en gras.</li>
-                    </ul>
-                </li>
-                <li>Dans F2, calculer la recette</li>
-                <span style="visibility: hidden;">Classique: =D2*E2 | Formule: =PRODUIT(D2;E2)</span>
-                <li>Recopier jusqu’à F11.</li>
-                <li>Créer une zone récap en H :</li>
-                <li>Copiez le tableau suivant:</li>
-                <img src="tableau2_exercice_2.png" alt="">
-                <li>I2 : somme de toutes les recettes (colonne F)<span style="visibility: hidden;">=SOMME(F2:F11)</span></li>
-                <li>I3 : nombre total de cavaliers (somme de D)<span style="visibility: hidden;">=SOMME(D2:D11)</span></li>
-                <li>I4 : plus petite recette<span style="visibility: hidden;">=MIN(F2:F11)</span></li>
-                <li>I5 : plus grande recette<span style="visibility: hidden;">=MAX(F2:F11)</span></li>
-                <li>I6 : nombre d’activités réalisées (nombre de lignes)<span style="visibility: hidden;">=NB(F2:F11)</span></li>
-                <li>I7 : nombre moyen de cavaliers/séance<span style="visibility: hidden;">=MOYENNE(D2:D11)</span></li>
-                <li>I8 : Recette moyenne par activité<span style="visibility: hidden;">=MOYENNE(F2:F11)</span></li>
-                <li>
-                    Interpréter les valeurs:
-                    <ul>
-                        <li>On a en moyenne X cavaliers par activité. Est-ce que ça vous semble beaucoup / peu ?</li>
-                        <li>La recette moyenne par activité est de …€. Quelles activités sont au-dessus de la moyenne ?</li>
-                    </ul>
-                </li>
-                <li>Ajouter un en-tête en G1 : "Grosse séance ?"</li>
-                <li>Si le nombre de cavaliers est ≥ 8, alors afficher "Oui", sinon "Non".<span style="visibility: hidden;">=SI(D2>=8;"Oui";"Non")</span></li>
-                <li>Recopier jusqu’à G11.</li>
-                <li>Faire un graphique de la recettes par type d’activité<span style="visibility: hidden;">Sélectionner B1:B11 et F1:F11. | Insertion → Graphique → Histogramme.</span></li>
-                <li>Donnez comme titre a votre graphique : Recette par activité.</li>
-            </ol>
-            <h3>Exercice 3 – Gestion d’un centre équestre</h3>
-            <h3>Partie 1</h3>
-            <ol>
-                <li>Créez une nouvelle feuille dans le document en cours</li>
-                <li>Nommez la feuille: Exercice_3-1</li>
-                <li>Copiez le tableau suivant:</li>
-                <img src="tableau3_exercice_1.png" alt="">
-                <li>
-                    Mettre en forme:
-                    <ul>
-                        <li>En-têtes en gras</li>
-                        <li>Colonnes C, E en format monétaire</li>
-                        <li>Centrer la colonne D.</li>
-                    </ul>
-                </li>
-                <li>En E2, calculer le Total mensuel<span style="visibility: hidden;">Classique: =C2*D2 | Formule: =PRODUIT(C2;D2)</span></li>
-                <li>À partir de G2, copiez le tableau suivant:</li>
-                <img src="tableau3_exercice_2.png" alt="">
-                <li>En H2, calculer le total des dépenses :<span style="visibility: hidden;">=SOMME(E2:E13)</span></li>
-                <li>En H3, afficher la plus petite dépense (sur la colonne E) :<span style="visibility: hidden;">=MIN(E2:E13)</span></li>
-                <li>En H4, afficher la dépense la plus élevée :<span style="visibility: hidden;">=MAX(E2:E13)</span></li>
-                <li>En H5, afficher le nombre de lignes de dépenses :<span style="visibility: hidden;">=NB(E2:E13)</span></li>
-                <li>On veut repérer les lignes dont le total mensuel dépasse 1 000 €.</li>
-                <li>Ajouter un en-tête en F1 : "Grosse dépense ?"</li>
-                <li>En F2, écrire une formule qui affiche : "Oui" si E2>1000, sinon "Non"<span style="visibility: hidden;">=SI(E2>1000;"Oui";"Non")</span></li>
-                <li>Recopier la formule jusqu’à F13.</li>
-                <li>Mise en forme conditionnelle, colorer les “Oui” vert et les "Non" en rouge.</li>
-            </ol>
-            <h3>Partie 1</h3>
-            <ol>
-                <li>Créez une nouvelle feuille dans le document en cours</li>
-                <li>Nommez la feuille: Exercice_3-2</li>
-                <li>Copiez le tableau suivant:</li>
-                <img src="tableau3_exercice_3.png" alt="">
-                <li>
-                    Mettre en forme:
-                    <ul>
-                        <li>Mettre les en-têtes en gras</li>
-                        <li>Mettre C, E en normal, D, F en €</li>
-                    </ul>
-                </li>
-                <li>Calculer la recette totale: Nb de clients × Prix moyen × Nb de séances.<span style="visibility: hidden;">Classique: =C1*D1*E1 | Formule: =PRODUIT(C1;D1;E1)</span></li>
-                <li>Recopier jusqu’en bas.</li>
-                <li>Créer une zone récapitulatif à partir de H2 :</li>
-                <li>Copiez le tableau suivant:</li>
-                <img src="tableau3_exercice_4.png" alt="">
-                <li>I2 : somme de toutes les recettes (colonne F)<span style="visibility: hidden;">=SOMME(F17:F27)</span></li>
-                <li>I3 : plus petite recette ligne par ligne<span style="visibility: hidden;">=MIN(F17:F27)</span></li>
-                <li>I4 : plus grande recette ligne par ligne<span style="visibility: hidden;">=MAX(F17:F27)</span></li>
-                <li>I5 : nombre de lignes de recettes<span style="visibility: hidden;">=NB(F17:F27)</span></li>
-                <li>I6 : la recette moyenne / activité<span style="visibility: hidden;">=MOYENNE(F17:F27)</span></li>
-                <li>On considère qu’une activité est “phare” si sa recette totale est ≥ 2 500 €.</li>
-                <li>Ajouter un en-tête en colonne G1: "Activité phare ?"</li>
-                <li>En G2, écrire une formule qui affiche : "Oui" si F2>2500, sinon "Non"<span style="visibility: hidden;">=SI(F2>=2500;"Oui";"Non")</span></li>
-                <li>Recopier jusqu’en bas.</li>
-            </ol>
-        </div> -->
-        <!-- 09-02-2026 -->
-        <!-- <div>
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Partie 1 : Création de tableaux de bord - Visualisation des données</h2>
-            
-            <p><strong>Objectif :</strong> Créer des tableaux de bord simples pour la visualisation de données.</p>
-        
-            <p>Un tableau de bord est un outil visuel qui permet de représenter des données importantes de manière claire et compréhensible. Dans cette séance, nous allons apprendre à sélectionner des données pertinentes et à créer des graphiques pour les représenter visuellement. Cela peut inclure des graphiques en barres, en courbes ou en secteurs.</p>
-        
-            <h3 style="margin-top: 20px; margin-bottom: 20px;">1. Sélection des données pertinentes</h3>
-        
-            <p>La première étape pour créer un tableau de bord efficace est de sélectionner les données que vous souhaitez visualiser. Voici les étapes à suivre :</p>
-            <ul>
-                <li>Identifiez les données importantes que vous voulez afficher dans votre tableau de bord.</li>
-                <li>Organisez vos données dans des colonnes et des lignes dans LibreOffice Calc.</li>
-                <li>Assurez-vous que vos données sont bien formatées (nombres, texte, dates, etc.).</li>
-            </ul>
-        
-            <h3 style="margin-top: 20px; margin-bottom: 20px;">2. Création d’un graphique en barres</h3>
-        
-            <p>Le graphique en barres est idéal pour comparer des valeurs entre différentes catégories.</p>
-            <p><strong>Exercice :</strong> Utilisons un exemple de ventes de produits :</p>
-        
-            <table>
-                <tr>
-                    <th>Produit</th>
-                    <th>Ventes (unités)</th>
-                </tr>
-                <tr>
-                    <td>Produit A</td>
-                    <td>150</td>
-                </tr>
-                <tr>
-                    <td>Produit B</td>
-                    <td>230</td>
-                </tr>
-                <tr>
-                    <td>Produit C</td>
-                    <td>90</td>
-                </tr>
-                <tr>
-                    <td>Produit D</td>
-                    <td>120</td>
-                </tr>
-            </table>
-        
-            <p><strong>Étapes pour créer un graphique en barres :</strong></p>
-            <ul>
-                <li>Sélectionnez les colonnes de données (produits et ventes).</li>
-                <li>Allez dans le menu <strong>Insertion > Diagramme</strong>.</li>
-                <li>Choisissez le type de graphique <strong>Barres</strong>.</li>
-                <li>Validez et personnalisez votre graphique en ajoutant un titre et en ajustant les couleurs.</li>
-            </ul>
-        
-            <h3 style="margin-top: 20px; margin-bottom: 20px;">3. Création d’un graphique en courbes</h3>
-        
-            <p>Les graphiques en courbes sont parfaits pour visualiser l’évolution d'une série de données dans le temps.</p>
-            <p><strong>Exemple :</strong> Visualisation de l’évolution des ventes mensuelles :</p>
-        
-            <table>
-                <tr>
-                    <th>Mois</th>
-                    <th>Ventes (unités)</th>
-                </tr>
-                <tr>
-                    <td>Janvier</td>
-                    <td>120</td>
-                </tr>
-                <tr>
-                    <td>Février</td>
-                    <td>180</td>
-                </tr>
-                <tr>
-                    <td>Mars</td>
-                    <td>140</td>
-                </tr>
-                <tr>
-                    <td>Avril</td>
-                    <td>200</td>
-                </tr>
-            </table>
-        
-            <p><strong>Étapes pour créer un graphique en courbes :</strong></p>
-            <ul>
-                <li>Sélectionnez les données des mois et des ventes.</li>
-                <li>Allez dans <strong>Insertion > Diagramme</strong>.</li>
-                <li>Choisissez le type de graphique <strong>Courbes</strong>.</li>
-                <li>Ajoutez un titre à votre graphique pour mieux l'identifier.</li>
-            </ul>
-        
-            <h3 style="margin-top: 20px; margin-bottom: 20px;">4. Création d’un graphique en secteurs</h3>
-        
-            <p>Le graphique en secteurs (ou "camembert") est utilisé pour afficher la répartition d’un ensemble de données.</p>
-            <p><strong>Exercice :</strong> Visualisation des parts de marché des différents produits :</p>
-        
-            <table>
-                <tr>
-                    <th>Produit</th>
-                    <th>Part de marché (%)</th>
-                </tr>
-                <tr>
-                    <td>Produit A</td>
-                    <td>30%</td>
-                </tr>
-                <tr>
-                    <td>Produit B</td>
-                    <td>45%</td>
-                </tr>
-                <tr>
-                    <td>Produit C</td>
-                    <td>15%</td>
-                </tr>
-                <tr>
-                    <td>Produit D</td>
-                    <td>10%</td>
-                </tr>
-            </table>
-        
-            <p><strong>Étapes pour créer un graphique en secteurs :</strong></p>
-            <ul>
-                <li>Sélectionnez les produits et leurs parts de marché.</li>
-                <li>Allez dans <strong>Insertion > Diagramme</strong>.</li>
-                <li>Choisissez le type de graphique <strong>Secteurs</strong>.</li>
-                <li>Ajoutez un titre et personnalisez les couleurs pour chaque secteur.</li>
-            </ul>
-        
-            <h3 style="margin-top: 20px; margin-bottom: 20px;">Conclusion</h3>
-        
-            <p>Dans cette partie, vous avez appris à créer différents types de graphiques pour visualiser vos données dans un tableau de bord. En fonction du type de données que vous gérez, vous pouvez choisir le graphique qui représente le mieux vos informations. N'hésitez pas à personnaliser vos graphiques en ajoutant des titres, des légendes et en ajustant les couleurs pour améliorer la lisibilité.</p>
-            
-            <h2 style="margin-top: 20px; margin-bottom: 20px;">Partie 2 : Formatage avancé et personnalisation des tableaux de bord</h2>
-        
-            <p><strong>Objectif :</strong> Apprendre à styliser un tableau de bord pour le rendre plus pertinent et visuellement attrayant.</p>
-        
-            <p>Un tableau de bord bien formaté est essentiel pour rendre vos données claires et faciles à interpréter. Aujourd'hui, nous allons explorer plusieurs techniques de formatage avancé, telles que l'utilisation des styles, des couleurs, des formats conditionnels, et l'organisation des graphiques. Ces outils vous aideront à personnaliser vos tableaux de bord et à les rendre plus professionnels.</p>
-        
-            <h3 style="margin-top: 20px; margin-bottom: 20px;">1. Utilisation des styles</h3>
-        
-            <p>Les styles permettent d'appliquer des mises en forme cohérentes à plusieurs cellules ou tableaux. Cela vous fait gagner du temps et garantit une présentation uniforme.</p>
-            <ul>
-                <li>Sélectionnez la cellule ou la plage de cellules que vous souhaitez styliser.</li>
-                <li>Allez dans le menu <strong>Format > Styles et formatage</strong> (ou utilisez le raccourci <kbd>F11</kbd>).</li>
-                <li>Choisissez un style existant ou créez-en un nouveau en cliquant sur le bouton <strong>Nouveau style</strong>.</li>
-                <li>Modifiez les paramètres du style (police, taille, couleur de fond, bordures, etc.).</li>
-            </ul>
-        
-            <h3 style="margin-top: 20px; margin-bottom: 20px;">2. Utilisation des couleurs</h3>
-        
-            <p>Ajouter des couleurs aux cellules permet de souligner des informations importantes ou de différencier des sections dans votre tableau de bord.</p>
-            <ul>
-                <li>Sélectionnez les cellules que vous souhaitez colorer.</li>
-                <li>Dans la barre d'outils, cliquez sur l'icône <strong>Couleur de fond</strong> pour appliquer une couleur de fond aux cellules.</li>
-                <li>Utilisez des couleurs sobres pour éviter de surcharger visuellement votre tableau. Par exemple, utilisez des couleurs douces pour les en-têtes et des couleurs plus vives pour mettre en évidence des données clés.</li>
-            </ul>
-        
-            <h3 style="margin-top: 20px; margin-bottom: 20px;">3. Formats conditionnels</h3>
-        
-            <p>Les formats conditionnels vous permettent de changer automatiquement la mise en forme d'une cellule en fonction de sa valeur. C'est particulièrement utile pour suivre des indicateurs de performance dans un tableau de bord.</p>
-            <ul>
-                <li>Sélectionnez les cellules auxquelles vous voulez appliquer un format conditionnel.</li>
-                <li>Allez dans <strong>Format > Format conditionnel</strong>.</li>
-                <li>Définissez une condition, par exemple : "Si la valeur est supérieure à 50, appliquez une couleur verte".</li>
-                <li>Appliquez un style spécifique pour chaque condition.</li>
-            </ul>
-        
-            <h3 style="margin-top: 20px; margin-bottom: 20px;">4. Organisation des graphiques</h3>
-        
-            <p>Les graphiques permettent de visualiser les données sous une forme visuelle. Vous pouvez organiser plusieurs graphiques dans un tableau de bord pour représenter différents indicateurs.</p>
-            <ul>
-                <li>Sélectionnez les données que vous souhaitez représenter graphiquement.</li>
-                <li>Allez dans <strong>Insertion > Graphique</strong>.</li>
-                <li>Choisissez le type de graphique (barres, courbes, secteurs, etc.).</li>
-                <li>Ajoutez des titres et des légendes pour clarifier les informations.</li>
-            </ul>
-        
-            <h3 style="margin-top: 20px; margin-bottom: 20px;">Exercice Pratique</h3>
-        
-            <p><strong>Objectif :</strong> Créer un tableau de bord avec un formatage avancé :</p>
-            <ul>
-                <li>Créez un tableau avec des données fictives de ventes (produits, quantité vendue, prix total).</li>
-                <li>Appliquez des styles aux en-têtes et aux lignes.</li>
-                <li>Ajoutez des couleurs pour différencier les sections importantes.</li>
-                <li>Utilisez des formats conditionnels pour changer la couleur des cellules en fonction de la valeur des ventes (par exemple, rouge si le montant est inférieur à 1000 €, vert s'il est supérieur).</li>
-                <li>Créez un graphique à barres pour illustrer la répartition des ventes par produit.</li>
-            </ul>
-        
-            <h3 style="margin-top: 20px; margin-bottom: 20px;">Conclusion</h3>
-        
-            <p>Dans cette partie, nous avons appris à styliser un tableau de bord avec des techniques de formatage avancé. Vous avez vu comment utiliser les styles, appliquer des couleurs pour mettre en avant certaines informations, utiliser des formats conditionnels pour suivre des indicateurs, et organiser des graphiques pour visualiser les données. Ces outils vous aideront à créer des tableaux de bord professionnels et efficaces.</p>
-        </div> -->
-        <!-- 10-02-2026 -->
-        <!-- <div>
-             <iframe src="Pluri Zootechnie-TIM 03-12-2024-v2.pdf" frameborder="0"></iframe>
-        </div> -->
-        <!-- 11-02-2026 -->
-        <div>
-            <h2>Séance 21 : entrainement CCF</h2>
+        <section id="session1" class="content-section">
+            <h2>Séance 1 — Découverte du cours de TIM et prise en main</h2>
 
-            Le lien est ici : <a href="https://www.data.gouv.fr/fr/datasets/temperature-quotidienne-departementale-depuis-janvier-2018/" target="_blank" rel="noopener noreferrer">Jeu de données</a>
-        
-            <p>
-                Pour cet entrainement, nous allons travailler sur les données du département du Cantal (15)
-            </p>
-            <br>
+            <h3>Objectifs de la séance</h3>
+            <ul>
+                <li>Comprendre le fonctionnement du cours de TIM cette année.</li>
+                <li>Faire le point sur son expérience avec les outils numériques.</li>
+                <li>Créer et organiser son espace de travail.</li>
+                <li>Créer, enregistrer et retrouver un document.</li>
+                <li>Utiliser les principales fonctions d'un traitement de texte.</li>
+                <li>Exporter un document au format PDF.</li>
+            </ul>
+
+            <h3>1. Présentation du cours de TIM</h3>
+            <p>Cette année, le cours de TIM sera principalement basé sur la pratique.</p>
+            <p>Vous utiliserez les outils numériques pour réaliser des activités proches de situations que vous pouvez rencontrer dans votre vie quotidienne ou professionnelle : organiser des documents, suivre des informations concernant des chevaux, réaliser des tableaux, préparer des plannings, rechercher des informations, envoyer des documents ou encore communiquer avec une entreprise.</p>
+
+            <p>Pendant les séances, vous aurez régulièrement des missions à réaliser.</p>
+
+            <p><strong>Le principe est simple :</strong></p>
+            <ul>
+                <li>vous essayez ;</li>
+                <li>vous avez le droit de vous tromper ;</li>
+                <li>vous cherchez une solution ;</li>
+                <li>vous demandez de l'aide lorsque vous en avez besoin ;</li>
+                <li>vous améliorez progressivement votre travail.</li>
+            </ul>
+
+            <p>Le but n'est pas de tout savoir immédiatement, mais de devenir progressivement plus autonome avec un ordinateur.</p>
+
+            <h3>2. Faisons connaissance</h3>
+            <p>Avant de commencer, nous allons prendre quelques minutes pour discuter de votre expérience et de votre projet.</p>
+
+            <p>Réfléchissez notamment aux questions suivantes :</p>
+            <ul>
+                <li>Qui êtes-vous ?</li>
+                <li>D'où venez-vous ?</li>
+                <li>Pourquoi avez-vous choisi la MFR de Saint-Flour ?</li>
+                <li>Où avez-vous réalisé votre dernier stage ?</li>
+                <li>Dans quel type de structure avez-vous travaillé ?</li>
+                <li>Quelles étaient vos principales activités ?</li>
+                <li>Qu'aimez-vous particulièrement dans le travail avec les chevaux ?</li>
+                <li>Qu'est-ce qui vous semble le plus difficile ?</li>
+                <li>Que souhaitez-vous faire après votre CAP ?</li>
+                <li>Quels outils numériques avez-vous vus ou utilisés pendant vos stages ?</li>
+            </ul>
+
+            <h3>3. Comment allons-nous travailler ?</h3>
+            <p>Au début de la plupart des séances, vous créerez un <strong>document de travail</strong>.</p>
+
+            <p>Ce document pourra servir :</p>
+            <ul>
+                <li>de cahier ;</li>
+                <li>de brouillon ;</li>
+                <li>pour répondre aux questions ;</li>
+                <li>pour faire des essais ;</li>
+                <li>pour conserver une trace de vos manipulations.</li>
+            </ul>
+
+            <p>Ce document sera généralement rendu à la fin du cours.</p>
+
+            <p><strong>Il n'a pas besoin d'être parfait pour être rendu.</strong> Un travail incomplet permet également de voir ce que vous avez essayé et les difficultés que vous avez rencontrées.</p>
+
+            <h3>4. Mission : préparer votre espace de travail</h3>
+
+            <p>Nous allons commencer par organiser votre espace personnel afin de pouvoir retrouver facilement votre travail pendant toute l'année.</p>
+
+            <h4>Consigne</h4>
+
+            <p>Dans votre espace personnel, créez un dossier nommé :</p>
+
+            <p><strong>nom_prenom</strong></p>
+
+            <p>À l'intérieur de ce dossier, créez un sous-dossier nommé :</p>
+
+            <p><strong>CAPA2_TIM</strong></p>
+
+            <p>À l'intérieur de ce dossier, créez les trois dossiers suivants :</p>
+
+            <ul>
+                <li><strong>01_Cours</strong></li>
+                <li><strong>02_Travaux</strong></li>
+                <li><strong>03_Documents</strong></li>
+            </ul>
+
+            <p>Dans le dossier <strong>02_Travaux</strong>, créez ensuite un dossier nommé :</p>
+
+            <p><strong>S01</strong></p>
+
+            <p>Vous utiliserez ce dossier pour enregistrer votre travail d'aujourd'hui.</p>
+
+            <h3>5. Mission : présenter votre expérience avec les chevaux</h3>
+
+            <p>Ouvrez <strong>LibreOffice Writer</strong> et créez un nouveau document.</p>
+
+            <p>Enregistrez immédiatement votre document dans le dossier <strong>S01</strong> sous le nom :</p>
+
+            <p><strong>CAPA2_S01_NOM_Prenom</strong></p>
+
+            <p>Votre document va vous permettre de vous présenter tout en réalisant quelques premières manipulations.</p>
+
+            <h4>Partie 1 — Moi et les chevaux</h4>
+
+            <p>Ajoutez le titre :</p>
+
+            <p><strong>Mon expérience dans le monde du cheval</strong></p>
+
+            <p>Puis rédigez quelques phrases pour présenter :</p>
+
+            <ul>
+                <li>votre expérience avec les chevaux ;</li>
+                <li>ce que vous aimez particulièrement faire ;</li>
+                <li>une activité avec laquelle vous êtes maintenant à l'aise ;</li>
+                <li>une activité que vous trouvez encore difficile.</li>
+            </ul>
+
+            <h4>Partie 2 — Mon dernier stage</h4>
+
+            <p>Ajoutez un sous-titre puis présentez votre dernier stage.</p>
+
+            <p>Indiquez au minimum :</p>
+
+            <ul>
+                <li>le nom ou le type de structure ;</li>
+                <li>sa localisation ;</li>
+                <li>les principales activités réalisées ;</li>
+                <li>une tâche que vous êtes maintenant capable de réaliser seul.</li>
+            </ul>
+
+            <h4>Partie 3 — Mon projet</h4>
+
+            <p>Ajoutez un nouveau sous-titre et expliquez en quelques lignes ce que vous aimeriez faire après votre CAP.</p>
+
+            <p>Vous pouvez parler :</p>
+
+            <ul>
+                <li>de la poursuite de vos études ;</li>
+                <li>d'un métier qui vous intéresse ;</li>
+                <li>d'un projet professionnel ;</li>
+                <li>ou simplement de ce que vous aimeriez découvrir.</li>
+            </ul>
+
+            <h3>6. Mission : améliorer votre document</h3>
+
+            <p>Votre document contient maintenant des informations. Il faut le rendre plus facile et plus agréable à lire.</p>
+
+            <p>Votre document doit comporter :</p>
+
+            <ul>
+                <li>un titre clairement identifiable ;</li>
+                <li>au moins deux sous-titres ;</li>
+                <li>du texte en <strong>gras</strong> ;</li>
+                <li>une liste à puces ;</li>
+                <li>un tableau ;</li>
+                <li>une image correctement dimensionnée.</li>
+            </ul>
+
+            <h4>Créer le tableau</h4>
+
+            <p>Ajoutez un tableau contenant les informations suivantes :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Information</th>
+                        <th>Réponse</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Type de structure</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Nombre approximatif de chevaux</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Activité principale</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Durée du stage</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Ajouter une image (vous pouvez utiliser les liens ci-dessous, si vous le souhaitez)</h4>
+
+            <ul>
+                <li><a href="images/cheval_1.png" target="_blank" rel="noopener noreferrer">Cheval 1</a></li>
+                <li><a href="images/cheval_2.png" target="_blank" rel="noopener noreferrer">Cheval 2</a></li>
+                <li><a href="images/cheval_3.png" target="_blank" rel="noopener noreferrer">Cheval 3</a></li>
+                <li><a href="images/centre_equestre_1.png" target="_blank" rel="noopener noreferrer">Centre équestre 1</a></li>
+                <li><a href="images/centre_equestre_2.png" target="_blank" rel="noopener noreferrer">Centre équestre 2</a></li>
+            </ul>
+
+            <p>Ajoutez dans votre document une image représentant un cheval ou une structure équestre.</p>
+
+            <p>L'image doit être suffisamment grande pour être visible, mais elle ne doit pas prendre toute la page.</p>
+
+            <p><strong>Attention :</strong> votre document doit rester lisible et correctement organisé.</p>
+
+            <h3>7. Mission : enregistrer et retrouver son travail</h3>
+
+            <p>Lorsque votre document est terminé :</p>
+
             <ol>
-                <li>Récupérer le fichier, le convertir et l’enregistrer au bon format, sous le nom suivant :</li>
-                <div style="padding-left: 20px;">
-                    <ul>
-                        <li>Nom_Prénom_CAPA_CCF</li>
-                    </ul>
-                </div>
-                <br>
-                <li>Votre document devra se présenter comme suit :</li>
-                <div style="padding-left: 20px;">
-                    <ul>
-                        <li>La première feuille regroupe les données brut (nom de la feuille → données_brut)</li>
-                        <li>La deuxième feuille sera pour les données travaillées (nom de la feuille → données_travail)</li>
-                        <li>La troisième feuille sera pour les différents tableaux et graphiques (nom de la feuille → réponse)</li>
-                        <li>Le reste devra être écrit directement sur le sujet</li>
-                    </ul>
-                </div>
-                <br>
-                <li>Mettre en qualité les données (convertir les points en virgules, supprimer les données inutiles [Code INSEE département, Département, etc.]), et faire apparaître votre tableau.</li>
-                <div style="padding-left: 40px;">
-                    <ul>
-                        <li>Pour cette partie, il va falloir copier les données à partir de la feuille (donées_brut) vers la feuille (données_travail) et les mettre en forme.</li>
-                        <li>Pour ce faire :</li>
-                        <li>Selectionner toutes les données (CTRL + A)</li>
-                        <li>Dans le menu "Données" -> plus de filtres -> filtres standards</li>
-                        <li>Dans la colonne "Nom de champ" -> Choisir "Département"</li>
-                        <li>Dans la colonne "Condition" -> On peux laisser "="</li>
-                        <li>Dans la colonne "Valeur" -> On écris "Cantal" (attention a la casse, c'est à dire, respect des majuscules et des minuscules)</li>
-                        <li>Appuyer sur le "+" à côté d'"Options", afin de faire apparaitre le reste de la fenêtre</li>
-                        <li>Laisser coché la case "La plage contient des étiquettes de colonne"</li>
-                        <li>Cocher la case "Copier le résultat vers :", cela va permettre d'éditer le champ du dessous</li>
-                        <li>Appuyer sur le bouton tout à droite du champ (Réduire)</li>
-                        <li>Aller sur la feuille "donnée_travail" et selectionner la première cellule (A1)</li>
-                        <li>Votre champs devrait contenir quelque chose comme : "$données_travail.$A$1"</li>
-                        <li>Cliquer à nouveau sur le bouton à droite du champs, ça va faire apparaitre le menu à nouveau</li>
-                        <li>Cliquer sur "OK" pour finir, vos données seront copié dans la nouvelle feuille, et seulement les données du Cantal.</li>
-                    </ul>
-                </div>
-                <br>
-                <li>Analyse des températures :</li>
-                <br>
-                <div style="padding-left: 40px;">
-                    <ol>
-                        <li>Préparer et organiser les données</li>
-                        <div style="padding-left: 60px;">
-                            <ul>
-                                <li>Ajouter une colonne « année » et extraire l’année de la date</li>
-                                <div style="padding-left: 80px;">
-                                    <ul>
-                                        <li>Pour extraire l'année, il faut utiliser la formule "=ANNEE()"</li>
-                                    </ul>
-                                </div>
-                                <li>Ajouter une colonne « mois » et extraire le mois de la date</li>
-                                <div style="padding-left: 80px;">
-                                    <ul>
-                                        <li>Pour extraire l'année, il faut utiliser la formule "=MOIS()"</li>
-                                    </ul>
-                                </div>
-                            </ul>
-                        </div>
-                        <br>
-                        <li>Calcul des moyennes annuelles et analyse des tendances</li>
-                        <div style="padding-left: 60px;">
-                            <ul>
-                                <li>Créer un tableau récapitulatif avec une ligne par année</li>
-                                <div style="padding-left: 80px;">
-                                    <ul>
-                                        <li>Pour ce faire, vous allez utiliser la formule "UNIQUE()"</li>
-                                        <li>Vous allez mettre entre les parenthèse, la colonne "Année" de la feuille "Données_travail"</li>
-                                    </ul>
-                                </div>
-                                <li>Insérer une colonne pour la moyenne des températures minimales et la remplir (Nom colonne -> Moyenne T° Min)</li>
-                                <li>Insérer une colonne pour la moyenne des températures maximales et la remplir (Nom colonne -> Moyenne T° Max)</li>
-                                <li>Insérer une colonne pour la moyenne des températures moyennes et la remplir (Nom colonne -> Moyenne T° Moy)</li>
-                                <li>Insérer une colonne pour comptabiliser les jours de gel (inférieur à 0 °C) et la remplir (Nom colonne -> Jours de Gel)</li>
-                                <li>Insérer une colonne pour comptabiliser les jours de canicule (supérieur à 30 °C) et la remplir (Nom colonne -> Jours de Canicule)</li>
-                                <li>Afficher le nombre de jours total de gel et le nombre de jours total de canicule</li>
-                                <div style="padding-left: 80px;">
-                                    <li>Pour ce faire, il va falloir ajouter 2 nouvelles colonnes dans la feuille "Données_travail"</li>
-                                    <li>La première colonne pour les jours de gel (Nom colonne -> Jours de Gel)</li>
-                                    <li>Utilisez la formule "SI()" pour marquer une température inférieur à 0 (1 si vrai, 0 si faux)</li>
-                                    <li>La deuxième colonne pour les jours de canicule (Nom colonne -> Jours de Canicule)</li>
-                                    <li>Utilisez la formule "SI()" pour marquer une température supérieur à 30 (1 si vrai, 0 si faux)</li>
-                                    <li>Ensuite, vous devrez utiliser la formule "SOMME.SI()" dans le tableau de la feuille "Réponses"</li>
-                                    <li>La formule fonctionne de la manière suivante :</li>
-                                    <li>Le premier paramètre est pour la plage de données qui sera traité, ici, nous voulons la somme des jours par années, donc la colonne "Année"</li>
-                                    <li>Le deuxième paramètre est pour la données à chercher, ici, l'année</li>
-                                    <li>Le troisième paramètre est pour la valeur dont vous devez faire la somme, ici, les jours de gel / canicule</li>
-                                    <li>Vous aurez quelque chose comme : "SOMME.SI(Données_travail.E:E;Réponses.A2;Données_travail.G:G)"</li>
-                                </div>
-                                <li>Pour finir, a la fin de votre tableau, ajouter une ligne pour afficher le nombre de jour de gel / canicule total, sur la période (2018-2024)</li>
-                            </ul>
-                        </div>
-                        <br>
-                        <li>Faire ressortir visuellement les informations</li>
-                        <div style="padding-left: 60px;">
-                            <ul>
-                                <li>Utilisez l’outil de mise en forme conditionnel pour :</li>
-                                <div style="padding-left: 80px;">
-                                    <ul>
-                                        <li>Faire apparaître en bleu, automatiquement, dans la colonne des températures min, les températures de gel</li>
-                                        <li>Faire apparaître en orange, automatiquement, dans la colonne des températures max, les températures caniculaire</li>
-                                        <li>Faire apparaître la même chose dans la colonnes des températures moyennes ( en bleu les min et orange les max)</li>
-                                    </ul>
-                                </div>
-                            </ul>
-                        </div>
-                        <br>
-                        <li>Visualisation graphique de l’évolution des températures</li>
-                        <div style="padding-left: 60px;">
-                            <ul>
-                                <li>Insérez un graphique grâce aux données du tableau pour :</li>
-                                <div style="padding-left: 80px;">
-                                    <ul>
-                                        <li>L’axe des X sera pour les Années (2018 - 2024)</li>
-                                        <li>L’axe des Y sera pour les Températures (°C)</li>
-                                    </ul>
-                                </div>
-                                <li>Insérez un graphique grâce aux données du tableau pour :</li>
-                                <div style="padding-left: 80px;">
-                                    <ul>
-                                        <li>L’axe des X sera pour les Années (2018 – 2024)</li>
-                                        <li>L’axe des Y sera pour le nombre de jour de gel / canicule</li>
-                                        <li>Modifiez l’axe des Y pour que l’échelle soit sur 365 jours</li>
-                                    </ul>
-                                </div>
-                                <li>Donnez un titre à vos graphiques</li>
-                                <li>Nommez les axes des graphiques</li>
-                            </ul>
-                        </div>
-                        <br>
-                        <li>Interprétation des résultats</li>
-                        <div style="padding-left: 60px;">
-                            <ol>
-                                <li>Analyser les graphes pour en tirer une évolution des températures (augmentation, baisse, stagnation…). Expliquez votre conclusion.</li>
-                                <li>Identifier le(s) année(s) les plus chaudes</li>
-                                <li>Identifier le(s) année(s) les plus froides</li>
-                                <li>Peut-on observer une tendance au réchauffement climatique ?</li>
-                            </ol>
-                        </div>
-                    </ol>
-                </div>
+                <li>enregistrez-le ;</li>
+                <li>fermez LibreOffice Writer ;</li>
+                <li>retrouvez votre fichier dans votre dossier <strong>S01</strong> ;</li>
+                <li>ouvrez à nouveau le document ;</li>
+                <li>modifiez une phrase ;</li>
+                <li>enregistrez à nouveau votre travail.</li>
             </ol>
-        </div>
+
+            <p>Vous devez être capable de retrouver votre document sans avoir besoin de le recréer.</p>
+
+            <h3>8. Mission : créer une version PDF</h3>
+
+            <p>Votre document doit maintenant être transformé en PDF.</p>
+
+            <p>Exportez votre travail afin d'obtenir deux fichiers :</p>
+
+            <ul>
+                <li><strong>CAPA2_S01_NOM_Prenom.odt</strong></li>
+                <li><strong>CAPA2_S01_NOM_Prenom.pdf</strong></li>
+            </ul>
+
+            <p>Les deux fichiers doivent se trouver dans votre dossier <strong>S01</strong>.</p>
+
+            <h3>9. Défi — Pour ceux qui ont terminé</h3>
+
+            <p>Si vous avez terminé toutes les missions précédentes, ouvrez <strong>LibreOffice Calc</strong>.</p>
+
+            <p>Reproduisez le tableau suivant :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cheval</th>
+                        <th>Âge</th>
+                        <th>Ration matin</th>
+                        <th>Ration soir</th>
+                        <th>Ration quotidienne</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Volcan</td>
+                        <td>12</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Jazz</td>
+                        <td>8</td>
+                        <td>2,5</td>
+                        <td>2,5</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Nala</td>
+                        <td>16</td>
+                        <td>1,5</td>
+                        <td>2</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Essayez ensuite de trouver comment faire calculer automatiquement la <strong>ration quotidienne</strong> de chaque cheval.</p>
+
+            <p><strong>Essayez avant de demander la solution.</strong> Vous avez le droit de tester plusieurs méthodes.</p>
+
+            <h3>10. Rendu du travail</h3>
+
+            <p>Avant de quitter votre poste, vérifiez que votre fichier porte bien le nom demandé.</p>
+
+            <p>Le fichier à rendre est :</p>
+
+            <p><strong>CAPA2_S01_NOM_Prenom.pdf</strong></p>
+
+            <p>Avant de rendre votre travail, vérifiez également que :</p>
+
+            <ul>
+                <li>votre document possède un titre ;</li>
+                <li>les différentes parties sont clairement visibles ;</li>
+                <li>votre tableau est complété ;</li>
+                <li>votre image est correctement dimensionnée ;</li>
+                <li>vous avez enregistré votre document original ;</li>
+                <li>vous avez créé la version PDF.</li>
+            </ul>
+
+            <h3>11. Bilan de la séance</h3>
+
+            <p>Avant de terminer, réfléchissez quelques instants :</p>
+
+            <ul>
+                <li>Qu'est-ce qui vous a semblé facile aujourd'hui ?</li>
+                <li>Qu'est-ce qui vous a posé problème ?</li>
+                <li>Y a-t-il quelque chose que vous aimeriez apprendre à faire avec un ordinateur cette année ?</li>
+            </ul>
+
+            <p>Ce premier travail ne sert pas à vérifier si vous savez déjà tout faire. Il permet surtout de voir ce que vous maîtrisez déjà et ce que nous devrons travailler ensemble cette année.</p>
+        </section>
     </main>
 </body>
 </html>
