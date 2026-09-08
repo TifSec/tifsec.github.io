@@ -3,117 +3,93 @@
    Style commun 5e / 4e / 3e
    ========================================================= */
 
-/* ---------- VARIABLES ---------- */
+
+/* =========================================================
+   1. VARIABLES GÉNÉRALES
+   ========================================================= */
 
 :root {
 
-    --primary:
-        #2563eb;
+    --primary: #2563eb;
+    --primary-dark: #1e3a8a;
+    --primary-light: #eff6ff;
 
-    --primary-dark:
-        #1e3a8a;
+    --secondary: #06b6d4;
+    --accent: #8b5cf6;
 
-    --primary-light:
-        #eff6ff;
+    --background: #f5f7fb;
+    --surface: rgba(255, 255, 255, 0.96);
+    --surface-soft: #f8fafc;
 
-    --secondary:
-        #06b6d4;
+    --text: #1e293b;
+    --text-soft: #64748b;
 
-    --accent:
-        #8b5cf6;
+    --border: #dbe4f0;
 
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
 
-    --background:
-        #f5f7fb;
-
-    --surface:
-        rgba(255,255,255,0.96);
-
-    --surface-soft:
-        #f8fafc;
-
-
-    --text:
-        #1e293b;
-
-    --text-soft:
-        #64748b;
-
-    --border:
-        #dbe4f0;
-
-
-    --success:
-        #22c55e;
-
-    --warning:
-        #f59e0b;
-
-    --danger:
-        #ef4444;
-
-
-    --radius:
-        16px;
-
-    --radius-small:
-        10px;
-
+    --radius: 16px;
+    --radius-small: 10px;
 
     --shadow:
-        0 4px 18px
-        rgba(30,58,138,0.08);
+        0 4px 18px rgba(30, 58, 138, 0.08);
 
     --shadow-hover:
-        0 10px 28px
-        rgba(30,58,138,0.14);
+        0 10px 28px rgba(30, 58, 138, 0.14);
 
-
-    --max-width:
-        1150px;
+    --max-width: 1150px;
 }
 
 
 /* =========================================================
-   COULEUR PAR NIVEAU
+   2. COULEURS PAR NIVEAU
    ========================================================= */
 
-/* 5e : vert / turquoise */
+/* 5e : turquoise */
 body.niveau-5e {
+
     --primary: #0f9f87;
     --primary-dark: #087f6d;
     --primary-light: #e7f8f4;
 }
 
 
-/* 4e : bleu / violet */
+/* 4e : bleu / indigo */
 body.niveau-4e {
+
     --primary: #6366f1;
     --primary-dark: #4f46e5;
     --primary-light: #eef2ff;
 }
 
 
-/* 3e : orange / rouge */
+/* 3e : violet doux */
 body.niveau-3e {
-    --primary: #e76f51;
-    --primary-dark: #c8553d;
-    --primary-light: #fff1ed;
+
+    --primary: #7c3aed;
+    --primary-dark: #5b21b6;
+    --primary-light: #f5f3ff;
 }
 
 
 /* =========================================================
-   BASE
+   3. BASE
    ========================================================= */
 
 * {
     box-sizing: border-box;
 }
 
+
 html {
+
     scroll-behavior: smooth;
-    scroll-padding-top: 110px;
+
+    scroll-padding-top: 100px;
 }
+
 
 body {
 
@@ -126,23 +102,24 @@ body {
         Arial,
         sans-serif;
 
-    color:
-        var(--text);
+    color: var(--text);
 
-    line-height:
-        1.6;
+    line-height: 1.6;
 
     background:
+
         radial-gradient(
             circle at 10% 10%,
-            rgba(34,211,238,0.07),
+            rgba(34, 211, 238, 0.07),
             transparent 25%
         ),
+
         radial-gradient(
             circle at 90% 25%,
-            rgba(139,92,246,0.07),
+            rgba(139, 92, 246, 0.07),
             transparent 30%
         ),
+
         linear-gradient(
             180deg,
             #f8fbff,
@@ -152,68 +129,87 @@ body {
 
 
 /* =========================================================
-   BANNIÈRE
+   4. BANNIÈRE
    ========================================================= */
 
 header {
+
     position: relative;
 
+    padding:
+        34px 70px
+        42px;
+
+    color: white;
+
+    text-align: center;
+
+    overflow: hidden;
+
     background:
+
         radial-gradient(
             circle at 15% 20%,
             rgba(34, 211, 238, 0.30),
             transparent 30%
         ),
+
         radial-gradient(
             circle at 85% 20%,
             rgba(139, 92, 246, 0.28),
             transparent 30%
         ),
+
         linear-gradient(
             135deg,
             #172554 0%,
             #1e3a8a 45%,
             #312e81 100%
         );
-
-    color: white;
-
-    padding: 34px 70px 42px;
-
-    text-align: center;
-
-    overflow: hidden;
 }
 
+
+/* quadrillage discret */
+
 header::after {
+
     content: "";
 
     position: absolute;
+
     inset: 0;
 
     background-image:
+
         linear-gradient(
-            rgba(255,255,255,0.025) 1px,
+            rgba(255, 255, 255, 0.025) 1px,
             transparent 1px
         ),
+
         linear-gradient(
             90deg,
-            rgba(255,255,255,0.025) 1px,
+            rgba(255, 255, 255, 0.025) 1px,
             transparent 1px
         );
 
-    background-size: 28px 28px;
+    background-size:
+        28px 28px;
 
     pointer-events: none;
 }
 
+
 header h1,
 header p {
+
     position: relative;
+
     z-index: 2;
 }
 
+
 header h1 {
+
     margin: 0;
 
     font-size:
@@ -222,26 +218,29 @@ header h1 {
     font-weight: 800;
 }
 
+
 header p {
-    margin: 10px auto 0;
+
+    margin:
+        10px auto
+        0;
 
     max-width: 750px;
 
-    opacity: 0.9;
+    opacity: 0.90;
 }
 
 
 /* =========================================================
-   BOUTON HAMBURGER
+   5. BOUTON HAMBURGER
    ========================================================= */
 
 .menu-toggle {
+
     position: absolute;
 
     top: 50%;
     left: 22px;
-
-    transform: translateY(-50%);
 
     z-index: 10;
 
@@ -250,12 +249,17 @@ header p {
 
     padding: 0;
 
-    border: 1px solid rgba(255,255,255,0.22);
+    transform:
+        translateY(-50%);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.22);
 
     border-radius: 12px;
 
     background:
-        rgba(255,255,255,0.12);
+        rgba(255, 255, 255, 0.12);
 
     color: white;
 
@@ -263,27 +267,32 @@ header p {
 
     cursor: pointer;
 
-    backdrop-filter: blur(8px);
+    backdrop-filter:
+        blur(8px);
 
     transition:
-        background 0.2s,
-        transform 0.2s;
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
+
 .menu-toggle:hover {
+
     background:
-        rgba(255,255,255,0.22);
+        rgba(255, 255, 255, 0.22);
 
     transform:
         translateY(-50%)
         scale(1.05);
 }
 
+
 /* =========================================================
-   MENU LATÉRAL
+   6. MENU LATÉRAL
    ========================================================= */
 
 #session-nav {
+
     position: fixed;
 
     top: 0;
@@ -291,11 +300,15 @@ header p {
 
     z-index: 2000;
 
-    width: min(320px, 85vw);
+    width:
+        min(340px, 85vw);
+
     height: 100vh;
 
     padding:
         24px 16px;
+
+    overflow-y: auto;
 
     background:
         rgba(15, 23, 42, 0.97);
@@ -307,8 +320,6 @@ header p {
         8px 0 30px
         rgba(15, 23, 42, 0.25);
 
-    overflow-y: auto;
-
     transform:
         translateX(-105%);
 
@@ -317,15 +328,17 @@ header p {
 }
 
 
-/* ouvert uniquement quand JS ajoute .open */
+/* menu ouvert */
 
 #session-nav.open {
+
     transform:
         translateX(0);
 }
 
 
 #session-nav a {
+
     display: block;
 
     margin:
@@ -337,39 +350,37 @@ header p {
     color:
         #e2e8f0;
 
-    text-decoration:
-        none;
+    text-decoration: none;
 
-    border-radius:
-        8px;
+    border-radius: 8px;
 
     transition:
-        background 0.15s,
-        color 0.15s;
+        background 0.15s ease,
+        color 0.15s ease;
 }
 
 
 #session-nav a:hover,
 #session-nav a.active {
 
-    color:
-        white;
+    color: white;
 
     background:
+
         linear-gradient(
             90deg,
-            rgba(34,211,238,0.22),
-            rgba(139,92,246,0.22)
+            rgba(34, 211, 238, 0.22),
+            rgba(139, 92, 246, 0.22)
         );
-
 }
 
 
 /* =========================================================
-   CONTENU PRINCIPAL
+   7. CONTENU PRINCIPAL
    ========================================================= */
 
 main {
+
     width:
         min(
             calc(100% - 28px),
@@ -383,7 +394,52 @@ main {
 
 
 /* =========================================================
-   SÉANCES / BLOCS PRINCIPAUX
+   8. AFFICHAGE DES SECTIONS
+   ========================================================= */
+
+/*
+   Le JS affiche uniquement la section active :
+   calendrier ou séance.
+*/
+
+.content-section {
+
+    display: none;
+}
+
+
+.content-section.active {
+
+    display: block;
+
+    animation:
+        apparition-section
+        0.25s ease;
+}
+
+
+@keyframes apparition-section {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(8px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   9. BLOCS PRINCIPAUX / SÉANCES
    ========================================================= */
 
 section,
@@ -395,32 +451,40 @@ section,
         26px 0;
 
     padding:
-        clamp(20px, 4vw, 34px);
+        clamp(
+            20px,
+            4vw,
+            34px
+        );
+
+    overflow: hidden;
 
     background:
-        rgba(255,255,255,0.96);
+        var(--surface);
 
     border:
         1px solid
-        rgba(148,163,184,0.25);
+        rgba(148, 163, 184, 0.25);
 
-    border-radius:
-        18px;
+    border-radius: 18px;
 
     box-shadow:
         var(--shadow);
 
-    overflow: hidden;
+    transition:
+        box-shadow 0.2s ease;
 }
+
 
 section:hover,
 .seance:hover {
+
     box-shadow:
         var(--shadow-hover);
 }
 
 
-/* petite barre colorée */
+/* barre technologique supérieure */
 
 section::before,
 .seance::before {
@@ -436,6 +500,7 @@ section::before,
     height: 4px;
 
     background:
+
         linear-gradient(
             90deg,
             #06b6d4,
@@ -446,23 +511,35 @@ section::before,
 
 
 /* =========================================================
-   TITRES
+   10. TITRES
    ========================================================= */
 
+/* titre de séance */
+
 h2 {
+
     margin:
-        0 0 22px;
+        0 0
+        22px;
 
     color:
         var(--primary-dark);
 
     font-size:
-        clamp(1.45rem, 3vw, 2rem);
+        clamp(
+            1.45rem,
+            3vw,
+            2rem
+        );
 
     line-height: 1.25;
 }
 
+
+/* grande partie du cours */
+
 h3 {
+
     position: relative;
 
     margin:
@@ -473,35 +550,34 @@ h3 {
         12px 16px
         12px 20px;
 
-    font-size:
-        1.22rem;
-
-    font-weight:
-        750;
-
     color:
         #1e3a8a;
 
+    font-size: 1.22rem;
+
+    font-weight: 750;
+
     background:
+
         linear-gradient(
             90deg,
-            rgba(6,182,212,0.10),
-            rgba(37,99,235,0.08),
-            rgba(139,92,246,0.06)
+            rgba(6, 182, 212, 0.10),
+            rgba(37, 99, 235, 0.08),
+            rgba(139, 92, 246, 0.06)
         );
 
     border:
         1px solid
-        rgba(37,99,235,0.12);
+        rgba(37, 99, 235, 0.12);
 
-    border-radius:
-        10px;
+    border-radius: 10px;
 }
 
 
-/* petite barre colorée sur la gauche */
+/* repère vertical du H3 */
 
 h3::before {
+
     content: "";
 
     position: absolute;
@@ -513,9 +589,11 @@ h3::before {
     width: 5px;
 
     border-radius:
-        0 4px 4px 0;
+        0 4px
+        4px 0;
 
     background:
+
         linear-gradient(
             180deg,
             #06b6d4,
@@ -524,78 +602,91 @@ h3::before {
         );
 }
 
+
+/* sous-partie */
+
 h4 {
+
     margin:
         22px 0
         8px;
 
-    padding-bottom:
-        6px;
+    padding-bottom: 6px;
 
     color:
         #334155;
 
-    font-size:
-        1.05rem;
+    font-size: 1.05rem;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
     border-bottom:
         2px solid
-        rgba(37,99,235,0.15);
+        rgba(37, 99, 235, 0.15);
 }
 
 
 /* =========================================================
-   TEXTE
+   11. TEXTE
    ========================================================= */
 
 p {
+
     margin:
         10px 0;
 }
 
+
 strong {
+
     color:
         #0f172a;
 }
 
+
 a {
+
     color:
         var(--primary-dark);
 }
 
+
 a:hover {
+
     color:
         var(--primary);
 }
 
 
 /* =========================================================
-   LISTES
+   12. LISTES
    ========================================================= */
 
 ul,
 ol {
-    padding-left:
-        28px;
+
+    padding-left: 28px;
 }
 
+
 li {
+
     margin:
         7px 0;
 }
 
+
 li::marker {
+
     color:
         var(--primary);
+
     font-weight: bold;
 }
 
 
 /* =========================================================
-   BLOCS D'INFORMATION
+   13. BLOCS D'INFORMATION
    ========================================================= */
 
 .info,
@@ -604,6 +695,7 @@ li::marker {
 .activite,
 .astuce,
 .important {
+
     margin:
         18px 0;
 
@@ -621,15 +713,23 @@ li::marker {
         var(--radius-small);
 }
 
+
+/* mission */
+
 .mission {
+
     background:
-        #fff7ed;
+        #f5f3ff;
 
     border-left-color:
-        #f97316;
+        #8b5cf6;
 }
 
+
+/* astuce */
+
 .astuce {
+
     background:
         #ecfdf5;
 
@@ -637,7 +737,11 @@ li::marker {
         #10b981;
 }
 
+
+/* important */
+
 .important {
+
     background:
         #fff1f2;
 
@@ -647,25 +751,30 @@ li::marker {
 
 
 /* =========================================================
-   TABLEAUX
+   14. TABLEAUX GÉNÉRAUX
    ========================================================= */
 
 .table-wrapper {
-    width: 100%;
 
-    overflow-x: auto;
+    width: 100%;
 
     margin:
         20px 0;
+
+    overflow-x: auto;
 }
 
+
 table {
+
     width: 100%;
 
     border-collapse:
         separate;
 
     border-spacing: 0;
+
+    overflow: hidden;
 
     background:
         white;
@@ -677,14 +786,14 @@ table {
     border-radius:
         var(--radius-small);
 
-    overflow: hidden;
-
     box-shadow:
         0 2px 8px
         rgba(15, 23, 42, 0.04);
 }
 
+
 th {
+
     padding:
         12px 14px;
 
@@ -696,7 +805,9 @@ th {
         var(--primary);
 }
 
+
 td {
+
     padding:
         11px 14px;
 
@@ -705,24 +816,348 @@ td {
         var(--border);
 }
 
+
 tr:nth-child(even) td {
+
     background:
         var(--surface-soft);
 }
 
+
 tr:hover td {
+
     background:
         var(--primary-light);
 }
 
 
 /* =========================================================
-   BOUTONS ET LIENS
+   15. CALENDRIER / PROGRESSION
+   ========================================================= */
+
+/*
+   Le calendrier n'est maintenant plus basé sur les dates.
+
+   ✓ = séance terminée
+   ▶ = prochaine séance à faire
+   ○ = séance future
+*/
+
+#calendar {
+
+    margin:
+        30px 0;
+}
+
+
+/* tableau du calendrier */
+
+#calendar table {
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    border: none;
+
+    border-collapse:
+        separate;
+
+    border-spacing:
+        0 8px;
+
+    background:
+        transparent;
+
+    box-shadow: none;
+}
+
+
+/* entête */
+
+#calendar thead th {
+
+    padding:
+        10px 16px;
+
+    color:
+        var(--text-soft);
+
+    background:
+        transparent;
+
+    border: none;
+
+    font-size: 0.82rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.06em;
+}
+
+
+#calendar thead th:first-child {
+
+    width: 70px;
+
+    text-align: center;
+}
+
+
+/* lignes */
+
+#calendar tbody tr {
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+#calendar tbody td {
+
+    padding:
+        15px 18px;
+
+    background:
+        white;
+
+    border-top:
+        1px solid
+        var(--border);
+
+    border-bottom:
+        1px solid
+        var(--border);
+}
+
+
+/* symbole ✓ ▶ ○ */
+
+#calendar tbody td:first-child {
+
+    width: 70px;
+
+    text-align: center;
+
+    font-size: 1.3rem;
+
+    font-weight: 800;
+
+    border-left:
+        1px solid
+        var(--border);
+
+    border-radius:
+        12px 0
+        0 12px;
+}
+
+
+#calendar tbody td:last-child {
+
+    border-right:
+        1px solid
+        var(--border);
+
+    border-radius:
+        0 12px
+        12px 0;
+}
+
+
+/* liens */
+
+#calendar tbody a {
+
+    display: block;
+
+    color:
+        var(--text);
+
+    font-weight: 650;
+
+    text-decoration: none;
+}
+
+
+#calendar tbody a:hover {
+
+    color:
+        var(--primary);
+}
+
+
+/* =========================================================
+   16. SÉANCE TERMINÉE
+   ========================================================= */
+
+#calendar tr.completed-session td {
+
+    color:
+        #94a3b8;
+
+    background:
+        #f8fafc;
+
+    opacity: 0.72;
+}
+
+
+#calendar tr.completed-session td:first-child {
+
+    color:
+        var(--success);
+}
+
+
+#calendar tr.completed-session a {
+
+    color:
+        #64748b;
+}
+
+
+/* =========================================================
+   17. SÉANCE À FAIRE
+   ========================================================= */
+
+#calendar tr.current-session {
+
+    box-shadow:
+        0 7px 22px
+        rgba(37, 99, 235, 0.13);
+}
+
+
+#calendar tr.current-session td {
+
+    background:
+
+        linear-gradient(
+            110deg,
+            rgba(6, 182, 212, 0.13),
+            rgba(37, 99, 235, 0.11),
+            rgba(139, 92, 246, 0.12)
+        );
+
+    border-top:
+        2px solid
+        #38bdf8;
+
+    border-bottom:
+        2px solid
+        #8b5cf6;
+
+    font-weight: 700;
+}
+
+
+#calendar tr.current-session td:first-child {
+
+    color:
+        var(--primary);
+
+    font-size: 1.5rem;
+
+    border-left:
+        2px solid
+        #38bdf8;
+}
+
+
+#calendar tr.current-session td:last-child {
+
+    border-right:
+        2px solid
+        #8b5cf6;
+}
+
+
+#calendar tr.current-session a {
+
+    color:
+        var(--primary-dark);
+
+    font-size: 1.05rem;
+}
+
+
+#calendar tr.current-session:hover {
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   18. SÉANCES FUTURES
+   ========================================================= */
+
+#calendar tr.future-session td {
+
+    color:
+        var(--text-soft);
+
+    background:
+        white;
+}
+
+
+#calendar tr.future-session td:first-child {
+
+    color:
+        #cbd5e1;
+}
+
+
+/* =========================================================
+   19. BANDEAU "À FAIRE"
+   ========================================================= */
+
+#course-status {
+
+    margin:
+        18px 0
+        24px;
+
+    padding:
+        16px 20px;
+
+    color:
+        var(--primary-dark);
+
+    font-size: 1.08rem;
+
+    font-weight: 750;
+
+    background:
+
+        linear-gradient(
+            100deg,
+            rgba(6, 182, 212, 0.12),
+            rgba(37, 99, 235, 0.10),
+            rgba(139, 92, 246, 0.11)
+        );
+
+    border:
+        1px solid
+        rgba(37, 99, 235, 0.16);
+
+    border-radius: 12px;
+}
+
+
+/* =========================================================
+   20. BOUTONS
    ========================================================= */
 
 button,
 .button,
 .btn {
+
     display:
         inline-flex;
 
@@ -739,13 +1174,13 @@ button,
 
     border: 0;
 
-    border-radius:
-        10px;
+    border-radius: 10px;
 
     background:
         var(--primary);
 
-    color: white;
+    color:
+        white;
 
     text-decoration: none;
 
@@ -759,9 +1194,11 @@ button,
         background 0.15s ease;
 }
 
+
 button:hover,
 .button:hover,
 .btn:hover {
+
     color: white;
 
     background:
@@ -777,53 +1214,110 @@ button:hover,
 
 
 /* =========================================================
-   IMAGES
+   21. BOUTON "SÉANCE TERMINÉE"
+   ========================================================= */
+
+.complete-session-button {
+
+    display: flex;
+
+    margin:
+        35px auto
+        10px;
+
+    padding:
+        12px 24px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: white;
+
+    font-size: 1rem;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    background:
+
+        linear-gradient(
+            100deg,
+            #06b6d4,
+            #2563eb,
+            #8b5cf6
+        );
+
+    box-shadow:
+        0 5px 16px
+        rgba(37, 99, 235, 0.18);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.complete-session-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 22px
+        rgba(37, 99, 235, 0.24);
+}
+
+
+/* =========================================================
+   22. IMAGES
    ========================================================= */
 
 img {
-    max-width:
-        100%;
 
-    height:
-        auto;
+    max-width: 100%;
+
+    height: auto;
 
     border-radius:
         var(--radius-small);
 }
 
+
 figure {
+
     margin:
         22px auto;
 
-    text-align:
-        center;
+    text-align: center;
 }
 
+
 figcaption {
-    margin-top:
-        7px;
+
+    margin-top: 7px;
 
     color:
         var(--text-soft);
 
-    font-size:
-        0.9rem;
+    font-size: 0.9rem;
 }
 
 
 /* =========================================================
-   CODE
+   23. CODE
    ========================================================= */
 
 code {
+
     padding:
         2px 6px;
 
     background:
         #f1f5f9;
 
-    border-radius:
-        5px;
+    border-radius: 5px;
 
     font-family:
         "Cascadia Code",
@@ -831,165 +1325,47 @@ code {
         monospace;
 }
 
+
 pre {
-    overflow-x:
-        auto;
 
-    padding:
-        18px;
+    padding: 18px;
 
-    background:
-        #172033;
+    overflow-x: auto;
 
     color:
         #e2e8f0;
+
+    background:
+        #172033;
 
     border-radius:
         var(--radius-small);
 }
 
+
 pre code {
+
     padding: 0;
 
-    background: none;
-
     color: inherit;
+
+    background: none;
 }
 
 
 /* =========================================================
-   CALENDRIER
-   ========================================================= */
-
-/*
-   J'ai volontairement plusieurs noms possibles.
-   Cela permet de récupérer ton calendrier actuel
-   sans devoir forcément modifier son HTML.
-*/
-
-#calendar,
-#calendrier,
-.calendar,
-.calendrier {
-    margin:
-        30px 0;
-
-    padding:
-        20px;
-
-    background:
-        var(--surface);
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:
-        var(--radius);
-
-    box-shadow:
-        var(--shadow);
-}
-
-
-/* grille de calendrier */
-
-.calendar-grid,
-.calendrier-grid {
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(7, 1fr);
-
-    gap:
-        5px;
-}
-
-.calendar-day,
-.calendrier-jour {
-    min-height:
-        80px;
-
-    padding:
-        8px;
-
-    background:
-        var(--surface-soft);
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:
-        8px;
-}
-
-.calendar-day:hover,
-.calendrier-jour:hover {
-    background:
-        var(--primary-light);
-
-    border-color:
-        var(--primary);
-}
-
-
-/* séance dans calendrier */
-
-.calendar-session,
-.seance-calendrier {
-    display:
-        block;
-
-    margin-top:
-        5px;
-
-    padding:
-        4px 6px;
-
-    border-radius:
-        5px;
-
-    background:
-        var(--primary);
-
-    color:
-        white;
-
-    font-size:
-        0.75rem;
-
-    font-weight:
-        700;
-}
-
-
-/* vacances */
-
-.vacances,
-.holiday,
-.ferie {
-    background:
-        #fee2e2 !important;
-
-    color:
-        #991b1b !important;
-}
-
-
-/* =========================================================
-   RENDU / FICHIER À ENREGISTRER
+   24. RENDU / FICHIER À ENREGISTRER
    ========================================================= */
 
 .rendu {
-    margin-top:
-        28px;
+
+    margin-top: 28px;
 
     padding:
         18px 20px;
 
     background:
+
         linear-gradient(
             135deg,
             var(--primary-light),
@@ -1004,193 +1380,149 @@ pre code {
         var(--radius-small);
 }
 
+
 .rendu::before {
+
     content:
         "📁 Fichier à rendre";
 
     display: block;
 
-    margin-bottom:
-        8px;
+    margin-bottom: 8px;
 
     color:
         var(--primary-dark);
 
-    font-weight:
-        800;
+    font-weight: 800;
 }
 
 
 /* =========================================================
-   FOOTER
+   25. FOOTER
    ========================================================= */
 
 footer {
+
     padding:
         30px 20px;
-
-    text-align:
-        center;
 
     color:
         var(--text-soft);
 
-    font-size:
-        0.9rem;
+    text-align: center;
+
+    font-size: 0.9rem;
 }
 
 
 /* =========================================================
-   RESPONSIVE
+   26. RESPONSIVE
    ========================================================= */
 
 @media (max-width: 700px) {
 
     header {
+
         padding:
-            25px 15px
-            40px;
+            25px 60px
+            35px;
     }
 
+
+    header h1 {
+
+        font-size: 1.8rem;
+    }
+
+
+    .menu-toggle {
+
+        left: 12px;
+
+        width: 42px;
+        height: 42px;
+    }
+
+
     main {
+
         width:
             calc(100% - 16px);
     }
 
+
     section,
     .seance {
+
         padding:
             20px 17px;
     }
 
-    .menu-seances {
+
+    h3 {
+
         padding:
-            9px 8px;
+            10px 12px
+            10px 17px;
     }
+
 
     th,
     td {
+
         padding:
             9px 10px;
     }
 
-    .calendar-day,
-    .calendrier-jour {
-        min-height:
-            55px;
+
+    #calendar tbody td:first-child {
+
+        width: 48px;
 
         padding:
-            5px;
+            12px 7px;
+    }
+
+
+    #calendar tbody td {
+
+        padding:
+            12px 10px;
     }
 }
 
 
 /* =========================================================
-   ACCESSIBILITÉ / IMPRESSION
+   27. IMPRESSION
    ========================================================= */
 
 @media print {
 
     body {
-        background:
-            white;
+
+        background: white;
     }
 
-    .menu-seances {
-        display:
-            none;
+
+    .menu-toggle,
+    #session-nav,
+    .complete-session-button {
+
+        display: none !important;
     }
+
 
     section,
     .seance {
-        box-shadow:
-            none;
 
-        break-inside:
-            avoid;
-    }
-}
+        box-shadow: none;
 
-/* =========================================================
-   AFFICHAGE DES SÉANCES
-   ========================================================= */
-
-.content-section {
-    display: none;
-}
-
-.content-section.active {
-    display: block;
-
-    animation:
-        apparitionSeance
-        0.25s ease;
-}
-
-@keyframes apparitionSeance {
-
-    from {
-        opacity: 0;
-        transform:
-            translateY(8px);
+        break-inside: avoid;
     }
 
-    to {
-        opacity: 1;
-        transform:
-            translateY(0);
+
+    .content-section {
+
+        display: block;
     }
-
-}
-
-/* =========================================================
-   VACANCES
-   ========================================================= */
-
-tr.vacation td {
-
-    background:
-        linear-gradient(
-            135deg,
-            #e0f2fe,
-            #ede9fe
-        ) !important;
-
-    color:
-        #3730a3;
-
-    font-weight:
-        700;
-
-    border-top:
-        1px solid
-        #c4b5fd;
-
-    border-bottom:
-        1px solid
-        #c4b5fd;
-}
-
-
-/* =========================================================
-   JOURS FÉRIÉS / FERMETURES
-   ========================================================= */
-
-td.holiday {
-
-    background:
-        linear-gradient(
-            135deg,
-            #fef3c7,
-            #ffedd5
-        ) !important;
-
-    color:
-        #9a3412;
-
-    font-weight:
-        700;
-
-    border-color:
-        #fdba74 !important;
 }
