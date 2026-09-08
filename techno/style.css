@@ -44,33 +44,64 @@
 
 
 /* =========================================================
-   2. COULEURS PAR NIVEAU
+   2. IDENTITÉS GRAPHIQUES PAR NIVEAU
    ========================================================= */
 
-/* 5e : turquoise */
+
+/* =========================================================
+   5e — ÉNERGIE / DÉCOUVERTE
+   ========================================================= */
+
 body.niveau-5e {
 
     --primary: #0f9f87;
     --primary-dark: #087f6d;
     --primary-light: #e7f8f4;
+
+    --banner-start: #064e3b;
+    --banner-middle: #0f766e;
+    --banner-end: #0891b2;
+
+    --level-accent-1: #2dd4bf;
+    --level-accent-2: #22d3ee;
 }
 
 
-/* 4e : bleu / indigo */
+/* =========================================================
+   4e — CONCEPTION / SYSTÈMES
+   ========================================================= */
+
 body.niveau-4e {
 
-    --primary: #6366f1;
-    --primary-dark: #4f46e5;
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
     --primary-light: #eef2ff;
+
+    --banner-start: #172554;
+    --banner-middle: #1e40af;
+    --banner-end: #4338ca;
+
+    --level-accent-1: #38bdf8;
+    --level-accent-2: #818cf8;
 }
 
 
-/* 3e : violet doux */
+/* =========================================================
+   3e — NUMÉRIQUE / PROGRAMMATION
+   ========================================================= */
+
 body.niveau-3e {
 
     --primary: #7c3aed;
     --primary-dark: #5b21b6;
     --primary-light: #f5f3ff;
+
+    --banner-start: #1e1b4b;
+    --banner-middle: #312e81;
+    --banner-end: #6d28d9;
+
+    --level-accent-1: #22d3ee;
+    --level-accent-2: #a78bfa;
 }
 
 
@@ -150,21 +181,29 @@ header {
 
         radial-gradient(
             circle at 15% 20%,
-            rgba(34, 211, 238, 0.30),
+            color-mix(
+                in srgb,
+                var(--level-accent-1) 30%,
+                transparent
+            ),
             transparent 30%
         ),
 
         radial-gradient(
             circle at 85% 20%,
-            rgba(139, 92, 246, 0.28),
+            color-mix(
+                in srgb,
+                var(--level-accent-2) 30%,
+                transparent
+            ),
             transparent 30%
         ),
 
         linear-gradient(
             135deg,
-            #172554 0%,
-            #1e3a8a 45%,
-            #312e81 100%
+            var(--banner-start) 0%,
+            var(--banner-middle) 50%,
+            var(--banner-end) 100%
         );
 }
 
@@ -500,12 +539,11 @@ section::before,
     height: 4px;
 
     background:
-
         linear-gradient(
             90deg,
-            #06b6d4,
-            #2563eb,
-            #8b5cf6
+            var(--level-accent-1),
+            var(--primary),
+            var(--level-accent-2)
         );
 }
 
@@ -589,16 +627,14 @@ h3::before {
     width: 5px;
 
     border-radius:
-        0 4px
-        4px 0;
+        0 4px 4px 0;
 
     background:
-
         linear-gradient(
             180deg,
-            #06b6d4,
-            #2563eb,
-            #8b5cf6
+            var(--level-accent-1),
+            var(--primary),
+            var(--level-accent-2)
         );
 }
 
