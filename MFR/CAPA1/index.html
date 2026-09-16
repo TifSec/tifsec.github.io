@@ -3,26 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programme TIM CAPa 1</title>
+    <title>Programme TIM CAP A 1</title>
     <link rel="stylesheet" href="../style.css">
     <script src="../script.js"></script>
 </head>
 <body data-course-id="mfr-capa1">
 
     <header class="course-header">
-        <h1>TIM - CAPa 1</h1>
-
-        <button class="menu-button" onclick="toggleSessionMenu()">
-            ☰ Séances
-        </button>
-        <h2>Bienvenue en TIM !</h2>
-        <nav id="session-menu">
-            <a href="#" onclick="showSession('home'); return false;">🏠 Accueil</a>
-            <div id="session-list"></div>
-        </nav>
+        <h1>TIM - CAP A 1</h1>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
     </header>
 
+    <!-- Menu hamburger sur la gauche -->
+    <aside id="menu">
+        <nav id="session-nav">
+            <ul>
+                <!-- CALENDRIER -->
+                <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
+                <!-- <li><a href="#" onclick="showSession('Cours_IA')">Cours IA</a></li> -->
+            </ul>
+        </nav>
+    </aside>
+
     <main id="content">
+        <!-- Calendrier -->
+        <section id="calendar" class="content-section">
+            <h2>Calendrier des séances</h2>
+
+            <div id="course-status"></div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>État</th>
+                        <th>Séance</th>
+                    </tr>
+                </thead>
+
+                <tbody id="calendar-body"></tbody>
+            </table>
+        </section>
+
         <section id="session1" class="content-section">
             <h2>Séance 1 — Faire connaissance et prendre ses repères</h2>
             <p>Cette première séance permet de découvrir le fonctionnement du cours d'informatique, de prendre ses repères sur l'ordinateur et de faire quelques premières manipulations.</p>
