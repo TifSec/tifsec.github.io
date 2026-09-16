@@ -16,11 +16,17 @@
 	--primary-light: #eff6ff;
 	--secondary: #60a5fa;
 	--accent: #f59e0b;
+	--info: #3b82f6;
 	--text: #1f2937;
 	--text-light: #6b7280;
 	--background: #f8fafc;
+	--bg: #f8fafc;
 	--surface: #ffffff;
 	--border: #e5e7eb;
+	--radius: 18px;
+	--radius-small: 10px;
+	--shadow: 0 10px 30px rgba(30, 40, 60, 0.08);
+	--transition: 0.2s ease;
 }
 
 /* =========================================================
@@ -109,7 +115,7 @@ body[data-course-id="mfr-bts1-acsagri"] {
 
 /* ---------- BTSA 2 ACS'AGRI ---------- */
 
-body[class="mfr-bts2-acsagri"] {
+body[data-course-id="mfr-bts2-acsagri"] {
 	--primary: #0f4c5c;
 	--primary-dark: #123c49;
 	--primary-light: #e0f2f1;
@@ -768,4 +774,215 @@ a{
     td{
         padding:9px;
     }
+}
+
+/* =========================================================
+   COMPATIBILITÉ STRUCTURE HTML MFR
+   ========================================================= */
+
+/* ---------- EN-TÊTE ---------- */
+
+header {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	padding: 16px 6%;
+	background: rgba(255,255,255,.94);
+	backdrop-filter: blur(12px);
+	border-bottom: 1px solid var(--border);
+	box-shadow: 0 4px 18px rgba(30,40,60,.06);
+}
+
+header h1 {
+	margin: 0;
+	font-size: 1.5rem;
+	font-weight: 800;
+	color: var(--primary-dark);
+}
+
+/* ---------- BOUTON HAMBURGER ---------- */
+
+.menu-toggle {
+	border: none;
+	cursor: pointer;
+	padding: 10px 16px;
+	border-radius: 999px;
+	background: linear-gradient(
+		135deg,
+		var(--primary),
+		var(--secondary)
+	);
+	color: white;
+	font-size: 1.1rem;
+	font-weight: 700;
+	box-shadow: 0 5px 14px rgba(30,40,60,.18);
+	transition:
+		transform var(--transition),
+		box-shadow var(--transition);
+}
+
+.menu-toggle:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(30,40,60,.22);
+}
+
+/* ---------- CONTENEUR MENU ---------- */
+
+#menu {
+	position: relative;
+	z-index: 900;
+}
+
+/* ---------- MENU DES SÉANCES ---------- */
+
+#session-nav {
+	position: fixed;
+	top: 78px;
+	left: 4%;
+	width: min(420px, 90vw);
+	max-height: 78vh;
+	overflow-y: auto;
+	display: none;
+	padding: 12px;
+	background: rgba(255,255,255,.98);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	box-shadow: 0 20px 50px rgba(26,36,55,.18);
+}
+
+#session-nav.open {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+#session-nav a {
+	position: relative;
+	display: block;
+	padding: 12px 14px 12px 18px;
+	border-radius: var(--radius-small);
+	color: var(--text);
+	text-decoration: none;
+	font-size: .92rem;
+	font-weight: 600;
+	background: var(--primary-light);
+	transition:
+		transform var(--transition),
+		background var(--transition),
+		color var(--transition);
+}
+
+#session-nav a::before {
+	content: "";
+	position: absolute;
+	left: 7px;
+	top: 50%;
+	width: 4px;
+	height: 55%;
+	transform: translateY(-50%);
+	border-radius: 999px;
+	background: linear-gradient(
+		var(--primary),
+		var(--secondary)
+	);
+}
+
+#session-nav a:hover {
+	transform: translateX(5px);
+	color: var(--primary-dark);
+}
+
+#session-nav a.active {
+	background: var(--primary);
+	color: white;
+}
+
+/* =========================================================
+   PROGRESSION DES SÉANCES
+   ========================================================= */
+
+#course-status {
+	margin: 18px 0;
+	padding: 14px 18px;
+	border-left: 5px solid var(--primary);
+	border-radius: var(--radius-small);
+	background: var(--primary-light);
+	color: var(--primary-dark);
+	font-weight: 700;
+}
+
+.completed-session td {
+	opacity: .7;
+}
+
+.completed-session td:first-child {
+	color: #15803d;
+	font-weight: 800;
+}
+
+.current-session td {
+	background: var(--primary-light) !important;
+	font-weight: 700;
+}
+
+.current-session td:first-child {
+	color: var(--primary);
+	font-weight: 800;
+}
+
+.future-session td {
+	color: var(--text-light);
+}
+
+.complete-session-button {
+	display: block;
+	margin: 35px auto 5px;
+	padding: 12px 22px;
+	border: none;
+	border-radius: 999px;
+	cursor: pointer;
+	background: linear-gradient(
+		135deg,
+		var(--primary),
+		var(--secondary)
+	);
+	color: white;
+	font: inherit;
+	font-weight: 700;
+	box-shadow: 0 5px 15px rgba(30,40,60,.15);
+	transition:
+		transform var(--transition),
+		box-shadow var(--transition);
+}
+
+.complete-session-button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(30,40,60,.2);
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width: 520px) {
+	header {
+		padding: 12px 4%;
+	}
+
+	header h1 {
+		font-size: 1rem;
+	}
+
+	.menu-toggle {
+		padding: 8px 13px;
+	}
+
+	#session-nav {
+		top: 68px;
+		left: 4%;
+		right: 4%;
+		width: auto;
+	}
 }

@@ -192,7 +192,10 @@
 
         <section id="session2" class="content-section">
             <h2>Séance 2 : De la donnée brute à la décision</h2>
-            <p class="intro">Dans une entreprise agricole, collecter des données ne sert à rien si elles ne permettent pas de comprendre une situation et de prendre une décision. Aujourd'hui, vous allez travailler comme si vous deviez analyser rapidement les données d'un système fourrager.</p>
+            <p class="intro">
+                Dans une entreprise agricole, collecter des données ne sert à rien si elles ne permettent pas de comprendre une situation et de prendre 
+                une décision. Aujourd'hui, vous allez travailler comme si vous deviez analyser rapidement les données d'un système fourrager.
+            </p>
             <h3>1. Votre document de travail</h3>
             <p>Ouvrez LibreOffice Calc et créez immédiatement un nouveau classeur.</p>
             <p>Enregistrez-le sous le nom :</p>
@@ -246,7 +249,26 @@
             <p>Avant de réaliser le moindre calcul, observez attentivement le tableau.</p>
             <p>Repérez au moins <strong>trois éléments</strong> pouvant poser problème lors d'un traitement informatique.</p>
             <p>Dans la feuille <strong>Donnees</strong>, ajoutez une colonne intitulée <strong>Observation</strong> et indiquez les problèmes détectés.</p>
-            <p><strong>Important :</strong> ne corrigez jamais une donnée en inventant une valeur. Si une information semble incorrecte mais que vous ne connaissez pas la bonne valeur, signalez-la.</p>
+            <p>
+                <strong>Important :</strong> ne corrigez jamais une donnée en inventant une valeur.
+                Si une information semble incorrecte mais que vous ne connaissez pas la bonne valeur, signalez-la.
+            </p>
+            
+            <!-- Les trois anomalies principales sont :
+
+            P06 – Production = 530 t MS : valeur très probablement aberrante par rapport aux autres parcelles.
+            Ils doivent écrire quelque chose comme « valeur anormalement élevée / à vérifier », mais pas la remplacer d’eux-mêmes par 53.
+            P07 – “Prairie temp.” : l’intitulé n’est pas écrit comme Prairie temporaire en P03.
+            Pour un humain c’est évident, mais pour un tri, un filtre ou un tableau croisé, ce sont potentiellement deux catégories différentes.
+            P08 – Azote total vide : donnée manquante. Impossible de calculer correctement certains indicateurs pour cette parcelle.
+
+            Dans leur nouvelle colonne Observation, j’attendrais donc par exemple :
+a
+            Parcelle	Observation
+            P06	Production de 530 t MS anormalement élevée : valeur à vérifier auprès de l’exploitant
+            P07	Nom de culture non standardisé : « Prairie temp. » au lieu de « Prairie temporaire »
+            P08	Valeur d’azote total manquante -->
+            
             <h3>5. Préparer les données</h3>
             <p>Dans la feuille <strong>Analyse</strong>, créez une version exploitable du tableau.</p>
             <p>Votre tableau doit être :</p>
@@ -257,6 +279,21 @@
                 <li>compatible avec les calculs que vous allez effectuer.</li>
             </ul>
             <p>Les données dont la fiabilité est douteuse doivent rester clairement identifiables.</p>
+
+            <!-- Ils doivent créer une version propre du tableau dans la feuille Analyse.
+
+            J’attendrais notamment :
+
+            Prairie temp. → harmonisé en Prairie temporaire
+            P06 : conserver 530, mais identifier clairement la valeur comme suspecte / à vérifier
+            P08 : laisser la valeur d’azote vide ou indiquer explicitement donnée manquante, sans inventer de nombre
+            conserver des colonnes homogènes avec uniquement des valeurs numériques dans les colonnes destinées aux calculs
+            éventuellement ajouter une colonne Fiabilité ou Remarque
+
+            Exemple pour P06 :
+
+            Production = 530 t MS : valeur incohérente avec les autres parcelles, à confirmer avant exploitation. -->
+
             <h3>6. Transformer les données en indicateurs</h3>
             <p>Ajoutez les colonnes nécessaires pour calculer automatiquement, pour chaque parcelle :</p>
             <ul>
@@ -266,6 +303,30 @@
                 <li>la quantité d'azote par hectare lorsque la donnée est disponible.</li>
             </ul>
             <p>Les résultats doivent être obtenus avec des <strong>formules</strong>. Aucun résultat calculé manuellement puis saisi dans le tableau ne sera accepté.</p>
+            
+            <!-- Les formules attendues sont :
+
+            Rendement = Production / Surface
+            Coût intrants/ha = Coût intrants / Surface
+            Temps de travail/ha = Temps de travail / Surface
+            Azote/ha = Azote total / Surface
+
+            Les résultats, arrondis à 2 décimales :
+
+            Parcelle	Rendement t MS/ha	Intrants €/ha	Travail h/ha	Azote kg/ha
+            P01	        5,40	            176,92	        7,18	        41,03
+            P02	        11,70	            651,85	        11,30	        146,30
+            P03	        7,18	            285,25	        7,87	        67,21
+            P04	        6,70	            417,02	        8,94	        61,70
+            P05	        5,10	            164,13	        6,85	        38,04
+            P06	        110,42 ⚠           664,58	        12,08	        147,92
+            P07	        6,68	            284,75	        7,63	        66,10
+            P08	        6,50	            415,79	        8,95	        —
+            P09	        5,62	            169,77	        6,86	        38,37
+            P10	        11,78	            662,75	        11,76	        149,02
+
+            Le 110,42 t MS/ha de P06 doit justement les alerter. -->
+            
             <h3>7. Interroger les données</h3>
             <p>Utilisez les outils de tri et de filtre du tableur pour répondre aux questions suivantes dans la feuille <strong>Bilan</strong> :</p>
             <ol>
@@ -275,6 +336,68 @@
                 <li>Quelle donnée du tableau vous empêche de réaliser une analyse totalement fiable ?</li>
                 <li>Quelles informations supplémentaires demanderiez-vous à l'exploitant avant de lui proposer une décision ?</li>
             </ol>
+
+            <!-- 1. Les trois meilleurs rendements calculables
+
+            Mathématiquement, le tableur donnera :
+
+            P06 : 110,42 t MS/ha
+            P10 : 11,78 t MS/ha
+            P02 : 11,70 t MS/ha
+
+            Mais la bonne analyse consiste à dire que P06 ne peut pas être retenue comme résultat fiable tant que la donnée 530 n’est pas confirmée.
+
+            Donc, en excluant provisoirement cette donnée suspecte :
+
+            P10 : 11,78 t MS/ha
+            P02 : 11,70 t MS/ha
+            P03 : 7,18 t MS/ha
+
+            C’est précisément le genre de raisonnement que j’attendrais d’un BTS.
+
+            2. Coût d’intrants par hectare le plus faible
+
+            → P05 : environ 164,13 €/ha
+
+            Puis P09 : 169,77 €/ha et P01 : 176,92 €/ha.
+
+            3. Parcelles demandant le plus de travail par hectare
+
+            Les trois principales sont :
+
+            P06 : 12,08 h/ha
+            P10 : 11,76 h/ha
+            P02 : 11,30 h/ha
+
+            On remarque que ce sont les trois parcelles de maïs ensilage.
+
+            4. Quelle donnée empêche une analyse totalement fiable ?
+
+            Principalement :
+
+            la production de 530 t MS en P06, manifestement suspecte ;
+            l’absence de donnée d’azote en P08.
+
+            On peut également rappeler que Prairie temp. devait être normalisé avant certains traitements.
+
+            5. Informations supplémentaires à demander
+
+            Plusieurs réponses sont possibles. J’attendrais par exemple :
+
+            confirmation de la production de P06 ;
+            valeur d’azote de P08 ;
+            année ou période correspondant aux données ;
+            conditions météorologiques ;
+            type de sol ;
+            nombre de coupes pour les prairies ;
+            détail des intrants ;
+            prix ou valeur économique de la production ;
+            matériel utilisé ;
+            irrigation éventuelle ;
+            historique des parcelles.
+
+            Le but est qu’ils comprennent que les données seules ne donnent pas tout le contexte nécessaire à une décision. -->
+
             <h3>8. Faire parler les données</h3>
             <p>Réalisez au moins <strong>un graphique pertinent</strong> permettant de comparer les parcelles.</p>
             <p>Vous êtes libre du type de graphique utilisé, mais vous devez pouvoir expliquer pourquoi il est adapté à l'information que vous souhaitez montrer.</p>
@@ -284,12 +407,57 @@
                 <li>les unités nécessaires ;</li>
                 <li>une présentation permettant une lecture rapide.</li>
             </ul>
+
+            <!-- Il n’y a pas une seule bonne réponse.
+
+            Un graphique très pertinent serait par exemple un diagramme en colonnes du rendement en t MS/ha par parcelle.
+
+            Mais attention : P06 écraserait complètement l’échelle avec ses 110 t/ha. C’est même pédagogiquement intéressant.
+
+            Ils devraient alors se demander :
+
+            « Est-ce que mon graphique est mauvais ou est-ce qu’il révèle un problème dans mes données ? »
+
+            Une bonne production pourrait donc :
+
+            signaler P06 comme valeur suspecte ;
+            faire un graphique sans P06 en expliquant pourquoi elle est temporairement exclue ;
+            ou présenter deux graphiques : données brutes / données exploitables.
+
+            Autres graphiques acceptables :
+
+            coût des intrants par hectare ;
+            temps de travail par hectare ;
+            rendement par culture ;
+            comparaison rendement / coût.
+
+            J’attendrais au minimum :
+
+            Titre : Rendement des parcelles fourragères
+            Axe X : parcelles
+            Axe Y : rendement (t MS/ha) -->
+
             <h3>9. De la donnée à la décision</h3>
             <p>Dans la feuille <strong>Bilan</strong>, rédigez une conclusion de quelques lignes répondant à la question suivante :</p>
             <blockquote>
                 <p>Pourquoi la qualité des données est-elle aussi importante que les calculs réalisés pour aider un agriculteur à prendre une décision ?</p>
             </blockquote>
             <p>Votre réponse doit s'appuyer sur ce que vous avez rencontré pendant la séance.</p>
+
+            <!-- Une bonne réponse pourrait ressembler à ceci :
+
+            La qualité des données est essentielle car les calculs réalisés par le tableur utilisent directement les valeurs fournies.
+            Une formule peut être parfaitement correcte tout en donnant un résultat faux ou trompeur si la donnée de départ est incorrecte.
+            Par exemple, la production de 530 t MS de la parcelle P06 donne un rendement de plus de 110 t MS/ha, ce qui fausse les comparaisons.
+            Une donnée manquante, comme l’azote de P08, empêche également certains calculs.
+            Avant de prendre une décision, il faut donc vérifier la cohérence, la fiabilité et la complétude des données.
+
+            Et là, tu as exactement le message que je voulais faire passer avec cette séance :
+
+            données → contrôle → traitement → information → analyse → décision
+
+            Pas simplement : « je mets des nombres dans Calc et je fais une formule ». Pour du BTS2, la différence est importante. -->
+
             <h3>10. Avant de rendre</h3>
             <p>Vérifiez que votre fichier contient bien les quatre feuilles demandées et que vos formules fonctionnent encore si une valeur est modifiée.</p>
             <p>Enregistrez une dernière fois votre fichier sous le nom :</p>

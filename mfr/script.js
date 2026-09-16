@@ -2,50 +2,31 @@
 
     'use strict';
 
-    let level = 'classe';
-    let group = 'classe';
+    let courseId = 'mfr-classe';
     let STORAGE_KEY = '';
 
-
     /* =========================================================
-       IDENTIFICATION
-       ========================================================= */
+    IDENTIFICATION DU COURS
+    ========================================================= */
 
-    function getLevel() {
-
+    function getCourseId() {
         const body = document.body;
 
         if (!body) {
-            return 'classe';
+            return 'mfr-classe';
         }
 
-        if (body.dataset.niveau) {
-            return body.dataset.niveau;
+        if (body.dataset.courseId) {
+            return body.dataset.courseId.trim();
         }
 
-        const match =
-            body.className.match(
-                /niveau-(5e|4e|3e)/
-            );
+        const path = window.location.pathname
+            .toLowerCase()
+            .replace(/\/index\.html$/, '')
+            .replace(/^\/+|\/+$/g, '')
+            .replace(/\//g, '-');
 
-        return match ? match[1] : 'classe';
-    }
-
-
-    function getGroup() {
-
-        const params =
-            new URLSearchParams(
-                window.location.search
-            );
-
-        return (
-            params.get('groupe')
-            ||
-            document.body?.dataset.groupe
-            ||
-            'classe'
-        );
+        return path || 'mfr-classe';
     }
 
 
@@ -582,15 +563,13 @@
          * avant de récupérer le body.
          */
 
-        level = getLevel();
-        group = getGroup();
+        courseId = getCourseId();
 
         STORAGE_KEY =
-            `techno-${level}-${group}-last-session`;
-
+            `tim-${courseId}-last-session`;
 
         console.log(
-            `Technologie : ${level} / ${group}`
+            `TIM MFR : ${courseId}`
         );
 
 
@@ -607,7 +586,15 @@
          * AFFICHÉ EN PREMIER.
          */
 
-        showSession('calendar');
+        if (document.getElementById('calendar')) {
+            showSession('calendar');
+        } else {
+            const firstSession = getSessionNumbers()[0];
+
+            if (firstSession) {
+                showSession(`session${firstSession}`);
+            }
+        }
     }
 
 
