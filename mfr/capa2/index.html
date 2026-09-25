@@ -352,6 +352,1547 @@
 
             <p>Ce premier travail ne sert pas à vérifier si vous savez déjà tout faire. Il permet surtout de voir ce que vous maîtrisez déjà et ce que nous devrons travailler ensemble cette année.</p>
         </section>
+
+        <section id="session2" class="content-section">
+            <h2>Séance 2 — Prévoir le stock de foin d'une écurie avec Calc</h2>
+
+            <h3>Ce que vous allez apprendre</h3>
+            <ul>
+                <li>Comprendre comment des données numériques peuvent aider à gérer une écurie.</li>
+                <li>Comprendre la différence entre le poids vif d'un cheval, la matière sèche et le poids brut du foin.</li>
+                <li>Comprendre pourquoi une estimation doit toujours être interprétée avant de prendre une décision.</li>
+            </ul>
+
+            <h3>Ce que vous allez apprendre à faire</h3>
+            <ul>
+                <li>Organiser des données professionnelles dans un tableur.</li>
+                <li>Utiliser des pourcentages dans une formule.</li>
+                <li>Utiliser les références de cellules.</li>
+                <li>Recopier une formule.</li>
+                <li>Calculer des besoins journaliers et hebdomadaires.</li>
+                <li>Utiliser les résultats obtenus pour répondre à une situation professionnelle.</li>
+            </ul>
+
+            <h3>1. Créez votre document de travail</h3>
+
+            <p>Dans votre dossier <strong>CAPA2_TIM/02_Travaux</strong>, créez un dossier nommé :</p>
+
+            <p><strong>S02</strong></p>
+
+            <p>Ouvrez ensuite <strong>LibreOffice Calc</strong> et enregistrez immédiatement votre classeur sous le nom :</p>
+
+            <p><strong>CAPA2_S02_NOM_Prenom.ods</strong></p>
+
+            <p>Enregistrez régulièrement votre travail pendant toute la séance.</p>
+
+            <h3>2. Situation professionnelle</h3>
+
+            <p>Vous travaillez dans une structure équestre hébergeant plusieurs chevaux.</p>
+
+            <p>Le responsable souhaite vérifier le stock de foin disponible pour les prochains jours.</p>
+
+            <p>Il connaît approximativement le poids de chaque cheval, mais il souhaite disposer d'un tableau permettant d'estimer rapidement les quantités de fourrage nécessaires.</p>
+
+            <p>Il vous demande de construire cet outil avec <strong>LibreOffice Calc</strong>.</p>
+
+            <h3>3. Avant de calculer : que disent les professionnels ?</h3>
+
+            <p>L'<strong>IFCE — Institut français du cheval et de l'équitation</strong> indique que les quantités de fourrages consommées doivent généralement se situer autour de <strong>1,5 à 2 % du poids vif du cheval en matière sèche</strong>.</p>
+
+            <p>Exemple donné par l'IFCE :</p>
+
+            <ul>
+                <li>poids du cheval : <strong>500 kg</strong> ;</li>
+                <li>1,5 % de son poids vif = <strong>7,5 kg de matière sèche</strong> ;</li>
+                <li>avec un foin contenant 85 % de matière sèche, cela représente environ <strong>8,8 kg de foin brut</strong>, soit environ 9 kg.</li>
+            </ul>
+
+            <p class="source">
+                <strong>Source professionnelle :</strong>
+                IFCE – équipédia,
+                <a href="https://equipedia.ifce.fr/elevage-et-entretien/alimentation/nutrition-et-ration/les-besoins-alimentaires-du-cheval" target="_blank" rel="noopener noreferrer">
+                    Les besoins alimentaires du cheval
+                </a>.
+            </p>
+
+            <p>Vous pouvez ouvrir la source pour retrouver les informations utilisées dans cette activité.</p>
+
+            <p><strong>Attention :</strong> ces valeurs sont des repères. Dans une situation réelle, la ration doit également être adaptée à l'état corporel, à l'activité du cheval, à son état physiologique et à la qualité des fourrages.</p>
+
+            <!-- PROF : point important à faire ressortir. L'objectif n'est pas de leur apprendre à élaborer seuls une ration complète mais à exploiter correctement une donnée professionnelle avec un tableur. -->
+
+            <h3>4. Les chevaux de l'écurie</h3>
+
+            <p>Le responsable vous transmet les estimations suivantes :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cheval</th>
+                        <th>Poids vif estimé</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Apache</td><td>450 kg</td></tr>
+                    <tr><td>Baya</td><td>480 kg</td></tr>
+                    <tr><td>Calypso</td><td>500 kg</td></tr>
+                    <tr><td>Django</td><td>520 kg</td></tr>
+                    <tr><td>Étoile</td><td>550 kg</td></tr>
+                    <tr><td>Flash</td><td>600 kg</td></tr>
+                </tbody>
+            </table>
+
+            <p><em>Les chevaux et leurs poids sont fictifs et ont été créés pour l'activité. Les règles utilisées pour effectuer les calculs proviennent de l'IFCE.</em></p>
+
+            <h3>5. Mission : construire l'outil de suivi</h3>
+
+            <p>Dans Calc, créez un tableau comportant les colonnes suivantes :</p>
+
+            <ol>
+                <li><strong>Cheval</strong></li>
+                <li><strong>Poids vif (kg)</strong></li>
+                <li><strong>Fourrage à 1,5 % - MS* (kg)</strong></li>
+                <li><strong>Fourrage à 2 % - MS* (kg)</strong></li>
+                <li><strong>Foin brut correspondant à 1,5 % (kg)</strong></li>
+                <li><strong>Foin brut correspondant à 2 % (kg)</strong></li>
+            </ol>
+
+            <p>*MS = Matière Séche</p>
+
+            <p>Recopiez les noms et les poids des six chevaux.</p>
+
+            <h3>6. Première formule : calculer 1,5 % du poids vif</h3>
+
+            <p>Nous allons commencer avec <strong>Apache</strong>, qui pèse environ 450 kg.</p>
+
+            <p>Dans la colonne <strong>Fourrage à 1,5 % - MS*</strong>, demandez à Calc de calculer automatiquement :</p>
+
+            <p><strong>1,5 % du poids du cheval.</strong></p>
+
+            <p>Essayez de trouver la formule avant d'utiliser les indices.</p>
+
+            <details>
+                <summary>Indice 1</summary>
+                <p>Une formule dans Calc commence par <strong>=</strong>.</p>
+            </details>
+
+            <details>
+                <summary>Indice 2</summary>
+                <p>Il faut utiliser la cellule contenant le poids du cheval et la multiplier par <strong>1,5 %</strong>.</p>
+            </details>
+
+            <details>
+                <summary>Indice 3</summary>
+                <p>Si le poids d'Apache se trouve dans la cellule B2 :</p>
+                <p><strong>=B2*1,5%</strong></p>
+            </details>
+
+            <!-- PROF : résultat attendu pour Apache = 6,75 kg de matière sèche. -->
+
+            <p>Lorsque votre formule fonctionne, recopiez-la pour tous les chevaux.</p>
+
+            <h3>7. Calculez maintenant le repère à 2 %</h3>
+
+            <p>Dans la colonne suivante, réalisez le même travail pour calculer <strong>2 % du poids vif</strong>.</p>
+
+            <p>Cette fois, aucun indice n'est donné.</p>
+
+            <!-- PROF : formule attendue si le poids est en B2 : =B2*2% -->
+
+            <h3>8. Mais un kilogramme de matière sèche n'est pas un kilogramme de foin</h3>
+
+            <p>L'IFCE utilise dans son exemple un foin contenant <strong>85 % de matière sèche</strong>.</p>
+
+            <p>Cela signifie que 1 kg de foin brut ne contient pas 1 kg de matière sèche.</p>
+
+            <p>Pour retrouver la quantité de foin réellement distribuée, on peut effectuer :</p>
+
+            <p><strong>quantité de matière sèche ÷ 85 %</strong></p>
+
+            <p>Calculez maintenant la quantité de <strong>foin brut</strong> correspondant :</p>
+
+            <ul>
+                <li>au repère de 1,5 % ;</li>
+                <li>au repère de 2 %.</li>
+            </ul>
+
+            <details>
+                <summary>Besoin d'un indice ?</summary>
+                <p>Si votre quantité de matière sèche est en C2 :</p>
+                <p><strong>=C2/85%</strong></p>
+            </details>
+
+            <!-- PROF :
+            Résultats approximatifs attendus :
+            Apache 450 kg : 7,94 à 10,59 kg brut.
+            Baya 480 kg : 8,47 à 11,29 kg brut.
+            Calypso 500 kg : 8,82 à 11,76 kg brut.
+            Django 520 kg : 9,18 à 12,24 kg brut.
+            Étoile 550 kg : 9,71 à 12,94 kg brut.
+            Flash 600 kg : 10,59 à 14,12 kg brut.
+            Accepter de petites différences dues aux arrondis.
+            -->
+
+            <h3>9. Vérification avec une vraie donnée IFCE</h3>
+
+            <p>Regardez la ligne de <strong>Calypso</strong>, qui pèse 500 kg.</p>
+
+            <p>Comparez votre résultat à l'exemple donné par l'IFCE :</p>
+
+            <blockquote>
+                Pour un cheval de 500 kg consommant 1,5 % de son poids vif, l'IFCE obtient environ 7,5 kg de matière sèche, soit environ 9 kg de foin brut avec un foin à 85 % de matière sèche.
+            </blockquote>
+
+            <p>Vos résultats sont-ils cohérents avec la source professionnelle ?</p>
+
+            <p>Écrivez une courte réponse sous votre tableau.</p>
+
+            <!-- PROF : oui. Les élèves doivent obtenir 7,5 kg MS et environ 8,82 kg de foin brut, que l'IFCE arrondit à environ 9 kg. -->
+
+            <h3>10. Mission : combien faut-il prévoir pour toute l'écurie ?</h3>
+
+            <p>Ajoutez en bas des deux colonnes de foin brut une ligne :</p>
+
+            <p><strong>TOTAL PAR JOUR</strong></p>
+
+            <p>Utilisez la fonction <strong>SOMME</strong> pour calculer :</p>
+
+            <ul>
+                <li>le total correspondant au repère de 1,5 % ;</li>
+                <li>le total correspondant au repère de 2 %.</li>
+            </ul>
+
+            <!-- PROF :
+            Total à 1,5 % ≈ 54,71 kg brut/jour.
+            Total à 2 % ≈ 72,94 kg brut/jour.
+            -->
+
+            <h3>11. Préparer une semaine de stock</h3>
+
+            <p>Le responsable souhaite maintenant connaître la quantité de foin correspondant à <strong>7 jours</strong>.</p>
+
+            <p>Ajoutez une ligne :</p>
+
+            <p><strong>TOTAL POUR 7 JOURS</strong></p>
+
+            <p>Utilisez une formule pour calculer les deux estimations.</p>
+
+            <!-- PROF :
+            Repère à 1,5 % : environ 382,94 kg de foin brut.
+            Repère à 2 % : environ 510,59 kg de foin brut.
+            -->
+
+            <h3>12. Prendre une décision professionnelle</h3>
+
+            <p>L'écurie dispose actuellement de :</p>
+
+            <p><strong>450 kg de foin.</strong></p>
+
+            <p>Répondez sous votre tableau :</p>
+
+            <ol>
+                <li>450 kg sont-ils suffisants pour une semaine avec le calcul basé sur 1,5 % ?</li>
+                <li>450 kg sont-ils suffisants avec le calcul basé sur 2 % ?</li>
+                <li>Peut-on simplement répondre : « 450 kg suffisent » sans autre information ? Expliquez votre réponse.</li>
+            </ol>
+
+            <!-- PROF :
+            1. Oui : besoin estimé ≈ 382,94 kg.
+            2. Non : besoin estimé ≈ 510,59 kg.
+            3. Non. Le calcul fournit une plage d'estimation. Une décision réelle nécessite notamment de tenir compte des chevaux concernés,
+            de leur état corporel, de leur activité et de la qualité du fourrage.
+            L'objectif est précisément de ne pas transformer une formule informatique en vérité absolue.
+            -->
+
+            <h3>13. Comparer avec une autre information professionnelle</h3>
+
+            <p>L'IFCE indique également que, lorsque le foin est donné seul et à volonté, la consommation peut être d'environ <strong>2 à 2,8 kg de foin brut pour 100 kg de poids vif</strong>, soit environ <strong>10 à 14 kg pour un cheval de 500 à 600 kg à l'entretien</strong>.</p>
+
+            <p class="source">
+                <strong>Source professionnelle :</strong>
+                IFCE – équipédia,
+                <a href="https://equipedia.ifce.fr/elevage-et-entretien/alimentation/nutrition-et-ration/calculer-le-cout-de-la-ration-journaliere" target="_blank" rel="noopener noreferrer">
+                    Calculer le coût de la ration journalière
+                </a>.
+            </p>
+
+            <p>Regardez les résultats obtenus pour les chevaux pesant entre 500 et 600 kg.</p>
+
+            <p><strong>Les ordres de grandeur sont-ils cohérents avec cette deuxième source ?</strong></p>
+
+            <!-- PROF :
+            Oui, globalement. Les résultats calculés se situent autour de 8,8 à 14,1 kg brut selon le poids et le pourcentage retenu.
+            Faire remarquer que les deux sources ne décrivent pas exactement la même situation : une estimation à partir du besoin en matière sèche n'est pas strictement identique à une consommation de foin distribué seul à volonté.
+            -->
+
+            <h3>14. Défi — Pour ceux qui ont terminé</h3>
+
+            <p>Améliorez votre outil afin qu'il soit utilisable plus facilement par le responsable de l'écurie.</p>
+
+            <p>Vous pouvez par exemple :</p>
+
+            <ul>
+                <li>arrondir les résultats à deux décimales ;</li>
+                <li>mettre clairement les unités ;</li>
+                <li>mettre en évidence les totaux ;</li>
+                <li>créer un graphique comparant les besoins estimés des différents chevaux ;</li>
+                <li>modifier le poids d'un cheval et observer automatiquement les conséquences sur le stock nécessaire.</li>
+            </ul>
+
+            <h3>15. Rendu du travail</h3>
+
+            <p>Avant de rendre votre fichier, vérifiez que :</p>
+
+            <ul>
+                <li>votre fichier porte le bon nom ;</li>
+                <li>les six chevaux sont présents ;</li>
+                <li>les calculs sont réalisés avec des formules ;</li>
+                <li>les formules ont été recopiées correctement ;</li>
+                <li>les totaux journaliers sont calculés ;</li>
+                <li>les besoins pour 7 jours sont calculés ;</li>
+                <li>vous avez répondu aux questions professionnelles ;</li>
+                <li>votre tableau est lisible.</li>
+            </ul>
+
+            <p>Enregistrez une dernière fois puis rendez :</p>
+
+            <p><strong>CAPA2_S02_NOM_Prenom.ods</strong></p>
+
+            <p><strong>Même si votre travail n'est pas terminé, le fichier doit être rendu.</strong></p>
+
+            <h3>À retenir</h3>
+
+            <ul>
+                <li>Un tableur permet d'effectuer automatiquement des calculs à partir de données professionnelles.</li>
+                <li>Une formule commence par <strong>=</strong>.</li>
+                <li>Les pourcentages peuvent être utilisés directement dans une formule.</li>
+                <li>Une formule utilisant des références de cellules se recalcule lorsque les données changent.</li>
+                <li>Un résultat numérique doit toujours être interprété avant de prendre une décision.</li>
+                <li>Dans un contexte professionnel, il est important de connaître la source des données utilisées.</li>
+            </ul>
+        </section>
+
+        <section id="session3" class="content-section">
+            <h2>Séance 3 — Organiser le suivi de maréchalerie d'une écurie</h2>
+
+            <h3>Ce que vous allez apprendre</h3>
+            <ul>
+                <li>Comprendre comment un tableur peut servir à organiser le suivi des chevaux.</li>
+                <li>Comprendre qu'une date peut être utilisée dans un calcul.</li>
+                <li>Comprendre l'intérêt de trier et filtrer des informations professionnelles.</li>
+                <li>Utiliser une recommandation professionnelle sans la transformer en règle absolue.</li>
+            </ul>
+
+            <h3>Ce que vous allez apprendre à faire</h3>
+            <ul>
+                <li>Créer un planning avec LibreOffice Calc.</li>
+                <li>Effectuer des calculs à partir de dates.</li>
+                <li>Recopier une formule.</li>
+                <li>Trier un tableau selon une date.</li>
+                <li>Filtrer les informations importantes.</li>
+                <li>Identifier les interventions à organiser en priorité.</li>
+            </ul>
+
+            <h3>1. Créez votre document de travail</h3>
+
+            <p>Dans votre dossier <strong>CAPA2_TIM/02_Travaux</strong>, créez un nouveau dossier nommé :</p>
+
+            <p><strong>S03</strong></p>
+
+            <p>Ouvrez ensuite <strong>LibreOffice Calc</strong> et enregistrez immédiatement votre fichier sous le nom :</p>
+
+            <p><strong>CAPA2_S03_NOM_Prenom.ods</strong></p>
+
+            <p>Enregistrez régulièrement votre travail pendant toute la séance.</p>
+
+            <h3>2. Situation professionnelle</h3>
+
+            <p>Vous travaillez dans la même structure équestre que lors de la séance précédente.</p>
+
+            <p>L'écurie accueille plusieurs chevaux et le responsable doit organiser régulièrement les interventions du maréchal-ferrant.</p>
+
+            <p>Jusqu'à présent, certaines dates sont simplement notées sur un carnet.</p>
+
+            <p>Le responsable souhaite disposer d'un tableau permettant de répondre rapidement à cette question :</p>
+
+            <p><strong>Quels chevaux doivent être programmés prochainement avec le maréchal-ferrant ?</strong></p>
+
+            <h3>3. Que dit la source professionnelle ?</h3>
+
+            <p>L'<strong>IFCE – Institut français du cheval et de l'équitation</strong> indique dans sa fiche consacrée aux soins courants que le maréchal-ferrant intervient généralement toutes les <strong>4 à 6 semaines</strong>.</p>
+
+            <p>L'IFCE précise toutefois que cette fréquence peut varier selon :</p>
+
+            <ul>
+                <li>l'utilisation du cheval ;</li>
+                <li>l'état de ses pieds ;</li>
+                <li>le terrain ;</li>
+                <li>et les besoins individuels de l'animal.</li>
+            </ul>
+
+            <p class="source">
+                <strong>Source professionnelle :</strong>
+                IFCE – équipédia,
+                <a href="https://equipedia.ifce.fr/sante-et-bien-etre-animal/soin-prevention-et-medication/soin/soins-courants" target="_blank" rel="noopener noreferrer">
+                    Soins courants
+                </a>.
+            </p>
+
+            <p><strong>Important :</strong> le tableau que vous allez réaliser est un outil d'organisation. Il ne remplace pas l'avis du maréchal-ferrant ou d'un autre professionnel.</p>
+
+            <!-- PROF :
+            Faire remarquer que la source donne un ordre de grandeur et non une date obligatoire identique pour tous les chevaux.
+            Pour l'activité, on utilisera volontairement la plage de 4 à 6 semaines afin d'apprendre à construire un planning.
+            -->
+
+            <h3>4. Les informations disponibles</h3>
+
+            <p>Le responsable vous fournit les dates des dernières interventions :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cheval</th>
+                        <th>Dernière intervention</th>
+                        <th>Type de suivi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Apache</td>
+                        <td>20/08/2026</td>
+                        <td>Parage</td>
+                    </tr>
+                    <tr>
+                        <td>Baya</td>
+                        <td>28/08/2026</td>
+                        <td>Ferrure</td>
+                    </tr>
+                    <tr>
+                        <td>Calypso</td>
+                        <td>03/09/2026</td>
+                        <td>Ferrure</td>
+                    </tr>
+                    <tr>
+                        <td>Django</td>
+                        <td>14/08/2026</td>
+                        <td>Ferrure</td>
+                    </tr>
+                    <tr>
+                        <td>Étoile</td>
+                        <td>31/08/2026</td>
+                        <td>Parage</td>
+                    </tr>
+                    <tr>
+                        <td>Flash</td>
+                        <td>07/09/2026</td>
+                        <td>Ferrure</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><em>Les chevaux et les dates sont fictifs. La fréquence de 4 à 6 semaines utilisée pour construire le planning provient de l'IFCE.</em></p>
+
+            <h3>5. Mission : créer le tableau de suivi</h3>
+
+            <p>Dans Calc, créez les colonnes suivantes :</p>
+
+            <ol>
+                <li><strong>Cheval</strong></li>
+                <li><strong>Dernière intervention</strong></li>
+                <li><strong>Type de suivi</strong></li>
+                <li><strong>Début de la période à 4 semaines</strong></li>
+                <li><strong>Fin de la période à 6 semaines</strong></li>
+                <li><strong>Situation au 25/09/2026</strong></li>
+            </ol>
+
+            <p>Recopiez les informations des six chevaux.</p>
+
+            <p>Adaptez la largeur des colonnes et mettez votre tableau en forme afin qu'il soit facilement lisible.</p>
+
+            <h3>6. Première date calculée : 4 semaines</h3>
+
+            <p>Une semaine comporte 7 jours.</p>
+
+            <p>Quatre semaines correspondent donc à :</p>
+
+            <p><strong>4 × 7 = 28 jours.</strong></p>
+
+            <p>Calc peut ajouter directement un nombre de jours à une date.</p>
+
+            <p>Pour Apache, calculez la date située <strong>28 jours après sa dernière intervention</strong>.</p>
+
+            <details>
+                <summary>Indice</summary>
+                <p>Si la date de la dernière intervention se trouve dans la cellule B2, vous pouvez écrire :</p>
+                <p><strong>=B2+28</strong></p>
+            </details>
+
+            <!-- PROF :
+            Apache : 20/08/2026 + 28 jours = 17/09/2026.
+            -->
+
+            <p>Recopiez ensuite cette formule pour les autres chevaux.</p>
+
+            <h3>7. Deuxième date calculée : 6 semaines</h3>
+
+            <p>Six semaines correspondent à :</p>
+
+            <p><strong>6 × 7 = 42 jours.</strong></p>
+
+            <p>Dans la colonne suivante, calculez la date située <strong>42 jours après la dernière intervention</strong>.</p>
+
+            <p>Cette fois, trouvez vous-même la formule.</p>
+
+            <!-- PROF :
+            Formule possible si la dernière intervention est en B2 : =B2+42
+            -->
+
+            <h3>8. Vérifiez vos résultats</h3>
+
+            <p>Vous devriez obtenir les périodes suivantes :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cheval</th>
+                        <th>À partir de 4 semaines</th>
+                        <th>À 6 semaines</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Apache</td>
+                        <td>17/09/2026</td>
+                        <td>01/10/2026</td>
+                    </tr>
+                    <tr>
+                        <td>Baya</td>
+                        <td>25/09/2026</td>
+                        <td>09/10/2026</td>
+                    </tr>
+                    <tr>
+                        <td>Calypso</td>
+                        <td>01/10/2026</td>
+                        <td>15/10/2026</td>
+                    </tr>
+                    <tr>
+                        <td>Django</td>
+                        <td>11/09/2026</td>
+                        <td>25/09/2026</td>
+                    </tr>
+                    <tr>
+                        <td>Étoile</td>
+                        <td>28/09/2026</td>
+                        <td>12/10/2026</td>
+                    </tr>
+                    <tr>
+                        <td>Flash</td>
+                        <td>05/10/2026</td>
+                        <td>19/10/2026</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- PROF :
+            Accepter de petites différences uniquement si elles viennent d'une erreur de saisie corrigée ensuite.
+            Les dates calculées doivent normalement être exactement celles du tableau.
+            -->
+
+            <h3>9. Mission : quelles interventions faut-il organiser ?</h3>
+
+            <p>Pour l'exercice, nous utilisons comme date de référence :</p>
+
+            <p><strong>25 septembre 2026.</strong></p>
+
+            <p>Dans la colonne <strong>Situation au 25/09/2026</strong>, indiquez :</p>
+
+            <ul>
+                <li><strong>À organiser maintenant</strong> si la période de 4 semaines a déjà commencé ;</li>
+                <li><strong>À venir</strong> si la période de 4 semaines n'a pas encore commencé.</li>
+            </ul>
+
+            <p>Pour les chevaux dont la date à 6 semaines est atteinte, ajoutez :</p>
+
+            <p><strong>Prioritaire</strong></p>
+
+            <!-- PROF :
+            Au 25/09/2026 :
+            Apache : À organiser maintenant.
+            Baya : À organiser maintenant.
+            Calypso : À venir.
+            Django : Prioritaire.
+            Étoile : À venir.
+            Flash : À venir.
+
+            Expliquer que "prioritaire" est ici une catégorie d'organisation pour l'exercice et non un diagnostic sur l'état du cheval.
+            -->
+
+            <h3>10. Mission : trier le planning</h3>
+
+            <p>Le responsable souhaite maintenant voir en premier les chevaux dont l'intervention doit être organisée le plus rapidement.</p>
+
+            <p>Utilisez la fonction de <strong>tri</strong> de Calc pour classer les chevaux selon la colonne :</p>
+
+            <p><strong>Fin de la période à 6 semaines</strong></p>
+
+            <p>Les dates les plus proches doivent apparaître en premier.</p>
+
+            <p>Quel cheval apparaît maintenant en première position ?</p>
+
+            <!-- PROF :
+            Réponse attendue : Django, avec une date à 6 semaines au 25/09/2026.
+            -->
+
+            <h3>11. Mission : filtrer les informations</h3>
+
+            <p>Le responsable ne souhaite maintenant afficher que les chevaux dont une intervention est à organiser.</p>
+
+            <p>Activez les <strong>filtres</strong> sur votre tableau.</p>
+
+            <p>Affichez uniquement :</p>
+
+            <ul>
+                <li>les chevaux indiqués <strong>À organiser maintenant</strong> ;</li>
+                <li>et le cheval indiqué <strong>Prioritaire</strong>.</li>
+            </ul>
+
+            <p>Quels chevaux restent affichés ?</p>
+
+            <!-- PROF :
+            Apache, Baya et Django.
+            -->
+
+            <p>Réaffichez ensuite tous les chevaux avant de poursuivre.</p>
+
+            <h3>12. Le responsable vous appelle</h3>
+
+            <p>Le maréchal-ferrant propose de venir le :</p>
+
+            <p><strong>30 septembre 2026.</strong></p>
+
+            <p>Il peut prendre en charge <strong>trois chevaux</strong> lors de cette visite.</p>
+
+            <p>À partir de votre planning, indiquez les trois chevaux que vous proposeriez au responsable de prévoir pour cette intervention.</p>
+
+            <p>Expliquez votre choix dans quelques cellules sous le tableau.</p>
+
+            <!-- PROF :
+            Choix logique attendu : Django, Apache et Baya.
+            Django a atteint la limite de 6 semaines le 25/09.
+            Apache est dans la plage 4-6 semaines depuis le 17/09 et atteint 6 semaines le 01/10.
+            Baya entre dans sa plage le 25/09.
+
+            Accepter un raisonnement différent s'il est correctement argumenté à partir des données.
+            L'important est l'exploitation du planning, pas uniquement la réponse.
+            -->
+
+            <h3>13. Une information change</h3>
+
+            <p>Le responsable vous informe finalement qu'<strong>Apache a été paré le 10 septembre 2026</strong> lors d'une intervention qui n'avait pas été inscrite dans le carnet.</p>
+
+            <p>Modifiez uniquement la date de sa dernière intervention.</p>
+
+            <p>Observez les deux dates calculées.</p>
+
+            <p>Que se passe-t-il ?</p>
+
+            <!-- PROF :
+            Les dates doivent automatiquement devenir :
+            4 semaines : 08/10/2026.
+            6 semaines : 22/10/2026.
+
+            Apache ne doit donc plus être considéré comme à organiser au 25/09.
+            Faire le lien avec la séance 2 : une formule correctement construite met automatiquement les résultats à jour lorsque la donnée d'origine change.
+            -->
+
+            <p>Corrigez la colonne <strong>Situation</strong> en fonction de cette nouvelle information.</p>
+
+            <h3>14. Réfléchir comme un professionnel</h3>
+
+            <p>Répondez sous votre tableau :</p>
+
+            <p><strong>Pourquoi est-il important d'enregistrer correctement les interventions réalisées sur chaque cheval ?</strong></p>
+
+            <!-- PROF :
+            Réponses possibles :
+            - éviter d'oublier une intervention ;
+            - éviter de programmer inutilement une intervention déjà réalisée ;
+            - organiser le travail de l'écurie ;
+            - transmettre des informations fiables entre salariés ;
+            - conserver un historique ;
+            - anticiper les prochains rendez-vous.
+
+            Accepter toute réponse professionnelle cohérente.
+            -->
+
+            <h3>15. Défi — Automatiser le statut</h3>
+
+            <p>Si vous avez terminé, essayez de faire en sorte que Calc affiche automatiquement un statut en comparant les dates à la date de référence.</p>
+
+            <p>Vous pouvez rechercher comment fonctionne la fonction <strong>SI</strong> dans LibreOffice Calc.</p>
+
+            <p>Votre objectif est d'obtenir automatiquement l'un des trois résultats :</p>
+
+            <ul>
+                <li>À venir</li>
+                <li>À organiser maintenant</li>
+                <li>Prioritaire</li>
+            </ul>
+
+            <p>Vous avez le droit d'essayer, de vous tromper et de modifier votre formule.</p>
+
+            <!-- PROF :
+            Activité volontairement facultative.
+            Elle permet d'identifier les élèves à l'aise avec les formules conditionnelles.
+            Ne pas en faire un prérequis pour la suite.
+            -->
+
+            <h3>16. Rendu du travail</h3>
+
+            <p>Avant de rendre votre fichier, vérifiez que :</p>
+
+            <ul>
+                <li>le fichier porte le nom demandé ;</li>
+                <li>les six chevaux sont présents ;</li>
+                <li>les dates à 4 semaines sont calculées avec une formule ;</li>
+                <li>les dates à 6 semaines sont calculées avec une formule ;</li>
+                <li>le tableau est lisible ;</li>
+                <li>vous avez utilisé le tri ;</li>
+                <li>vous avez utilisé les filtres ;</li>
+                <li>vous avez répondu à la situation du 30 septembre ;</li>
+                <li>vous avez traité la modification concernant Apache.</li>
+            </ul>
+
+            <p>Enregistrez une dernière fois puis rendez :</p>
+
+            <p><strong>CAPA2_S03_NOM_Prenom.ods</strong></p>
+
+            <p><strong>Même si votre travail n'est pas terminé, le fichier doit être rendu.</strong></p>
+
+            <h3>À retenir</h3>
+
+            <ul>
+                <li>Un tableur peut servir à créer un planning professionnel.</li>
+                <li>Calc peut effectuer des calculs directement avec des dates.</li>
+                <li>Ajouter 28 à une date permet ici d'obtenir une date située 4 semaines plus tard.</li>
+                <li>Le tri permet de classer rapidement les informations.</li>
+                <li>Le filtre permet de n'afficher que les informations dont on a besoin.</li>
+                <li>Une donnée incorrecte peut conduire à une mauvaise décision.</li>
+                <li>Les recommandations professionnelles doivent être interprétées en fonction de chaque situation.</li>
+            </ul>
+        </section>
+
+        <section id="session4" class="content-section">
+            <h2>Séance 4 — Accueillir un nouvel équidé : vérifier et organiser les informations</h2>
+
+            <h3>Ce que vous allez apprendre</h3>
+            <ul>
+                <li>Comprendre pourquoi l'identification et la traçabilité des équidés sont importantes.</li>
+                <li>Distinguer une obligation réglementaire d'une bonne pratique professionnelle.</li>
+                <li>Identifier une source professionnelle fiable sur Internet.</li>
+                <li>Comprendre l'intérêt d'un document standardisé lors de l'arrivée d'un cheval.</li>
+            </ul>
+
+            <h3>Ce que vous allez apprendre à faire</h3>
+            <ul>
+                <li>Rechercher une information dans une source professionnelle.</li>
+                <li>Extraire les informations importantes d'une page Internet.</li>
+                <li>Créer une fiche professionnelle avec LibreOffice Writer.</li>
+                <li>Organiser des informations dans des tableaux.</li>
+                <li>Insérer des liens vers les sources utilisées.</li>
+                <li>Exporter un document professionnel au format PDF.</li>
+            </ul>
+
+            <h3>1. Créez votre document de travail</h3>
+
+            <p>Dans votre dossier <strong>CAPA2_TIM/02_Travaux</strong>, créez un dossier :</p>
+
+            <p><strong>S04</strong></p>
+
+            <p>Ouvrez ensuite <strong>LibreOffice Writer</strong> et enregistrez immédiatement votre document sous le nom :</p>
+
+            <p><strong>CAPA2_S04_NOM_Prenom.odt</strong></p>
+
+            <p>Ce document deviendra progressivement une véritable <strong>fiche d'accueil d'un équidé</strong>.</p>
+
+            <h3>2. Situation professionnelle</h3>
+
+            <p>Vous travaillez dans une écurie de pension.</p>
+
+            <p>Un nouveau cheval, <strong>Mistral</strong>, arrive aujourd'hui pour plusieurs mois.</p>
+
+            <p>Le responsable vous demande de préparer son dossier d'arrivée et de vérifier que les informations importantes ont bien été transmises.</p>
+
+            <p>Mais avant de créer la fiche, vous devez savoir :</p>
+
+            <ul>
+                <li>quels documents accompagnent normalement un équidé ;</li>
+                <li>comment son identification peut être vérifiée ;</li>
+                <li>quelles informations concernant son arrivée doivent être conservées.</li>
+            </ul>
+
+            <h3>3. Première source : l'identification des équidés</h3>
+
+            <p>Consultez la page suivante de l'<strong>IFCE – Institut français du cheval et de l'équitation</strong> :</p>
+
+            <p class="source">
+                <strong>Source professionnelle :</strong>
+                IFCE – SIRE,
+                <a href="https://www.ifce.fr/ifce/sire-demarches/sanitaire-detention/identification-des-equides-ifce/" target="_blank" rel="noopener noreferrer">
+                    Identification des équidés
+                </a>.
+            </p>
+
+            <p>Recherchez dans cette page les informations permettant de compléter les phrases suivantes dans votre document :</p>
+
+            <ol>
+                <li>Tout équidé présent en France doit être __________.</li>
+                <li>Il doit être équipé d'un __________ électronique.</li>
+                <li>Il doit posséder un document d'identification appelé également __________ ou __________.</li>
+                <li>Il doit disposer d'un numéro __________ attestant son enregistrement dans le fichier central.</li>
+                <li>Le document d'identification doit-il rester avec le cheval lors de ses déplacements ?</li>
+            </ol>
+
+            <!-- PROF :
+            Réponses attendues :
+            1. identifié ;
+            2. transpondeur ;
+            3. passeport / livret ;
+            4. SIRE ;
+            5. oui, le document d'identification doit suivre le cheval dans ses déplacements.
+            -->
+
+            <h3>4. Une source, mais laquelle ?</h3>
+
+            <p>Observez l'adresse du site que vous venez d'utiliser puis répondez dans votre document :</p>
+
+            <ol>
+                <li>Quel organisme publie cette information ?</li>
+                <li>S'agit-il d'un forum, d'un réseau social, d'un site commercial ou d'un organisme professionnel officiel ?</li>
+                <li>Pourquoi cette source est-elle préférable à une réponse trouvée au hasard sur un forum ?</li>
+            </ol>
+
+            <!-- PROF :
+            1. IFCE – Institut français du cheval et de l'équitation / SIRE.
+            2. Organisme officiel et professionnel.
+            3. Les informations concernent directement la réglementation et les démarches gérées par le SIRE.
+            Accepter toute réponse correctement argumentée sur la fiabilité, l'identification de l'auteur et la compétence de l'organisme.
+            -->
+
+            <h3>5. Deuxième source : le registre d'élevage</h3>
+
+            <p>Lorsqu'un cheval arrive ou quitte une structure, son mouvement doit également pouvoir être retrouvé.</p>
+
+            <p>Consultez maintenant :</p>
+
+            <p class="source">
+                <strong>Source professionnelle :</strong>
+                IFCE – SIRE,
+                <a href="https://www.ifce.fr/ifce/sire-demarches/sanitaire-detention/registre-delevage/" target="_blank" rel="noopener noreferrer">
+                    Registre d'élevage
+                </a>.
+            </p>
+
+            <p>À partir de cette page, répondez aux questions suivantes :</p>
+
+            <ol>
+                <li>À quoi sert notamment le registre d'élevage ?</li>
+                <li>Est-il réservé aux grandes structures possédant beaucoup de chevaux ?</li>
+                <li>Quels types d'informations peuvent y être enregistrés ?</li>
+                <li>Combien de temps le registre doit-il être conservé ?</li>
+            </ol>
+
+            <!-- PROF :
+            Réponses attendues :
+            1. Connaître les équidés présents et leurs mouvements, conserver un suivi de leur entretien, des soins et des interventions vétérinaires.
+            2. Non. L'IFCE précise que l'obligation ne dépend ni du nombre d'équidés ni de leur utilisation.
+            3. Entrées/sorties et mouvements, entretien et soins, interventions vétérinaires, informations relatives à l'exploitation.
+            4. Au moins cinq ans.
+            -->
+
+            <h3>6. Le dossier de Mistral</h3>
+
+            <p>Voici les informations transmises lors de son arrivée :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Information</th>
+                        <th>Donnée transmise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nom</td>
+                        <td>Mistral</td>
+                    </tr>
+                    <tr>
+                        <td>Sexe</td>
+                        <td>Hongre</td>
+                    </tr>
+                    <tr>
+                        <td>Âge</td>
+                        <td>9 ans</td>
+                    </tr>
+                    <tr>
+                        <td>Propriétaire</td>
+                        <td>Claire Martin</td>
+                    </tr>
+                    <tr>
+                        <td>Date d'arrivée</td>
+                        <td>25/09/2026</td>
+                    </tr>
+                    <tr>
+                        <td>Départ prévu</td>
+                        <td>20/12/2026</td>
+                    </tr>
+                    <tr>
+                        <td>Document présenté</td>
+                        <td>Photocopie du document d'identification</td>
+                    </tr>
+                    <tr>
+                        <td>Numéro SIRE</td>
+                        <td>Présent sur la photocopie</td>
+                    </tr>
+                    <tr>
+                        <td>Entrée dans le registre d'élevage</td>
+                        <td>Pas encore réalisée</td>
+                    </tr>
+                    <tr>
+                        <td>Contact en cas de problème</td>
+                        <td>Claire Martin – coordonnées transmises à l'écurie</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><em>Mistral, Claire Martin et les informations du dossier sont fictifs. Les obligations et informations réglementaires utilisées dans l'activité proviennent de l'IFCE.</em></p>
+
+            <h3>7. Mission : repérer les problèmes</h3>
+
+            <p>À partir des deux sources IFCE, trouvez au moins <strong>deux éléments</strong> du dossier qui doivent attirer l'attention du responsable.</p>
+
+            <p>Expliquez pourquoi dans votre document.</p>
+
+            <!-- PROF :
+            Points principaux attendus :
+            - seule une photocopie du document d'identification est présente : l'IFCE indique que le document d'identification original doit accompagner l'équidé ;
+            - l'entrée de Mistral n'a pas encore été renseignée dans le registre : chaque entrée ou sortie doit être enregistrée.
+
+            Ne pas présenter les autres éléments de la future fiche comme des obligations réglementaires s'ils constituent seulement des choix d'organisation de l'écurie.
+            -->
+
+            <h3>8. Mission principale : créer la fiche d'accueil de Mistral</h3>
+
+            <p>Transformez maintenant votre document Writer en une fiche professionnelle utilisable par l'écurie.</p>
+
+            <p>Ajoutez un titre :</p>
+
+            <p><strong>FICHE D'ACCUEIL D'UN ÉQUIDÉ</strong></p>
+
+            <p>Ajoutez ensuite plusieurs parties clairement identifiables.</p>
+
+            <h4>A. Identification de l'équidé</h4>
+
+            <p>Créez un tableau contenant au minimum :</p>
+
+            <ul>
+                <li>nom ;</li>
+                <li>sexe ;</li>
+                <li>âge ;</li>
+                <li>numéro SIRE ;</li>
+                <li>nom du propriétaire.</li>
+            </ul>
+
+            <h4>B. Arrivée dans la structure</h4>
+
+            <p>Ajoutez :</p>
+
+            <ul>
+                <li>date d'arrivée ;</li>
+                <li>date de départ prévue ;</li>
+                <li>type de séjour : pension temporaire.</li>
+            </ul>
+
+            <h4>C. Vérifications lors de l'arrivée</h4>
+
+            <p>Créez un tableau de contrôle ressemblant à celui-ci :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Élément à vérifier</th>
+                        <th>Oui</th>
+                        <th>Non</th>
+                        <th>Observation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Document d'identification original présent</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Numéro SIRE disponible</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Coordonnées du propriétaire disponibles</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Contact en cas de problème disponible</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Entrée enregistrée dans le registre d'élevage</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Complétez ce tableau avec les informations disponibles concernant Mistral.</p>
+
+            <!-- PROF :
+            Document original : NON.
+            Numéro SIRE disponible : OUI, sur la copie.
+            Coordonnées propriétaire : OUI.
+            Contact : OUI.
+            Entrée registre : NON à ce stade.
+            -->
+
+            <h4>D. Observations</h4>
+
+            <p>Ajoutez une zone suffisamment grande pour permettre à un salarié de noter des informations utiles lors de l'arrivée.</p>
+
+            <p>Pour cette activité, indiquez :</p>
+
+            <p><strong>Document d'identification original à demander au propriétaire. Entrée de Mistral à enregistrer dans le registre.</strong></p>
+
+            <h3>9. Ne pas confondre obligation et organisation interne</h3>
+
+            <p>Dans votre document, ajoutez un petit encadré :</p>
+
+            <p><strong>Obligations / bonnes pratiques</strong></p>
+
+            <p>Classez les éléments suivants :</p>
+
+            <ul>
+                <li>équidé identifié ;</li>
+                <li>document d'identification accompagnant le cheval ;</li>
+                <li>enregistrement des mouvements dans le registre ;</li>
+                <li>utilisation d'une fiche d'accueil créée par l'écurie ;</li>
+                <li>mise en page avec le logo de l'écurie.</li>
+            </ul>
+
+            <!-- PROF :
+            Obligations ou éléments réglementaires issus des sources :
+            - équidé identifié ;
+            - document d'identification accompagnant le cheval ;
+            - mouvements enregistrés dans le registre.
+
+            Organisation interne / choix de la structure :
+            - utiliser précisément la fiche d'accueil créée dans cette séance ;
+            - ajouter un logo.
+
+            Faire comprendre qu'un document peut être professionnel et utile sans être lui-même imposé par la réglementation.
+            -->
+
+            <h3>10. Indiquer ses sources</h3>
+
+            <p>En bas de votre document, ajoutez :</p>
+
+            <p><strong>Sources consultées :</strong></p>
+
+            <ul>
+                <li>IFCE – Identification des équidés ;</li>
+                <li>IFCE – Registre d'élevage.</li>
+            </ul>
+
+            <p>Transformez les titres des deux ressources en <strong>liens cliquables</strong> vers les pages consultées.</p>
+
+            <details>
+                <summary>Besoin d'aide pour créer un lien dans Writer ?</summary>
+                <p>Sélectionnez le texte puis utilisez le menu <strong>Insertion → Hyperlien</strong>.</p>
+            </details>
+
+            <h3>11. Mission : informer le responsable</h3>
+
+            <p>Sous votre fiche, rédigez un court message professionnel de <strong>3 à 5 lignes</strong> destiné au responsable de l'écurie.</p>
+
+            <p>Votre message doit expliquer :</p>
+
+            <ul>
+                <li>ce qui manque actuellement dans le dossier de Mistral ;</li>
+                <li>ce qui doit être mis à jour dans le registre ;</li>
+                <li>pourquoi il est important de corriger ces éléments.</li>
+            </ul>
+
+            <!-- PROF :
+            Exemple attendu, sans imposer la formulation :
+            "Lors de l'arrivée de Mistral, seule une photocopie de son document d'identification a été fournie. L'original doit accompagner le cheval et doit donc être demandé au propriétaire. L'arrivée de Mistral doit également être enregistrée dans le registre d'élevage afin de conserver une trace correcte des mouvements des équidés."
+
+            Évaluer surtout la clarté, le caractère professionnel et l'utilisation correcte des informations trouvées.
+            -->
+
+            <h3>12. Transformer la fiche en modèle professionnel</h3>
+
+            <p>Améliorez la présentation de votre document :</p>
+
+            <ul>
+                <li>titre clairement identifiable ;</li>
+                <li>sous-titres cohérents ;</li>
+                <li>tableaux lisibles ;</li>
+                <li>marges régulières ;</li>
+                <li>police facile à lire ;</li>
+                <li>aucun élément décoratif inutile.</li>
+            </ul>
+
+            <p>Votre objectif est qu'un salarié puisse retrouver une information en quelques secondes.</p>
+
+            <h3>13. Défi — Créer une fiche réutilisable</h3>
+
+            <p>Si vous avez terminé, créez une deuxième page contenant la même fiche mais <strong>sans les informations concernant Mistral</strong>.</p>
+
+            <p>Elle doit pouvoir être imprimée et utilisée lors de l'arrivée de n'importe quel nouvel équidé.</p>
+
+            <p>Remplacez les informations par des zones à compléter :</p>
+
+            <ul>
+                <li>Nom : ____________________</li>
+                <li>N° SIRE : ____________________</li>
+                <li>Date d'arrivée : ____________________</li>
+            </ul>
+
+            <p>Vous venez ainsi de créer un <strong>modèle de document professionnel</strong>.</p>
+
+            <h3>14. Exporter le document</h3>
+
+            <p>Lorsque votre fiche est terminée :</p>
+
+            <ol>
+                <li>enregistrez votre fichier Writer ;</li>
+                <li>exportez-le au format PDF ;</li>
+                <li>vérifiez le PDF avant de le rendre.</li>
+            </ol>
+
+            <p>Vous devez obtenir :</p>
+
+            <ul>
+                <li><strong>CAPA2_S04_NOM_Prenom.odt</strong></li>
+                <li><strong>CAPA2_S04_NOM_Prenom.pdf</strong></li>
+            </ul>
+
+            <h3>15. Rendu du travail</h3>
+
+            <p>Avant de rendre votre fichier, vérifiez que :</p>
+
+            <ul>
+                <li>la fiche permet d'identifier clairement Mistral ;</li>
+                <li>les informations d'arrivée sont présentes ;</li>
+                <li>le tableau de vérification est complété ;</li>
+                <li>les deux problèmes du dossier ont été repérés ;</li>
+                <li>vous distinguez obligations et organisation interne ;</li>
+                <li>les sources IFCE apparaissent avec des liens cliquables ;</li>
+                <li>le message destiné au responsable est rédigé ;</li>
+                <li>le document reste lisible et professionnel.</li>
+            </ul>
+
+            <p>Rendez :</p>
+
+            <p><strong>CAPA2_S04_NOM_Prenom.pdf</strong></p>
+
+            <p><strong>Même si votre travail n'est pas terminé, il doit être rendu.</strong></p>
+
+            <h3>À retenir</h3>
+
+            <ul>
+                <li>Une information professionnelle doit provenir d'une source identifiable et fiable.</li>
+                <li>Tout équidé doit être correctement identifié et enregistré.</li>
+                <li>Le document d'identification accompagne le cheval lors de ses déplacements.</li>
+                <li>Les mouvements des équidés doivent pouvoir être retrouvés dans le registre d'élevage.</li>
+                <li>Un document numérique professionnel doit permettre de retrouver rapidement les informations utiles.</li>
+                <li>Une source utilisée dans un travail doit être indiquée et, lorsque cela est possible, reliée à la ressource originale.</li>
+            </ul>
+        </section>
+
+        <section id="session5" class="content-section">
+            <h2>Séance 5 — Communiquer avec un professionnel par courriel</h2>
+
+            <h3>Ce que vous allez apprendre</h3>
+            <ul>
+                <li>Comprendre les règles principales d'un courriel professionnel.</li>
+                <li>Comprendre pourquoi l'objet d'un message est important.</li>
+                <li>Comprendre qu'une pièce jointe doit être choisie en fonction du destinataire et de l'objectif du message.</li>
+                <li>Comprendre qu'il ne faut pas transmettre inutilement des données personnelles.</li>
+            </ul>
+
+            <h3>Ce que vous allez apprendre à faire</h3>
+            <ul>
+                <li>Rédiger un courriel professionnel clair et concis.</li>
+                <li>Choisir un objet pertinent.</li>
+                <li>Ajouter et vérifier une pièce jointe.</li>
+                <li>Identifier les informations réellement utiles au destinataire.</li>
+                <li>Créer un brouillon et le relire avant tout envoi.</li>
+            </ul>
+
+            <h3>1. Préparez votre espace de travail</h3>
+
+            <p>Dans votre dossier <strong>CAPA2_TIM/02_Travaux</strong>, créez un nouveau dossier nommé :</p>
+
+            <p><strong>S05</strong></p>
+
+            <p>Vous conserverez dans ce dossier les éventuels documents utilisés pendant la séance.</p>
+
+            <h3>2. Situation professionnelle</h3>
+
+            <p>Nous retrouvons <strong>Mistral</strong>, le cheval arrivé dans l'écurie lors de la séance précédente.</p>
+
+            <p>Son propriétaire souhaite prochainement participer avec lui à différentes activités équestres.</p>
+
+            <p>Le responsable de l'écurie souhaite donc demander au vétérinaire de vérifier que les informations concernant ses vaccinations sont correctement enregistrées et de lui indiquer si une intervention doit être programmée.</p>
+
+            <p>Vous devez préparer le courriel qui sera envoyé au vétérinaire.</p>
+
+            <p><strong>Attention :</strong> pendant cette activité, vous préparez uniquement un <strong>brouillon</strong>. Aucun message ne doit être envoyé à un véritable professionnel.</p>
+
+            <h3>3. Avant d'écrire : vérifier l'information</h3>
+
+            <p>Consultez la ressource suivante :</p>
+
+            <p class="source">
+                <strong>Source professionnelle :</strong>
+                IFCE – équipédia,
+                <a href="https://equipedia.ifce.fr/sante-et-bien-etre-animal/soin-prevention-et-medication/prevention/reglementation-vaccinale-en-france" target="_blank" rel="noopener noreferrer">
+                    La réglementation vaccinale en France
+                </a>.
+            </p>
+
+            <p>À partir de cette page, répondez aux questions suivantes dans votre document de travail ou dans une zone de brouillon :</p>
+
+            <ol>
+                <li>En France, toutes les vaccinations des chevaux sont-elles obligatoires par l'État ?</li>
+                <li>Dans quelles situations certaines vaccinations peuvent-elles devenir obligatoires ?</li>
+                <li>Qui réalise et enregistre les vaccinations dans le document d'identification ?</li>
+                <li>Quelles informations permettent de conserver une trace de la vaccination dans ce document ?</li>
+            </ol>
+
+            <!-- PROF :
+            1. Non. L'IFCE précise qu'aucune vaccination n'est rendue obligatoire par l'État pour tous les équidés.
+            2. Certaines vaccinations deviennent obligatoires selon la situation : participation à certaines manifestations équestres, courses, reproduction, export, règlements particuliers, etc.
+            3. Le vétérinaire.
+            4. Les vaccinations conformes sont enregistrées dans le document d'identification avec notamment les vignettes, la date, le cachet et la signature du vétérinaire.
+            Ne pas entrer dans le détail de tous les protocoles vaccinaux : ils varient selon l'activité et la situation du cheval.
+            -->
+
+            <h3>4. Une information importante : ne pas envoyer trop de données</h3>
+
+            <p>Lorsque l'on communique avec un professionnel, il ne faut pas nécessairement lui transmettre tout le dossier dont on dispose.</p>
+
+            <p>La CNIL rappelle le principe de <strong>minimisation des données</strong> :</p>
+
+            <p>les informations utilisées ou transmises doivent être pertinentes et limitées à ce qui est réellement nécessaire pour l'objectif recherché.</p>
+
+            <p class="source">
+                <strong>Source :</strong>
+                CNIL,
+                <a href="https://www.cnil.fr/fr/definition/minimisation" target="_blank" rel="noopener noreferrer">
+                    Minimisation des données
+                </a>.
+            </p>
+
+            <p>Imaginez que la fiche d'accueil complète de Mistral contienne :</p>
+
+            <ul>
+                <li>le nom du cheval ;</li>
+                <li>son numéro SIRE ;</li>
+                <li>les coordonnées personnelles de sa propriétaire ;</li>
+                <li>son adresse ;</li>
+                <li>un contact d'urgence ;</li>
+                <li>sa date d'arrivée ;</li>
+                <li>des observations internes à l'écurie.</li>
+            </ul>
+
+            <p>Le vétérinaire a-t-il besoin de recevoir automatiquement toutes ces informations pour vérifier la situation vaccinale du cheval ?</p>
+
+            <!-- PROF :
+            Réponse attendue : non.
+            Il faut transmettre uniquement les informations nécessaires à la demande.
+            Par exemple : identité suffisamment précise du cheval et document/page concernant les vaccinations.
+            Les coordonnées personnelles du propriétaire ou des observations internes ne doivent pas être envoyées sans nécessité.
+            -->
+
+            <h3>5. Quel document joindre ?</h3>
+
+            <p>Le responsable dispose de deux fichiers :</p>
+
+            <ul>
+                <li><strong>Fiche_complete_Mistral.pdf</strong> : dossier complet de l'écurie ;</li>
+                <li><strong>Vaccinations_Mistral.pdf</strong> : copie fictive de la partie du document concernant uniquement les vaccinations.</li>
+            </ul>
+
+            <p>Quel fichier semble le plus adapté à la demande adressée au vétérinaire ? Expliquez pourquoi.</p>
+
+            <!-- PROF :
+            Réponse attendue : Vaccinations_Mistral.pdf.
+            Le document est directement lié à l'objectif du message et évite de transmettre inutilement d'autres informations.
+            -->
+
+            <h3>6. Observer la pièce jointe</h3>
+
+            <p>Ouvrez le fichier :</p>
+
+            <p><strong><a href="Vaccinations_Mistral.pdf" target="_blank" rel="noopener noreferrer">Vaccinations_Mistral.pdf</a></strong></p>
+
+            <p>Vérifiez :</p>
+
+            <ul>
+                <li>qu'il s'ouvre correctement ;</li>
+                <li>qu'il concerne bien Mistral ;</li>
+                <li>qu'il s'agit bien du document destiné à être joint au courriel.</li>
+            </ul>
+
+            <p><strong>Ne joignez jamais un fichier uniquement parce que son nom semble correct : ouvrez-le avant.</strong></p>
+
+            <h3>7. Préparer le courriel</h3>
+
+            <p>Ouvrez votre messagerie habituelle et créez un <strong>nouveau brouillon</strong>.</p>
+
+            <p><strong>Ne renseignez pas de véritable adresse de vétérinaire.</strong></p>
+
+            <p>Si votre messagerie exige un destinataire, utilisez uniquement l'adresse d'exercice donnée par le professeur.</p>
+
+            <p>Votre message devra comporter :</p>
+
+            <ul>
+                <li>un objet ;</li>
+                <li>une formule d'appel ;</li>
+                <li>le contexte de la demande ;</li>
+                <li>les informations permettant d'identifier Mistral ;</li>
+                <li>la demande précise ;</li>
+                <li>l'indication qu'un document est joint ;</li>
+                <li>une formule de politesse ;</li>
+                <li>une signature professionnelle.</li>
+            </ul>
+
+            <h3>8. Choisir un bon objet</h3>
+
+            <p>Voici plusieurs objets possibles :</p>
+
+            <ol>
+                <li><strong>Bonjour</strong></li>
+                <li><strong>Question</strong></li>
+                <li><strong>Mistral</strong></li>
+                <li><strong>Vérification du suivi vaccinal de Mistral</strong></li>
+                <li><strong>URGENT !!!!!</strong></li>
+            </ol>
+
+            <p>Quel objet choisiriez-vous ? Expliquez pourquoi.</p>
+
+            <!-- PROF :
+            Réponse attendue : "Vérification du suivi vaccinal de Mistral".
+            L'objet permet au destinataire d'identifier immédiatement le sujet et le cheval concerné.
+            "Urgent" n'est pas justifié dans la situation présentée.
+            -->
+
+            <h3>9. Rédiger le message</h3>
+
+            <p>Rédigez maintenant votre courriel.</p>
+
+            <p>Votre message doit rester <strong>court, précis et professionnel</strong>.</p>
+
+            <p>Vous pouvez vous aider de cette structure :</p>
+
+            <ol>
+                <li>saluer le destinataire ;</li>
+                <li>expliquer pourquoi vous écrivez ;</li>
+                <li>indiquer quel cheval est concerné ;</li>
+                <li>formuler clairement la demande ;</li>
+                <li>indiquer qu'un document est joint ;</li>
+                <li>remercier et terminer le message ;</li>
+                <li>signer.</li>
+            </ol>
+
+            <!-- PROF :
+            Exemple possible :
+
+            Bonjour,
+
+            Mistral est actuellement accueilli dans notre écurie et son propriétaire souhaite prochainement participer à différentes activités équestres.
+
+            Pourriez-vous vérifier, à partir du document joint, si son suivi vaccinal est à jour pour les activités envisagées et nous indiquer 
+            si une intervention doit être programmée ?
+
+            Vous trouverez en pièce jointe la copie des informations de vaccination dont nous disposons.
+
+            Merci par avance pour votre retour.
+
+            Cordialement,
+            [Prénom NOM]
+            Écurie [nom fictif]
+
+            Ne pas imposer cette formulation mot pour mot.
+            Évaluer surtout la clarté, la politesse, la concision et la précision de la demande.
+            -->
+
+            <h3>10. Ajouter la pièce jointe</h3>
+
+            <p>Joignez le fichier :</p>
+
+            <p><strong>Vaccinations_Mistral.pdf</strong></p>
+
+            <p>Une fois le fichier ajouté, vérifiez qu'il apparaît réellement dans le brouillon.</p>
+
+            <p><strong>Erreur très fréquente :</strong> écrire « vous trouverez le document en pièce jointe » puis envoyer le message sans avoir joint le fichier.</p>
+
+            <h3>11. Avant d'envoyer : la règle des 30 secondes</h3>
+
+            <p>Avant tout envoi professionnel, prenez quelques secondes pour vérifier :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>À vérifier</th>
+                        <th>OK ?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Le bon destinataire est sélectionné</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>L'objet explique clairement le sujet</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Le message est compréhensible</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>La demande est clairement formulée</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>La pièce jointe est présente</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>La bonne pièce jointe a été sélectionnée</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Aucune donnée inutile n'est transmise</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Le message a été relu</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Effectuez réellement ces vérifications sur votre brouillon.</p>
+
+            <h3>12. Une erreur à éviter</h3>
+
+            <p>Un collègue prépare le message suivant :</p>
+
+            <blockquote>
+                Salut,<br>
+                je t'envoie les papiers du cheval tu peux regarder si tout est bon ?<br>
+                Merci
+            </blockquote>
+
+            <p>Il joint le <strong>dossier complet de Mistral</strong>.</p>
+
+            <p>Identifiez au moins <strong>quatre problèmes</strong> dans cette situation.</p>
+
+            <!-- PROF :
+            Réponses possibles :
+            - objet absent ou imprécis ;
+            - formulation trop familière ;
+            - cheval insuffisamment identifié ;
+            - demande imprécise ;
+            - pièce jointe non annoncée clairement ;
+            - dossier complet envoyé alors que toutes les informations ne sont pas nécessaires ;
+            - absence de formule professionnelle/signature ;
+            - risque d'envoyer des données personnelles inutiles.
+            -->
+
+            <h3>13. À, Cc et Cci : quelle différence ?</h3>
+
+            <p>Dans une messagerie, vous pouvez généralement rencontrer trois zones :</p>
+
+            <ul>
+                <li><strong>À :</strong> destinataire principal ;</li>
+                <li><strong>Cc :</strong> copie visible par les autres destinataires ;</li>
+                <li><strong>Cci :</strong> copie cachée aux autres destinataires.</li>
+            </ul>
+
+            <p>Dans notre situation, un seul vétérinaire doit recevoir la demande.</p>
+
+            <p>Quelle zone doit être utilisée ?</p>
+
+            <!-- PROF :
+            Réponse attendue : À.
+            Cc et Cci ne sont pas nécessaires ici.
+            -->
+
+            <h3>14. Défi — Un même outil, deux niveaux de qualité</h3>
+
+            <p>Si vous avez terminé, imaginez maintenant que vous devez informer le propriétaire de Mistral que la demande a été transmise au vétérinaire.</p>
+
+            <p>Créez un <strong>deuxième brouillon</strong> :</p>
+
+            <ul>
+                <li>avec un objet adapté ;</li>
+                <li>un message très court ;</li>
+                <li>sans joindre inutilement le document vaccinal.</li>
+            </ul>
+
+            <!-- PROF :
+            L'objectif est de faire comprendre que le contenu et les pièces jointes dépendent du destinataire et de la finalité du message.
+            -->
+
+            <h3>15. Rendu du travail</h3>
+
+            <p>Le professeur vérifiera votre brouillon directement sur votre poste ou selon la méthode indiquée en classe.</p>
+
+            <p>Votre message doit comporter :</p>
+
+            <ul>
+                <li>un objet pertinent ;</li>
+                <li>une formulation professionnelle ;</li>
+                <li>une demande précise ;</li>
+                <li>la pièce jointe adaptée ;</li>
+                <li>une signature ;</li>
+                <li>aucune information personnelle inutile.</li>
+            </ul>
+
+            <p><strong>Ne cliquez pas sur Envoyer sauf indication explicite du professeur.</strong></p>
+
+            <h3>À retenir</h3>
+
+            <ul>
+                <li>Un courriel professionnel doit être clair, court et précis.</li>
+                <li>L'objet doit permettre d'identifier immédiatement le sujet du message.</li>
+                <li>Une pièce jointe doit être ouverte et vérifiée avant l'envoi.</li>
+                <li>Il ne faut transmettre que les informations nécessaires au destinataire.</li>
+                <li>Un brouillon doit toujours être relu avant d'être envoyé.</li>
+                <li>Une information concernant la santé ou la réglementation doit être vérifiée auprès d'une source professionnelle fiable.</li>
+            </ul>
+        </section>
     </main>
 </body>
 </html>
