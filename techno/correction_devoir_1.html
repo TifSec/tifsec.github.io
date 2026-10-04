@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correction professeur – DS Technologie 3e – S02 à S05</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #eef2f6;
+    color: #1f2937;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.55;
+}
+
+#correction-ds {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+header {
+    margin-bottom: 25px;
+    padding: 24px;
+    background: #243b53;
+    color: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+header h1 {
+    margin: 0 0 8px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+header p {
+    margin: 5px 0;
+    text-align: center;
+}
+
+.resume-bareme {
+    margin: 20px 0 30px;
+    padding: 18px 22px;
+    background: #fff;
+    border-left: 6px solid #486581;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.exercice {
+    margin: 30px 0;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.08);
+}
+
+.exercice > h2 {
+    margin: -24px -24px 22px;
+    padding: 14px 18px;
+    background: #d9e2ec;
+    color: #102a43;
+    border-radius: 12px 12px 0 0;
+    font-size: 1.35rem;
+}
+
+.question {
+    margin: 22px 0;
+    padding: 15px;
+    background: #f8fafc;
+    border-left: 4px solid #486581;
+    border-radius: 7px;
+}
+
+.question > p:first-child {
+    margin-top: 0;
+}
+
+.correction {
+    margin-top: 12px;
+    padding: 14px 16px;
+    background: #ecfdf3;
+    border: 1px solid #86efac;
+    border-left: 5px solid #16a34a;
+    border-radius: 8px;
+}
+
+.correction strong {
+    color: #166534;
+}
+
+.bareme-detail {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    border-radius: 6px;
+}
+
+.bareme-detail strong {
+    color: #1d4ed8;
+}
+
+.accepter {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #fff7ed;
+    border-left: 4px solid #ea580c;
+    border-radius: 6px;
+}
+
+.vigilance {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #fef2f2;
+    border-left: 4px solid #dc2626;
+    border-radius: 6px;
+}
+
+.bareme {
+    white-space: nowrap;
+    font-weight: bold;
+    color: #526d82;
+}
+
+table {
+    width: 100%;
+    margin: 18px 0;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    vertical-align: top;
+}
+
+th {
+    background: #d9e2ec;
+    color: #102a43;
+}
+
+tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+.total {
+    margin: 35px 0;
+    padding: 22px;
+    background: #ecfdf3;
+    border: 2px solid #16a34a;
+    border-radius: 12px;
+}
+
+.total h2 {
+    margin-top: 0;
+    color: #166534;
+}
+
+/* ============================
+   OUTILS PROFESSEUR
+   ============================ */
+
+.outils-prof {
+    margin: 40px 0;
+    padding: 24px;
+    background: #fff7ed;
+    border: 2px solid #ea580c;
+    border-radius: 12px;
+}
+
+.outils-prof h2 {
+    margin-top: 0;
+    color: #9a3412;
+}
+
+.outils-prof p {
+    margin: 8px 0;
+}
+
+#btn-reset-ds {
+    margin-top: 15px;
+    padding: 14px 22px;
+    background: #c2410c;
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btn-reset-ds:hover {
+    background: #9a3412;
+}
+
+#message-reset {
+    display: none;
+    margin-top: 15px;
+    padding: 12px;
+    background: #dcfce7;
+    border: 1px solid #86efac;
+    border-radius: 7px;
+    color: #166534;
+    font-weight: bold;
+}
+
+@media print {
+    body {
+        background: white;
+        font-size: 10.5pt;
+    }
+
+    #correction-ds {
+        max-width: none;
+        padding: 0;
+    }
+
+    header,
+    .exercice,
+    .resume-bareme,
+    .total {
+        box-shadow: none;
+    }
+
+    .question,
+    .correction,
+    .bareme-detail,
+    .accepter,
+    .vigilance {
+        break-inside: avoid;
+    }
+
+    .outils-prof {
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main id="correction-ds">
+
+<header>
+    <h1>Correction professeur – Devoir surveillé Technologie 3e</h1>
+    <p><strong>Séances 2 à 5</strong></p>
+    <p>Barème : 50 points + 2 points bonus</p>
+</header>
+
+<section class="resume-bareme">
+    <strong>Répartition :</strong>
+    Exercice 1 : 7 pts |
+    Exercice 2 : 6 pts |
+    Exercice 3 : 9 pts |
+    Exercice 4 : 6 pts |
+    Exercice 5 : 8 pts |
+    Exercice 6 : 8 pts |
+    Exercice 7 : 6 pts |
+    Bonus : +2 pts
+</section>
+
+<section class="exercice">
+    <h2>Exercice 1 – Pourquoi les objets techniques évoluent-ils ? – 7 points</h2>
+
+    <div class="question">
+        <p><strong>1.1.</strong> Quel besoin commun satisfait l'ensemble de ces solutions ? <span class="bareme">(1 pt)</span></p>
+
+        <div class="correction">
+            <strong>Réponse attendue :</strong><br>
+            Communiquer à distance.
+        </div>
+
+        <div class="bareme-detail">
+            <strong>Barème :</strong> 1 pt si le besoin est correctement identifié.
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>1.2.</strong> Expliquez pourquoi ces objets peuvent appartenir à une même famille. <span class="bareme">(1 pt)</span></p>
+
+        <div class="correction">
+            <strong>Réponse attendue :</strong><br>
+            Ils appartiennent à une même famille car ils répondent au même besoin : communiquer à distance.
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>1.3.</strong> Donnez une différence importante entre un téléphone fixe et un smartphone. <span class="bareme">(1 pt)</span></p>
+
+        <div class="correction">
+            <strong>Réponses possibles :</strong>
+            <ul>
+                <li>mobilité ;</li>
+                <li>accès à Internet ;</li>
+                <li>applications ;</li>
+                <li>photographie ;</li>
+                <li>GPS ;</li>
+                <li>multiplication des fonctions.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>1.4.</strong> Donnez une fonction technique du smartphone puis une solution technique permettant de la réaliser. <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            <strong>Exemples :</strong>
+            <ul>
+                <li>afficher une information → écran ;</li>
+                <li>capter une image → capteur photographique ;</li>
+                <li>stocker des données → mémoire électronique ;</li>
+                <li>communiquer sans fil → antenne / module réseau ;</li>
+                <li>se localiser → récepteur GNSS/GPS.</li>
+            </ul>
+        </div>
+
+        <div class="bareme-detail">
+            <strong>Barème :</strong><br>
+            1 pt : fonction cohérente.<br>
+            1 pt : solution technique cohérente.
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>1.5.</strong> Une batterie offrant deux heures d'autonomie supplémentaires correspond-elle plutôt à une amélioration progressive ou à une innovation importante ? Justifiez. <span class="bareme">(1 pt)</span></p>
+
+        <div class="correction">
+            <strong>Réponse :</strong> amélioration progressive, car on améliore une performance sans transformer complètement le principe ou les usages de l'objet.
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>1.6.</strong> Le passage du téléphone fixe au smartphone constitue-t-il une évolution plus importante ? Justifiez. <span class="bareme">(1 pt)</span></p>
+
+        <div class="correction">
+            <strong>Réponse :</strong> oui, car le smartphone transforme fortement les fonctions et les usages.
+        </div>
+    </div>
+</section>
+
+<section class="exercice">
+    <h2>Exercice 2 – Les technologies transforment-elles toujours positivement la société ? – 6 points</h2>
+
+    <div class="question">
+        <p><strong>2.1.</strong> Donnez deux avantages de l'application de transports. <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            <strong>Réponses possibles :</strong>
+            <ul>
+                <li>horaires en temps réel ;</li>
+                <li>position des véhicules ;</li>
+                <li>calcul d'itinéraire ;</li>
+                <li>alertes en cas de retard ;</li>
+                <li>meilleure anticipation.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>2.2.</strong> Donnez deux limites ou contraintes possibles. <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            <strong>Réponses possibles :</strong>
+            <ul>
+                <li>besoin d'un smartphone ;</li>
+                <li>batterie nécessaire ;</li>
+                <li>connexion nécessaire ;</li>
+                <li>problème d'accessibilité ;</li>
+                <li>collecte de données ;</li>
+                <li>dépendance au service.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>2.3.</strong> Pourquoi ne peut-on pas affirmer qu'une technologie est meilleure uniquement parce qu'elle est plus récente ? <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            Une nouvelle technologie peut apporter des avantages mais également créer de nouvelles contraintes. Elle doit être comparée selon plusieurs critères : coût, usage, sécurité, environnement, accessibilité, etc.
+        </div>
+    </div>
+</section>
+
+<section class="exercice">
+    <h2>Exercice 3 – Choisir entre plusieurs solutions techniques – 9 points</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Critère</th>
+                <th>Ascenseur</th>
+                <th>Plateforme élévatrice</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Coût</td>
+                <td>45 000 €</td>
+                <td>16 000 €</td>
+            </tr>
+            <tr>
+                <td>Capacité</td>
+                <td>6 personnes</td>
+                <td>1 personne</td>
+            </tr>
+            <tr>
+                <td>Temps de trajet</td>
+                <td>10 s</td>
+                <td>28 s</td>
+            </tr>
+            <tr>
+                <td>Travaux</td>
+                <td>Importants</td>
+                <td>Limités</td>
+            </tr>
+            <tr>
+                <td>Fauteuil roulant</td>
+                <td>Oui</td>
+                <td>Oui</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="question">
+        <p><strong>3.1.</strong> Relevez le coût de la plateforme élévatrice. <span class="bareme">(1 pt)</span></p>
+        <div class="correction"><strong>16 000 €</strong></div>
+    </div>
+
+    <div class="question">
+        <p><strong>3.2.</strong> Donnez deux critères pour lesquels l'ascenseur est plus performant. <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            Capacité et temps de trajet.
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>3.3.</strong> Donnez deux avantages de la plateforme. <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            Coût inférieur et travaux plus limités.
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>3.4.</strong> Pourquoi « l'ascenseur est forcément meilleur puisqu'il est plus rapide » est-il insuffisant ? <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            Il faut comparer plusieurs critères, pas seulement la vitesse : coût, travaux, capacité, accessibilité, contexte d'utilisation...
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>3.5.</strong> Quelle solution proposer avec environ 20 utilisateurs par jour et un budget limité ? <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            <strong>Réponse privilégiée :</strong> plateforme élévatrice :
+            <ul>
+                <li>16 000 € contre 45 000 € ;</li>
+                <li>travaux limités ;</li>
+                <li>accessible en fauteuil ;</li>
+                <li>faible fréquentation.</li>
+            </ul>
+        </div>
+
+        <div class="accepter">
+            <strong>À accepter :</strong> ascenseur si le choix est correctement argumenté.
+        </div>
+    </div>
+</section>
+
+<section class="exercice">
+    <h2>Exercice 4 – Transformer des attentes en exigences – 6 points</h2>
+
+    <div class="question">
+        <p><strong>4.1.</strong> Proposer trois exigences vérifiables. <span class="bareme">(3 pts)</span></p>
+
+        <div class="correction">
+            <ul>
+                <li>trajet inférieur à 15 s ;</li>
+                <li>transport d'au moins 4 personnes ;</li>
+                <li>niveau sonore inférieur à 50 dB.</li>
+            </ul>
+        </div>
+
+        <div class="accepter">
+            D'autres valeurs sont acceptables si les exigences sont mesurables.
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>4.2.</strong> Pourquoi « rapide » est-il moins précis que « moins de 15 secondes » ? <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            « Rapide » est subjectif. « Moins de 15 secondes » est mesurable et vérifiable.
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>4.3.</strong> À quoi sert un cahier des charges ? <span class="bareme">(1 pt)</span></p>
+
+        <div class="correction">
+            À préciser les besoins, contraintes et exigences que la solution devra respecter.
+        </div>
+    </div>
+</section>
+
+<section class="exercice">
+    <h2>Exercice 5 – Vérifier les performances d'une solution – 8 points</h2>
+
+    <div class="question">
+        <p><strong>5.1.</strong> Moyenne du prototype A. <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            (2,8 + 3,0 + 2,9) ÷ 3 = 8,7 ÷ 3 = <strong>2,9 W</strong>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>5.2.</strong> Moyenne du prototype B. <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            (3,4 + 3,2 + 3,3) ÷ 3 = 9,9 ÷ 3 = <strong>3,3 W</strong>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>5.3.</strong> Prototype A validé ? <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            <strong>Non.</strong>
+            <ul>
+                <li>2,9 W &lt; 3 W : non respecté ;</li>
+                <li>46 dB &lt; 50 dB : respecté ;</li>
+                <li>350 g &lt; 500 g : respecté.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>5.4.</strong> Prototype B validé ? <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            <strong>Non.</strong>
+            <ul>
+                <li>3,3 W ≥ 3 W : respecté ;</li>
+                <li>53 dB &gt; 50 dB : non respecté ;</li>
+                <li>430 g &lt; 500 g : respecté.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="exercice">
+    <h2>Exercice 6 – Concevoir une expérience correcte – 8 points</h2>
+
+    <div class="question">
+        <p><strong>6.1.</strong> Paramètre modifié ? <span class="bareme">(1 pt)</span></p>
+        <div class="correction">Le nombre de pales.</div>
+    </div>
+
+    <div class="question">
+        <p><strong>6.2.</strong> Grandeur mesurée ? <span class="bareme">(1 pt)</span></p>
+        <div class="correction">La tension électrique, en volts (V).</div>
+    </div>
+
+    <div class="question">
+        <p><strong>6.3.</strong> Quatre paramètres constants. <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            Exemples :
+            <ul>
+                <li>distance ;</li>
+                <li>vitesse du ventilateur ;</li>
+                <li>même générateur ;</li>
+                <li>même orientation ;</li>
+                <li>même multimètre ;</li>
+                <li>même méthode de mesure.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>6.4.</strong> Pourquoi plusieurs mesures ? <span class="bareme">(1 pt)</span></p>
+
+        <div class="correction">
+            Pour obtenir un résultat plus représentatif et limiter l'influence d'une mesure inhabituelle.
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>6.5.</strong> Ordre logique. <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            <strong>D → G → B → E → A → F → C</strong>
+        </div>
+
+        <div class="accepter">
+            Un ordre légèrement différent peut être accepté s'il reste expérimentalement cohérent.
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>6.6.</strong> Pourquoi 30 cm puis 80 cm invalide la comparaison ? <span class="bareme">(1 pt)</span></p>
+
+        <div class="correction">
+            Parce que deux paramètres changent simultanément : le nombre de pales et la distance au ventilateur.
+        </div>
+    </div>
+</section>
+
+<section class="exercice">
+    <h2>Exercice 7 – Analyser des résultats – 6 points</h2>
+
+    <div class="question">
+        <p><strong>7.1.</strong> Valeur inhabituelle ? <span class="bareme">(1 pt)</span></p>
+        <div class="correction"><strong>5,9 W</strong></div>
+    </div>
+
+    <div class="question">
+        <p><strong>7.2.</strong> Deux explications possibles. <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            Exemples :
+            <ul>
+                <li>erreur de lecture ;</li>
+                <li>erreur de saisie ;</li>
+                <li>mauvais réglage ;</li>
+                <li>conditions différentes ;</li>
+                <li>déplacement du matériel ;</li>
+                <li>problème de mesure.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>7.3.</strong> Pourquoi ne pas calculer directement la moyenne ? <span class="bareme">(2 pts)</span></p>
+
+        <div class="correction">
+            Une valeur aberrante peut modifier fortement la moyenne et conduire à une conclusion trompeuse.
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>7.4.</strong> Que faire avant de conclure ? <span class="bareme">(1 pt)</span></p>
+
+        <div class="correction">
+            Refaire la mesure et vérifier le protocole ou le matériel.
+        </div>
+    </div>
+</section>
+
+<section class="exercice">
+    <h2>Exercice 8 – Vrai ou faux ? – Bonus +2 points</h2>
+
+    <div class="question">
+        <p><strong>A.</strong> Deux objets répondant au même besoin utilisent forcément la même solution technique.</p>
+        <div class="correction"><strong>FAUX.</strong> Plusieurs solutions peuvent répondre au même besoin.</div>
+    </div>
+
+    <div class="question">
+        <p><strong>B.</strong> La meilleure solution technique dépend des exigences et du contexte.</p>
+        <div class="correction"><strong>VRAI.</strong></div>
+    </div>
+
+    <div class="question">
+        <p><strong>C.</strong> Une seule mesure suffit toujours pour comparer deux prototypes.</p>
+        <div class="correction"><strong>FAUX.</strong> Il est préférable de répéter les mesures.</div>
+    </div>
+
+    <div class="question">
+        <p><strong>D.</strong> Un protocole peut être amélioré après les premiers essais.</p>
+        <div class="correction"><strong>VRAI.</strong></div>
+    </div>
+</section>
+
+<section class="total">
+    <h2>Barème final</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Exercice</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Exercice 1</td><td>7</td></tr>
+            <tr><td>Exercice 2</td><td>6</td></tr>
+            <tr><td>Exercice 3</td><td>9</td></tr>
+            <tr><td>Exercice 4</td><td>6</td></tr>
+            <tr><td>Exercice 5</td><td>8</td></tr>
+            <tr><td>Exercice 6</td><td>8</td></tr>
+            <tr><td>Exercice 7</td><td>6</td></tr>
+            <tr><th>Total</th><th>50</th></tr>
+            <tr><td>Bonus</td><td>+2</td></tr>
+        </tbody>
+    </table>
+
+    <p><strong>Conversion sur 20 :</strong> points ÷ 2,5</p>
+</section>
+
+<section class="outils-prof">
+    <h2>Outils professeur</h2>
+
+    <p>
+        Ce bouton permet de réinitialiser le devoir élève sur ce poste.
+    </p>
+
+    <p>
+        Il supprime :
+    </p>
+
+    <ul>
+        <li>l'état « devoir terminé » ;</li>
+        <li>les réponses enregistrées ;</li>
+        <li>le nombre de sorties ;</li>
+        <li>l'historique des sorties ;</li>
+        <li>l'heure de début.</li>
+    </ul>
+
+    <p>
+        <strong>
+            La correction professeur doit être ouverte dans le même navigateur et le même profil que le devoir élève.
+        </strong>
+    </p>
+
+    <button id="btn-reset-ds" type="button">
+        Réinitialiser le devoir sur ce poste
+    </button>
+
+    <div id="message-reset">
+        Le devoir a été réinitialisé. Vous pouvez rouvrir la version élève.
+    </div>
+</section>
+
+</main>
+
+<script>
+const CLE_PREFIXE = "DS3E_S02_S05_";
+
+document
+    .getElementById("btn-reset-ds")
+    .addEventListener("click", () => {
+
+        const confirmation = confirm(
+            "Réinitialiser complètement le devoir sur ce poste ?\n\n" +
+            "Toutes les réponses, sorties et l'état « devoir terminé » seront supprimés."
+        );
+
+        if (!confirmation) {
+            return;
+        }
+
+        const clesASupprimer = [];
+
+        for (let i = 0; i < localStorage.length; i++) {
+            const cle = localStorage.key(i);
+
+            if (cle && cle.startsWith(CLE_PREFIXE)) {
+                clesASupprimer.push(cle);
+            }
+        }
+
+        clesASupprimer.forEach(cle => {
+            localStorage.removeItem(cle);
+        });
+
+        const message = document.getElementById("message-reset");
+        message.style.display = "block";
+
+        console.log(
+            "Réinitialisation terminée :",
+            clesASupprimer.length,
+            "clé(s) supprimée(s)."
+        );
+    });
+</script>
+
+</body>
+</html>
