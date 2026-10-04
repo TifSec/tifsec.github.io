@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const subjects = {
         techno: {
-            "5e": "tifsec.github.io/techno/5/index.html",
-            "4e": "../techno/4/index.html",
-            "3e": "../techno/3/index.html"
+            "5e": "//tifsec.github.io/techno/5/index.html",
+            "4e": "//tifsec.github.io/techno/4/index.html",
+            "3e": "//tifsec.github.io/techno/3/index.html"
         },
 
         tim: {
