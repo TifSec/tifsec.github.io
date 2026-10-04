@@ -1355,6 +1355,374 @@ a
                 });
             </script>
         </section>
+
+        <section id="session5" class="content-section">
+            <h2>Séance 5 : Faire circuler les données sans les casser</h2>
+            <h3>Thème : Formats de fichiers, interopérabilité et données ouvertes</h3>
+            <h3>Problématique : Comment transmettre des données agricoles d'un logiciel à un autre sans perdre leur sens, leur structure ou leur fiabilité ?</h3>
+            <h3>Compétence visée : C4.1 – Évaluer la performance globale d'un système biotechnique</h3>
+            <p><strong>Objectifs d'apprentissage :</strong></p>
+            <p>Ce que vous allez apprendre :</p>
+            <ul>
+                <li>comprendre la notion d'interopérabilité ;</li>
+                <li>comprendre comment est structuré un fichier CSV ;</li>
+                <li>distinguer données, présentation et format de fichier ;</li>
+                <li>comprendre le rôle du séparateur, du codage des caractères et des unités ;</li>
+                <li>découvrir quelques formats utilisés pour échanger des données : CSV, JSON, XML, GeoJSON, GPX ou KML ;</li>
+                <li>comprendre le principe de l'Open Data et le rôle d'une licence de réutilisation ;</li>
+                <li>comprendre pourquoi la source, la date et l'unité font partie intégrante d'une donnée exploitable.</li>
+            </ul>
+            <p>Ce que vous allez apprendre à faire :</p>
+            <ul>
+                <li>exporter des données vers un fichier CSV ;</li>
+                <li>ouvrir et examiner un fichier CSV comme un simple fichier texte ;</li>
+                <li>importer correctement un fichier CSV dans Calc ;</li>
+                <li>diagnostiquer un mauvais import ;</li>
+                <li>choisir un format adapté à un besoin professionnel ;</li>
+                <li>documenter la provenance d'une donnée ;</li>
+                <li>croiser une donnée issue de l'exploitation avec une donnée publique de référence.</li>
+            </ul>
+            <p><strong>Production attendue :</strong></p>
+            <ul>
+                <li>un classeur <strong>BTS2_ACSAGRI_S05_NOM_Prenom.ods</strong> ;</li>
+                <li>un fichier <strong>interventions_NOM_Prenom.csv</strong> ;</li>
+                <li>une feuille JOURNAL contenant vos réponses ;</li>
+                <li>une feuille INTERVENTIONS contenant les données importées ;</li>
+                <li>une feuille OPEN_DATA contenant la donnée publique étudiée ;</li>
+                <li>une feuille SYNTHESE contenant votre analyse finale.</li>
+            </ul>
+            <h3>1. Créer votre document de travail</h3>
+            <p>Ouvrez LibreOffice Calc et créez immédiatement un classeur nommé :</p>
+            <p><strong>BTS2_ACSAGRI_S05_NOM_Prenom.ods</strong></p>
+            <p>Créez quatre feuilles :</p>
+            <ul>
+                <li>JOURNAL</li>
+                <li>INTERVENTIONS</li>
+                <li>OPEN_DATA</li>
+                <li>SYNTHESE</li>
+            </ul>
+            <p>La feuille <strong>JOURNAL</strong> vous servira à répondre aux questions et à conserver la trace de vos observations.</p>
+            <h3>2. Reprendre les données de la séance précédente</h3>
+            <p>Lors de la séance précédente, vous avez organisé les informations concernant les parcelles, les cultures et les interventions.</p>
+            <p>Nous allons aujourd'hui nous intéresser uniquement aux interventions.</p>
+            <p>Récupérez la table ou la feuille <strong>INTERVENTIONS</strong> réalisée en séance 4.</p>
+            <p>Si vous ne disposez plus de votre fichier, utilisez exceptionnellement les données suivantes :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id_intervention</th>
+                        <th>date_intervention</th>
+                        <th>type_intervention</th>
+                        <th>duree_h</th>
+                        <th>cout_euros</th>
+                        <th>id_parcelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>I001</td><td>12/03/2026</td><td>Fertilisation</td><td>2</td><td>185</td><td>P01</td></tr>
+                    <tr><td>I002</td><td>18/05/2026</td><td>Fauche</td><td>3,5</td><td>260</td><td>P01</td></tr>
+                    <tr><td>I003</td><td>20/05/2026</td><td>Andainage</td><td>1,5</td><td>95</td><td>P01</td></tr>
+                    <tr><td>I004</td><td>08/04/2026</td><td>Préparation du sol</td><td>3</td><td>240</td><td>P02</td></tr>
+                    <tr><td>I005</td><td>19/04/2026</td><td>Semis</td><td>2,5</td><td>315</td><td>P02</td></tr>
+                    <tr><td>I006</td><td>06/05/2026</td><td>Fertilisation</td><td>2</td><td>410</td><td>P02</td></tr>
+                    <tr><td>I007</td><td>15/03/2026</td><td>Fertilisation</td><td>1,5</td><td>160</td><td>P03</td></tr>
+                    <tr><td>I008</td><td>22/05/2026</td><td>Fauche</td><td>3</td><td>225</td><td>P03</td></tr>
+                    <tr><td>I009</td><td>10/04/2026</td><td>Semis</td><td>2</td><td>210</td><td>P04</td></tr>
+                    <tr><td>I010</td><td>09/05/2026</td><td>Fertilisation</td><td>1,5</td><td>175</td><td>P04</td></tr>
+                    <tr><td>I011</td><td>17/05/2026</td><td>Fauche</td><td>4</td><td>285</td><td>P05</td></tr>
+                    <tr><td>I012</td><td>21/04/2026</td><td>Semis</td><td>2,5</td><td>300</td><td>P06</td></tr>
+                </tbody>
+            </table>
+            <p>Copiez les données dans la feuille <strong>INTERVENTIONS</strong>.</p>
+            <h3>3. Deux logiciels doivent échanger leurs données</h3>
+            <p>Imaginez la situation suivante :</p>
+            <p>L'exploitant enregistre ses interventions dans son logiciel de gestion. Son conseiller agricole utilise un autre logiciel.</p>
+            <p>L'exploitant doit donc lui transmettre les données.</p>
+            <p>Dans JOURNAL, répondez :</p>
+            <p>Q1 : Le conseiller doit-il obligatoirement posséder exactement le même logiciel que l'exploitant pour pouvoir exploiter les données ?</p>
+            <!-- PROF : Non. L'objectif de l'interopérabilité est précisément de permettre à plusieurs systèmes différents d'échanger et d'exploiter des données grâce à des formats et règles communes. -->
+            <p>Q2 : Quel problème pourrait apparaître si chaque logiciel utilisait uniquement son propre format fermé impossible à lire par les autres ?</p>
+            <!-- PROF : dépendance au logiciel, impossibilité ou difficulté d'échanger, perte de données lors des conversions, enfermement propriétaire, difficultés de changement de prestataire ou de logiciel. -->
+            <h3>4. Découvrir le format CSV</h3>
+            <p>Un format très courant pour échanger des données tabulaires est le <strong>CSV</strong>.</p>
+            <p>CSV signifie <strong>Comma-Separated Values</strong>, mais le séparateur utilisé n'est pas obligatoirement une virgule. Un point-virgule, une tabulation ou un autre caractère peuvent également être employés.</p>
+            <p>Dans un fichier CSV :</p>
+            <ul>
+                <li>une ligne correspond généralement à un enregistrement ;</li>
+                <li>les champs sont séparés par un caractère défini ;</li>
+                <li>le fichier contient essentiellement les données, sans la richesse de présentation d'un classeur Calc.</li>
+            </ul>
+            <p>Source : <a href="https://help.libreoffice.org/latest/fr/text/scalc/guide/csv_files.html" target="_blank" rel="noopener noreferrer">LibreOffice – Import et export de fichiers CSV</a>.</p>
+            <p>Q3 : Dans notre table INTERVENTIONS, que représente une ligne ? Que représente une colonne ?</p>
+            <!-- PROF : une ligne = une intervention/enregistrement ; une colonne = un champ ou attribut : date, coût, durée, parcelle, etc. Faire le lien avec la S04. -->
+            <h3>5. Exporter les interventions</h3>
+            <p>Si vous avez utilisé Calc en séance 4, copiez la feuille INTERVENTIONS dans votre classeur actuel.</p>
+            <p>Si vous avez utilisé LibreOffice Base :</p>
+            <ol>
+                <li>ouvrez votre base ;</li>
+                <li>ouvrez la partie <strong>Tables</strong> ;</li>
+                <li>copiez la table INTERVENTIONS ;</li>
+                <li>collez-la dans la feuille INTERVENTIONS de votre classeur Calc.</li>
+            </ol>
+            <p>LibreOffice recommande également l'utilisation de Calc comme intermédiaire pour exporter les données d'une base.</p>
+            <p>Ressource : <a href="https://help.libreoffice.org/latest/fr/text/shared/guide/data_im_export.html" target="_blank" rel="noopener noreferrer">LibreOffice – Import et export de données dans Base</a>.</p>
+            <p>Lorsque votre feuille INTERVENTIONS est prête :</p>
+            <ol>
+                <li>activez la feuille INTERVENTIONS ;</li>
+                <li>choisissez <strong>Fichier → Enregistrer sous</strong> ;</li>
+                <li>sélectionnez le type <strong>Texte CSV (.csv)</strong> ;</li>
+                <li>nommez le fichier <strong>interventions_NOM_Prenom.csv</strong> ;</li>
+                <li>cochez si nécessaire <strong>Éditer les paramètres du filtre</strong> ;</li>
+                <li>choisissez <strong>UTF-8</strong> comme jeu de caractères ;</li>
+                <li>utilisez le <strong>point-virgule</strong> comme séparateur de champ ;</li>
+                <li>utilisez le guillemet double <strong>"</strong> comme séparateur de texte.</li>
+            </ol>
+            <p><strong>Attention :</strong> lors d'un export CSV, seule la feuille active est exportée et la mise en forme ou les autres feuilles du classeur ne sont pas conservées.</p>
+            <!-- PROF : point important : l'ODS est le fichier de travail complet ; le CSV sert ici à transporter une table. -->
+            <h3>6. Regardez ce qu'il y a réellement dans le fichier</h3>
+            <p>Fermez le fichier CSV puis ouvrez-le avec un éditeur de texte simple, par exemple le Bloc-notes.</p>
+            <p>Vous devriez observer quelque chose ressemblant à :</p>
+            <pre><code>id_intervention;date_intervention;type_intervention;duree_h;cout_euros;id_parcelle
+        I001;12/03/2026;Fertilisation;2;185;P01
+        I002;18/05/2026;Fauche;3,5;260;P01</code></pre>
+            <p>Dans JOURNAL, répondez :</p>
+            <p>Q4 : Voyez-vous encore des cellules, des couleurs, des bordures ou des feuilles ?</p>
+            <!-- PROF : Non. Un CSV est un fichier texte contenant les valeurs structurées à l'aide de séparateurs. -->
+            <p>Q5 : Comment le logiciel sait-il qu'il doit séparer <strong>I001</strong>, <strong>12/03/2026</strong> et <strong>Fertilisation</strong> en plusieurs champs ?</p>
+            <!-- PROF : grâce au séparateur de champ, ici le point-virgule. -->
+            <p>Q6 : Quel est alors l'intérêt d'un format aussi simple ?</p>
+            <!-- PROF : léger, lisible par de nombreux logiciels, facile à produire, transférer, contrôler et traiter. Favorise les échanges entre systèmes différents. -->
+            <h3>7. Faites volontairement un mauvais import</h3>
+            <p>Nous allons maintenant vérifier qu'un fichier correct peut malgré tout être mal interprété.</p>
+            <ol>
+                <li>dans Calc, choisissez <strong>Fichier → Ouvrir</strong> ;</li>
+                <li>ouvrez votre fichier CSV ;</li>
+                <li>dans la fenêtre d'import, choisissez volontairement <strong>Virgule</strong> comme seul séparateur à la place du point-virgule ;</li>
+                <li>observez l'aperçu.</li>
+            </ol>
+            <p>Q7 : Que se passe-t-il ?</p>
+            <!-- PROF : les colonnes ne sont plus correctement séparées ; les virgules décimales peuvent en plus être interprétées comme séparateurs. -->
+            <p>Annulez puis recommencez avec le bon séparateur : <strong>point-virgule</strong>.</p>
+            <p>Vérifiez également :</p>
+            <ul>
+                <li>que les accents sont correctement affichés ;</li>
+                <li>que les nombres sont reconnus comme des nombres ;</li>
+                <li>que les dates sont correctement interprétées ;</li>
+                <li>que chaque information se trouve dans la bonne colonne.</li>
+            <p>Q8 : Un fichier peut-il donc être correctement créé mais mal importé ?</p>
+            <!-- PROF : Oui. Le logiciel destinataire doit connaître ou détecter correctement le séparateur, l'encodage, la langue, le format des dates et des nombres. -->
+            <h3>8. UTF-8 : pourquoi parler de codage des caractères ?</h3>
+            <p>Les caractères sont enregistrés dans un fichier sous forme de nombres. Il faut donc que le logiciel sache comment interpréter ces nombres pour afficher les bons caractères.</p>
+            <p>Dans notre fichier apparaissent notamment :</p>
+            <ul>
+                <li>Préparation ;</li>
+                <li>coût ;</li>
+                <li>éventuellement des noms contenant des accents.</li>
+            </ul>
+            <p>Utiliser un codage largement reconnu comme <strong>UTF-8</strong> facilite les échanges entre systèmes.</p>
+            <p>Q9 : Quel type de problème pourriez-vous observer avec un mauvais codage ?</p>
+            <!-- PROF : caractères accentués remplacés par des symboles ou suites de caractères incohérentes, texte illisible ou altéré. -->
+            <h3>9. Toutes les informations doivent-elles être placées dans le CSV ?</h3>
+            <p>L'exploitation souhaite transmettre les interventions au conseiller technique.</p>
+            <p>Elle possède également dans son logiciel :</p>
+            <ul>
+                <li>le nom et le prénom de l'exploitant ;</li>
+                <li>son adresse personnelle ;</li>
+                <li>son numéro de téléphone ;</li>
+                <li>les coordonnées GPS des parcelles ;</li>
+                <li>les interventions réalisées ;</li>
+                <li>les coûts ;</li>
+                <li>les surfaces ;</li>
+                <li>des données comptables sans rapport avec la demande du conseiller.</li>
+            </ul>
+            <p>Q10 : Doit-on automatiquement exporter toutes ces données ? Justifiez.</p>
+            <!-- PROF : Non. Ne transmettre que les données utiles à la finalité. Sensibiliser à la minimisation, à la confidentialité et au fait que certaines informations peuvent être personnelles ou sensibles pour l'entreprise. -->
+            <h3>10. Tous les formats ne servent pas à la même chose</h3>
+            <p>Le référentiel ACS'AGRI cite plusieurs formats utilisés pour faire circuler des données : <strong>TXT, CSV, XML, KML, GeoJSON, GPX...</strong></p>
+            <p>Dans la feuille JOURNAL, associez chaque besoin au format qui vous paraît le plus pertinent parmi les propositions.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Besoin</th>
+                        <th>Format proposé</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Conserver un classeur Calc avec ses formules et plusieurs feuilles</td><td>ODS / CSV / PDF</td></tr>
+                    <tr><td>Transmettre une table simple à un autre logiciel</td><td>CSV / PDF / ODT</td></tr>
+                    <tr><td>Transmettre un rapport terminé destiné principalement à être lu</td><td>PDF / CSV / GPX</td></tr>
+                    <tr><td>Échanger des données structurées avec une application ou une API</td><td>JSON / PDF / ODT</td></tr>
+                    <tr><td>Échanger des objets géographiques avec leurs attributs</td><td>GeoJSON / ODT / XLSX</td></tr>
+                    <tr><td>Échanger une trace ou un parcours GPS</td><td>GPX / ODT / PDF</td></tr>
+                </tbody>
+            </table>
+            <!-- PROF : ODS ; CSV ; PDF ; JSON ; GeoJSON ; GPX. Préciser qu'il n'existe pas toujours un seul format possible : le choix dépend du logiciel, du destinataire et de l'usage. -->
+            <p>Q11 : Pourquoi n'existe-t-il pas un seul format universel pour toutes les données ?</p>
+            <!-- PROF : les données et usages diffèrent : tableaux, documents, données hiérarchiques, géométrie, traces GPS, images, etc. Chaque format privilégie certains usages. -->
+            <h3>11. Aller chercher une donnée publique</h3>
+            <p>Les données d'une exploitation peuvent être comparées ou enrichies avec des données provenant de sources publiques.</p>
+            <p>Ouvrez la ressource suivante :</p>
+            <p><a href="https://www.agreste.agriculture.gouv.fr/agreste-web/disaron/Chd2516/detail/" target="_blank" rel="noopener noreferrer">Agreste – Statistique agricole annuelle 2024, chiffres définitifs</a>.</p>
+            <p>La Statistique agricole annuelle est produite par le <strong>Service de la statistique et de la prospective du ministère chargé de l'Agriculture</strong>. Elle fournit notamment des données de surface, de rendement et de production par produit et selon différents niveaux géographiques.</p>
+            <p>Dans la feuille <strong>OPEN_DATA</strong>, créez :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Information</th>
+                        <th>Valeur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Producteur</td><td></td></tr>
+                    <tr><td>Nom de la ressource</td><td></td></tr>
+                    <tr><td>Année étudiée</td><td></td></tr>
+                    <tr><td>Date de publication</td><td></td></tr>
+                    <tr><td>Donnée recherchée</td><td>Rendement national du maïs fourrage et ensilage</td></tr>
+                    <tr><td>Valeur</td><td></td></tr>
+                    <tr><td>Unité</td><td></td></tr>
+                    <tr><td>URL de la source</td><td></td></tr>
+                </tbody>
+            </table>
+            <p>Recherchez dans la publication le rendement 2024 du <strong>maïs fourrage et ensilage</strong>.</p>
+            <p><strong>Attention à l'unité :</strong> la valeur est publiée en centaines de kilogrammes par hectare.</p>
+            <!-- PROF : rendement 2024 = 135 × 100 kg/ha = 13 500 kg/ha = 13,5 t/ha. Publication définitive SAA 2024, publiée le 06/11/2025. -->
+            <p>Q12 : Pourquoi est-il indispensable d'enregistrer également l'unité et la source, et pas seulement la valeur <strong>135</strong> ?</p>
+            <!-- PROF : 135 seul n'a pas de sens exploitable. Ici il signifie 135 centaines de kg/ha. Sans unité, contexte, date et source, une valeur peut être mal interprétée et ne peut pas être correctement vérifiée. -->
+            <h3>12. Donnée ouverte ne veut pas dire donnée sans règle</h3>
+            <p>De nombreuses données publiques sont mises à disposition en <strong>Open Data</strong>.</p>
+            <p>Une licence précise ce que l'on a le droit de faire avec ces données et les obligations du réutilisateur.</p>
+            <p>Consultez :</p>
+            <p><a href="https://www.data.gouv.fr/pages/legal/licences/etalab-2.0" target="_blank" rel="noopener noreferrer">data.gouv.fr – Licence Ouverte 2.0</a>.</p>
+            <p>Q13 : Avec une donnée publiée sous Licence Ouverte 2.0, peut-on :</p>
+            <ul>
+                <li>la copier ?</li>
+                <li>la modifier ?</li>
+                <li>la combiner avec d'autres données ?</li>
+                <li>l'utiliser dans un produit commercial ?</li>
+            </ul>
+            <!-- PROF : Oui pour les quatre, dans le respect des conditions de la licence. -->
+            <p>Q14 : Quelle obligation essentielle doit respecter le réutilisateur ?</p>
+            <!-- PROF : mentionner la paternité/source de l'information et sa date de dernière mise à jour. La réutilisation ne doit pas non plus induire en erreur sur le contenu, la source ou la date. -->
+            <h3>13. Croiser une donnée locale et une donnée extérieure</h3>
+            <p>Lors de la séance 3, notre exploitation fictive obtenait après correction un rendement moyen d'environ <strong>11,51 t MS/ha</strong> pour les trois parcelles de maïs ensilage.</p>
+            <p><em>Cette valeur est issue de notre jeu de données pédagogique fictif.</em></p>
+            <p>Dans la feuille <strong>SYNTHESE</strong>, créez :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Indicateur</th>
+                        <th>Valeur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Rendement moyen de l'exploitation fictive</td><td>11,51 t/ha</td></tr>
+                    <tr><td>Référence nationale Agreste 2024</td><td></td></tr>
+                    <tr><td>Écart en t/ha</td><td></td></tr>
+                    <tr><td>Écart en %</td><td></td></tr>
+                </tbody>
+            </table>
+            <p>Réalisez les deux calculs avec des formules.</p>
+            <!-- PROF : référence = 13,5 t/ha ; écart = 11,51 - 13,5 = -1,99 t/ha ; écart relatif ≈ -14,74 %. Accepter différences d'arrondi. -->
+            <p>Q15 : Cette comparaison suffit-elle à conclure que les parcelles sont mal conduites ?</p>
+            <!-- PROF : Non. La donnée nationale sert de référence de comparaison, mais il faut considérer contexte pédoclimatique, variété, année, sol, disponibilité en eau, itinéraire technique, objectifs et méthodes de mesure. -->
+            <h3>14. Un petit test d'interopérabilité</h3>
+            <p>Imaginez que vous deviez transmettre votre fichier CSV à un conseiller utilisant un autre logiciel.</p>
+            <p>Avant l'envoi, vérifiez :</p>
+            <ul>
+                <li>que la première ligne contient des noms de champs compréhensibles ;</li>
+                <li>qu'une ligne correspond à un seul enregistrement ;</li>
+                <li>que le séparateur utilisé est connu ;</li>
+                <li>que le codage est UTF-8 ;</li>
+                <li>que les dates utilisent toutes la même convention ;</li>
+                <li>que les unités sont connues ;</li>
+                <li>qu'aucune donnée inutile n'a été ajoutée ;</li>
+                <li>que la source est indiquée lorsqu'une donnée extérieure est intégrée.</li>
+            </ul>
+            <p>Ajoutez ensuite temporairement dans la table INTERVENTIONS une ligne contenant :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Intervention</th>
+                        <th>Durée</th>
+                        <th>Coût</th>
+                        <th>Parcelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>I013</td><td>24/05/2026</td><td>Contrôle, réglage du matériel</td><td>1,5</td><td>80</td><td>P06</td></tr>
+                </tbody>
+            </table>
+            <p>Exportez de nouveau en CSV puis ouvrez le fichier dans un éditeur de texte.</p>
+            <p>Q16 : Comment le fichier gère-t-il la virgule présente à l'intérieur du texte <strong>Contrôle, réglage du matériel</strong> ? Pose-t-elle un problème avec notre séparateur actuel ?</p>
+            <!-- PROF : Avec le point-virgule comme séparateur de champ, la virgule du texte ne sépare pas les colonnes. Selon les options d'export, le champ peut également être entouré de guillemets. Faire remarquer que le choix d'un séparateur dépend aussi du contenu. -->
+            <p>Supprimez ensuite la ligne I013 : elle servait uniquement au test.</p>
+            <h3>15. Du format technique à la décision professionnelle</h3>
+            <p>Dans SYNTHESE, rédigez une réponse de <strong>6 à 10 lignes</strong> à la situation suivante :</p>
+            <blockquote>
+                <p>Un exploitant veut changer de logiciel de gestion agricole mais craint de perdre dix années de données. Quels éléments devrait-il vérifier avant de choisir son nouveau logiciel ?</p>
+            </blockquote>
+            <p>Votre réponse doit utiliser au moins quatre des notions suivantes :</p>
+            <ul>
+                <li>export ;</li>
+                <li>format ouvert ou documenté ;</li>
+                <li>CSV ;</li>
+                <li>interopérabilité ;</li>
+                <li>structure des données ;</li>
+                <li>unités ;</li>
+                <li>sauvegarde ;</li>
+                <li>propriété des données ;</li>
+                <li>possibilité de réimporter les données.</li>
+            </ul>
+            <!-- PROF : Attendu : vérifier la possibilité d'export complet, les formats proposés et leur documentation, tester la réimportation avant migration, conserver une sauvegarde indépendante, vérifier que les champs/unités sont conservés, connaître les conditions de récupération/propriété des données et éviter l'enfermement dans un format propriétaire sans moyen d'export. -->
+            <h3>16. Conclusion du travail</h3>
+            <p>Complétez dans JOURNAL :</p>
+            <ul>
+                <li>Un fichier CSV est ................................................................................................................</li>
+                <li>Un séparateur de champ sert à ................................................................................................................</li>
+                <li>UTF-8 permet de ................................................................................................................</li>
+                <li>L'interopérabilité permet de ................................................................................................................</li>
+                <li>Une donnée ouverte peut être ................................................................................................................</li>
+                <li>Une licence sert à ................................................................................................................</li>
+                <li>Une valeur sans unité ni source ................................................................................................................</li>
+            </ul>
+            <!-- PROF : CSV = fichier texte structuré pour échanger des données tabulaires ; séparateur = distinguer les champs ; UTF-8 = encoder les caractères de façon largement compatible ; interopérabilité = permettre à différents systèmes d'échanger/exploiter les données ; open data = donnée mise à disposition pour réutilisation selon conditions ; licence = préciser droits/obligations ; valeur sans unité/source = ambiguë, difficilement vérifiable et potentiellement trompeuse. -->
+            <h3>17. Avant de rendre</h3>
+            <p>Vérifiez que votre classeur contient :</p>
+            <ul>
+                <li>JOURNAL avec vos réponses ;</li>
+                <li>INTERVENTIONS correctement structurée ;</li>
+                <li>OPEN_DATA avec la source Agreste documentée ;</li>
+                <li>SYNTHESE avec les calculs et votre réponse professionnelle.</li>
+            </ul>
+            <p>Vérifiez également que vous possédez :</p>
+            <ul>
+                <li><strong>BTS2_ACSAGRI_S05_NOM_Prenom.ods</strong></li>
+                <li><strong>interventions_NOM_Prenom.csv</strong></li>
+            </ul>
+            <p>Déposez les deux fichiers dans l'espace indiqué par le professeur.</p>
+            <h3>À retenir</h3>
+            <ul>
+                <li>Le format d'une donnée influence sa capacité à être échangée et réutilisée.</li>
+                <li>CSV est un format texte simple particulièrement adapté à l'échange de données tabulaires.</li>
+                <li>Le séparateur, le codage des caractères, les dates et les unités doivent être connus pour importer correctement les données.</li>
+                <li>L'interopérabilité permet à des logiciels différents de travailler avec les mêmes données.</li>
+                <li>Une donnée doit être accompagnée de son contexte : signification, unité, source et date.</li>
+                <li>Une donnée ouverte peut être réutilisée dans le respect de sa licence.</li>
+                <li>Choisir un outil numérique, c'est aussi vérifier que l'on pourra récupérer et transférer ses données.</li>
+            </ul>
+            <h3>Sources et ressources</h3>
+            <ul>
+                <li>Chlorofil – <a href="https://chlorofil.fr/diplomes/secondaire/btsa/acse/acs-agri-2025" target="_blank" rel="noopener noreferrer">BTSA ACS'AGRI – référentiel et documents d'accompagnement</a>.</li>
+                <li>Inspection de l'enseignement agricole – <a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf" target="_blank" rel="noopener noreferrer">Exemples d'utilisation des TIM dans des situations favorisant l'acquisition de capacités</a>.</li>
+                <li>LibreOffice – <a href="https://help.libreoffice.org/latest/fr/text/scalc/guide/csv_files.html" target="_blank" rel="noopener noreferrer">Import et export de fichiers CSV</a>.</li>
+                <li>LibreOffice – <a href="https://help.libreoffice.org/latest/fr/text/shared/guide/data_im_export.html" target="_blank" rel="noopener noreferrer">Import et export de données dans Base</a>.</li>
+                <li>Agreste – <a href="https://www.agreste.agriculture.gouv.fr/agreste-web/disaron/Chd2516/detail/" target="_blank" rel="noopener noreferrer">Statistique agricole annuelle 2024 – chiffres définitifs</a>.</li>
+                <li>data.gouv.fr – <a href="https://www.data.gouv.fr/pages/legal/licences/etalab-2.0" target="_blank" rel="noopener noreferrer">Licence Ouverte 2.0</a>.</li>
+            </ul>
+            <p><em>Les données relatives aux interventions de l'exploitation sont fictives et utilisées à des fins pédagogiques. La référence nationale de rendement provient de la Statistique agricole annuelle 2024 d'Agreste.</em></p>
+        </section>
     </main>
 
     <!-- <footer>
