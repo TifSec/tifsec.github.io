@@ -464,6 +464,897 @@ a
             <p><strong>BTS2_ACSAGRI_S01_NOM_Prenom.ods</strong></p>
             <p>Déposez ensuite votre fichier dans l'espace indiqué par le professeur.</p>
         </section>
+
+        <section id="session3" class="content-section">
+            <h2>Séance 3 : Construire un tableau de bord d'aide à la décision</h2>
+            <h3>Thème : Traiter, analyser et valoriser des données professionnelles</h3>
+            <h3>Problématique : Comment transformer un tableau de données en un outil capable de signaler automatiquement les situations à surveiller ?</h3>
+            <h3>Compétence visée : C4.1 – Évaluer la performance globale d'un système biotechnique</h3>
+            <p><strong>Objectifs d'apprentissage :</strong></p>
+            <p>Ce que vous allez apprendre :</p>
+            <ul>
+                <li>comprendre la différence entre une donnée, un indicateur, un objectif et une référence ;</li>
+                <li>comprendre l'intérêt d'automatiser une analyse plutôt que de refaire les calculs manuellement ;</li>
+                <li>découvrir les fonctions logiques et conditionnelles d'un tableur ;</li>
+                <li>comprendre l'intérêt des références absolues dans une formule ;</li>
+                <li>découvrir le principe d'une table dynamique pour synthétiser un ensemble de données ;</li>
+                <li>comprendre qu'un tableau de bord aide à la décision mais ne décide pas à la place du professionnel.</li>
+            </ul>
+            <p>Ce que vous allez apprendre à faire :</p>
+            <ul>
+                <li>reprendre et fiabiliser les données de la séance précédente ;</li>
+                <li>utiliser les fonctions <strong>SI</strong>, <strong>ET</strong>, <strong>OU</strong>, <strong>NB.SI</strong>, <strong>SOMME.SI</strong> et <strong>MOYENNE.SI</strong> ;</li>
+                <li>utiliser des références absolues dans des formules ;</li>
+                <li>mettre en évidence automatiquement des situations à surveiller ;</li>
+                <li>construire une table dynamique ;</li>
+                <li>réaliser une représentation graphique pertinente ;</li>
+                <li>interpréter les résultats et formuler une conclusion professionnelle argumentée.</li>
+            </ul>
+            <p><strong>Production attendue :</strong></p>
+            <ul>
+                <li>un classeur LibreOffice Calc nommé <strong>BTS2_ACSAGRI_S03_NOM_Prenom.ods</strong> ;</li>
+                <li>une feuille <strong>Donnees</strong> contenant les données fiabilisées ;</li>
+                <li>une feuille <strong>Parametres</strong> contenant les valeurs utilisées pour automatiser l'analyse ;</li>
+                <li>une feuille <strong>Analyse</strong> contenant les indicateurs et les alertes automatiques ;</li>
+                <li>une feuille <strong>Synthese</strong> contenant les résultats, une table dynamique, un graphique et votre conclusion.</li>
+            </ul>
+            <p>Le fichier devra être enregistré puis déposé dans l'espace d'échange à la fin de la séance, même s'il n'est pas entièrement terminé.</p>
+            <h3>1. Reprendre le travail de la séance précédente</h3>
+            <p>Ouvrez votre fichier de la séance 2 :</p>
+            <p><strong>BTS2_ACSAGRI_S02_NOM_Prenom.ods</strong></p>
+            <p>Enregistrez immédiatement une copie sous le nom :</p>
+            <p><strong>BTS2_ACSAGRI_S03_NOM_Prenom.ods</strong></p>
+            <p>Lors de la séance précédente, vous avez repéré plusieurs problèmes de qualité des données. Depuis, l'exploitant a vérifié certaines informations.</p>
+            <ul>
+                <li>La production de la parcelle <strong>P06</strong> était bien erronée : la valeur correcte est <strong>53,0 t MS</strong>.</li>
+                <li><strong>Prairie temp.</strong> correspond bien à <strong>Prairie temporaire</strong>.</li>
+                <li>La quantité totale d'azote de <strong>P08</strong> n'a pas pu être retrouvée : la cellule doit donc rester vide.</li>
+            </ul>
+            <p><em>Ces informations sont fictives et font partie du scénario pédagogique. Elles simulent le retour de l'exploitant après vérification des données.</em></p>
+            <p>Corrigez uniquement les informations qui viennent d'être confirmées.</p>
+            <!-- PROF : P06 = 53,0 t MS ; P07 = Prairie temporaire ; P08 reste vide. Insister sur le fait qu'une donnée manquante ne doit pas être remplacée par 0, car 0 est une donnée et signifie autre chose qu'une information inconnue. -->
+            <h3>2. Organiser correctement la feuille Analyse</h3>
+            <p>Dans la feuille <strong>Analyse</strong>, vérifiez que votre tableau comporte les colonnes suivantes dans cet ordre :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Colonne</th>
+                        <th>Contenu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A</td><td>Parcelle</td></tr>
+                    <tr><td>B</td><td>Culture</td></tr>
+                    <tr><td>C</td><td>Surface (ha)</td></tr>
+                    <tr><td>D</td><td>Production (t MS)</td></tr>
+                    <tr><td>E</td><td>Coût intrants (€)</td></tr>
+                    <tr><td>F</td><td>Temps de travail (h)</td></tr>
+                    <tr><td>G</td><td>Azote total (kg)</td></tr>
+                    <tr><td>H</td><td>Rendement (t MS/ha)</td></tr>
+                    <tr><td>I</td><td>Coût intrants (€/ha)</td></tr>
+                    <tr><td>J</td><td>Temps de travail (h/ha)</td></tr>
+                    <tr><td>K</td><td>Azote (kg/ha)</td></tr>
+                </tbody>
+            </table>
+            <p>Vérifiez que les calculs des colonnes H à K utilisent bien des <strong>formules</strong> et non des résultats saisis manuellement.</p>
+            <p>Pour la colonne K, une parcelle dont la quantité d'azote est inconnue doit conserver un résultat vide.</p>
+            <p>Exemple de formule possible en K2 :</p>
+            <p><code>=SI(G2="";"";G2/C2)</code></p>
+            <p>Recopiez ensuite la formule vers le bas.</p>
+            <!-- PROF : H = D/C ; I = E/C ; J = F/C ; K = SI(G="";"";G/C). Pour P08, K doit rester vide. Ne pas accepter 0 kg/ha puisque la valeur est inconnue. -->
+            <h3>3. Des valeurs écrites dans les formules... ou des paramètres ?</h3>
+            <p>Un exploitant souhaite suivre plus particulièrement deux critères. Pour cet exercice, il fixe les objectifs internes suivants :</p>
+            <ul>
+                <li>coût des intrants : ne pas dépasser <strong>400 €/ha</strong> ;</li>
+                <li>temps de travail : ne pas dépasser <strong>9 h/ha</strong>.</li>
+            </ul>
+            <p><strong>Attention :</strong> ces deux valeurs sont des objectifs fictifs fixés par l'exploitation dans notre scénario. Elles ne constituent ni des normes agricoles ni des recommandations générales.</p>
+            <p>Créez la feuille <strong>Parametres</strong> et reproduisez le tableau suivant :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Paramètre</th>
+                        <th>Valeur</th>
+                        <th>Unité</th>
+                        <th>Origine</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Coût intrants maximum</td><td>400</td><td>€/ha</td><td>Objectif interne de l'exploitation</td></tr>
+                    <tr><td>Temps de travail maximum</td><td>9</td><td>h/ha</td><td>Objectif interne de l'exploitation</td></tr>
+                    <tr><td>Référence rendement maïs fourrage 2024</td><td>13,5</td><td>t/ha</td><td>Agreste – SAA 2024</td></tr>
+                </tbody>
+            </table>
+            <p>Source de la référence extérieure : <a href="https://www.agreste.agriculture.gouv.fr/agreste-web/disaron/Chd2516/detail/" target="_blank" rel="noopener noreferrer">Agreste – Statistique agricole annuelle 2024, chiffres définitifs</a>.</p>
+            <p>La SAA 2024 indique pour le maïs fourrage et ensilage un rendement national de 135 centaines de kg/ha, soit <strong>13,5 t/ha</strong>.</p>
+            <p>Q1 : Pourquoi est-il préférable de placer les valeurs 400 et 9 dans une feuille de paramètres plutôt que de les écrire directement dans toutes les formules ?</p>
+            <!-- PROF : La valeur n'est saisie qu'une seule fois. Si l'objectif change, il suffit de modifier la cellule du paramètre et toutes les formules utilisant cette cellule sont automatiquement recalculées. Cela évite également les incohérences et facilite la maintenance du classeur. -->
+            <h3>4. Découvrir les références absolues</h3>
+            <p>Dans une formule, une référence comme <code>B2</code> est généralement une <strong>référence relative</strong> : elle se déplace lorsque la formule est recopiée.</p>
+            <p>Une référence comme <code>$B$2</code> est une <strong>référence absolue</strong> : elle reste fixée sur la même cellule.</p>
+            <p>Lorsque vous recopierez vos formules d'alerte, les cellules contenant les paramètres ne devront pas changer.</p>
+            <p>Dans la feuille <strong>Analyse</strong>, ajoutez trois colonnes :</p>
+            <ul>
+                <li>L : <strong>Alerte coût</strong></li>
+                <li>M : <strong>Alerte travail</strong></li>
+                <li>N : <strong>Priorité</strong></li>
+            </ul>
+            <p>En L2, créez une formule indiquant <strong>À surveiller</strong> lorsque le coût des intrants par hectare dépasse la valeur enregistrée dans la feuille Parametres, sinon <strong>OK</strong>.</p>
+            <p>Exemple :</p>
+            <p><code>=SI(I2&gt;$Parametres.$B$2;"À surveiller";"OK")</code></p>
+            <p>Faites de même pour le temps de travail en utilisant le deuxième paramètre.</p>
+            <!-- PROF : M2 = SI(J2>$Parametres.$B$3;"À surveiller";"OK"). Selon la position exacte du tableau Parametres, adapter B2/B3. L'essentiel est que la référence au paramètre soit absolue. -->
+            <p>Q2 : Que se passerait-il si vous utilisiez <code>Parametres.B2</code> sans les signes <code>$</code> puis recopiez la formule vers le bas ?</p>
+            <!-- PROF : La référence se déplacerait avec la formule : B2 deviendrait B3, B4, etc. Les lignes seraient comparées à des cellules différentes et les résultats deviendraient faux ou incohérents. -->
+            <h3>5. Croiser plusieurs critères avec ET et OU</h3>
+            <p>Nous voulons maintenant obtenir un seul niveau de priorité pour chaque parcelle :</p>
+            <ul>
+                <li><strong>Prioritaire</strong> si le coût par hectare <strong>ET</strong> le temps de travail par hectare dépassent leurs objectifs ;</li>
+                <li><strong>À surveiller</strong> si un seul des deux critères dépasse son objectif ;</li>
+                <li><strong>OK</strong> si aucun des deux critères ne dépasse son objectif.</li>
+            </ul>
+            <p>Dans N2, réalisez cette analyse automatiquement avec les fonctions <strong>SI</strong>, <strong>ET</strong> et <strong>OU</strong>.</p>
+            <p>Une formule possible est :</p>
+            <p><code>=SI(ET(I2&gt;$Parametres.$B$2;J2&gt;$Parametres.$B$3);"Prioritaire";SI(OU(I2&gt;$Parametres.$B$2;J2&gt;$Parametres.$B$3);"À surveiller";"OK"))</code></p>
+            <p>Recopiez la formule pour toutes les parcelles.</p>
+            <p>Q3 : Quelles parcelles sont classées <strong>Prioritaire</strong> ? Quelles parcelles sont classées <strong>À surveiller</strong> ?</p>
+            <!-- PROF : Prioritaire = P02, P06 et P10. À surveiller = P04 et P08. Les autres parcelles sont OK. P04 et P08 dépassent 400 €/ha mais restent juste sous 9 h/ha. -->
+            <h3>6. Faire apparaître immédiatement les alertes</h3>
+            <p>Un tableau de bord doit permettre de repérer rapidement les informations importantes.</p>
+            <p>Sélectionnez les cellules de la colonne <strong>Priorité</strong>, puis utilisez :</p>
+            <p><strong>Format → Conditionnel → Condition</strong></p>
+            <p>Créez trois mises en forme différentes permettant de distinguer clairement :</p>
+            <ul>
+                <li>Prioritaire ;</li>
+                <li>À surveiller ;</li>
+                <li>OK.</li>
+            </ul>
+            <p>Q4 : Quel est l'intérêt d'un formatage conditionnel par rapport à une coloration manuelle des cellules ?</p>
+            <!-- PROF : Le formatage conditionnel dépend de la valeur ou du résultat d'une formule. Si les données changent, la mise en forme s'actualise automatiquement. Une coloration manuelle ne suit pas automatiquement les modifications. -->
+            <p>Ressource : <a href="https://help.libreoffice.org/latest/fr/text/scalc/guide/cellstyle_conditional.html" target="_blank" rel="noopener noreferrer">LibreOffice – Application du formatage conditionnel</a>.</p>
+            <h3>7. Compter et calculer selon une condition</h3>
+            <p>Dans la feuille <strong>Synthese</strong>, créez un petit tableau contenant les informations suivantes :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Indicateur</th>
+                        <th>Résultat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Nombre de parcelles prioritaires</td><td>À calculer</td></tr>
+                    <tr><td>Nombre de parcelles à surveiller</td><td>À calculer</td></tr>
+                    <tr><td>Surface totale en maïs ensilage</td><td>À calculer</td></tr>
+                    <tr><td>Rendement moyen du maïs ensilage</td><td>À calculer</td></tr>
+                </tbody>
+            </table>
+            <p>Vous devez utiliser au moins une fois chacune des fonctions suivantes :</p>
+            <ul>
+                <li><code>NB.SI</code></li>
+                <li><code>SOMME.SI</code></li>
+                <li><code>MOYENNE.SI</code></li>
+            </ul>
+            <p>Exemple de structure :</p>
+            <p><code>=NB.SI(Analyse.N2:N11;"Prioritaire")</code></p>
+            <p><code>=SOMME.SI(Analyse.B2:B11;"Maïs ensilage";Analyse.C2:C11)</code></p>
+            <p><code>=MOYENNE.SI(Analyse.B2:B11;"Maïs ensilage";Analyse.H2:H11)</code></p>
+            <!-- PROF : Nombre Prioritaire = 3. Nombre À surveiller = 2. Surface totale maïs ensilage = 15,3 ha. Rendement moyen du maïs ensilage après correction de P06 = environ 11,51 t MS/ha. -->
+            <h3>8. Construire une table dynamique</h3>
+            <p>Les fonctions précédentes sont pratiques pour répondre à des questions précises. Lorsque les données deviennent nombreuses, une <strong>table dynamique</strong> permet de les regrouper et de les résumer rapidement.</p>
+            <p>Dans la feuille <strong>Analyse</strong> :</p>
+            <ol>
+                <li>sélectionnez l'ensemble du tableau avec les titres ;</li>
+                <li>ouvrez <strong>Données → Table dynamique → Insérer ou éditer</strong> ;</li>
+                <li>utilisez la sélection actuelle comme source ;</li>
+                <li>placez <strong>Culture</strong> dans les champs de ligne ;</li>
+                <li>ajoutez <strong>Surface</strong> comme somme ;</li>
+                <li>ajoutez <strong>Rendement</strong> comme moyenne ;</li>
+                <li>ajoutez <strong>Coût intrants/ha</strong> comme moyenne ;</li>
+                <li>ajoutez <strong>Temps de travail/ha</strong> comme moyenne ;</li>
+                <li>placez le résultat dans la feuille <strong>Synthese</strong>.</li>
+            </ol>
+            <p>Votre table doit permettre de comparer les quatre types de cultures sans recalculer manuellement chaque groupe.</p>
+            <!-- PROF : Ordres de grandeur attendus après correction de P06 : Prairie permanente : surface 25,6 ha, rendement moyen ≈ 5,37 t MS/ha, coût ≈ 170,27 €/ha, travail ≈ 6,96 h/ha. Maïs ensilage : 15,3 ha, ≈ 11,51 t MS/ha, ≈ 659,73 €/ha, ≈ 11,71 h/ha. Prairie temporaire : 12 ha, ≈ 6,93 t MS/ha, ≈ 285 €/ha, ≈ 7,75 h/ha. Méteil : 8,5 ha, ≈ 6,60 t MS/ha, ≈ 416,41 €/ha, ≈ 8,94 h/ha. -->
+            <p>Ressource : <a href="https://help.libreoffice.org/latest/fr/text/scalc/01/12090000.html" target="_blank" rel="noopener noreferrer">LibreOffice – Tables dynamiques</a>.</p>
+            <h3>9. Comparer avec une référence extérieure</h3>
+            <p>Votre table dynamique doit vous donner un rendement moyen d'environ <strong>11,51 t MS/ha</strong> pour les parcelles de maïs ensilage de notre exploitation fictive.</p>
+            <p>La Statistique agricole annuelle 2024 d'Agreste indique une référence nationale de <strong>13,5 t/ha</strong> pour le maïs fourrage et ensilage.</p>
+            <p>Dans la feuille <strong>Synthese</strong>, calculez :</p>
+            <ol>
+                <li>l'écart en t/ha entre votre moyenne et la référence nationale ;</li>
+                <li>l'écart en pourcentage par rapport à la référence nationale.</li>
+            </ol>
+            <!-- PROF : Écart ≈ 11,51 - 13,5 = -1,99 t/ha. Écart relatif ≈ -14,7 %. Accepter de légers écarts dus aux arrondis. -->
+            <p>Q5 : Peut-on conclure uniquement à partir de cette comparaison que les parcelles de l'exploitation sont mal conduites ? Justifiez.</p>
+            <!-- PROF : Non. Une référence nationale permet de situer un résultat mais ne suffit pas à expliquer l'écart. Il faut prendre en compte le contexte : année, climat, sol, variété, pratiques, disponibilité en eau, objectifs de l'exploitation, méthode de mesure, etc. Une référence est un point de comparaison, pas automatiquement un objectif à atteindre. -->
+            <h3>10. Faire parler le tableau de bord</h3>
+            <p>À partir de votre table dynamique, réalisez un graphique permettant de comparer le <strong>rendement moyen par type de culture</strong>.</p>
+            <p>Votre graphique doit contenir :</p>
+            <ul>
+                <li>un titre explicite ;</li>
+                <li>les cultures ;</li>
+                <li>l'unité <strong>t MS/ha</strong> ;</li>
+                <li>une présentation suffisamment claire pour être comprise sans relire toutes les données du tableau.</li>
+            </ul>
+            <p>Q6 : Pourquoi un graphique est-il utile ici alors que toutes les valeurs sont déjà présentes dans la table dynamique ?</p>
+            <!-- PROF : Le graphique facilite la comparaison visuelle, fait ressortir rapidement les différences et permet de communiquer l'information à un destinataire qui n'a pas besoin de lire toutes les cellules. Il ne remplace cependant pas les valeurs du tableau. -->
+            <h3>11. De l'alerte automatique à la décision professionnelle</h3>
+            <p>Dans la feuille <strong>Synthese</strong>, rédigez une conclusion de <strong>5 à 8 lignes</strong> à destination de l'exploitant.</p>
+            <p>Votre texte doit :</p>
+            <ul>
+                <li>identifier les parcelles considérées comme prioritaires par votre outil ;</li>
+                <li>indiquer pourquoi elles ont été signalées ;</li>
+                <li>présenter au moins un résultat de la table dynamique ;</li>
+                <li>utiliser avec prudence la référence Agreste ;</li>
+                <li>proposer au moins une information supplémentaire à rechercher avant de prendre une décision.</li>
+            </ul>
+            <!-- PROF : Attendu possible : P02, P06 et P10 sont prioritaires car elles dépassent simultanément les objectifs internes de coût et de temps de travail. Elles correspondent toutes au maïs ensilage dans ce jeu de données. Le maïs présente le rendement moyen le plus élevé, environ 11,51 t MS/ha, mais aussi les coûts et temps de travail moyens les plus élevés. Ce rendement est environ 14,7 % inférieur à la référence nationale Agreste 2024 de 13,5 t/ha. On ne peut pas en déduire à lui seul une mauvaise conduite : il faudrait notamment connaître le contexte climatique, les sols, les pratiques culturales, les objectifs de rendement et les résultats économiques avant de proposer un ajustement. -->
+            <h3>12. Tester avant de rendre</h3>
+            <p>Un bon outil numérique doit continuer à fonctionner lorsque les données changent.</p>
+            <p>Avant de rendre votre fichier :</p>
+            <ol>
+                <li>modifiez temporairement le coût maximal dans la feuille <strong>Parametres</strong> de 400 à 700 €/ha ;</li>
+                <li>observez les colonnes d'alerte ;</li>
+                <li>remettez ensuite la valeur à 400 €/ha ;</li>
+                <li>modifiez temporairement une valeur de coût dans votre tableau ;</li>
+                <li>vérifiez que les indicateurs et alertes sont recalculés ;</li>
+                <li>actualisez votre table dynamique avec <strong>Données → Table dynamique → Actualiser</strong> ;</li>
+                <li>vérifiez que votre graphique et votre synthèse sont cohérents.</li>
+            </ol>
+            <p>Q7 : Pourquoi est-il important de tester un tableau de bord en modifiant volontairement certaines données ?</p>
+            <!-- PROF : Le test permet de vérifier que les formules, références, seuils et synthèses réagissent correctement aux changements. Un tableau qui donne le bon résultat avec un seul jeu de données peut contenir une erreur invisible. On teste donc le comportement de l'outil, pas seulement son résultat actuel. -->
+            <h3>13. Conclusion du travail</h3>
+            <p>Sans retourner lire les définitions précédentes, complétez dans la feuille <strong>Synthese</strong> :</p>
+            <ul>
+                <li>Une référence absolue permet de ................................................................................................................</li>
+                <li>La fonction SI permet de ................................................................................................................</li>
+                <li>Les fonctions ET et OU permettent de ................................................................................................................</li>
+                <li>Une table dynamique sert à ................................................................................................................</li>
+                <li>Un tableau de bord aide le professionnel à ................................................................................................................</li>
+            </ul>
+            <!-- PROF : Référence absolue = conserver une cellule fixe lors de la recopie d'une formule. SI = produire un résultat différent selon qu'une condition est vraie ou fausse. ET/OU = combiner plusieurs conditions. Table dynamique = regrouper et synthétiser rapidement des données selon différents critères. Tableau de bord = rendre les informations importantes visibles pour analyser une situation et aider à décider. -->
+            <p>Dernière question :</p>
+            <p>En trois ou quatre phrases, expliquez pourquoi <strong>automatiser un diagnostic ne signifie pas automatiser la décision</strong>.</p>
+            <!-- PROF : L'outil applique des règles définies par l'utilisateur et fait ressortir des indicateurs ou alertes. Il ne connaît pas nécessairement tout le contexte de l'exploitation. Le professionnel doit vérifier les données, interpréter les résultats, mobiliser d'autres informations et assumer la décision finale. -->
+            <p>Enregistrez votre fichier sous le nom <strong>BTS2_ACSAGRI_S03_NOM_Prenom.ods</strong> puis déposez-le dans l'espace d'échange.</p>
+            <h3>Sources et ressources</h3>
+            <ul>
+                <li>Chlorofil – <a href="https://chlorofil.fr/diplomes/secondaire/btsa/acse/acs-agri-2025" target="_blank" rel="noopener noreferrer">Référentiel du BTSA ACS'AGRI applicable à partir de la rentrée 2025</a>.</li>
+                <li>Inspection de l'enseignement agricole – <a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf" target="_blank" rel="noopener noreferrer">Exemples d'utilisation des TIM dans des situations favorisant l'acquisition de capacités</a>.</li>
+                <li>Agreste – <a href="https://www.agreste.agriculture.gouv.fr/agreste-web/disaron/Chd2516/detail/" target="_blank" rel="noopener noreferrer">Statistique agricole annuelle 2024 – chiffres définitifs</a>.</li>
+                <li>LibreOffice – <a href="https://help.libreoffice.org/latest/fr/text/scalc/guide/cellstyle_conditional.html" target="_blank" rel="noopener noreferrer">Application du formatage conditionnel dans Calc</a>.</li>
+                <li>LibreOffice – <a href="https://help.libreoffice.org/latest/fr/text/scalc/01/12090000.html" target="_blank" rel="noopener noreferrer">Tables dynamiques dans Calc</a>.</li>
+            </ul>
+            <p><em>Les données des parcelles P01 à P10 sont des données pédagogiques simulées. Les objectifs de 400 €/ha et 9 h/ha sont également fictifs et servent uniquement à apprendre à paramétrer un outil d'aide à la décision. La référence nationale Agreste est, elle, issue de la Statistique agricole annuelle 2024.</em></p>
+        </section>
+
+        <section id="session4" class="content-section">
+            <style>
+                #session4 .software-choice {
+                    margin: 2rem 0;
+                    padding: 1.5rem;
+                    background: var(--primary-light, #e0f2f1);
+                    border: 2px solid var(--primary, #0f4c5c);
+                    border-radius: var(--radius, 18px);
+                }
+                #session4 .software-choice h3 {
+                    margin-top: 0;
+                }
+                #session4 .software-choice-buttons {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 1rem;
+                    margin: 1.5rem 0 1rem;
+                }
+                #session4 .software-choice-button {
+                    flex: 1 1 250px;
+                    padding: 1rem 1.25rem;
+                    border: 2px solid var(--primary, #0f4c5c);
+                    border-radius: var(--radius-small, 10px);
+                    background: var(--surface, #fff);
+                    color: var(--primary-dark, #123c49);
+                    font: inherit;
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: 0.2s ease;
+                }
+                #session4 .software-choice-button:hover {
+                    transform: translateY(-2px);
+                    background: var(--primary-light, #e0f2f1);
+                }
+                #session4 .software-choice-button.active {
+                    background: var(--primary, #0f4c5c);
+                    color: white;
+                }
+                #session4 .software-choice-info {
+                    margin-bottom: 0;
+                    font-size: 0.9rem;
+                    color: var(--text-light, #6b7280);
+                }
+                #session4 .software-path[hidden] {
+                    display: none !important;
+                }
+                #session4 .software-path {
+                    margin-top: 2rem;
+                }
+                #session4 .software-path-title {
+                    margin-bottom: 1.5rem;
+                    padding: 1rem 1.25rem;
+                    border-left: 5px solid var(--primary, #0f4c5c);
+                    background: var(--primary-light, #e0f2f1);
+                    border-radius: var(--radius-small, 10px);
+                }
+                #session4 .software-path-title h3 {
+                    margin-top: 0;
+                }
+                #session4 .software-path-title p {
+                    margin-bottom: 0;
+                }
+            </style>
+            <h2>Séance 4 : Du tableur à la base de données</h2>
+            <h3>Thème : Organiser et sécuriser les données d'une exploitation agricole</h3>
+            <h3>Problématique : Comment organiser des données qui deviennent trop nombreuses et trop liées entre elles pour être gérées efficacement dans un simple tableau ?</h3>
+            <h3>Compétence visée : C4.1 – Évaluer la performance globale d'un système biotechnique</h3>
+            <p><strong>Objectifs d'apprentissage :</strong></p>
+            <p>Ce que vous allez apprendre :</p>
+            <ul>
+                <li>comprendre les limites d'un tableau unique lorsque les données se multiplient ;</li>
+                <li>comprendre le principe d'une base de données relationnelle ;</li>
+                <li>distinguer une table, un enregistrement et un champ ;</li>
+                <li>comprendre le rôle d'une clé primaire et d'une clé étrangère ;</li>
+                <li>comprendre les relations entre plusieurs tables ;</li>
+                <li>découvrir pourquoi la sécurité, la sauvegarde et la qualité des données font partie de leur gestion.</li>
+            </ul>
+            <p>Ce que vous allez apprendre à faire :</p>
+            <ul>
+                <li>identifier les informations qui doivent être séparées dans plusieurs tables ;</li>
+                <li>concevoir la structure d'une petite base de données agricole ;</li>
+                <li>utiliser LibreOffice Base si le logiciel est disponible ;</li>
+                <li>simuler les principes d'une base relationnelle avec Calc si Base n'est pas disponible ;</li>
+                <li>définir des identifiants uniques ;</li>
+                <li>relier plusieurs ensembles de données ;</li>
+                <li>interroger les données ;</li>
+                <li>proposer une stratégie élémentaire de sauvegarde.</li>
+            </ul>
+            <p><strong>Production attendue :</strong></p>
+            <ul>
+                <li>un document de travail nommé <strong>BTS2_ACSAGRI_S04_NOM_Prenom.odt</strong> ;</li>
+                <li>si Base est disponible : une base <strong>BTS2_ACSAGRI_S04_NOM_Prenom.odb</strong> ;</li>
+                <li>si Base n'est pas disponible : un classeur <strong>BTS2_ACSAGRI_S04_NOM_Prenom.ods</strong> ;</li>
+                <li>une organisation cohérente des données ;</li>
+                <li>une courte proposition de stratégie de sauvegarde.</li>
+            </ul>
+            <h3>1. Créer votre document de travail</h3>
+            <p>Créez immédiatement un document LibreOffice Writer nommé :</p>
+            <p><strong>BTS2_ACSAGRI_S04_NOM_Prenom.odt</strong></p>
+            <p>Ajoutez le titre :</p>
+            <p><strong>Organiser les données d'une exploitation agricole</strong></p>
+            <p>Ce document servira de brouillon, de compte rendu et d'espace de réponse pendant toute la séance.</p>
+            <h3>2. Un grand tableau est-il toujours une bonne solution ?</h3>
+            <p>L'exploitation fictive utilisée depuis les séances précédentes souhaite maintenant enregistrer toutes les interventions réalisées sur ses parcelles.</p>
+            <p>Elle commence avec le tableau suivant :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parcelle</th>
+                        <th>Surface</th>
+                        <th>Culture</th>
+                        <th>Date</th>
+                        <th>Intervention</th>
+                        <th>Durée</th>
+                        <th>Coût</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>P01</td><td>7,8</td><td>Prairie permanente</td><td>12/03/2026</td><td>Fertilisation</td><td>2,0</td><td>185</td></tr>
+                    <tr><td>P01</td><td>7,8</td><td>Prairie permanente</td><td>18/05/2026</td><td>Fauche</td><td>3,5</td><td>260</td></tr>
+                    <tr><td>P01</td><td>7,8</td><td>Prairie permanente</td><td>20/05/2026</td><td>Andainage</td><td>1,5</td><td>95</td></tr>
+                    <tr><td>P02</td><td>5,4</td><td>Maïs ensilage</td><td>08/04/2026</td><td>Préparation du sol</td><td>3,0</td><td>240</td></tr>
+                    <tr><td>P02</td><td>5,4</td><td>Maïs ensilage</td><td>19/04/2026</td><td>Semis</td><td>2,5</td><td>315</td></tr>
+                    <tr><td>P02</td><td>5,4</td><td>Maïs ensilage</td><td>06/05/2026</td><td>Fertilisation</td><td>2,0</td><td>410</td></tr>
+                </tbody>
+            </table>
+            <p><em>Les données de cette séance sont fictives et ont été créées uniquement pour l'activité pédagogique.</em></p>
+            <p>Dans votre document, répondez aux questions suivantes :</p>
+            <ol>
+                <li>Quelles informations sont répétées plusieurs fois ?</li>
+                <li>Que se passerait-il si la surface de P01 était saisie à 7,8 ha sur certaines lignes et à 8,7 ha sur d'autres ?</li>
+                <li>Si une parcelle comporte 40 interventions dans l'année, combien de fois son nom, sa surface et sa culture seront-ils répétés ?</li>
+                <li>Quels problèmes cette organisation peut-elle provoquer ?</li>
+            </ol>
+            <!-- PROF : Informations répétées : parcelle, surface et culture. Avec 40 interventions, elles sont répétées 40 fois. Risques : erreurs de saisie, incohérences, difficulté de mise à jour, augmentation inutile du volume et traitements plus complexes. -->
+            <h3>3. Séparer les informations</h3>
+            <p>Une base de données relationnelle permet de séparer les informations selon ce qu'elles décrivent.</p>
+            <p>Dans notre situation, nous pouvons distinguer :</p>
+            <ul>
+                <li>les <strong>cultures</strong> ;</li>
+                <li>les <strong>parcelles</strong> ;</li>
+                <li>les <strong>interventions</strong>.</li>
+            </ul>
+            <p>Dans votre document de travail, recopiez et complétez :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Information</th>
+                        <th>Table la plus logique</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Nom de la parcelle</td><td></td></tr>
+                    <tr><td>Surface</td><td></td></tr>
+                    <tr><td>Nom d'une culture</td><td></td></tr>
+                    <tr><td>Date d'une intervention</td><td></td></tr>
+                    <tr><td>Type d'intervention</td><td></td></tr>
+                    <tr><td>Durée d'une intervention</td><td></td></tr>
+                    <tr><td>Coût d'une intervention</td><td></td></tr>
+                </tbody>
+            </table>
+            <!-- PROF : Parcelle : nom + surface. Culture : nom culture. Intervention : date, type, durée, coût. -->
+            <h3>4. Identifier chaque élément sans ambiguïté</h3>
+            <p>Dans une base de données, chaque enregistrement doit pouvoir être identifié de manière unique.</p>
+            <p>On utilise pour cela une <strong>clé primaire</strong>.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Table</th>
+                        <th>Clé primaire</th>
+                        <th>Exemple</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>CULTURES</td><td>id_culture</td><td>C01</td></tr>
+                    <tr><td>PARCELLES</td><td>id_parcelle</td><td>P01</td></tr>
+                    <tr><td>INTERVENTIONS</td><td>id_intervention</td><td>I001</td></tr>
+                </tbody>
+            </table>
+            <p>Q1 : Pourquoi utiliser un identifiant comme <strong>P01</strong> plutôt que simplement le nom d'une parcelle comme clé primaire ?</p>
+            <!-- PROF : Un identifiant doit être unique, stable et non ambigu. Un nom peut changer, être mal orthographié ou exister plusieurs fois. -->
+            <p>Une table peut également contenir une <strong>clé étrangère</strong>. Elle permet de faire référence à un enregistrement situé dans une autre table.</p>
+            <p>Ressource : <a href="https://help.libreoffice.org/latest/fr/text/sdatabase/05020000.html" target="_blank" rel="noopener noreferrer">LibreOffice – Relations, clés primaires et clés étrangères</a>.</p>
+            <h3>5. Concevoir la base avant de la créer</h3>
+            <p>Dans votre document, représentez les trois tables suivantes et les liens entre elles.</p>
+            <h4>Table CULTURES</h4>
+            <table>
+                <thead>
+                    <tr><th>Champ</th><th>Type d'information</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>id_culture</td><td>Identifiant unique</td></tr>
+                    <tr><td>nom_culture</td><td>Texte</td></tr>
+                </tbody>
+            </table>
+            <h4>Table PARCELLES</h4>
+            <table>
+                <thead>
+                    <tr><th>Champ</th><th>Type d'information</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>id_parcelle</td><td>Identifiant unique</td></tr>
+                    <tr><td>nom_parcelle</td><td>Texte</td></tr>
+                    <tr><td>surface_ha</td><td>Nombre décimal</td></tr>
+                    <tr><td>id_culture</td><td>Référence vers CULTURES</td></tr>
+                </tbody>
+            </table>
+            <h4>Table INTERVENTIONS</h4>
+            <table>
+                <thead>
+                    <tr><th>Champ</th><th>Type d'information</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>id_intervention</td><td>Identifiant unique</td></tr>
+                    <tr><td>date_intervention</td><td>Date</td></tr>
+                    <tr><td>type_intervention</td><td>Texte</td></tr>
+                    <tr><td>duree_h</td><td>Nombre décimal</td></tr>
+                    <tr><td>cout_euros</td><td>Nombre décimal</td></tr>
+                    <tr><td>id_parcelle</td><td>Référence vers PARCELLES</td></tr>
+                </tbody>
+            </table>
+            <p>Dans votre document, indiquez :</p>
+            <ol>
+                <li>les trois clés primaires ;</li>
+                <li>les deux clés étrangères ;</li>
+                <li>les deux relations à créer.</li>
+            </ol>
+            <!-- PROF : PK : CULTURES.id_culture ; PARCELLES.id_parcelle ; INTERVENTIONS.id_intervention. FK : PARCELLES.id_culture et INTERVENTIONS.id_parcelle. Relations : CULTURES 1 → N PARCELLES ; PARCELLES 1 → N INTERVENTIONS. -->
+            <div class="software-choice" id="s04-software-choice">
+                <h3>6. Quel logiciel est disponible sur votre poste ?</h3>
+                <p>Essayez d'ouvrir <strong>LibreOffice Base</strong>, puis cliquez sur le bouton correspondant à votre situation.</p>
+                <div class="software-choice-buttons">
+                    <button type="button" class="software-choice-button" data-software="base" onclick="showS04SoftwarePath('base')">✓ Base est disponible</button>
+                    <button type="button" class="software-choice-button" data-software="calc" onclick="showS04SoftwarePath('calc')">✗ Base n'est pas disponible</button>
+                </div>
+                <p class="software-choice-info">Si vous vous êtes trompé ou si Base ne fonctionne finalement pas, vous pouvez changer de parcours à tout moment.</p>
+            </div>
+            <div id="s04-path-base" class="software-path" hidden>
+                <div class="software-path-title">
+                    <h3>Parcours A : LibreOffice Base</h3>
+                    <p>LibreOffice Base fonctionne sur votre poste. Vous allez créer une véritable petite base de données relationnelle.</p>
+                </div>
+                <h3>7. Créer la base de données</h3>
+                <p>Ouvrez <strong>LibreOffice Base</strong>.</p>
+                <p>Créez une nouvelle base de données et enregistrez-la immédiatement sous le nom :</p>
+                <p><strong>BTS2_ACSAGRI_S04_NOM_Prenom.odb</strong></p>
+                <p>Créez ensuite les trois tables :</p>
+                <ul>
+                    <li>CULTURES</li>
+                    <li>PARCELLES</li>
+                    <li>INTERVENTIONS</li>
+                </ul>
+                <p>Respectez les champs définis précédemment et définissez correctement les clés primaires.</p>
+                <!-- PROF : Pour les identifiants C01/P01/I001, utiliser du texte. Surface, durée et coût : numérique/décimal. Date : type Date. -->
+                <h3>8. Enregistrer les données</h3>
+                <p>Ajoutez les données suivantes dans la table <strong>CULTURES</strong> :</p>
+                <table>
+                    <thead>
+                        <tr><th>id_culture</th><th>nom_culture</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>C01</td><td>Prairie permanente</td></tr>
+                        <tr><td>C02</td><td>Maïs ensilage</td></tr>
+                        <tr><td>C03</td><td>Prairie temporaire</td></tr>
+                        <tr><td>C04</td><td>Méteil</td></tr>
+                    </tbody>
+                </table>
+                <p>Ajoutez ensuite les données suivantes dans <strong>PARCELLES</strong> :</p>
+                <table>
+                    <thead>
+                        <tr><th>id_parcelle</th><th>nom_parcelle</th><th>surface_ha</th><th>id_culture</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>P01</td><td>Pré du Moulin</td><td>7,8</td><td>C01</td></tr>
+                        <tr><td>P02</td><td>Les Combes</td><td>5,4</td><td>C02</td></tr>
+                        <tr><td>P03</td><td>La Planèze</td><td>6,1</td><td>C03</td></tr>
+                        <tr><td>P04</td><td>Le Puech</td><td>4,7</td><td>C04</td></tr>
+                        <tr><td>P05</td><td>Pré Long</td><td>9,2</td><td>C01</td></tr>
+                        <tr><td>P06</td><td>La Borie</td><td>4,8</td><td>C02</td></tr>
+                    </tbody>
+                </table>
+                <p>Ajoutez enfin les interventions :</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Intervention</th>
+                            <th>Durée (h)</th>
+                            <th>Coût (€)</th>
+                            <th>Parcelle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>I001</td><td>12/03/2026</td><td>Fertilisation</td><td>2,0</td><td>185</td><td>P01</td></tr>
+                        <tr><td>I002</td><td>18/05/2026</td><td>Fauche</td><td>3,5</td><td>260</td><td>P01</td></tr>
+                        <tr><td>I003</td><td>20/05/2026</td><td>Andainage</td><td>1,5</td><td>95</td><td>P01</td></tr>
+                        <tr><td>I004</td><td>08/04/2026</td><td>Préparation du sol</td><td>3,0</td><td>240</td><td>P02</td></tr>
+                        <tr><td>I005</td><td>19/04/2026</td><td>Semis</td><td>2,5</td><td>315</td><td>P02</td></tr>
+                        <tr><td>I006</td><td>06/05/2026</td><td>Fertilisation</td><td>2,0</td><td>410</td><td>P02</td></tr>
+                        <tr><td>I007</td><td>15/03/2026</td><td>Fertilisation</td><td>1,5</td><td>160</td><td>P03</td></tr>
+                        <tr><td>I008</td><td>22/05/2026</td><td>Fauche</td><td>3,0</td><td>225</td><td>P03</td></tr>
+                        <tr><td>I009</td><td>10/04/2026</td><td>Semis</td><td>2,0</td><td>210</td><td>P04</td></tr>
+                        <tr><td>I010</td><td>09/05/2026</td><td>Fertilisation</td><td>1,5</td><td>175</td><td>P04</td></tr>
+                        <tr><td>I011</td><td>17/05/2026</td><td>Fauche</td><td>4,0</td><td>285</td><td>P05</td></tr>
+                        <tr><td>I012</td><td>21/04/2026</td><td>Semis</td><td>2,5</td><td>300</td><td>P06</td></tr>
+                    </tbody>
+                </table>
+                <h3>9. Créer les relations</h3>
+                <p>Ouvrez :</p>
+                <p><strong>Outils → Relations</strong></p>
+                <p>Ajoutez les trois tables puis créez les relations suivantes :</p>
+                <ul>
+                    <li><strong>CULTURES.id_culture → PARCELLES.id_culture</strong></li>
+                    <li><strong>PARCELLES.id_parcelle → INTERVENTIONS.id_parcelle</strong></li>
+                </ul>
+                <p>Dans votre document de travail, faites un schéma simple représentant ces relations.</p>
+                <p><strong>CULTURES 1 → N PARCELLES 1 → N INTERVENTIONS</strong></p>
+                <p>Q2 : Que signifie le symbole <strong>1 → N</strong> ?</p>
+                <!-- PROF : Une occurrence de la première table peut être liée à plusieurs occurrences de la seconde. -->
+                <p>Ressource : <a href="https://help.libreoffice.org/latest/fr/text/sdatabase/05020000.html" target="_blank" rel="noopener noreferrer">LibreOffice – Créer des relations entre les tables</a>.</p>
+                <h3>10. Interroger plutôt que rechercher manuellement</h3>
+                <p>Une base de données devient réellement utile lorsque l'on peut lui poser des questions.</p>
+                <h4>Requête 1 : interventions de P02</h4>
+                <p>Affichez la date, le type d'intervention, la durée et le coût.</p>
+                <p>Ne conservez que les interventions concernant <strong>P02</strong> et triez-les par date croissante.</p>
+                <!-- PROF : 3 résultats : 08/04 Préparation du sol 3 h 240 € ; 19/04 Semis 2,5 h 315 € ; 06/05 Fertilisation 2 h 410 €. -->
+                <h4>Requête 2 : interventions coûteuses</h4>
+                <p>Affichez toutes les interventions dont le coût est <strong>supérieur à 250 €</strong>.</p>
+                <!-- PROF : I002, I005, I006, I011 et I012. -->
+                <h4>Requête 3 : parcelles de maïs</h4>
+                <p>Créez une requête utilisant les tables <strong>CULTURES</strong> et <strong>PARCELLES</strong>.</p>
+                <p>Affichez uniquement les parcelles dont la culture est <strong>Maïs ensilage</strong>.</p>
+                <p>Affichez l'identifiant, le nom, la surface et le nom de la culture.</p>
+                <!-- PROF : P02 Les Combes 5,4 ha et P06 La Borie 4,8 ha. -->
+                <p>Q3 : Quelle différence voyez-vous entre <strong>stocker une donnée</strong> et <strong>interroger une donnée</strong> ?</p>
+                <!-- PROF : Stocker = enregistrer. Interroger = sélectionner, croiser, filtrer ou synthétiser. -->
+                <h3>11. Tableur ou base de données ?</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Situation</th>
+                            <th>Calc</th>
+                            <th>Base de données</th>
+                            <th>Pourquoi ?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Calculer rapidement une moyenne sur 10 valeurs</td><td></td><td></td><td></td></tr>
+                        <tr><td>Enregistrer plusieurs milliers d'interventions associées à des parcelles</td><td></td><td></td><td></td></tr>
+                        <tr><td>Créer rapidement un graphique à partir d'un petit tableau</td><td></td><td></td><td></td></tr>
+                        <tr><td>Retrouver toutes les interventions liées à une parcelle précise</td><td></td><td></td><td></td></tr>
+                        <tr><td>Éviter de répéter les caractéristiques d'une parcelle</td><td></td><td></td><td></td></tr>
+                        <tr><td>Tester rapidement plusieurs hypothèses de calcul</td><td></td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+                <!-- PROF : Calc : calculs, simulations, petits graphiques. Base : données nombreuses, liées, requêtes répétées et cohérence. -->
+                <h3>12. Les données doivent aussi survivre à une panne</h3>
+                <p>La CNIL recommande notamment des sauvegardes régulières, testées, avec au moins une copie isolée du système principal.</p>
+                <p>Ressource : <a href="https://www.cnil.fr/fr/securite-sauvegarder" target="_blank" rel="noopener noreferrer">CNIL – Sécurité : sauvegarder</a>.</p>
+                <p>Expliquez avec vos propres mots :</p>
+                <p><strong>3 copies – 2 supports différents – 1 copie isolée</strong></p>
+                <!-- PROF : Trois exemplaires, au moins deux supports/emplacements différents, dont une copie isolée/déconnectée. -->
+                <p>Une exploitation conserve la base originale et une copie dans un autre dossier du même ordinateur.</p>
+                <p>Q4 : Est-ce suffisant ? Justifiez.</p>
+                <!-- PROF : Non : les deux copies peuvent être perdues simultanément. -->
+                <p>Q5 : Proposez une organisation plus robuste.</p>
+                <!-- PROF : PC + NAS/disque externe + copie déconnectée ou distante, avec tests de restauration. -->
+                <h3>13. Qui doit pouvoir modifier quoi ?</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Utilisateur</th>
+                            <th>Consulter</th>
+                            <th>Modifier</th>
+                            <th>Administrer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Chef d'exploitation</td><td></td><td></td><td></td></tr>
+                        <tr><td>Salarié enregistrant les interventions</td><td></td><td></td><td></td></tr>
+                        <tr><td>Conseiller intervenant ponctuellement</td><td></td><td></td><td></td></tr>
+                        <tr><td>Personne extérieure sans mission sur l'exploitation</td><td></td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+                <!-- PROF : principe du moindre privilège et du besoin d'en connaître. -->
+                <p>Q6 : Pourquoi tous les utilisateurs ne doivent-ils pas disposer des mêmes droits ?</p>
+                <!-- PROF : Limiter erreurs, suppressions, accès injustifiés et modifications non autorisées. -->
+                <h3>14. Conclusion du parcours Base</h3>
+                <p>Complétez :</p>
+                <ul>
+                    <li>Une table contient ................................................................................................................</li>
+                    <li>Une clé primaire permet de ................................................................................................................</li>
+                    <li>Une clé étrangère permet de ................................................................................................................</li>
+                    <li>Une relation 1 → N signifie que ................................................................................................................</li>
+                    <li>Une requête permet de ................................................................................................................</li>
+                    <li>Une sauvegarde sert à ................................................................................................................</li>
+                </ul>
+                <!-- PROF : voir définitions travaillées pendant la séance. -->
+                <p>Vérifiez que votre base contient 3 tables, 3 clés primaires, 2 clés étrangères, 2 relations et au moins 3 requêtes.</p>
+                <p>Enregistrez puis déposez :</p>
+                <ul>
+                    <li><strong>BTS2_ACSAGRI_S04_NOM_Prenom.odt</strong></li>
+                    <li><strong>BTS2_ACSAGRI_S04_NOM_Prenom.odb</strong></li>
+                </ul>
+            </div>
+            <div id="s04-path-calc" class="software-path" hidden>
+                <div class="software-path-title">
+                    <h3>Parcours B : simulation avec LibreOffice Calc</h3>
+                    <p>LibreOffice Base n'est pas disponible. Vous allez reproduire les principaux mécanismes d'une base relationnelle avec Calc.</p>
+                </div>
+                <h3>7. Créer les tables dans Calc</h3>
+                <p>Créez un classeur nommé :</p>
+                <p><strong>BTS2_ACSAGRI_S04_NOM_Prenom.ods</strong></p>
+                <p>Créez trois feuilles :</p>
+                <ul>
+                    <li><strong>CULTURES</strong></li>
+                    <li><strong>PARCELLES</strong></li>
+                    <li><strong>INTERVENTIONS</strong></li>
+                </ul>
+                <p><strong>Important :</strong> Calc est utilisé ici pour comprendre le principe. Dans une véritable base de données, les relations et contraintes seraient gérées automatiquement.</p>
+                <h3>8. Créer la table CULTURES</h3>
+                <table>
+                    <thead>
+                        <tr><th>id_culture</th><th>nom_culture</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>C01</td><td>Prairie permanente</td></tr>
+                        <tr><td>C02</td><td>Maïs ensilage</td></tr>
+                        <tr><td>C03</td><td>Prairie temporaire</td></tr>
+                        <tr><td>C04</td><td>Méteil</td></tr>
+                    </tbody>
+                </table>
+                <p>Q2 : Quelle colonne joue le rôle de <strong>clé primaire</strong> ?</p>
+                <!-- PROF : id_culture. -->
+                <h3>9. Créer la table PARCELLES</h3>
+                <table>
+                    <thead>
+                        <tr><th>id_parcelle</th><th>nom_parcelle</th><th>surface_ha</th><th>id_culture</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>P01</td><td>Pré du Moulin</td><td>7,8</td><td>C01</td></tr>
+                        <tr><td>P02</td><td>Les Combes</td><td>5,4</td><td>C02</td></tr>
+                        <tr><td>P03</td><td>La Planèze</td><td>6,1</td><td>C03</td></tr>
+                        <tr><td>P04</td><td>Le Puech</td><td>4,7</td><td>C04</td></tr>
+                        <tr><td>P05</td><td>Pré Long</td><td>9,2</td><td>C01</td></tr>
+                        <tr><td>P06</td><td>La Borie</td><td>4,8</td><td>C02</td></tr>
+                    </tbody>
+                </table>
+                <p>Q3 : Quelle est la clé primaire ? Quelle colonne joue le rôle de clé étrangère ?</p>
+                <!-- PROF : PK = id_parcelle ; FK = id_culture. -->
+                <h3>10. Éviter les erreurs de saisie</h3>
+                <p>Dans la colonne <strong>id_culture</strong>, sélectionnez les cellules puis utilisez :</p>
+                <p><strong>Données → Validité</strong></p>
+                <p>Créez une liste contenant C01, C02, C03 et C04.</p>
+                <p>Testez volontairement la saisie de <strong>C09</strong>.</p>
+                <p>Q4 : Quel est l'intérêt de contrôler les valeurs autorisées ?</p>
+                <!-- PROF : éviter fautes de frappe, identifiants inexistants et incohérences. -->
+                <h3>11. Créer la table INTERVENTIONS</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id_intervention</th>
+                            <th>date_intervention</th>
+                            <th>type_intervention</th>
+                            <th>duree_h</th>
+                            <th>cout_euros</th>
+                            <th>id_parcelle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>I001</td><td>12/03/2026</td><td>Fertilisation</td><td>2</td><td>185</td><td>P01</td></tr>
+                        <tr><td>I002</td><td>18/05/2026</td><td>Fauche</td><td>3,5</td><td>260</td><td>P01</td></tr>
+                        <tr><td>I003</td><td>20/05/2026</td><td>Andainage</td><td>1,5</td><td>95</td><td>P01</td></tr>
+                        <tr><td>I004</td><td>08/04/2026</td><td>Préparation du sol</td><td>3</td><td>240</td><td>P02</td></tr>
+                        <tr><td>I005</td><td>19/04/2026</td><td>Semis</td><td>2,5</td><td>315</td><td>P02</td></tr>
+                        <tr><td>I006</td><td>06/05/2026</td><td>Fertilisation</td><td>2</td><td>410</td><td>P02</td></tr>
+                        <tr><td>I007</td><td>15/03/2026</td><td>Fertilisation</td><td>1,5</td><td>160</td><td>P03</td></tr>
+                        <tr><td>I008</td><td>22/05/2026</td><td>Fauche</td><td>3</td><td>225</td><td>P03</td></tr>
+                        <tr><td>I009</td><td>10/04/2026</td><td>Semis</td><td>2</td><td>210</td><td>P04</td></tr>
+                        <tr><td>I010</td><td>09/05/2026</td><td>Fertilisation</td><td>1,5</td><td>175</td><td>P04</td></tr>
+                        <tr><td>I011</td><td>17/05/2026</td><td>Fauche</td><td>4</td><td>285</td><td>P05</td></tr>
+                        <tr><td>I012</td><td>21/04/2026</td><td>Semis</td><td>2,5</td><td>300</td><td>P06</td></tr>
+                    </tbody>
+                </table>
+                <p>Appliquez également une validation des données à la colonne <strong>id_parcelle</strong>.</p>
+                <h3>12. Recréer une relation entre les tables</h3>
+                <p>Ajoutez dans INTERVENTIONS une colonne <strong>nom_parcelle</strong>.</p>
+                <p>Utilisez :</p>
+                <p><code>=RECHERCHEV(F2;PARCELLES.$A$2:$D$7;2;0)</code></p>
+                <p>Recopiez la formule vers le bas.</p>
+                <p>Q5 : Pourquoi est-il préférable de récupérer automatiquement le nom de la parcelle ?</p>
+                <!-- PROF : éviter répétitions et incohérences, conserver l'identifiant comme référence stable. -->
+                <h3>13. Interroger les données</h3>
+                <p>Activez <strong>Données → AutoFiltre</strong>.</p>
+                <h4>Recherche 1 : interventions de P02</h4>
+                <p>N'affichez que les interventions de P02 et notez leur nombre, leur coût total et leur durée totale.</p>
+                <!-- PROF : 3 interventions, 965 €, 7,5 h. -->
+                <h4>Recherche 2 : interventions coûteuses</h4>
+                <p>Affichez uniquement les interventions dont le coût dépasse <strong>250 €</strong>.</p>
+                <!-- PROF : 5 résultats : I002, I005, I006, I011, I012. -->
+                <h4>Recherche 3 : parcelles en maïs ensilage</h4>
+                <p>Dans PARCELLES, filtrez <strong>id_culture = C02</strong>.</p>
+                <!-- PROF : P02 Les Combes et P06 La Borie. -->
+                <h3>14. Créer une vue complète</h3>
+                <p>Dans INTERVENTIONS, ajoutez :</p>
+                <ul>
+                    <li><strong>surface_ha</strong></li>
+                    <li><strong>id_culture</strong></li>
+                </ul>
+                <p>Utilisez :</p>
+                <p><code>=RECHERCHEV(F2;PARCELLES.$A$2:$D$7;3;0)</code></p>
+                <p><code>=RECHERCHEV(F2;PARCELLES.$A$2:$D$7;4;0)</code></p>
+                <p>Q6 : Ces informations sont-elles réellement saisies plusieurs fois ?</p>
+                <!-- PROF : Non : elles restent enregistrées dans PARCELLES et sont récupérées par formule. -->
+                <h3>15. Produire une synthèse</h3>
+                <p>Créez une feuille <strong>SYNTHESE</strong>.</p>
+                <p>À l'aide d'une table dynamique, affichez pour chaque parcelle :</p>
+                <ul>
+                    <li>le nombre d'interventions ;</li>
+                    <li>la somme des coûts ;</li>
+                    <li>la somme des durées.</li>
+                </ul>
+                <!-- PROF : P01 = 3, 540 €, 7 h ; P02 = 3, 965 €, 7,5 h ; P03 = 2, 385 €, 4,5 h ; P04 = 2, 385 €, 3,5 h ; P05 = 1, 285 €, 4 h ; P06 = 1, 300 €, 2,5 h. -->
+                <h3>16. Que manque-t-il par rapport à une vraie base de données ?</h3>
+                <table>
+                    <thead>
+                        <tr><th>Fonction</th><th>Simulation avec Calc</th><th>Vraie base de données</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Tables</td><td>Feuilles séparées</td><td>Tables</td></tr>
+                        <tr><td>Clé primaire</td><td>Identifiant saisi</td><td>Contrainte contrôlée par le SGBD</td></tr>
+                        <tr><td>Clé étrangère</td><td>Identifiant + validation</td><td>Relation contrôlée automatiquement</td></tr>
+                        <tr><td>Jointure</td><td>RECHERCHEV</td><td>Requête</td></tr>
+                        <tr><td>Filtrer</td><td>AutoFiltre</td><td>Requête</td></tr>
+                        <tr><td>Synthétiser</td><td>Table dynamique</td><td>Requête d'agrégation</td></tr>
+                    </tbody>
+                </table>
+                <p>Q7 : Pourquoi ce classeur ne constitue-t-il pas une véritable base de données ?</p>
+                <!-- PROF : pas d'intégrité référentielle automatique, transactions, droits fins, accès concurrents ou requêtes complexes comparables à un SGBD. -->
+                <h3>17. Sauvegarder les données</h3>
+                <p>Une copie enregistrée dans un autre dossier du même ordinateur est-elle suffisante ?</p>
+                <!-- PROF : Non. -->
+                <p>Proposez une stratégie respectant :</p>
+                <p><strong>3 copies – 2 supports différents – 1 copie isolée</strong></p>
+                <p>Ressource : <a href="https://www.cnil.fr/fr/securite-sauvegarder" target="_blank" rel="noopener noreferrer">CNIL – Sécurité : sauvegarder</a>.</p>
+                <h3>18. Conclusion du parcours Calc</h3>
+                <p>Complétez :</p>
+                <ul>
+                    <li>Une clé primaire sert à ................................................................................................................</li>
+                    <li>Une clé étrangère sert à ................................................................................................................</li>
+                    <li>Une relation permet de ................................................................................................................</li>
+                    <li>Une requête permet de ................................................................................................................</li>
+                    <li>Une base de données devient préférable à un tableur lorsque ................................................................................................................</li>
+                </ul>
+                <p>Expliquez en quelques lignes pourquoi <strong>Calc permet de comprendre le fonctionnement d'une base de données sans remplacer complètement un SGBD</strong>.</p>
+                <!-- PROF : Calc permet de reproduire pédagogiquement tables, identifiants, recherches et filtres, mais un SGBD apporte davantage de contraintes, sécurité, relations et possibilités. -->
+                <p>Vérifiez que votre classeur comporte :</p>
+                <ul>
+                    <li>CULTURES ;</li>
+                    <li>PARCELLES ;</li>
+                    <li>INTERVENTIONS ;</li>
+                    <li>SYNTHESE ;</li>
+                    <li>des identifiants uniques ;</li>
+                    <li>des validations de données ;</li>
+                    <li>des recherches automatiques ;</li>
+                    <li>une table dynamique.</li>
+                </ul>
+                <p>Enregistrez puis déposez :</p>
+                <ul>
+                    <li><strong>BTS2_ACSAGRI_S04_NOM_Prenom.odt</strong></li>
+                    <li><strong>BTS2_ACSAGRI_S04_NOM_Prenom.ods</strong></li>
+                </ul>
+            </div>
+            <h3>À retenir</h3>
+            <ul>
+                <li>Un tableur et une base de données répondent à des besoins différents.</li>
+                <li>Une base relationnelle limite les répétitions en séparant les données dans plusieurs tables liées.</li>
+                <li>Une clé primaire identifie un enregistrement de manière unique.</li>
+                <li>Une clé étrangère permet de relier des informations entre plusieurs tables.</li>
+                <li>Une requête permet d'extraire les informations utiles sans modifier les données d'origine.</li>
+                <li>La qualité d'un système d'information dépend aussi de la sécurité, des droits d'accès et des sauvegardes.</li>
+            </ul>
+            <h3>Sources et ressources</h3>
+            <ul>
+                <li>Chlorofil – <a href="https://chlorofil.fr/diplomes/secondaire/btsa/acse/acs-agri-2025" target="_blank" rel="noopener noreferrer">BTSA ACS'AGRI – référentiel et documents d'accompagnement</a>.</li>
+                <li>Inspection de l'enseignement agricole – <a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf" target="_blank" rel="noopener noreferrer">Exemples d'utilisation des TIM dans des situations favorisant l'acquisition de capacités</a>.</li>
+                <li>LibreOffice – <a href="https://help.libreoffice.org/latest/fr/text/sdatabase/05020000.html" target="_blank" rel="noopener noreferrer">Relations, clés primaires et clés étrangères dans Base</a>.</li>
+                <li>CNIL – <a href="https://www.cnil.fr/fr/securite-sauvegarder" target="_blank" rel="noopener noreferrer">Sécurité : sauvegarder</a>.</li>
+            </ul>
+            <p><em>Les données relatives à l'exploitation, aux parcelles et aux interventions utilisées dans cette séance sont fictives et adaptées à des fins pédagogiques.</em></p>
+            <script>
+                function showS04SoftwarePath(path, scrollToPath = true) {
+                    const basePath = document.getElementById('s04-path-base');
+                    const calcPath = document.getElementById('s04-path-calc');
+                    const buttons = document.querySelectorAll('#s04-software-choice [data-software]');
+                    if (!basePath || !calcPath) {
+                        return;
+                    }
+                    basePath.hidden = path !== 'base';
+                    calcPath.hidden = path !== 'calc';
+                    buttons.forEach(button => {
+                        const selected = button.dataset.software === path;
+                        button.classList.toggle('active', selected);
+                        button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+                    });
+                    const courseId = document.body.dataset.courseId || 'mfr-bts2';
+                    localStorage.setItem(`${courseId}-s04-software`, path);
+                    if (scrollToPath) {
+                        const selectedPath = path === 'base' ? basePath : calcPath;
+                        requestAnimationFrame(() => {
+                            selectedPath.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        });
+                    }
+                }
+                document.addEventListener('DOMContentLoaded', () => {
+                    const courseId = document.body.dataset.courseId || 'mfr-bts2';
+                    const savedPath = localStorage.getItem(`${courseId}-s04-software`);
+                    if (savedPath === 'base' || savedPath === 'calc') {
+                        showS04SoftwarePath(savedPath, false);
+                    }
+                });
+            </script>
+        </section>
     </main>
 
     <!-- <footer>

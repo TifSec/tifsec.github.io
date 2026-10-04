@@ -3,806 +3,2246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programme 3ème</title>
-    <style>
-        :root{
-            --accent:#0b6fa8;
-            --muted:#6b7280;
-            --ok:#16a34a;
-            --warn:#f59e0b;
-            --danger:#ef4444;
-            --glass: rgba(11,111,168,0.06);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Calibri, sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        main {
-            margin-left: 20px;
-            padding: 20px;
-            min-height: 80vh;
-        }
-
-        .content-section {
-            display: none;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        a{
-            color: black;
-        }
-
-        a:hover{
-            color: orange;
-        }
-
-        aside {
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 200px;
-            background-color: #333;
-            color: white;
-            padding-top: 20px;
-            transition: width 0.3s ease;
-            overflow-y: auto;
-            scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
-        }
-
-        aside::-webkit-scrollbar {
-            display: none; /* Masque la barre de défilement pour Chrome, Safari, et Opera */
-        }
-
-        aside ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        aside ul li {
-            padding: 10px;
-        }
-
-        aside ul li a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-        }
-
-        /* Style pour l'élément de menu actif (séance en cours) */
-        aside ul li a.active {
-            background-color: #4CAF50; /* Couleur pour l'élément actif */
-            color: white;
-            font-weight: bold;
-        }
-
-        aside ul li a:hover {
-            background-color: #555;
-        }
-
-        .hamburger {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 15px;
-            text-align: left;
-            cursor: pointer;
-        }
-
-        footer {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        h2, h3, h4, h5{
-            text-align: center;
-        }
-
-        h2 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        h3{
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 8px;
-        }
-
-        h4, h5, p, ul{
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        .image{
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        ul {
-            list-style-type: square;
-            margin-left: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-
-        thead {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Styles spécifiques pour le calendrier */
-        table.calendar {
-            margin: 20px auto;
-            border-collapse: collapse;
-            width: 80%;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ccc;
-        }
-
-        .current-week {
-            background-color: #add8e6; /* Couleur bleue clair pour la semaine en cours */
-        }
-
-        pre{
-            background-color: black;
-            color: white;
-        }
-
-        .today {
-            background-color: #007BFF; /* Bleu vif pour le jour actuel */
-            color: white; /* Texte blanc pour le contraste */
-        }
-
-        .vacation {
-            background-color: #B2E4A6; /* Vert pastel pour les vacances */
-            color: black; /* Texte noir ou foncé pour la lisibilité */
-        }
-
-        .holiday {
-            background-color: #FF6B6B; /* Rouge clair pour les jours fériés */
-            color: white; /* Texte blanc ou clair */
-        }
-
-        iframe{
-            width: 87vw;
-            height: 42vw;
-        }
-
-        .rep {
-            visibility: hidden;
-        }
-
-        /* code {
-            background-color: #eef;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-
-        pre {
-            background-color: #eef;
-            padding: 10px;
-            border-radius: 4px;
-            overflow-x: auto;
-        } */
-
-        .note {
-            background-color: #ffffcc;
-            padding: 10px;
-            border-left: 4px solid #ffcc00;
-            margin: 20px 0;
-        }
-
-        .container {
-            /* max-width: 800px; */
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        a button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        a button:hover {
-            background-color: #e06e2b;
-        }
-
-        .show-site {
-            width: 100%;
-            height: 100%;
-            zoom: 0.5;
-            border-radius: 10px;
-        }
-
-        .show-site-div {
-            text-align: center;
-            border: 1px solid #ccc;
-            width: 45%;
-            border-radius: 10px;
-        }
-
-        .timeline{
-            display:flex;
-            flex-direction:column;
-            gap:8px
-        }
-
-        .time-row{
-            display:flex;
-            gap:12px;
-            align-items:flex-start
-        }
-
-        .time{
-            width:64px;
-            font-weight:700;
-            color:var(--accent)
-        }
-
-        .activity{
-            flex:1
-        }
-
-        .section-title{
-            display:flex;
-            align-items:center;
-            gap:10px;
-            margin-bottom:10px
-        }
-
-        .pill{
-            padding:6px 10px;
-            border-radius:999px;
-            background:var(--accent);
-            color:white;
-            font-weight:600;
-            font-size:0.85rem
-        }
-
-        .section-title{
-            display:flex;
-            align-items:center;
-            gap:10px;
-            margin-bottom:10px
-        }
-
-        .small{
-            font-size:0.9rem;
-            color:var(--muted)
-        }
-
-        .tile{
-            border-radius:10px;
-            padding:10px;
-            background:linear-gradient(180deg,#fff,#fbfeff);
-            border:1px solid #eef6fb
-        }
-
-        .student-sheet{
-            background:#fbfeff;
-            border-left:4px solid var(--accent);
-            padding:10px;
-            border-radius:6px
-        }
-
-        .quiz{
-            display:grid;
-            gap:8px
-        }
-
-        button.cta{
-            background:var(--accent);
-            color:#fff;
-            border:0;
-            padding:10px 14px;
-            border-radius:8px;
-            font-weight:700;
-            cursor:pointer
-        }
-
-        .tile{
-            border-radius:10px;
-            padding:10px;
-            background:linear-gradient(180deg,#fff,#fbfeff);
-            border:1px solid #eef6fb
-        }
-
-        .checklist{
-            display:grid;
-            gap:6px
-        }
-
-        .ok{
-            color:var(--ok);
-            font-weight:700
-        }
-
-        .warn{
-            color:var(--warn);
-            font-weight:700
-        }
-
-        .danger{
-            color:var(--danger);
-            font-weight:700
-        }
-
-        pre{
-            background:#0f172a;
-            color:white;
-            padding:10px;
-            border-radius:8px;
-            overflow:auto;
-            font-size:0.9rem
-        }
-
-        details{
-            margin-top:8px
-        }
-    </style>
+    <title>Programme TIM 4° et 3°</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js"></script>
 </head>
-<body>
+<body data-course-id="mfr-bacpro1">
 
     <header>
-        <h1>Classe de 3ème</h1>
+        <h1>Classe de 4° et 3°</h1>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
     </header>
 
-    <main>
-        <section>
-            <h2>Séance : Découvrir PowerPoint / Impress et créer une présentation attrayante</h2>
-            <h3>Compétence visée : Réaliser une présentation numérique claire, structurée et agréable à regarder</h3>
-
-            <b>Objectifs d’apprentissage</b>
-
+    <!-- Menu hamburger sur la gauche -->
+    <aside id="menu">
+        <nav id="session-nav">
             <ul>
-                <b>Ce que les élèves vont apprendre (connaissances) :</b>
-                <li>PowerPoint et LibreOffice Impress sont des logiciels qui permettent de créer des diaporamas.</li>
-                <li>Une présentation numérique est composée de plusieurs diapositives.</li>
-                <li>Chaque diapositive doit transmettre une idée principale.</li>
-                <li>Une présentation réussie doit être lisible, organisée et agréable à regarder.</li>
-                <li>Les images, les titres, les couleurs et la mise en page permettent de rendre une présentation plus attractive.</li>
-                <li>Une présentation ne doit pas contenir trop de texte : elle accompagne une explication orale.</li>
+                <!-- CALENDRIER -->
+                <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
+                <!-- <li><a href="#" onclick="showSession('Cours_IA')">Cours IA</a></li> -->
             </ul>
+        </nav>
+    </aside>
 
-            <ul>
-                <b>Ce qu’ils vont apprendre à faire (capacités) :</b>
-                <li>Ouvrir PowerPoint ou LibreOffice Impress.</li>
-                <li>Créer une nouvelle présentation.</li>
-                <li>Ajouter, supprimer et déplacer des diapositives.</li>
-                <li>Modifier le titre et le texte d’une diapositive.</li>
-                <li>Insérer une image dans une diapositive.</li>
-                <li>Changer la mise en page d’une diapositive.</li>
-                <li>Choisir des couleurs et une police lisibles.</li>
-                <li>Créer une présentation courte sur un voyage scolaire.</li>
-                <li>Enregistrer et exporter une présentation en PDF.</li>
-            </ul>
+    <main id="content">
+        <!-- Calendrier -->
+        <section id="calendar" class="content-section">
+            <h2>Calendrier des séances</h2>
 
-            <h3>Pourquoi ce cours</h3>
-            <p>
-                Une présentation numérique est un outil très utilisé au collège, au lycée, en entreprise ou lors d’un exposé.
-                Mais pour être efficace, elle doit être bien construite.
-                Avant de créer une belle présentation, il faut d’abord savoir utiliser les fonctions de base du logiciel :
-                créer une diapositive, écrire un titre, ajouter une image, organiser les pages et enregistrer son travail.
-                Dans cette séance de deux heures, vous allez d’abord apprendre les bases de PowerPoint ou Impress,
-                puis vous utiliserez ces compétences pour présenter un voyage scolaire récent.
-            </p>
+            <div id="course-status"></div>
 
-            <h3>Organisation générale de la séance</h3>
             <table>
                 <thead>
                     <tr>
-                        <th>Temps</th>
-                        <th>Activité</th>
-                        <th>Objectif</th>
+                        <th>État</th>
+                        <th>Séance</th>
+                    </tr>
+                </thead>
+
+                <tbody id="calendar-body"></tbody>
+            </table>
+        </section>
+        
+        <section id="session1" class="content-section">
+            <h1>Séance 1 : Comment allons-nous travailler en TIM cette année ?</h1>
+
+            <h2>Thème : Découvrir le fonctionnement du cours de TIM et faire le point sur ses compétences numériques</h2>
+
+            <h2>Problématique : Comment utiliser efficacement un ordinateur pour travailler, produire un document et conserver son travail ?</h2>
+
+            <h2>Compétence visée : Utiliser un environnement informatique pour créer, organiser, enregistrer et transmettre un document numérique</h2>
+
+            <h2>Objectifs d’apprentissage</h2>
+
+            <h3>Ce que vous allez apprendre</h3>
+            <ul>
+                <li>Comprendre ce que nous allons faire en TIM cette année.</li>
+                <li>Comprendre comment seront organisées les séances.</li>
+                <li>Comprendre pourquoi il est important de bien nommer et enregistrer ses fichiers.</li>
+                <li>Faire le point sur ce que vous savez déjà faire avec un ordinateur.</li>
+            </ul>
+
+            <h3>Ce que vous allez apprendre à faire</h3>
+            <ul>
+                <li>Créer un document avec LibreOffice Writer.</li>
+                <li>Enregistrer un document dans un dossier choisi.</li>
+                <li>Donner un nom précis à un fichier.</li>
+                <li>Mettre en forme simplement un document.</li>
+                <li>Retrouver puis modifier un fichier enregistré.</li>
+                <li>Expliquer ce que vous savez déjà faire et ce que vous souhaitez apprendre.</li>
+            </ul>
+
+            <h2>Production attendue</h2>
+            <ul>
+                <li>Un document LibreOffice Writer nommé <strong>4e3e_S01_nom_prenom.odt</strong>.</li>
+                <li>Votre nom et votre prénom.</li>
+                <li>Le titre de la séance.</li>
+                <li>Une courte présentation.</li>
+                <li>Les réponses aux différentes questions.</li>
+                <li>Quelques éléments de mise en forme.</li>
+            </ul>
+
+            <p>
+                Le document devra être enregistré puis déposé dans l’espace d’échange demandé par le professeur
+                à la fin de la séance, même s’il n’est pas entièrement terminé.
+            </p>
+
+            <h2>1. Bienvenue en TIM</h2>
+
+            <p>
+                TIM signifie <strong>Technologies de l’Informatique et du Multimédia</strong>.
+            </p>
+
+            <p>
+                Cette année, vous allez surtout apprendre en utilisant directement les outils numériques.
+                Vous pourrez par exemple être amenés à :
+            </p>
+
+            <ul>
+                <li>créer et organiser des documents numériques ;</li>
+                <li>rechercher des informations et vérifier leurs sources ;</li>
+                <li>travailler avec des données et des tableaux ;</li>
+                <li>réaliser des graphiques ;</li>
+                <li>utiliser différents médias ;</li>
+                <li>comprendre comment protéger vos données ;</li>
+                <li>réfléchir aux usages d’Internet, des réseaux sociaux et de l’intelligence artificielle ;</li>
+                <li>découvrir l’algorithmique et la programmation ;</li>
+                <li>utiliser le numérique dans des situations proches de la vie quotidienne et professionnelle.</li>
+            </ul>
+
+            <p>
+                Le cours sera principalement basé sur la pratique : pour apprendre à utiliser un outil numérique,
+                il faut l’utiliser.
+            </p>
+
+            <h2>2. Comment allons-nous travailler ?</h2>
+
+            <p>
+                Pendant la plupart des séances, vous aurez une production numérique à réaliser.
+            </p>
+
+            <p>Il pourra s’agir par exemple :</p>
+
+            <ul>
+                <li>d’un document Writer ;</li>
+                <li>d’un tableau Calc ;</li>
+                <li>d’un graphique ;</li>
+                <li>d’une présentation ;</li>
+                <li>d’une recherche documentée ;</li>
+                <li>d’un programme ;</li>
+                <li>ou d’une combinaison de plusieurs de ces productions.</li>
+            </ul>
+
+            <p>
+                Le travail réalisé pendant la séance est important. Un document imparfait mais montrant votre
+                démarche et vos essais est plus utile qu’un document copié sans avoir été compris.
+            </p>
+
+            <p>Quelques règles seront donc utilisées toute l’année :</p>
+
+            <ul>
+                <li>Je lis entièrement la consigne avant de demander de l’aide.</li>
+                <li>J’essaie de chercher une solution avant de dire que je ne sais pas.</li>
+                <li>J’ai le droit de me tromper.</li>
+                <li>Si quelque chose ne fonctionne pas, j’essaie de comprendre pourquoi.</li>
+                <li>Je garde régulièrement une trace de mon travail.</li>
+                <li>Je respecte le matériel et les fichiers des autres élèves.</li>
+                <li>Je rends le fichier demandé à la fin de la séance.</li>
+            </ul>
+
+            <h2>3. Créons notre premier document</h2>
+
+            <p>
+                Ouvrez <strong>LibreOffice Writer</strong> et créez un nouveau document.
+            </p>
+
+            <p>En haut du document, saisissez :</p>
+
+            <ul>
+                <li>votre nom et votre prénom ;</li>
+                <li>votre classe : 4e ou 3e ;</li>
+                <li>le titre : <strong>Séance 1 – Découverte du TIM</strong>.</li>
+            </ul>
+
+            <p>
+                Enregistrez immédiatement votre document sous le nom :
+            </p>
+
+            <p><strong>4e3e_S01_nom_prenom.odt</strong></p>
+
+            <p>Exemple :</p>
+
+            <p><strong>4e3e_S01_dupont_lina.odt</strong></p>
+
+            <!-- PROF :
+            Vérifier ici qui sait spontanément :
+            - utiliser "Enregistrer sous" ;
+            - choisir un emplacement ;
+            - respecter un nom de fichier imposé ;
+            - reconnaître l'extension .odt.
+            Ne pas faire la manipulation à leur place immédiatement.
+            Si un élève est bloqué :
+            1. demander ce qu'il cherche à faire ;
+            2. lui faire identifier le menu Fichier ;
+            3. l'orienter vers "Enregistrer sous".
+            Cette activité sert également de diagnostic.
+            -->
+
+            <h2>4. Faisons connaissance</h2>
+
+            <p>
+                Dans votre document, ajoutez le sous-titre <strong>Quelques informations sur moi</strong>.
+            </p>
+
+            <p>Répondez ensuite aux questions suivantes avec des phrases courtes.</p>
+
+            <ol>
+                <li>
+                    Q1 : Qu’aimez-vous faire en dehors de l’école ?
+                    <!-- PROF :
+                    Réponse personnelle. Aucun attendu particulier.
+                    L'objectif est également de connaître les élèves et de disposer de thèmes pouvant être
+                    réutilisés dans de futures activités.
+                    -->
+                </li>
+                <li>
+                    Q2 : Avez-vous déjà utilisé régulièrement un ordinateur ? Si oui, pour faire quoi ?
+                    <!-- PROF :
+                    Réponses possibles : jeux, recherches, traitement de texte, programmation, réseaux sociaux,
+                    vidéos, travail scolaire, dessin, impression 3D, etc.
+                    Il ne s'agit pas d'évaluer la qualité des usages mais de repérer l'expérience préalable.
+                    -->
+                </li>
+                <li>
+                    Q3 : Quel logiciel, site ou application utilisez-vous le plus souvent ?
+                    <!-- PROF :
+                    Réponse libre.
+                    Accepter également "aucun" ou "je ne sais pas".
+                    -->
+                </li>
+                <li>
+                    Q4 : Y a-t-il quelque chose que vous aimeriez apprendre à faire avec un ordinateur cette année ?
+                    <!-- PROF :
+                    Réponse libre.
+                    Conserver mentalement ou noter les idées récurrentes : programmation, montage vidéo,
+                    retouche d'image, IA, jeux, création de sites, tableur, etc.
+                    Elles pourront servir pour contextualiser de futures séances.
+                    -->
+                </li>
+            </ol>
+
+            <h2>5. Petit diagnostic informatique</h2>
+
+            <p>
+                Sans demander immédiatement au professeur comment faire, réalisez les opérations suivantes
+                dans votre document.
+            </p>
+
+            <ol>
+                <li>Mettez le titre principal en <strong>gras</strong>.</li>
+                <li>Augmentez la taille du titre.</li>
+                <li>Mettez votre nom et votre prénom en <strong>italique</strong>.</li>
+                <li>Créez une liste à puces contenant trois activités que vous aimez.</li>
+                <li>Ajoutez la date du jour.</li>
+            </ol>
+
+            <!-- PROF :
+            Ne pas démontrer les manipulations avant le diagnostic.
+
+            Observer notamment :
+            - sélection du texte ;
+            - gras / italique ;
+            - modification de taille ;
+            - utilisation d'une liste à puces ;
+            - saisie d'une date ;
+            - autonomie dans l'interface.
+
+            Le résultat n'a pas besoin d'être identique entre tous les élèves.
+
+            Si nécessaire, aides progressives :
+            1. "Commence par sélectionner ce que tu souhaites modifier."
+            2. "Observe la barre d'outils en haut de Writer."
+            3. Montrer uniquement l'icône ou le menu utile sans effectuer l'action à la place de l'élève.
+            -->
+
+            <h2>6. Enregistrer, fermer, retrouver</h2>
+
+            <p>
+                Lorsque votre document est enregistré :
+            </p>
+
+            <ol>
+                <li>Fermez LibreOffice Writer.</li>
+                <li>Retrouvez le fichier <strong>4e3e_S01_nom_prenom.odt</strong>.</li>
+                <li>Ouvrez-le de nouveau.</li>
+                <li>Ajoutez à la fin du document la phrase : <strong>J’ai réussi à retrouver mon fichier.</strong></li>
+                <li>Enregistrez à nouveau votre travail.</li>
+            </ol>
+
+            <!-- PROF :
+            Cette étape permet de distinguer "savoir enregistrer" et "savoir retrouver un fichier".
+
+            Points à observer :
+            - l'élève sait-il où son fichier a été enregistré ?
+            - utilise-t-il l'explorateur de fichiers ?
+            - reconnaît-il son fichier grâce à son nom ?
+            - sait-il qu'il n'est pas nécessaire de refaire "Enregistrer sous" après chaque modification ?
+
+            Si le fichier est introuvable, ne pas immédiatement effectuer une recherche automatique.
+            Faire d'abord verbaliser :
+            "Où l'as-tu enregistré ?"
+            "Quel nom lui as-tu donné ?"
+            "Dans quel dossier étais-tu ?"
+            -->
+
+            <h2>7. Comment vous situez-vous ?</h2>
+
+            <p>
+                Copiez le tableau suivant dans votre document puis complétez la dernière colonne avec :
+                <strong>Oui</strong>, <strong>Un peu</strong> ou <strong>Pas encore</strong>.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Je pense savoir...</th>
+                        <th>Mon avis</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1h</td><td>Apprendre les bases de PowerPoint / Impress + créer une présentation attrayante</td><td>Savoir utiliser le logiciel et comprendre les règles de présentation</td></tr>
-                    <tr><td>1h</td><td>Préparer puis réaliser une présentation sur le voyage scolaire</td><td>Créer un diaporama structuré et prêt à être présenté</td></tr>
-                </tbody>
-            </table>
-
-            <h3>1) Lancement + consigne de fichier</h3>
-            <p>
-                <ul>
-                    <li>Avant de commencer :</li>
-                    <li>Ouvrir PowerPoint ou LibreOffice Impress</li>
-                    <li>Créer une nouvelle présentation</li>
-                    <li>Nom du fichier : <code>3e_S53_Nom1_Nom2_VoyageScolaire_V1</code></li>
-                </ul>
-            </p>
-
-            <p>
-                <b>Objectif du jour :</b> apprendre à utiliser PowerPoint ou Impress, puis créer une présentation attractive sur le voyage scolaire.
-            </p>
-
-            <h3>2) Première partie — Découvrir le logiciel PowerPoint / Impress</h3>
-            <p>
-                PowerPoint et LibreOffice Impress fonctionnent presque de la même manière.
-                Le document créé s’appelle une présentation.
-                Une présentation est composée de plusieurs pages appelées diapositives.
-            </p>
-
-            <p><b>Vocabulaire à connaître :</b></p>
-            <table>
-                <thead>
                     <tr>
-                        <th>Mot</th>
-                        <th>Définition simple</th>
+                        <td>Créer et enregistrer un document</td>
+                        <td></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Présentation</td><td>Document composé de plusieurs diapositives</td></tr>
-                    <tr><td>Diapositive</td><td>Page d’un diaporama</td></tr>
-                    <tr><td>Diaporama</td><td>Mode qui permet d’afficher la présentation en plein écran</td></tr>
-                    <tr><td>Mise en page</td><td>Organisation des éléments sur une diapositive</td></tr>
-                    <tr><td>Zone de texte</td><td>Emplacement où l’on peut écrire</td></tr>
-                    <tr><td>Transition</td><td>Effet entre deux diapositives</td></tr>
-                    <tr><td>Animation</td><td>Effet appliqué à un texte ou une image</td></tr>
-                </tbody>
-            </table>
-
-            <h3>3) Les bases à apprendre pas à pas</h3>
-            <p>
-                Le but est de comprendre les fonctions principales du logiciel avant de commencer le vrai travail.
-            </p>
-
-            <h4>A. Créer une nouvelle présentation</h4>
-            <ul>
-                <li>Ouvrir PowerPoint ou LibreOffice Impress</li>
-                <li>Choisir une présentation vierge ou un modèle simple</li>
-                <li>Observer l’écran : la diapositive au centre, la liste des diapositives à gauche, les outils en haut</li>
-            </ul>
-
-            <h4>B. Écrire dans une diapositive</h4>
-            <ul>
-                <li>Cliquer dans la zone de titre</li>
-                <li>Écrire un titre court</li>
-                <li>Cliquer dans la zone de texte</li>
-                <li>Écrire quelques mots ou une courte phrase</li>
-                <li>Modifier la taille du texte si nécessaire</li>
-            </ul>
-
-            <h4>C. Ajouter une nouvelle diapositive</h4>
-            <ul>
-                <li>Cliquer sur <b>Nouvelle diapositive</b></li>
-                <li>Choisir une mise en page simple</li>
-                <li>Ajouter un titre</li>
-                <li>Ajouter un court texte</li>
-            </ul>
-
-            <h4>D. Supprimer ou déplacer une diapositive</h4>
-            <ul>
-                <li>Cliquer sur une diapositive dans la colonne de gauche</li>
-                <li>Pour supprimer : clic droit → supprimer</li>
-                <li>Pour déplacer : cliquer-glisser la diapositive à l’endroit voulu</li>
-            </ul>
-
-            <h4>E. Insérer une image</h4>
-            <ul>
-                <li>Cliquer sur <b>Insertion</b></li>
-                <li>Choisir <b>Image</b></li>
-                <li>Sélectionner une image enregistrée sur l’ordinateur</li>
-                <li>Redimensionner l’image avec les coins</li>
-                <li>Ne pas étirer l’image pour éviter de la déformer</li>
-            </ul>
-
-            <h4>F. Modifier l’apparence</h4>
-            <ul>
-                <li>Changer la taille du titre</li>
-                <li>Mettre certains mots en gras</li>
-                <li>Choisir une couleur de texte lisible</li>
-                <li>Changer la couleur de fond si besoin</li>
-                <li>Aligner correctement les éléments</li>
-            </ul>
-
-            <h4>G. Lancer le diaporama</h4>
-            <ul>
-                <li>Cliquer sur <b>Diaporama</b></li>
-                <li>Lancer depuis le début</li>
-                <li>Utiliser les flèches du clavier pour avancer ou revenir en arrière</li>
-                <li>Appuyer sur Échap pour quitter le diaporama</li>
-            </ul>
-
-            <h4>H. Enregistrer et exporter</h4>
-            <ul>
-                <li>Cliquer sur <b>Fichier</b> → <b>Enregistrer sous</b></li>
-                <li>Choisir le bon dossier</li>
-                <li>Nommer correctement le fichier</li>
-            </ul>
-
-            <h3>4) Mini-exercice guidé : créer 3 diapositives d’entraînement</h3>
-            <p>
-                Avant de commencer la vraie présentation, réaliser un petit entraînement.
-            </p>
-
-            <table>
-                <thead>
                     <tr>
-                        <th>Diapositive</th>
-                        <th>Travail demandé</th>
+                        <td>Créer des dossiers et organiser mes fichiers</td>
+                        <td></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Diapo 1</td><td>Écrire un titre et les noms des élèves du groupe</td></tr>
-                    <tr><td>Diapo 2</td><td>Ajouter un titre, une courte phrase et une image (prise sur le web si besoin)</td></tr>
-                    <tr><td>Diapo 3</td><td>Changer la mise en page, ajouter une image et quelques mots-clés</td></tr>
-                </tbody>
-            </table>
-
-            <p><b>But de l’exercice :</b></p>
-            <ul>
-                <li>Savoir ajouter une diapositive</li>
-                <li>Savoir écrire du texte</li>
-                <li>Savoir insérer une image</li>
-                <li>Savoir déplacer et redimensionner les éléments</li>
-                <li>Savoir lancer le diaporama</li>
-            </ul>
-
-            <h3>5) Deuxième partie — Comment créer une présentation attrayante ?</h3>
-            <p>
-                Une présentation attrayante est une présentation que l’on comprend rapidement et que l’on a envie de regarder.
-                Elle doit être claire, simple et bien organisée.
-            </p>
-
-            <p><b>Les règles importantes :</b></p>
-            <ul>
-                <li><b>Une diapositive = une idée principale</b></li>
-                <li>Un titre court et visible</li>
-                <li>Peu de texte</li>
-                <li>Des mots-clés plutôt que des longs paragraphes</li>
-                <li>Des images utiles et de bonne qualité</li>
-                <li>Des couleurs lisibles</li>
-                <li>La même police et le même style sur toute la présentation</li>
-                <li>Des éléments bien alignés</li>
-                <li>Pas trop d’animations</li>
-            </ul>
-
-            <p><b>Exemple de mauvais choix :</b></p>
-            <ul>
-                <li>Mettre un paragraphe entier sur une seule diapositive</li>
-                <li>Utiliser une écriture trop petite</li>
-                <li>Mettre du texte jaune sur un fond blanc</li>
-                <li>Ajouter plusieurs animations inutiles</li>
-                <li>Utiliser des images floues ou déformées</li>
-            </ul>
-
-            <p><b>Exemple de bon choix :</b></p>
-            <ul>
-                <li>Un grand titre</li>
-                <li>3 ou 4 mots-clés</li>
-                <li>Une grande image de bonne qualité</li>
-                <li>Une couleur de fond simple</li>
-                <li>Une mise en page propre et équilibrée</li>
-            </ul>
-
-            <h3>6) Préparer la présentation du voyage scolaire</h3>
-            <p>
-                Avant de créer toutes les diapositives, il faut préparer les idées.
-                Votre présentation doit raconter le voyage scolaire comme une petite histoire :
-                où vous êtes allés, ce que vous avez fait, ce que vous avez découvert et ce que vous avez retenu.
-            </p>
-
-            <p><b>Compléter le tableau suivant :</b></p>
-
-            <table>
-                <thead>
                     <tr>
-                        <th>Élément à préparer</th>
-                        <th>Réponse</th>
+                        <td>Mettre en forme un document</td>
+                        <td></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Nom du voyage scolaire</td><td>…</td></tr>
-                    <tr><td>Lieu du voyage</td><td>…</td></tr>
-                    <tr><td>Date ou période</td><td>…</td></tr>
-                    <tr><td>Objectif du voyage</td><td>…</td></tr>
-                    <tr><td>Activité ou visite n°1</td><td>…</td></tr>
-                    <tr><td>Activité ou visite n°2</td><td>…</td></tr>
-                    <tr><td>Activité ou visite n°3</td><td>…</td></tr>
-                    <tr><td>Moment le plus marquant</td><td>…</td></tr>
-                    <tr><td>Ce que vous avez appris</td><td>…</td></tr>
-                    <tr><td>Votre avis sur le voyage</td><td>…</td></tr>
+                    <tr>
+                        <td>Faire une recherche efficace sur Internet</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Vérifier si une information trouvée sur Internet est fiable</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Utiliser un tableur comme LibreOffice Calc</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Créer un graphique</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Créer une présentation</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Programmer</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Utiliser une intelligence artificielle de manière efficace</td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
 
-            <h3>7) Structure obligatoire de la présentation</h3>
+            <!-- PROF :
+            Auto-évaluation uniquement : ne pas corriger comme un exercice.
+
+            Le tableau fournit un diagnostic de départ permettant de repérer :
+            - les élèves très autonomes ;
+            - les compétences perçues comme fragiles ;
+            - les écarts éventuels entre 4e et 3e ;
+            - les domaines à réinvestir rapidement.
+
+            Attention : il s'agit de compétences déclarées, pas de compétences réellement validées.
+            Les futures séances permettront de vérifier progressivement ces réponses.
+            -->
+
+            <h2>8. Dernier défi</h2>
+
             <p>
-                Votre présentation doit contenir au minimum 7 diapositives.
+                Sans modifier le contenu de vos réponses, essayez de rendre votre document plus facile à lire.
+            </p>
+
+            <p>Vous pouvez par exemple :</p>
+
+            <ul>
+                <li>utiliser des titres et des sous-titres ;</li>
+                <li>aérer le document ;</li>
+                <li>mettre certains mots importants en valeur ;</li>
+                <li>aligner correctement les différents éléments ;</li>
+                <li>vérifier l’orthographe des mots soulignés par Writer.</li>
+            </ul>
+
+            <p>
+                Q5 : Parmi toutes les manipulations réalisées aujourd’hui, laquelle vous a semblé la plus facile ?
+            </p>
+
+            <!-- PROF :
+            Réponse personnelle.
+            Elle permet de terminer la séance sur une verbalisation simple.
+            -->
+
+            <p>
+                Q6 : Quelle manipulation vous a semblé la plus difficile ou vous a demandé de l’aide ?
+            </p>
+
+            <!-- PROF :
+            Réponse personnelle.
+            Cette question est particulièrement utile pour préparer les séances suivantes.
+            Ne pas considérer le besoin d'aide comme une erreur.
+            -->
+
+            <h2>9. Rendre son travail</h2>
+
+            <p>Avant de déposer votre document, vérifiez :</p>
+
+            <ul>
+                <li>que votre nom et votre prénom sont présents ;</li>
+                <li>que le nom du fichier est correct ;</li>
+                <li>que vos réponses sont enregistrées ;</li>
+                <li>que le fichier s’ouvre correctement.</li>
+            </ul>
+
+            <p>
+                Déposez ensuite <strong>4e3e_S01_nom_prenom.odt</strong> dans l’espace d’échange indiqué par le professeur.
+            </p>
+
+            <!-- PROF :
+            Le fichier doit être rendu même s'il n'est pas terminé.
+
+            Pour cette séance 1, privilégier une évaluation diagnostique :
+            - fichier rendu ;
+            - respect du nommage ;
+            - capacité à enregistrer/retrouver le document ;
+            - autonomie générale.
+
+            Éviter de noter les compétences informatiques initiales :
+            le but est précisément d'identifier ce qui devra être appris ou repris.
+            -->
+
+            <h2>À retenir</h2>
+
+            <ul>
+                <li>Un fichier doit être enregistré dans un emplacement que je suis capable de retrouver.</li>
+                <li>Un nom de fichier précis permet de savoir rapidement à qui et à quoi il correspond.</li>
+                <li>J’enregistre régulièrement mon travail pour éviter de le perdre.</li>
+                <li>En TIM, je vais surtout apprendre en pratiquant.</li>
+                <li>Je peux chercher, essayer, me tromper puis corriger.</li>
+                <li>À la fin d’une séance, je rends le fichier demandé, même si mon travail n’est pas totalement terminé.</li>
+            </ul>
+
+            <h2>Sources et ressources</h2>
+
+            <ul>
+                <li>
+                    Ministère de l’Agriculture et de la Souveraineté alimentaire – Classes de 4e et 3e de l’enseignement agricole :
+                    <a href="https://chlorofil.fr/diplomes/secondaire/4e-3e" target="_blank" rel="noopener noreferrer">
+                        Référentiel et ressources officielles sur ChloroFil
+                    </a>.
+                </li>
+            </ul>
+
+            <p>
+                Les activités de cette séance ont été adaptées pour servir de diagnostic de début d’année
+                et préparer progressivement les apprentissages numériques attendus en 4e et 3e de l’enseignement agricole.
+            </p>
+        </section>
+
+        <section id="session2" class="content-section">
+            <h1>Séance 2 : Comment organiser ses fichiers pour ne plus les perdre ?</h1>
+
+            <h2>Thème : Fichiers, dossiers, extensions et espaces de stockage</h2>
+
+            <h2>Problématique : Comment organiser ses documents numériques pour pouvoir les retrouver facilement ?</h2>
+
+            <h2>Compétence visée : Utiliser et gérer efficacement un espace de stockage numérique</h2>
+
+            <h2>Objectifs d’apprentissage</h2>
+
+            <h3>Ce que vous allez apprendre</h3>
+            <ul>
+                <li>Faire la différence entre un fichier et un dossier.</li>
+                <li>Comprendre le rôle d’une extension de fichier.</li>
+                <li>Comprendre qu’un même document peut exister sous plusieurs formats.</li>
+                <li>Comprendre l’intérêt d’une arborescence de dossiers.</li>
+                <li>Comprendre la différence entre enregistrer un document et l’exporter.</li>
+            </ul>
+
+            <h3>Ce que vous allez apprendre à faire</h3>
+            <ul>
+                <li>Créer une arborescence de dossiers.</li>
+                <li>Nommer correctement des fichiers et des dossiers.</li>
+                <li>Déplacer et retrouver un fichier.</li>
+                <li>Identifier le type d’un fichier grâce à son extension.</li>
+                <li>Enregistrer un document Writer au format ODT.</li>
+                <li>Exporter ce document au format PDF.</li>
+            </ul>
+
+            <h2>Production attendue</h2>
+
+            <ul>
+                <li>Une arborescence de dossiers correctement organisée.</li>
+                <li>Un document Writer nommé <strong>4e3e_S02_nom_prenom.odt</strong>.</li>
+                <li>Une version PDF nommée <strong>4e3e_S02_nom_prenom.pdf</strong>.</li>
+            </ul>
+
+            <p>
+                À la fin de la séance, les deux fichiers devront se trouver dans le dossier demandé
+                et le fichier <strong>.odt</strong> devra être rendu dans l’espace indiqué par le professeur.
+            </p>
+
+            <h2>1. Fichier ou dossier ?</h2>
+
+            <p>
+                Lorsque nous travaillons sur un ordinateur, nous manipulons principalement
+                des <strong>fichiers</strong> et des <strong>dossiers</strong>.
+            </p>
+
+            <ul>
+                <li>
+                    Un <strong>fichier</strong> contient des données : texte, image, vidéo,
+                    présentation, tableau, programme...
+                </li>
+                <li>
+                    Un <strong>dossier</strong> sert à ranger des fichiers ou d’autres dossiers.
+                </li>
+            </ul>
+
+            <p>
+                Q1 : Parmi les éléments suivants, lesquels sont probablement des fichiers
+                et lesquels sont probablement des dossiers ?
             </p>
 
             <table>
                 <thead>
                     <tr>
-                        <th>Diapositive</th>
-                        <th>Contenu attendu</th>
-                        <th>Conseil de mise en page</th>
+                        <th>Élément</th>
+                        <th>Fichier ou dossier ?</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Diapo 1</td>
-                        <td>Titre du voyage, noms, classe, date</td>
-                        <td>Grand titre + image ou fond simple</td>
+                        <td>rapport_stage.odt</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>Diapo 2</td>
-                        <td>Présentation du voyage : lieu, durée, objectif</td>
-                        <td>Carte, photo du lieu ou 3 informations clés</td>
+                        <td>Photos_stage</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>Diapo 3</td>
-                        <td>Le départ ou l’arrivée</td>
-                        <td>Photo + quelques mots-clés</td>
+                        <td>presentation.odp</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>Diapo 4</td>
-                        <td>Une première activité ou visite</td>
-                        <td>Image principale + texte court</td>
+                        <td>Documents_TIM</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>Diapo 5</td>
-                        <td>Une deuxième activité ou visite</td>
-                        <td>Deux images ou une image + liste courte</td>
-                    </tr>
-                    <tr>
-                        <td>Diapo 6</td>
-                        <td>Ce que vous avez appris</td>
-                        <td>3 idées importantes bien visibles</td>
-                    </tr>
-                    <tr>
-                        <td>Diapo 7</td>
-                        <td>Conclusion et avis sur le voyage</td>
-                        <td>Phrase courte + image finale</td>
+                        <td>tableau_animaux.ods</td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
 
-            <h3>8) Réalisation de la présentation sur le logiciel</h3>
+            <!-- PROF :
+            Réponses attendues :
+            - rapport_stage.odt : fichier
+            - Photos_stage : dossier
+            - presentation.odp : fichier
+            - Documents_TIM : dossier
+            - tableau_animaux.ods : fichier
+
+            Indice possible :
+            "Observe ce qui se trouve après le point dans certains noms."
+
+            Attention : un dossier peut techniquement comporter un point dans son nom.
+            Ici, l'objectif est seulement de faire apparaître la notion d'extension.
+            -->
+
+            <h2>2. Qu’est-ce qu’une extension ?</h2>
+
             <p>
-                Vous devez maintenant créer votre présentation finale dans PowerPoint ou Impress.
+                La partie située à la fin du nom d’un fichier, généralement après un point,
+                s’appelle son <strong>extension</strong>.
             </p>
 
-            <p><b>Consignes obligatoires :</b></p>
-            <ul>
-                <li>Créer au minimum 7 diapositives</li>
-                <li>Mettre un titre sur chaque diapositive</li>
-                <li>Utiliser des textes courts</li>
-                <li>Insérer au moins 4 images</li>
-                <li>Ne pas déformer les images</li>
-                <li>Utiliser une police lisible</li>
-                <li>Utiliser des couleurs lisibles</li>
-                <li>Garder le même style sur toute la présentation</li>
-                <li>Vérifier l’ordre des diapositives</li>
-                <li>Enregistrer régulièrement le travail</li>
-            </ul>
+            <p>Elle permet notamment d’indiquer le type de fichier.</p>
 
-            <p><b>Conseil important :</b></p>
-            <ul>
-                <li>Le diaporama ne doit pas tout dire à votre place.</li>
-                <li>Il doit donner les idées principales pour accompagner votre présentation orale.</li>
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Extension</th>
+                        <th>Type de document</th>
+                        <th>Exemple de logiciel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>.odt</td>
+                        <td>Document texte OpenDocument</td>
+                        <td>LibreOffice Writer</td>
+                    </tr>
+                    <tr>
+                        <td>.ods</td>
+                        <td>Classeur OpenDocument</td>
+                        <td>LibreOffice Calc</td>
+                    </tr>
+                    <tr>
+                        <td>.odp</td>
+                        <td>Présentation OpenDocument</td>
+                        <td>LibreOffice Impress</td>
+                    </tr>
+                    <tr>
+                        <td>.pdf</td>
+                        <td>Document destiné notamment à la consultation et à l’impression</td>
+                        <td>Lecteur PDF / navigateur</td>
+                    </tr>
+                    <tr>
+                        <td>.jpg / .png</td>
+                        <td>Image</td>
+                        <td>Logiciel d’image / navigateur</td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <h3>9) Améliorer la présentation avant le rendu</h3>
             <p>
-                Une fois toutes les diapositives créées, prendre le temps d’améliorer la présentation.
+                Source :
+                <a href="https://help.libreoffice.org/latest/fr/text/shared/00/00000021.html"
+                target="_blank" rel="noopener noreferrer">
+                    LibreOffice – Formats de fichier OpenDocument
+                </a>.
             </p>
 
-            <p><b>À vérifier :</b></p>
-            <ul>
-                <li>Les titres sont-ils assez grands ?</li>
-                <li>Les textes sont-ils faciles à lire ?</li>
-                <li>Les images sont-elles nettes ?</li>
-                <li>Les images ne sont-elles pas déformées ?</li>
-                <li>Les couleurs sont-elles agréables ?</li>
-                <li>Les diapositives sont-elles dans le bon ordre ?</li>
-                <li>Le style est-il cohérent du début à la fin ?</li>
-                <li>La conclusion est-elle présente ?</li>
-            </ul>
-
-            <h3>10) Grille de vérification</h3>
             <p>
-                Avant de rendre le travail, compléter mentalement ou sur papier la grille suivante.
+                Q2 : Quelle extension utiliseriez-vous pour enregistrer :
+            </p>
+
+            <ol>
+                <li>un texte que vous souhaitez encore modifier ;</li>
+                <li>un tableau réalisé avec Calc ;</li>
+                <li>une présentation réalisée avec Impress ;</li>
+                <li>un document terminé que vous souhaitez transmettre en conservant sa mise en page ?</li>
+            </ol>
+
+            <!-- PROF :
+            Réponses attendues :
+            1. .odt
+            2. .ods
+            3. .odp
+            4. .pdf
+
+            Pour le point 4 :
+            Le PDF est adapté à la diffusion/consultation car il conserve la mise en forme du document.
+            Il ne faut toutefois pas présenter PDF comme "impossible à modifier" : il existe des logiciels
+            capables de modifier des PDF.
+
+            Passerelle 4e :
+            Si la notion d'extension est nouvelle, insister simplement sur :
+            extension = indication du format/type du fichier.
+
+            Approfondissement :
+            Faire remarquer qu'une extension n'est pas le logiciel lui-même :
+            plusieurs logiciels peuvent parfois ouvrir un même format.
+            -->
+
+            <h2>3. Construire une arborescence</h2>
+
+            <p>
+                Lorsque de nombreux fichiers sont placés au même endroit, il devient difficile
+                de retrouver rapidement un document.
+            </p>
+
+            <p>
+                Une solution consiste à les organiser dans une <strong>arborescence</strong>
+                de dossiers et de sous-dossiers.
+            </p>
+
+            <p>
+                Dans votre espace personnel indiqué par le professeur, créez l’organisation suivante :
+            </p>
+
+            <pre>
+            TIM
+            └── 4e3e
+                ├── Cours
+                ├── Travaux
+                │   └── S02
+                └── Ressources
+            </pre>
+
+            <!-- PROF :
+            L'emplacement racine dépend de l'organisation de la MFR :
+            espace réseau, Documents, dossier personnel, etc.
+
+            Ne pas imposer "Documents" si les élèves travaillent sur un stockage réseau.
+
+            Observer :
+            - création d'un dossier ;
+            - ouverture du bon dossier avant de créer le suivant ;
+            - distinction dossier / fichier ;
+            - capacité à comprendre une arborescence dessinée.
+
+            Aides progressives :
+            1. "Commence par créer uniquement le dossier TIM."
+            2. "Entre ensuite dans TIM avant de créer 4e3e."
+            3. Faire verbaliser le chemin avant d'aider davantage.
+            -->
+
+            <p>
+                Q3 : Dans quel dossier placeriez-vous chacun des fichiers suivants ?
             </p>
 
             <table>
                 <thead>
                     <tr>
-                        <th>Critère</th>
+                        <th>Fichier</th>
+                        <th>Dossier choisi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>4e3e_S02_nom_prenom.odt</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>fiche_aide_writer.pdf</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>cours_extensions.pdf</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- PROF :
+            Réponses cohérentes attendues :
+            - 4e3e_S02_nom_prenom.odt -> Travaux/S02
+            - fiche_aide_writer.pdf -> Ressources
+            - cours_extensions.pdf -> Cours
+
+            Accepter une autre proposition si elle est correctement justifiée.
+
+            L'objectif important est de comprendre qu'une organisation doit être logique
+            et permettre de retrouver les fichiers rapidement.
+            -->
+
+            <h2>4. Un bon nom de fichier</h2>
+
+            <p>
+                Imaginez que le professeur reçoive les fichiers suivants :
+            </p>
+
+            <ul>
+                <li>document.odt</li>
+                <li>travail.odt</li>
+                <li>sansnom1.odt</li>
+                <li>Mon super travail de TIM définitif VRAIMENT FINAL 2.odt</li>
+            </ul>
+
+            <p>Q4 : Quel problème pourrait rencontrer le professeur ?</p>
+
+            <!-- PROF :
+            Réponses attendues :
+            - impossible ou difficile d'identifier l'élève ;
+            - impossible de connaître rapidement la séance ;
+            - noms trop vagues ;
+            - noms inutilement longs ;
+            - risque de confusion entre plusieurs versions.
+
+            Accepter toute formulation équivalente.
+            -->
+
+            <p>
+                Nous utiliserons donc une règle de nommage simple :
+            </p>
+
+            <p>
+                <strong>classe_seance_nom_prenom.extension</strong>
+            </p>
+
+            <p>Exemple :</p>
+
+            <p>
+                <strong>4e3e_S02_dupont_lina.odt</strong>
+            </p>
+
+            <p>
+                Q5 : Corrigez les noms suivants en utilisant cette règle :
+            </p>
+
+            <ol>
+                <li><strong>travail.odt</strong> pour Lucas Martin, séance 2 ;</li>
+                <li><strong>document.pdf</strong> pour Inès Durand, séance 2.</li>
+            </ol>
+
+            <!-- PROF :
+            Réponses attendues :
+            1. 4e3e_S02_martin_lucas.odt
+            2. 4e3e_S02_durand_ines.pdf
+
+            Accepter nom/prénom dans l'ordre prévu par la convention définie en classe
+            si celle-ci diffère.
+
+            L'essentiel est la régularité du nommage.
+            -->
+
+            <h2>5. Créer le document de travail</h2>
+
+            <p>
+                Ouvrez maintenant <strong>LibreOffice Writer</strong>.
+            </p>
+
+            <p>Créez un document contenant :</p>
+
+            <ul>
+                <li>votre nom et votre prénom ;</li>
+                <li>le titre <strong>Séance 2 – Organiser ses fichiers</strong> ;</li>
+                <li>les réponses aux questions Q1 à Q5.</li>
+            </ul>
+
+            <p>
+                Enregistrez ce document dans :
+            </p>
+
+            <p>
+                <strong>TIM &gt; 4e3e &gt; Travaux &gt; S02</strong>
+            </p>
+
+            <p>sous le nom :</p>
+
+            <p>
+                <strong>4e3e_S02_nom_prenom.odt</strong>
+            </p>
+
+            <p>
+                Dans LibreOffice, la commande <strong>Enregistrer sous</strong> permet notamment
+                de choisir le nom, le dossier et le type de fichier.
+            </p>
+
+            <p>
+                Source :
+                <a href="https://help.libreoffice.org/latest/fr/text/shared/01/01070000.html"
+                target="_blank" rel="noopener noreferrer">
+                    LibreOffice – Enregistrer sous
+                </a>.
+            </p>
+
+            <!-- PROF :
+            Vérifier si les difficultés constatées lors de S01 réapparaissent.
+
+            À ce stade, l'élève doit être capable de :
+            - naviguer dans l'arborescence ;
+            - identifier S02 ;
+            - enregistrer au bon emplacement ;
+            - respecter le nom demandé.
+
+            Ne pas faire l'enregistrement à la place de l'élève.
+            -->
+
+            <h2>6. Même contenu, deux fichiers différents</h2>
+
+            <p>
+                Votre document est actuellement enregistré au format <strong>ODT</strong>.
+            </p>
+
+            <p>
+                Ce fichier est le fichier de travail que vous pourrez continuer à modifier facilement
+                avec Writer.
+            </p>
+
+            <p>
+                Nous allons maintenant créer une seconde version au format <strong>PDF</strong>.
+            </p>
+
+            <ol>
+                <li>Gardez votre document Writer ouvert.</li>
+                <li>Choisissez <strong>Fichier &gt; Exporter sous &gt; Exporter au format PDF</strong>.</li>
+                <li>Enregistrez le PDF dans le même dossier <strong>S02</strong>.</li>
+                <li>Nommez-le <strong>4e3e_S02_nom_prenom.pdf</strong>.</li>
+            </ol>
+
+            <p>
+                Source :
+                <a href="https://help.libreoffice.org/latest/fr/text/shared/01/ref_pdf_export.html"
+                target="_blank" rel="noopener noreferrer">
+                    LibreOffice – Exporter au format PDF
+                </a>.
+            </p>
+
+            <!-- PROF :
+            Point important :
+            "Exporter" ne remplace pas le fichier ODT.
+
+            À la fin, les élèves doivent avoir deux fichiers :
+            - 4e3e_S02_nom_prenom.odt
+            - 4e3e_S02_nom_prenom.pdf
+
+            Le document ODT reste le document de travail.
+            Le PDF est une autre version destinée principalement à la consultation/diffusion.
+
+            LibreOffice précise que la commande Exporter crée un nouveau fichier
+            tout en conservant le document courant ouvert dans son format d'origine.
+
+            Si un élève écrase ou perd son .odt, profiter de la situation pour expliquer
+            la différence entre source et version exportée.
+            -->
+
+            <p>
+                Q6 : Vous voyez maintenant deux fichiers ayant presque le même nom.
+                Pourquoi ne sont-ils pourtant pas identiques ?
+            </p>
+
+            <!-- PROF :
+            Réponse attendue :
+            Ils utilisent deux formats différents et n'ont donc pas la même extension.
+
+            Compléments possibles :
+            - l'ODT est le document de travail Writer ;
+            - le PDF est une version exportée ;
+            - les logiciels capables de les ouvrir et les possibilités de modification diffèrent.
+            -->
+
+            <h2>7. Petit défi : retrouver un fichier</h2>
+
+            <p>
+                Fermez Writer puis revenez dans votre espace de stockage.
+            </p>
+
+            <p>
+                Placez-vous dans le dossier <strong>TIM</strong>.
+            </p>
+
+            <p>
+                Sans utiliser la liste des fichiers récents de LibreOffice :
+            </p>
+
+            <ol>
+                <li>retrouvez votre fichier ODT ;</li>
+                <li>ouvrez-le ;</li>
+                <li>ajoutez à la fin la phrase :
+                    <strong>Je sais retrouver un fichier dans une arborescence.</strong>
+                </li>
+                <li>enregistrez la modification avec <strong>Ctrl + S</strong>.</li>
+            </ol>
+
+            <!-- PROF :
+            Cette étape valide réellement la compréhension de l'arborescence.
+
+            L'élève doit pouvoir reconstituer mentalement :
+            TIM > 4e3e > Travaux > S02
+
+            Si blocage :
+            1. "Dans quel grand dossier avais-tu commencé ?"
+            2. "Quel dossier contient tes travaux ?"
+            3. "Quelle séance cherches-tu ?"
+
+            Éviter d'utiliser directement la recherche Windows :
+            l'objectif est ici d'apprendre à naviguer dans une organisation connue.
+            -->
+
+            <h2>Pour aller plus loin</h2>
+
+            <p>
+                Si vous avez terminé, observez les propriétés de vos deux fichiers.
+            </p>
+
+            <p>
+                Q7 : Comparez le fichier ODT et le fichier PDF :
+            </p>
+
+            <ul>
+                <li>ont-ils exactement le même nom ?</li>
+                <li>ont-ils la même extension ?</li>
+                <li>ont-ils exactement la même taille ?</li>
+            </ul>
+
+            <p>
+                Notez vos observations dans le document Writer.
+            </p>
+
+            <!-- PROF :
+            Activité facultative destinée notamment aux élèves plus rapides.
+
+            Attendus :
+            - le nom de base peut être identique ;
+            - les extensions sont différentes ;
+            - les tailles ne sont généralement pas identiques.
+
+            Ne pas demander de conclusion générale du type
+            "un PDF est toujours plus petit" ou "un ODT est toujours plus gros" :
+            cela dépend du contenu et des paramètres d'export.
+
+            Pour les 3e ou élèves à l'aise :
+            demander pourquoi deux représentations du même contenu
+            peuvent occuper des tailles différentes.
+            Réponse possible :
+            les formats n'organisent, ne compressent et ne stockent pas les données
+            de la même manière.
+            -->
+
+            <h2>8. Rendre son travail</h2>
+
+            <p>Avant de terminer, vérifiez que le dossier <strong>S02</strong> contient :</p>
+
+            <ul>
+                <li><strong>4e3e_S02_nom_prenom.odt</strong> ;</li>
+                <li><strong>4e3e_S02_nom_prenom.pdf</strong>.</li>
+            </ul>
+
+            <p>
+                Ouvrez rapidement les deux fichiers afin de vérifier qu’ils fonctionnent.
+            </p>
+
+            <p>
+                Déposez ensuite le fichier
+                <strong>4e3e_S02_nom_prenom.odt</strong>
+                dans l’espace demandé par le professeur.
+            </p>
+
+            <!-- PROF :
+            Le rendu attendu est le fichier ODT.
+
+            Points pouvant être observés/évalués :
+            - arborescence créée correctement ;
+            - fichier enregistré dans S02 ;
+            - convention de nommage respectée ;
+            - présence de l'ODT et du PDF ;
+            - élève capable de retrouver son fichier ;
+            - réponses Q1 à Q6 présentes.
+
+            Si un élève n'a pas terminé, récupérer tout de même le fichier :
+            la progression de travail et les difficultés sont utiles pour la suite.
+            -->
+
+            <h2>À retenir</h2>
+
+            <ul>
+                <li>Un <strong>dossier</strong> sert à organiser des fichiers et d’autres dossiers.</li>
+                <li>Un <strong>fichier</strong> contient des données.</li>
+                <li>L’<strong>extension</strong> renseigne sur le format d’un fichier.</li>
+                <li>Une arborescence logique permet de retrouver plus facilement son travail.</li>
+                <li>Un nom de fichier doit permettre d’identifier rapidement son contenu.</li>
+                <li><strong>Enregistrer</strong> conserve le document de travail.</li>
+                <li><strong>Exporter</strong> permet de produire une autre version dans un autre format.</li>
+                <li>Un document Writer est généralement enregistré au format <strong>.odt</strong> et peut notamment être exporté au format <strong>.pdf</strong>.</li>
+            </ul>
+
+            <h2>Référentiel</h2>
+
+            <p>
+                Cette séance travaille notamment l’objectif
+                <strong>« S’approprier et utiliser un environnement informatique de travail »</strong>,
+                et plus particulièrement
+                <strong>« utiliser et gérer des espaces de stockage »</strong>.
+            </p>
+
+            <p>
+                Source :
+                <a href="https://chlorofil.fr/diplomes/secondaire/4e-3e"
+                target="_blank" rel="noopener noreferrer">
+                    ChloroFil – Classes de 4e et 3e de l’enseignement agricole
+                </a>.
+            </p>
+        </section>
+
+        <section id="session3" class="content-section">
+            <h1>Séance 3 : Comment créer un document clair et professionnel ?</h1>
+
+            <h2>Thème : Traitement de texte et organisation de l’information</h2>
+
+            <h2>Problématique : Comment transformer un texte brut en document structuré, lisible et facile à modifier ?</h2>
+
+            <h2>Compétence visée : Créer, mettre en forme et organiser un document numérique avec un traitement de texte</h2>
+
+            <h2>Objectifs d’apprentissage</h2>
+
+            <h3>Ce que vous allez apprendre</h3>
+            <ul>
+                <li>Comprendre qu’un document doit posséder une organisation visuelle cohérente.</li>
+                <li>Différencier un titre, un sous-titre et un paragraphe.</li>
+                <li>Comprendre l’intérêt des styles dans un traitement de texte.</li>
+                <li>Comprendre pourquoi la mise en forme doit aider à lire l’information.</li>
+            </ul>
+
+            <h3>Ce que vous allez apprendre à faire</h3>
+            <ul>
+                <li>Créer un document avec LibreOffice Writer.</li>
+                <li>Utiliser les styles <strong>Titre</strong>, <strong>Titre 1</strong> et <strong>Corps de texte</strong>.</li>
+                <li>Créer une liste à puces.</li>
+                <li>Mettre en valeur une information importante.</li>
+                <li>Corriger une mise en forme incohérente.</li>
+                <li>Enregistrer puis exporter un document au format PDF.</li>
+            </ul>
+
+            <h2>Production attendue</h2>
+
+            <p>
+                Vous allez transformer un texte brut en une fiche claire et professionnelle présentant
+                les principales règles de sécurité lors d’un stage ou d’une activité professionnelle.
+            </p>
+
+            <p>À la fin de la séance, vous devrez posséder :</p>
+
+            <ul>
+                <li><strong>4e3e_S03_nom_prenom.odt</strong> ;</li>
+                <li><strong>4e3e_S03_nom_prenom.pdf</strong>.</li>
+            </ul>
+
+            <h2>1. Qu’est-ce qu’un document facile à lire ?</h2>
+
+            <p>
+                Comparez mentalement ces deux organisations :
+            </p>
+
+            <p>
+                <strong>Document A :</strong> tout le texte utilise la même taille,
+                la même police et aucun titre ne ressort.
+            </p>
+
+            <p>
+                <strong>Document B :</strong> le document possède un titre visible,
+                plusieurs sous-titres, des paragraphes séparés et une liste à puces.
+            </p>
+
+            <p>
+                Q1 : Quel document sera probablement le plus facile à lire ?
+                Expliquez pourquoi en une phrase.
+            </p>
+
+            <!-- PROF :
+            Réponse attendue :
+            Le document B est plus facile à lire car les informations sont organisées et hiérarchisées.
+
+            Accepter par exemple :
+            - "On trouve plus vite les informations."
+            - "Les titres permettent de savoir de quoi parle chaque partie."
+            - "Le texte est plus aéré."
+
+            Faire émerger l'idée importante :
+            mise en forme ≠ décoration.
+            La mise en forme sert d'abord à organiser et à communiquer l'information.
+            -->
+
+            <h2>2. Créer le document de travail</h2>
+
+            <p>
+                Ouvrez <strong>LibreOffice Writer</strong>.
+            </p>
+
+            <p>
+                Enregistrez immédiatement votre document dans :
+            </p>
+
+            <p>
+                <strong>TIM &gt; 4e3e &gt; Travaux &gt; S03</strong>
+            </p>
+
+            <p>sous le nom :</p>
+
+            <p>
+                <strong>4e3e_S03_nom_prenom.odt</strong>
+            </p>
+
+            <!-- PROF :
+            On réinvestit volontairement S01 et S02.
+
+            Observer sans refaire tout le cours :
+            - capacité à retrouver TIM > 4e3e > Travaux ;
+            - création éventuelle du dossier S03 ;
+            - utilisation de "Enregistrer sous" ;
+            - respect du nommage.
+
+            Si un élève est bloqué :
+            lui faire reconstruire oralement le chemin avant d'intervenir.
+            -->
+
+            <h2>3. Copier le texte brut</h2>
+
+            <p>
+                Recopiez le texte suivant dans votre document.
+                Pour le moment, <strong>ne modifiez pas sa mise en forme</strong>.
+            </p>
+
+            <blockquote>
+                Sécurité pendant une activité professionnelle<br><br>
+
+                Avant de commencer<br>
+                Une activité professionnelle peut comporter des risques. Avant de commencer une tâche,
+                il faut prendre connaissance des consignes, identifier les dangers possibles et vérifier
+                que le matériel utilisé est adapté.<br><br>
+
+                Les équipements de protection<br>
+                Selon l’activité réalisée, certains équipements de protection peuvent être nécessaires.
+                Il peut par exemple s’agir de chaussures de sécurité, de gants, de lunettes de protection
+                ou de protections auditives.<br><br>
+
+                En cas de problème<br>
+                Il ne faut pas essayer de réparer seul une machine ou un équipement que l’on ne connaît pas.
+                En cas de problème, il faut arrêter l’activité si cela peut être fait sans danger puis prévenir
+                le responsable ou le maître de stage.<br><br>
+
+                Les bons réflexes<br>
+                respecter les consignes<br>
+                utiliser le matériel prévu<br>
+                porter les protections demandées<br>
+                signaler un problème<br>
+                garder son espace de travail propre
+            </blockquote>
+
+            <p>
+                Le texte de cette activité est une synthèse pédagogique destinée à travailler
+                la mise en forme du document. Les consignes de sécurité réelles dépendent toujours
+                de l’activité, du matériel et de l’entreprise concernée.
+            </p>
+
+            <!-- PROF :
+            Le contenu métier est volontairement général et ne doit pas être présenté
+            comme un protocole de sécurité exhaustif.
+
+            L'objectif principal de cette séance est le traitement de texte.
+
+            Si la saisie prend trop de temps pour certains élèves :
+            autoriser exceptionnellement un copier-coller du texte depuis la page du cours.
+            -->
+
+            <h2>4. Donner une structure au document</h2>
+
+            <p>
+                Un document ne doit pas seulement être joli :
+                il doit montrer clairement quelles informations sont les plus importantes.
+            </p>
+
+            <p>
+                Dans Writer, les <strong>styles de paragraphe</strong> permettent d’appliquer
+                une mise en forme cohérente à plusieurs éléments du document.
+            </p>
+
+            <p>
+                Source :
+                <a href="https://help.libreoffice.org/latest/fr/text/swriter/01/05130000.html"
+                target="_blank" rel="noopener noreferrer">
+                    LibreOffice – Styles dans Writer
+                </a>.
+            </p>
+
+            <p>
+                Appliquez maintenant :
+            </p>
+
+            <ul>
+                <li>le style <strong>Titre</strong> à « Sécurité pendant une activité professionnelle » ;</li>
+                <li>le style <strong>Titre 1</strong> à « Avant de commencer » ;</li>
+                <li>le style <strong>Titre 1</strong> à « Les équipements de protection » ;</li>
+                <li>le style <strong>Titre 1</strong> à « En cas de problème » ;</li>
+                <li>le style <strong>Titre 1</strong> à « Les bons réflexes ».</li>
+            </ul>
+
+            <p>
+                Les autres paragraphes doivent rester en style normal ou
+                <strong>Corps de texte</strong>.
+            </p>
+
+            <!-- PROF :
+            LibreOffice permet d'appliquer un style depuis la liste de styles
+            située dans la barre de formatage ou depuis le panneau Styles.
+
+            Important :
+            faire utiliser les vrais styles et pas uniquement :
+            - taille 18 ;
+            - gras ;
+            - changement de police.
+
+            Si nécessaire :
+            1. cliquer dans le paragraphe concerné ;
+            2. repérer la liste de styles ;
+            3. sélectionner le style demandé.
+
+            Pour les élèves les plus autonomes :
+            leur demander pourquoi utiliser "Titre 1" est préférable
+            à simplement mettre chaque sous-titre en gras manuellement.
+
+            Réponse attendue :
+            cela garantit une mise en forme cohérente et permet de modifier
+            tous les éléments utilisant le même style plus facilement.
+            -->
+
+            <h2>5. Transformer une série de lignes en liste</h2>
+
+            <p>
+                Dans la partie <strong>Les bons réflexes</strong>,
+                transformez les cinq lignes suivantes en <strong>liste à puces</strong> :
+            </p>
+
+            <ul>
+                <li>respecter les consignes ;</li>
+                <li>utiliser le matériel prévu ;</li>
+                <li>porter les protections demandées ;</li>
+                <li>signaler un problème ;</li>
+                <li>garder son espace de travail propre.</li>
+            </ul>
+
+            <p>
+                Q2 : Pourquoi une liste à puces est-elle plus adaptée ici qu’un long paragraphe ?
+            </p>
+
+            <!-- PROF :
+            Réponses attendues :
+            - les éléments sont indépendants ;
+            - ils sont plus faciles à repérer ;
+            - la lecture est plus rapide ;
+            - la liste rend les actions plus visibles.
+
+            Ne pas accepter uniquement :
+            "parce que c'est plus beau"
+            sans faire préciser l'intérêt pour le lecteur.
+            -->
+
+            <h2>6. Mettre en valeur sans surcharger</h2>
+
+            <p>
+                Dans le paragraphe <strong>En cas de problème</strong>,
+                mettez en gras uniquement :
+            </p>
+
+            <ul>
+                <li><strong>arrêter l’activité</strong> ;</li>
+                <li><strong>prévenir le responsable ou le maître de stage</strong>.</li>
+            </ul>
+
+            <p>
+                Q3 : Pourquoi ne faut-il pas mettre tout le paragraphe en gras ?
+            </p>
+
+            <!-- PROF :
+            Réponse attendue :
+            Si tout est en gras, plus rien ne ressort réellement.
+
+            Faire comprendre :
+            la mise en valeur doit être utilisée avec parcimonie.
+
+            Accepter toute formulation équivalente.
+            -->
+
+            <h2>7. Le défi du mauvais document</h2>
+
+            <p>
+                Imaginez maintenant le document suivant :
+            </p>
+
+            <ul>
+                <li>le titre est écrit en taille 12 ;</li>
+                <li>un paragraphe entier est en gras ;</li>
+                <li>un sous-titre est rouge, un autre bleu et un autre vert ;</li>
+                <li>trois polices différentes sont utilisées ;</li>
+                <li>certaines lignes sont centrées sans raison ;</li>
+                <li>les cinq règles de sécurité sont écrites dans un seul paragraphe.</li>
+            </ul>
+
+            <p>
+                Q4 : Citez <strong>trois modifications</strong> que vous feriez pour rendre ce document plus lisible.
+            </p>
+
+            <!-- PROF :
+            Réponses possibles :
+            - agrandir/distinguer le titre ;
+            - uniformiser les sous-titres ;
+            - utiliser une seule police ou un ensemble cohérent ;
+            - supprimer les couleurs inutiles ;
+            - remettre les paragraphes dans un alignement cohérent ;
+            - transformer les règles en liste ;
+            - limiter le gras aux informations importantes ;
+            - utiliser les styles.
+
+            Accepter toute proposition cohérente et argumentée.
+            -->
+
+            <h2>8. Comprendre l’intérêt des styles</h2>
+
+            <p>
+                Les styles permettent d’appliquer le même format à plusieurs paragraphes.
+                Modifier un style permet ensuite de conserver une présentation cohérente
+                dans tout le document.
+            </p>
+
+            <p>
+                Source :
+                <a href="https://help.libreoffice.org/latest/fr/text/shared/01/styles.html"
+                target="_blank" rel="noopener noreferrer">
+                    LibreOffice – Utilisation des styles
+                </a>.
+            </p>
+
+            <p>
+                Q5 : Quel est, selon vous, le principal avantage des styles ?
+            </p>
+
+            <!-- PROF :
+            Réponses attendues :
+            - conserver la même mise en forme ;
+            - gagner du temps ;
+            - éviter de modifier chaque titre manuellement ;
+            - rendre le document plus cohérent.
+
+            Pour les élèves de 3e ou très autonomes :
+            expliquer qu'une structure fondée sur les styles
+            pourra aussi servir plus tard à générer automatiquement
+            une table des matières.
+
+            Ne pas faire la table des matières aujourd'hui :
+            elle pourra devenir un réinvestissement dans une séance ultérieure.
+            -->
+
+            <h2>9. Personnaliser raisonnablement le document</h2>
+
+            <p>
+                Vous pouvez maintenant améliorer légèrement la présentation.
+            </p>
+
+            <p>Vous pouvez :</p>
+
+            <ul>
+                <li>choisir une police facile à lire ;</li>
+                <li>ajuster légèrement la taille du titre ;</li>
+                <li>aérer les différentes parties ;</li>
+                <li>vérifier que tous les sous-titres utilisent la même présentation.</li>
+            </ul>
+
+            <p>
+                Vous ne devez pas :
+            </p>
+
+            <ul>
+                <li>utiliser de nombreuses polices différentes ;</li>
+                <li>multiplier les couleurs sans raison ;</li>
+                <li>écrire un paragraphe entier en majuscules ;</li>
+                <li>modifier chaque sous-titre différemment.</li>
+            </ul>
+
+            <!-- PROF :
+            Laisser une petite liberté de présentation.
+
+            Le critère n'est pas :
+            "Est-ce que j'aime son document ?"
+
+            Mais :
+            - l'information est-elle clairement hiérarchisée ?
+            - la présentation est-elle cohérente ?
+            - le document reste-t-il lisible ?
+            -->
+
+            <h2>10. Vérifier son document</h2>
+
+            <p>
+                Avant de terminer, vérifiez les éléments suivants :
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Élément à vérifier</th>
                         <th>Oui / Non</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Je sais ajouter une nouvelle diapositive</td><td>…</td></tr>
-                    <tr><td>Je sais écrire un titre et du texte</td><td>…</td></tr>
-                    <tr><td>Je sais insérer une image</td><td>…</td></tr>
-                    <tr><td>Je sais déplacer et redimensionner les éléments</td><td>…</td></tr>
-                    <tr><td>La présentation contient au moins 7 diapositives</td><td>…</td></tr>
-                    <tr><td>Chaque diapositive possède un titre</td><td>…</td></tr>
-                    <tr><td>Les textes sont courts et lisibles</td><td>…</td></tr>
-                    <tr><td>Il y a au moins 4 images</td><td>…</td></tr>
-                    <tr><td>Les images ne sont pas déformées</td><td>…</td></tr>
-                    <tr><td>Les couleurs permettent une bonne lecture</td><td>…</td></tr>
-                    <tr><td>La présentation suit un ordre logique</td><td>…</td></tr>
-                    <tr><td>Le fichier est correctement nommé</td><td>…</td></tr>
-                    <tr><td>Le fichier est exporté en PDF</td><td>…</td></tr>
+                    <tr>
+                        <td>Mon document possède un titre clairement identifiable.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Tous mes sous-titres utilisent le même style.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Les paragraphes sont clairement séparés.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Les bons réflexes sont présentés sous forme de liste.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Je n’ai pas utilisé de mise en forme inutile.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Mon fichier possède le bon nom.</td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
 
-            <h3>11) Rendu en fin de séance</h3>
+            <!-- PROF :
+            Cette grille sert d'auto-vérification.
+
+            Elle peut aussi servir rapidement à l'évaluation du rendu :
+            - structure ;
+            - styles ;
+            - liste ;
+            - mise en valeur ;
+            - cohérence ;
+            - nommage.
+            -->
+
+            <h2>11. Exporter et rendre son travail</h2>
+
+            <p>
+                Enregistrez votre document avec <strong>Ctrl + S</strong>.
+            </p>
+
+            <p>
+                Exportez ensuite une version PDF sous le nom :
+            </p>
+
+            <p>
+                <strong>4e3e_S03_nom_prenom.pdf</strong>
+            </p>
+
+            <p>
+                Les deux fichiers doivent se trouver dans :
+            </p>
+
+            <p>
+                <strong>TIM &gt; 4e3e &gt; Travaux &gt; S03</strong>
+            </p>
+
+            <p>
+                Déposez ensuite le fichier
+                <strong>4e3e_S03_nom_prenom.odt</strong>
+                dans l’espace demandé par le professeur.
+            </p>
+
+            <!-- PROF :
+            Rendu obligatoire en fin de séance, même incomplet.
+
+            Vérifier principalement :
+            - fichier correctement nommé ;
+            - titre avec style adapté ;
+            - sous-titres avec un style homogène ;
+            - liste à puces ;
+            - informations importantes mises en valeur avec parcimonie ;
+            - document globalement lisible ;
+            - PDF présent.
+
+            L'objectif n'est pas d'évaluer le goût esthétique.
+            -->
+
+            <h2>Pour aller plus loin</h2>
+
+            <p>
+                Si votre travail est terminé :
+            </p>
+
+            <ol>
+                <li>ouvrez le panneau <strong>Styles</strong> ;</li>
+                <li>repérez le style <strong>Titre 1</strong> ;</li>
+                <li>observez combien de sous-titres de votre document l’utilisent ;</li>
+                <li>expliquez en une phrase ce qui se passerait si ce style était modifié.</li>
+            </ol>
+
+            <!-- PROF :
+            Réponse attendue :
+            les différents paragraphes utilisant Titre 1
+            seraient modifiés de manière cohérente.
+
+            LibreOffice indique qu'un style regroupe des attributs de formatage ;
+            lorsqu'il est modifié, les éléments associés peuvent être mis à jour ensemble.
+
+            Cette activité est surtout destinée aux élèves rapides / 3e.
+            -->
+
+            <h2>À retenir</h2>
+
             <ul>
-                <li>Votre présentation doit contenir :</li>
-                <ul>
-                    <li>Une diapositive de titre</li>
-                    <li>Une présentation du voyage</li>
-                    <li>Des diapositives sur les activités ou moments importants</li>
-                    <li>Des images</li>
-                    <li>Des textes courts</li>
-                    <li>Une conclusion</li>
-                </ul>
-                <li>Enregistrer le fichier modifiable :</li>
-                <li><code>3e_S53_Nom1_Nom2_VoyageScolaire_V1.pptx</code> ou <code>3e_S53_Nom1_Nom2_VoyageScolaire_V1.odp</code></li>
-                <li>Exporter aussi en PDF :</li>
-                <li><code>3e_S53_Nom1_Nom2_VoyageScolaire_V1.pdf</code></li>
-                <li>Déposer les deux fichiers dans un drive personnel</li>
+                <li>La mise en forme doit aider le lecteur à comprendre le document.</li>
+                <li>Un document est organisé avec des titres, des sous-titres et des paragraphes.</li>
+                <li>Une liste est adaptée à une série d’informations de même niveau.</li>
+                <li>Le gras sert à mettre en valeur quelques informations importantes.</li>
+                <li>Les <strong>styles</strong> permettent d’obtenir une présentation régulière et cohérente.</li>
+                <li>Une bonne mise en page n’utilise pas des couleurs et des polices différentes sans raison.</li>
+                <li>Le fichier <strong>ODT</strong> reste le document de travail et le <strong>PDF</strong> constitue une version exportée.</li>
             </ul>
+
+            <h2>Référentiel</h2>
+
+            <p>
+                Cette séance travaille principalement l’objectif
+                <strong>« Créer, produire, traiter et exploiter des données »</strong>
+                du référentiel des classes de 4e et 3e de l’enseignement agricole.
+            </p>
+
+            <p>
+                Source :
+                <a href="https://chlorofil.fr/diplomes/secondaire/4e-3e"
+                target="_blank" rel="noopener noreferrer">
+                    ChloroFil – Classes de 4e et 3e de l’enseignement agricole
+                </a>.
+            </p>
+
+        </section>
+
+        <section id="session4" class="content-section">
+            <h1>Séance 4 : Quel format choisir pour transmettre un document ?</h1>
+
+            <h2>Thème : Formats de fichiers et transmission de documents numériques</h2>
+
+            <h2>Problématique : Pourquoi ne transmet-on pas toujours un document dans le même format que celui utilisé pour le créer ?</h2>
+
+            <h2>Compétence visée : Choisir un format de fichier adapté à l’usage prévu et transmettre un document numérique correctement</h2>
+
+            <h2>Objectifs d’apprentissage</h2>
+
+            <h3>Ce que vous allez apprendre</h3>
+            <ul>
+                <li>Comprendre qu’un même contenu peut être enregistré dans différents formats.</li>
+                <li>Différencier un fichier de travail d’un fichier destiné à être consulté ou transmis.</li>
+                <li>Comprendre que le choix d’un format dépend de l’utilisation prévue.</li>
+                <li>Comprendre qu’un changement d’extension ne transforme pas réellement un fichier.</li>
+            </ul>
+
+            <h3>Ce que vous allez apprendre à faire</h3>
+            <ul>
+                <li>Identifier le format d’un fichier grâce à son extension.</li>
+                <li>Choisir entre ODT et PDF selon une situation donnée.</li>
+                <li>Créer un document Writer puis l’exporter au format PDF.</li>
+                <li>Comparer deux fichiers contenant le même document.</li>
+                <li>Préparer correctement un fichier avant de le transmettre.</li>
+            </ul>
+
+            <h2>Production attendue</h2>
+
+            <p>
+                Vous allez créer une courte fiche destinée à être transmise à un maître de stage
+                ou à un responsable professionnel.
+            </p>
+
+            <p>À la fin de la séance, vous devrez posséder :</p>
+
+            <ul>
+                <li><strong>4e3e_S04_nom_prenom.odt</strong> : votre fichier de travail ;</li>
+                <li><strong>4e3e_S04_nom_prenom.pdf</strong> : la version destinée à être transmise.</li>
+            </ul>
+
+            <h2>1. Deux fichiers pour un même document ?</h2>
+
+            <p>
+                Lors de la séance précédente, vous avez créé un document Writer puis une version PDF.
+            </p>
+
+            <p>
+                Les deux fichiers pouvaient contenir visuellement presque la même chose,
+                mais ils n’avaient pas le même format.
+            </p>
+
+            <p>Q1 : Complétez le tableau suivant dans votre document de travail.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Format</th>
+                        <th>Extension</th>
+                        <th>Utilisation principale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Document Writer</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Document PDF</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- PROF :
+            Réponses attendues :
+
+            Writer :
+            - extension .odt ;
+            - principalement utilisé comme document de travail modifiable.
+
+            PDF :
+            - extension .pdf ;
+            - principalement utilisé pour consultation, impression ou transmission
+            en conservant généralement la présentation du document.
+
+            Éviter de présenter le PDF comme "impossible à modifier".
+            Des outils permettent de modifier certains PDF.
+
+            Faire ressortir la notion :
+            le choix dépend de l'usage.
+            -->
+
+            <h2>2. Modifier ou consulter ?</h2>
+
+            <p>
+                Imaginez les situations suivantes.
+            </p>
+
+            <p>
+                Pour chaque situation, indiquez si vous choisiriez plutôt
+                <strong>ODT</strong> ou <strong>PDF</strong>.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Situation</th>
+                        <th>Format choisi</th>
+                        <th>Pourquoi ?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vous souhaitez continuer votre rapport de stage demain.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Vous envoyez un document terminé à votre maître de stage pour qu’il le lise.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Vous transmettez un document à un camarade pour qu’il puisse continuer à le modifier.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Vous devez déposer une version terminée destinée uniquement à être consultée.</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- PROF :
+            Réponses attendues :
+
+            1. ODT :
+            document de travail à continuer/modifier.
+
+            2. PDF :
+            document terminé destiné à être lu.
+
+            3. ODT :
+            le destinataire doit pouvoir continuer à travailler facilement dessus
+            avec un logiciel compatible.
+
+            4. PDF :
+            version finalisée destinée à la consultation.
+
+            Nuance importante :
+            ce ne sont pas des règles absolues.
+            Le choix dépend aussi :
+            - des logiciels disponibles chez le destinataire ;
+            - du besoin de modification ;
+            - des consignes données ;
+            - de la compatibilité recherchée.
+
+            Valoriser toute réponse correctement justifiée.
+            -->
+
+            <h2>3. Peut-on changer un fichier simplement en changeant son nom ?</h2>
+
+            <p>
+                Un élève possède un fichier :
+            </p>
+
+            <p><strong>rapport_stage.odt</strong></p>
+
+            <p>
+                Il renomme simplement le fichier :
+            </p>
+
+            <p><strong>rapport_stage.pdf</strong></p>
+
+            <p>
+                Q2 : Pensez-vous que le fichier est réellement devenu un fichier PDF ?
+                Expliquez votre réponse.
+            </p>
+
+            <!-- PROF :
+            Réponse attendue :
+            Non.
+
+            Modifier uniquement les lettres de l'extension dans le nom
+            ne convertit pas réellement les données contenues dans le fichier.
+
+            Le fichier reste structuré dans son format d'origine.
+
+            Pour obtenir un vrai PDF depuis Writer, il faut utiliser une fonction
+            d'export/conversion appropriée.
+
+            Comparaison possible :
+            changer l'étiquette d'une bouteille ne change pas ce qu'elle contient.
+
+            Important :
+            ne pas entrer dans la structure binaire détaillée des formats.
+            -->
+
+            <h2>4. Créer le document de travail</h2>
+
+            <p>
+                Ouvrez <strong>LibreOffice Writer</strong>.
+            </p>
+
+            <p>Créez le dossier :</p>
+
+            <p>
+                <strong>TIM &gt; 4e3e &gt; Travaux &gt; S04</strong>
+            </p>
+
+            <p>Enregistrez immédiatement votre document sous le nom :</p>
+
+            <p>
+                <strong>4e3e_S04_nom_prenom.odt</strong>
+            </p>
+
+            <!-- PROF :
+            Réinvestissement direct de S01 et S02.
+
+            À ce stade de la progression, intervenir moins rapidement.
+
+            Si blocage :
+            - demander à l'élève quel était le chemin utilisé en S03 ;
+            - lui faire retrouver Travaux ;
+            - lui demander ce qui doit changer aujourd'hui.
+
+            Attendu :
+            seul le dossier S04 et le numéro de séance changent.
+            -->
+
+            <h2>5. Préparer une fiche de présentation professionnelle</h2>
+
+            <p>
+                Imaginez que vous allez bientôt effectuer une période de stage.
+            </p>
+
+            <p>
+                Vous devez transmettre une petite fiche permettant à votre maître de stage
+                de connaître quelques informations utiles avant votre arrivée.
+            </p>
+
+            <p>
+                Dans votre document Writer, créez la structure suivante :
+            </p>
+
+            <ul>
+                <li><strong>Titre :</strong> Ma fiche de présentation</li>
+                <li><strong>Nom et prénom :</strong> votre identité</li>
+                <li><strong>Classe :</strong> 4e ou 3e</li>
+                <li><strong>Mes centres d’intérêt</strong></li>
+                <li><strong>Ce que j’aimerais découvrir pendant un stage</strong></li>
+                <li><strong>Une qualité que je pense pouvoir apporter</strong></li>
+            </ul>
+
+            <p>
+                Pour les centres d’intérêt, utilisez une <strong>liste à puces</strong>
+                comportant au moins trois éléments.
+            </p>
+
+            <p>
+                Pour les autres parties, rédigez une ou deux phrases.
+            </p>
+
+            <!-- PROF :
+            L'objectif n'est pas de préparer réellement une candidature.
+            La situation sert de contexte réaliste pour la transmission d'un document.
+
+            Réinvestissements S03 attendus :
+            - style Titre ;
+            - styles Titre 1 pour les différentes parties ;
+            - paragraphes lisibles ;
+            - liste à puces ;
+            - présentation cohérente.
+
+            Les élèves ne sont pas obligés d'indiquer une information personnelle
+            qu'ils ne souhaitent pas partager.
+            Ils peuvent utiliser une information fictive pour l'activité si nécessaire.
+            -->
+
+            <h2>6. Faire un document destiné à quelqu’un d’autre</h2>
+
+            <p>
+                Lorsque vous créez un document uniquement pour vous,
+                vous savez généralement ce que vous avez voulu dire.
+            </p>
+
+            <p>
+                Lorsque le document est destiné à une autre personne,
+                il doit pouvoir être compris sans explication supplémentaire.
+            </p>
+
+            <p>
+                Relisez votre fiche comme si vous étiez le maître de stage.
+            </p>
+
+            <p>Q3 : Vérifiez :</p>
+
+            <ul>
+                <li>Le titre permet-il de comprendre immédiatement le document ?</li>
+                <li>Les différentes parties sont-elles faciles à repérer ?</li>
+                <li>Les phrases sont-elles compréhensibles ?</li>
+                <li>La présentation est-elle régulière ?</li>
+                <li>Y a-t-il des informations inutiles ?</li>
+            </ul>
+
+            <p>
+                Corrigez votre document si nécessaire.
+            </p>
+
+            <!-- PROF :
+            Faire apparaître progressivement la notion de destinataire.
+
+            Un document numérique ne se construit pas uniquement selon
+            les goûts de son auteur.
+
+            Il faut tenir compte :
+            - du destinataire ;
+            - de l'objectif ;
+            - des informations utiles ;
+            - de la lisibilité.
+
+            Cela prépare les futures productions multimédias.
+            -->
+
+            <h2>7. Le document est terminé : que transmettre ?</h2>
+
+            <p>
+                Votre document Writer est maintenant votre
+                <strong>fichier de travail</strong>.
+            </p>
+
+            <p>
+                Il doit rester enregistré dans votre dossier S04 pour pouvoir être modifié plus tard.
+            </p>
+
+            <p>
+                Vous devez maintenant préparer une version destinée à être envoyée à votre maître de stage.
+            </p>
+
+            <p>
+                Q4 : Quel format choisissez-vous :
+                <strong>ODT</strong> ou <strong>PDF</strong> ?
+            </p>
+
+            <p>
+                Justifiez votre choix dans votre document avant de poursuivre.
+            </p>
+
+            <!-- PROF :
+            Réponse attendue :
+            PDF.
+
+            Justifications possibles :
+            - document terminé ;
+            - principalement destiné à être consulté ;
+            - présentation mieux conservée lors de la transmission ;
+            - le destinataire n'a pas nécessairement besoin de le modifier.
+
+            Valoriser surtout la justification.
+            -->
+
+            <h2>8. Exporter correctement en PDF</h2>
+
+            <p>
+                Dans LibreOffice Writer :
+            </p>
+
+            <ol>
+                <li>enregistrez d’abord votre document avec <strong>Ctrl + S</strong> ;</li>
+                <li>choisissez <strong>Fichier &gt; Exporter sous &gt; Exporter au format PDF</strong> ;</li>
+                <li>enregistrez le fichier dans le dossier <strong>S04</strong> ;</li>
+                <li>nommez-le <strong>4e3e_S04_nom_prenom.pdf</strong>.</li>
+            </ol>
+
+            <p>
+                LibreOffice permet d’exporter un document dans un autre format tout en conservant
+                le document original comme fichier de travail.
+            </p>
+
+            <p>
+                Source :
+                <a href="https://help.libreoffice.org/latest/fr/text/shared/01/ref_pdf_export.html"
+                target="_blank" rel="noopener noreferrer">
+                    LibreOffice – Exporter au format PDF
+                </a>.
+            </p>
+
+            <!-- PROF :
+            À la fin :
+            S04 doit contenir au minimum :
+            - 4e3e_S04_nom_prenom.odt
+            - 4e3e_S04_nom_prenom.pdf
+
+            Si l'élève n'a plus son ODT :
+            profiter de l'erreur pour revenir sur la différence
+            entre document source et document exporté.
+            -->
+
+            <h2>9. Comparer avant d’envoyer</h2>
+
+            <p>
+                Fermez Writer puis ouvrez successivement :
+            </p>
+
+            <ul>
+                <li>votre fichier ODT ;</li>
+                <li>votre fichier PDF.</li>
+            </ul>
+
+            <p>Q5 : Complétez le tableau suivant :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Observation</th>
+                        <th>ODT</th>
+                        <th>PDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Extension du fichier</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Document conçu pour être facilement retravaillé dans Writer</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Adapté à une version finalisée destinée à être consultée</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- PROF :
+            Attendus :
+
+            Extensions :
+            ODT = .odt
+            PDF = .pdf
+
+            Retravaillé facilement dans Writer :
+            ODT = oui
+            PDF = non / pas prévu principalement pour cela
+
+            Consultation d'une version finalisée :
+            PDF = oui
+            ODT = possible mais moins adapté dans la situation proposée.
+
+            Ne pas enseigner une opposition absolue.
+            L'objectif est de faire raisonner selon le besoin.
+            -->
+
+            <h2>10. Avant de transmettre un fichier</h2>
+
+            <p>
+                Envoyer le bon format ne suffit pas.
+            </p>
+
+            <p>
+                Avant de transmettre un document, plusieurs vérifications sont utiles.
+            </p>
+
+            <p>
+                Q6 : Parmi les vérifications suivantes, lesquelles vous semblent importantes ?
+            </p>
+
+            <ul>
+                <li>Vérifier que le fichier s’ouvre.</li>
+                <li>Vérifier son nom.</li>
+                <li>Vérifier que le document est terminé.</li>
+                <li>Vérifier que le bon fichier est envoyé.</li>
+                <li>Vérifier les informations présentes dans le document.</li>
+            </ul>
+
+            <!-- PROF :
+            Réponse :
+            toutes sont importantes.
+
+            Ajouter oralement si nécessaire :
+            envoyer "document1.pdf" ou "Sans titre 3.pdf" peut poser problème
+            même si le contenu est correct.
+
+            Faire le lien avec S02 :
+            la convention de nommage n'est pas seulement utile pour soi.
+            Elle aide également le destinataire.
+            -->
+
+            <h2>11. Une information à ne pas transmettre</h2>
+
+            <p>
+                Un document destiné à être transmis peut parfois contenir
+                des informations personnelles ou inutiles.
+            </p>
+
+            <p>
+                Q7 : Parmi les informations suivantes, lesquelles ne devraient généralement
+                <strong>pas</strong> être ajoutées à cette fiche ?
+            </p>
+
+            <ul>
+                <li>Votre prénom.</li>
+                <li>Votre classe.</li>
+                <li>Votre mot de passe personnel.</li>
+                <li>Vos centres d’intérêt.</li>
+                <li>Le code PIN de votre téléphone.</li>
+                <li>Ce que vous souhaitez découvrir pendant le stage.</li>
+            </ul>
+
+            <!-- PROF :
+            Réponses attendues :
+            - mot de passe personnel ;
+            - code PIN.
+
+            Faire simplement émerger la notion :
+            toutes les informations que l'on possède ne doivent pas être communiquées.
+
+            Ne pas développer toute la protection des données personnelles aujourd'hui :
+            une séance spécifique est prévue plus tard.
+            -->
+
+            <h2>Pour aller plus loin</h2>
+
+            <p>
+                Si vous avez terminé, observez les autres formats proposés par Writer
+                dans la fenêtre <strong>Enregistrer sous</strong>.
+            </p>
+
+            <p>
+                Q8 : Trouvez au moins <strong>deux autres extensions</strong>
+                disponibles pour enregistrer un document texte.
+            </p>
+
+            <p>
+                Ne changez pas le format de votre document principal.
+            </p>
+
+            <!-- PROF :
+            Activité pour élèves rapides.
+
+            Réponses possibles selon la version de LibreOffice :
+            - .docx
+            - .doc
+            - .txt
+            - .rtf
+            - .html
+            etc.
+
+            Ne pas entrer aujourd'hui dans une comparaison exhaustive.
+
+            Question supplémentaire possible pour les 3e :
+            "Pourquoi plusieurs formats existent-ils ?"
+
+            Réponses possibles :
+            - compatibilité ;
+            - usages différents ;
+            - logiciels différents ;
+            - fonctionnalités différentes.
+            -->
+
+            <h2>12. Rendre son travail</h2>
+
+            <p>
+                Vérifiez que votre dossier :
+            </p>
+
+            <p>
+                <strong>TIM &gt; 4e3e &gt; Travaux &gt; S04</strong>
+            </p>
+
+            <p>contient bien :</p>
+
+            <ul>
+                <li><strong>4e3e_S04_nom_prenom.odt</strong> ;</li>
+                <li><strong>4e3e_S04_nom_prenom.pdf</strong>.</li>
+            </ul>
+
+            <p>
+                Pour simuler la transmission d’un document terminé,
+                déposez cette fois dans l’espace demandé par le professeur :
+            </p>
+
+            <p>
+                <strong>4e3e_S04_nom_prenom.pdf</strong>
+            </p>
+
+            <!-- PROF :
+            Changement volontaire par rapport aux séances précédentes.
+
+            Jusqu'ici le professeur récupérait principalement le fichier source ODT.
+            Aujourd'hui, le contexte est :
+            "transmettre une version finalisée".
+
+            Le PDF est donc le rendu demandé.
+
+            Vérifier cependant rapidement que l'élève possède toujours son fichier ODT
+            dans son dossier personnel.
+
+            Critères principaux :
+            - ODT présent ;
+            - PDF présent ;
+            - nommage correct ;
+            - document structuré ;
+            - format de rendu adapté ;
+            - réponses et justifications présentes.
+            -->
+
+            <h2>À retenir</h2>
+
+            <ul>
+                <li>Un même contenu peut être enregistré ou exporté dans plusieurs formats.</li>
+                <li>Le <strong>format</strong> doit être choisi en fonction de l’utilisation du document.</li>
+                <li>Un fichier <strong>ODT</strong> est adapté pour continuer à travailler dans Writer.</li>
+                <li>Un fichier <strong>PDF</strong> est notamment adapté à la consultation et à la transmission d’une version finalisée.</li>
+                <li>Renommer simplement une extension ne convertit pas réellement le fichier.</li>
+                <li>Avant de transmettre un document, je vérifie son contenu, son nom, son format et son destinataire.</li>
+                <li>Je ne transmets jamais une information sensible comme un mot de passe ou un code PIN.</li>
+            </ul>
+
+            <h2>Référentiel</h2>
+
+            <p>
+                Cette séance travaille notamment les objectifs
+                <strong>« S’approprier et utiliser un environnement informatique de travail »</strong>
+                et
+                <strong>« Créer, produire, traiter et exploiter des données »</strong>.
+            </p>
+
+            <p>
+                Le référentiel demande notamment de savoir sélectionner un format de fichier
+                adapté pour mettre un document à disposition d’autres personnes
+                et de choisir un format en fonction du projet de publication.
+            </p>
+
+            <p>
+                Source :
+                <a href="https://chlorofil.fr/diplomes/secondaire/4e-3e"
+                target="_blank" rel="noopener noreferrer">
+                    ChloroFil – Classes de 4e et 3e de l’enseignement agricole
+                </a>.
+            </p>
+
         </section>
     </main>
 </body>
