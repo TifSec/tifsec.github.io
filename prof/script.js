@@ -30,20 +30,21 @@ document.addEventListener("DOMContentLoaded", () => {
         },
 
         tim: {
-            "4e / 3e": "/mfr/43/index.html",
-            "CAPa 1": "/mfr/capa1/index.html",
-            "CAPa 2": "/mfr/capa2/index.html",
-            "Seconde": "/mfr/seconde/index.html",
-            "Bac Pro 1": "/mfr/bacpro1/index.html",
-            "BTS 1": "/mfr/bts1/index.html",
-            "BTS 2": "/mfr/bts2/index.html"
+            "4e / 3e": "//tifsec.github.io/mfr/3/index.html",
+            "CAPa 1": "//tifsec.github.io/mfr/capa1/index.html",
+            "CAPa 2": "//tifsec.github.io/mfr/capa2/index.html",
+            "Seconde": "//tifsec.github.io/mfr/2nd/index.html",
+            "Bac Pro 1": "//tifsec.github.io/mfr/bacpro1/index.html",
+            "Bac Pro 2": "//tifsec.github.io/mfr/bacpro2/index.html",
+            "BTS 1": "//tifsec.github.io/mfr/bts1/index.html",
+            "BTS 2": "//tifsec.github.io/mfr/bts2/index.html"
         },
 
         maths: {
-            "4e / 3e": "/maths/43/index.html",
-            "Seconde": "/maths/seconde/index.html",
-            "Bac Pro 1": "/maths/bacpro1/index.html",
-            "Bac Pro 2": "/maths/bacpro2/index.html"
+            "4e / 3e": "//tifsec.github.io/mfr/maths/4e-3e/index.html",
+            "Seconde": "//tifsec.github.io/mfr/maths/2nd/index.html",
+            "Bac Pro 1": "//tifsec.github.io/mfr/maths/bacpro1/index.html",
+            "Bac Pro 2": "//tifsec.github.io/mfr/maths/bacpro2/index.html"
         }
     };
 
