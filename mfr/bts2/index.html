@@ -512,7 +512,22 @@ a
             </ul>
             <p><em>Ces informations sont fictives et font partie du scénario pédagogique. Elles simulent le retour de l'exploitant après vérification des données.</em></p>
             <p>Corrigez uniquement les informations qui viennent d'être confirmées.</p>
-            <!-- PROF : P06 = 53,0 t MS ; P07 = Prairie temporaire ; P08 reste vide. Insister sur le fait qu'une donnée manquante ne doit pas être remplacée par 0, car 0 est une donnée et signifie autre chose qu'une information inconnue. -->
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : distinguer correction justifiée, normalisation et donnée manquante.
+            Réponse attendue : P06 = 53,0 t MS ; P07 = Prairie temporaire ; P08 reste vide.
+            À faire verbaliser : une valeur vide signifie "information inconnue", alors que 0 signifie "valeur connue égale à zéro".
+            Critère de réussite : aucune valeur n'est inventée pour P08.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode d'explication : reprendre successivement les trois situations et demander "Ai-je reçu une information nouvelle qui m'autorise à modifier cette cellule ?".
+            Relances orales : "Pourquoi peux-tu modifier P06 ?", "Pourquoi peux-tu harmoniser P07 ?", "Que sais-tu réellement de P08 ?".
+            Ne pas donner directement les trois corrections si l'élève peut les retrouver dans le texte.
+            -->
+            <!-- PROF - VIGILANCE :
+            Erreur fréquente : saisir 0 pour P08 afin d'éviter une cellule vide.
+            Diagnostic : l'élève confond absence de donnée et valeur nulle.
+            Autre vigilance : certains élèves peuvent conserver 530 en pensant qu'il faut respecter le fichier initial ; rappeler que la nouvelle information a été confirmée par la source.
+            -->
             <h3>2. Organiser correctement la feuille Analyse</h3>
             <p>Dans la feuille <strong>Analyse</strong>, vérifiez que votre tableau comporte les colonnes suivantes dans cet ordre :</p>
             <table>
@@ -538,10 +553,39 @@ a
             </table>
             <p>Vérifiez que les calculs des colonnes H à K utilisent bien des <strong>formules</strong> et non des résultats saisis manuellement.</p>
             <p>Pour la colonne K, une parcelle dont la quantité d'azote est inconnue doit conserver un résultat vide.</p>
-            <p>Exemple de formule possible en K2 :</p>
-            <p><code>=SI(G2="";"";G2/C2)</code></p>
-            <p>Recopiez ensuite la formule vers le bas.</p>
-            <!-- PROF : H = D/C ; I = E/C ; J = F/C ; K = SI(G="";"";G/C). Pour P08, K doit rester vide. Ne pas accepter 0 kg/ha puisque la valeur est inconnue. -->
+            <p>Essayez d'écrire vous-même la formule de K2 avant d'utiliser les indices.</p>
+            <div class="student-hints">
+                <details class="student-hint" data-exercise="A2" data-hint-level="1">
+                    <summary><strong>Indice 1</strong></summary>
+                    <p>Commencez par vous demander : que doit afficher la cellule si G2 est vide ? Et que doit-elle calculer dans le cas contraire ?</p>
+                </details>
+                <details class="student-hint" data-exercise="A2" data-hint-level="2">
+                    <summary><strong>Indice 2</strong></summary>
+                    <p>Vous avez besoin d'une fonction <strong>SI</strong> : testez si G2 est vide, puis choisissez entre une cellule vide et le calcul de l'azote par hectare.</p>
+                </details>
+                <details class="student-hint" data-exercise="A2" data-hint-level="3">
+                    <summary><strong>Indice 3</strong></summary>
+                    <p>La structure commence par <code>=SI(G2="";"";...)</code>. Il vous reste à écrire le calcul à effectuer lorsque G2 contient une valeur.</p>
+                </details>
+                <p data-hint-status="A2"></p>
+                <textarea data-save="hints-A2" hidden></textarea>
+            </div>
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : intégrer la qualité de la donnée directement dans la formule.
+            Réponse attendue : H2 = D2/C2 ; I2 = E2/C2 ; J2 = F2/C2 ; K2 = SI(G2="";"";G2/C2).
+            Pour P08, K doit rester vide.
+            Critère de réussite : les résultats changent automatiquement si les données sources changent.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode d'explication : faire décomposer le problème en deux cas avant de parler de syntaxe : "G2 vide" / "G2 renseignée".
+            Relances orales : "Quel est le test ?", "Que veux-tu afficher si le test est vrai ?", "Que veux-tu calculer sinon ?".
+            Si l'élève maîtrise la logique mais bloque sur Calc, autoriser l'indice 3.
+            -->
+            <!-- PROF - VIGILANCE :
+            Erreur fréquente : =G2/C2 sans traitement de la donnée manquante.
+            Erreur fréquente : retourner 0 à la place de "".
+            Diagnostic : si la formule est recopiée mais pointe toujours vers G2/C2, vérifier que l'élève comprend les références relatives avant de poursuivre.
+            -->
             <h3>3. Des valeurs écrites dans les formules... ou des paramètres ?</h3>
             <p>Un exploitant souhaite suivre plus particulièrement deux critères. Pour cet exercice, il fixe les objectifs internes suivants :</p>
             <ul>
@@ -568,7 +612,37 @@ a
             <p>Source de la référence extérieure : <a href="https://www.agreste.agriculture.gouv.fr/agreste-web/disaron/Chd2516/detail/" target="_blank" rel="noopener noreferrer">Agreste – Statistique agricole annuelle 2024, chiffres définitifs</a>.</p>
             <p>La SAA 2024 indique pour le maïs fourrage et ensilage un rendement national de 135 centaines de kg/ha, soit <strong>13,5 t/ha</strong>.</p>
             <p>Q1 : Pourquoi est-il préférable de placer les valeurs 400 et 9 dans une feuille de paramètres plutôt que de les écrire directement dans toutes les formules ?</p>
-            <!-- PROF : La valeur n'est saisie qu'une seule fois. Si l'objectif change, il suffit de modifier la cellule du paramètre et toutes les formules utilisant cette cellule sont automatiquement recalculées. Cela évite également les incohérences et facilite la maintenance du classeur. -->
+            <div class="student-hints">
+                <details class="student-hint" data-exercise="Q1" data-hint-level="1">
+                    <summary><strong>Indice 1</strong></summary>
+                    <p>Imaginez que l'exploitant décide demain de passer son objectif de 400 à 450 €/ha. Combien de modifications faudrait-il faire ?</p>
+                </details>
+                <details class="student-hint" data-exercise="Q1" data-hint-level="2">
+                    <summary><strong>Indice 2</strong></summary>
+                    <p>Comparez deux solutions : écrire 400 dans dix formules différentes ou écrire 400 une seule fois dans une cellule utilisée par les dix formules.</p>
+                </details>
+                <details class="student-hint" data-exercise="Q1" data-hint-level="3">
+                    <summary><strong>Indice 3</strong></summary>
+                    <p>Pensez à la <strong>maintenance</strong> du fichier : une valeur centrale modifiée une fois peut actualiser automatiquement tous les calculs qui l'utilisent.</p>
+                </details>
+                <p data-hint-status="Q1"></p>
+                <textarea data-save="hints-Q1" hidden></textarea>
+            </div>
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : comprendre la séparation entre données de paramétrage et formules.
+            Réponse attendue : la valeur n'est saisie qu'une fois ; toute modification du paramètre met à jour les formules ; cela réduit les erreurs et facilite la maintenance du classeur.
+            Accepter toute formulation montrant l'idée de centralisation et de mise à jour automatique.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode d'explication : utiliser un scénario concret : "Le seuil passe de 400 à 450 demain matin."
+            Relances : "Où dois-tu intervenir dans les deux solutions ?", "Laquelle limite le risque d'oublier une formule ?".
+            Éviter de commencer par le vocabulaire technique ; partir du besoin professionnel.
+            -->
+            <!-- PROF - VIGILANCE :
+            Erreur fréquente : répondre uniquement "c'est plus rapide" sans expliquer pourquoi.
+            Faire préciser le lien entre centralisation, cohérence et évolution du tableau de bord.
+            Ne pas présenter 400 €/ha ou 9 h/ha comme des références agronomiques : ce sont bien des objectifs fictifs du scénario.
+            -->
             <h3>4. Découvrir les références absolues</h3>
             <p>Dans une formule, une référence comme <code>B2</code> est généralement une <strong>référence relative</strong> : elle se déplace lorsque la formule est recopiée.</p>
             <p>Une référence comme <code>$B$2</code> est une <strong>référence absolue</strong> : elle reste fixée sur la même cellule.</p>
@@ -580,12 +654,47 @@ a
                 <li>N : <strong>Priorité</strong></li>
             </ul>
             <p>En L2, créez une formule indiquant <strong>À surveiller</strong> lorsque le coût des intrants par hectare dépasse la valeur enregistrée dans la feuille Parametres, sinon <strong>OK</strong>.</p>
-            <p>Exemple :</p>
-            <p><code>=SI(I2&gt;$Parametres.$B$2;"À surveiller";"OK")</code></p>
-            <p>Faites de même pour le temps de travail en utilisant le deuxième paramètre.</p>
-            <!-- PROF : M2 = SI(J2>$Parametres.$B$3;"À surveiller";"OK"). Selon la position exacte du tableau Parametres, adapter B2/B3. L'essentiel est que la référence au paramètre soit absolue. -->
+            <p>Faites de même pour le temps de travail.</p>
+            <div class="student-hints">
+                <details class="student-hint" data-exercise="A4" data-hint-level="1">
+                    <summary><strong>Indice 1</strong></summary>
+                    <p>Votre formule doit comparer la valeur de la ligne actuelle avec une cellule de la feuille Parametres qui, elle, ne doit jamais se déplacer.</p>
+                </details>
+                <details class="student-hint" data-exercise="A4" data-hint-level="2">
+                    <summary><strong>Indice 2</strong></summary>
+                    <p>Utilisez <strong>SI</strong>. Pour empêcher la cellule du paramètre de bouger lors de la recopie, utilisez une référence absolue avec les signes <strong>$</strong>.</p>
+                </details>
+                <details class="student-hint" data-exercise="A4" data-hint-level="3">
+                    <summary><strong>Indice 3</strong></summary>
+                    <p>La formule de L2 peut commencer ainsi : <code>=SI(I2&gt;$Parametres.$B$2;...</code>. Complétez les deux résultats possibles.</p>
+                </details>
+                <p data-hint-status="A4"></p>
+                <textarea data-save="hints-A4" hidden></textarea>
+            </div>
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : distinguer ce qui doit évoluer avec la ligne de ce qui doit rester fixe.
+            Réponse attendue : L2 = SI(I2>$Parametres.$B$2;"À surveiller";"OK") ; M2 = SI(J2>$Parametres.$B$3;"À surveiller";"OK").
+            La référence à I2/J2 reste relative ; la référence aux paramètres est absolue.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode d'explication : faire recopier mentalement la formule de la ligne 2 vers la ligne 3. Demander quelles références doivent devenir I3/J3 et laquelle doit rester B2/B3.
+            Relances : "Qu'est-ce qui change d'une parcelle à l'autre ?", "Qu'est-ce qui est commun à toutes les parcelles ?".
+            -->
+            <!-- PROF - VIGILANCE :
+            Erreur fréquente : mettre des $ partout, y compris sur I2 ou J2 ; la formule compare alors toutes les parcelles à la première ligne.
+            Autre erreur : oublier les $ sur le paramètre ; après recopie, la référence glisse vers B3, B4, etc.
+            Diagnostic rapide : demander à l'élève de cliquer sur L5 et d'expliquer chaque référence.
+            -->
             <p>Q2 : Que se passerait-il si vous utilisiez <code>Parametres.B2</code> sans les signes <code>$</code> puis recopiez la formule vers le bas ?</p>
-            <!-- PROF : La référence se déplacerait avec la formule : B2 deviendrait B3, B4, etc. Les lignes seraient comparées à des cellules différentes et les résultats deviendraient faux ou incohérents. -->
+            <!-- PROF - ATTENDU :
+            Réponse attendue : la référence se déplacerait : B2 deviendrait B3, B4, etc. Les parcelles seraient comparées à des cellules différentes et les alertes deviendraient incohérentes.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Relance orale : "Si tu descends ta formule d'une ligne, que devient I2 ? Que deviendrait B2 ? Veux-tu réellement que B2 change ?".
+            -->
+            <!-- PROF - VIGILANCE :
+            Ne pas accepter uniquement "ça ne marche pas". L'élève doit expliquer le déplacement de la référence.
+            -->
             <h3>5. Croiser plusieurs critères avec ET et OU</h3>
             <p>Nous voulons maintenant obtenir un seul niveau de priorité pour chaque parcelle :</p>
             <ul>
@@ -594,11 +703,54 @@ a
                 <li><strong>OK</strong> si aucun des deux critères ne dépasse son objectif.</li>
             </ul>
             <p>Dans N2, réalisez cette analyse automatiquement avec les fonctions <strong>SI</strong>, <strong>ET</strong> et <strong>OU</strong>.</p>
-            <p>Une formule possible est :</p>
-            <p><code>=SI(ET(I2&gt;$Parametres.$B$2;J2&gt;$Parametres.$B$3);"Prioritaire";SI(OU(I2&gt;$Parametres.$B$2;J2&gt;$Parametres.$B$3);"À surveiller";"OK"))</code></p>
-            <p>Recopiez la formule pour toutes les parcelles.</p>
+            <div class="student-hints">
+                <details class="student-hint" data-exercise="A5" data-hint-level="1">
+                    <summary><strong>Indice 1</strong></summary>
+                    <p>Commencez par le cas le plus exigeant : dans quelle situation faut-il afficher <strong>Prioritaire</strong> ?</p>
+                </details>
+                <details class="student-hint" data-exercise="A5" data-hint-level="2">
+                    <summary><strong>Indice 2</strong></summary>
+                    <p>Le premier test doit vérifier simultanément deux conditions avec <strong>ET</strong>. Si elles ne sont pas toutes les deux vraies, il faut ensuite tester si au moins une est vraie avec <strong>OU</strong>.</p>
+                </details>
+                <details class="student-hint" data-exercise="A5" data-hint-level="3">
+                    <summary><strong>Indice 3</strong></summary>
+                    <p>La structure est : <code>=SI(ET(condition1;condition2);"Prioritaire";SI(OU(condition1;condition2);"À surveiller";"OK"))</code>. Remplacez les deux conditions par vos comparaisons.</p>
+                </details>
+                <p data-hint-status="A5"></p>
+                <textarea data-save="hints-A5" hidden></textarea>
+            </div>
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : traduire une règle métier en logique booléenne.
+            Formule attendue : =SI(ET(I2>$Parametres.$B$2;J2>$Parametres.$B$3);"Prioritaire";SI(OU(I2>$Parametres.$B$2;J2>$Parametres.$B$3);"À surveiller";"OK"))
+            Le raisonnement attendu précède la syntaxe : 2 dépassements = Prioritaire ; 1 dépassement = À surveiller ; 0 = OK.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode d'explication : construire un mini tableau de vérité oral :
+            coût NON / travail NON → OK ;
+            coût OUI / travail NON → À surveiller ;
+            coût NON / travail OUI → À surveiller ;
+            coût OUI / travail OUI → Prioritaire.
+            Puis seulement traduire en ET/OU.
+            -->
+            <!-- PROF - VIGILANCE :
+            Erreur fréquente : utiliser OU pour le niveau Prioritaire.
+            Diagnostic : si la logique est fausse mais la syntaxe correcte, revenir au tableau de vérité plutôt qu'à la formule.
+            Erreur fréquente : comparer directement les textes des colonnes L et M ; cela peut fonctionner mais détourne ici l'objectif qui est de construire la logique à partir des indicateurs.
+            -->
             <p>Q3 : Quelles parcelles sont classées <strong>Prioritaire</strong> ? Quelles parcelles sont classées <strong>À surveiller</strong> ?</p>
-            <!-- PROF : Prioritaire = P02, P06 et P10. À surveiller = P04 et P08. Les autres parcelles sont OK. P04 et P08 dépassent 400 €/ha mais restent juste sous 9 h/ha. -->
+            <!-- PROF - ATTENDU :
+            Prioritaire : P02, P06 et P10.
+            À surveiller : P04 et P08.
+            Les autres sont OK.
+            P04 et P08 dépassent 400 €/ha mais restent juste sous 9 h/ha.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Demander de filtrer la colonne N plutôt que de relire les dix lignes une à une.
+            Relance : "Quelle fonctionnalité du tableur te permet de vérifier rapidement ta réponse ?".
+            -->
+            <!-- PROF - VIGILANCE :
+            Si P06 ressort avec des valeurs extravagantes, vérifier que l'élève a bien corrigé 530 en 53,0 lors de la partie 1.
+            -->
             <h3>6. Faire apparaître immédiatement les alertes</h3>
             <p>Un tableau de bord doit permettre de repérer rapidement les informations importantes.</p>
             <p>Sélectionnez les cellules de la colonne <strong>Priorité</strong>, puis utilisez :</p>
@@ -610,10 +762,37 @@ a
                 <li>OK.</li>
             </ul>
             <p>Q4 : Quel est l'intérêt d'un formatage conditionnel par rapport à une coloration manuelle des cellules ?</p>
-            <!-- PROF : Le formatage conditionnel dépend de la valeur ou du résultat d'une formule. Si les données changent, la mise en forme s'actualise automatiquement. Une coloration manuelle ne suit pas automatiquement les modifications. -->
+            <div class="student-hints">
+                <details class="student-hint" data-exercise="Q4" data-hint-level="1">
+                    <summary><strong>Indice 1</strong></summary>
+                    <p>Imaginez que vous modifiez le coût d'une parcelle. Que devrait-il arriver à sa couleur ?</p>
+                </details>
+                <details class="student-hint" data-exercise="Q4" data-hint-level="2">
+                    <summary><strong>Indice 2</strong></summary>
+                    <p>Comparez une couleur choisie manuellement avec une couleur dépendant automatiquement du contenu de la cellule.</p>
+                </details>
+                <details class="student-hint" data-exercise="Q4" data-hint-level="3">
+                    <summary><strong>Indice 3</strong></summary>
+                    <p>Le formatage conditionnel <strong>réagit aux données</strong> : si le résultat change, l'apparence peut changer sans intervention manuelle.</p>
+                </details>
+                <p data-hint-status="Q4"></p>
+                <textarea data-save="hints-Q4" hidden></textarea>
+            </div>
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : comprendre qu'une visualisation peut être liée dynamiquement aux données.
+            Réponse attendue : le formatage conditionnel s'actualise automatiquement lorsque la valeur ou le résultat de la formule change ; une coloration manuelle reste figée.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode : demander à l'élève de modifier temporairement une valeur de coût et d'observer si l'état puis la couleur changent.
+            Privilégier l'observation avant l'explication.
+            -->
+            <!-- PROF - VIGILANCE :
+            Ne pas réduire l'activité au choix de jolies couleurs. Le critère essentiel est la lecture rapide et automatique de l'information.
+            Vérifier que les trois états restent distinguables et lisibles.
+            -->
             <p>Ressource : <a href="https://help.libreoffice.org/latest/fr/text/scalc/guide/cellstyle_conditional.html" target="_blank" rel="noopener noreferrer">LibreOffice – Application du formatage conditionnel</a>.</p>
             <h3>7. Compter et calculer selon une condition</h3>
-            <p>Dans la feuille <strong>Synthese</strong>, créez un petit tableau contenant les informations suivantes :</p>
+            <p>Dans la feuille <strong>Synthese</strong>, créez un petit tableau contenant :</p>
             <table>
                 <thead>
                     <tr>
@@ -634,13 +813,42 @@ a
                 <li><code>SOMME.SI</code></li>
                 <li><code>MOYENNE.SI</code></li>
             </ul>
-            <p>Exemple de structure :</p>
-            <p><code>=NB.SI(Analyse.N2:N11;"Prioritaire")</code></p>
-            <p><code>=SOMME.SI(Analyse.B2:B11;"Maïs ensilage";Analyse.C2:C11)</code></p>
-            <p><code>=MOYENNE.SI(Analyse.B2:B11;"Maïs ensilage";Analyse.H2:H11)</code></p>
-            <!-- PROF : Nombre Prioritaire = 3. Nombre À surveiller = 2. Surface totale maïs ensilage = 15,3 ha. Rendement moyen du maïs ensilage après correction de P06 = environ 11,51 t MS/ha. -->
+            <div class="student-hints">
+                <details class="student-hint" data-exercise="A7" data-hint-level="1">
+                    <summary><strong>Indice 1</strong></summary>
+                    <p>Pour chaque indicateur, demandez-vous d'abord si vous devez <strong>compter</strong>, <strong>additionner</strong> ou calculer une <strong>moyenne</strong>.</p>
+                </details>
+                <details class="student-hint" data-exercise="A7" data-hint-level="2">
+                    <summary><strong>Indice 2</strong></summary>
+                    <p><code>NB.SI</code> compte des cellules correspondant à un critère. <code>SOMME.SI</code> additionne des valeurs répondant à un critère. <code>MOYENNE.SI</code> en calcule la moyenne.</p>
+                </details>
+                <details class="student-hint" data-exercise="A7" data-hint-level="3">
+                    <summary><strong>Indice 3</strong></summary>
+                    <p>Exemples de structure : <code>=NB.SI(Analyse.N2:N11;"Prioritaire")</code> ou <code>=SOMME.SI(Analyse.B2:B11;"Maïs ensilage";Analyse.C2:C11)</code>.</p>
+                </details>
+                <p data-hint-status="A7"></p>
+                <textarea data-save="hints-A7" hidden></textarea>
+            </div>
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : choisir une fonction en fonction de la question posée.
+            Résultats attendus : Prioritaire = 3 ; À surveiller = 2 ; surface totale maïs = 15,3 ha ; rendement moyen maïs ≈ 11,51 t MS/ha.
+            Formules possibles :
+            NB.SI(Analyse.N2:N11;"Prioritaire")
+            NB.SI(Analyse.N2:N11;"À surveiller")
+            SOMME.SI(Analyse.B2:B11;"Maïs ensilage";Analyse.C2:C11)
+            MOYENNE.SI(Analyse.B2:B11;"Maïs ensilage";Analyse.H2:H11)
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode d'explication : faire traduire chaque phrase en verbe : "nombre" → compter ; "surface totale" → additionner ; "rendement moyen" → moyenne.
+            Puis identifier séparément la plage du critère, le critère et la plage à calculer.
+            -->
+            <!-- PROF - VIGILANCE :
+            Erreur fréquente : utiliser SOMME au lieu de SOMME.SI puis sélectionner manuellement les lignes.
+            Erreur fréquente : inverser plage critère et plage somme/moyenne.
+            Diagnostic : demander à l'élève d'expliquer oralement chacun des arguments de sa formule.
+            -->
             <h3>8. Construire une table dynamique</h3>
-            <p>Les fonctions précédentes sont pratiques pour répondre à des questions précises. Lorsque les données deviennent nombreuses, une <strong>table dynamique</strong> permet de les regrouper et de les résumer rapidement.</p>
+            <p>Lorsque les données deviennent nombreuses, une <strong>table dynamique</strong> permet de les regrouper et de les résumer rapidement.</p>
             <p>Dans la feuille <strong>Analyse</strong> :</p>
             <ol>
                 <li>sélectionnez l'ensemble du tableau avec les titres ;</li>
@@ -653,8 +861,39 @@ a
                 <li>ajoutez <strong>Temps de travail/ha</strong> comme moyenne ;</li>
                 <li>placez le résultat dans la feuille <strong>Synthese</strong>.</li>
             </ol>
-            <p>Votre table doit permettre de comparer les quatre types de cultures sans recalculer manuellement chaque groupe.</p>
-            <!-- PROF : Ordres de grandeur attendus après correction de P06 : Prairie permanente : surface 25,6 ha, rendement moyen ≈ 5,37 t MS/ha, coût ≈ 170,27 €/ha, travail ≈ 6,96 h/ha. Maïs ensilage : 15,3 ha, ≈ 11,51 t MS/ha, ≈ 659,73 €/ha, ≈ 11,71 h/ha. Prairie temporaire : 12 ha, ≈ 6,93 t MS/ha, ≈ 285 €/ha, ≈ 7,75 h/ha. Méteil : 8,5 ha, ≈ 6,60 t MS/ha, ≈ 416,41 €/ha, ≈ 8,94 h/ha. -->
+            <div class="student-hints">
+                <details class="student-hint" data-exercise="A8" data-hint-level="1">
+                    <summary><strong>Indice 1</strong></summary>
+                    <p>Commencez par identifier ce qui doit créer les groupes : ici, nous voulons une ligne par type de <strong>culture</strong>.</p>
+                </details>
+                <details class="student-hint" data-exercise="A8" data-hint-level="2">
+                    <summary><strong>Indice 2</strong></summary>
+                    <p><strong>Culture</strong> va dans les champs de ligne. Les indicateurs numériques vont dans les champs de données.</p>
+                </details>
+                <details class="student-hint" data-exercise="A8" data-hint-level="3">
+                    <summary><strong>Indice 3</strong></summary>
+                    <p>Vérifiez ensuite le mode de calcul de chaque champ : <strong>Somme</strong> pour Surface et <strong>Moyenne</strong> pour Rendement, Coût/ha et Travail/ha.</p>
+                </details>
+                <p data-hint-status="A8"></p>
+                <textarea data-save="hints-A8" hidden></textarea>
+            </div>
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : passer d'une liste détaillée à une synthèse par catégorie.
+            Ordres de grandeur attendus :
+            Prairie permanente : surface 25,6 ha ; rendement ≈ 5,37 ; coût ≈ 170,27 €/ha ; travail ≈ 6,96 h/ha.
+            Maïs ensilage : 15,3 ha ; rendement ≈ 11,51 ; coût ≈ 659,73 €/ha ; travail ≈ 11,71 h/ha.
+            Prairie temporaire : 12 ha ; rendement ≈ 6,93 ; coût ≈ 285 €/ha ; travail ≈ 7,75 h/ha.
+            Méteil : 8,5 ha ; rendement ≈ 6,60 ; coût ≈ 416,41 €/ha ; travail ≈ 8,94 h/ha.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode : faire formuler "Je veux une ligne par quoi ?" puis "Pour chaque ligne, qu'est-ce que je veux calculer ?".
+            Relance : "Si Culture est dans les données au lieu des lignes, obtiens-tu vraiment une comparaison entre cultures ?".
+            -->
+            <!-- PROF - VIGILANCE :
+            Erreur fréquente : laisser Calc sur Somme pour le rendement, le coût/ha ou le travail/ha.
+            Faire réfléchir au sens : additionner des rendements moyens n'a pas ici l'interprétation recherchée.
+            Autre vigilance : table dynamique non actualisée après correction de P06.
+            -->
             <p>Ressource : <a href="https://help.libreoffice.org/latest/fr/text/scalc/01/12090000.html" target="_blank" rel="noopener noreferrer">LibreOffice – Tables dynamiques</a>.</p>
             <h3>9. Comparer avec une référence extérieure</h3>
             <p>Votre table dynamique doit vous donner un rendement moyen d'environ <strong>11,51 t MS/ha</strong> pour les parcelles de maïs ensilage de notre exploitation fictive.</p>
@@ -664,9 +903,69 @@ a
                 <li>l'écart en t/ha entre votre moyenne et la référence nationale ;</li>
                 <li>l'écart en pourcentage par rapport à la référence nationale.</li>
             </ol>
-            <!-- PROF : Écart ≈ 11,51 - 13,5 = -1,99 t/ha. Écart relatif ≈ -14,7 %. Accepter de légers écarts dus aux arrondis. -->
+            <div class="student-hints">
+                <details class="student-hint" data-exercise="A9" data-hint-level="1">
+                    <summary><strong>Indice 1</strong></summary>
+                    <p>L'écart absolu répond à : « combien de t/ha de différence ? ». L'écart relatif répond à : « cette différence représente quelle proportion de la référence ? ».</p>
+                </details>
+                <details class="student-hint" data-exercise="A9" data-hint-level="2">
+                    <summary><strong>Indice 2</strong></summary>
+                    <p>Écart absolu = valeur observée − référence. Pour le pourcentage, divisez cet écart par la référence.</p>
+                </details>
+                <details class="student-hint" data-exercise="A9" data-hint-level="3">
+                    <summary><strong>Indice 3</strong></summary>
+                    <p>Commencez par <code>11,51 - 13,5</code>, puis calculez <code>(11,51 - 13,5) / 13,5 × 100</code>.</p>
+                </details>
+                <p data-hint-status="A9"></p>
+                <textarea data-save="hints-A9" hidden></textarea>
+            </div>
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : distinguer écart absolu et écart relatif.
+            Résultat attendu : écart ≈ -1,99 t/ha ; écart relatif ≈ -14,7 %.
+            Accepter de légers écarts liés aux arrondis.
+            Interprétation à faire verbaliser : le signe négatif indique que la valeur de l'exploitation fictive est inférieure à la référence.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode : demander d'abord "Quelle différence en t/ha ?", puis "1,99 représente combien par rapport à 13,5 ?".
+            Ne donner la formule du pourcentage qu'après cette verbalisation.
+            -->
+            <!-- PROF - VIGILANCE :
+            Erreur fréquente : diviser par 11,51 au lieu de 13,5.
+            Diagnostic : demander "Par rapport à quoi veux-tu exprimer ton écart ?".
+            Attention au format de cellule : une formule donnant -0,147 affichée en pourcentage devient -14,7 %. Ne pas multiplier par 100 si le format % le fait déjà.
+            -->
             <p>Q5 : Peut-on conclure uniquement à partir de cette comparaison que les parcelles de l'exploitation sont mal conduites ? Justifiez.</p>
-            <!-- PROF : Non. Une référence nationale permet de situer un résultat mais ne suffit pas à expliquer l'écart. Il faut prendre en compte le contexte : année, climat, sol, variété, pratiques, disponibilité en eau, objectifs de l'exploitation, méthode de mesure, etc. Une référence est un point de comparaison, pas automatiquement un objectif à atteindre. -->
+            <div class="student-hints">
+                <details class="student-hint" data-exercise="Q5" data-hint-level="1">
+                    <summary><strong>Indice 1</strong></summary>
+                    <p>Une moyenne nationale décrit-elle forcément les conditions particulières de cette exploitation ?</p>
+                </details>
+                <details class="student-hint" data-exercise="Q5" data-hint-level="2">
+                    <summary><strong>Indice 2</strong></summary>
+                    <p>Pensez au climat, au sol, à la variété, à l'eau disponible, aux pratiques et aux objectifs de production.</p>
+                </details>
+                <details class="student-hint" data-exercise="Q5" data-hint-level="3">
+                    <summary><strong>Indice 3</strong></summary>
+                    <p>La bonne conclusion doit distinguer <strong>constat</strong> (« notre valeur est inférieure ») et <strong>explication</strong> (« nous ne savons pas encore pourquoi »).</p>
+                </details>
+                <p data-hint-status="Q5"></p>
+                <textarea data-save="hints-Q5" hidden></textarea>
+            </div>
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : éviter le passage abusif d'une corrélation ou comparaison à un diagnostic causal.
+            Réponse attendue : non. La référence nationale permet de situer le résultat mais pas d'expliquer l'écart.
+            Éléments possibles : année, climat, sol, variété, pratiques, disponibilité en eau, objectifs, méthode de mesure.
+            Une référence est un point de comparaison, pas automatiquement une cible.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode : écrire oralement deux colonnes : "Ce que les données montrent" / "Ce qu'elles ne permettent pas encore d'expliquer".
+            Relance : "Quelles données supplémentaires demanderais-tu avant de conseiller l'exploitant ?".
+            -->
+            <!-- PROF - VIGILANCE :
+            Refuser les formulations catégoriques du type "le rendement est mauvais".
+            Encourager : "inférieur à la référence nationale 2024 dans ce jeu de données".
+            La nuance fait partie ici de la compétence professionnelle.
+            -->
             <h3>10. Faire parler le tableau de bord</h3>
             <p>À partir de votre table dynamique, réalisez un graphique permettant de comparer le <strong>rendement moyen par type de culture</strong>.</p>
             <p>Votre graphique doit contenir :</p>
@@ -677,7 +976,18 @@ a
                 <li>une présentation suffisamment claire pour être comprise sans relire toutes les données du tableau.</li>
             </ul>
             <p>Q6 : Pourquoi un graphique est-il utile ici alors que toutes les valeurs sont déjà présentes dans la table dynamique ?</p>
-            <!-- PROF : Le graphique facilite la comparaison visuelle, fait ressortir rapidement les différences et permet de communiquer l'information à un destinataire qui n'a pas besoin de lire toutes les cellules. Il ne remplace cependant pas les valeurs du tableau. -->
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : distinguer donnée détaillée et représentation facilitant la comparaison.
+            Réponse attendue : le graphique permet de percevoir rapidement les écarts et facilite la communication ; il ne remplace pas les valeurs numériques.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Relance : "Si tu dois expliquer le résultat en 10 secondes à quelqu'un qui ne connaît pas ton fichier, préférerais-tu lui montrer les cellules ou le graphique ? Pourquoi ?".
+            -->
+            <!-- PROF - VIGILANCE :
+            Le graphique doit représenter le rendement moyen, pas la production totale.
+            Vérifier le titre, l'unité et la cohérence des axes.
+            Éviter les effets décoratifs qui rendent la lecture plus difficile.
+            -->
             <h3>11. De l'alerte automatique à la décision professionnelle</h3>
             <p>Dans la feuille <strong>Synthese</strong>, rédigez une conclusion de <strong>5 à 8 lignes</strong> à destination de l'exploitant.</p>
             <p>Votre texte doit :</p>
@@ -688,10 +998,44 @@ a
                 <li>utiliser avec prudence la référence Agreste ;</li>
                 <li>proposer au moins une information supplémentaire à rechercher avant de prendre une décision.</li>
             </ul>
-            <!-- PROF : Attendu possible : P02, P06 et P10 sont prioritaires car elles dépassent simultanément les objectifs internes de coût et de temps de travail. Elles correspondent toutes au maïs ensilage dans ce jeu de données. Le maïs présente le rendement moyen le plus élevé, environ 11,51 t MS/ha, mais aussi les coûts et temps de travail moyens les plus élevés. Ce rendement est environ 14,7 % inférieur à la référence nationale Agreste 2024 de 13,5 t/ha. On ne peut pas en déduire à lui seul une mauvaise conduite : il faudrait notamment connaître le contexte climatique, les sols, les pratiques culturales, les objectifs de rendement et les résultats économiques avant de proposer un ajustement. -->
+            <div class="student-hints">
+                <details class="student-hint" data-exercise="A11" data-hint-level="1">
+                    <summary><strong>Indice 1</strong></summary>
+                    <p>Structurez votre réponse en trois étapes : <strong>constat → interprétation → information à rechercher avant décision</strong>.</p>
+                </details>
+                <details class="student-hint" data-exercise="A11" data-hint-level="2">
+                    <summary><strong>Indice 2</strong></summary>
+                    <p>Commencez par les parcelles prioritaires, expliquez le critère déclencheur, puis comparez le maïs à la référence sans prétendre connaître la cause de l'écart.</p>
+                </details>
+                <details class="student-hint" data-exercise="A11" data-hint-level="3">
+                    <summary><strong>Indice 3</strong></summary>
+                    <p>Votre conclusion peut commencer par : « Le tableau de bord signale P02, P06 et P10 car... ». Ajoutez ensuite un résultat chiffré et terminez par une information à vérifier avant toute recommandation.</p>
+                </details>
+                <p data-hint-status="A11"></p>
+                <textarea data-save="hints-A11" hidden></textarea>
+            </div>
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : passer d'un résultat automatisé à une argumentation professionnelle prudente.
+            Éléments attendus :
+            - P02, P06 et P10 prioritaires car coût ET temps dépassent les objectifs internes ;
+            - ces parcelles correspondent au maïs ensilage ;
+            - rendement moyen maïs ≈ 11,51 t MS/ha ;
+            - référence Agreste = 13,5 t/ha, soit environ -14,7 % ;
+            - impossibilité de conclure à une mauvaise conduite avec ces seules données ;
+            - proposition d'une information supplémentaire pertinente.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode d'explication : utiliser la trame C-I-D : Constat / Interprétation / Décision à préparer.
+            Relances : "Qu'est-ce que ton outil sait réellement ?", "Qu'est-ce qu'il ne sait pas ?", "Quelle information demanderais-tu avant d'agir ?".
+            -->
+            <!-- PROF - VIGILANCE :
+            Erreur fréquente : transformer "Prioritaire" en recommandation automatique de réduire les intrants.
+            Le statut indique seulement que deux seuils internes sont dépassés.
+            Ne pas accepter une conclusion sans données chiffrées ni justification.
+            Valoriser une formulation nuancée et professionnelle plutôt qu'une réponse catégorique.
+            -->
             <h3>12. Tester avant de rendre</h3>
             <p>Un bon outil numérique doit continuer à fonctionner lorsque les données changent.</p>
-            <p>Avant de rendre votre fichier :</p>
             <ol>
                 <li>modifiez temporairement le coût maximal dans la feuille <strong>Parametres</strong> de 400 à 700 €/ha ;</li>
                 <li>observez les colonnes d'alerte ;</li>
@@ -702,7 +1046,19 @@ a
                 <li>vérifiez que votre graphique et votre synthèse sont cohérents.</li>
             </ol>
             <p>Q7 : Pourquoi est-il important de tester un tableau de bord en modifiant volontairement certaines données ?</p>
-            <!-- PROF : Le test permet de vérifier que les formules, références, seuils et synthèses réagissent correctement aux changements. Un tableau qui donne le bon résultat avec un seul jeu de données peut contenir une erreur invisible. On teste donc le comportement de l'outil, pas seulement son résultat actuel. -->
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : comprendre qu'un outil doit être validé par son comportement et pas uniquement par un résultat ponctuel.
+            Réponse attendue : les tests permettent de vérifier que formules, références, seuils, alertes et synthèses réagissent correctement lorsque les données changent.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode : comparaison avec un test technique : "Un résultat correct aujourd'hui prouve-t-il que la formule fonctionnera demain avec d'autres valeurs ?".
+            Relance : "Qu'est-ce qu'une modification volontaire peut révéler qu'un simple coup d'œil ne montre pas ?".
+            -->
+            <!-- PROF - VIGILANCE :
+            Erreur fréquente : modifier les données puis oublier de les remettre à leur valeur initiale.
+            Faire vérifier 400 €/ha avant le rendu.
+            La table dynamique peut nécessiter une actualisation manuelle : c'est justement un point important à faire remarquer.
+            -->
             <h3>13. Conclusion du travail</h3>
             <p>Sans retourner lire les définitions précédentes, complétez dans la feuille <strong>Synthese</strong> :</p>
             <ul>
@@ -712,10 +1068,53 @@ a
                 <li>Une table dynamique sert à ................................................................................................................</li>
                 <li>Un tableau de bord aide le professionnel à ................................................................................................................</li>
             </ul>
-            <!-- PROF : Référence absolue = conserver une cellule fixe lors de la recopie d'une formule. SI = produire un résultat différent selon qu'une condition est vraie ou fausse. ET/OU = combiner plusieurs conditions. Table dynamique = regrouper et synthétiser rapidement des données selon différents critères. Tableau de bord = rendre les informations importantes visibles pour analyser une situation et aider à décider. -->
+            <!-- PROF - ATTENDU :
+            Réponses attendues :
+            - référence absolue : conserver une cellule fixe lors de la recopie ;
+            - SI : choisir un résultat selon qu'une condition est vraie ou fausse ;
+            - ET/OU : combiner plusieurs conditions ;
+            - table dynamique : regrouper et synthétiser rapidement des données ;
+            - tableau de bord : rendre visibles les indicateurs importants afin d'analyser une situation et d'aider à décider.
+            Accepter les formulations personnelles si le sens est exact.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Ne pas redonner immédiatement les définitions.
+            Relances courtes : "Que fait le $ ?", "À quoi sert le test dans SI ?", "Quelle différence entre ET et OU ?", "Qu'as-tu obtenu avec la table dynamique ?".
+            -->
+            <!-- PROF - VIGILANCE :
+            Cette partie sert aussi de diagnostic de fin de séance.
+            Repérer les notions qu'un élève sait utiliser techniquement mais ne parvient pas encore à expliquer.
+            -->
             <p>Dernière question :</p>
             <p>En trois ou quatre phrases, expliquez pourquoi <strong>automatiser un diagnostic ne signifie pas automatiser la décision</strong>.</p>
-            <!-- PROF : L'outil applique des règles définies par l'utilisateur et fait ressortir des indicateurs ou alertes. Il ne connaît pas nécessairement tout le contexte de l'exploitation. Le professionnel doit vérifier les données, interpréter les résultats, mobiliser d'autres informations et assumer la décision finale. -->
+            <div class="student-hints">
+                <details class="student-hint" data-exercise="Q8" data-hint-level="1">
+                    <summary><strong>Indice 1</strong></summary>
+                    <p>Demandez-vous ce que connaît réellement le tableur : uniquement les données qu'on lui a fournies, ou tout le contexte de l'exploitation ?</p>
+                </details>
+                <details class="student-hint" data-exercise="Q8" data-hint-level="2">
+                    <summary><strong>Indice 2</strong></summary>
+                    <p>L'outil applique des règles et signale des situations. Le professionnel doit ensuite interpréter ces résultats avec d'autres informations.</p>
+                </details>
+                <details class="student-hint" data-exercise="Q8" data-hint-level="3">
+                    <summary><strong>Indice 3</strong></summary>
+                    <p>Votre réponse doit faire apparaître trois idées : <strong>règles automatiques → contexte incomplet → décision humaine argumentée</strong>.</p>
+                </details>
+                <p data-hint-status="Q8"></p>
+                <textarea data-save="hints-Q8" hidden></textarea>
+            </div>
+            <!-- PROF - ATTENDU :
+            Objectif conceptuel : distinguer automatisation du traitement et responsabilité de la décision.
+            Réponse attendue : le tableau applique des règles définies et fait ressortir des indicateurs, mais il ne connaît pas nécessairement tout le contexte. Le professionnel doit vérifier les données, rechercher d'autres informations, interpréter les résultats et prendre la décision finale.
+            -->
+            <!-- PROF - AIDE SI BESOIN :
+            Méthode : poser la question "Le tableur sait-il pourquoi le rendement est inférieur à la référence ?".
+            Puis : "S'il ne le sait pas, peut-il décider seul de la bonne action à entreprendre ?".
+            -->
+            <!-- PROF - VIGILANCE :
+            Éviter l'opposition simpliste "ordinateur mauvais / humain bon".
+            L'objectif est de comprendre la complémentarité : automatisation utile pour traiter et signaler ; expertise humaine indispensable pour contextualiser et décider.
+            -->
             <p>Enregistrez votre fichier sous le nom <strong>BTS2_ACSAGRI_S03_NOM_Prenom.ods</strong> puis déposez-le dans l'espace d'échange.</p>
             <h3>Sources et ressources</h3>
             <ul>
