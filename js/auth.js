@@ -18,6 +18,65 @@ function usernameToEmail(username) {
 
 
 // ======================================================
+// GÉNÉRATION AUTOMATIQUE DE L'IDENTIFIANT
+// ======================================================
+
+function generateUsername(prenom, nom) {
+
+    return `${prenom}.${nom}`
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9.-]/g, "");
+
+}
+
+
+const registerPrenom =
+    document.getElementById("register-prenom");
+
+const registerNom =
+    document.getElementById("register-nom");
+
+const registerUsername =
+    document.getElementById("register-username");
+
+
+function updateGeneratedUsername() {
+
+    const prenom =
+        registerPrenom.value.trim();
+
+    const nom =
+        registerNom.value.trim();
+
+
+    if (!prenom || !nom) {
+
+        registerUsername.value = "";
+
+        return;
+    }
+
+
+    registerUsername.value =
+        generateUsername(prenom, nom);
+
+}
+
+
+registerPrenom.addEventListener(
+    "input",
+    updateGeneratedUsername
+);
+
+registerNom.addEventListener(
+    "input",
+    updateGeneratedUsername
+);
+
+
+// ======================================================
 // CRÉATION DU COMPTE
 // ======================================================
 
@@ -48,16 +107,30 @@ document
             document.getElementById("register-password")
                 .value;
 
+
         if (
             !prenom ||
             !nom ||
+            !classe ||
             !username ||
             !password
         ) {
+
             message.textContent =
                 "Merci de remplir tous les champs.";
 
             return;
+
+        }
+
+
+        if (password.length < 8) {
+
+            message.textContent =
+                "Le mot de passe doit contenir au moins 8 caractères.";
+
+            return;
+
         }
 
 
@@ -85,6 +158,7 @@ document
                 "Erreur : " + error.message;
 
             return;
+
         }
 
 
@@ -98,6 +172,7 @@ document
                 "Compte créé, mais aucune session n'a été ouverte.";
 
             return;
+
         }
 
 
@@ -129,13 +204,14 @@ document
                 + profileError.message;
 
             return;
+
         }
 
 
-        message.textContent =
-            "Compte créé avec succès.";
+        // Redirection directe vers l'espace élève
 
-        await refreshUser();
+        window.location.href =
+            "/eleve/";
 
     });
 
@@ -156,6 +232,16 @@ document
         const password =
             document.getElementById("login-password")
                 .value;
+
+
+        if (!username || !password) {
+
+            message.textContent =
+                "Merci de saisir ton identifiant et ton mot de passe.";
+
+            return;
+
+        }
 
 
         const email =
@@ -181,47 +267,20 @@ document
                 "Identifiant ou mot de passe incorrect.";
 
             return;
+
         }
 
 
-        message.textContent =
-            "Connexion réussie.";
-
-        await refreshUser();
-
-    });
-
-
-// ======================================================
-// DÉCONNEXION
-// ======================================================
-
-document
-    .getElementById("logout-button")
-    .addEventListener("click", async () => {
-
-        await db.auth.signOut();
-
-        message.textContent =
-            "Vous êtes déconnecté.";
-
-        await refreshUser();
-
-    });
-
-
-document
-    .getElementById("continue-button")
-    .addEventListener("click", () => {
+        // Redirection directe vers l'espace élève
 
         window.location.href =
-            "/eleve/index.html";
+            "/eleve/";
 
     });
 
 
 // ======================================================
-// AFFICHAGE DE L'ÉLÈVE CONNECTÉ
+// VÉRIFICATION AU CHARGEMENT
 // ======================================================
 
 async function refreshUser() {
@@ -229,59 +288,31 @@ async function refreshUser() {
     const {
         data: {
             user
-        }
-    } = await db.auth.getUser();
-
-
-    const createAccount =
-        document.getElementById("create-account");
-
-    const login =
-        document.getElementById("login");
-
-    const connected =
-        document.getElementById("connected");
-
-
-    if (!user) {
-
-        createAccount.hidden = false;
-        login.hidden = false;
-        connected.hidden = true;
-
-        return;
-    }
-
-
-    const {
-        data: profile,
+        },
         error
-    } = await db
-        .from("profiles")
-        .select("*")
-        .eq("user_id", user.id)
-        .single();
+    } = await db.auth.getUser();
 
 
     if (error) {
 
         console.error(error);
 
-        message.textContent =
-            "Impossible de récupérer le profil.";
-
         return;
+
     }
 
 
-    createAccount.hidden = true;
-    login.hidden = true;
-    connected.hidden = false;
+    /*
+        Si l'élève est déjà connecté et revient sur /auth/,
+        inutile de lui montrer à nouveau la connexion.
+    */
 
+    if (user) {
 
-    document.getElementById("welcome")
-        .textContent =
-        `Bonjour ${profile.prenom} ${profile.nom} 👋`;
+        window.location.href =
+            "/eleve/";
+
+    }
 
 }
 
