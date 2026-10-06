@@ -52,6 +52,35 @@ async function initStudentDashboard() {
 
     await loadLastSession(profile);
 
+    function setSubjectLinks(profile) {
+
+        const timLink =
+            document.getElementById("subject-tim-link");
+
+        if (!timLink) {
+            return;
+        }
+
+        const timRoutes = {
+            cap1: "/tim/cap1/",
+            cap2: "/tim/cap2/",
+            "2de": "/tim/2de/",
+            "1re": "/tim/1re/",
+            term: "/tim/term/",
+            bts1: "/tim/bts1/",
+            bts2: "/tim/bts2/test.html"
+        };
+
+        const url =
+            timRoutes[profile.classe];
+
+        if (url) {
+            timLink.href = url;
+        } else {
+            timLink.hidden = true;
+        }
+    }
+
 }
 
 
@@ -265,3 +294,5 @@ document
 // ======================================================
 
 initStudentDashboard();
+
+setSubjectLinks(profile);
