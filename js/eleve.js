@@ -1,3 +1,38 @@
+// ======================================================
+// ROUTES DE L'APPLICATION
+// ======================================================
+
+const ROUTES = {
+
+    espaceEleve: "/eleve/",
+    auth: "/auth/",
+
+    tim: {
+        cap1: "/mfr/cap1/",
+        cap2: "/mfr/cap2/",
+        "2de": "/mfr/2de/",
+        "1re": "/mfr/1re/",
+        term: "/mfr/term/",
+        bts1: "/mfr/bts1/",
+        bts2: "/mfr/bts2/test.html"
+    },
+
+    maths: {
+        "3e": "/mfr/maths/4e-3e/",
+        "2de": "/mfr/maths/2de/",
+        "1re": "/mfr/maths/bacpro1/",
+        term: "/mfr/maths/bacpro2/"
+    },
+
+    techno: {
+        "5e": "/techno/5/",
+        "4e": "/techno/4/",
+        "3e": "/techno/3/"
+    }
+
+};
+
+
 let currentUser = null;
 
 
@@ -17,7 +52,8 @@ async function initStudentDashboard() {
 
     if (error || !user) {
 
-        window.location.href = ROUTES.auth;
+        window.location.href =
+            ROUTES.auth;
 
         return;
     }
@@ -42,70 +78,18 @@ async function initStudentDashboard() {
 
         await db.auth.signOut();
 
-        window.location.href = ROUTES.auth;
+        window.location.href =
+            ROUTES.auth;
 
         return;
     }
 
 
     showStudent(profile);
+
     setSubjectLinks(profile);
 
     await loadLastSession(profile);
-
-    function setSubjectLinks(profile) {
-
-        const timLink =
-            document.getElementById("subject-tim-link");
-
-        if (!timLink) {
-            return;
-        }
-
-        // ======================================================
-        // ROUTES DE L'APPLICATION
-        // ======================================================
-
-        const ROUTES = {
-
-            espaceEleve: "/eleve/",
-
-            auth: "/auth/",
-
-            tim: {
-                cap1: "/mfr/cap1/",
-                cap2: "/mfr/cap2/",
-                "2de": "/mfr/2de/",
-                "1re": "/mfr/1re/",
-                term: "/mfr/term/",
-                bts1: "/mfr/bts1/",
-                bts2: "/mfr/bts2/test.html"
-            },
-
-            maths: {
-                "3e": "mfr/maths/4e-3e/",
-                "2de": "/mfr/maths/2de/",
-                "1re": "/mfr/maths/bacpro1/",
-                term: "/mfr/maths/bacpro2/"
-            },
-
-            techno: {
-                "5e": "/techno/5/",
-                "4e": "/techno/4/",
-                "3e": "/techno/3/"
-            }
-
-        };
-
-        const url =
-            ROUTES.tim[profile.classe];
-
-        if (url) {
-            timLink.href = url;
-        } else {
-            timLink.hidden = true;
-        }
-    }
 
 }
 
@@ -131,6 +115,70 @@ function showStudent(profile) {
 
 
 // ======================================================
+// LIENS DES MATIÈRES
+// ======================================================
+
+function setSubjectLinks(profile) {
+
+    const mathsLink =
+        document.getElementById(
+            "subject-maths-link"
+        );
+
+    const technoLink =
+        document.getElementById(
+            "subject-techno-link"
+        );
+
+    const timLink =
+        document.getElementById(
+            "subject-tim-link"
+        );
+
+
+    configureSubjectLink(
+        mathsLink,
+        ROUTES.maths[profile.classe]
+    );
+
+    configureSubjectLink(
+        technoLink,
+        ROUTES.techno[profile.classe]
+    );
+
+    configureSubjectLink(
+        timLink,
+        ROUTES.tim[profile.classe]
+    );
+
+}
+
+
+function configureSubjectLink(
+    element,
+    url
+) {
+
+    if (!element) {
+        return;
+    }
+
+
+    if (url) {
+
+        element.href = url;
+        element.hidden = false;
+
+    } else {
+
+        element.hidden = true;
+
+    }
+
+}
+
+
+// ======================================================
 // DERNIÈRE SÉANCE
 // ======================================================
 
@@ -141,14 +189,12 @@ async function loadLastSession(profile) {
         error
     } = await db
         .from("student_work")
-        .select(
-            `
+        .select(`
             matiere,
             classe,
             seance,
             updated_at
-            `
-        )
+        `)
         .eq("user_id", currentUser.id)
         .order(
             "updated_at",
@@ -168,47 +214,44 @@ async function loadLastSession(profile) {
     }
 
 
-    if (!data) {
-
     const continueButton =
         document.getElementById(
             "continue-button"
         );
 
 
-    if (profile.classe === "bts2") {
+    // Aucun travail précédent
 
-        continueButton.disabled = false;
+    if (!data) {
 
-        continueButton.textContent =
-            "Commencer le test TIM BTS 2";
+        if (profile.classe === "bts2") {
+
+            continueButton.disabled =
+                false;
+
+            continueButton.textContent =
+                "Commencer le test TIM BTS 2";
 
 
-        continueButton.addEventListener(
-            "click",
-            () => {
+            continueButton.addEventListener(
+                "click",
+                () => {
 
-                window.location.href =
-                    "/tim/bts2/test.html";
+                    window.location.href =
+                        ROUTES.tim.bts2;
 
-            }
-        );
+                }
+            );
 
-    }
+        }
 
 
         return;
-
     }
 
 
-    const continueButton =
-        document.getElementById(
-            "continue-button"
-        );
-
-
-    continueButton.disabled = false;
+    continueButton.disabled =
+        false;
 
 
     continueButton.textContent =
@@ -222,9 +265,17 @@ async function loadLastSession(profile) {
             const url =
                 getSessionUrl(data);
 
+
             if (!url) {
+
+                console.warn(
+                    "Aucune route trouvée pour :",
+                    data
+                );
+
                 return;
             }
+
 
             window.location.href =
                 url;
@@ -268,31 +319,33 @@ function formatSession(data) {
 
 function getSessionUrl(data) {
 
-    const routes = {
+    // Cas particulier du test actuel
 
-        maths: {
+    if (
+        data.matiere === "tim" &&
+        data.classe === "bts2" &&
+        data.seance === "TEST"
+    ) {
 
-            "3e": {
-                TEST: "/test-save.html"
-            }
+        return ROUTES.tim.bts2;
 
-        },
-
-        tim: {
-
-            bts2: {
-                TEST: "/tim/bts2/test.html"
-            }
-
-        }
-
-    };
+    }
 
 
-    return (
-        routes[data.matiere]?.[data.classe]?.[data.seance]
-        ?? null
-    );
+    // Ancien test maths
+
+    if (
+        data.matiere === "maths" &&
+        data.classe === "3e" &&
+        data.seance === "TEST"
+    ) {
+
+        return "/test-save.html";
+
+    }
+
+
+    return null;
 
 }
 
@@ -309,7 +362,8 @@ document
 
             await db.auth.signOut();
 
-            window.location.href = ROUTES.auth;
+            window.location.href =
+                ROUTES.auth;
 
         }
     );
