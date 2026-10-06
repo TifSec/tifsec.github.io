@@ -1,6 +1,9 @@
 const message = document.getElementById("message");
 
-
+const ROUTES = {
+    espaceEleve: "/eleve/",
+    auth: "/auth/",
+}
 // ======================================================
 // IDENTIFIANT → EMAIL TECHNIQUE
 // ======================================================
