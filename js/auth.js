@@ -4,6 +4,13 @@ const ROUTES = {
     espaceEleve: "/eleve/",
     auth: "/auth/",
 }
+
+const role =
+    document
+        .getElementById("register-role")
+        .value;
+
+
 // ======================================================
 // IDENTIFIANT → EMAIL TECHNIQUE
 // ======================================================
@@ -113,17 +120,31 @@ document
 
         if (
             !prenom ||
-            !nom ||
-            !classe ||
             !username ||
             !password
         ) {
 
             message.textContent =
-                "Merci de remplir tous les champs.";
+                "Merci de remplir les champs obligatoires.";
 
             return;
+        }
 
+
+        /*
+            La classe est obligatoire uniquement
+            pour un compte élève.
+        */
+
+        if (
+            role === "student" &&
+            !classe
+        ) {
+
+            message.textContent =
+                "Merci de choisir ta classe.";
+
+            return;
         }
 
 
@@ -179,7 +200,7 @@ document
         }
 
 
-        // Création du profil élève
+        // Création du profil
 
         const {
             error: profileError
@@ -187,13 +208,22 @@ document
             .from("profiles")
             .insert({
 
-                user_id: user.id,
+                user_id:
+                    user.id,
 
-                prenom: prenom,
+                prenom:
+                    prenom,
 
-                nom: nom,
+                nom:
+                    nom || null,
 
-                classe: classe
+                classe:
+                    role === "student"
+                        ? classe
+                        : null,
+
+                role:
+                    role
 
             });
 
@@ -288,31 +318,39 @@ async function refreshUser() {
 
     const {
         data: {
-            user
+            session
         },
         error
-    } = await db.auth.getUser();
+    } = await db.auth.getSession();
 
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            "Erreur lors de la vérification de la session :",
+            error
+        );
 
         return;
-
     }
 
 
     /*
-        Si l'élève est déjà connecté et revient sur /auth/,
-        inutile de lui montrer à nouveau la connexion.
+        Aucun utilisateur connecté :
+        on reste simplement sur la page d'authentification.
     */
 
-    if (user) {
-
-        window.location.href = ROUTES.espaceEleve;
-
+    if (!session) {
+        return;
     }
+
+
+    /*
+        Un utilisateur est déjà connecté.
+    */
+
+    window.location.href =
+        ROUTES.espaceEleve;
 
 }
 
