@@ -131,6 +131,144 @@
     }
 
 
+/* =========================================================
+   BARRE DE PROGRESSION DE LA SÉANCE ACTIVE
+========================================================= */
+
+function updateCourseProgress() {
+    const sidebar = document.querySelector('.course-progress');
+    const layout = document.querySelector('.course-page-layout');
+    if (!sidebar || !layout) return;
+
+    const session = document.querySelector('.course-session.active');
+
+    if (!session) {
+        sidebar.hidden = true;
+        layout.classList.add('progress-hidden');
+        return;
+    }
+
+    sidebar.hidden = false;
+    layout.classList.remove('progress-hidden');
+
+    const titleElement = sidebar.querySelector('[data-progress-session-title]');
+
+    if (titleElement) {
+        const sessionCode = session.dataset.seance || '';
+        const sessionTitle = session.dataset.sessionTitle || '';
+
+        if (sessionCode && sessionTitle) {
+            titleElement.textContent = `${sessionCode} — ${sessionTitle}`;
+        } else if (sessionTitle) {
+            titleElement.textContent = sessionTitle;
+        } else {
+            titleElement.textContent = 'Séance';
+        }
+    }
+
+    const exercises = Array.from(session.querySelectorAll('[data-track-progress="true"]'));
+
+    const total = exercises.length;
+    let correct = 0;
+    let incorrect = 0;
+    let review = 0;
+    let empty = 0;
+
+    exercises.forEach(exercise => {
+        const state = exercise.dataset.answerState || 'empty';
+
+        switch (state) {
+            case 'correct':
+                correct++;
+                break;
+            case 'incorrect':
+                incorrect++;
+                break;
+            case 'review':
+                review++;
+                break;
+            default:
+                empty++;
+                break;
+        }
+    });
+
+    const completed = correct + incorrect + review;
+    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+    const percentElement = sidebar.querySelector('[data-progress-percent]');
+    const barElement = sidebar.querySelector('[data-progress-bar]');
+    const progressBar = sidebar.querySelector('.progress-bar');
+    const currentElement = sidebar.querySelector('[data-progress-current]');
+    const totalElement = sidebar.querySelector('[data-progress-total]');
+    const correctElement = sidebar.querySelector('[data-count-correct]');
+    const incorrectElement = sidebar.querySelector('[data-count-incorrect]');
+    const reviewElement = sidebar.querySelector('[data-count-review]');
+    const emptyElement = sidebar.querySelector('[data-count-empty]');
+
+    if (percentElement) percentElement.textContent = `${percent} %`;
+    if (barElement) barElement.style.width = `${percent}%`;
+    if (progressBar) progressBar.setAttribute('aria-valuenow', String(percent));
+    if (currentElement) currentElement.textContent = String(completed);
+    if (totalElement) totalElement.textContent = String(total);
+    if (correctElement) correctElement.textContent = String(correct);
+    if (incorrectElement) incorrectElement.textContent = String(incorrect);
+    if (reviewElement) reviewElement.textContent = String(review);
+    if (emptyElement) emptyElement.textContent = String(empty);
+}
+
+/* =========================================================
+   SURVEILLANCE DES CHANGEMENTS D'ÉTAT DES RÉPONSES
+========================================================= */
+
+function initCourseProgressObserver() {
+
+    const courseContent =
+        document.querySelector(
+            '.course-content'
+        );
+
+    if (!courseContent) {
+        return;
+    }
+
+
+    const observer =
+        new MutationObserver(
+            mutations => {
+
+                const answerStateChanged =
+                    mutations.some(
+                        mutation =>
+                            mutation.type ===
+                                'attributes'
+                            &&
+                            mutation.attributeName ===
+                                'data-answer-state'
+                    );
+
+
+                if (answerStateChanged) {
+
+                    updateCourseProgress();
+                }
+
+            }
+        );
+
+
+    observer.observe(
+        courseContent,
+        {
+            subtree: true,
+            attributes: true,
+            attributeFilter: [
+                'data-answer-state'
+            ]
+        }
+    );
+}
+
     /* =========================================================
        AFFICHAGE D'UNE SECTION
        ========================================================= */
@@ -192,6 +330,7 @@
                 );
 
             });
+        updateCourseProgress();
     }
 
 
@@ -578,6 +717,8 @@
         addCompletionButtons();
 
         buildProgression();
+
+        initCourseProgressObserver();
 
 
         /*
