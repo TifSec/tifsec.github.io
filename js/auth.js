@@ -2,6 +2,7 @@ const message = document.getElementById("message");
 
 const ROUTES = {
     espaceEleve: "/eleve/",
+    espaceProf: "/prof/",
     auth: "/auth/"
 };
 
@@ -199,7 +200,11 @@ document
         // REDIRECTION
         // ==================================================
 
-        window.location.href = ROUTES.espaceEleve;
+        if (role === "teacher") {
+            window.location.href = ROUTES.espaceProf;
+        } else {
+            window.location.href = ROUTES.espaceEleve;
+        }
     });
 
 // ======================================================
@@ -238,7 +243,11 @@ document
             return;
         }
 
-        window.location.href = ROUTES.espaceEleve;
+        if (role === "teacher") {
+            window.location.href = ROUTES.espaceProf;
+        } else {
+            window.location.href = ROUTES.espaceEleve;
+        }
     });
 
 // ======================================================
@@ -265,7 +274,11 @@ async function refreshUser() {
         return;
     }
 
-    window.location.href = ROUTES.espaceEleve;
+    if (role === "teacher") {
+        window.location.href = ROUTES.espaceProf;
+    } else {
+        window.location.href = ROUTES.espaceEleve;
+    }
 }
 
 // ======================================================
