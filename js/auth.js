@@ -224,13 +224,17 @@ document
             .value;
 
         if (!username || !password) {
-            showMessage("Merci de saisir ton identifiant et ton mot de passe.");
+            showMessage(
+                "Merci de saisir ton identifiant et ton mot de passe."
+            );
             return;
         }
 
-        const email = usernameToEmail(username);
+        const email =
+            usernameToEmail(username);
 
         const {
+            data,
             error
         } = await db.auth.signInWithPassword({
             email: email,
@@ -239,15 +243,53 @@ document
 
         if (error) {
             console.error(error);
-            showMessage("Identifiant ou mot de passe incorrect.");
+
+            showMessage(
+                "Identifiant ou mot de passe incorrect."
+            );
+
             return;
         }
 
-        if (role === "teacher") {
-            window.location.href = ROUTES.espaceProf;
-        } else {
-            window.location.href = ROUTES.espaceEleve;
+        const user =
+            data.user;
+
+        if (!user) {
+            showMessage(
+                "Connexion réussie, mais utilisateur introuvable."
+            );
+            return;
         }
+
+        const {
+            data: profile,
+            error: profileError
+        } = await db
+            .from("profiles")
+            .select("role")
+            .eq("user_id", user.id)
+            .single();
+
+        if (profileError || !profile) {
+            console.error(
+                "Erreur lors du chargement du profil :",
+                profileError
+            );
+
+            showMessage(
+                "Impossible de charger ton profil."
+            );
+
+            return;
+        }
+
+        if (profile.role === "teacher") {
+            window.location.href = "/prof/";
+            return;
+        }
+
+        window.location.href =
+            ROUTES.espaceEleve;
     });
 
 // ======================================================
