@@ -274,11 +274,31 @@ async function refreshUser() {
         return;
     }
 
-    if (role === "teacher") {
-        window.location.href = ROUTES.espaceProf;
-    } else {
-        window.location.href = ROUTES.espaceEleve;
+    const user = session.user;
+
+    const {
+        data: profile,
+        error: profileError
+    } = await db
+        .from("profiles")
+        .select("role")
+        .eq("user_id", user.id)
+        .single();
+
+    if (profileError || !profile) {
+        console.error(
+            "Erreur lors du chargement du profil :",
+            profileError
+        );
+        return;
     }
+
+    if (profile.role === "teacher") {
+        window.location.href = "/prof/";
+        return;
+    }
+
+    window.location.href = ROUTES.espaceEleve;
 }
 
 // ======================================================
