@@ -2,6 +2,42 @@ const message = document.getElementById("message");
 
 
 // ======================================================
+// ROUTES DE L'APPLICATION
+// ======================================================
+
+const ROUTES = {
+
+    espaceEleve: "/eleve/",
+
+    auth: "/auth/",
+
+    tim: {
+        cap1: "/tim/cap1/",
+        cap2: "/tim/cap2/",
+        "2de": "/tim/2de/",
+        "1re": "/tim/1re/",
+        term: "/tim/term/",
+        bts1: "/tim/bts1/",
+        bts2: "/tim/bts2/test.html"
+    },
+
+    maths: {
+        "3e": "/maths/3e/",
+        "2de": "/maths/2de/",
+        "1re": "/maths/1re/",
+        term: "/maths/term/"
+    },
+
+    techno: {
+        "5e": "/techno/5/",
+        "4e": "/techno/4/",
+        "3e": "/techno/3/"
+    }
+
+};
+
+
+// ======================================================
 // IDENTIFIANT → EMAIL TECHNIQUE
 // ======================================================
 
@@ -210,8 +246,7 @@ document
 
         // Redirection directe vers l'espace élève
 
-        window.location.href =
-            "/eleve/";
+        window.location.href = ROUTES.espaceEleve;
 
     });
 
@@ -273,8 +308,7 @@ document
 
         // Redirection directe vers l'espace élève
 
-        window.location.href =
-            "/eleve/";
+        window.location.href = ROUTES.espaceEleve;
 
     });
 
@@ -309,8 +343,7 @@ async function refreshUser() {
 
     if (user) {
 
-        window.location.href =
-            "/eleve/";
+        window.location.href = ROUTES.espaceEleve;
 
     }
 

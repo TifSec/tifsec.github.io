@@ -433,8 +433,7 @@ document
 
             await db.auth.signOut();
 
-            window.location.href =
-                "/auth/";
+            window.location.href = ROUTES.auth;
 
         }
     );

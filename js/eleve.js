@@ -17,8 +17,7 @@ async function initStudentDashboard() {
 
     if (error || !user) {
 
-        window.location.href =
-            "/auth/";
+        window.location.href = ROUTES.auth;
 
         return;
     }
@@ -43,8 +42,7 @@ async function initStudentDashboard() {
 
         await db.auth.signOut();
 
-        window.location.href =
-            "/auth/";
+        window.location.href = ROUTES.auth;
 
         return;
     }
@@ -117,7 +115,35 @@ async function loadLastSession(profile) {
 
     if (!data) {
 
+    const continueButton =
+        document.getElementById(
+            "continue-button"
+        );
+
+
+    if (profile.classe === "bts2") {
+
+        continueButton.disabled = false;
+
+        continueButton.textContent =
+            "Commencer le test TIM BTS 2";
+
+
+        continueButton.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "/tim/bts2/test.html";
+
+            }
+        );
+
+    }
+
+
         return;
+
     }
 
 
@@ -187,29 +213,31 @@ function formatSession(data) {
 
 function getSessionUrl(data) {
 
-    /*
-        On modifiera cette fonction
-        lorsque nous transformerons
-        le premier vrai cours.
+    const routes = {
 
-        Exemple futur :
+        maths: {
 
-        /maths/43/s04/
-    */
+            "3e": {
+                TEST: "/test-save.html"
+            }
+
+        },
+
+        tim: {
+
+            bts2: {
+                TEST: "/tim/bts2/test.html"
+            }
+
+        }
+
+    };
 
 
-    if (
-        data.matiere === "maths" &&
-        data.classe === "3e" &&
-        data.seance === "TEST"
-    ) {
-
-        return "/test-save.html";
-
-    }
-
-
-    return null;
+    return (
+        routes[data.matiere]?.[data.classe]?.[data.seance]
+        ?? null
+    );
 
 }
 
@@ -226,8 +254,7 @@ document
 
             await db.auth.signOut();
 
-            window.location.href =
-                "/auth/";
+            window.location.href = ROUTES.auth;
 
         }
     );
