@@ -49,6 +49,7 @@ async function initStudentDashboard() {
 
 
     showStudent(profile);
+    setSubjectLinks(profile);
 
     await loadLastSession(profile);
 
@@ -62,13 +63,13 @@ async function initStudentDashboard() {
         }
 
         const timRoutes = {
-            cap1: "/tim/cap1/",
-            cap2: "/tim/cap2/",
-            "2de": "/tim/2de/",
-            "1re": "/tim/1re/",
-            term: "/tim/term/",
-            bts1: "/tim/bts1/",
-            bts2: "/tim/bts2/test.html"
+            cap1: "/mfr/cap1/",
+            cap2: "/mfr/cap2/",
+            "2de": "/mfr/2de/",
+            "1re": "/mfr/1re/",
+            term: "/mfr/term/",
+            bts1: "/mfr/bts1/",
+            bts2: "/mfr/bts2/test.html"
         };
 
         const url =
@@ -294,5 +295,3 @@ document
 // ======================================================
 
 initStudentDashboard();
-
-setSubjectLinks(profile);
