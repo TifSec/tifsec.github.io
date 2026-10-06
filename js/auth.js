@@ -2,42 +2,6 @@ const message = document.getElementById("message");
 
 
 // ======================================================
-// ROUTES DE L'APPLICATION
-// ======================================================
-
-const ROUTES = {
-
-    espaceEleve: "/eleve/",
-
-    auth: "/auth/",
-
-    tim: {
-        cap1: "/mfr/cap1/",
-        cap2: "/mfr/cap2/",
-        "2de": "/mfr/2de/",
-        "1re": "/mfr/1re/",
-        term: "/mfr/term/",
-        bts1: "/mfr/bts1/",
-        bts2: "/mfr/bts2/test.html"
-    },
-
-    maths: {
-        "3e": "/maths/3e/",
-        "2de": "/maths/2de/",
-        "1re": "/maths/1re/",
-        term: "/maths/term/"
-    },
-
-    techno: {
-        "5e": "/techno/5/",
-        "4e": "/techno/4/",
-        "3e": "/techno/3/"
-    }
-
-};
-
-
-// ======================================================
 // IDENTIFIANT → EMAIL TECHNIQUE
 // ======================================================
 

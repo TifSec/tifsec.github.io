@@ -62,18 +62,43 @@ async function initStudentDashboard() {
             return;
         }
 
-        const timRoutes = {
-            cap1: "/mfr/cap1/",
-            cap2: "/mfr/cap2/",
-            "2de": "/mfr/2de/",
-            "1re": "/mfr/1re/",
-            term: "/mfr/term/",
-            bts1: "/mfr/bts1/",
-            bts2: "/mfr/bts2/test.html"
+        // ======================================================
+        // ROUTES DE L'APPLICATION
+        // ======================================================
+
+        const ROUTES = {
+
+            espaceEleve: "/eleve/",
+
+            auth: "/auth/",
+
+            tim: {
+                cap1: "/mfr/cap1/",
+                cap2: "/mfr/cap2/",
+                "2de": "/mfr/2de/",
+                "1re": "/mfr/1re/",
+                term: "/mfr/term/",
+                bts1: "/mfr/bts1/",
+                bts2: "/mfr/bts2/test.html"
+            },
+
+            maths: {
+                "3e": "mfr/maths/4e-3e/",
+                "2de": "/mfr/maths/2de/",
+                "1re": "/mfr/maths/bacpro1/",
+                term: "/mfr/maths/bacpro2/"
+            },
+
+            techno: {
+                "5e": "/techno/5/",
+                "4e": "/techno/4/",
+                "3e": "/techno/3/"
+            }
+
         };
 
         const url =
-            timRoutes[profile.classe];
+            ROUTES.tim[profile.classe];
 
         if (url) {
             timLink.href = url;
