@@ -1,8 +1,18 @@
-const answer = document.getElementById("answer");
 const saveStatus = document.getElementById("save-status");
 
 let currentUser = null;
-let saveTimer = null;
+let saveTimers = {};
+
+
+// ======================================================
+// INFORMATIONS DE LA PAGE
+// ======================================================
+
+const pageData = document.body.dataset;
+
+const matiere = pageData.matiere;
+const classe = pageData.classe;
+const seance = pageData.seance;
 
 
 // ======================================================
@@ -58,19 +68,22 @@ async function init() {
     document.getElementById("student-area").hidden = false;
 
 
-    await loadAnswer();
+    await loadAnswers();
+
+    initAutoSave();
+    initHints();
 
 }
 
 
 // ======================================================
-// CHARGEMENT DE LA RÉPONSE
+// CHARGEMENT DES RÉPONSES
 // ======================================================
 
-async function loadAnswer() {
+async function loadAnswers() {
 
     saveStatus.textContent =
-        "Chargement de ta réponse...";
+        "Chargement de ton travail...";
 
 
     const {
@@ -78,13 +91,11 @@ async function loadAnswer() {
         error
     } = await db
         .from("student_work")
-        .select("reponse")
+        .select("question,reponse")
         .eq("user_id", currentUser.id)
-        .eq("matiere", "maths")
-        .eq("classe", "3e")
-        .eq("seance", "TEST")
-        .eq("question", "Q1")
-        .maybeSingle();
+        .eq("matiere", matiere)
+        .eq("classe", classe)
+        .eq("seance", seance);
 
 
     if (error) {
@@ -100,11 +111,22 @@ async function loadAnswer() {
 
     if (data) {
 
-        answer.value =
-            data.reponse ?? "";
+        data.forEach(item => {
+
+            const field = document.querySelector(
+                `[data-save="${item.question}"]`
+            );
+
+            if (field) {
+                field.value = item.reponse ?? "";
+            }
+
+        });
 
     }
 
+
+    restoreHintDisplay();
 
     saveStatus.textContent =
         "✅ Travail chargé";
@@ -113,12 +135,19 @@ async function loadAnswer() {
 
 
 // ======================================================
-// SAUVEGARDE
+// SAUVEGARDE D'UN CHAMP
 // ======================================================
 
-async function saveAnswer() {
+async function saveField(field) {
 
     if (!currentUser) {
+        return;
+    }
+
+
+    const question = field.dataset.save;
+
+    if (!question) {
         return;
     }
 
@@ -136,19 +165,21 @@ async function saveAnswer() {
 
                 user_id: currentUser.id,
 
-                matiere: "maths",
+                matiere: matiere,
 
-                classe: "3e",
+                classe: classe,
 
-                seance: "TEST",
+                seance: seance,
 
-                question: "Q1",
+                question: question,
 
-                reponse: answer.value,
+                reponse: field.value,
 
-                terminee: answer.value.trim().length > 0,
+                terminee:
+                    field.value.trim().length > 0,
 
-                updated_at: new Date().toISOString()
+                updated_at:
+                    new Date().toISOString()
 
             },
             {
@@ -181,22 +212,213 @@ async function saveAnswer() {
 // AUTOSAUVEGARDE
 // ======================================================
 
-answer.addEventListener("input", () => {
+function initAutoSave() {
 
-    saveStatus.textContent =
-        "✏️ Modification en cours...";
-
-
-    clearTimeout(saveTimer);
+    const fields =
+        document.querySelectorAll("[data-save]");
 
 
-    saveTimer = setTimeout(() => {
+    fields.forEach(field => {
 
-        saveAnswer();
+        field.addEventListener("input", () => {
 
-    }, 1000);
+            saveStatus.textContent =
+                "✏️ Modification en cours...";
 
-});
+
+            const key = field.dataset.save;
+
+
+            clearTimeout(saveTimers[key]);
+
+
+            saveTimers[key] = setTimeout(() => {
+
+                saveField(field);
+
+            }, 1000);
+
+        });
+
+    });
+
+}
+
+
+// ======================================================
+// INDICES
+// ======================================================
+
+function initHints() {
+
+    const hints =
+        document.querySelectorAll(
+            ".student-hint[data-exercise][data-hint-level]"
+        );
+
+
+    hints.forEach(hint => {
+
+        hint.addEventListener("toggle", () => {
+
+            if (!hint.open) {
+                return;
+            }
+
+
+            const exercise =
+                hint.dataset.exercise;
+
+            const level =
+                hint.dataset.hintLevel;
+
+
+            const saveFieldHints =
+                document.querySelector(
+                    `[data-save="hints-${exercise}"]`
+                );
+
+
+            if (!saveFieldHints) {
+
+                console.warn(
+                    `Aucun champ de sauvegarde pour ${exercise}`
+                );
+
+                return;
+            }
+
+
+            let openedHints = [];
+
+
+            if (saveFieldHints.value.trim() !== "") {
+
+                openedHints =
+                    saveFieldHints.value
+                        .split(",")
+                        .map(value => value.trim());
+
+            }
+
+
+            if (!openedHints.includes(level)) {
+
+                openedHints.push(level);
+
+                openedHints.sort(
+                    (a, b) =>
+                        Number(a) - Number(b)
+                );
+
+
+                saveFieldHints.value =
+                    openedHints.join(",");
+
+
+                saveField(saveFieldHints);
+
+            }
+
+
+            updateHintDisplay(
+                exercise,
+                openedHints
+            );
+
+        });
+
+    });
+
+}
+
+
+// ======================================================
+// AFFICHAGE DES INDICES DÉJÀ CONSULTÉS
+// ======================================================
+
+function restoreHintDisplay() {
+
+    const savedHintFields =
+        document.querySelectorAll(
+            '[data-save^="hints-"]'
+        );
+
+
+    savedHintFields.forEach(field => {
+
+        const exercise =
+            field.dataset.save.replace(
+                "hints-",
+                ""
+            );
+
+
+        const openedHints =
+            field.value
+                .split(",")
+                .map(value => value.trim())
+                .filter(Boolean);
+
+
+        updateHintDisplay(
+            exercise,
+            openedHints
+        );
+
+    });
+
+}
+
+
+function updateHintDisplay(
+    exercise,
+    openedHints
+) {
+
+    const hints =
+        document.querySelectorAll(
+            `.student-hint[data-exercise="${exercise}"]`
+        );
+
+
+    hints.forEach(hint => {
+
+        const level =
+            hint.dataset.hintLevel;
+
+
+        const marker =
+            hint.querySelector(".hint-seen");
+
+
+        if (
+            marker &&
+            openedHints.includes(level)
+        ) {
+
+            marker.textContent =
+                " ✓";
+
+        }
+
+    });
+
+
+    const status =
+        document.querySelector(
+            `[data-hint-status="${exercise}"]`
+        );
+
+
+    if (status) {
+
+        status.textContent =
+            `${openedHints.length} / ${hints.length}`;
+
+    }
+
+}
 
 
 // ======================================================
@@ -205,14 +427,17 @@ answer.addEventListener("input", () => {
 
 document
     .getElementById("logout-button")
-    .addEventListener("click", async () => {
+    .addEventListener(
+        "click",
+        async () => {
 
-        await db.auth.signOut();
+            await db.auth.signOut();
 
-        window.location.href =
-            "/auth/";
+            window.location.href =
+                "/auth/";
 
-    });
+        }
+    );
 
 
 // ======================================================

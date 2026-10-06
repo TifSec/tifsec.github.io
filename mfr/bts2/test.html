@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test BTS 2 - Sauvegarde élève</title>
+
+    <!-- Garde ici ton CSS habituel si nécessaire -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+
+<body
+    data-matiere="tim"
+    data-classe="bts2"
+    data-seance="TEST">
+
+    <main>
+        <section class="content-section">
+
+            <h2>Test de l'espace élève BTS 2</h2>
+
+            <p>
+                Cette page sert uniquement à vérifier que ton travail
+                est correctement sauvegardé.
+            </p>
+
+            <h3>1. Une réponse à sauvegarder</h3>
+
+            <p>
+                Écris une courte phrase dans le champ ci-dessous.
+                Par exemple : <em>Mon test fonctionne.</em>
+            </p>
+
+            <label for="test-reponse">
+                <strong>Ma réponse :</strong>
+            </label>
+
+            <textarea
+                id="test-reponse"
+                data-save="test-reponse"
+                rows="4"
+                placeholder="Écris quelque chose ici..."></textarea>
+
+            <p>
+                <small>
+                    La réponse doit être sauvegardée automatiquement.
+                </small>
+            </p>
+
+            <h3>2. Test des indices</h3>
+
+            <p>
+                Essaie d'abord de répondre mentalement à cette question :
+            </p>
+
+            <p>
+                <strong>
+                    Quelle fonction du tableur permet de faire un choix
+                    selon qu'une condition est vraie ou fausse ?
+                </strong>
+            </p>
+
+            <details
+                class="student-hint"
+                data-exercise="test-indices"
+                data-hint-level="1">
+                <summary>
+                    Indice 1
+                    <span class="hint-seen"></span>
+                </summary>
+
+                <p>
+                    C'est une fonction logique.
+                </p>
+            </details>
+
+            <details
+                class="student-hint"
+                data-exercise="test-indices"
+                data-hint-level="2">
+                <summary>
+                    Indice 2
+                    <span class="hint-seen"></span>
+                </summary>
+
+                <p>
+                    Elle permet d'obtenir un résultat si une condition est vraie
+                    et un autre résultat si elle est fausse.
+                </p>
+            </details>
+
+            <details
+                class="student-hint"
+                data-exercise="test-indices"
+                data-hint-level="3">
+                <summary>
+                    Indice 3
+                    <span class="hint-seen"></span>
+                </summary>
+
+                <p>
+                    Son nom comporte seulement deux lettres :
+                    <strong>SI</strong>.
+                </p>
+            </details>
+
+            <!--
+                Cette zone est volontairement invisible.
+                student-save.js la traite comme une réponse classique.
+                Exemple enregistré : 1,2
+            -->
+            <textarea
+                id="test-indices-save"
+                data-save="test-indices"
+                hidden></textarea>
+
+            <p id="hint-status">
+                Indices consultés : <strong>0 / 3</strong>
+            </p>
+
+            <h3>3. Vérification</h3>
+
+            <p>
+                Quand tu as terminé :
+            </p>
+
+            <ol>
+                <li>attends quelques secondes ;</li>
+                <li>actualise cette page ;</li>
+                <li>vérifie que ta réponse réapparaît ;</li>
+                <li>vérifie que les indices déjà consultés sont toujours comptabilisés.</li>
+            </ol>
+
+            <p id="test-status">
+                <strong>Résultat attendu :</strong>
+                réponse et indices conservés après actualisation.
+            </p>
+
+        </section>
+    </main>
+
+    <!-- Scripts déjà utilisés pour le système élève -->
+    <script src="/js/supabase-config.js"></script>
+    <script src="/js/student-save.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const hints = document.querySelectorAll(
+                'details[data-exercise="test-indices"][data-hint-level]'
+            );
+
+            const saveField = document.getElementById("test-indices-save");
+            const status = document.getElementById("hint-status");
+
+            let seenHints = new Set();
+
+            function readSavedHints() {
+                if (!saveField.value.trim()) {
+                    return;
+                }
+
+                saveField.value
+                    .split(",")
+                    .map(value => value.trim())
+                    .filter(Boolean)
+                    .forEach(level => {
+                        seenHints.add(level);
+                    });
+            }
+
+            function updateDisplay() {
+
+                hints.forEach(hint => {
+                    const level = hint.dataset.hintLevel;
+                    const marker = hint.querySelector(".hint-seen");
+
+                    if (seenHints.has(level)) {
+                        marker.textContent = " ✓";
+                        hint.dataset.seen = "true";
+                    } else {
+                        marker.textContent = "";
+                        delete hint.dataset.seen;
+                    }
+                });
+
+                status.innerHTML =
+                    `Indices consultés : <strong>${seenHints.size} / 3</strong>`;
+            }
+
+            function saveHints() {
+
+                saveField.value = Array.from(seenHints)
+                    .sort((a, b) => Number(a) - Number(b))
+                    .join(",");
+
+                /*
+                 * student-save.js écoute déjà les modifications
+                 * des champs data-save.
+                 */
+                saveField.dispatchEvent(
+                    new Event("input", {
+                        bubbles: true
+                    })
+                );
+
+                updateDisplay();
+            }
+
+            hints.forEach(hint => {
+
+                hint.addEventListener("toggle", () => {
+
+                    if (!hint.open) {
+                        return;
+                    }
+
+                    const level = hint.dataset.hintLevel;
+
+                    /*
+                     * Un indice déjà consulté ne doit pas
+                     * être compté une deuxième fois.
+                     */
+                    if (!seenHints.has(level)) {
+                        seenHints.add(level);
+                        saveHints();
+                    }
+                });
+            });
+
+            /*
+             * student-save.js restaure les données depuis Supabase
+             * de manière asynchrone.
+             *
+             * Pendant quelques secondes nous surveillons donc
+             * le champ afin de récupérer la valeur restaurée.
+             */
+            let previousValue = saveField.value;
+
+            const restoreWatcher = setInterval(() => {
+
+                if (saveField.value !== previousValue) {
+                    previousValue = saveField.value;
+
+                    readSavedHints();
+                    updateDisplay();
+                }
+
+            }, 250);
+
+            setTimeout(() => {
+                clearInterval(restoreWatcher);
+
+                readSavedHints();
+                updateDisplay();
+            }, 5000);
+
+            updateDisplay();
+        });
+    </script>
+
+</body>
+</html>
