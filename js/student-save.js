@@ -2,43 +2,100 @@
 // CONFIGURATION
 // ======================================================
 
-const AUTH_URL =
-    "/auth/";
+const AUTH_URL = "/auth/";
 
+const SAVE_DELAY = 1000;
+
+const SESSION_TOUCH_DELAY = 30000;
+
+
+// ======================================================
+// ÉLÉMENTS DE L'INTERFACE
+// ======================================================
 
 const saveStatus =
-    document.getElementById(
-        "save-status"
-    );
-
+    document.getElementById("save-status");
 
 const notConnected =
-    document.getElementById(
-        "not-connected"
-    );
-
+    document.getElementById("not-connected");
 
 const studentArea =
-    document.getElementById(
-        "student-area"
-    );
-
+    document.getElementById("student-area");
 
 const welcome =
-    document.getElementById(
-        "welcome"
-    );
-
+    document.getElementById("welcome");
 
 const logoutButton =
-    document.getElementById(
-        "logout-button"
-    );
+    document.getElementById("logout-button");
 
+
+// ======================================================
+// ÉTAT
+// ======================================================
 
 let currentUser = null;
 
+let currentProfile = null;
+
+let currentSession = null;
+
 let saveTimers = {};
+
+let sessionTouchTimer = null;
+
+
+/*
+    exercise_key → exercice Supabase
+
+    Exemple :
+
+    exercisesByKey.get("Q1")
+
+    donne :
+
+    {
+        id: 42,
+        exercise_key: "Q1",
+        response_expected: true,
+        max_hint_level: 3
+    }
+*/
+
+const exercisesByKey =
+    new Map();
+
+
+/*
+    exercise_id → exercise_key
+
+    Utile lors du chargement des réponses.
+*/
+
+const exerciseKeysById =
+    new Map();
+
+
+/*
+    Liste des indices déjà consultés.
+
+    Exemple de clé :
+
+    "42:1"
+    "42:2"
+*/
+
+const openedHints =
+    new Set();
+
+
+/*
+    Évite deux INSERT simultanés
+    si un élève ouvre très rapidement
+    plusieurs fois le même indice.
+*/
+
+const pendingHints =
+    new Set();
 
 
 // ======================================================
@@ -48,21 +105,34 @@ let saveTimers = {};
 const pageData =
     document.body.dataset;
 
-
 const matiere =
     pageData.matiere;
 
-
 const classe =
     pageData.classe;
-
 
 const seance =
     pageData.seance;
 
 
 // ======================================================
-// VÉRIFICATION DE LA CONFIGURATION
+// OUTILS
+// ======================================================
+
+function setSaveStatus(message) {
+
+    if (!saveStatus) {
+        return;
+    }
+
+    saveStatus.textContent =
+        message;
+
+}
+
+
+// ======================================================
+// VÉRIFICATION DE LA PAGE
 // ======================================================
 
 function checkPageConfiguration() {
@@ -82,14 +152,9 @@ function checkPageConfiguration() {
             }
         );
 
-
-        if (saveStatus) {
-
-            saveStatus.textContent =
-                "❌ Erreur de configuration de la page";
-
-        }
-
+        setSaveStatus(
+            "❌ Erreur de configuration de la page"
+        );
 
         return false;
 
@@ -102,7 +167,7 @@ function checkPageConfiguration() {
 
 
 // ======================================================
-// IDENTIFICATION DE L'ÉLÈVE
+// INITIALISATION
 // ======================================================
 
 async function init() {
@@ -111,6 +176,15 @@ async function init() {
         return;
     }
 
+
+    setSaveStatus(
+        "⏳ Initialisation..."
+    );
+
+
+    // ==================================================
+    // UTILISATEUR CONNECTÉ
+    // ==================================================
 
     const {
         data: {
@@ -128,7 +202,7 @@ async function init() {
         if (userError) {
 
             console.error(
-                "Erreur lors de la récupération de l'utilisateur :",
+                "Erreur utilisateur :",
                 userError
             );
 
@@ -136,22 +210,17 @@ async function init() {
 
 
         if (notConnected) {
-
-            notConnected.hidden =
-                false;
-
+            notConnected.hidden = false;
         }
 
 
         if (studentArea) {
-
-            studentArea.hidden =
-                true;
-
+            studentArea.hidden = true;
         }
 
 
         return;
+
     }
 
 
@@ -160,12 +229,90 @@ async function init() {
 
 
     // ==================================================
-    // CHARGEMENT DU PROFIL
+    // PROFIL
     // ==================================================
+
+    const profileLoaded =
+        await loadProfile();
+
+
+    if (!profileLoaded) {
+        return;
+    }
+
+
+    // ==================================================
+    // SÉANCE
+    // ==================================================
+
+    const sessionLoaded =
+        await loadCourseSession();
+
+
+    if (!sessionLoaded) {
+        return;
+    }
+
+
+    // ==================================================
+    // EXERCICES
+    // ==================================================
+
+    const exercisesLoaded =
+        await loadCourseExercises();
+
+
+    if (!exercisesLoaded) {
+        return;
+    }
+
+
+    // ==================================================
+    // PROGRESSION DE LA SÉANCE
+    // ==================================================
+
+    await startStudentSession();
+
+
+    // ==================================================
+    // RÉPONSES
+    // ==================================================
+
+    await loadStudentWork();
+
+
+    // ==================================================
+    // INDICES
+    // ==================================================
+
+    await loadStudentHints();
+
+
+    // ==================================================
+    // ÉVÉNEMENTS
+    // ==================================================
+
+    initAutoSave();
+
+    initHints();
+
+
+    setSaveStatus(
+        "✅ Travail chargé"
+    );
+
+}
+
+
+// ======================================================
+// PROFIL
+// ======================================================
+
+async function loadProfile() {
 
     const {
         data: profile,
-        error: profileError
+        error
     } = await db
         .from("profiles")
         .select(
@@ -173,37 +320,35 @@ async function init() {
         )
         .eq(
             "user_id",
-            user.id
+            currentUser.id
         )
         .single();
 
 
     if (
-        profileError ||
+        error ||
         !profile
     ) {
 
         console.error(
             "Erreur profil :",
-            profileError
+            error
         );
 
 
-        if (saveStatus) {
-
-            saveStatus.textContent =
-                "❌ Erreur lors du chargement du profil.";
-
-        }
+        setSaveStatus(
+            "❌ Erreur lors du chargement du profil."
+        );
 
 
-        return;
+        return false;
+
     }
 
 
-    // ==================================================
-    // AFFICHAGE DE L'ÉLÈVE
-    // ==================================================
+    currentProfile =
+        profile;
+
 
     if (welcome) {
 
@@ -214,69 +359,40 @@ async function init() {
 
 
     if (notConnected) {
-
-        notConnected.hidden =
-            true;
-
+        notConnected.hidden = true;
     }
 
 
     if (studentArea) {
-
-        studentArea.hidden =
-            false;
-
+        studentArea.hidden = false;
     }
 
 
-    // ==================================================
-    // CHARGEMENT DU TRAVAIL
-    // ==================================================
-
-    await loadAnswers();
-
-
-    // ==================================================
-    // ACTIVATION DES ÉVÉNEMENTS
-    // ==================================================
-
-    initAutoSave();
-
-    initHints();
+    return true;
 
 }
 
 
 // ======================================================
-// CHARGEMENT DES RÉPONSES
+// CHARGEMENT DE LA SÉANCE
 // ======================================================
 
-async function loadAnswers() {
-
-    if (!currentUser) {
-        return;
-    }
-
-
-    if (saveStatus) {
-
-        saveStatus.textContent =
-            "⏳ Chargement de ton travail...";
-
-    }
-
+async function loadCourseSession() {
 
     const {
         data,
         error
     } = await db
-        .from("student_work")
+        .from("course_sessions")
         .select(
-            "question,reponse"
-        )
-        .eq(
-            "user_id",
-            currentUser.id
+            `
+            id,
+            matiere,
+            classe,
+            seance,
+            titre,
+            active
+            `
         )
         .eq(
             "matiere",
@@ -289,73 +405,187 @@ async function loadAnswers() {
         .eq(
             "seance",
             seance
+        )
+        .eq(
+            "active",
+            true
+        )
+        .maybeSingle();
+
+
+    if (error) {
+
+        console.error(
+            "Erreur lors du chargement de la séance :",
+            error
+        );
+
+
+        setSaveStatus(
+            "❌ Impossible de charger cette séance."
+        );
+
+
+        return false;
+
+    }
+
+
+    if (!data) {
+
+        console.error(
+            "Séance absente de course_sessions :",
+            {
+                matiere,
+                classe,
+                seance
+            }
+        );
+
+
+        setSaveStatus(
+            "❌ Cette séance n'est pas encore enregistrée dans la base."
+        );
+
+
+        return false;
+
+    }
+
+
+    currentSession =
+        data;
+
+
+    return true;
+
+}
+
+
+// ======================================================
+// CHARGEMENT DES EXERCICES
+// ======================================================
+
+async function loadCourseExercises() {
+
+    const {
+        data,
+        error
+    } = await db
+        .from("course_exercises")
+        .select(
+            `
+            id,
+            exercise_key,
+            titre,
+            response_expected,
+            max_hint_level,
+            sort_order
+            `
+        )
+        .eq(
+            "session_id",
+            currentSession.id
+        )
+        .order(
+            "sort_order",
+            {
+                ascending: true
+            }
         );
 
 
     if (error) {
 
         console.error(
-            "Erreur lors du chargement :",
+            "Erreur lors du chargement des exercices :",
             error
         );
 
 
-        if (saveStatus) {
+        setSaveStatus(
+            "❌ Impossible de charger les exercices."
+        );
 
-            saveStatus.textContent =
-                "❌ Erreur lors du chargement.";
+
+        return false;
+
+    }
+
+
+    exercisesByKey.clear();
+
+    exerciseKeysById.clear();
+
+
+    (data ?? []).forEach(
+        exercise => {
+
+            exercisesByKey.set(
+                exercise.exercise_key,
+                exercise
+            );
+
+
+            exerciseKeysById.set(
+                String(exercise.id),
+                exercise.exercise_key
+            );
 
         }
+    );
 
 
-        return;
-    }
+    console.log(
+        "Exercices chargés :",
+        Array.from(
+            exercisesByKey.keys()
+        )
+    );
 
 
-    // ==================================================
-    // RESTAURATION DES CHAMPS
-    // ==================================================
+    return true;
 
-    if (data) {
-
-        data.forEach(item => {
-
-            const field =
-                document.querySelector(
-                    `[data-save="${CSS.escape(item.question)}"]`
-                );
+}
 
 
-            if (!field) {
+// ======================================================
+// DÉBUT / REPRISE DE SÉANCE
+// ======================================================
 
-                console.warn(
-                    "Champ introuvable pour :",
-                    item.question
-                );
+async function startStudentSession() {
 
-                return;
+    const {
+        error
+    } = await db
+        .from("student_sessions")
+        .upsert(
+            {
+                user_id:
+                    currentUser.id,
+
+                session_id:
+                    currentSession.id,
+
+                status:
+                    "in_progress",
+
+                last_seen_at:
+                    new Date().toISOString()
+            },
+            {
+                onConflict:
+                    "user_id,session_id"
             }
+        );
 
 
-            field.value =
-                item.reponse ?? "";
+    if (error) {
 
-        });
-
-    }
-
-
-    // ==================================================
-    // RESTAURATION VISUELLE DES INDICES
-    // ==================================================
-
-    restoreHintDisplay();
-
-
-    if (saveStatus) {
-
-        saveStatus.textContent =
-            "✅ Travail chargé";
+        console.error(
+            "Erreur progression séance :",
+            error
+        );
 
     }
 
@@ -363,13 +593,245 @@ async function loadAnswers() {
 
 
 // ======================================================
-// SAUVEGARDE D'UN CHAMP
+// ACTUALISATION DE L'ACTIVITÉ
+// ======================================================
+
+function scheduleSessionTouch() {
+
+    if (sessionTouchTimer) {
+        return;
+    }
+
+
+    sessionTouchTimer =
+        setTimeout(
+            async () => {
+
+                sessionTouchTimer =
+                    null;
+
+
+                if (
+                    !currentUser ||
+                    !currentSession
+                ) {
+
+                    return;
+
+                }
+
+
+                const {
+                    error
+                } = await db
+                    .from("student_sessions")
+                    .update({
+                        last_seen_at:
+                            new Date().toISOString()
+                    })
+                    .eq(
+                        "user_id",
+                        currentUser.id
+                    )
+                    .eq(
+                        "session_id",
+                        currentSession.id
+                    );
+
+
+                if (error) {
+
+                    console.error(
+                        "Erreur mise à jour activité :",
+                        error
+                    );
+
+                }
+
+            },
+            SESSION_TOUCH_DELAY
+        );
+
+}
+
+
+// ======================================================
+// CHARGEMENT DES RÉPONSES
+// ======================================================
+
+async function loadStudentWork() {
+
+    const exerciseIds =
+        Array.from(
+            exercisesByKey.values()
+        )
+        .map(
+            exercise =>
+                exercise.id
+        );
+
+
+    if (
+        exerciseIds.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    setSaveStatus(
+        "⏳ Chargement des réponses..."
+    );
+
+
+    const {
+        data,
+        error
+    } = await db
+        .from("student_work")
+        .select(
+            `
+            exercise_id,
+            reponse,
+            terminee
+            `
+        )
+        .eq(
+            "user_id",
+            currentUser.id
+        )
+        .in(
+            "exercise_id",
+            exerciseIds
+        );
+
+
+    if (error) {
+
+        console.error(
+            "Erreur lors du chargement des réponses :",
+            error
+        );
+
+
+        setSaveStatus(
+            "❌ Erreur lors du chargement."
+        );
+
+
+        return;
+
+    }
+
+
+    (data ?? []).forEach(
+        item => {
+
+            const exerciseKey =
+                exerciseKeysById.get(
+                    String(
+                        item.exercise_id
+                    )
+                );
+
+
+            if (!exerciseKey) {
+                return;
+            }
+
+
+            const field =
+                document.querySelector(
+                    `[data-save="${CSS.escape(exerciseKey)}"]`
+                );
+
+
+            if (!field) {
+
+                /*
+                    C'est normal pour les activités
+                    qui ont des indices mais aucune
+                    réponse à écrire sur le site.
+                */
+
+                return;
+
+            }
+
+
+            setFieldValue(
+                field,
+                item.reponse ?? ""
+            );
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// LECTURE DE LA VALEUR D'UN CHAMP
+// ======================================================
+
+function getFieldValue(field) {
+
+    if (
+        field.type === "checkbox"
+    ) {
+
+        return field.checked
+            ? (
+                field.value ||
+                "true"
+            )
+            : "";
+
+    }
+
+
+    return field.value ?? "";
+
+}
+
+
+// ======================================================
+// RESTAURATION D'UN CHAMP
+// ======================================================
+
+function setFieldValue(
+    field,
+    value
+) {
+
+    if (
+        field.type === "checkbox"
+    ) {
+
+        field.checked =
+            value !== "";
+
+        return;
+
+    }
+
+
+    field.value =
+        value;
+
+}
+
+
+// ======================================================
+// SAUVEGARDE D'UNE RÉPONSE
 // ======================================================
 
 async function saveField(field) {
 
     if (
         !currentUser ||
+        !currentSession ||
         !field
     ) {
 
@@ -378,15 +840,43 @@ async function saveField(field) {
     }
 
 
-    const question =
+    const exerciseKey =
         field.dataset.save;
 
 
-    if (!question) {
+    if (!exerciseKey) {
+        return;
+    }
+
+
+    /*
+        Compatibilité temporaire avec
+        les anciens textarea cachés.
+
+        Ils seront retirés du HTML.
+    */
+
+    if (
+        exerciseKey.startsWith(
+            "hints-"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    const exercise =
+        exercisesByKey.get(
+            exerciseKey
+        );
+
+
+    if (!exercise) {
 
         console.warn(
-            "Champ sans attribut data-save.",
-            field
+            `Exercice "${exerciseKey}" absent de course_exercises.`
         );
 
         return;
@@ -395,15 +885,12 @@ async function saveField(field) {
 
 
     const value =
-        field.value ?? "";
+        getFieldValue(field);
 
 
-    if (saveStatus) {
-
-        saveStatus.textContent =
-            "⏳ Sauvegarde...";
-
-    }
+    setSaveStatus(
+        "⏳ Sauvegarde..."
+    );
 
 
     const {
@@ -412,37 +899,21 @@ async function saveField(field) {
         .from("student_work")
         .upsert(
             {
-
                 user_id:
                     currentUser.id,
 
-                matiere:
-                    matiere,
-
-                classe:
-                    classe,
-
-                seance:
-                    seance,
-
-                question:
-                    question,
+                exercise_id:
+                    exercise.id,
 
                 reponse:
                     value,
 
                 terminee:
-                    value.trim().length > 0,
-
-                updated_at:
-                    new Date().toISOString()
-
+                    value.trim().length > 0
             },
             {
-
                 onConflict:
-                    "user_id,matiere,classe,seance,question"
-
+                    "user_id,exercise_id"
             }
         );
 
@@ -455,12 +926,9 @@ async function saveField(field) {
         );
 
 
-        if (saveStatus) {
-
-            saveStatus.textContent =
-                "❌ Erreur de sauvegarde";
-
-        }
+        setSaveStatus(
+            "❌ Erreur de sauvegarde"
+        );
 
 
         return;
@@ -469,29 +937,32 @@ async function saveField(field) {
 
 
     console.log(
-        "Sauvegarde réussie :",
+        "Réponse sauvegardée :",
         {
-            matiere,
-            classe,
-            seance,
-            question,
-            value
+            exercice:
+                exerciseKey,
+
+            exercise_id:
+                exercise.id,
+
+            reponse:
+                value
         }
     );
 
 
-    if (saveStatus) {
+    setSaveStatus(
+        "☁ Sauvegardé"
+    );
 
-        saveStatus.textContent =
-            "☁ Sauvegardé";
 
-    }
+    scheduleSessionTouch();
 
 }
 
 
 // ======================================================
-// AUTOSAUVEGARDE DES RÉPONSES
+// AUTOSAUVEGARDE
 // ======================================================
 
 function initAutoSave() {
@@ -502,67 +973,215 @@ function initAutoSave() {
         );
 
 
-    fields.forEach(field => {
+    fields.forEach(
+        field => {
 
-        /*
-            Les champs techniques des indices
-            sont enregistrés directement par initHints().
-        */
-
-        if (
-            field.dataset.save.startsWith(
-                "hints-"
-            )
-        ) {
-
-            return;
-
-        }
+            const exerciseKey =
+                field.dataset.save;
 
 
-        field.addEventListener(
-            "input",
-            () => {
+            /*
+                Les anciens champs cachés
+                hints-* ne sont plus utilisés.
+            */
 
-                if (saveStatus) {
+            if (
+                !exerciseKey ||
+                exerciseKey.startsWith(
+                    "hints-"
+                )
+            ) {
 
-                    saveStatus.textContent =
-                        "✏️ Modification en cours...";
-
-                }
-
-
-                const key =
-                    field.dataset.save;
-
-
-                clearTimeout(
-                    saveTimers[key]
-                );
-
-
-                saveTimers[key] =
-                    setTimeout(
-                        () => {
-
-                            saveField(
-                                field
-                            );
-
-                        },
-                        1000
-                    );
+                return;
 
             }
-        );
 
-    });
+
+            if (
+                !exercisesByKey.has(
+                    exerciseKey
+                )
+            ) {
+
+                console.warn(
+                    `Le champ "${exerciseKey}" existe dans le HTML mais pas dans course_exercises.`
+                );
+
+                return;
+
+            }
+
+
+            field.addEventListener(
+                "input",
+                () => {
+
+                    setSaveStatus(
+                        "✏️ Modification en cours..."
+                    );
+
+
+                    clearTimeout(
+                        saveTimers[
+                            exerciseKey
+                        ]
+                    );
+
+
+                    saveTimers[
+                        exerciseKey
+                    ] =
+                        setTimeout(
+                            () => {
+
+                                saveField(
+                                    field
+                                );
+
+                            },
+                            SAVE_DELAY
+                        );
+
+                }
+            );
+
+
+            /*
+                Pour certains éléments comme
+                les <select>, change est utile
+                en complément de input.
+            */
+
+            field.addEventListener(
+                "change",
+                () => {
+
+                    clearTimeout(
+                        saveTimers[
+                            exerciseKey
+                        ]
+                    );
+
+
+                    saveTimers[
+                        exerciseKey
+                    ] =
+                        setTimeout(
+                            () => {
+
+                                saveField(
+                                    field
+                                );
+
+                            },
+                            SAVE_DELAY
+                        );
+
+                }
+            );
+
+        }
+    );
 
 }
 
 
 // ======================================================
-// INDICES
+// CHARGEMENT DES INDICES DÉJÀ CONSULTÉS
+// ======================================================
+
+async function loadStudentHints() {
+
+    const exerciseIds =
+        Array.from(
+            exercisesByKey.values()
+        )
+        .map(
+            exercise =>
+                exercise.id
+        );
+
+
+    if (
+        exerciseIds.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } = await db
+        .from("student_hints")
+        .select(
+            `
+            exercise_id,
+            hint_level
+            `
+        )
+        .eq(
+            "user_id",
+            currentUser.id
+        )
+        .in(
+            "exercise_id",
+            exerciseIds
+        );
+
+
+    if (error) {
+
+        console.error(
+            "Erreur chargement indices :",
+            error
+        );
+
+        return;
+
+    }
+
+
+    openedHints.clear();
+
+
+    (data ?? []).forEach(
+        item => {
+
+            openedHints.add(
+                getHintId(
+                    item.exercise_id,
+                    item.hint_level
+                )
+            );
+
+        }
+    );
+
+
+    restoreHintDisplay();
+
+}
+
+
+// ======================================================
+// IDENTIFIANT LOCAL D'UN INDICE
+// ======================================================
+
+function getHintId(
+    exerciseId,
+    level
+) {
+
+    return `${exerciseId}:${level}`;
+
+}
+
+
+// ======================================================
+// INITIALISATION DES INDICES
 // ======================================================
 
 function initHints() {
@@ -573,131 +1192,255 @@ function initHints() {
         );
 
 
-    hints.forEach(hint => {
+    hints.forEach(
+        hint => {
 
-        hint.addEventListener(
-            "toggle",
-            async () => {
-
-                /*
-                    On enregistre uniquement
-                    lorsqu'un indice est ouvert.
-                */
-
-                if (!hint.open) {
-                    return;
-                }
+            const exerciseKey =
+                hint.dataset.exercise;
 
 
-                const exercise =
-                    hint.dataset.exercise;
+            const level =
+                Number(
+                    hint.dataset.hintLevel
+                );
 
 
-                const level =
-                    hint.dataset.hintLevel;
+            const exercise =
+                exercisesByKey.get(
+                    exerciseKey
+                );
 
 
-                if (
-                    !exercise ||
-                    !level
-                ) {
+            if (!exercise) {
 
-                    return;
+                console.warn(
+                    `Indice associé à "${exerciseKey}", mais cet exercice n'existe pas dans course_exercises.`
+                );
 
-                }
+                return;
 
-
-                const saveFieldHints =
-                    document.querySelector(
-                        `[data-save="hints-${CSS.escape(exercise)}"]`
-                    );
+            }
 
 
-                if (!saveFieldHints) {
+            if (
+                !Number.isInteger(level) ||
+                level < 1
+            ) {
 
-                    console.warn(
-                        `Aucun champ de sauvegarde trouvé pour les indices de ${exercise}.`
-                    );
+                console.warn(
+                    "Niveau d'indice invalide :",
+                    hint
+                );
 
-                    return;
+                return;
 
-                }
-
-
-                // ==========================================
-                // LECTURE DES INDICES DÉJÀ CONSULTÉS
-                // ==========================================
-
-                let openedHints = [];
+            }
 
 
-                if (
-                    saveFieldHints
-                        .value
-                        .trim() !== ""
-                ) {
+            if (
+                exercise.max_hint_level > 0 &&
+                level >
+                    exercise.max_hint_level
+            ) {
 
-                    openedHints =
-                        saveFieldHints
-                            .value
-                            .split(",")
-                            .map(
-                                value =>
-                                    value.trim()
-                            )
-                            .filter(Boolean);
-
-                }
-
-
-                // ==========================================
-                // NE PAS COMPTER DEUX FOIS LE MÊME INDICE
-                // ==========================================
-
-                if (
-                    !openedHints.includes(
-                        level
-                    )
-                ) {
-
-                    openedHints.push(
-                        level
-                    );
-
-
-                    openedHints.sort(
-                        (a, b) =>
-                            Number(a) -
-                            Number(b)
-                    );
-
-
-                    saveFieldHints.value =
-                        openedHints.join(",");
-
-
-                    /*
-                        Contrairement aux réponses normales,
-                        on sauvegarde immédiatement l'ouverture
-                        d'un indice.
-                    */
-
-                    await saveField(
-                        saveFieldHints
-                    );
-
-                }
-
-
-                updateHintDisplay(
-                    exercise,
-                    openedHints
+                console.warn(
+                    `Indice ${level} supérieur au niveau maximal prévu pour ${exerciseKey}.`
                 );
 
             }
+
+
+            hint.addEventListener(
+                "toggle",
+                async () => {
+
+                    if (!hint.open) {
+                        return;
+                    }
+
+
+                    await saveHint(
+                        exercise,
+                        level
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// ENREGISTREMENT D'UN INDICE
+// ======================================================
+
+async function saveHint(
+    exercise,
+    level
+) {
+
+    if (!currentUser) {
+        return;
+    }
+
+
+    const hintId =
+        getHintId(
+            exercise.id,
+            level
         );
 
-    });
+
+    /*
+        Déjà enregistré :
+        aucune requête supplémentaire.
+    */
+
+    if (
+        openedHints.has(
+            hintId
+        ) ||
+        pendingHints.has(
+            hintId
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    pendingHints.add(
+        hintId
+    );
+
+
+    /*
+        Mise à jour immédiate de l'affichage.
+    */
+
+    openedHints.add(
+        hintId
+    );
+
+
+    updateHintDisplay(
+        exercise.exercise_key
+    );
+
+
+    const {
+        error
+    } = await db
+        .from("student_hints")
+        .insert({
+            user_id:
+                currentUser.id,
+
+            exercise_id:
+                exercise.id,
+
+            hint_level:
+                level
+        });
+
+
+    pendingHints.delete(
+        hintId
+    );
+
+
+    if (error) {
+
+        /*
+            23505 = unique_violation.
+
+            Normalement impossible grâce
+            au Set local, mais ce n'est pas
+            grave si cela arrive.
+        */
+
+        if (
+            error.code === "23505"
+        ) {
+
+            console.warn(
+                "Indice déjà enregistré :",
+                exercise.exercise_key,
+                level
+            );
+
+
+            openedHints.add(
+                hintId
+            );
+
+
+            updateHintDisplay(
+                exercise.exercise_key
+            );
+
+
+            return;
+
+        }
+
+
+        console.error(
+            "Erreur sauvegarde indice :",
+            error
+        );
+
+
+        /*
+            L'INSERT a échoué :
+            on retire l'état local.
+        */
+
+        openedHints.delete(
+            hintId
+        );
+
+
+        updateHintDisplay(
+            exercise.exercise_key
+        );
+
+
+        setSaveStatus(
+            "❌ Erreur lors de l'enregistrement de l'indice"
+        );
+
+
+        return;
+
+    }
+
+
+    console.log(
+        "Indice enregistré :",
+        {
+            exercice:
+                exercise.exercise_key,
+
+            exercise_id:
+                exercise.id,
+
+            niveau:
+                level
+        }
+    );
+
+
+    setSaveStatus(
+        "☁ Indice enregistré"
+    );
+
+
+    scheduleSessionTouch();
 
 }
 
@@ -708,39 +1451,30 @@ function initHints() {
 
 function restoreHintDisplay() {
 
-    const savedHintFields =
-        document.querySelectorAll(
-            '[data-save^="hints-"]'
+    const exerciseKeys =
+        new Set();
+
+
+    document
+        .querySelectorAll(
+            ".student-hint[data-exercise]"
+        )
+        .forEach(
+            hint => {
+
+                exerciseKeys.add(
+                    hint.dataset.exercise
+                );
+
+            }
         );
 
 
-    savedHintFields.forEach(
-        field => {
-
-            const exercise =
-                field
-                    .dataset
-                    .save
-                    .replace(
-                        "hints-",
-                        ""
-                    );
-
-
-            const openedHints =
-                field
-                    .value
-                    .split(",")
-                    .map(
-                        value =>
-                            value.trim()
-                    )
-                    .filter(Boolean);
-
+    exerciseKeys.forEach(
+        exerciseKey => {
 
             updateHintDisplay(
-                exercise,
-                openedHints
+                exerciseKey
             );
 
         }
@@ -750,56 +1484,119 @@ function restoreHintDisplay() {
 
 
 // ======================================================
-// AFFICHAGE DES INDICES CONSULTÉS
+// AFFICHAGE DES INDICES
 // ======================================================
 
 function updateHintDisplay(
-    exercise,
-    openedHints
+    exerciseKey
 ) {
+
+    const exercise =
+        exercisesByKey.get(
+            exerciseKey
+        );
+
+
+    if (!exercise) {
+        return;
+    }
+
 
     const hints =
         document.querySelectorAll(
-            `.student-hint[data-exercise="${CSS.escape(exercise)}"]`
+            `.student-hint[data-exercise="${CSS.escape(exerciseKey)}"]`
         );
+
+
+    let count =
+        0;
 
 
     hints.forEach(
         hint => {
 
             const level =
-                hint.dataset.hintLevel;
+                Number(
+                    hint.dataset.hintLevel
+                );
 
 
-            const marker =
+            const hintId =
+                getHintId(
+                    exercise.id,
+                    level
+                );
+
+
+            const seen =
+                openedHints.has(
+                    hintId
+                );
+
+
+            if (seen) {
+                count++;
+            }
+
+
+            /*
+                On ne dépend plus de la présence
+                préalable d'un span .hint-seen.
+
+                Le JS le crée automatiquement.
+            */
+
+            let marker =
                 hint.querySelector(
                     ".hint-seen"
                 );
 
 
             if (!marker) {
-                return;
+
+                marker =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                marker.className =
+                    "hint-seen";
+
+
+                const summary =
+                    hint.querySelector(
+                        "summary"
+                    );
+
+
+                if (summary) {
+
+                    summary.appendChild(
+                        marker
+                    );
+
+                }
+
             }
 
 
-            if (
-                openedHints.includes(
-                    level
-                )
-            ) {
+            if (marker) {
 
                 marker.textContent =
-                    " ✓";
+                    seen
+                        ? " ✓"
+                        : "";
 
+            }
+
+
+            if (seen) {
 
                 hint.dataset.seen =
                     "true";
 
             } else {
-
-                marker.textContent =
-                    "";
-
 
                 delete hint.dataset.seen;
 
@@ -811,14 +1608,14 @@ function updateHintDisplay(
 
     const status =
         document.querySelector(
-            `[data-hint-status="${CSS.escape(exercise)}"]`
+            `[data-hint-status="${CSS.escape(exerciseKey)}"]`
         );
 
 
     if (status) {
 
         status.textContent =
-            `${openedHints.length} / ${hints.length}`;
+            `Indices consultés : ${count} / ${hints.length}`;
 
     }
 
@@ -848,7 +1645,7 @@ if (logoutButton) {
 
 
 // ======================================================
-// INITIALISATION
+// DÉMARRAGE
 // ======================================================
 
 init();
