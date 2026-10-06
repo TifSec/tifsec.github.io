@@ -14,7 +14,7 @@ const ROUTES = {
         "1re": "/mfr/1re/",
         term: "/mfr/term/",
         bts1: "/mfr/bts1/",
-        bts2: "/mfr/bts2/test.html"
+        bts2: "/mfr/bts2/"
     },
 
     maths: {
