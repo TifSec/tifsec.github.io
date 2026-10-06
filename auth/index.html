@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espace élève</title>
+
+    <title>Connexion</title>
 
     <link rel="stylesheet" href="/css/auth.css">
 </head>
@@ -21,7 +22,7 @@
             </div>
 
             <div>
-                <h1>Espace élève</h1>
+                <h1>Espace personnel</h1>
 
                 <p>
                     Retrouve tes cours, ta progression
@@ -31,12 +32,14 @@
 
         </header>
 
-
-        <p id="message" class="auth-message"></p>
-
+        <p
+            id="message"
+            class="auth-message"
+            hidden>
+        </p>
 
         <!-- =================================================
-             ÉLÈVE NON CONNECTÉ
+             CONNEXION
         ================================================== -->
 
         <div class="auth-columns">
@@ -48,8 +51,8 @@
                 <h2>Connexion</h2>
 
                 <p class="auth-description">
-                    Tu as déjà un compte ? Connecte-toi pour
-                    reprendre ton travail là où tu l'avais laissé.
+                    Tu as déjà un compte ?
+                    Connecte-toi pour reprendre ton travail.
                 </p>
 
                 <label for="login-username">
@@ -73,6 +76,7 @@
                     placeholder="Ton mot de passe">
 
                 <button
+                    type="button"
                     id="login-button"
                     class="button button-primary">
                     Se connecter
@@ -80,13 +84,13 @@
 
             </section>
 
-
             <div class="auth-separator">
-
                 <span>ou</span>
-
             </div>
 
+            <!-- =================================================
+                 CRÉATION DU COMPTE
+            ================================================== -->
 
             <section
                 id="create-account"
@@ -96,7 +100,7 @@
 
                 <p class="auth-description">
                     Crée ton espace personnel.
-                    Ton travail sera ensuite sauvegardé automatiquement.
+                    Ton travail pourra ensuite être sauvegardé automatiquement.
                 </p>
 
                 <div class="name-grid">
@@ -129,12 +133,16 @@
 
                 </div>
 
+                <!-- =================================================
+                     RÔLE
+                ================================================== -->
 
-                <label for="register-classe">
-                    Classe
+                <label for="register-role">
+                    Type de compte
                 </label>
 
                 <select id="register-role">
+
                     <option value="student">
                         Élève
                     </option>
@@ -142,56 +150,77 @@
                     <option value="teacher">
                         Professeur
                     </option>
-                </select>
-
-                <select id="register-classe">
-
-                    <option value="">
-                        Choisis ta classe
-                    </option>
-
-                    <option value="5e">
-                        5e
-                    </option>
-
-                    <option value="3e"> <!-- A modifier si un jour les élèves de 4° deviennent plus nombreux et ont leur propre classe -->
-                        4e
-                    </option>
-
-                    <option value="3e">
-                        3e
-                    </option>
-
-                    <option value="cap1">
-                        CAP 1
-                    </option>
-
-                    <option value="cap2">
-                        CAP 2
-                    </option>
-
-                    <option value="2de">
-                        2de
-                    </option>
-
-                    <option value="1re">
-                        1re
-                    </option>
-
-                    <option value="term">
-                        Term
-                    </option>
-
-                    <option value="bts1">
-                        BTS 1
-                    </option>
-
-                    <option value="bts2">
-                        BTS 2
-                    </option>
 
                 </select>
 
+                <!-- =================================================
+                     CLASSE
+                ================================================== -->
+
+                <div id="register-class-wrapper">
+
+                    <label for="register-classe">
+                        Classe
+                    </label>
+
+                    <select id="register-classe">
+
+                        <option value="">
+                            Choisis ta classe
+                        </option>
+
+                        <option value="5e">
+                            5e
+                        </option>
+
+                        <!--
+                            Les 4e MFR utilisent actuellement
+                            le même espace que les 3e.
+                        -->
+
+                        <option value="3e">
+                            4e
+                        </option>
+
+                        <option value="3e">
+                            3e
+                        </option>
+
+                        <option value="cap1">
+                            CAP 1
+                        </option>
+
+                        <option value="cap2">
+                            CAP 2
+                        </option>
+
+                        <option value="2de">
+                            2de
+                        </option>
+
+                        <option value="1re">
+                            1re
+                        </option>
+
+                        <option value="term">
+                            Terminale
+                        </option>
+
+                        <option value="bts1">
+                            BTS 1
+                        </option>
+
+                        <option value="bts2">
+                            BTS 2
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- =================================================
+                     IDENTIFIANT
+                ================================================== -->
 
                 <label for="register-username">
                     Identifiant
@@ -207,6 +236,9 @@
                     Choisis un identifiant simple que tu pourras retenir.
                 </p>
 
+                <!-- =================================================
+                     MOT DE PASSE
+                ================================================== -->
 
                 <label for="register-password">
                     Mot de passe
@@ -219,6 +251,7 @@
                     placeholder="8 caractères minimum">
 
                 <button
+                    type="button"
                     id="register-button"
                     class="button button-secondary">
                     Créer mon espace
@@ -227,6 +260,10 @@
             </section>
 
         </div>
+
+        <!-- =================================================
+             PIED DE PAGE
+        ================================================== -->
 
         <footer class="auth-footer">
 
@@ -247,7 +284,6 @@
     </section>
 
 </main>
-
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/js/supabase-config.js"></script>
