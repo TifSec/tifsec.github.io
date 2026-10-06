@@ -1,263 +1,321 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test BTS 2 - Sauvegarde élève</title>
 
-    <!-- Garde ici ton CSS habituel si nécessaire -->
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Test BTS 2 - Sauvegarde</title>
+
+    <!--
+        Tu pourras remettre ensuite
+        ton CSS habituel de cours.
+    -->
 </head>
+
 
 <body
     data-matiere="tim"
     data-classe="bts2"
     data-seance="TEST">
 
-    <main>
-        <section class="content-section">
 
-            <h2>Test de l'espace élève BTS 2</h2>
+    <!-- ======================================================
+         ÉLÈVE NON CONNECTÉ
+         ====================================================== -->
+
+    <section
+        id="not-connected"
+        hidden>
+
+        <h1>Connexion nécessaire</h1>
+
+        <p>
+            Tu dois être connecté pour accéder à cette activité.
+        </p>
+
+        <a href="/auth/">
+            Se connecter
+        </a>
+
+    </section>
+
+
+    <!-- ======================================================
+         ESPACE ÉLÈVE
+         ====================================================== -->
+
+    <main
+        id="student-area"
+        hidden>
+
+
+        <header>
+
+            <div>
+
+                <p>
+                    Test du nouvel espace élève
+                </p>
+
+                <h1 id="welcome">
+                    Chargement...
+                </h1>
+
+            </div>
+
+
+            <button
+                id="logout-button"
+                type="button">
+
+                Se déconnecter
+
+            </button>
+
+        </header>
+
+
+        <!-- ==================================================
+             ÉTAT DE LA SAUVEGARDE
+             ================================================== -->
+
+        <p id="save-status">
+            Initialisation...
+        </p>
+
+
+        <!-- ==================================================
+             TEST DE RÉPONSE
+             ================================================== -->
+
+        <section>
+
+            <h2>
+                1. Test de sauvegarde
+            </h2>
+
 
             <p>
-                Cette page sert uniquement à vérifier que ton travail
-                est correctement sauvegardé.
+                Écris une phrase dans le champ ci-dessous.
             </p>
 
-            <h3>1. Une réponse à sauvegarder</h3>
 
-            <p>
-                Écris une courte phrase dans le champ ci-dessous.
-                Par exemple : <em>Mon test fonctionne.</em>
-            </p>
+            <label for="answer-q1">
 
-            <label for="test-reponse">
-                <strong>Ma réponse :</strong>
+                <strong>
+                    Ta réponse :
+                </strong>
+
             </label>
 
+
             <textarea
-                id="test-reponse"
-                data-save="test-reponse"
-                rows="4"
-                placeholder="Écris quelque chose ici..."></textarea>
+                id="answer-q1"
+                data-save="Q1"
+                rows="5"
+                placeholder="Par exemple : Mon test BTS 2 fonctionne."></textarea>
+
 
             <p>
-                <small>
-                    La réponse doit être sauvegardée automatiquement.
-                </small>
-            </p>
-
-            <h3>2. Test des indices</h3>
-
-            <p>
-                Essaie d'abord de répondre mentalement à cette question :
-            </p>
-
-            <p>
-                <strong>
-                    Quelle fonction du tableur permet de faire un choix
-                    selon qu'une condition est vraie ou fausse ?
-                </strong>
-            </p>
-
-            <details
-                class="student-hint"
-                data-exercise="test-indices"
-                data-hint-level="1">
-                <summary>
-                    Indice 1
-                    <span class="hint-seen"></span>
-                </summary>
-
-                <p>
-                    C'est une fonction logique.
-                </p>
-            </details>
-
-            <details
-                class="student-hint"
-                data-exercise="test-indices"
-                data-hint-level="2">
-                <summary>
-                    Indice 2
-                    <span class="hint-seen"></span>
-                </summary>
-
-                <p>
-                    Elle permet d'obtenir un résultat si une condition est vraie
-                    et un autre résultat si elle est fausse.
-                </p>
-            </details>
-
-            <details
-                class="student-hint"
-                data-exercise="test-indices"
-                data-hint-level="3">
-                <summary>
-                    Indice 3
-                    <span class="hint-seen"></span>
-                </summary>
-
-                <p>
-                    Son nom comporte seulement deux lettres :
-                    <strong>SI</strong>.
-                </p>
-            </details>
-
-            <!--
-                Cette zone est volontairement invisible.
-                student-save.js la traite comme une réponse classique.
-                Exemple enregistré : 1,2
-            -->
-            <textarea
-                id="test-indices-save"
-                data-save="test-indices"
-                hidden></textarea>
-
-            <p id="hint-status">
-                Indices consultés : <strong>0 / 3</strong>
-            </p>
-
-            <h3>3. Vérification</h3>
-
-            <p>
-                Quand tu as terminé :
-            </p>
-
-            <ol>
-                <li>attends quelques secondes ;</li>
-                <li>actualise cette page ;</li>
-                <li>vérifie que ta réponse réapparaît ;</li>
-                <li>vérifie que les indices déjà consultés sont toujours comptabilisés.</li>
-            </ol>
-
-            <p id="test-status">
-                <strong>Résultat attendu :</strong>
-                réponse et indices conservés après actualisation.
+                La réponse doit être enregistrée automatiquement
+                environ une seconde après ta dernière modification.
             </p>
 
         </section>
+
+
+        <!-- ==================================================
+             TEST DES INDICES
+             ================================================== -->
+
+        <section>
+
+            <h2>
+                2. Test des indices
+            </h2>
+
+
+            <p>
+                Sans chercher sur Internet :
+            </p>
+
+
+            <p>
+                <strong>
+                    Quelle fonction de Calc permet d'afficher
+                    un résultat différent selon qu'une condition
+                    est vraie ou fausse ?
+                </strong>
+            </p>
+
+
+            <!-- INDICE 1 -->
+
+            <details
+                class="student-hint"
+                data-exercise="Q2"
+                data-hint-level="1">
+
+                <summary>
+
+                    Indice 1
+
+                    <span class="hint-seen"></span>
+
+                </summary>
+
+
+                <p>
+                    Il s'agit d'une fonction logique.
+                </p>
+
+            </details>
+
+
+            <!-- INDICE 2 -->
+
+            <details
+                class="student-hint"
+                data-exercise="Q2"
+                data-hint-level="2">
+
+                <summary>
+
+                    Indice 2
+
+                    <span class="hint-seen"></span>
+
+                </summary>
+
+
+                <p>
+                    Elle permet de dire :
+                    « si la condition est vraie, alors..., sinon... ».
+                </p>
+
+            </details>
+
+
+            <!-- INDICE 3 -->
+
+            <details
+                class="student-hint"
+                data-exercise="Q2"
+                data-hint-level="3">
+
+                <summary>
+
+                    Indice 3
+
+                    <span class="hint-seen"></span>
+
+                </summary>
+
+
+                <p>
+                    Son nom est :
+                    <strong>SI</strong>.
+                </p>
+
+            </details>
+
+
+            <!--
+                Champ technique invisible.
+
+                Exemple de valeur enregistrée :
+                1,2
+
+                Cela signifie :
+                indices 1 et 2 consultés.
+            -->
+
+            <textarea
+                data-save="hints-Q2"
+                hidden></textarea>
+
+
+            <p>
+
+                Indices consultés :
+
+                <strong data-hint-status="Q2">
+                    0 / 3
+                </strong>
+
+            </p>
+
+        </section>
+
+
+        <!-- ==================================================
+             CONSIGNE DE TEST
+             ================================================== -->
+
+        <section>
+
+            <h2>
+                3. Vérification
+            </h2>
+
+
+            <ol>
+
+                <li>
+                    écris une phrase dans la première zone ;
+                </li>
+
+                <li>
+                    ouvre uniquement les indices 1 et 2 ;
+                </li>
+
+                <li>
+                    attends l'affichage
+                    <strong>☁ Sauvegardé</strong> ;
+                </li>
+
+                <li>
+                    recharge la page avec F5 ;
+                </li>
+
+                <li>
+                    vérifie que la réponse est toujours présente ;
+                </li>
+
+                <li>
+                    vérifie que les indices 1 et 2 possèdent un ✓ ;
+                </li>
+
+                <li>
+                    vérifie que le compteur indique
+                    <strong>2 / 3</strong>.
+                </li>
+
+            </ol>
+
+        </section>
+
+
     </main>
 
-    <!-- Scripts déjà utilisés pour le système élève -->
-    <script src="/js/supabase-config.js"></script>
-    <script src="/js/student-save.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
+    <!-- ======================================================
+         SUPABASE
+         ====================================================== -->
 
-            const hints = document.querySelectorAll(
-                'details[data-exercise="test-indices"][data-hint-level]'
-            );
-
-            const saveField = document.getElementById("test-indices-save");
-            const status = document.getElementById("hint-status");
-
-            let seenHints = new Set();
-
-            function readSavedHints() {
-                if (!saveField.value.trim()) {
-                    return;
-                }
-
-                saveField.value
-                    .split(",")
-                    .map(value => value.trim())
-                    .filter(Boolean)
-                    .forEach(level => {
-                        seenHints.add(level);
-                    });
-            }
-
-            function updateDisplay() {
-
-                hints.forEach(hint => {
-                    const level = hint.dataset.hintLevel;
-                    const marker = hint.querySelector(".hint-seen");
-
-                    if (seenHints.has(level)) {
-                        marker.textContent = " ✓";
-                        hint.dataset.seen = "true";
-                    } else {
-                        marker.textContent = "";
-                        delete hint.dataset.seen;
-                    }
-                });
-
-                status.innerHTML =
-                    `Indices consultés : <strong>${seenHints.size} / 3</strong>`;
-            }
-
-            function saveHints() {
-
-                saveField.value = Array.from(seenHints)
-                    .sort((a, b) => Number(a) - Number(b))
-                    .join(",");
-
-                /*
-                 * student-save.js écoute déjà les modifications
-                 * des champs data-save.
-                 */
-                saveField.dispatchEvent(
-                    new Event("input", {
-                        bubbles: true
-                    })
-                );
-
-                updateDisplay();
-            }
-
-            hints.forEach(hint => {
-
-                hint.addEventListener("toggle", () => {
-
-                    if (!hint.open) {
-                        return;
-                    }
-
-                    const level = hint.dataset.hintLevel;
-
-                    /*
-                     * Un indice déjà consulté ne doit pas
-                     * être compté une deuxième fois.
-                     */
-                    if (!seenHints.has(level)) {
-                        seenHints.add(level);
-                        saveHints();
-                    }
-                });
-            });
-
-            /*
-             * student-save.js restaure les données depuis Supabase
-             * de manière asynchrone.
-             *
-             * Pendant quelques secondes nous surveillons donc
-             * le champ afin de récupérer la valeur restaurée.
-             */
-            let previousValue = saveField.value;
-
-            const restoreWatcher = setInterval(() => {
-
-                if (saveField.value !== previousValue) {
-                    previousValue = saveField.value;
-
-                    readSavedHints();
-                    updateDisplay();
-                }
-
-            }, 250);
-
-            setTimeout(() => {
-                clearInterval(restoreWatcher);
-
-                readSavedHints();
-                updateDisplay();
-            }, 5000);
-
-            updateDisplay();
-        });
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
     </script>
 
+    <script src="/js/supabase-config.js"></script>
+
+    <script src="/js/student-save.js"></script>
+
+
 </body>
+
 </html>
