@@ -986,3 +986,209 @@ header h1 {
 		width: auto;
 	}
 }
+
+/* ======================================================
+   INDICES ÉLÈVES
+====================================================== */
+
+.student-hints {
+    margin: 14px 0;
+    padding: 12px;
+    border: 1px solid #d7dee7;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.student-hints-title {
+    margin: 0 0 10px;
+    font-weight: 700;
+    color: #334155;
+}
+
+/* ======================================================
+   UN INDICE
+====================================================== */
+
+.student-hint {
+    margin: 8px 0;
+    border: 1px solid #dbe3ec;
+    border-radius: 10px;
+    background: #ffffff;
+    overflow: hidden;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.student-hint:hover {
+    border-color: #aebccc;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
+}
+
+/* ======================================================
+   TITRE CLIQUABLE
+====================================================== */
+
+.student-hint summary {
+    position: relative;
+    padding: 11px 42px 11px 14px;
+    list-style: none;
+    cursor: pointer;
+    font-weight: 700;
+    color: #1e293b;
+    user-select: none;
+}
+
+.student-hint summary::-webkit-details-marker {
+    display: none;
+}
+
+.student-hint summary::after {
+    content: "›";
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    font-size: 1.4rem;
+    line-height: 1;
+    transform: translateY(-50%) rotate(90deg);
+    transition: transform 0.2s ease;
+    color: #64748b;
+}
+
+.student-hint[open] summary::after {
+    transform: translateY(-50%) rotate(270deg);
+}
+
+/* ======================================================
+   CONTENU DE L'INDICE
+====================================================== */
+
+.student-hint > *:not(summary) {
+    margin: 0;
+    padding: 0 14px 14px;
+    color: #475569;
+    line-height: 1.55;
+}
+
+/* ======================================================
+   NIVEAUX D'INDICE
+====================================================== */
+
+.student-hint[data-hint-level="1"] {
+    border-left: 5px solid #22c55e;
+}
+
+.student-hint[data-hint-level="1"] summary::before {
+    content: "Petit coup de pouce";
+    display: inline-block;
+    margin-right: 8px;
+    padding: 3px 7px;
+    border-radius: 999px;
+    background: #dcfce7;
+    color: #166534;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.student-hint[data-hint-level="2"] {
+    border-left: 5px solid #f59e0b;
+}
+
+.student-hint[data-hint-level="2"] summary::before {
+    content: "Aide intermédiaire";
+    display: inline-block;
+    margin-right: 8px;
+    padding: 3px 7px;
+    border-radius: 999px;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.student-hint[data-hint-level="3"] {
+    border-left: 5px solid #ef4444;
+}
+
+.student-hint[data-hint-level="3"] summary::before {
+    content: "Aide détaillée";
+    display: inline-block;
+    margin-right: 8px;
+    padding: 3px 7px;
+    border-radius: 999px;
+    background: #fee2e2;
+    color: #991b1b;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+/* ======================================================
+   INDICE DÉJÀ CONSULTÉ
+====================================================== */
+
+.student-hint[data-seen="true"] {
+    background: #f8fafc;
+    opacity: 0.92;
+}
+
+.student-hint[data-seen="true"] summary {
+    color: #475569;
+}
+
+.hint-seen {
+    margin-left: 7px;
+    color: #16a34a;
+    font-weight: 800;
+}
+
+/* ======================================================
+   COMPTEUR D'INDICES
+====================================================== */
+
+[data-hint-status] {
+    display: inline-block;
+    margin: 8px 0 0;
+    padding: 5px 9px;
+    border-radius: 8px;
+    background: #eef2f7;
+    color: #475569;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* ======================================================
+   ÉTAT OUVERT
+====================================================== */
+
+.student-hint[open] {
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.student-hint[data-hint-level="1"][open] {
+    background: #f0fdf4;
+}
+
+.student-hint[data-hint-level="2"][open] {
+    background: #fffbeb;
+}
+
+.student-hint[data-hint-level="3"][open] {
+    background: #fff1f2;
+}
+
+/* ======================================================
+   MOBILE
+====================================================== */
+
+@media (max-width: 600px) {
+    .student-hint summary {
+        padding: 10px 36px 10px 12px;
+    }
+
+    .student-hint summary::before {
+        display: block;
+        width: fit-content;
+        margin: 0 0 5px;
+    }
+}
