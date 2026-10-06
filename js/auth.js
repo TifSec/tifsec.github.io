@@ -13,7 +13,7 @@ function usernameToEmail(username) {
         .replace(/\s+/g, "")
         .replace(/[^a-z0-9._-]/g, "");
 
-    return `${cleanUsername}@eleve.local`;
+    return `${cleanUsername}@eleve.example.com`;
 }
 
 
