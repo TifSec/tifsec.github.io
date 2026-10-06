@@ -210,6 +210,16 @@ document
     });
 
 
+document
+    .getElementById("continue-button")
+    .addEventListener("click", () => {
+
+        window.location.href =
+            "/eleve/index.html";
+
+    });
+
+
 // ======================================================
 // AFFICHAGE DE L'ÉLÈVE CONNECTÉ
 // ======================================================

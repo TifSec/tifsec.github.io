@@ -210,7 +210,7 @@ document
         await db.auth.signOut();
 
         window.location.href =
-            "/test-auth.html";
+            "/auth/index.html";
 
     });
 

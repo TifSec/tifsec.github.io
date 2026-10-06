@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace élève</title>
+
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+
+<body>
+
+<main class="auth-page">
+
+    <section class="auth-card">
+
+        <header class="auth-header">
+
+            <div class="auth-logo">
+                ∑
+            </div>
+
+            <div>
+                <h1>Espace élève</h1>
+
+                <p>
+                    Retrouve tes cours, ta progression
+                    et ton travail sauvegardé.
+                </p>
+            </div>
+
+        </header>
+
+
+        <p id="message" class="auth-message"></p>
+
+
+        <!-- =================================================
+             ÉLÈVE NON CONNECTÉ
+        ================================================== -->
+
+        <div class="auth-columns">
+
+            <section
+                id="login"
+                class="auth-panel">
+
+                <h2>Connexion</h2>
+
+                <p class="auth-description">
+                    Tu as déjà un compte ? Connecte-toi pour
+                    reprendre ton travail là où tu l'avais laissé.
+                </p>
+
+                <label for="login-username">
+                    Identifiant
+                </label>
+
+                <input
+                    type="text"
+                    id="login-username"
+                    autocomplete="username"
+                    placeholder="ex. jean.dupont">
+
+                <label for="login-password">
+                    Mot de passe
+                </label>
+
+                <input
+                    type="password"
+                    id="login-password"
+                    autocomplete="current-password"
+                    placeholder="Ton mot de passe">
+
+                <button
+                    id="login-button"
+                    class="button button-primary">
+                    Se connecter
+                </button>
+
+            </section>
+
+
+            <div class="auth-separator">
+
+                <span>ou</span>
+
+            </div>
+
+
+            <section
+                id="create-account"
+                class="auth-panel">
+
+                <h2>Première connexion</h2>
+
+                <p class="auth-description">
+                    Crée ton espace personnel.
+                    Ton travail sera ensuite sauvegardé automatiquement.
+                </p>
+
+                <div class="name-grid">
+
+                    <div>
+
+                        <label for="register-prenom">
+                            Prénom
+                        </label>
+
+                        <input
+                            type="text"
+                            id="register-prenom"
+                            autocomplete="given-name">
+
+                    </div>
+
+                    <div>
+
+                        <label for="register-nom">
+                            Nom
+                        </label>
+
+                        <input
+                            type="text"
+                            id="register-nom"
+                            autocomplete="family-name">
+
+                    </div>
+
+                </div>
+
+
+                <label for="register-classe">
+                    Classe
+                </label>
+
+                <select id="register-classe">
+
+                    <option value="">
+                        Choisis ta classe
+                    </option>
+
+                    <option value="5e">
+                        5e
+                    </option>
+
+                    <option value="4e">
+                        4e
+                    </option>
+
+                    <option value="3e">
+                        3e
+                    </option>
+
+                </select>
+
+
+                <label for="register-username">
+                    Identifiant
+                </label>
+
+                <input
+                    type="text"
+                    id="register-username"
+                    autocomplete="username"
+                    placeholder="ex. jean.dupont">
+
+                <p class="field-help">
+                    Choisis un identifiant simple que tu pourras retenir.
+                </p>
+
+
+                <label for="register-password">
+                    Mot de passe
+                </label>
+
+                <input
+                    type="password"
+                    id="register-password"
+                    autocomplete="new-password"
+                    placeholder="8 caractères minimum">
+
+                <button
+                    id="register-button"
+                    class="button button-secondary">
+                    Créer mon espace
+                </button>
+
+            </section>
+
+        </div>
+
+
+        <!-- =================================================
+             ÉLÈVE CONNECTÉ
+        ================================================== -->
+
+        <section
+            id="connected"
+            class="connected-panel"
+            hidden>
+
+            <div class="connected-icon">
+                ✓
+            </div>
+
+            <h2 id="welcome"></h2>
+
+            <p>
+                Ton espace est prêt.
+            </p>
+
+            <button
+                id="continue-button"
+                class="button button-primary">
+                Continuer
+            </button>
+
+            <button
+                id="logout-button"
+                class="button button-light">
+                Se déconnecter
+            </button>
+
+        </section>
+
+
+        <footer class="auth-footer">
+
+            <span>
+                ☁ Sauvegarde automatique
+            </span>
+
+            <span>
+                🔒 Espace personnel
+            </span>
+
+            <span>
+                ↻ Reprise du travail
+            </span>
+
+        </footer>
+
+    </section>
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/js/supabase-config.js"></script>
+<script src="/js/auth.js"></script>
+
+</body>
+</html>
