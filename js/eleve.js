@@ -3,7 +3,6 @@
 // ======================================================
 
 const ROUTES = {
-
     espaceEleve: "/eleve/",
     auth: "/auth/",
 
@@ -29,19 +28,15 @@ const ROUTES = {
         "4e": "/techno/4/",
         "3e": "/techno/3/"
     }
-
 };
 
-
 let currentUser = null;
-
 
 // ======================================================
 // INITIALISATION
 // ======================================================
 
 async function initStudentDashboard() {
-
     const {
         data: {
             user
@@ -49,18 +44,12 @@ async function initStudentDashboard() {
         error
     } = await db.auth.getUser();
 
-
     if (error || !user) {
-
-        window.location.href =
-            ROUTES.auth;
-
+        window.location.href = ROUTES.auth;
         return;
     }
 
-
     currentUser = user;
-
 
     const {
         data: profile,
@@ -71,70 +60,81 @@ async function initStudentDashboard() {
         .eq("user_id", user.id)
         .single();
 
-
     if (profileError || !profile) {
-
         console.error(profileError);
 
         await db.auth.signOut();
 
-        window.location.href =
-            ROUTES.auth;
-
+        window.location.href = ROUTES.auth;
         return;
     }
 
+    if (profile.role === "teacher") {
+        window.location.href = "/prof/";
+        return;
+    }
 
     showStudent(profile);
-
     setSubjectLinks(profile);
 
     await loadLastSession(profile);
-
 }
-
 
 // ======================================================
 // AFFICHAGE DE L'ÉLÈVE
 // ======================================================
 
 function showStudent(profile) {
+    const fullName = [
+        profile.prenom,
+        profile.nom
+    ]
+        .filter(Boolean)
+        .join(" ");
 
     document
         .getElementById("student-name")
-        .textContent =
-        `${profile.prenom} ${profile.nom}`;
-
+        .textContent = fullName;
 
     document
         .getElementById("student-class")
-        .textContent =
-        `Classe : ${profile.classe}`;
-
+        .textContent = `Classe : ${formatClass(profile.classe)}`;
 }
 
+// ======================================================
+// NOM DE LA CLASSE
+// ======================================================
+
+function formatClass(classe) {
+    const classNames = {
+        "5e": "5e",
+        "4e": "4e",
+        "3e": "4e / 3e",
+        cap1: "CAP 1",
+        cap2: "CAP 2",
+        "2de": "2de",
+        "1re": "1re",
+        term: "Terminale",
+        bts1: "BTS 1",
+        bts2: "BTS 2"
+    };
+
+    return classNames[classe] ?? classe;
+}
 
 // ======================================================
 // LIENS DES MATIÈRES
 // ======================================================
 
 function setSubjectLinks(profile) {
-
     const mathsLink =
-        document.getElementById(
-            "subject-maths-link"
-        );
+        document.getElementById("subject-maths-link");
 
     const technoLink =
-        document.getElementById(
-            "subject-techno-link"
-        );
+        document.getElementById("subject-techno-link");
 
     const timLink =
-        document.getElementById(
-            "subject-tim-link"
-        );
-
+        document.getElementById("subject-tim-link");
 
     configureSubjectLink(
         mathsLink,
@@ -150,205 +150,190 @@ function setSubjectLinks(profile) {
         timLink,
         ROUTES.tim[profile.classe]
     );
-
 }
 
-
-function configureSubjectLink(
-    element,
-    url
-) {
-
+function configureSubjectLink(element, url) {
     if (!element) {
         return;
     }
 
-
     if (url) {
-
         element.href = url;
         element.hidden = false;
-
     } else {
-
         element.hidden = true;
-
     }
-
 }
-
 
 // ======================================================
 // DERNIÈRE SÉANCE
 // ======================================================
 
 async function loadLastSession(profile) {
+    const continueButton =
+        document.getElementById("continue-button");
 
     const {
         data,
         error
     } = await db
-        .from("student_work")
+        .from("student_sessions")
         .select(`
-            matiere,
-            classe,
-            seance,
-            updated_at
+            status,
+            started_at,
+            last_seen_at,
+            completed_at,
+            course_sessions (
+                id,
+                matiere,
+                classe,
+                seance,
+                titre,
+                active
+            )
         `)
         .eq("user_id", currentUser.id)
-        .order(
-            "updated_at",
-            {
-                ascending: false
-            }
-        )
+        .order("last_seen_at", {
+            ascending: false
+        })
         .limit(1)
         .maybeSingle();
 
-
     if (error) {
-
-        console.error(error);
-
-        return;
-    }
-
-
-    const continueButton =
-        document.getElementById(
-            "continue-button"
+        console.error(
+            "Erreur lors du chargement de la dernière séance :",
+            error
         );
 
-
-    // Aucun travail précédent
-
-    if (!data) {
-
-        if (profile.classe === "bts2") {
-
-            continueButton.disabled =
-                false;
-
-            continueButton.textContent =
-                "Commencer le test TIM BTS 2";
-
-
-            continueButton.addEventListener(
-                "click",
-                () => {
-
-                    window.location.href =
-                        ROUTES.tim.bts2;
-
-                }
-            );
-
-        }
-
+        continueButton.disabled = true;
+        continueButton.textContent =
+            "Impossible de charger la dernière séance";
 
         return;
     }
 
+    // ==================================================
+    // AUCUNE SÉANCE ENCORE COMMENCÉE
+    // ==================================================
 
-    continueButton.disabled =
-        false;
+    if (!data || !data.course_sessions) {
+        continueButton.disabled = true;
+        continueButton.textContent =
+            "Aucune séance commencée";
 
+        return;
+    }
 
-    continueButton.textContent =
-        `Continuer ${formatSession(data)}`;
+    const session =
+        data.course_sessions;
 
+    if (!session.active) {
+        continueButton.disabled = true;
+        continueButton.textContent =
+            "Dernière séance indisponible";
+
+        return;
+    }
+
+    const url =
+        getSessionUrl(session);
+
+    if (!url) {
+        console.warn(
+            "Aucune route trouvée pour la séance :",
+            session
+        );
+
+        continueButton.disabled = true;
+        continueButton.textContent =
+            "Séance introuvable";
+
+        return;
+    }
+
+    continueButton.disabled = false;
+
+    if (data.status === "completed") {
+        continueButton.textContent =
+            `Revoir ${formatSession(session)}`;
+    } else {
+        continueButton.textContent =
+            `Continuer ${formatSession(session)}`;
+    }
 
     continueButton.addEventListener(
         "click",
         () => {
-
-            const url =
-                getSessionUrl(data);
-
-
-            if (!url) {
-
-                console.warn(
-                    "Aucune route trouvée pour :",
-                    data
-                );
-
-                return;
-            }
-
-
-            window.location.href =
-                url;
-
+            window.location.href = url;
         }
     );
-
 }
-
 
 // ======================================================
 // NOM DE LA SÉANCE
 // ======================================================
 
 function formatSession(data) {
-
     const subjectNames = {
-
         maths: "Maths",
-
         techno: "Technologie",
-
         tim: "TIM"
-
     };
-
 
     const subject =
         subjectNames[data.matiere]
         ?? data.matiere;
 
-
-    return `${subject} ${data.classe} — ${data.seance}`;
-
+    return `${subject} ${formatClass(data.classe)} — ${data.seance}`;
 }
-
 
 // ======================================================
 // URL DE LA SÉANCE
 // ======================================================
 
 function getSessionUrl(data) {
+    /*
+        Pour l'instant, les routes pointent vers
+        les pages principales de chaque classe.
 
-    // Cas particulier du test actuel
+        On pourra ensuite ajouter un système
+        plus précis pour aller directement
+        sur #session3, #session4, etc.
+    */
 
-    if (
-        data.matiere === "tim" &&
-        data.classe === "bts2" &&
-        data.seance === "TEST"
-    ) {
+    const subjectRoutes =
+        ROUTES[data.matiere];
 
-        return ROUTES.tim.bts2;
-
+    if (!subjectRoutes) {
+        return null;
     }
 
+    const baseUrl =
+        subjectRoutes[data.classe];
 
-    // Ancien test maths
-
-    if (
-        data.matiere === "maths" &&
-        data.classe === "3e" &&
-        data.seance === "TEST"
-    ) {
-
-        return "/test-save.html";
-
+    if (!baseUrl) {
+        return null;
     }
 
+    /*
+        Si tes séances sont dans une seule page
+        avec des sections id="session3", etc.,
+        on peut pointer directement dessus.
 
-    return null;
+        S03 → #session3
+        S04 → #session4
+    */
 
+    const match =
+        String(data.seance)
+            .match(/^S0*(\d+)$/i);
+
+    if (match) {
+        return `${baseUrl}#session${match[1]}`;
+    }
+
+    return baseUrl;
 }
-
 
 // ======================================================
 // DÉCONNEXION
@@ -359,15 +344,12 @@ document
     .addEventListener(
         "click",
         async () => {
-
             await db.auth.signOut();
 
             window.location.href =
                 ROUTES.auth;
-
         }
     );
-
 
 // ======================================================
 // DÉMARRAGE
