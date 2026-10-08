@@ -1,13 +1,3540 @@
-<body data-subject="maths">
-    <link rel="stylesheet" href="../style.css">
-
-    <h1>Mathématiques — espace professeur</h1>
-
-    <div id="classes"></div>
-
-    <div id="sessions"></div>
-
-    <main id="course"></main>
-
-    <script src="../script.js"></script>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme Mathématiques 4° / 3°</title>
+    <link rel="stylesheet" href="../../mfr/style.css">
+    <script src="../../mfr/script.js"></script>
+    <link rel="icon" type="image/png" href="../../favicon.png">
+</head>
+<body data-course-id="mfr-3e">
+    <header>
+        <h1>Programme Mathématiques 4° / 3°</h1>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
+    </header>
+    <!-- Menu hamburger sur la gauche -->
+    <aside id="menu">
+        <nav id="session-nav">
+            <ul>
+                <!-- CALENDRIER -->
+                <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
+                <!-- <li><a href="#" onclick="showSession('Cours_IA')">Cours IA</a></li> -->
+            </ul>
+        </nav>
+    </aside>
+    <main class="course-page-layout">
+        <!-- Barre latérale unique -->
+        <aside class="course-progress">
+            <div class="course-progress-sticky">
+                <h3>Ma progression</h3>
+                <p class="progress-session-title" data-progress-session-title>
+                    Séance
+                </p>
+                <div class="progress-main">
+                    <div class="progress-main-header">
+                        <span>Avancement</span>
+                        <strong data-progress-percent>
+                            0 %
+                        </strong>
+                    </div>
+                    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                        aria-valuenow="0">
+                        <div class="progress-bar-value" data-progress-bar>
+                        </div>
+                    </div>
+                    <p class="progress-detail">
+                        Étape
+                        <strong data-progress-current>0</strong>
+                        /
+                        <strong data-progress-total>0</strong>
+                    </p>
+                </div>
+                <div class="progress-status-list">
+                    <div class="progress-status progress-correct">
+                        <span>✓ Correctes</span>
+                        <strong data-count-correct>0</strong>
+                    </div>
+                    <div class="progress-status progress-incorrect">
+                        <span>✕ À corriger</span>
+                        <strong data-count-incorrect>0</strong>
+                    </div>
+                    <div class="progress-status progress-review">
+                        <span>● À vérifier</span>
+                        <strong data-count-review>0</strong>
+                    </div>
+                    <div class="progress-status progress-empty">
+                        <span>○ À faire</span>
+                        <strong data-count-empty>0</strong>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- Zone unique des séances -->
+        <div class="course-content">
+            <!-- Calendrier -->
+            <section id="calendar" class="content-section">
+                <h2>Calendrier des séances</h2>
+                <div id="course-status"></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>État</th>
+                            <th>Séance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body"></tbody>
+                </table>
+            </section>
+            <section id="session1" class="content-section course-session" data-matiere="maths" data-classe="4e-3e"
+                data-seance="S01" data-session-title="Séance 1 : Reprendre les bons réflexes en mathématiques">
+                <h1>Séance 1 : Reprendre les bons réflexes en mathématiques</h1>
+                <!-- =========================================================
+                    INTRODUCTION
+                    ========================================================= -->
+                <section class="lesson-intro">
+                    <h2>Ce que vous allez apprendre</h2>
+                    <ul>
+                        <li>Retrouver les principaux automatismes de calcul.</li>
+                        <li>Réutiliser les nombres relatifs, les fractions et les pourcentages.</li>
+                        <li>Reconnaître une situation simple de proportionnalité.</li>
+                        <li>Effectuer des conversions simples.</li>
+                        <li>Retrouver les formules de base du rectangle.</li>
+                    </ul>
+                    <h2>Ce que vous allez apprendre à faire</h2>
+                    <ul>
+                        <li>Choisir une méthode de calcul efficace.</li>
+                        <li>Donner une réponse avec la bonne unité.</li>
+                        <li>Expliquer votre démarche lorsque cela est utile.</li>
+                        <li>Vérifier si un résultat semble cohérent.</li>
+                        <li>Utiliser progressivement les réflexes attendus au DNB.</li>
+                    </ul>
+                    <div class="info">
+                        <strong>Cette séance est un diagnostic.</strong>
+                        <p>
+                            Elle permet de voir ce que vous savez déjà faire
+                            et ce que nous devrons retravailler.
+                            Une erreur est donc une information utile.
+                        </p>
+                    </div>
+                </section>
+                <!-- =========================================================
+                    ACTIVITÉ 1
+                    ========================================================= -->
+                <section class="activity" id="activity1" data-activity="1">
+                    <h2>1. Automatismes : ce que je sais déjà faire</h2>
+                    <p>
+                        <strong>Calculatrice interdite.</strong>
+                    </p>
+                    <p>
+                        Travaillez individuellement.
+                        Écrivez directement votre réponse en face de chaque calcul.
+                    </p>
+                    <!-- Q1 -->
+                    <div class="answer-block" data-exercise-key="s01-a1-q1" data-answer-mode="auto"
+                        data-answer-type="number" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a1-q1">
+                            1. 7 + 8 =
+                        </label>
+                        <input id="s01-a1-q1" type="text" class="student-result" inputmode="decimal"
+                            data-save="s01-a1-q1" data-check="number" data-answer="15" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a1-q1" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="answer-block" data-exercise-key="s01-a1-q2" data-answer-mode="auto"
+                        data-answer-type="number" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a1-q2">
+                            2. 6 × 9 =
+                        </label>
+                        <input id="s01-a1-q2" type="text" class="student-result" inputmode="decimal"
+                            data-save="s01-a1-q2" data-check="number" data-answer="54" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a1-q2" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="answer-block" data-exercise-key="s01-a1-q3" data-answer-mode="auto"
+                        data-answer-type="number" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a1-q3">
+                            3. 42 ÷ 6 =
+                        </label>
+                        <input id="s01-a1-q3" type="text" class="student-result" inputmode="decimal"
+                            data-save="s01-a1-q3" data-check="number" data-answer="7" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a1-q3" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="answer-block" data-exercise-key="s01-a1-q4" data-answer-mode="auto"
+                        data-answer-type="number" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a1-q4">
+                            4. 15 − 23 =
+                        </label>
+                        <input id="s01-a1-q4" type="text" class="student-result" inputmode="decimal"
+                            data-save="s01-a1-q4" data-check="number" data-answer="-8" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a1-q4" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="answer-block" data-exercise-key="s01-a1-q5" data-answer-mode="auto"
+                        data-answer-type="number" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a1-q5">
+                            5. −4 + 9 =
+                        </label>
+                        <input id="s01-a1-q5" type="text" class="student-result" inputmode="decimal"
+                            data-save="s01-a1-q5" data-check="number" data-answer="5" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a1-q5" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q6 -->
+                    <div class="answer-block" data-exercise-key="s01-a1-q6" data-answer-mode="auto"
+                        data-answer-type="number" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a1-q6">
+                            6. 3 × (5 + 2) =
+                        </label>
+                        <input id="s01-a1-q6" type="text" class="student-result" inputmode="decimal"
+                            data-save="s01-a1-q6" data-check="number" data-answer="21" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a1-q6" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q7 -->
+                    <div class="answer-block" data-exercise-key="s01-a1-q7" data-answer-mode="auto"
+                        data-answer-type="number" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a1-q7">
+                            7. 20 − 3 × 4 =
+                        </label>
+                        <input id="s01-a1-q7" type="text" class="student-result" inputmode="decimal"
+                            data-save="s01-a1-q7" data-check="number" data-answer="8" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a1-q7" aria-live="polite">
+                            À faire
+                        </p>
+                        <div class="student-hints">
+                            <details class="student-hint" data-exercise="s01-a1-q7" data-hint-id="s01-a1-q7-h1"
+                                data-hint-level="1">
+                                <summary>
+                                    <strong>Indice 1</strong>
+                                </summary>
+                                <p>
+                                    Repérez l'opération prioritaire.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a1-q7" data-hint-id="s01-a1-q7-h2"
+                                data-hint-level="2">
+                                <summary>
+                                    <strong>Indice 2</strong>
+                                </summary>
+                                <p>
+                                    La multiplication doit être effectuée
+                                    avant la soustraction.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a1-q7" data-hint-id="s01-a1-q7-h3"
+                                data-hint-level="3">
+                                <summary>
+                                    <strong>Indice 3</strong>
+                                </summary>
+                                <p>
+                                    Commencez par calculer 3 × 4.
+                                </p>
+                            </details>
+                            <p data-hint-status="s01-a1-q7"></p>
+                        </div>
+                    </div>
+                    <!-- Q8 -->
+                    <div class="answer-block" data-exercise-key="s01-a1-q8" data-answer-mode="auto"
+                        data-answer-type="number" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a1-q8">
+                            8. La moitié de 36 =
+                        </label>
+                        <input id="s01-a1-q8" type="text" class="student-result" inputmode="decimal"
+                            data-save="s01-a1-q8" data-check="number" data-answer="18" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a1-q8" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q9 -->
+                    <div class="answer-block" data-exercise-key="s01-a1-q9" data-answer-mode="auto"
+                        data-answer-type="number" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a1-q9">
+                            9. Le quart de 20 =
+                        </label>
+                        <input id="s01-a1-q9" type="text" class="student-result" inputmode="decimal"
+                            data-save="s01-a1-q9" data-check="number" data-answer="5" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a1-q9" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q10 -->
+                    <div class="answer-block" data-exercise-key="s01-a1-q10" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a1-q10">
+                            10. 10 % de 80 € =
+                        </label>
+                        <input id="s01-a1-q10" type="text" class="student-result" inputmode="decimal"
+                            data-save="s01-a1-q10" data-check="number-unit" data-answer="8" data-unit="€"
+                            placeholder="... €" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a1-q10" aria-live="polite">
+                            À faire
+                        </p>
+                        <div class="student-hints">
+                            <details class="student-hint" data-exercise="s01-a1-q10" data-hint-id="s01-a1-q10-h1"
+                                data-hint-level="1">
+                                <summary>
+                                    <strong>Indice 1</strong>
+                                </summary>
+                                <p>
+                                    Pensez à la signification de 10 %.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a1-q10" data-hint-id="s01-a1-q10-h2"
+                                data-hint-level="2">
+                                <summary>
+                                    <strong>Indice 2</strong>
+                                </summary>
+                                <p>
+                                    10 % correspond à un dixième.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a1-q10" data-hint-id="s01-a1-q10-h3"
+                                data-hint-level="3">
+                                <summary>
+                                    <strong>Indice 3</strong>
+                                </summary>
+                                <p>
+                                    Divisez 80 par 10.
+                                </p>
+                            </details>
+                            <p data-hint-status="s01-a1-q10"></p>
+                        </div>
+                    </div>
+                    <div class="rappel">
+                        <strong>Rappel 4e</strong>
+                        <p>
+                            Dans un calcul, on effectue d'abord les calculs
+                            entre parenthèses, puis les multiplications et divisions,
+                            puis les additions et soustractions.
+                        </p>
+                    </div>
+                    <div class="dnb">
+                        <strong>Réflexe DNB</strong>
+                        <p>
+                            La partie « automatismes » du DNB se réalise sans calculatrice.
+                            Apprenez donc à reconnaître rapidement les calculs simples.
+                        </p>
+                    </div>
+                    <div class="ressource">
+                        <strong>Besoin de revoir ?</strong>
+                        <p>
+                            <a href="https://www.lumni.fr/college/quatrieme/mathematiques/nombres-et-calculs-7"
+                                target="_blank" rel="noopener noreferrer">
+                                Lumni – Maths 4e : nombres et calculs
+                            </a>
+                        </p>
+                    </div>
+                    <!-- PROF
+                    ATTENDU :
+                    1. 15
+                    2. 54
+                    3. 7
+                    4. -8
+                    5. 5
+                    6. 21
+                    7. 8
+                    8. 18
+                    9. 5
+                    10. 8 €
+                    CALCUL MENTAL :
+                    7 + 8 :
+                    - compléter jusqu'à 10 : 7 + 3 = 10 puis +5 ;
+                    - utiliser le double : 8 + 8 = 16 puis -1.
+                    6 × 9 :
+                    6 × 10 = 60 puis 60 - 6 = 54.
+                    42 ÷ 6 :
+                    6 × 7 = 42 donc 42 ÷ 6 = 7.
+                    15 - 23 :
+                    15 - 15 = 0 puis retirer encore 8.
+                    Résultat : -8.
+                    -4 + 9 :
+                    de -4 à 0 : +4.
+                    Il reste +5.
+                    Résultat : 5.
+                    3 × (5 + 2) :
+                    parenthèses d'abord :
+                    5 + 2 = 7 puis 3 × 7 = 21.
+                    20 - 3 × 4 :
+                    multiplication prioritaire :
+                    3 × 4 = 12 puis 20 - 12 = 8.
+                    Moitié de 36 :
+                    36 ÷ 2 = 18.
+                    Quart de 20 :
+                    20 ÷ 4 = 5.
+                    10 % de 80 :
+                    10 % = 1/10.
+                    80 ÷ 10 = 8.
+                    VOCABULAIRE :
+                    - addition : opération ;
+                    - somme : résultat d'une addition ;
+                    - multiplication : opération ;
+                    - produit : résultat d'une multiplication ;
+                    - quotient : résultat d'une division.
+                    EXPLOITATION :
+                    Demander régulièrement :
+                    « Comment avez-vous fait dans votre tête ? »
+                    Une réponse juste reste correcte même si l'élève
+                    n'a pas développé de méthode lorsqu'aucune justification
+                    n'était demandée.
+                    -->
+                </section>
+                <!-- =========================================================
+                    ACTIVITÉ 2
+                    ========================================================= -->
+                <section class="activity" id="activity2" data-activity="2">
+                    <h2>2. Nombres relatifs et droite graduée</h2>
+                    <p>
+                        <strong>Calculatrice interdite.</strong>
+                    </p>
+                    <p>
+                        Un matin d'hiver, les températures suivantes sont relevées :
+                    </p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Heure</th>
+                                <th>6 h</th>
+                                <th>9 h</th>
+                                <th>12 h</th>
+                                <th>15 h</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Température</th>
+                                <td>-5 °C</td>
+                                <td>-2 °C</td>
+                                <td>3 °C</td>
+                                <td>6 °C</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Q1 -->
+                    <div class="answer-block" data-exercise-key="s01-a2-q1" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a2-q1">
+                            1. Température la plus basse :
+                        </label>
+                        <input id="s01-a2-q1" type="text" class="student-result" data-save="s01-a2-q1"
+                            data-check="number-unit" data-answer="-5" data-unit="°C" placeholder="... °C"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a2-q1" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="answer-block" data-exercise-key="s01-a2-q2" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a2-q2">
+                            2. Température la plus élevée :
+                        </label>
+                        <input id="s01-a2-q2" type="text" class="student-result" data-save="s01-a2-q2"
+                            data-check="number-unit" data-answer="6" data-unit="°C" placeholder="... °C"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a2-q2" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="answer-block" data-exercise-key="s01-a2-q3" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <p class="question-text">
+                            3. De combien de degrés la température augmente-t-elle
+                            entre 6 h et 12 h ?
+                        </p>
+                        <label for="s01-a2-q3">
+                            Augmentation =
+                        </label>
+                        <input id="s01-a2-q3" type="text" class="student-result" data-save="s01-a2-q3"
+                            data-check="number-unit" data-answer="8" data-unit="°C" placeholder="... °C"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a2-q3" aria-live="polite">
+                            À faire
+                        </p>
+                        <div class="student-hints">
+                            <details class="student-hint" data-exercise="s01-a2-q3" data-hint-id="s01-a2-q3-h1"
+                                data-hint-level="1">
+                                <summary><strong>Indice 1</strong></summary>
+                                <p>
+                                    Imaginez le déplacement de -5 jusqu'à 3
+                                    sur une droite graduée.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a2-q3" data-hint-id="s01-a2-q3-h2"
+                                data-hint-level="2">
+                                <summary><strong>Indice 2</strong></summary>
+                                <p>
+                                    Vous pouvez passer par 0.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a2-q3" data-hint-id="s01-a2-q3-h3"
+                                data-hint-level="3">
+                                <summary><strong>Indice 3</strong></summary>
+                                <p>
+                                    De -5 à 0 : 5 degrés.
+                                    Puis de 0 à 3 : 3 degrés.
+                                </p>
+                            </details>
+                            <p data-hint-status="s01-a2-q3"></p>
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="answer-block" data-exercise-key="s01-a2-q4" data-answer-mode="auto"
+                        data-answer-type="number-list" data-track-progress="true" data-answer-state="empty">
+                        <p class="question-text">
+                            4. Rangez les quatre températures
+                            dans l'ordre croissant.
+                        </p>
+                        <label for="s01-a2-q4">
+                            Séparez les nombres par un point-virgule.
+                        </label>
+                        <input id="s01-a2-q4" type="text" class="student-result" data-save="s01-a2-q4"
+                            data-check="number-list" data-order="strict" data-answer="-5;-2;3;6"
+                            placeholder="-5 ; -2 ; 3 ; 6" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a2-q4" aria-live="polite">
+                            À faire
+                        </p>
+                        <div class="student-hints">
+                            <details class="student-hint" data-exercise="s01-a2-q4" data-hint-id="s01-a2-q4-h1"
+                                data-hint-level="1">
+                                <summary><strong>Indice 1</strong></summary>
+                                <p>
+                                    « Ordre croissant » signifie
+                                    du plus petit au plus grand.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a2-q4" data-hint-id="s01-a2-q4-h2"
+                                data-hint-level="2">
+                                <summary><strong>Indice 2</strong></summary>
+                                <p>
+                                    Les nombres négatifs sont plus petits
+                                    que les nombres positifs.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a2-q4" data-hint-id="s01-a2-q4-h3"
+                                data-hint-level="3">
+                                <summary><strong>Indice 3</strong></summary>
+                                <p>
+                                    Sur une droite graduée,
+                                    lisez les nombres de gauche à droite.
+                                </p>
+                            </details>
+                            <p data-hint-status="s01-a2-q4"></p>
+                        </div>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="answer-block" data-exercise-key="s01-a2-q5" data-answer-mode="auto"
+                        data-answer-type="choice" data-track-progress="true" data-answer-state="empty">
+                        <p class="question-text">
+                            5. Sur votre cahier ou votre feuille,
+                            tracez une droite graduée de -6 à 7
+                            et placez -5, -2, 3 et 6.
+                        </p>
+                        <label for="s01-a2-q5">
+                            Lorsque votre droite est terminée,
+                            indiquez « fait » :
+                        </label>
+                        <input id="s01-a2-q5" type="text" class="student-result" data-save="s01-a2-q5"
+                            data-check="choice" data-answer="fait" placeholder="fait" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a2-q5" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="rappel">
+                        <strong>Vocabulaire mathématique</strong>
+                        <p>
+                            Le nombre qui permet de repérer un point
+                            sur une droite graduée s'appelle son
+                            <strong>abscisse</strong>.
+                        </p>
+                    </div>
+                    <!-- PROF
+                    ATTENDU :
+                    1. -5 °C
+                    2. 6 °C
+                    3. 8 °C
+                    4. -5 ; -2 ; 3 ; 6
+                    QUESTION 3 :
+                    De -5 à 0 : +5.
+                    De 0 à 3 : +3.
+                    Total : +8 °C.
+                    VOCABULAIRE :
+                    Un nombre relatif peut être positif, négatif ou nul.
+                    0 n'est ni strictement positif ni strictement négatif.
+                    Sur une droite graduée :
+                    plus un nombre est situé à droite, plus il est grand.
+                    Ne pas dire :
+                    « -5 est plus grand parce que 5 est plus grand que 2 ».
+                    -->
+                </section>
+                <!-- =========================================================
+                    ACTIVITÉ 3
+                    ========================================================= -->
+                <section class="activity" id="activity3" data-activity="3">
+                    <h2>3. Fractions : partager une quantité</h2>
+                    <p>
+                        <strong>Calculatrice interdite.</strong>
+                    </p>
+                    <p>
+                        Un sac contient 24 kg d'aliment.
+                    </p>
+                    <!-- Q1 -->
+                    <div class="answer-block" data-exercise-key="s01-a3-q1" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a3-q1">
+                            1. La moitié de 24 kg =
+                        </label>
+                        <input id="s01-a3-q1" type="text" class="student-result" data-save="s01-a3-q1"
+                            data-check="number-unit" data-answer="12" data-unit="kg" placeholder="... kg"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a3-q1" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="answer-block" data-exercise-key="s01-a3-q2" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a3-q2">
+                            2. Le quart de 24 kg =
+                        </label>
+                        <input id="s01-a3-q2" type="text" class="student-result" data-save="s01-a3-q2"
+                            data-check="number-unit" data-answer="6" data-unit="kg" placeholder="... kg"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a3-q2" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="answer-block" data-exercise-key="s01-a3-q3" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a3-q3">
+                            3. Les trois quarts de 24 kg =
+                        </label>
+                        <input id="s01-a3-q3" type="text" class="student-result" data-save="s01-a3-q3"
+                            data-check="number-unit" data-answer="18" data-unit="kg" placeholder="... kg"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a3-q3" aria-live="polite">
+                            À faire
+                        </p>
+                        <div class="student-hints">
+                            <details class="student-hint" data-exercise="s01-a3-q3" data-hint-id="s01-a3-q3-h1"
+                                data-hint-level="1">
+                                <summary><strong>Indice 1</strong></summary>
+                                <p>
+                                    Commencez par chercher un quart de 24.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a3-q3" data-hint-id="s01-a3-q3-h2"
+                                data-hint-level="2">
+                                <summary><strong>Indice 2</strong></summary>
+                                <p>
+                                    24 ÷ 4 donne la valeur d'un quart.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a3-q3" data-hint-id="s01-a3-q3-h3"
+                                data-hint-level="3">
+                                <summary><strong>Indice 3</strong></summary>
+                                <p>
+                                    Multipliez ensuite la valeur d'un quart par 3.
+                                </p>
+                            </details>
+                            <p data-hint-status="s01-a3-q3"></p>
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="answer-block" data-exercise-key="s01-a3-q4" data-answer-mode="auto"
+                        data-answer-type="fraction-value" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a3-q4">
+                            4. La proportion correspondant à 6 kg sur 24 kg =
+                        </label>
+                        <input id="s01-a3-q4" type="text" class="student-result" data-save="s01-a3-q4"
+                            data-check="fraction-value" data-answer="6/24" placeholder="Exemple : 3/8"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a3-q4" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="answer-block" data-exercise-key="s01-a3-q5" data-answer-mode="auto"
+                        data-answer-type="fraction-simplified" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a3-q5">
+                            5. Écriture simplifiée de 6/24 =
+                        </label>
+                        <input id="s01-a3-q5" type="text" class="student-result" data-save="s01-a3-q5"
+                            data-check="fraction-simplified" data-answer="1/4" placeholder="Exemple : 2/3"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a3-q5" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="rappel">
+                        <strong>Rappel 4e</strong>
+                        <p>
+                            Pour calculer une fraction d'une quantité,
+                            on peut diviser la quantité par le dénominateur
+                            puis multiplier par le numérateur.
+                        </p>
+                    </div>
+                    <!-- PROF
+                    ATTENDU :
+                    1. 12 kg
+                    2. 6 kg
+                    3. 18 kg
+                    4. 6/24
+                    5. 1/4
+                    VOCABULAIRE :
+                    Dans 3/4 :
+                    - 3 est le numérateur ;
+                    - 4 est le dénominateur.
+                    6/24 et 1/4 représentent le même nombre.
+                    ATTENTION :
+                    fraction-value doit accepter les fractions équivalentes.
+                    fraction-simplified doit exiger une fraction irréductible.
+                    -->
+                </section>
+                <!-- =========================================================
+                    ACTIVITÉ 4
+                    ========================================================= -->
+                <section class="activity" id="activity4" data-activity="4">
+                    <h2>4. Proportionnalité : préparer une ration</h2>
+                    <p>
+                        <strong>Calculatrice autorisée.</strong>
+                    </p>
+                    <p>
+                        Dans un élevage, 5 animaux consomment ensemble
+                        20 kg d'aliment par jour.
+                        Pour cet exercice, on suppose que chaque animal
+                        reçoit la même quantité.
+                    </p>
+                    <div class="answer-block" data-exercise-key="s01-a4-q1" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a4-q1">
+                            1. Quantité pour un animal et par jour =
+                        </label>
+                        <input id="s01-a4-q1" type="text" class="student-result" data-save="s01-a4-q1"
+                            data-check="number-unit" data-answer="4" data-unit="kg" placeholder="... kg"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a4-q1" aria-live="polite">
+                            À faire
+                        </p>
+                        <div class="student-hints">
+                            <details class="student-hint" data-exercise="s01-a4-q1" data-hint-id="s01-a4-q1-h1"
+                                data-hint-level="1">
+                                <summary><strong>Indice 1</strong></summary>
+                                <p>
+                                    Cherchez d'abord la quantité
+                                    correspondant à un seul animal.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a4-q1" data-hint-id="s01-a4-q1-h2"
+                                data-hint-level="2">
+                                <summary><strong>Indice 2</strong></summary>
+                                <p>
+                                    Il faut partager 20 kg entre 5 animaux.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a4-q1" data-hint-id="s01-a4-q1-h3"
+                                data-hint-level="3">
+                                <summary><strong>Indice 3</strong></summary>
+                                <p>
+                                    Calculez 20 ÷ 5.
+                                </p>
+                            </details>
+                            <p data-hint-status="s01-a4-q1"></p>
+                        </div>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a4-q2" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a4-q2">
+                            2. Quantité pour 8 animaux pendant une journée =
+                        </label>
+                        <input id="s01-a4-q2" type="text" class="student-result" data-save="s01-a4-q2"
+                            data-check="number-unit" data-answer="32" data-unit="kg" placeholder="... kg"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a4-q2" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a4-q3" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a4-q3">
+                            3. Quantité pour 8 animaux pendant 7 jours =
+                        </label>
+                        <input id="s01-a4-q3" type="text" class="student-result" data-save="s01-a4-q3"
+                            data-check="number-unit" data-answer="224" data-unit="kg" placeholder="... kg"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a4-q3" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a4-q4" data-answer-mode="review"
+                        data-answer-type="text" data-track-progress="true" data-answer-state="empty"
+                        data-export-question="s01-a4-q4">
+                        <p class="question-text" data-question-text>
+                            4. Expliquez votre méthode.
+                        </p>
+                        <textarea id="s01-a4-q4" class="student-answer" data-save="s01-a4-q4" rows="3"
+                            placeholder="Écrivez vos calculs et une courte phrase de conclusion."></textarea>
+                        <p class="answer-feedback" data-answer-status="s01-a4-q4" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="rappel">
+                        <strong>Vocabulaire mathématique</strong>
+                        <p>
+                            Le <strong>passage à l'unité</strong>
+                            est une méthode :
+                            on cherche d'abord la valeur correspondant à 1.
+                        </p>
+                    </div>
+                    <div class="dnb">
+                        <strong>Réflexe DNB</strong>
+                        <p>
+                            Vérifiez d'abord que la situation est proportionnelle,
+                            puis choisissez une méthode adaptée.
+                        </p>
+                    </div>
+                    <div class="ressource">
+                        <a href="https://www.lumni.fr/video/proportionnalite" target="_blank" rel="noopener noreferrer">
+                            Lumni – Petits problèmes de proportionnalité
+                        </a>
+                    </div>
+                    <!-- PROF
+                    ATTENDU :
+                    20 ÷ 5 = 4 kg.
+                    4 × 8 = 32 kg.
+                    32 × 7 = 224 kg.
+                    Conclusion :
+                    Il faut prévoir 224 kg d'aliment
+                    pour 8 animaux pendant 7 jours.
+                    IMPORTANT :
+                    La réponse ouverte n'est pas corrigée automatiquement.
+                    Valoriser :
+                    - résultat juste + démarche ;
+                    - résultat faux + démarche pertinente ;
+                    - progression du raisonnement.
+                    -->
+                </section>
+                <!-- =========================================================
+                    ACTIVITÉ 5
+                    ========================================================= -->
+                <section class="activity" id="activity5" data-activity="5">
+                    <h2>5. Pourcentages : comprendre une réduction</h2>
+                    <p>
+                        <strong>Calculatrice autorisée.</strong>
+                    </p>
+                    <p>
+                        Un équipement coûte 80 €.
+                        Une remise de 25 % est accordée.
+                    </p>
+                    <div class="answer-block" data-exercise-key="s01-a5-q1" data-answer-mode="auto"
+                        data-answer-type="fraction-value" data-track-progress="true" data-answer-state="empty">
+                        <p class="question-text">
+                            1. Que signifie « 25 % » ?
+                        </p>
+                        <label for="s01-a5-q1">
+                            Complétez : 25 % signifie
+                        </label>
+                        <input id="s01-a5-q1" type="text" class="student-result" data-save="s01-a5-q1"
+                            data-check="fraction-value" data-answer="25/100" placeholder="... / ..." autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a5-q1" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a5-q2" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a5-q2">
+                            2. Montant de la remise =
+                        </label>
+                        <input id="s01-a5-q2" type="text" class="student-result" data-save="s01-a5-q2"
+                            data-check="number-unit" data-answer="20" data-unit="€" placeholder="... €"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a5-q2" aria-live="polite">
+                            À faire
+                        </p>
+                        <div class="student-hints">
+                            <details class="student-hint" data-exercise="s01-a5-q2" data-hint-id="s01-a5-q2-h1"
+                                data-hint-level="1">
+                                <summary><strong>Indice 1</strong></summary>
+                                <p>
+                                    25 % correspond à une fraction très connue.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a5-q2" data-hint-id="s01-a5-q2-h2"
+                                data-hint-level="2">
+                                <summary><strong>Indice 2</strong></summary>
+                                <p>
+                                    25 % = 1/4.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a5-q2" data-hint-id="s01-a5-q2-h3"
+                                data-hint-level="3">
+                                <summary><strong>Indice 3</strong></summary>
+                                <p>
+                                    Calculez le quart de 80 €.
+                                </p>
+                            </details>
+                            <p data-hint-status="s01-a5-q2"></p>
+                        </div>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a5-q3" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a5-q3">
+                            3. Prix après remise =
+                        </label>
+                        <input id="s01-a5-q3" type="text" class="student-result" data-save="s01-a5-q3"
+                            data-check="number-unit" data-answer="60" data-unit="€" placeholder="... €"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a5-q3" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a5-q4" data-answer-mode="review"
+                        data-answer-type="text" data-track-progress="true" data-answer-state="empty"
+                        data-export-question="s01-a5-q4">
+                        <p class="question-text" data-question-text>
+                            4. Expliquez comment trouver mentalement 25 % de 80 €.
+                        </p>
+                        <textarea id="s01-a5-q4" class="student-answer" data-save="s01-a5-q4" rows="2"
+                            placeholder="Expliquez votre méthode en une ou deux phrases."></textarea>
+                        <p class="answer-feedback" data-answer-status="s01-a5-q4" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- PROF
+                    ATTENDU :
+                    25 % = 25/100 = 1/4.
+                    Remise : 20 €.
+                    Prix final : 60 €.
+                    MÉTHODE MENTALE :
+                    25 % = 1/4.
+                    80 ÷ 4 = 20.
+                    Autre méthode :
+                    50 % de 80 = 40.
+                    25 % est la moitié de 50 %.
+                    Donc 20.
+                    VOCABULAIRE :
+                    Pourcentage signifie « pour cent ».
+                    Distinguer :
+                    - montant de la réduction : 20 € ;
+                    - prix après réduction : 60 €.
+                    -->
+                </section>
+                <!-- =========================================================
+                    ACTIVITÉ 6
+                    ========================================================= -->
+                <section class="activity" id="activity6" data-activity="6">
+                    <h2>6. Grandeurs et conversions</h2>
+                    <p>
+                        <strong>Calculatrice interdite.</strong>
+                    </p>
+                    <p>
+                        Complétez directement chaque conversion.
+                    </p>
+                    <div class="answer-block" data-exercise-key="s01-a6-q1" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a6-q1">
+                            1. 2,5 m =
+                        </label>
+                        <input id="s01-a6-q1" type="text" class="student-result" data-save="s01-a6-q1"
+                            data-check="number-unit" data-answer="250" data-unit="cm" placeholder="... cm"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a6-q1" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a6-q2" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a6-q2">
+                            2. 3 500 g =
+                        </label>
+                        <input id="s01-a6-q2" type="text" class="student-result" data-save="s01-a6-q2"
+                            data-check="number-unit" data-answer="3.5" data-unit="kg" placeholder="... kg"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a6-q2" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a6-q3" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a6-q3">
+                            3. 1,5 L =
+                        </label>
+                        <input id="s01-a6-q3" type="text" class="student-result" data-save="s01-a6-q3"
+                            data-check="number-unit" data-answer="1500" data-unit="mL" placeholder="... mL"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a6-q3" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a6-q4" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a6-q4">
+                            4. 2 h 30 min =
+                        </label>
+                        <input id="s01-a6-q4" type="text" class="student-result" data-save="s01-a6-q4"
+                            data-check="number-unit" data-answer="150" data-unit="min" placeholder="... min"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a6-q4" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a6-q5" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <label for="s01-a6-q5">
+                            5. 4 000 m =
+                        </label>
+                        <input id="s01-a6-q5" type="text" class="student-result" data-save="s01-a6-q5"
+                            data-check="number-unit" data-answer="4" data-unit="km" placeholder="... km"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a6-q5" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="student-hints">
+                        <details class="student-hint" data-exercise="s01-a6" data-hint-id="s01-a6-h1"
+                            data-hint-level="1">
+                            <summary><strong>Indice 1</strong></summary>
+                            <p>
+                                Commencez par identifier l'unité de départ
+                                et l'unité d'arrivée.
+                            </p>
+                        </details>
+                        <details class="student-hint" data-exercise="s01-a6" data-hint-id="s01-a6-h2"
+                            data-hint-level="2">
+                            <summary><strong>Indice 2</strong></summary>
+                            <p>
+                                Utilisez les relations connues :
+                                1 m = 100 cm,
+                                1 kg = 1 000 g,
+                                1 L = 1 000 mL.
+                            </p>
+                        </details>
+                        <details class="student-hint" data-exercise="s01-a6" data-hint-id="s01-a6-h3"
+                            data-hint-level="3">
+                            <summary><strong>Indice 3</strong></summary>
+                            <p>
+                                Pour la durée, transformez d'abord les heures
+                                en minutes puis ajoutez les minutes restantes.
+                            </p>
+                        </details>
+                        <p data-hint-status="s01-a6"></p>
+                    </div>
+                    <div class="dnb">
+                        <strong>Réflexe DNB</strong>
+                        <p>
+                            Vérifiez toujours les unités avant d'effectuer
+                            un calcul ou de comparer deux mesures.
+                        </p>
+                    </div>
+                    <!-- PROF
+                    ATTENDU :
+                    1. 250 cm
+                    2. 3,5 kg
+                    3. 1 500 mL
+                    4. 150 min
+                    5. 4 km
+                    ATTENTION :
+                    number-unit doit accepter :
+                    - virgule ou point décimal ;
+                    - espaces dans les nombres ;
+                    - espace éventuel avant l'unité.
+                    kg et g ne doivent pas être considérés
+                    comme identiques sans conversion.
+                    PÉDAGOGIE :
+                    Éviter uniquement :
+                    « j'ajoute ou j'enlève des zéros ».
+                    Revenir aux relations entre unités.
+                    -->
+                </section>
+                <!-- =========================================================
+                    ACTIVITÉ 7
+                    ========================================================= -->
+                <section class="activity" id="activity7" data-activity="7">
+                    <h2>7. Géométrie : retrouver les bases</h2>
+                    <p>
+                        <strong>
+                            Calculatrice autorisée uniquement
+                            pour la dernière question.
+                        </strong>
+                    </p>
+                    <p>
+                        Un terrain rectangulaire mesure
+                        12 m de longueur et 5 m de largeur.
+                    </p>
+                    <!-- Q1 -->
+                    <div class="answer-block" data-exercise-key="s01-a7-q1" data-answer-mode="auto"
+                        data-answer-type="choice" data-track-progress="true" data-answer-state="empty">
+                        <p class="question-text">
+                            1. Faites sur votre cahier ou votre feuille
+                            un schéma du terrain et indiquez ses dimensions.
+                        </p>
+                        <label for="s01-a7-q1">
+                            Lorsque votre schéma est terminé :
+                        </label>
+                        <input id="s01-a7-q1" type="text" class="student-result" data-save="s01-a7-q1"
+                            data-check="choice" data-answer="fait" placeholder="fait" autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a7-q1" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="answer-block" data-exercise-key="s01-a7-q2" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <p class="question-text">
+                            2. Calculez le périmètre du terrain.
+                        </p>
+                        <label for="s01-a7-q2-answer">
+                            Périmètre =
+                        </label>
+                        <input id="s01-a7-q2-answer" type="text" class="student-result" data-save="s01-a7-q2-answer"
+                            data-check="number-unit" data-answer="34" data-unit="m" placeholder="... m"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a7-q2" aria-live="polite">
+                            À faire
+                        </p>
+                        <label for="s01-a7-q2-work">
+                            Si vous souhaitez détailler votre calcul :
+                        </label>
+                        <textarea id="s01-a7-q2-work" class="student-answer" data-save="s01-a7-q2-work" rows="2"
+                            placeholder="Formule et calcul..."></textarea>
+                        <div class="student-hints">
+                            <details class="student-hint" data-exercise="s01-a7-q2" data-hint-id="s01-a7-q2-h1"
+                                data-hint-level="1">
+                                <summary><strong>Indice 1</strong></summary>
+                                <p>
+                                    Le périmètre correspond à la longueur du contour.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a7-q2" data-hint-id="s01-a7-q2-h2"
+                                data-hint-level="2">
+                                <summary><strong>Indice 2</strong></summary>
+                                <p>
+                                    Un rectangle possède deux longueurs
+                                    et deux largeurs.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a7-q2" data-hint-id="s01-a7-q2-h3"
+                                data-hint-level="3">
+                                <summary><strong>Indice 3</strong></summary>
+                                <p>
+                                    P = 2 × (L + l).
+                                </p>
+                            </details>
+                            <p data-hint-status="s01-a7-q2"></p>
+                        </div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="answer-block" data-exercise-key="s01-a7-q3" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <p class="question-text">
+                            3. Calculez l'aire du terrain.
+                        </p>
+                        <label for="s01-a7-q3-answer">
+                            Aire =
+                        </label>
+                        <input id="s01-a7-q3-answer" type="text" class="student-result" data-save="s01-a7-q3-answer"
+                            data-check="number-unit" data-answer="60" data-unit="m²" placeholder="... m²"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a7-q3" aria-live="polite">
+                            À faire
+                        </p>
+                        <label for="s01-a7-q3-work">
+                            Si vous souhaitez détailler votre calcul :
+                        </label>
+                        <textarea id="s01-a7-q3-work" class="student-answer" data-save="s01-a7-q3-work" rows="2"
+                            placeholder="Formule et calcul..."></textarea>
+                        <div class="student-hints">
+                            <details class="student-hint" data-exercise="s01-a7-q3" data-hint-id="s01-a7-q3-h1"
+                                data-hint-level="1">
+                                <summary><strong>Indice 1</strong></summary>
+                                <p>
+                                    L'aire mesure la surface occupée.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a7-q3" data-hint-id="s01-a7-q3-h2"
+                                data-hint-level="2">
+                                <summary><strong>Indice 2</strong></summary>
+                                <p>
+                                    Pour un rectangle,
+                                    on utilise la longueur et la largeur.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a7-q3" data-hint-id="s01-a7-q3-h3"
+                                data-hint-level="3">
+                                <summary><strong>Indice 3</strong></summary>
+                                <p>
+                                    A = L × l.
+                                </p>
+                            </details>
+                            <p data-hint-status="s01-a7-q3"></p>
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="answer-block" data-exercise-key="s01-a7-q4" data-answer-mode="auto"
+                        data-answer-type="choice" data-track-progress="true" data-answer-state="empty">
+                        <p class="question-text">
+                            4. Une personne affirme que la diagonale
+                            mesure 17 m car 12 + 5 = 17.
+                        </p>
+                        <fieldset>
+                            <legend>
+                                Cette affirmation est-elle correcte ?
+                            </legend>
+                            <label>
+                                <input type="radio" name="s01-a7-q4" value="oui" data-save="s01-a7-q4"
+                                    data-check="choice" data-answer="non">
+                                Oui
+                            </label>
+                            <label>
+                                <input type="radio" name="s01-a7-q4" value="non" data-save="s01-a7-q4"
+                                    data-check="choice" data-answer="non">
+                                Non
+                            </label>
+                        </fieldset>
+                        <p class="answer-feedback" data-answer-status="s01-a7-q4" aria-live="polite">
+                            À faire
+                        </p>
+                        <label for="s01-a7-q4-why">
+                            Expliquez pourquoi :
+                        </label>
+                        <textarea id="s01-a7-q4-why" class="student-answer" data-save="s01-a7-q4-why" rows="3"
+                            placeholder="Expliquez votre raisonnement."></textarea>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="answer-block" data-exercise-key="s01-a7-q5" data-answer-mode="auto"
+                        data-answer-type="number-unit" data-track-progress="true" data-answer-state="empty">
+                        <p class="question-text">
+                            <strong>Pour aller plus loin :</strong>
+                            si vous connaissez déjà le théorème de Pythagore,
+                            calculez la longueur réelle de la diagonale.
+                        </p>
+                        <label for="s01-a7-q5-answer">
+                            Diagonale =
+                        </label>
+                        <input id="s01-a7-q5-answer" type="text" class="student-result" data-save="s01-a7-q5-answer"
+                            data-check="number-unit" data-answer="13" data-unit="m" placeholder="... m"
+                            autocomplete="off">
+                        <p class="answer-feedback" data-answer-status="s01-a7-q5" aria-live="polite">
+                            À faire
+                        </p>
+                        <label for="s01-a7-q5-work">
+                            Votre démarche :
+                        </label>
+                        <textarea id="s01-a7-q5-work" class="student-answer" data-save="s01-a7-q5-work" rows="4"
+                            placeholder="Écrivez l'égalité utilisée et vos calculs."></textarea>
+                        <div class="student-hints">
+                            <details class="student-hint" data-exercise="s01-a7-q5" data-hint-id="s01-a7-q5-h1"
+                                data-hint-level="1">
+                                <summary><strong>Indice 1</strong></summary>
+                                <p>
+                                    La diagonale forme un triangle rectangle
+                                    avec les côtés du terrain.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a7-q5" data-hint-id="s01-a7-q5-h2"
+                                data-hint-level="2">
+                                <summary><strong>Indice 2</strong></summary>
+                                <p>
+                                    La diagonale est l'hypoténuse
+                                    de ce triangle rectangle.
+                                </p>
+                            </details>
+                            <details class="student-hint" data-exercise="s01-a7-q5" data-hint-id="s01-a7-q5-h3"
+                                data-hint-level="3">
+                                <summary><strong>Indice 3</strong></summary>
+                                <p>
+                                    Utilisez d² = 12² + 5².
+                                </p>
+                            </details>
+                            <p data-hint-status="s01-a7-q5"></p>
+                        </div>
+                    </div>
+                    <div class="rappel">
+                        <strong>Formules à connaître</strong>
+                        <p>
+                            Périmètre d'un rectangle :
+                            P = 2 × (L + l).
+                        </p>
+                        <p>
+                            Aire d'un rectangle :
+                            A = L × l.
+                        </p>
+                    </div>
+                    <div class="dnb">
+                        <strong>Réflexe DNB</strong>
+                        <p>
+                            Avant d'appliquer un théorème,
+                            vérifiez toujours que ses conditions d'utilisation
+                            sont réunies.
+                        </p>
+                    </div>
+                    <!-- PROF
+                    PÉRIMÈTRE :
+                    P = 2 × (12 + 5)
+                    P = 34 m.
+                    AIRE :
+                    A = 12 × 5
+                    A = 60 m².
+                    VOCABULAIRE :
+                    - périmètre : longueur du contour ;
+                    - aire : mesure d'une surface.
+                    VIGILANCE :
+                    34 m et 60 m² n'expriment pas la même grandeur.
+                    L'unité fait partie de la réponse.
+                    DIAGONALE :
+                    12 + 5 ne permet pas de calculer la diagonale.
+                    PYTHAGORE :
+                    d² = 12² + 5²
+                    d² = 169
+                    d = 13 m.
+                    Cette question reste diagnostique.
+                    Ne pas transformer cette séance en cours complet
+                    sur Pythagore.
+                    Si le résultat est faux mais la formule correcte,
+                    valoriser la démarche.
+                    -->
+                </section>
+                <!-- =========================================================
+                    ACTIVITÉ 8
+                    ========================================================= -->
+                <section class="activity" id="activity8" data-activity="8">
+                    <h2>8. Mon bilan de début d'année</h2>
+                    <p>
+                        Répondez simplement.
+                        Ce bilan permet de préparer les prochaines séances.
+                    </p>
+                    <div class="answer-block" data-exercise-key="s01-a8-q1" data-answer-mode="review"
+                        data-answer-type="text" data-track-progress="true" data-answer-state="empty"
+                        data-export-question="s01-a8-q1">
+                        <p class="question-text" data-question-text>
+                            Je me sens à l'aise avec :
+                        </p>
+                        <textarea id="s01-a8-q1" class="student-answer" data-save="s01-a8-q1" rows="2"
+                            placeholder="Calcul mental, fractions, géométrie..."></textarea>
+                        <p class="answer-feedback" data-answer-status="s01-a8-q1" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a8-q2" data-answer-mode="review"
+                        data-answer-type="text" data-track-progress="true" data-answer-state="empty"
+                        data-export-question="s01-a8-q2">
+                        <p class="question-text" data-question-text>
+                            J'ai encore besoin d'aide pour :
+                        </p>
+                        <textarea id="s01-a8-q2" class="student-answer" data-save="s01-a8-q2" rows="2"
+                            placeholder="Indiquez une ou plusieurs difficultés."></textarea>
+                        <p class="answer-feedback" data-answer-status="s01-a8-q2" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a8-q3" data-answer-mode="review"
+                        data-answer-type="text" data-track-progress="true" data-answer-state="empty"
+                        data-export-question="s01-a8-q3">
+                        <p class="question-text" data-question-text>
+                            Une méthode de calcul mental
+                            que j'ai utilisée aujourd'hui :
+                        </p>
+                        <textarea id="s01-a8-q3" class="student-answer" data-save="s01-a8-q3" rows="2"
+                            placeholder="Décrivez une méthode que vous avez utilisée."></textarea>
+                        <p class="answer-feedback" data-answer-status="s01-a8-q3" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="answer-block" data-exercise-key="s01-a8-q4" data-answer-mode="review"
+                        data-answer-type="text" data-track-progress="true" data-answer-state="empty"
+                        data-export-question="s01-a8-q4">
+                        <p class="question-text" data-question-text>
+                            Une notion que je voudrais revoir :
+                        </p>
+                        <textarea id="s01-a8-q4" class="student-answer" data-save="s01-a8-q4" rows="2"
+                            placeholder="Indiquez une notion que vous souhaitez retravailler."></textarea>
+                        <p class="answer-feedback" data-answer-status="s01-a8-q4" aria-live="polite">
+                            À faire
+                        </p>
+                    </div>
+                    <div class="info">
+                        <strong>Important</strong>
+                        <p>
+                            Les erreurs de cette séance servent à savoir
+                            ce que nous devons retravailler.
+                            Elles sont donc utiles.
+                        </p>
+                    </div>
+                    <!-- PROF
+                    EXPLOITATION DU DIAGNOSTIC :
+                    Repérer notamment :
+                    - calcul mental ;
+                    - tables ;
+                    - priorités opératoires ;
+                    - nombres relatifs ;
+                    - fractions ;
+                    - proportionnalité ;
+                    - pourcentages ;
+                    - conversions ;
+                    - périmètre et aire ;
+                    - connaissance éventuelle de Pythagore ;
+                    - recours aux indices ;
+                    - capacité à expliquer une démarche ;
+                    - écart éventuel entre résultat et raisonnement.
+                    POUR LES 4e :
+                    Les difficultés servent à choisir les rappels
+                    des prochaines séances.
+                    POUR LES 3e :
+                    Repérer aussi les automatismes à renforcer
+                    pour le DNB.
+                    Ne pas réduire le diagnostic à « sait / ne sait pas ».
+                    Exemples :
+                    - juste sans développement : maîtrise probable du calcul ;
+                    - juste + démarche cohérente : maîtrise et explicitation ;
+                    - faux + démarche correcte : erreur d'exécution possible ;
+                    - juste + démarche incohérente : à vérifier ;
+                    - utilisation d'un indice : niveau d'autonomie à observer.
+                    -->
+                </section>
+                <!-- =========================================================
+                    À RETENIR
+                    ========================================================= -->
+                <section class="retenir">
+                    <h2>À retenir</h2>
+                    <ul>
+                        <li>
+                            Un calcul peut souvent être transformé
+                            en un calcul plus simple.
+                        </li>
+                        <li>
+                            Il existe parfois plusieurs méthodes correctes.
+                        </li>
+                        <li>
+                            Une réponse juste est importante,
+                            même si elle est obtenue mentalement.
+                        </li>
+                        <li>
+                            Expliquer sa démarche permet de montrer
+                            comment on a raisonné.
+                        </li>
+                        <li>
+                            Les unités font partie de la réponse.
+                        </li>
+                        <li>
+                            Une erreur permet d'identifier
+                            ce qu'il reste à consolider.
+                        </li>
+                        <li>
+                            Utiliser un indice permet d'avancer
+                            et de devenir progressivement autonome.
+                        </li>
+                    </ul>
+                </section>
+                <!-- =========================================================
+                    FIN DE SÉANCE
+                    ========================================================= -->
+                <section class="finish-session-box">
+                    <h3>Finir la séance</h3>
+                    <p>
+                        Vérifiez que vous avez répondu
+                        à toutes les questions que vous pouviez faire.
+                    </p>
+                    <p>
+                        Vous pouvez laisser une question difficile sans réponse :
+                        le but de cette première séance est aussi d'identifier
+                        ce que nous devons retravailler.
+                    </p>
+                    <p>
+                        Lorsque vous cliquez sur le bouton,
+                        vos réponses sont enregistrées
+                        et une copie HTML de votre travail
+                        est téléchargée sur votre ordinateur.
+                    </p>
+                    <button type="button" class="finish-session-button" data-finish-session data-session="S01">
+                        ✓ Finir la séance
+                    </button>
+                    <p class="finish-session-status" data-finish-status data-finish-session-status aria-live="polite">
+                    </p>
+                </section>
+                <!-- =========================================================
+                    SOURCES
+                    ========================================================= -->
+                <section class="sources">
+                    <h2>Sources et ressources</h2>
+                    <ul>
+                        <li>
+                            <a href="https://chlorofil.fr/diplomes/secondaire/4e-3e" target="_blank"
+                                rel="noopener noreferrer">
+                                Chlorofil – Classes de 4e et 3e de l'enseignement agricole
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://eduscol.education.gouv.fr/5607/les-epreuves-du-dnb" target="_blank"
+                                rel="noopener noreferrer">
+                                Éduscol – Les épreuves du DNB
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.education.gouv.fr/media/229736/download" target="_blank"
+                                rel="noopener noreferrer">
+                                Ministère de l'Éducation nationale – Automatismes DNB 2026
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.lumni.fr/college/quatrieme/mathematiques" target="_blank"
+                                rel="noopener noreferrer">
+                                Lumni – Mathématiques 4e
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.lumni.fr/college/troisieme/mathematiques" target="_blank"
+                                rel="noopener noreferrer">
+                                Lumni – Mathématiques 3e
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+            <section id="session2" class="content-section course-session" data-matiere="maths" data-classe="4e-3e"
+                data-seance="S02-PROF"
+                data-session-title="Séance 2 : Multiples, diviseurs et critères de divisibilité — PROF">
+                <h1>Multiples, diviseurs et critères de divisibilité — PROF</h1>
+                <section class="activity">
+                    <h2>Introduction — Pourquoi apprendre ça ?</h2>
+                    <p>
+                        Faire choisir aux élèves la situation professionnelle
+                        correspondant à leur groupe.
+                    </p>
+                    <h3>🐴 Situation équine</h3>
+                    <p>
+                        Une écurie possède <strong>24 protections</strong>.
+                        Elle veut les répartir équitablement entre plusieurs chevaux,
+                        sans reste.
+                    </p>
+                    <h3>🌾 Situation agricole</h3>
+                    <p>
+                        Une exploitation possède <strong>24 sacs de semences</strong>.
+                        Elle veut les répartir équitablement entre plusieurs parcelles,
+                        sans reste.
+                    </p>
+                    <h3>Questions à poser</h3>
+                    <ul>
+                        <li>Peut-on partager 24 en 2 groupes ?</li>
+                        <li>En 3 groupes ?</li>
+                        <li>En 4 groupes ?</li>
+                        <li>En 5 groupes ?</li>
+                        <li>En 6 groupes ?</li>
+                        <li>Que signifie « sans reste » ?</li>
+                    </ul>
+                    <h3>Réponses attendues</h3>
+                    <ul>
+                        <li>24 ÷ 2 = 12 → oui.</li>
+                        <li>24 ÷ 3 = 8 → oui.</li>
+                        <li>24 ÷ 4 = 6 → oui.</li>
+                        <li>24 ÷ 5 ne donne pas un entier → non.</li>
+                        <li>24 ÷ 6 = 4 → oui.</li>
+                    </ul>
+                    <h3>À faire émerger</h3>
+                    <p>
+                        Certains nombres permettent un partage exact,
+                        d'autres non.
+                    </p>
+                    <p>
+                        Ne pas introduire immédiatement
+                        les mots « diviseur » et « divisible » :
+                        ils seront formalisés plus tard.
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Faire utiliser spontanément les expressions
+                        « ça tombe juste », « il n'y a pas de reste »,
+                        puis les transformer progressivement
+                        en vocabulaire mathématique.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>1. Réactiver quelques réflexes</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Réponse</th>
+                                <th>Aide / stratégie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>8 + 7</td>
+                                <td>15</td>
+                                <td>8 + 2 = 10 puis +5.</td>
+                            </tr>
+                            <tr>
+                                <td>6 × 9</td>
+                                <td>54</td>
+                                <td>6 × 10 - 6.</td>
+                            </tr>
+                            <tr>
+                                <td>45 ÷ 5</td>
+                                <td>9</td>
+                                <td>Chercher 5 × ? = 45.</td>
+                            </tr>
+                            <tr>
+                                <td>-4 + 7</td>
+                                <td>3</td>
+                                <td>Passer par zéro.</td>
+                            </tr>
+                            <tr>
+                                <td>20 - 3 × 5</td>
+                                <td>5</td>
+                                <td>Faire d'abord 3 × 5.</td>
+                            </tr>
+                            <tr>
+                                <td>Moitié de 46</td>
+                                <td>23</td>
+                                <td>Moitié de 40 + moitié de 6.</td>
+                            </tr>
+                            <tr>
+                                <td>Quart de 60</td>
+                                <td>15</td>
+                                <td>60 → 30 → 15.</td>
+                            </tr>
+                            <tr>
+                                <td>10 % de 130 €</td>
+                                <td>13 €</td>
+                                <td>10 % = un dixième.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>Question utile</h3>
+                    <p>
+                        « Comment avez-vous trouvé sans calculatrice ? »
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Valoriser la stratégie même si une petite erreur de calcul apparaît.
+                        L'objectif est de développer des réflexes mentaux.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>2. Faire apparaître la notion de multiple</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>🐴 Situation équine</h3>
+                    <p>
+                        Chaque cheval reçoit <strong>3 mesures</strong> d'un aliment.
+                    </p>
+                    <p>
+                        Faire compléter :
+                    </p>
+                    <ul>
+                        <li>1 cheval → 3</li>
+                        <li>2 chevaux → ?</li>
+                        <li>3 chevaux → ?</li>
+                        <li>4 chevaux → ?</li>
+                        <li>5 chevaux → ?</li>
+                    </ul>
+                    <p>
+                        Réponses :
+                        <strong>3 ; 6 ; 9 ; 12 ; 15</strong>.
+                    </p>
+                    <h3>🌾 Situation agricole</h3>
+                    <p>
+                        Chaque parcelle nécessite <strong>5 sacs</strong>.
+                    </p>
+                    <p>
+                        Faire compléter :
+                    </p>
+                    <ul>
+                        <li>1 parcelle → 5</li>
+                        <li>2 parcelles → ?</li>
+                        <li>3 parcelles → ?</li>
+                        <li>4 parcelles → ?</li>
+                        <li>5 parcelles → ?</li>
+                    </ul>
+                    <p>
+                        Réponses :
+                        <strong>5 ; 10 ; 15 ; 20 ; 25</strong>.
+                    </p>
+                    <h3>Questions à poser avant de donner la définition</h3>
+                    <ul>
+                        <li>Que remarquez-vous ?</li>
+                        <li>De combien augmente-t-on à chaque étape ?</li>
+                        <li>À quelle table de multiplication cela correspond-il ?</li>
+                        <li>Comment pourrait-on écrire 12 dans la situation équine ?</li>
+                        <li>Comment pourrait-on écrire 20 dans la situation agricole ?</li>
+                    </ul>
+                    <h3>Réponses attendues</h3>
+                    <p>
+                        Équin :
+                        les nombres appartiennent à la table de 3.
+                    </p>
+                    <p>
+                        12 = 3 × 4.
+                    </p>
+                    <p>
+                        Agricole :
+                        les nombres appartiennent à la table de 5.
+                    </p>
+                    <p>
+                        20 = 5 × 4.
+                    </p>
+                    <h3>Formalisation</h3>
+                    <p>
+                        Introduire seulement maintenant :
+                    </p>
+                    <p>
+                        <strong>
+                            Un nombre est un multiple d'un autre nombre
+                            lorsqu'il peut s'écrire comme ce nombre
+                            multiplié par un entier.
+                        </strong>
+                    </p>
+                    <p>
+                        Exemple :
+                        21 = 3 × 7,
+                        donc 21 est un multiple de 3.
+                    </p>
+                    <h3>Questions d'entraînement</h3>
+                    <ul>
+                        <li>
+                            21 est-il un multiple de 3 ?
+                            <strong>Oui : 21 = 3 × 7.</strong>
+                        </li>
+                        <li>
+                            35 est-il un multiple de 5 ?
+                            <strong>Oui : 35 = 5 × 7.</strong>
+                        </li>
+                        <li>
+                            32 est-il un multiple de 5 ?
+                            <strong>Non.</strong>
+                        </li>
+                        <li>
+                            Donner trois multiples communs de 3 et 5.
+                            <strong>15 ; 30 ; 45</strong>, par exemple.
+                        </li>
+                    </ul>
+                    <h3>Aides possibles</h3>
+                    <ol>
+                        <li>Faire réciter la table concernée.</li>
+                        <li>Demander : « Peut-on écrire ce nombre sous la forme 3 × quelque chose ? »</li>
+                        <li>Pour les multiples communs de 3 et 5, faire comparer les deux tables.</li>
+                    </ol>
+                    <h3>Tip</h3>
+                    <p>
+                        Ne jamais commencer par :
+                        « Aujourd'hui nous allons apprendre les multiples ».
+                    </p>
+                    <p>
+                        Faire apparaître d'abord la régularité,
+                        puis donner le vocabulaire.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>3. Multiple, diviseur et divisible</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <p>
+                        Écrire au tableau :
+                    </p>
+                    <p>
+                        <strong>24 = 6 × 4</strong>
+                    </p>
+                    <h3>Questions avant la définition</h3>
+                    <ul>
+                        <li>Combien vaut 24 ÷ 6 ?</li>
+                        <li>La division laisse-t-elle un reste ?</li>
+                        <li>Peut-on donc répartir 24 en 6 groupes identiques ?</li>
+                    </ul>
+                    <h3>Réponses</h3>
+                    <p>
+                        24 ÷ 6 = <strong>4</strong>.
+                    </p>
+                    <p>
+                        Aucun reste.
+                    </p>
+                    <p>
+                        La division est exacte.
+                    </p>
+                    <h3>🐴 Exemple équin</h3>
+                    <p>
+                        24 tapis répartis dans 6 zones :
+                        <strong>4 tapis par zone</strong>.
+                    </p>
+                    <h3>🌾 Exemple agricole</h3>
+                    <p>
+                        24 sacs répartis entre 6 parcelles :
+                        <strong>4 sacs par parcelle</strong>.
+                    </p>
+                    <h3>Formalisation</h3>
+                    <p>
+                        À partir de 24 = 6 × 4 :
+                    </p>
+                    <ul>
+                        <li><strong>24 est un multiple de 6 ;</strong></li>
+                        <li><strong>6 est un diviseur de 24 ;</strong></li>
+                        <li><strong>24 est divisible par 6.</strong></li>
+                    </ul>
+                    <h3>Attention au sens</h3>
+                    <p>
+                        24 est le <strong>multiple</strong>.
+                    </p>
+                    <p>
+                        6 est le <strong>diviseur</strong>.
+                    </p>
+                    <h3>Question suivante</h3>
+                    <p>
+                        « Quels sont tous les diviseurs positifs de 24 ? »
+                    </p>
+                    <h3>Méthode</h3>
+                    <p>
+                        Chercher les multiplications donnant 24 :
+                    </p>
+                    <ul>
+                        <li>1 × 24</li>
+                        <li>2 × 12</li>
+                        <li>3 × 8</li>
+                        <li>4 × 6</li>
+                    </ul>
+                    <h3>Réponse</h3>
+                    <p>
+                        <strong>
+                            1 ; 2 ; 3 ; 4 ; 6 ; 8 ; 12 ; 24
+                        </strong>
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Faire chercher les diviseurs par paires.
+                        C'est plus visuel et limite les oublis.
+                    </p>
+                    <p>
+                        Si un élève inverse multiple et diviseur,
+                        revenir à l'égalité :
+                        <strong>24 = 6 × 4</strong>.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>4. Découvrir les critères par 2, 5 et 10</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Situation professionnelle</h3>
+                    <p>
+                        Équin :
+                        1 350 doses d'un complément à répartir.
+                    </p>
+                    <p>
+                        Agricole :
+                        1 350 plants à répartir.
+                    </p>
+                    <p>
+                        On cherche à savoir rapidement
+                        si on peut faire des groupes de 2, 5 ou 10.
+                    </p>
+                    <h3>Nombres à observer</h3>
+                    <p>
+                        <strong>42 ; 75 ; 120 ; 243 ; 1 350</strong>
+                    </p>
+                    <h3>Questions</h3>
+                    <p>
+                        Pour chacun :
+                    </p>
+                    <ul>
+                        <li>divisible par 2 ?</li>
+                        <li>divisible par 5 ?</li>
+                        <li>divisible par 10 ?</li>
+                    </ul>
+                    <h3>Réponses</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>par 2</th>
+                                <th>par 5</th>
+                                <th>par 10</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>42</td>
+                                <td>Oui</td>
+                                <td>Non</td>
+                                <td>Non</td>
+                            </tr>
+                            <tr>
+                                <td>75</td>
+                                <td>Non</td>
+                                <td>Oui</td>
+                                <td>Non</td>
+                            </tr>
+                            <tr>
+                                <td>120</td>
+                                <td>Oui</td>
+                                <td>Oui</td>
+                                <td>Oui</td>
+                            </tr>
+                            <tr>
+                                <td>243</td>
+                                <td>Non</td>
+                                <td>Non</td>
+                                <td>Non</td>
+                            </tr>
+                            <tr>
+                                <td>1 350</td>
+                                <td>Oui</td>
+                                <td>Oui</td>
+                                <td>Oui</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>Question de découverte</h3>
+                    <p>
+                        « Qu'est-ce qui semble suffire
+                        pour savoir si le nombre est divisible par 2, 5 ou 10 ? »
+                    </p>
+                    <h3>Réponse attendue</h3>
+                    <p>
+                        Le dernier chiffre.
+                    </p>
+                    <h3>Formalisation</h3>
+                    <ul>
+                        <li>
+                            Par 2 :
+                            dernier chiffre 0, 2, 4, 6 ou 8.
+                        </li>
+                        <li>
+                            Par 5 :
+                            dernier chiffre 0 ou 5.
+                        </li>
+                        <li>
+                            Par 10 :
+                            dernier chiffre 0.
+                        </li>
+                    </ul>
+                    <h3>Tip</h3>
+                    <p>
+                        Faire retenir une seule question :
+                        <strong>« Quel est le dernier chiffre ? »</strong>
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>5. Découvrir les critères par 3 et 9</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Point de départ</h3>
+                    <p>
+                        Nombre :
+                        <strong>234</strong>.
+                    </p>
+                    <p>
+                        Faire calculer :
+                    </p>
+                    <p>
+                        2 + 3 + 4 = <strong>9</strong>.
+                    </p>
+                    <p>
+                        Puis vérifier :
+                        234 ÷ 3 = 78.
+                    </p>
+                    <h3>Question</h3>
+                    <p>
+                        « Quel lien semble exister
+                        entre la somme des chiffres
+                        et la divisibilité par 3 ? »
+                    </p>
+                    <h3>Tests à faire</h3>
+                    <ul>
+                        <li>
+                            345 :
+                            3 + 4 + 5 = 12.
+                            <strong>Divisible par 3.</strong>
+                        </li>
+                        <li>
+                            428 :
+                            4 + 2 + 8 = 14.
+                            <strong>Pas divisible par 3.</strong>
+                        </li>
+                        <li>
+                            729 :
+                            7 + 2 + 9 = 18.
+                            <strong>Divisible par 9.</strong>
+                        </li>
+                        <li>
+                            2 025 :
+                            2 + 0 + 2 + 5 = 9.
+                            <strong>Divisible par 9.</strong>
+                        </li>
+                        <li>
+                            2 026 :
+                            2 + 0 + 2 + 6 = 10.
+                            <strong>Pas divisible par 9.</strong>
+                        </li>
+                    </ul>
+                    <h3>Formalisation</h3>
+                    <p>
+                        Un nombre est divisible par <strong>3</strong>
+                        si la somme de ses chiffres est divisible par 3.
+                    </p>
+                    <p>
+                        Un nombre est divisible par <strong>9</strong>
+                        si la somme de ses chiffres est divisible par 9.
+                    </p>
+                    <h3>Aides</h3>
+                    <ol>
+                        <li>Faire écrire les chiffres séparément.</li>
+                        <li>Les additionner.</li>
+                        <li>Tester le résultat obtenu.</li>
+                    </ol>
+                    <h3>Tip</h3>
+                    <p>
+                        Phrase simple à faire retenir :
+                    </p>
+                    <p>
+                        <strong>
+                            « Pour 3 et 9, j'additionne les chiffres. »
+                        </strong>
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>6. Choisir le bon critère</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Consigne</h3>
+                    <p>
+                        Avant de répondre,
+                        demander à l'élève de dire
+                        quel critère il va utiliser.
+                    </p>
+                    <h3>Questions et réponses</h3>
+                    <ul>
+                        <li>
+                            348 divisible par 2 ?
+                            <strong>Oui</strong>, car il se termine par 8.
+                        </li>
+                        <li>
+                            348 divisible par 3 ?
+                            <strong>Oui</strong>,
+                            car 3 + 4 + 8 = 15.
+                        </li>
+                        <li>
+                            348 divisible par 5 ?
+                            <strong>Non</strong>.
+                        </li>
+                        <li>
+                            450 divisible par 2 ?
+                            <strong>Oui</strong>.
+                        </li>
+                        <li>
+                            450 divisible par 3 ?
+                            <strong>Oui</strong>,
+                            car 4 + 5 + 0 = 9.
+                        </li>
+                        <li>
+                            450 divisible par 5 ?
+                            <strong>Oui</strong>.
+                        </li>
+                        <li>
+                            450 divisible par 9 ?
+                            <strong>Oui</strong>.
+                        </li>
+                        <li>
+                            450 divisible par 10 ?
+                            <strong>Oui</strong>.
+                        </li>
+                        <li>
+                            1 008 divisible par 9 ?
+                            <strong>Oui</strong>,
+                            car 1 + 0 + 0 + 8 = 9.
+                        </li>
+                    </ul>
+                    <h3>Récapitulatif</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Diviseur</th>
+                                <th>Réflexe</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2</td>
+                                <td>Dernier chiffre</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Somme des chiffres</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Dernier chiffre</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>Somme des chiffres</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Dernier chiffre</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>Tip</h3>
+                    <p>
+                        Si l'élève donne immédiatement « oui » ou « non »,
+                        demander :
+                    </p>
+                    <p>
+                        <strong>« Comment peux-tu le savoir sans diviser ? »</strong>
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>7. Diviseurs communs — lots identiques</h2>
+                    <p><strong>Calculatrice autorisée.</strong></p>
+                    <h3>🐴 Situation équine</h3>
+                    <p>
+                        48 bandes de repos et 36 protections.
+                    </p>
+                    <p>
+                        Former plusieurs lots identiques
+                        sans rien laisser.
+                    </p>
+                    <h3>🌾 Situation agricole</h3>
+                    <p>
+                        48 sacs de semences et 36 sacs d'engrais.
+                    </p>
+                    <p>
+                        Former plusieurs lots identiques
+                        sans rien laisser.
+                    </p>
+                    <h3>Questions</h3>
+                    <ul>
+                        <li>2 lots sont-ils possibles ?</li>
+                        <li>3 lots ?</li>
+                        <li>4 lots ?</li>
+                        <li>5 lots ?</li>
+                        <li>6 lots ?</li>
+                        <li>Quels sont tous les nombres de lots possibles ?</li>
+                    </ul>
+                    <h3>Réponses</h3>
+                    <p>
+                        2 lots :
+                        <strong>oui</strong>.
+                    </p>
+                    <p>
+                        3 lots :
+                        <strong>oui</strong>.
+                    </p>
+                    <p>
+                        4 lots :
+                        <strong>oui</strong>.
+                    </p>
+                    <p>
+                        5 lots :
+                        <strong>non</strong>.
+                    </p>
+                    <p>
+                        6 lots :
+                        <strong>oui</strong>.
+                    </p>
+                    <h3>Recherche systématique</h3>
+                    <p>
+                        Diviseurs de 48 :
+                    </p>
+                    <p>
+                        <strong>
+                            1 ; 2 ; 3 ; 4 ; 6 ; 8 ; 12 ; 16 ; 24 ; 48
+                        </strong>
+                    </p>
+                    <p>
+                        Diviseurs de 36 :
+                    </p>
+                    <p>
+                        <strong>
+                            1 ; 2 ; 3 ; 4 ; 6 ; 9 ; 12 ; 18 ; 36
+                        </strong>
+                    </p>
+                    <p>
+                        Nombres présents dans les deux listes :
+                    </p>
+                    <p>
+                        <strong>
+                            1 ; 2 ; 3 ; 4 ; 6 ; 12
+                        </strong>
+                    </p>
+                    <h3>Formalisation</h3>
+                    <p>
+                        Ce sont les
+                        <strong>diviseurs communs de 48 et 36</strong>.
+                    </p>
+                    <h3>Exemple avec 6 lots</h3>
+                    <p>
+                        48 ÷ 6 = 8.
+                    </p>
+                    <p>
+                        36 ÷ 6 = 6.
+                    </p>
+                    <p>
+                        Chaque lot contient donc :
+                    </p>
+                    <ul>
+                        <li>8 éléments de la première catégorie ;</li>
+                        <li>6 éléments de la deuxième catégorie.</li>
+                    </ul>
+                    <h3>Aides</h3>
+                    <ol>
+                        <li>
+                            « Sans reste » signifie :
+                            les deux divisions doivent être exactes.
+                        </li>
+                        <li>
+                            Le nombre de lots doit diviser
+                            48 ET 36.
+                        </li>
+                        <li>
+                            Comparer les deux listes de diviseurs.
+                        </li>
+                    </ol>
+                    <h3>Tip</h3>
+                    <p>
+                        Faire écrire les deux listes l'une sous l'autre,
+                        puis entourer les nombres présents dans les deux.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>8. Petit défi DNB</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <p>
+                        N = 2 025<br>
+                        P = 2 026
+                    </p>
+                    <h3>Questions et réponses</h3>
+                    <ul>
+                        <li>
+                            N divisible par 9 ?
+                            <strong>Oui.</strong><br>
+                            2 + 0 + 2 + 5 = 9.
+                        </li>
+                        <li>
+                            P divisible par 9 ?
+                            <strong>Non.</strong><br>
+                            2 + 0 + 2 + 6 = 10.
+                        </li>
+                        <li>
+                            N divisible par 5 ?
+                            <strong>Oui.</strong><br>
+                            Il se termine par 5.
+                        </li>
+                        <li>
+                            P divisible par 2 ?
+                            <strong>Oui.</strong><br>
+                            Il se termine par 6.
+                        </li>
+                    </ul>
+                    <h3>Aides</h3>
+                    <ol>
+                        <li>Aucune division n'est nécessaire.</li>
+                        <li>Pour 9 : somme des chiffres.</li>
+                        <li>Pour 2 et 5 : dernier chiffre.</li>
+                    </ol>
+                    <h3>Tip</h3>
+                    <p>
+                        Demander d'abord :
+                        <strong>« Quel critère vas-tu utiliser ? »</strong>
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>9. Bilan de séance</h2>
+                    <h3>Questions orales possibles</h3>
+                    <ul>
+                        <li>Qu'est-ce qu'un multiple ?</li>
+                        <li>Qu'est-ce qu'un diviseur ?</li>
+                        <li>Que signifie « divisible par » ?</li>
+                        <li>Comment teste-t-on la divisibilité par 2 ?</li>
+                        <li>Par 5 ?</li>
+                        <li>Par 10 ?</li>
+                        <li>Par 3 ?</li>
+                        <li>Par 9 ?</li>
+                        <li>À quoi servent les diviseurs communs ?</li>
+                    </ul>
+                    <h3>Réponses attendues</h3>
+                    <ul>
+                        <li>
+                            Multiple :
+                            nombre obtenu en multipliant
+                            un nombre par un entier.
+                        </li>
+                        <li>
+                            Diviseur :
+                            nombre permettant une division exacte.
+                        </li>
+                        <li>
+                            Divisible :
+                            la division est exacte,
+                            sans reste.
+                        </li>
+                        <li>
+                            Par 2 :
+                            dernier chiffre 0, 2, 4, 6 ou 8.
+                        </li>
+                        <li>
+                            Par 5 :
+                            dernier chiffre 0 ou 5.
+                        </li>
+                        <li>
+                            Par 10 :
+                            dernier chiffre 0.
+                        </li>
+                        <li>
+                            Par 3 :
+                            somme des chiffres divisible par 3.
+                        </li>
+                        <li>
+                            Par 9 :
+                            somme des chiffres divisible par 9.
+                        </li>
+                        <li>
+                            Les diviseurs communs permettent notamment
+                            de former des groupes identiques sans reste.
+                        </li>
+                    </ul>
+                    <h3>Point à vérifier avant de terminer</h3>
+                    <p>
+                        L'élève ne doit pas seulement connaître les règles.
+                        Il doit commencer à reconnaître
+                        <strong>quelle règle utiliser selon la situation</strong>.
+                    </p>
+                </section>
+            </section>
+            <section id="session3" class="content-section course-session" data-matiere="maths" data-classe="4e-3e"
+                data-seance="S03-PROF"
+                data-session-title="Séance 3 : Nombres premiers et décomposition en facteurs premiers — PROF">
+                <h1>Nombres premiers et décomposition en facteurs premiers — PROF</h1>
+                <section class="activity">
+                    <h2>Introduction — Pourquoi apprendre ça ?</h2>
+                    <h3>Point de départ</h3>
+                    <p>
+                        Faire le lien avec S02 :
+                        les élèves savent maintenant chercher
+                        les diviseurs d'un nombre.
+                    </p>
+                    <p>
+                        L'objectif est de leur faire constater
+                        que certains nombres possèdent beaucoup de diviseurs,
+                        alors que d'autres n'en possèdent que deux.
+                    </p>
+                    <h3>🐴 Situation équine</h3>
+                    <p>
+                        Une structure possède 12 sacs d'aliment.
+                    </p>
+                    <p>
+                        On peut faire :
+                    </p>
+                    <ul>
+                        <li>2 groupes de 6 ;</li>
+                        <li>3 groupes de 4 ;</li>
+                        <li>4 groupes de 3 ;</li>
+                        <li>6 groupes de 2.</li>
+                    </ul>
+                    <p>
+                        Poser ensuite :
+                    </p>
+                    <p>
+                        « Et avec 13 sacs ?
+                        Peut-on former plusieurs groupes identiques sans reste ? »
+                    </p>
+                    <h3>🌾 Situation agricole</h3>
+                    <p>
+                        Même situation avec 12 puis 13 sacs de semences.
+                    </p>
+                    <h3>Réponse attendue</h3>
+                    <p>
+                        Pour 13,
+                        seuls 1 × 13 et 13 × 1 sont possibles.
+                    </p>
+                    <p>
+                        Ne pas encore prononcer « nombre premier ».
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Faire apparaître la différence :
+                        <strong>« certains nombres se partagent de nombreuses façons,
+                            d'autres presque pas »</strong>.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>1. Automatismes</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Réponse</th>
+                                <th>Aide</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9 + 8</td>
+                                <td>17</td>
+                                <td>9 + 1 + 7.</td>
+                            </tr>
+                            <tr>
+                                <td>7 × 6</td>
+                                <td>42</td>
+                                <td>Table de 7 ou de 6.</td>
+                            </tr>
+                            <tr>
+                                <td>56 ÷ 7</td>
+                                <td>8</td>
+                                <td>7 × ? = 56.</td>
+                            </tr>
+                            <tr>
+                                <td>-3 + 9</td>
+                                <td>6</td>
+                                <td>Passage par zéro.</td>
+                            </tr>
+                            <tr>
+                                <td>30 - 4 × 6</td>
+                                <td>6</td>
+                                <td>4 × 6 d'abord.</td>
+                            </tr>
+                            <tr>
+                                <td>25 % de 60</td>
+                                <td>15</td>
+                                <td>25 % = 1/4.</td>
+                            </tr>
+                            <tr>
+                                <td>246 divisible par 2 ?</td>
+                                <td>Oui</td>
+                                <td>Dernier chiffre = 6.</td>
+                            </tr>
+                            <tr>
+                                <td>315 divisible par 5 ?</td>
+                                <td>Oui</td>
+                                <td>Dernier chiffre = 5.</td>
+                            </tr>
+                            <tr>
+                                <td>123 divisible par 3 ?</td>
+                                <td>Oui</td>
+                                <td>1 + 2 + 3 = 6.</td>
+                            </tr>
+                            <tr>
+                                <td>2026 divisible par 9 ?</td>
+                                <td>Non</td>
+                                <td>2 + 0 + 2 + 6 = 10.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="activity">
+                    <h2>2. Faire découvrir les nombres premiers</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Consigne</h3>
+                    <p>
+                        Faire chercher tous les diviseurs positifs
+                        de :
+                    </p>
+                    <p>
+                        <strong>2 ; 3 ; 4 ; 5 ; 6 ; 7 ; 8 ; 11</strong>
+                    </p>
+                    <h3>Réponses</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Diviseurs</th>
+                                <th>Nombre de diviseurs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2</td>
+                                <td>1 ; 2</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>1 ; 3</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>1 ; 2 ; 4</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>1 ; 5</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>1 ; 2 ; 3 ; 6</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>1 ; 7</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>1 ; 2 ; 4 ; 8</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>1 ; 11</td>
+                                <td>2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>Questions de découverte</h3>
+                    <ul>
+                        <li>Quels nombres ont exactement deux diviseurs ?</li>
+                        <li>Quels sont toujours ces deux diviseurs ?</li>
+                        <li>Combien de diviseurs possède 1 ?</li>
+                    </ul>
+                    <h3>Réponses</h3>
+                    <p>
+                        Nombres avec exactement deux diviseurs :
+                        <strong>2 ; 3 ; 5 ; 7 ; 11</strong>.
+                    </p>
+                    <p>
+                        Leurs diviseurs sont toujours :
+                        <strong>1 et le nombre lui-même</strong>.
+                    </p>
+                    <p>
+                        1 ne possède qu'un seul diviseur.
+                    </p>
+                    <h3>Formalisation</h3>
+                    <p>
+                        Introduire seulement ici :
+                    </p>
+                    <p>
+                        <strong>
+                            Un nombre premier est un entier naturel
+                            supérieur ou égal à 2
+                            qui possède exactement deux diviseurs positifs :
+                            1 et lui-même.
+                        </strong>
+                    </p>
+                    <p>
+                        1 n'est pas premier.
+                    </p>
+                    <p>
+                        2 est le seul nombre premier pair.
+                    </p>
+                    <h3>Aides</h3>
+                    <ol>
+                        <li>Chercher les multiplications donnant le nombre.</li>
+                        <li>Écrire les diviseurs par paires.</li>
+                        <li>Comparer ensuite le nombre de diviseurs.</li>
+                    </ol>
+                </section>
+                <section class="activity">
+                    <h2>3. Premier ou non premier ?</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Nombres à étudier</h3>
+                    <p>
+                        13 ; 15 ; 17 ; 21 ; 23 ; 27 ; 29 ; 33
+                    </p>
+                    <h3>Réponses</h3>
+                    <ul>
+                        <li>13 : <strong>premier</strong>.</li>
+                        <li>15 : <strong>non premier</strong>, car 15 = 3 × 5.</li>
+                        <li>17 : <strong>premier</strong>.</li>
+                        <li>21 : <strong>non premier</strong>, car 21 = 3 × 7.</li>
+                        <li>23 : <strong>premier</strong>.</li>
+                        <li>27 : <strong>non premier</strong>, car 27 = 3 × 9.</li>
+                        <li>29 : <strong>premier</strong>.</li>
+                        <li>33 : <strong>non premier</strong>, car 33 = 3 × 11.</li>
+                    </ul>
+                    <h3>Méthode à faire apparaître</h3>
+                    <p>
+                        Pour prouver qu'un nombre n'est pas premier,
+                        il suffit de trouver un seul diviseur
+                        différent de 1 et de lui-même.
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Faire utiliser d'abord les critères de S02 :
+                        divisibilité par 2, 3 ou 5.
+                    </p>
+                    <p>
+                        Insister :
+                        <strong>impair ne signifie pas premier</strong>.
+                    </p>
+                    <p>
+                        Exemples :
+                        9 est impair mais non premier ;
+                        2 est pair et premier.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>4. Décomposition en facteurs premiers</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Découverte avec 24</h3>
+                    <p>
+                        Écrire :
+                    </p>
+                    <p>
+                        <strong>24 = 6 × 4</strong>
+                    </p>
+                    <p>
+                        Demander :
+                        « 6 et 4 sont-ils premiers ? »
+                    </p>
+                    <p>
+                        Réponse :
+                        non.
+                    </p>
+                    <p>
+                        Continuer :
+                    </p>
+                    <p>
+                        6 = 2 × 3<br>
+                        4 = 2 × 2
+                    </p>
+                    <p>
+                        Donc :
+                    </p>
+                    <p>
+                        <strong>24 = 2 × 2 × 2 × 3</strong>
+                    </p>
+                    <h3>Formalisation</h3>
+                    <p>
+                        Décomposer un nombre en facteurs premiers
+                        consiste à l'écrire comme un produit
+                        composé uniquement de nombres premiers.
+                    </p>
+                    <h3>Exercices et réponses</h3>
+                    <ul>
+                        <li>12 = <strong>2 × 2 × 3</strong></li>
+                        <li>18 = <strong>2 × 3 × 3</strong></li>
+                        <li>20 = <strong>2 × 2 × 5</strong></li>
+                        <li>30 = <strong>2 × 3 × 5</strong></li>
+                        <li>36 = <strong>2 × 2 × 3 × 3</strong></li>
+                        <li>45 = <strong>3 × 3 × 5</strong></li>
+                    </ul>
+                    <h3>Méthode</h3>
+                    <ol>
+                        <li>Chercher un petit diviseur premier : 2, puis 3, puis 5.</li>
+                        <li>Décomposer.</li>
+                        <li>Continuer tant qu'un facteur n'est pas premier.</li>
+                        <li>Vérifier en remultipliant les facteurs.</li>
+                    </ol>
+                    <h3>Tip</h3>
+                    <p>
+                        Plusieurs chemins sont possibles.
+                        Tant que la décomposition est correcte,
+                        on retrouve finalement les mêmes facteurs premiers,
+                        éventuellement dans un autre ordre.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>5. Écriture avec les puissances</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Rappel</h3>
+                    <p>
+                        2 × 2 × 2 = <strong>2³</strong>.
+                    </p>
+                    <p>
+                        Dans 2³ :
+                    </p>
+                    <ul>
+                        <li>2 est la <strong>base</strong> ;</li>
+                        <li>3 est l'<strong>exposant</strong>.</li>
+                    </ul>
+                    <h3>Réponses</h3>
+                    <ul>
+                        <li>12 = 2 × 2 × 3 = <strong>2² × 3</strong></li>
+                        <li>18 = 2 × 3 × 3 = <strong>2 × 3²</strong></li>
+                        <li>36 = 2 × 2 × 3 × 3 = <strong>2² × 3²</strong></li>
+                        <li>40 = 2 × 2 × 2 × 5 = <strong>2³ × 5</strong></li>
+                        <li>75 = 3 × 5 × 5 = <strong>3 × 5²</strong></li>
+                    </ul>
+                    <h3>Attention</h3>
+                    <p>
+                        3² = 3 × 3 = 9.
+                    </p>
+                    <p>
+                        Ce n'est pas 3 × 2.
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Faire lire oralement :
+                        « 3 au carré signifie trois multiplié par trois ».
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>6. Retrouver un nombre à partir de sa décomposition</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Questions et réponses</h3>
+                    <ul>
+                        <li>A = 2 × 2 × 5 = <strong>20</strong></li>
+                        <li>B = 2 × 3 × 5 = <strong>30</strong></li>
+                        <li>C = 2² × 3 = <strong>12</strong></li>
+                        <li>D = 2 × 3² = <strong>18</strong></li>
+                        <li>E = 2³ × 5 = <strong>40</strong></li>
+                    </ul>
+                    <h3>Aides</h3>
+                    <ol>
+                        <li>Calculer les puissances en premier.</li>
+                        <li>Changer l'ordre des multiplications si cela facilite le calcul.</li>
+                        <li>Regrouper par exemple 2 × 5 = 10.</li>
+                    </ol>
+                    <h3>Tip</h3>
+                    <p>
+                        Pour B :
+                        2 × 3 × 5
+                        peut devenir
+                        2 × 5 × 3
+                        = 10 × 3
+                        = 30.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>7. Utilité : repérer des facteurs communs</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Données</h3>
+                    <p>
+                        18 = 2 × 3 × 3
+                    </p>
+                    <p>
+                        24 = 2 × 2 × 2 × 3
+                    </p>
+                    <h3>Questions</h3>
+                    <ul>
+                        <li>Quels facteurs apparaissent dans les deux décompositions ?</li>
+                        <li>Quel nombre obtient-on avec 2 × 3 ?</li>
+                        <li>18 et 24 sont-ils divisibles par ce nombre ?</li>
+                        <li>18 ÷ 6 = ?</li>
+                        <li>24 ÷ 6 = ?</li>
+                    </ul>
+                    <h3>Réponses</h3>
+                    <p>
+                        Facteurs communs :
+                        <strong>2 et 3</strong>.
+                    </p>
+                    <p>
+                        2 × 3 = <strong>6</strong>.
+                    </p>
+                    <p>
+                        18 ÷ 6 = <strong>3</strong>.
+                    </p>
+                    <p>
+                        24 ÷ 6 = <strong>4</strong>.
+                    </p>
+                    <p>
+                        Donc :
+                        <strong>18/24 = 3/4</strong>.
+                    </p>
+                    <h3>Important</h3>
+                    <p>
+                        Ne pas transformer cette activité
+                        en cours complet sur les fractions.
+                    </p>
+                    <p>
+                        Elle sert uniquement à montrer
+                        <strong>à quoi peut servir la décomposition</strong>
+                        et à préparer la séance suivante.
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Faire entourer visuellement
+                        le 2 et le 3 présents dans les deux décompositions.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>8. Crible d'Ératosthène</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Principe</h3>
+                    <p>
+                        Écrire ou afficher les nombres de 2 à 30.
+                    </p>
+                    <ol>
+                        <li>Conserver 2 et barrer tous ses multiples supérieurs à 2.</li>
+                        <li>Conserver 3 et barrer ses multiples.</li>
+                        <li>Conserver 5 et barrer ses multiples.</li>
+                        <li>Conserver 7 et barrer ses multiples.</li>
+                    </ol>
+                    <h3>Résultat</h3>
+                    <p>
+                        Nombres premiers entre 2 et 30 :
+                    </p>
+                    <p>
+                        <strong>
+                            2 ; 3 ; 5 ; 7 ; 11 ; 13 ; 17 ; 19 ; 23 ; 29
+                        </strong>
+                    </p>
+                    <h3>Question</h3>
+                    <p>
+                        Pourquoi les nombres barrés
+                        ne peuvent-ils pas être premiers ?
+                    </p>
+                    <h3>Réponse</h3>
+                    <p>
+                        Parce qu'ils sont multiples
+                        d'un nombre plus petit
+                        et possèdent donc au moins un autre diviseur
+                        que 1 et eux-mêmes.
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Attention :
+                        lorsqu'on conserve 2, 3, 5 ou 7,
+                        on ne les barre pas avec leurs propres multiples.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>9. Bilan de séance</h2>
+                    <h3>Questions orales</h3>
+                    <ul>
+                        <li>Qu'est-ce qu'un nombre premier ?</li>
+                        <li>Pourquoi 1 n'est-il pas premier ?</li>
+                        <li>Quel est le seul nombre premier pair ?</li>
+                        <li>Comment montrer rapidement qu'un nombre n'est pas premier ?</li>
+                        <li>Que signifie décomposer en facteurs premiers ?</li>
+                        <li>Que signifie 2³ ?</li>
+                        <li>À quoi peut servir la décomposition ?</li>
+                    </ul>
+                    <h3>Réponses attendues</h3>
+                    <ul>
+                        <li>
+                            Nombre premier :
+                            entier naturel supérieur ou égal à 2
+                            possédant exactement deux diviseurs positifs :
+                            1 et lui-même.
+                        </li>
+                        <li>
+                            1 n'est pas premier
+                            car il n'a qu'un seul diviseur positif.
+                        </li>
+                        <li>
+                            Seul nombre premier pair :
+                            <strong>2</strong>.
+                        </li>
+                        <li>
+                            Pour montrer qu'un nombre n'est pas premier,
+                            trouver un diviseur différent de 1 et lui-même.
+                        </li>
+                        <li>
+                            Décomposer en facteurs premiers :
+                            écrire un entier comme un produit
+                            constitué uniquement de nombres premiers.
+                        </li>
+                        <li>
+                            2³ = 2 × 2 × 2.
+                        </li>
+                        <li>
+                            La décomposition permet notamment
+                            de repérer des facteurs communs
+                            et pourra aider à simplifier des fractions.
+                        </li>
+                    </ul>
+                    <h3>Fil conducteur à garder en tête</h3>
+                    <p>
+                        S02 :
+                        chercher les diviseurs
+                        →
+                        S03 :
+                        découvrir les nombres premiers
+                        →
+                        décomposer un entier
+                        →
+                        repérer les facteurs communs
+                        →
+                        prochaine étape :
+                        simplifier et comprendre les fractions.
+                    </p>
+                </section>
+            </section>
+            <section id="session4" class="content-section course-session" data-matiere="maths" data-classe="4e-3e"
+                data-seance="S04-PROF"
+                data-session-title="Séance 4 :Comprendre, simplifier et comparer des fractions — PROF">
+                <h1>Comprendre, simplifier et comparer des fractions — PROF</h1>
+                <section class="activity">
+                    <h2>Introduction — Pourquoi apprendre ça ?</h2>
+                    <h3>Lien avec la séance précédente</h3>
+                    <p>
+                        En S03, les élèves ont obtenu :
+                    </p>
+                    <p>
+                        <strong>18/24 = 3/4</strong>
+                    </p>
+                    <p>
+                        La S04 doit permettre de comprendre
+                        pourquoi cette transformation est possible,
+                        puis d'élargir à la comparaison des fractions.
+                    </p>
+                    <h3>🐴 Situation équine</h3>
+                    <p>
+                        Une ration peut être représentée
+                        par différentes proportions.
+                    </p>
+                    <p>
+                        Exemple :
+                        un aliment représente 3/5 d'une ration.
+                    </p>
+                    <h3>🌾 Situation agricole</h3>
+                    <p>
+                        Une parcelle peut être partagée
+                        en plusieurs zones égales.
+                    </p>
+                    <p>
+                        Exemple :
+                        une culture occupe 3/5 d'une parcelle.
+                    </p>
+                    <h3>Questions d'entrée</h3>
+                    <ul>
+                        <li>Que signifie 3/5 ?</li>
+                        <li>3/5 est-il un nombre ?</li>
+                        <li>Peut-on écrire la même valeur autrement ?</li>
+                        <li>Comment comparer 3/5 et 7/10 ?</li>
+                    </ul>
+                    <h3>Tip</h3>
+                    <p>
+                        Ne pas donner immédiatement toutes les règles.
+                        Cette séance fonctionne mieux si chaque règle
+                        apparaît après une observation.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>1. Automatismes</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Réponse</th>
+                                <th>Aide</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>7 + 8</td>
+                                <td>15</td>
+                                <td>7 + 3 = 10 puis +5.</td>
+                            </tr>
+                            <tr>
+                                <td>8 × 6</td>
+                                <td>48</td>
+                                <td>8 × 5 + 8.</td>
+                            </tr>
+                            <tr>
+                                <td>72 ÷ 8</td>
+                                <td>9</td>
+                                <td>8 × ? = 72.</td>
+                            </tr>
+                            <tr>
+                                <td>30 - 5 × 4</td>
+                                <td>10</td>
+                                <td>Multiplication prioritaire.</td>
+                            </tr>
+                            <tr>
+                                <td>-3 + 8</td>
+                                <td>5</td>
+                                <td>Passage par zéro.</td>
+                            </tr>
+                            <tr>
+                                <td>25 % de 80</td>
+                                <td>20</td>
+                                <td>25 % = 1/4.</td>
+                            </tr>
+                            <tr>
+                                <td>54 divisible par 3 ?</td>
+                                <td>Oui</td>
+                                <td>5 + 4 = 9.</td>
+                            </tr>
+                            <tr>
+                                <td>45 divisible par 9 ?</td>
+                                <td>Oui</td>
+                                <td>4 + 5 = 9.</td>
+                            </tr>
+                            <tr>
+                                <td>Décomposer 20</td>
+                                <td>2² × 5</td>
+                                <td>20 = 2 × 10 = 2 × 2 × 5.</td>
+                            </tr>
+                            <tr>
+                                <td>12/18 ÷ 6</td>
+                                <td>2/3</td>
+                                <td>12 ÷ 6 = 2 ; 18 ÷ 6 = 3.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>Tip</h3>
+                    <p>
+                        La dernière question prépare la séance :
+                        ne pas encore donner une règle générale
+                        de simplification.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>2. Faire comprendre ce qu'est une fraction</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Situation de départ</h3>
+                    <p>
+                        Une unité est partagée en 8 parts égales.
+                        3 parts sont considérées.
+                    </p>
+                    <h3>Questions</h3>
+                    <ul>
+                        <li>Combien de parts composent l'unité ?</li>
+                        <li>Combien de parts sont prises ?</li>
+                        <li>Quelle fraction cela représente-t-il ?</li>
+                        <li>Quelle fraction reste-t-il ?</li>
+                    </ul>
+                    <h3>Réponses</h3>
+                    <ul>
+                        <li>8 parts.</li>
+                        <li>3 parts.</li>
+                        <li><strong>3/8</strong>.</li>
+                        <li><strong>5/8</strong>.</li>
+                    </ul>
+                    <h3>Questions de vocabulaire</h3>
+                    <p>
+                        Dans 3/8 :
+                    </p>
+                    <ul>
+                        <li>Que représente 3 ?</li>
+                        <li>Que représente 8 ?</li>
+                    </ul>
+                    <h3>Réponse</h3>
+                    <p>
+                        3 = <strong>numérateur</strong> :
+                        nombre de parts considérées.
+                    </p>
+                    <p>
+                        8 = <strong>dénominateur</strong> :
+                        nombre de parts égales constituant l'unité.
+                    </p>
+                    <h3>Point important</h3>
+                    <p>
+                        Les parts doivent être <strong>égales</strong>.
+                    </p>
+                    <p>
+                        Éviter de réduire la notion
+                        à « trois morceaux sur huit ».
+                    </p>
+                    <p>
+                        Une fraction est d'abord un nombre.
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Employer systématiquement
+                        « numérateur » et « dénominateur »
+                        plutôt que « nombre du haut » et « nombre du bas ».
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>3. Une fraction représente aussi une division</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Questions et réponses</h3>
+                    <ul>
+                        <li>1/2 = 1 ÷ 2 = <strong>0,5</strong></li>
+                        <li>1/4 = 1 ÷ 4 = <strong>0,25</strong></li>
+                        <li>3/4 = 3 ÷ 4 = <strong>0,75</strong></li>
+                        <li>3/2 = 3 ÷ 2 = <strong>1,5</strong></li>
+                        <li>4/2 = 4 ÷ 2 = <strong>2</strong></li>
+                        <li>5/2 = 5 ÷ 2 = <strong>2,5</strong></li>
+                        <li>1/10 = 1 ÷ 10 = <strong>0,1</strong></li>
+                    </ul>
+                    <h3>Questions à faire verbaliser</h3>
+                    <p>
+                        Une fraction peut-elle dépasser 1 ?
+                    </p>
+                    <p>
+                        <strong>Oui : 3/2 = 1,5.</strong>
+                    </p>
+                    <p>
+                        Une fraction peut-elle être un entier ?
+                    </p>
+                    <p>
+                        <strong>Oui : 4/2 = 2.</strong>
+                    </p>
+                    <h3>Stratégies</h3>
+                    <p>
+                        1/2 :
+                        moitié de 1.
+                    </p>
+                    <p>
+                        1/4 :
+                        moitié d'une moitié.
+                    </p>
+                    <p>
+                        3/4 :
+                        3 × 0,25
+                        ou 1 - 0,25.
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Insister :
+                        <strong>la barre de fraction représente une division.</strong>
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>4. Faire découvrir les fractions équivalentes</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Fractions à étudier</h3>
+                    <p>
+                        1/2 ; 2/4 ; 3/6 ; 4/8
+                    </p>
+                    <h3>Résultats</h3>
+                    <ul>
+                        <li>1/2 = 0,5</li>
+                        <li>2/4 = 0,5</li>
+                        <li>3/6 = 0,5</li>
+                        <li>4/8 = 0,5</li>
+                    </ul>
+                    <h3>Question</h3>
+                    <p>
+                        « Que remarquez-vous ? »
+                    </p>
+                    <h3>Réponse attendue</h3>
+                    <p>
+                        Les écritures sont différentes,
+                        mais elles représentent toutes le même nombre.
+                    </p>
+                    <h3>Compléments</h3>
+                    <p>
+                        1/2 = <strong>2/4</strong>
+                    </p>
+                    <p>
+                        1/2 = <strong>5/10</strong>
+                    </p>
+                    <p>
+                        3/4 = <strong>6/8</strong>
+                    </p>
+                    <h3>Formalisation</h3>
+                    <p>
+                        Des fractions ayant la même valeur
+                        sont des <strong>fractions équivalentes</strong>.
+                    </p>
+                    <p>
+                        On peut multiplier le numérateur
+                        et le dénominateur
+                        par le même nombre non nul.
+                    </p>
+                    <h3>Attention</h3>
+                    <p>
+                        Il faut effectuer
+                        la même opération
+                        au numérateur ET au dénominateur.
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Image mentale :
+                        une moitié reste une moitié,
+                        qu'elle soit représentée
+                        par 1 part sur 2
+                        ou 2 parts sur 4.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>5. Simplifier une fraction</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Lien avec S03</h3>
+                    <p>
+                        18/24 = 3/4
+                    </p>
+                    <p>
+                        18 ÷ 6 = 3<br>
+                        24 ÷ 6 = 4
+                    </p>
+                    <h3>Formalisation</h3>
+                    <p>
+                        Simplifier une fraction
+                        consiste à diviser
+                        le numérateur et le dénominateur
+                        par un même diviseur commun.
+                    </p>
+                    <h3>Exercices et réponses</h3>
+                    <ul>
+                        <li>
+                            8/12 :
+                            division par 4 →
+                            <strong>2/3</strong>.
+                        </li>
+                        <li>
+                            10/15 :
+                            division par 5 →
+                            <strong>2/3</strong>.
+                        </li>
+                        <li>
+                            12/16 :
+                            division par 4 →
+                            <strong>3/4</strong>.
+                        </li>
+                        <li>
+                            15/25 :
+                            division par 5 →
+                            <strong>3/5</strong>.
+                        </li>
+                        <li>
+                            21/28 :
+                            division par 7 →
+                            <strong>3/4</strong>.
+                        </li>
+                    </ul>
+                    <h3>Méthode alternative</h3>
+                    <p>
+                        Pour 8/12 :
+                    </p>
+                    <p>
+                        8/12 → ÷2 → 4/6 → ÷2 → 2/3.
+                    </p>
+                    <p>
+                        Les simplifications successives
+                        sont parfaitement correctes.
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Ne pas imposer le PGCD.
+                        Les petits diviseurs simples
+                        sont plus accessibles à ce stade.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>6. Fraction irréductible</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Question à répéter</h3>
+                    <p>
+                        « Existe-t-il encore
+                        un nombre supérieur à 1
+                        qui divise le numérateur
+                        ET le dénominateur ? »
+                    </p>
+                    <h3>Réponses</h3>
+                    <ul>
+                        <li>
+                            2/3 :
+                            <strong>irréductible</strong>.
+                        </li>
+                        <li>
+                            4/6 :
+                            4/6 = 2/3 →
+                            <strong>2/3 irréductible</strong>.
+                        </li>
+                        <li>
+                            5/7 :
+                            <strong>irréductible</strong>.
+                        </li>
+                        <li>
+                            6/9 :
+                            6/9 = 2/3 →
+                            <strong>irréductible</strong>.
+                        </li>
+                        <li>
+                            7/10 :
+                            <strong>irréductible</strong>.
+                        </li>
+                        <li>
+                            15/20 :
+                            15/20 = 3/4 →
+                            <strong>irréductible</strong>.
+                        </li>
+                    </ul>
+                    <h3>Définition</h3>
+                    <p>
+                        Une fraction irréductible
+                        est une fraction dont le numérateur
+                        et le dénominateur
+                        n'ont aucun diviseur commun supérieur à 1.
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Ne pas confondre :
+                        « nombres premiers entre eux »
+                        et « nombres premiers ».
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>7. Comparer avec le même dénominateur</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Questions et réponses</h3>
+                    <ul>
+                        <li>3/8 <strong>&lt;</strong> 5/8</li>
+                        <li>7/10 <strong>&gt;</strong> 4/10</li>
+                        <li>2/6 <strong>&lt;</strong> 5/6</li>
+                        <li>9/12 <strong>=</strong> 18/24</li>
+                    </ul>
+                    <h3>Explication</h3>
+                    <p>
+                        Dans 3/8 et 5/8,
+                        les parts ont la même taille :
+                        des huitièmes.
+                    </p>
+                    <p>
+                        5 parts représentent donc davantage
+                        que 3 parts.
+                    </p>
+                    <h3>Règle</h3>
+                    <p>
+                        À dénominateurs positifs égaux,
+                        la plus grande fraction
+                        est celle ayant le plus grand numérateur.
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        La règle sur le numérateur
+                        n'est valable ici
+                        que parce que les dénominateurs sont égaux.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>8. Comparer avec le même numérateur</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Questions et réponses</h3>
+                    <ul>
+                        <li>1/2 <strong>&gt;</strong> 1/4</li>
+                        <li>3/5 <strong>&gt;</strong> 3/8</li>
+                        <li>2/3 <strong>&gt;</strong> 2/7</li>
+                        <li>5/6 <strong>&gt;</strong> 5/10</li>
+                    </ul>
+                    <h3>Compréhension</h3>
+                    <p>
+                        Plus on découpe une même unité
+                        en parts égales,
+                        plus chaque part est petite.
+                    </p>
+                    <h3>Règle</h3>
+                    <p>
+                        À numérateurs positifs égaux,
+                        la fraction ayant le plus petit dénominateur
+                        est la plus grande.
+                    </p>
+                    <h3>Tip</h3>
+                    <p>
+                        Si l'élève hésite,
+                        revenir systématiquement à :
+                        <strong>1/2 et 1/4</strong>.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>9. Comparer des fractions différentes</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Exemple principal</h3>
+                    <p>
+                        Comparer 2/3 et 3/4.
+                    </p>
+                    <p>
+                        12 est un multiple commun de 3 et 4.
+                    </p>
+                    <p>
+                        2/3 = <strong>8/12</strong>
+                    </p>
+                    <p>
+                        3/4 = <strong>9/12</strong>
+                    </p>
+                    <p>
+                        8/12 < 9/12 </p>
+                            <p>
+                                Donc :
+                                <strong>2/3 < 3/4</strong>.
+                            </p>
+                            <h3>Autres réponses</h3>
+                            <p>
+                                1/2 = 2/4,
+                                donc <strong>1/2 < 3/4</strong>.
+                            </p>
+                            <p>
+                                2/5 = 4/10,
+                                donc <strong>2/5 > 3/10</strong>.
+                            </p>
+                            <p>
+                                3/4 = 6/8,
+                                donc <strong>3/4 > 5/8</strong>.
+                            </p>
+                            <h3>Formalisation</h3>
+                            <p>
+                                Mettre au même dénominateur
+                                signifie transformer des fractions
+                                en fractions équivalentes
+                                possédant le même dénominateur.
+                            </p>
+                            <h3>Tip</h3>
+                            <p>
+                                Ne pas introduire automatiquement
+                                le produit en croix.
+                            </p>
+                            <p>
+                                La mise au même dénominateur
+                                conserve beaucoup mieux
+                                le sens de la fraction.
+                            </p>
+                </section>
+                <section class="activity">
+                    <h2>10. Problème professionnel</h2>
+                    <p><strong>Calculatrice autorisée.</strong></p>
+                    <h3>🐴 Version équine</h3>
+                    <p>
+                        Ration A :
+                        3/5 d'un aliment.
+                    </p>
+                    <p>
+                        Ration B :
+                        7/10 du même type d'aliment.
+                    </p>
+                    <h3>🌾 Version agricole</h3>
+                    <p>
+                        Parcelle A :
+                        3/5 consacrés à une culture.
+                    </p>
+                    <p>
+                        Parcelle B :
+                        7/10 consacrés à cette même culture.
+                    </p>
+                    <h3>Questions et réponses</h3>
+                    <p>
+                        3/5 = <strong>6/10</strong>.
+                    </p>
+                    <p>
+                        6/10 < 7/10. </p>
+                            <p>
+                                Donc :
+                                <strong>3/5 < 7/10</strong>.
+                            </p>
+                            <h3>Conclusion équine</h3>
+                            <p>
+                                La part de l'aliment étudié
+                                est plus importante dans la ration B.
+                            </p>
+                            <h3>Conclusion agricole</h3>
+                            <p>
+                                La part de la parcelle consacrée
+                                à la culture étudiée
+                                est plus importante dans la parcelle B.
+                            </p>
+                            <h3>Vigilance</h3>
+                            <p>
+                                Pour le contexte équin,
+                                préciser qu'il s'agit
+                                d'une situation mathématique simplifiée
+                                et non d'une recommandation zootechnique.
+                            </p>
+                            <h3>Tip</h3>
+                            <p>
+                                Exiger une phrase de conclusion :
+                                le résultat numérique seul
+                                ne répond pas complètement au problème.
+                            </p>
+                </section>
+                <section class="activity">
+                    <h2>11. Petit défi DNB</h2>
+                    <p><strong>Calculatrice interdite.</strong></p>
+                    <h3>Réponses</h3>
+                    <ol>
+                        <li>
+                            15/25 =
+                            <strong>3/5</strong>.
+                        </li>
+                        <li>
+                            3/4 = 6/8,
+                            donc
+                            <strong>3/4 > 5/8</strong>.
+                        </li>
+                        <li>
+                            1/2 =
+                            <strong>0,5</strong>.
+                        </li>
+                        <li>
+                            3/4 =
+                            <strong>0,75</strong>.
+                        </li>
+                        <li>
+                            1,2 =
+                            <strong>12/10</strong>.
+                        </li>
+                        <li>
+                            5/2 =
+                            <strong>2,5</strong>.
+                        </li>
+                    </ol>
+                    <h3>Tip</h3>
+                    <p>
+                        Faire identifier la nature de la question
+                        avant tout calcul :
+                        simplifier,
+                        comparer,
+                        convertir.
+                    </p>
+                </section>
+                <section class="activity">
+                    <h2>12. Bilan de séance</h2>
+                    <h3>Questions orales</h3>
+                    <ul>
+                        <li>Dans 3/5, comment s'appelle 3 ?</li>
+                        <li>Comment s'appelle 5 ?</li>
+                        <li>Que représente la barre de fraction ?</li>
+                        <li>Qu'est-ce qu'une fraction équivalente ?</li>
+                        <li>Comment simplifier une fraction ?</li>
+                        <li>Qu'est-ce qu'une fraction irréductible ?</li>
+                        <li>Comment comparer deux fractions ayant le même dénominateur ?</li>
+                        <li>Pourquoi 1/4 est-il plus petit que 1/2 ?</li>
+                        <li>Comment comparer deux fractions différentes ?</li>
+                    </ul>
+                    <h3>Réponses essentielles</h3>
+                    <ul>
+                        <li>
+                            3 = numérateur.
+                        </li>
+                        <li>
+                            5 = dénominateur.
+                        </li>
+                        <li>
+                            La barre de fraction
+                            représente notamment une division.
+                        </li>
+                        <li>
+                            Des fractions équivalentes
+                            représentent le même nombre.
+                        </li>
+                        <li>
+                            Simplifier :
+                            diviser numérateur et dénominateur
+                            par un même diviseur commun.
+                        </li>
+                        <li>
+                            Irréductible :
+                            ne peut plus être simplifiée.
+                        </li>
+                        <li>
+                            Même dénominateur :
+                            comparer les numérateurs.
+                        </li>
+                        <li>
+                            Même numérateur :
+                            plus le dénominateur est grand,
+                            plus les parts sont petites.
+                        </li>
+                        <li>
+                            Fractions différentes :
+                            chercher une écriture équivalente
+                            permettant une comparaison simple.
+                        </li>
+                    </ul>
+                    <h3>Vocabulaire à employer</h3>
+                    <p>
+                        Préférer :
+                        <strong>numérateur</strong>,
+                        <strong>dénominateur</strong>,
+                        <strong>fraction équivalente</strong>,
+                        <strong>diviseur commun</strong>,
+                        <strong>fraction irréductible</strong>.
+                    </p>
+                    <p>
+                        Éviter :
+                        « nombre du haut »,
+                        « nombre du bas »,
+                        ou « on enlève pareil des deux côtés ».
+                    </p>
+                </section>
+            </section>
+        </div>
+    </main>
 </body>
+</html>
