@@ -2,6 +2,7 @@
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -35,9 +36,10 @@
             padding: 30px;
         }
 
+
         /* =========================================================
-           EN-TÊTE
-           ========================================================= */
+   EN-TÊTE
+   ========================================================= */
 
         .prof-header {
             margin-bottom: 25px;
@@ -59,40 +61,143 @@
             text-align: center;
         }
 
-        /* =========================================================
-           CALCULATEUR DE NOTE
-           ========================================================= */
 
-        #calculateur-note {
+        /* =========================================================
+   BARRE PROFESSEUR
+   ========================================================= */
+
+        #barre-prof {
             position: sticky;
             top: 6px;
             z-index: 1000;
+
             margin: 20px 0 30px;
             padding: 18px;
+
             background: #ffffff;
+
             border: 2px solid #2563eb;
             border-radius: 12px;
+
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
         }
 
-        #calculateur-note h2 {
-            margin: 0 0 12px;
+        #barre-prof h2 {
+            margin: 0 0 14px;
             color: #1d4ed8;
         }
+
+        #fichier-copie {
+            display: none;
+        }
+
+        .actions-principales {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            margin-bottom: 15px;
+        }
+
+        .actions-principales button {
+            padding: 10px 15px;
+
+            border: 0;
+            border-radius: 7px;
+
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #btn-importer {
+            background: #d97706;
+            color: white;
+        }
+
+        #btn-importer:hover {
+            background: #b45309;
+        }
+
+        #btn-enregistrer {
+            background: #16a34a;
+            color: white;
+        }
+
+        #btn-enregistrer:hover {
+            background: #15803d;
+        }
+
+        #btn-imprimer {
+            background: #2563eb;
+            color: white;
+        }
+
+        #btn-nouvelle {
+            background: #64748b;
+            color: white;
+        }
+
+
+        /* =========================================================
+   MESSAGE IMPORT
+   ========================================================= */
+
+        #etat-import {
+            display: none;
+
+            margin: 12px 0;
+            padding: 11px 14px;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+        }
+
+        #etat-import.succes {
+            display: block;
+
+            background: #dcfce7;
+            border: 1px solid #86efac;
+
+            color: #166534;
+        }
+
+        #etat-import.erreur {
+            display: block;
+
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+
+            color: #991b1b;
+        }
+
+
+        /* =========================================================
+   IDENTITÉ
+   ========================================================= */
 
         .identite-correction {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
+
             margin-bottom: 15px;
         }
 
         .identite-correction input {
             width: 100%;
+
+            margin-top: 4px;
             padding: 9px;
+
             border: 1px solid #94a3b8;
             border-radius: 6px;
         }
+
+
+        /* =========================================================
+   NOTE
+   ========================================================= */
 
         .resultats-note {
             display: grid;
@@ -102,91 +207,129 @@
 
         .resultat-note {
             padding: 10px;
+
             background: #eff6ff;
+
             border-radius: 8px;
+
             text-align: center;
             font-weight: bold;
         }
 
         .resultat-note strong {
             display: block;
+
             margin-top: 4px;
-            font-size: 1.35rem;
+
             color: #1d4ed8;
+
+            font-size: 1.35rem;
         }
 
         #note-finale {
             font-size: 1.6rem;
         }
 
-        .actions-note {
-            margin-top: 12px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .actions-note button {
-            padding: 9px 14px;
-            border: 0;
-            border-radius: 7px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        #btn-reset-note {
-            background: #64748b;
-            color: white;
-        }
-
-        #btn-imprimer {
-            background: #2563eb;
-            color: white;
-        }
 
         /* =========================================================
-           RÉSUMÉ
-           ========================================================= */
+   INFORMATIONS COPIE
+   ========================================================= */
+
+        #informations-copie {
+            display: none;
+
+            margin: 20px 0 30px;
+            padding: 18px;
+
+            background: white;
+
+            border-left: 6px solid #7c3aed;
+            border-radius: 10px;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        #informations-copie h2 {
+            margin-top: 0;
+            color: #6d28d9;
+        }
+
+        .grille-informations {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .information {
+            padding: 10px 12px;
+
+            background: #f5f3ff;
+
+            border-radius: 7px;
+        }
+
+        .information strong {
+            display: block;
+
+            color: #6d28d9;
+        }
+
+
+        /* =========================================================
+   RÉSUMÉ BARÈME
+   ========================================================= */
 
         .resume-bareme {
             margin: 20px 0 30px;
             padding: 18px 22px;
+
             background: white;
+
             border-left: 6px solid #486581;
             border-radius: 10px;
+
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
         }
 
+
         /* =========================================================
-           EXERCICES
-           ========================================================= */
+   EXERCICES
+   ========================================================= */
 
         .exercice {
             margin: 30px 0;
             padding: 24px;
+
             background: white;
+
             border-radius: 12px;
+
             box-shadow: 0 2px 9px rgba(0, 0, 0, 0.08);
         }
 
-        .exercice > h2 {
+        .exercice>h2 {
             margin: -24px -24px 22px;
             padding: 14px 18px;
+
             background: #d9e2ec;
             color: #102a43;
+
             border-radius: 12px 12px 0 0;
+
             font-size: 1.35rem;
         }
 
         .question {
             margin: 24px 0;
             padding: 16px;
+
             background: #f8fafc;
+
             border-left: 4px solid #486581;
             border-radius: 7px;
         }
 
-        .question > p:first-child {
+        .question>p:first-child {
             margin-top: 0;
         }
 
@@ -195,14 +338,70 @@
             color: #526d82;
         }
 
+
         /* =========================================================
-           CORRECTIONS
-           ========================================================= */
+   RÉPONSE DE L'ÉLÈVE
+   ========================================================= */
+
+        .reponse-eleve {
+            display: none;
+
+            margin-top: 12px;
+            padding: 14px 16px;
+
+            background: #fffbeb;
+
+            border: 1px solid #fde68a;
+            border-left: 5px solid #d97706;
+            border-radius: 8px;
+        }
+
+        .reponse-eleve.visible {
+            display: block;
+        }
+
+        .reponse-eleve strong {
+            color: #92400e;
+        }
+
+        .texte-reponse-eleve {
+            margin: 8px 0 0;
+
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .sans-reponse {
+            color: #78716c;
+            font-style: italic;
+        }
+
+        .reponse-perdue {
+            display: block;
+
+            margin-top: 12px;
+            padding: 14px 16px;
+
+            background: #fef2f2;
+
+            border: 1px solid #fca5a5;
+            border-left: 5px solid #dc2626;
+            border-radius: 8px;
+
+            color: #991b1b;
+        }
+
+
+        /* =========================================================
+   CORRECTION
+   ========================================================= */
 
         .correction {
             margin-top: 12px;
             padding: 14px 16px;
+
             background: #ecfdf3;
+
             border: 1px solid #86efac;
             border-left: 5px solid #16a34a;
             border-radius: 8px;
@@ -215,7 +414,9 @@
         .bareme-detail {
             margin-top: 10px;
             padding: 11px 14px;
+
             background: #eff6ff;
+
             border-left: 4px solid #2563eb;
             border-radius: 6px;
         }
@@ -227,41 +428,26 @@
         .accepter {
             margin-top: 10px;
             padding: 11px 14px;
+
             background: #fff7ed;
+
             border-left: 4px solid #ea580c;
             border-radius: 6px;
         }
 
-        .vigilance {
-            margin-top: 10px;
-            padding: 11px 14px;
-            background: #fef2f2;
-            border-left: 4px solid #dc2626;
-            border-radius: 6px;
-        }
-
-        .correction-rapide {
-            margin-top: 10px;
-            padding: 10px 14px;
-            background: #f5f3ff;
-            border-left: 4px solid #7c3aed;
-            border-radius: 6px;
-        }
-
-        .correction-rapide strong {
-            color: #6d28d9;
-        }
 
         /* =========================================================
-           SAISIE DES POINTS
-           ========================================================= */
+   SAISIE DES POINTS
+   ========================================================= */
 
         .zone-points {
             display: flex;
             align-items: center;
             gap: 8px;
+
             margin-top: 14px;
             padding-top: 12px;
+
             border-top: 1px dashed #94a3b8;
         }
 
@@ -271,9 +457,12 @@
 
         .zone-points input {
             width: 75px;
+
             padding: 7px;
+
             border: 2px solid #2563eb;
             border-radius: 6px;
+
             text-align: center;
             font-weight: bold;
         }
@@ -282,21 +471,27 @@
             color: #64748b;
         }
 
+
         /* =========================================================
-           TABLEAUX
-           ========================================================= */
+   TABLEAUX
+   ========================================================= */
 
         table {
             width: 100%;
+
             margin: 18px 0;
+
             border-collapse: collapse;
+
             background: white;
         }
 
         th,
         td {
             padding: 10px;
+
             border: 1px solid #cbd5e1;
+
             vertical-align: top;
         }
 
@@ -309,55 +504,47 @@
             background: #f8fafc;
         }
 
-        /* =========================================================
-           OUTILS PROF
-           ========================================================= */
-
-        .outils-prof {
-            margin: 40px 0;
-            padding: 24px;
-            background: #fff7ed;
-            border: 2px solid #ea580c;
-            border-radius: 12px;
-        }
-
-        .outils-prof h2 {
-            margin-top: 0;
-            color: #9a3412;
-        }
-
-        #btn-reset-ds {
-            margin-top: 15px;
-            padding: 14px 22px;
-            background: #c2410c;
-            color: white;
-            border: 0;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        #btn-reset-ds:hover {
-            background: #9a3412;
-        }
-
-        #message-reset {
-            display: none;
-            margin-top: 15px;
-            padding: 12px;
-            background: #dcfce7;
-            border: 1px solid #86efac;
-            border-radius: 7px;
-            color: #166534;
-            font-weight: bold;
-        }
 
         /* =========================================================
-           IMPRESSION
-           ========================================================= */
+   COPIE CORRIGÉE
+   ========================================================= */
+
+        .bloc-resultat-final {
+            margin: 20px 0 30px;
+            padding: 20px;
+
+            background: #ecfdf3;
+
+            border: 2px solid #16a34a;
+            border-radius: 10px;
+        }
+
+
+        /* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+        @media (max-width: 750px) {
+
+            #correction-ds {
+                padding: 12px;
+            }
+
+            .identite-correction,
+            .resultats-note,
+            .grille-informations {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        /* =========================================================
+   IMPRESSION
+   ========================================================= */
 
         @media print {
+
             body {
                 background: white;
                 font-size: 10pt;
@@ -368,1427 +555,3517 @@
                 padding: 0;
             }
 
-            #calculateur-note {
+            #barre-prof {
                 position: static;
                 box-shadow: none;
             }
 
+            .actions-principales,
+            #etat-import {
+                display: none !important;
+            }
+
             .exercice,
             .prof-header,
-            .resume-bareme {
+            .resume-bareme,
+            #informations-copie {
                 box-shadow: none;
             }
 
             .question,
+            .reponse-eleve,
+            .reponse-perdue,
             .correction,
             .bareme-detail,
-            .accepter,
-            .vigilance,
-            .correction-rapide {
+            .accepter {
                 break-inside: avoid;
             }
 
-            .outils-prof,
-            .actions-note {
-                display: none;
-            }
-        }
-
-        @media (max-width: 750px) {
-            .identite-correction,
-            .resultats-note {
-                grid-template-columns: 1fr;
-            }
-
-            #correction-ds {
-                padding: 12px;
-            }
         }
     </style>
+
 </head>
+
 
 <body>
 
-<main id="correction-ds">
+    <main id="correction-ds">
 
-    <header class="prof-header">
-        <h1>Correction professeur – Technologie 3e</h1>
-        <p><strong>Devoir surveillé – Séances 2 à 5</strong></p>
-        <p>50 points + 2 points bonus</p>
-    </header>
 
-    <!-- =========================================================
-         CALCULATEUR
-         ========================================================= -->
+        <header class="prof-header">
 
-    <section id="calculateur-note">
-
-        <h2>Correction de la copie</h2>
-
-        <div class="identite-correction">
-
-            <label>
-                Nom :
-                <input type="text" id="nom-eleve-correction">
-            </label>
-
-            <label>
-                Prénom :
-                <input type="text" id="prenom-eleve-correction">
-            </label>
-
-        </div>
-
-        <div class="resultats-note">
-
-            <div class="resultat-note">
-                Points
-                <strong>
-                    <span id="total-points">0</span> / 50
-                </strong>
-            </div>
-
-            <div class="resultat-note">
-                Bonus
-                <strong>
-                    + <span id="total-bonus">0</span> / 2
-                </strong>
-            </div>
-
-            <div class="resultat-note">
-                Note brute
-                <strong>
-                    <span id="note-brute">0</span> / 20
-                </strong>
-            </div>
-
-            <div class="resultat-note">
-                Note finale
-                <strong id="note-finale">0 / 20</strong>
-            </div>
-
-        </div>
-
-        <div class="actions-note">
-
-            <button id="btn-reset-note" type="button">
-                Nouvelle copie
-            </button>
-
-            <button id="btn-imprimer" type="button">
-                Imprimer cette correction
-            </button>
-
-        </div>
-
-    </section>
-
-    <section class="resume-bareme">
-
-        <strong>Répartition :</strong><br><br>
-
-        Exercice 1 : 7 pts |
-        Exercice 2 : 6 pts |
-        Exercice 3 : 9 pts |
-        Exercice 4 : 6 pts |
-        Exercice 5 : 8 pts |
-        Exercice 6 : 8 pts |
-        Exercice 7 : 6 pts |
-        Bonus : +2 pts
-
-        <p>
-            <strong>Conversion :</strong>
-            50 points = 20/20.
-            La note brute correspond donc à <strong>points ÷ 2,5</strong>.
-        </p>
-
-    </section>
-
-    <!-- =========================================================
-         EXERCICE 1
-         ========================================================= -->
-
-    <section class="exercice">
-
-        <h2>Exercice 1 – Pourquoi les objets techniques évoluent-ils ? – 7 points</h2>
-
-        <div class="question">
+            <h1>Correction professeur – Technologie 3e</h1>
 
             <p>
-                <strong>1.1.</strong>
-                Quel besoin commun satisfait l'ensemble de ces solutions ?
-                <span class="bareme">(1 pt)</span>
+                <strong>Devoir surveillé – Séances 2 à 5</strong>
             </p>
 
-            <div class="correction">
-                <strong>Réponse attendue :</strong><br>
-                Communiquer à distance.
+            <p>
+                50 points + 2 points bonus
+            </p>
+
+        </header>
+
+
+        <!-- =========================================================
+     BARRE PROFESSEUR
+     ========================================================= -->
+
+        <section id="barre-prof">
+
+            <h2>Correction de la copie</h2>
+
+
+            <input id="fichier-copie" type="file" accept=".html,.htm,text/html">
+
+
+            <div class="actions-principales">
+
+                <button id="btn-importer" type="button">
+                    📂 Importer une copie élève
+                </button>
+
+                <button id="btn-enregistrer" type="button">
+                    💾 Enregistrer la copie corrigée
+                </button>
+
+                <button id="btn-imprimer" type="button">
+                    🖨 Imprimer
+                </button>
+
+                <button id="btn-nouvelle" type="button">
+                    ↻ Nouvelle copie
+                </button>
+
             </div>
+
+
+            <div id="etat-import"></div>
+
+
+            <div class="identite-correction">
+
+                <label>
+                    Nom :
+                    <input type="text" id="nom-eleve-correction">
+                </label>
+
+                <label>
+                    Prénom :
+                    <input type="text" id="prenom-eleve-correction">
+                </label>
+
+            </div>
+
+
+            <div class="resultats-note">
+
+                <div class="resultat-note">
+
+                    Points
+
+                    <strong>
+                        <span id="total-points">0</span> / 50
+                    </strong>
+
+                </div>
+
+
+                <div class="resultat-note">
+
+                    Bonus
+
+                    <strong>
+                        + <span id="total-bonus">0</span> / 2
+                    </strong>
+
+                </div>
+
+
+                <div class="resultat-note">
+
+                    Note brute
+
+                    <strong>
+                        <span id="note-brute">0</span> / 20
+                    </strong>
+
+                </div>
+
+
+                <div class="resultat-note">
+
+                    Note finale
+
+                    <strong id="note-finale">
+                        0 / 20
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     INFORMATIONS DE LA COPIE
+     ========================================================= -->
+
+        <section id="informations-copie">
+
+            <h2>Informations de la copie</h2>
+
+
+            <div class="grille-informations">
+
+                <div class="information">
+
+                    <strong>Fichier</strong>
+
+                    <span id="info-fichier">
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="information">
+
+                    <strong>Élève</strong>
+
+                    <span id="info-eleve">
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="information">
+
+                    <strong>Début</strong>
+
+                    <span id="info-debut">
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="information">
+
+                    <strong>Fin</strong>
+
+                    <span id="info-fin">
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="information">
+
+                    <strong>Durée</strong>
+
+                    <span id="info-duree">
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="information">
+
+                    <strong>Sorties de page</strong>
+
+                    <span id="info-sorties">
+                        —
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="resume-bareme">
+
+            <strong>Répartition :</strong>
+
+            <br><br>
+
+            Exercice 1 : 7 pts |
+            Exercice 2 : 6 pts |
+            Exercice 3 : 9 pts |
+            Exercice 4 : 6 pts |
+            Exercice 5 : 8 pts |
+            Exercice 6 : 8 pts |
+            Exercice 7 : 6 pts |
+            Bonus : +2 pts
+
+
+            <p>
+                <strong>Conversion :</strong>
+                50 points = 20/20.
+                Note brute = <strong>points ÷ 2,5</strong>.
+            </p>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 1
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 1 – Pourquoi les objets techniques évoluent-ils ? – 7 points
+            </h2>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>1.1.</strong>
+                    Quel besoin commun satisfait l'ensemble de ces solutions ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q1_1">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>Réponse attendue :</strong><br>
+
+                    Communiquer à distance.
+
+                </div>
+
+
+                <div class="bareme-detail">
+
+                    <strong>Barème :</strong>
+                    1 pt si le besoin est correctement identifié.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>1.2.</strong>
+
+                    Expliquez pourquoi ces objets peuvent appartenir
+                    à une même famille.
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q1_2">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>Réponse attendue :</strong><br>
+
+                    Ils appartiennent à une même famille car ils répondent
+                    au même besoin : communiquer à distance.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>1.3.</strong>
+
+                    Donnez une différence importante
+                    entre un téléphone fixe et un smartphone.
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q1_3">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>Réponses possibles :</strong>
+
+                    <ul>
+                        <li>mobilité ;</li>
+                        <li>accès à Internet ;</li>
+                        <li>applications ;</li>
+                        <li>photographie ;</li>
+                        <li>GPS ;</li>
+                        <li>multiplication des fonctions.</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>1.4.</strong>
+
+                    Donnez une fonction technique du smartphone
+                    puis une solution technique permettant de la réaliser.
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q1_4">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>Exemples :</strong>
+
+                    <ul>
+                        <li>afficher une information → écran ;</li>
+                        <li>capter une image → capteur photographique ;</li>
+                        <li>stocker des données → mémoire électronique ;</li>
+                        <li>communiquer sans fil → antenne / module réseau ;</li>
+                        <li>se localiser → récepteur GNSS/GPS.</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="bareme-detail">
+
+                    <strong>Barème :</strong><br>
+
+                    1 pt : fonction cohérente.<br>
+                    1 pt : solution technique cohérente.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>1.5.</strong>
+
+                    Une batterie offrant deux heures d'autonomie supplémentaires
+                    correspond-elle plutôt à une amélioration progressive
+                    ou à une innovation importante ? Justifiez.
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q1_5">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>Réponse :</strong>
+
+                    amélioration progressive, car on améliore une performance
+                    sans transformer complètement le principe
+                    ou les usages de l'objet.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>1.6.</strong>
+
+                    Le passage du téléphone fixe au smartphone constitue-t-il
+                    une évolution plus importante ? Justifiez.
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q1_6">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>Réponse :</strong>
+
+                    oui, car le smartphone transforme fortement
+                    les fonctions et les usages.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 2
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 2 – Les technologies transforment-elles toujours positivement la société ? – 6 points
+            </h2>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>2.1.</strong>
+
+                    Donnez deux avantages de cette solution.
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q2_1">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>Réponses possibles :</strong>
+
+                    <ul>
+                        <li>horaires en temps réel ;</li>
+                        <li>position des véhicules ;</li>
+                        <li>calcul d'itinéraire ;</li>
+                        <li>alertes en cas de retard ;</li>
+                        <li>meilleure anticipation.</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="bareme-detail">
+                    1 pt par avantage pertinent.
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>2.2.</strong>
+
+                    Donnez deux limites ou contraintes possibles.
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q2_2">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>Réponses possibles :</strong>
+
+                    <ul>
+                        <li>besoin d'un smartphone ;</li>
+                        <li>batterie nécessaire ;</li>
+                        <li>connexion nécessaire ;</li>
+                        <li>problème d'accessibilité ;</li>
+                        <li>collecte de données ;</li>
+                        <li>dépendance au service.</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="bareme-detail">
+                    1 pt par limite ou contrainte pertinente.
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>2.3.</strong>
+
+                    Pourquoi ne peut-on pas affirmer qu'une technologie est meilleure
+                    uniquement parce qu'elle est plus récente ?
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q2_3">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    Une nouvelle technologie peut apporter des avantages
+                    mais également créer de nouvelles contraintes.
+
+                    Elle doit être comparée selon plusieurs critères :
+                    coût, usage, sécurité, environnement, accessibilité, etc.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 3
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 3 – Choisir entre plusieurs solutions techniques – 9 points
+            </h2>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Critère</th>
+                        <th>Ascenseur</th>
+                        <th>Plateforme élévatrice</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Coût</td>
+                        <td>45 000 €</td>
+                        <td>16 000 €</td>
+                    </tr>
+
+                    <tr>
+                        <td>Capacité</td>
+                        <td>6 personnes</td>
+                        <td>1 personne</td>
+                    </tr>
+
+                    <tr>
+                        <td>Temps de trajet</td>
+                        <td>10 s</td>
+                        <td>28 s</td>
+                    </tr>
+
+                    <tr>
+                        <td>Travaux</td>
+                        <td>Importants</td>
+                        <td>Limités</td>
+                    </tr>
+
+                    <tr>
+                        <td>Fauteuil roulant</td>
+                        <td>Oui</td>
+                        <td>Oui</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>3.1.</strong>
+
+                    Relevez le coût de la plateforme élévatrice.
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q3_1">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+                    <strong>16 000 €</strong>
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>3.2.</strong>
+
+                    Donnez deux critères pour lesquels l'ascenseur est plus performant.
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q3_2">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+                    Capacité et temps de trajet.
+                </div>
+
+
+                <div class="bareme-detail">
+                    1 pt par critère correct.
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>3.3.</strong>
+
+                    Donnez deux avantages de la plateforme.
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q3_3">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+                    Coût inférieur et travaux plus limités.
+                </div>
+
+
+                <div class="bareme-detail">
+                    1 pt par avantage correct.
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>3.4.</strong>
+
+                    Pourquoi le raisonnement
+                    « l'ascenseur est forcément meilleur puisqu'il est plus rapide »
+                    est-il insuffisant ?
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q3_4">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    Il faut comparer plusieurs critères,
+                    pas seulement la vitesse :
+
+                    coût, travaux, capacité,
+                    accessibilité, contexte d'utilisation...
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>3.5.</strong>
+
+                    Le bâtiment reçoit seulement une vingtaine d'utilisateurs par jour
+                    et le budget est limité.
+
+                    Quelle solution proposeriez-vous ?
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q3_5">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>Réponse privilégiée :</strong>
+
+                    plateforme élévatrice :
+
+                    <ul>
+                        <li>16 000 € contre 45 000 € ;</li>
+                        <li>travaux limités ;</li>
+                        <li>accessible en fauteuil ;</li>
+                        <li>faible fréquentation.</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="accepter">
+
+                    <strong>À accepter :</strong>
+
+                    ascenseur si le choix est correctement argumenté.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 4
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 4 – Transformer des attentes en exigences – 6 points
+            </h2>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>4.1.</strong>
+
+                    Proposer trois exigences vérifiables.
+
+                    <span class="bareme">(3 pts)</span>
+                </p>
+
+
+                <div class="reponse-perdue">
+
+                    <strong>Réponses élève indisponibles :</strong><br>
+
+                    les trois champs du tableau de la question 4.1
+                    n'ont pas été enregistrés dans les copies HTML générées
+                    avec cette version du devoir.
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>Exemples possibles :</strong>
+
+                    <ul>
+                        <li>trajet inférieur à 15 s ;</li>
+                        <li>transport d'au moins 4 personnes ;</li>
+                        <li>niveau sonore inférieur à 50 dB.</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="accepter">
+
+                    D'autres valeurs sont acceptables
+                    si elles sont mesurables ou vérifiables.
+
+                </div>
+
+
+                <div class="bareme-detail">
+                    1 pt par exigence correcte.
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="3" step="0.5" data-max="3">
+
+                    <span>/ 3</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>4.2.</strong>
+
+                    Pourquoi « le système doit être rapide »
+                    est-il moins précis que
+                    « le trajet doit durer moins de 15 secondes » ?
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q4_4">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    « Rapide » est subjectif.
+
+                    « Moins de 15 secondes »
+                    est mesurable et vérifiable.
+
+                </div>
+
+
+                <div class="bareme-detail">
+
+                    1 pt : idée de manque de précision / subjectivité.<br>
+
+                    1 pt : valeur chiffrée mesurable ou vérifiable.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>4.3.</strong>
+
+                    À quoi sert un cahier des charges
+                    lors de la conception d'un objet technique ?
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q4_5">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    À préciser les besoins,
+                    les contraintes et les exigences
+                    que la solution devra respecter.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 5
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 5 – Vérifier les performances d'une solution – 8 points
+            </h2>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>5.1.</strong>
+
+                    Calculez la puissance moyenne du prototype A.
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q5_1">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    (2,8 + 3,0 + 2,9) ÷ 3
+                    = 8,7 ÷ 3
+                    = <strong>2,9 W</strong>
+
+                </div>
+
+
+                <div class="bareme-detail">
+
+                    1 pt : calcul.<br>
+                    1 pt : résultat correct avec unité.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>5.2.</strong>
+
+                    Calculez la puissance moyenne du prototype B.
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q5_2">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    (3,4 + 3,2 + 3,3) ÷ 3
+                    = 9,9 ÷ 3
+                    = <strong>3,3 W</strong>
+
+                </div>
+
+
+                <div class="bareme-detail">
+
+                    1 pt : calcul.<br>
+                    1 pt : résultat correct avec unité.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>5.3.</strong>
+
+                    Le prototype A respecte-t-il toutes les exigences ?
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q5_3">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>Non.</strong>
+
+                    <ul>
+                        <li>2,9 W &lt; 3 W : non respecté ;</li>
+                        <li>46 dB &lt; 50 dB : respecté ;</li>
+                        <li>350 g &lt; 500 g : respecté.</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>5.4.</strong>
+
+                    Le prototype B respecte-t-il toutes les exigences ?
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q5_4">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>Non.</strong>
+
+                    <ul>
+                        <li>3,3 W ≥ 3 W : respecté ;</li>
+                        <li>53 dB &gt; 50 dB : non respecté ;</li>
+                        <li>430 g &lt; 500 g : respecté.</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 6
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 6 – Concevoir une expérience correcte – 8 points
+            </h2>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>6.1.</strong>
+
+                    Quel paramètre doit volontairement changer ?
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q6_1">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+                    Le nombre de pales.
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>6.2.</strong>
+
+                    Quelle grandeur électrique doit être mesurée ?
+                    Indiquez également son unité.
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q6_2">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+                    La tension électrique, en volts (V).
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>6.3.</strong>
+
+                    Donnez quatre paramètres
+                    qui doivent rester identiques pendant les essais.
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q6_3">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    Exemples :
+
+                    <ul>
+                        <li>distance ;</li>
+                        <li>vitesse du ventilateur ;</li>
+                        <li>même générateur ;</li>
+                        <li>même orientation ;</li>
+                        <li>même multimètre ;</li>
+                        <li>même méthode de mesure.</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="bareme-detail">
+                    0,5 pt par paramètre correct.
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>6.4.</strong>
+
+                    Pourquoi faut-il réaliser plusieurs mesures
+                    pour chaque rotor ?
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q6_4">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    Pour obtenir un résultat plus représentatif
+                    et limiter l'influence d'une mesure inhabituelle.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>6.5.</strong>
+
+                    Remettez les étapes dans un ordre logique.
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q6_5">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>D → G → B → E → A → F → C</strong>
+
+                </div>
+
+
+                <div class="accepter">
+
+                    Un ordre légèrement différent peut être accepté
+                    s'il reste expérimentalement cohérent.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>6.6.</strong>
+
+                    Pourquoi la comparaison entre 30 cm et 80 cm
+                    n'est-elle pas valide ?
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q6_6">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    Parce que deux paramètres changent simultanément :
+                    le nombre de pales et la distance au ventilateur.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 7
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 7 – Analyser des résultats – 6 points
+            </h2>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>7.1.</strong>
+
+                    Quelle valeur semble inhabituelle ?
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q7_1">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+                    <strong>5,9 W</strong>
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>7.2.</strong>
+
+                    Donnez deux explications possibles à cette valeur.
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q7_2">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    Exemples :
+
+                    <ul>
+                        <li>erreur de lecture ;</li>
+                        <li>erreur de saisie ;</li>
+                        <li>mauvais réglage ;</li>
+                        <li>conditions différentes ;</li>
+                        <li>déplacement du matériel ;</li>
+                        <li>problème de mesure.</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="bareme-detail">
+                    1 pt par explication plausible.
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>7.3.</strong>
+
+                    Pourquoi est-il risqué de calculer immédiatement une moyenne
+                    sans observer les valeurs ?
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q7_3">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    Une valeur aberrante peut modifier fortement la moyenne
+                    et conduire à une conclusion trompeuse.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>7.4.</strong>
+
+                    Quelle action faudrait-il effectuer avant de tirer une conclusion ?
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+
+                <div class="reponse-eleve" data-question="q7_4">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    Refaire la mesure et vérifier
+                    le protocole ou le matériel.
+
+                </div>
+
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     BONUS
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Bonus – Vrai ou faux ? – +2 points
+            </h2>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>A.</strong>
+
+                    Deux objets répondant au même besoin utilisent forcément
+                    la même solution technique.
+                </p>
+
+
+                <div class="reponse-eleve" data-question="bonus_1">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>FAUX.</strong>
+
+                    Plusieurs solutions peuvent répondre au même besoin.
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>B.</strong>
+
+                    La meilleure solution technique dépend
+                    des exigences et du contexte.
+                </p>
+
+
+                <div class="reponse-eleve" data-question="bonus_2">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+                    <strong>VRAI.</strong>
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>C.</strong>
+
+                    Une seule mesure suffit toujours
+                    pour comparer deux prototypes.
+                </p>
+
+
+                <div class="reponse-eleve" data-question="bonus_3">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+
+                    <strong>FAUX.</strong>
+
+                    Il est préférable de répéter les mesures.
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <p>
+                    <strong>D.</strong>
+
+                    Un protocole peut être amélioré
+                    après les premiers essais.
+                </p>
+
+
+                <div class="reponse-eleve" data-question="bonus_4">
+
+                    <strong>Réponse de l'élève :</strong>
+
+                    <p class="texte-reponse-eleve"></p>
+
+                </div>
+
+
+                <div class="correction">
+                    <strong>VRAI.</strong>
+                </div>
+
+            </div>
+
 
             <div class="bareme-detail">
-                <strong>Barème :</strong> 1 pt si le besoin est correctement identifié.
+
+                <strong>Barème bonus :</strong><br>
+
+                0,5 pt par réponse correcte.<br>
+                Maximum : +2 pts.
+
             </div>
+
 
             <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
 
-        </div>
+                <label>Bonus :</label>
 
-        <div class="question">
+                <input class="bonus-score" type="number" min="0" max="2" step="0.5">
 
-            <p>
-                <strong>1.2.</strong>
-                Expliquez pourquoi ces objets peuvent appartenir à une même famille.
-                <span class="bareme">(1 pt)</span>
-            </p>
-
-            <div class="correction">
-                <strong>Réponse attendue :</strong><br>
-                Ils appartiennent à une même famille car ils répondent au même besoin :
-                communiquer à distance.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>1.3.</strong>
-                Donnez une différence importante entre un téléphone fixe et un smartphone.
-                <span class="bareme">(1 pt)</span>
-            </p>
-
-            <div class="correction">
-                <strong>Réponses possibles :</strong>
-
-                <ul>
-                    <li>mobilité ;</li>
-                    <li>accès à Internet ;</li>
-                    <li>applications ;</li>
-                    <li>photographie ;</li>
-                    <li>GPS ;</li>
-                    <li>multiplication des fonctions.</li>
-                </ul>
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>1.4.</strong>
-                Donnez une fonction technique du smartphone puis une solution technique
-                permettant de la réaliser.
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-                <strong>Exemples :</strong>
-
-                <ul>
-                    <li>afficher une information → écran ;</li>
-                    <li>capter une image → capteur photographique ;</li>
-                    <li>stocker des données → mémoire électronique ;</li>
-                    <li>communiquer sans fil → antenne / module réseau ;</li>
-                    <li>se localiser → récepteur GNSS/GPS.</li>
-                </ul>
-            </div>
-
-            <div class="bareme-detail">
-                <strong>Barème :</strong><br>
-                1 pt : fonction cohérente.<br>
-                1 pt : solution technique cohérente.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
                 <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>1.5.</strong>
-                Une batterie offrant deux heures d'autonomie supplémentaires correspond-elle plutôt
-                à une amélioration progressive ou à une innovation importante ? Justifiez.
-                <span class="bareme">(1 pt)</span>
-            </p>
-
-            <div class="correction">
-                <strong>Réponse :</strong>
-                amélioration progressive, car on améliore une performance sans transformer
-                complètement le principe ou les usages de l'objet.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>1.6.</strong>
-                Le passage du téléphone fixe au smartphone constitue-t-il une évolution plus importante ?
-                Justifiez.
-                <span class="bareme">(1 pt)</span>
-            </p>
-
-            <div class="correction">
-                <strong>Réponse :</strong>
-                oui, car le smartphone transforme fortement les fonctions et les usages.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =========================================================
-         EXERCICE 2
-         ========================================================= -->
-
-    <section class="exercice">
-
-        <h2>Exercice 2 – Les technologies transforment-elles toujours positivement la société ? – 6 points</h2>
-
-        <div class="question">
-
-            <p>
-                <strong>2.1.</strong>
-                Donnez deux avantages de l'application de transports.
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-                <strong>Réponses possibles :</strong>
-
-                <ul>
-                    <li>horaires en temps réel ;</li>
-                    <li>position des véhicules ;</li>
-                    <li>calcul d'itinéraire ;</li>
-                    <li>alertes en cas de retard ;</li>
-                    <li>meilleure anticipation.</li>
-                </ul>
-            </div>
-
-            <div class="bareme-detail">
-                <strong>Barème :</strong> 1 pt par avantage pertinent.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>2.2.</strong>
-                Donnez deux limites ou contraintes possibles.
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-                <strong>Réponses possibles :</strong>
-
-                <ul>
-                    <li>besoin d'un smartphone ;</li>
-                    <li>batterie nécessaire ;</li>
-                    <li>connexion nécessaire ;</li>
-                    <li>problème d'accessibilité ;</li>
-                    <li>collecte de données ;</li>
-                    <li>dépendance au service.</li>
-                </ul>
-            </div>
-
-            <div class="bareme-detail">
-                <strong>Barème :</strong> 1 pt par limite ou contrainte pertinente.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>2.3.</strong>
-                Pourquoi ne peut-on pas affirmer qu'une technologie est meilleure uniquement
-                parce qu'elle est plus récente ?
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-                Une nouvelle technologie peut apporter des avantages mais également créer
-                de nouvelles contraintes. Elle doit être comparée selon plusieurs critères :
-                coût, usage, sécurité, environnement, accessibilité, etc.
-            </div>
-
-            <div class="bareme-detail">
-                <strong>Barème conseillé :</strong><br>
-                1 pt : l'élève indique qu'une technologie récente peut aussi avoir des inconvénients.<br>
-                1 pt : il évoque la nécessité de comparer plusieurs critères.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =========================================================
-         EXERCICE 3
-         ========================================================= -->
-
-    <section class="exercice">
-
-        <h2>Exercice 3 – Choisir entre plusieurs solutions techniques – 9 points</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Critère</th>
-                    <th>Ascenseur</th>
-                    <th>Plateforme élévatrice</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>Coût</td>
-                    <td>45 000 €</td>
-                    <td>16 000 €</td>
-                </tr>
-
-                <tr>
-                    <td>Capacité</td>
-                    <td>6 personnes</td>
-                    <td>1 personne</td>
-                </tr>
-
-                <tr>
-                    <td>Temps de trajet</td>
-                    <td>10 s</td>
-                    <td>28 s</td>
-                </tr>
-
-                <tr>
-                    <td>Travaux</td>
-                    <td>Importants</td>
-                    <td>Limités</td>
-                </tr>
-
-                <tr>
-                    <td>Fauteuil roulant</td>
-                    <td>Oui</td>
-                    <td>Oui</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="question">
-
-            <p>
-                <strong>3.1.</strong>
-                Relevez le coût de la plateforme élévatrice.
-                <span class="bareme">(1 pt)</span>
-            </p>
-
-            <div class="correction">
-                <strong>16 000 €</strong>
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>3.2.</strong>
-                Donnez deux critères pour lesquels l'ascenseur est plus performant.
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-                Capacité et temps de trajet.
-            </div>
-
-            <div class="bareme-detail">
-                1 pt par critère correct.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>3.3.</strong>
-                Donnez deux avantages de la plateforme.
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-                Coût inférieur et travaux plus limités.
-            </div>
-
-            <div class="bareme-detail">
-                1 pt par avantage correct.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>3.4.</strong>
-                Pourquoi « l'ascenseur est forcément meilleur puisqu'il est plus rapide »
-                est-il insuffisant ?
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-                Il faut comparer plusieurs critères, pas seulement la vitesse :
-                coût, travaux, capacité, accessibilité, contexte d'utilisation...
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>3.5.</strong>
-                Quelle solution proposer avec environ 20 utilisateurs par jour et un budget limité ?
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-
-                <strong>Réponse privilégiée :</strong>
-                plateforme élévatrice :
-
-                <ul>
-                    <li>16 000 € contre 45 000 € ;</li>
-                    <li>travaux limités ;</li>
-                    <li>accessible en fauteuil ;</li>
-                    <li>faible fréquentation.</li>
-                </ul>
-
-            </div>
-
-            <div class="accepter">
-                <strong>À accepter :</strong>
-                ascenseur si le choix est correctement argumenté.
-            </div>
-
-            <div class="bareme-detail">
-                <strong>Barème conseillé :</strong><br>
-                1 pt : choix cohérent.<br>
-                1 pt : justification s'appuyant sur les données.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =========================================================
-         EXERCICE 4
-         ========================================================= -->
-
-    <section class="exercice">
-
-        <h2>Exercice 4 – Transformer des attentes en exigences – 6 points</h2>
-
-        <div class="question">
-
-            <p>
-                <strong>4.1.</strong>
-                Proposer trois exigences vérifiables.
-                <span class="bareme">(3 pts)</span>
-            </p>
-
-            <div class="correction">
-
-                <ul>
-                    <li>trajet inférieur à 15 s ;</li>
-                    <li>transport d'au moins 4 personnes ;</li>
-                    <li>niveau sonore inférieur à 50 dB.</li>
-                </ul>
-
-            </div>
-
-            <div class="accepter">
-                <strong>À accepter :</strong>
-                d'autres valeurs sont acceptables si les exigences sont mesurables.
-            </div>
-
-            <div class="bareme-detail">
-                1 pt par exigence mesurable et vérifiable.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="3" step="0.5" data-max="3">
-                <span>/ 3</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>4.2.</strong>
-                Pourquoi « rapide » est-il moins précis que « moins de 15 secondes » ?
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-                « Rapide » est subjectif.
-                « Moins de 15 secondes » est mesurable et vérifiable.
-            </div>
-
-            <div class="bareme-detail">
-                1 pt : caractère subjectif de « rapide ».<br>
-                1 pt : caractère mesurable/vérifiable de la valeur chiffrée.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>4.3.</strong>
-                À quoi sert un cahier des charges ?
-                <span class="bareme">(1 pt)</span>
-            </p>
-
-            <div class="correction">
-                À préciser les besoins, contraintes et exigences que la solution devra respecter.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =========================================================
-         EXERCICE 5
-         ========================================================= -->
-
-    <section class="exercice">
-
-        <h2>Exercice 5 – Vérifier les performances d'une solution – 8 points</h2>
-
-        <div class="question">
-
-            <p>
-                <strong>5.1.</strong>
-                Moyenne du prototype A.
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-                (2,8 + 3,0 + 2,9) ÷ 3 = 8,7 ÷ 3 =
-                <strong>2,9 W</strong>
-            </div>
-
-            <div class="bareme-detail">
-                <strong>Barème conseillé :</strong><br>
-                1 pt : calcul correctement posé.<br>
-                1 pt : résultat correct avec unité.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>5.2.</strong>
-                Moyenne du prototype B.
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-                (3,4 + 3,2 + 3,3) ÷ 3 = 9,9 ÷ 3 =
-                <strong>3,3 W</strong>
-            </div>
-
-            <div class="bareme-detail">
-                <strong>Barème conseillé :</strong><br>
-                1 pt : calcul correctement posé.<br>
-                1 pt : résultat correct avec unité.
-            </div>
 
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
             </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>5.3.</strong>
-                Prototype A validé ?
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-
-                <strong>Non.</strong>
-
-                <ul>
-                    <li>2,9 W &lt; 3 W : non respecté ;</li>
-                    <li>46 dB &lt; 50 dB : respecté ;</li>
-                    <li>350 g &lt; 500 g : respecté.</li>
-                </ul>
-
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>5.4.</strong>
-                Prototype B validé ?
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-
-                <strong>Non.</strong>
-
-                <ul>
-                    <li>3,3 W ≥ 3 W : respecté ;</li>
-                    <li>53 dB &gt; 50 dB : non respecté ;</li>
-                    <li>430 g &lt; 500 g : respecté.</li>
-                </ul>
-
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =========================================================
-         EXERCICE 6
-         ========================================================= -->
-
-    <section class="exercice">
-
-        <h2>Exercice 6 – Concevoir une expérience correcte – 8 points</h2>
-
-        <div class="question">
-
-            <p>
-                <strong>6.1.</strong>
-                Paramètre modifié ?
-                <span class="bareme">(1 pt)</span>
-            </p>
-
-            <div class="correction">
-                Le nombre de pales.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>6.2.</strong>
-                Grandeur mesurée ?
-                <span class="bareme">(1 pt)</span>
-            </p>
-
-            <div class="correction">
-                La tension électrique, en volts (V).
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>6.3.</strong>
-                Quatre paramètres constants.
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-
-                <strong>Exemples :</strong>
-
-                <ul>
-                    <li>distance ;</li>
-                    <li>vitesse du ventilateur ;</li>
-                    <li>même générateur ;</li>
-                    <li>même orientation ;</li>
-                    <li>même multimètre ;</li>
-                    <li>même méthode de mesure.</li>
-                </ul>
-
-            </div>
-
-            <div class="bareme-detail">
-                0,5 pt par paramètre constant pertinent, dans la limite de 2 pts.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>6.4.</strong>
-                Pourquoi plusieurs mesures ?
-                <span class="bareme">(1 pt)</span>
-            </p>
-
-            <div class="correction">
-                Pour obtenir un résultat plus représentatif et limiter l'influence
-                d'une mesure inhabituelle.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>6.5.</strong>
-                Ordre logique.
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-                <strong>D → G → B → E → A → F → C</strong>
-            </div>
-
-            <div class="accepter">
-                <strong>À accepter :</strong>
-                un ordre légèrement différent peut être accepté s'il reste
-                expérimentalement cohérent.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>6.6.</strong>
-                Pourquoi 30 cm puis 80 cm invalide la comparaison ?
-                <span class="bareme">(1 pt)</span>
-            </p>
-
-            <div class="correction">
-                Parce que deux paramètres changent simultanément :
-                le nombre de pales et la distance au ventilateur.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =========================================================
-         EXERCICE 7
-         ========================================================= -->
-
-    <section class="exercice">
-
-        <h2>Exercice 7 – Analyser des résultats – 6 points</h2>
-
-        <div class="question">
-
-            <p>
-                <strong>7.1.</strong>
-                Valeur inhabituelle ?
-                <span class="bareme">(1 pt)</span>
-            </p>
-
-            <div class="correction">
-                <strong>5,9 W</strong>
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>7.2.</strong>
-                Deux explications possibles.
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-
-                <strong>Exemples :</strong>
-
-                <ul>
-                    <li>erreur de lecture ;</li>
-                    <li>erreur de saisie ;</li>
-                    <li>mauvais réglage ;</li>
-                    <li>conditions différentes ;</li>
-                    <li>déplacement du matériel ;</li>
-                    <li>problème de mesure.</li>
-                </ul>
-
-            </div>
-
-            <div class="bareme-detail">
-                1 pt par explication plausible.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>7.3.</strong>
-                Pourquoi ne pas calculer directement la moyenne ?
-                <span class="bareme">(2 pts)</span>
-            </p>
-
-            <div class="correction">
-                Une valeur aberrante peut modifier fortement la moyenne
-                et conduire à une conclusion trompeuse.
-            </div>
-
-            <div class="bareme-detail">
-                <strong>Barème conseillé :</strong><br>
-                1 pt : influence sur la moyenne.<br>
-                1 pt : risque de conclusion erronée ou trompeuse.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
-                <span>/ 2</span>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>7.4.</strong>
-                Que faire avant de conclure ?
-                <span class="bareme">(1 pt)</span>
-            </p>
-
-            <div class="correction">
-                Refaire la mesure et vérifier le protocole ou le matériel.
-            </div>
-
-            <div class="zone-points">
-                <label>Points :</label>
-                <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
-                <span>/ 1</span>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =========================================================
-         BONUS
-         ========================================================= -->
-
-    <section class="exercice">
-
-        <h2>Bonus – Vrai ou faux ? – +2 points</h2>
-
-        <div class="question">
-
-            <p>
-                <strong>A.</strong>
-                Deux objets répondant au même besoin utilisent forcément la même solution technique.
-            </p>
-
-            <div class="correction">
-                <strong>FAUX.</strong>
-                Plusieurs solutions peuvent répondre au même besoin.
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>B.</strong>
-                La meilleure solution technique dépend des exigences et du contexte.
-            </p>
-
-            <div class="correction">
-                <strong>VRAI.</strong>
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>C.</strong>
-                Une seule mesure suffit toujours pour comparer deux prototypes.
-            </p>
-
-            <div class="correction">
-                <strong>FAUX.</strong>
-                Il est préférable de répéter les mesures.
-            </div>
-
-        </div>
-
-        <div class="question">
-
-            <p>
-                <strong>D.</strong>
-                Un protocole peut être amélioré après les premiers essais.
-            </p>
-
-            <div class="correction">
-                <strong>VRAI.</strong>
-            </div>
-
-        </div>
-
-        <div class="bareme-detail">
-            <strong>Barème du bonus :</strong><br>
-            0,5 pt par réponse correcte.<br>
-            Maximum : +2 pts.
-        </div>
-
-        <div class="zone-points">
-            <label>Bonus :</label>
-            <input class="bonus-score" type="number" min="0" max="2" step="0.5">
-            <span>/ 2</span>
-        </div>
-
-    </section>
-
-    <!-- =========================================================
-         OUTILS PROFESSEUR
-         ========================================================= -->
-
-    <section class="outils-prof">
-
-        <h2>Outils professeur</h2>
-
-        <p>
-            Le bouton suivant permet de réinitialiser complètement
-            le devoir élève sur ce poste.
-        </p>
-
-        <p>
-            Il supprime notamment les réponses enregistrées,
-            les sorties de page, l'historique et l'état « devoir terminé ».
-        </p>
-
-        <p>
-            <strong>
-                La correction professeur doit être ouverte dans le même navigateur
-                et le même profil que le devoir élève.
-            </strong>
-        </p>
-
-        <button id="btn-reset-ds" type="button">
-            Réinitialiser le devoir élève
-        </button>
-
-        <div id="message-reset"></div>
-
-    </section>
-
-</main>
-
-<script>
-    /* =========================================================
-       CALCUL AUTOMATIQUE DE LA NOTE
-       ========================================================= */
-
-    const champsScore =
-        document.querySelectorAll(".score");
-
-    const champBonus =
-        document.querySelector(".bonus-score");
-
-    function calculerNote() {
-
-        let total = 0;
-
-        champsScore.forEach(champ => {
-
-            let valeur =
-                Number(champ.value || 0);
 
-            const maximum =
-                Number(champ.dataset.max);
+        </section>
 
-            if (valeur < 0) {
-                valeur = 0;
-                champ.value = 0;
-            }
 
-            if (valeur > maximum) {
-                valeur = maximum;
-                champ.value = maximum;
-            }
+    </main>
 
-            total += valeur;
-        });
 
-        let bonus =
-            Number(champBonus.value || 0);
+    <script>
 
-        if (bonus < 0) {
-            bonus = 0;
-            champBonus.value = 0;
-        }
+        "use strict";
 
-        if (bonus > 2) {
-            bonus = 2;
-            champBonus.value = 2;
-        }
 
-        /*
-         * 50 points = 20/20
-         * donc :
-         * note brute = total / 2,5
-         *
-         * Le bonus est ajouté après conversion.
-         * +2 points bonus correspondent à +0,8 / 20.
-         */
+        /* =========================================================
+           VARIABLES
+           ========================================================= */
 
-        const noteBrute =
-            total / 2.5;
+        let copieImportee = null;
 
-        const bonusSur20 =
-            bonus / 2.5;
 
-        const noteFinale =
-            Math.min(
-                20,
-                noteBrute + bonusSur20
+        const fichierCopie =
+            document.getElementById(
+                "fichier-copie"
             );
 
-        document.getElementById(
-            "total-points"
-        ).textContent =
-            formatNombre(total);
 
-        document.getElementById(
-            "total-bonus"
-        ).textContent =
-            formatNombre(bonus);
+        const champsScore =
+            document.querySelectorAll(
+                ".score"
+            );
 
-        document.getElementById(
-            "note-brute"
-        ).textContent =
-            formatNombre(noteBrute);
 
-        document.getElementById(
-            "note-finale"
-        ).textContent =
-            formatNombre(noteFinale) +
-            " / 20";
-    }
+        const champBonus =
+            document.querySelector(
+                ".bonus-score"
+            );
 
-    function formatNombre(nombre) {
 
-        return Number(
-            nombre.toFixed(2)
-        )
-            .toString()
-            .replace(".", ",");
-    }
+        /* =========================================================
+           IMPORTER UNE COPIE
+           ========================================================= */
 
-    champsScore.forEach(champ => {
-        champ.addEventListener(
-            "input",
-            calculerNote
-        );
-    });
+        document
+            .getElementById(
+                "btn-importer"
+            )
+            .addEventListener(
+                "click",
+                () => {
 
-    champBonus.addEventListener(
-        "input",
-        calculerNote
-    );
+                    fichierCopie.click();
 
-    /* =========================================================
-       NOUVELLE COPIE
-       ========================================================= */
+                }
+            );
 
-    document
-        .getElementById("btn-reset-note")
-        .addEventListener(
-            "click",
-            () => {
 
-                const confirmation =
-                    confirm(
-                        "Effacer les points saisis et commencer la correction d'une nouvelle copie ?"
-                    );
+        fichierCopie.addEventListener(
+            "change",
+            async () => {
 
-                if (!confirmation) {
+                const fichier =
+                    fichierCopie.files[0];
+
+
+                if (!fichier) {
                     return;
                 }
 
-                champsScore.forEach(champ => {
-                    champ.value = "";
-                });
 
-                champBonus.value = "";
+                try {
 
-                document.getElementById(
-                    "nom-eleve-correction"
-                ).value = "";
+                    const contenu =
+                        await fichier.text();
 
-                document.getElementById(
-                    "prenom-eleve-correction"
-                ).value = "";
 
-                calculerNote();
+                    copieImportee =
+                        extraireCopieDepuisHTML(
+                            contenu,
+                            fichier.name
+                        );
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
+
+                    afficherCopie(
+                        copieImportee
+                    );
+
+
+                    afficherEtat(
+                        "Copie importée avec succès : " +
+                        fichier.name,
+                        "succes"
+                    );
+
+                } catch (erreur) {
+
+                    console.error(
+                        erreur
+                    );
+
+
+                    afficherEtat(
+                        "Impossible de lire cette copie.",
+                        "erreur"
+                    );
+                }
+
+
+                /*
+                 * Permet de sélectionner ensuite
+                 * le même fichier après un reset.
+                 */
+                fichierCopie.value =
+                    "";
+
             }
         );
 
-    /* =========================================================
-       IMPRESSION
-       ========================================================= */
 
-    document
-        .getElementById("btn-imprimer")
-        .addEventListener(
-            "click",
-            () => {
-                window.print();
-            }
-        );
+        /* =========================================================
+           LIRE UNE COPIE HTML EXISTANTE
+           ========================================================= */
 
-    /* =========================================================
-       RESET DU DEVOIR ÉLÈVE 3e
-       ========================================================= */
-
-    const PREFIXE_DS =
-        "DS3E_S02_S05_";
-
-    document
-        .getElementById("btn-reset-ds")
-        .addEventListener(
-            "click",
-            reinitialiserDevoirEleve
-        );
-
-    function reinitialiserDevoirEleve() {
-
-        const confirmation1 =
-            confirm(
-                "Réinitialiser complètement le devoir élève sur ce poste ?\n\n" +
-                "Toutes les réponses, sorties et données du devoir seront supprimées."
-            );
-
-        if (!confirmation1) {
-            return;
-        }
-
-        const confirmation2 =
-            confirm(
-                "DERNIÈRE CONFIRMATION\n\n" +
-                "Cette opération est irréversible.\n\n" +
-                "Continuer ?"
-            );
-
-        if (!confirmation2) {
-            return;
-        }
-
-        const clesASupprimer = [];
-
-        for (
-            let i = 0;
-            i < localStorage.length;
-            i++
+        function extraireCopieDepuisHTML(
+            html,
+            nomFichier
         ) {
 
-            const cle =
-                localStorage.key(i);
+            const parser =
+                new DOMParser();
+
+
+            const doc =
+                parser.parseFromString(
+                    html,
+                    "text/html"
+                );
+
 
             if (
-                cle &&
-                cle.startsWith(PREFIXE_DS)
+                !doc.querySelector(
+                    ".question-copie"
+                )
             ) {
-                clesASupprimer.push(cle);
+
+                throw new Error(
+                    "Ce fichier ne semble pas être une copie élève."
+                );
             }
+
+
+            const copie = {
+
+                fichier:
+                    nomFichier,
+
+                eleve: {
+                    nom: "",
+                    prenom: ""
+                },
+
+                reponses: {},
+
+                surveillance: {
+                    debut: "",
+                    fin: "",
+                    duree: "",
+                    sorties: "",
+                    historique: []
+                }
+
+            };
+
+
+            /* =====================================================
+               IDENTITÉ
+               ===================================================== */
+
+            const blocInfos =
+                doc.querySelector(
+                    ".infos"
+                );
+
+
+            if (blocInfos) {
+
+                blocInfos
+                    .querySelectorAll(
+                        "p"
+                    )
+                    .forEach(
+                        p => {
+
+                            const texte =
+                                p.textContent.trim();
+
+
+                            if (
+                                /^Nom\s*:/i.test(
+                                    texte
+                                )
+                            ) {
+
+                                copie.eleve.nom =
+                                    texte
+                                        .replace(
+                                            /^Nom\s*:\s*/i,
+                                            ""
+                                        )
+                                        .trim();
+
+                            }
+
+
+                            else if (
+                                /^Prénom\s*:/i.test(
+                                    texte
+                                )
+                            ) {
+
+                                copie.eleve.prenom =
+                                    texte
+                                        .replace(
+                                            /^Prénom\s*:\s*/i,
+                                            ""
+                                        )
+                                        .trim();
+
+                            }
+
+
+                            else if (
+                                /^Début\s*:/i.test(
+                                    texte
+                                )
+                            ) {
+
+                                copie.surveillance.debut =
+                                    texte
+                                        .replace(
+                                            /^Début\s*:\s*/i,
+                                            ""
+                                        )
+                                        .trim();
+
+                            }
+
+
+                            else if (
+                                /^Fin\s*:/i.test(
+                                    texte
+                                )
+                            ) {
+
+                                copie.surveillance.fin =
+                                    texte
+                                        .replace(
+                                            /^Fin\s*:\s*/i,
+                                            ""
+                                        )
+                                        .trim();
+
+                            }
+
+
+                            else if (
+                                /^Durée approximative\s*:/i.test(
+                                    texte
+                                )
+                            ) {
+
+                                copie.surveillance.duree =
+                                    texte
+                                        .replace(
+                                            /^Durée approximative\s*:\s*/i,
+                                            ""
+                                        )
+                                        .trim();
+
+                            }
+
+                        }
+                    );
+            }
+
+
+            /* =====================================================
+               SURVEILLANCE
+               ===================================================== */
+
+            const blocSurveillance =
+                doc.querySelector(
+                    ".surveillance"
+                );
+
+
+            if (blocSurveillance) {
+
+                const texte =
+                    blocSurveillance.textContent;
+
+
+                const resultatSorties =
+                    texte.match(
+                        /Nombre de sorties[^:]*:\s*(\d+)/i
+                    );
+
+
+                if (
+                    resultatSorties
+                ) {
+
+                    copie.surveillance.sorties =
+                        Number(
+                            resultatSorties[1]
+                        );
+
+                }
+
+
+                blocSurveillance
+                    .querySelectorAll(
+                        "tbody tr"
+                    )
+                    .forEach(
+                        ligne => {
+
+                            const cellules =
+                                ligne.querySelectorAll(
+                                    "td"
+                                );
+
+
+                            if (
+                                cellules.length >= 4
+                            ) {
+
+                                copie.surveillance.historique.push({
+
+                                    numero:
+                                        cellules[0]
+                                            .textContent
+                                            .trim(),
+
+                                    sortie:
+                                        cellules[1]
+                                            .textContent
+                                            .trim(),
+
+                                    retour:
+                                        cellules[2]
+                                            .textContent
+                                            .trim(),
+
+                                    duree:
+                                        cellules[3]
+                                            .textContent
+                                            .trim()
+
+                                });
+
+                            }
+
+                        }
+                    );
+
+            }
+
+
+            /* =====================================================
+               QUESTIONS
+               ===================================================== */
+
+            const correspondances = [
+
+                ["1.1.", "q1_1"],
+                ["1.2.", "q1_2"],
+                ["1.3.", "q1_3"],
+                ["1.4.", "q1_4"],
+                ["1.5.", "q1_5"],
+                ["1.6.", "q1_6"],
+
+                ["2.1.", "q2_1"],
+                ["2.2.", "q2_2"],
+                ["2.3.", "q2_3"],
+
+                ["3.1.", "q3_1"],
+                ["3.2.", "q3_2"],
+                ["3.3.", "q3_3"],
+                ["3.4.", "q3_4"],
+                ["3.5.", "q3_5"],
+
+                /*
+                 * q4_1 / q4_2 / q4_3
+                 * n'ont pas été exportées.
+                 */
+
+                ["4.2.", "q4_4"],
+                ["4.3.", "q4_5"],
+
+                ["5.1.", "q5_1"],
+                ["5.2.", "q5_2"],
+                ["5.3.", "q5_3"],
+                ["5.4.", "q5_4"],
+
+                ["6.1.", "q6_1"],
+                ["6.2.", "q6_2"],
+                ["6.3.", "q6_3"],
+                ["6.4.", "q6_4"],
+                ["6.5.", "q6_5"],
+                ["6.6.", "q6_6"],
+
+                ["7.1.", "q7_1"],
+                ["7.2.", "q7_2"],
+                ["7.3.", "q7_3"],
+                ["7.4.", "q7_4"]
+
+            ];
+
+
+            doc
+                .querySelectorAll(
+                    ".question-copie"
+                )
+                .forEach(
+                    bloc => {
+
+                        const titre =
+                            bloc.querySelector(
+                                "h3"
+                            );
+
+
+                        const reponse =
+                            bloc.querySelector(
+                                ".reponse"
+                            );
+
+
+                        if (
+                            !titre ||
+                            !reponse
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const texteQuestion =
+                            titre.textContent.trim();
+
+
+                        let texteReponse =
+                            reponse.textContent.trim();
+
+
+                        if (
+                            texteReponse ===
+                            "[Aucune réponse]"
+                        ) {
+
+                            texteReponse =
+                                "";
+
+                        }
+
+
+                        const correspondance =
+                            correspondances.find(
+                                item =>
+                                    texteQuestion.startsWith(
+                                        item[0]
+                                    )
+                            );
+
+
+                        if (
+                            correspondance
+                        ) {
+
+                            copie.reponses[
+                                correspondance[1]
+                            ] =
+                                texteReponse;
+
+                            return;
+
+                        }
+
+
+                        /* BONUS */
+
+                        if (
+                            texteQuestion.startsWith(
+                                "A."
+                            )
+                        ) {
+
+                            copie.reponses.bonus_1 =
+                                texteReponse;
+
+                        }
+
+
+                        else if (
+                            texteQuestion.startsWith(
+                                "B."
+                            )
+                        ) {
+
+                            copie.reponses.bonus_2 =
+                                texteReponse;
+
+                        }
+
+
+                        else if (
+                            texteQuestion.startsWith(
+                                "C."
+                            )
+                        ) {
+
+                            copie.reponses.bonus_3 =
+                                texteReponse;
+
+                        }
+
+
+                        else if (
+                            texteQuestion.startsWith(
+                                "D."
+                            )
+                        ) {
+
+                            copie.reponses.bonus_4 =
+                                texteReponse;
+
+                        }
+
+                    }
+                );
+
+
+            return copie;
+
         }
 
-        clesASupprimer.forEach(cle => {
-            localStorage.removeItem(cle);
-        });
 
-        const message =
+        /* =========================================================
+           AFFICHER LA COPIE
+           ========================================================= */
+
+        function afficherCopie(
+            copie
+        ) {
+
             document.getElementById(
-                "message-reset"
+                "nom-eleve-correction"
+            ).value =
+                copie.eleve.nom;
+
+
+            document.getElementById(
+                "prenom-eleve-correction"
+            ).value =
+                copie.eleve.prenom;
+
+
+            document
+                .querySelectorAll(
+                    ".reponse-eleve[data-question]"
+                )
+                .forEach(
+                    zone => {
+
+                        const id =
+                            zone.dataset.question;
+
+
+                        const valeur =
+                            copie.reponses[id] ||
+                            "";
+
+
+                        const texte =
+                            zone.querySelector(
+                                ".texte-reponse-eleve"
+                            );
+
+
+                        zone.classList.add(
+                            "visible"
+                        );
+
+
+                        if (
+                            valeur.trim() === ""
+                        ) {
+
+                            texte.textContent =
+                                "Aucune réponse enregistrée.";
+
+                            texte.classList.add(
+                                "sans-reponse"
+                            );
+
+                        } else {
+
+                            /*
+                             * textContent :
+                             * aucun HTML élève n'est exécuté.
+                             */
+                            texte.textContent =
+                                valeur;
+
+                            texte.classList.remove(
+                                "sans-reponse"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+            /* INFORMATIONS */
+
+            document.getElementById(
+                "informations-copie"
+            ).style.display =
+                "block";
+
+
+            document.getElementById(
+                "info-fichier"
+            ).textContent =
+                copie.fichier ||
+                "—";
+
+
+            document.getElementById(
+                "info-eleve"
+            ).textContent =
+                (
+                    copie.eleve.prenom +
+                    " " +
+                    copie.eleve.nom
+                ).trim() ||
+                "Non renseigné";
+
+
+            document.getElementById(
+                "info-debut"
+            ).textContent =
+                copie.surveillance.debut ||
+                "Non renseigné";
+
+
+            document.getElementById(
+                "info-fin"
+            ).textContent =
+                copie.surveillance.fin ||
+                "Non renseigné";
+
+
+            document.getElementById(
+                "info-duree"
+            ).textContent =
+                copie.surveillance.duree ||
+                "Non renseignée";
+
+
+            document.getElementById(
+                "info-sorties"
+            ).textContent =
+                copie.surveillance.sorties !== ""
+                    ? String(
+                        copie.surveillance.sorties
+                    )
+                    : "Non renseigné";
+
+        }
+
+
+        /* =========================================================
+           CALCUL DE LA NOTE
+           ========================================================= */
+
+        champsScore.forEach(
+            champ => {
+
+                champ.addEventListener(
+                    "input",
+                    calculerNote
+                );
+
+            }
+        );
+
+
+        champBonus.addEventListener(
+            "input",
+            calculerNote
+        );
+
+
+        function calculerNote() {
+
+            let total =
+                0;
+
+
+            champsScore.forEach(
+                champ => {
+
+                    let valeur =
+                        Number(
+                            champ.value || 0
+                        );
+
+
+                    const maximum =
+                        Number(
+                            champ.dataset.max
+                        );
+
+
+                    if (
+                        valeur < 0
+                    ) {
+
+                        valeur =
+                            0;
+
+                        champ.value =
+                            0;
+
+                    }
+
+
+                    if (
+                        valeur > maximum
+                    ) {
+
+                        valeur =
+                            maximum;
+
+                        champ.value =
+                            maximum;
+
+                    }
+
+
+                    total +=
+                        valeur;
+
+                }
             );
 
-        message.style.display = "block";
 
-        message.textContent =
-            "Devoir réinitialisé : " +
-            clesASupprimer.length +
-            " donnée(s) supprimée(s).";
-    }
+            let bonus =
+                Number(
+                    champBonus.value || 0
+                );
 
-    /* Premier calcul */
 
-    calculerNote();
-</script>
+            if (
+                bonus < 0
+            ) {
+
+                bonus =
+                    0;
+
+                champBonus.value =
+                    0;
+
+            }
+
+
+            if (
+                bonus > 2
+            ) {
+
+                bonus =
+                    2;
+
+                champBonus.value =
+                    2;
+
+            }
+
+
+            const noteBrute =
+                total / 2.5;
+
+
+            const noteFinale =
+                Math.min(
+                    20,
+                    noteBrute +
+                    bonus / 2.5
+                );
+
+
+            document.getElementById(
+                "total-points"
+            ).textContent =
+                formatNombre(
+                    total
+                );
+
+
+            document.getElementById(
+                "total-bonus"
+            ).textContent =
+                formatNombre(
+                    bonus
+                );
+
+
+            document.getElementById(
+                "note-brute"
+            ).textContent =
+                formatNombre(
+                    noteBrute
+                );
+
+
+            document.getElementById(
+                "note-finale"
+            ).textContent =
+                formatNombre(
+                    noteFinale
+                ) +
+                " / 20";
+
+        }
+
+
+        function formatNombre(
+            nombre
+        ) {
+
+            return Number(
+                nombre.toFixed(2)
+            )
+                .toString()
+                .replace(
+                    ".",
+                    ","
+                );
+
+        }
+
+
+        /* =========================================================
+           ENREGISTRER LA COPIE CORRIGÉE
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-enregistrer"
+            )
+            .addEventListener(
+                "click",
+                enregistrerCopieCorrigee
+            );
+
+
+        function enregistrerCopieCorrigee() {
+
+            if (
+                !copieImportee
+            ) {
+
+                alert(
+                    "Importez d'abord une copie élève."
+                );
+
+                return;
+
+            }
+
+
+            calculerNote();
+
+
+            /*
+             * Cloner toute la page actuelle.
+             */
+            const clone =
+                document.documentElement.cloneNode(
+                    true
+                );
+
+
+            /*
+             * Synchroniser les valeurs des inputs.
+             */
+            const inputsOriginaux =
+                document.querySelectorAll(
+                    "input"
+                );
+
+
+            const inputsClone =
+                clone.querySelectorAll(
+                    "input"
+                );
+
+
+            inputsOriginaux.forEach(
+                (input, index) => {
+
+                    const copieInput =
+                        inputsClone[index];
+
+
+                    if (
+                        !copieInput
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    copieInput.setAttribute(
+                        "value",
+                        input.value
+                    );
+
+                }
+            );
+
+
+            /*
+             * Transformer les zones de points
+             * en texte fixe.
+             */
+            const zonesOriginales =
+                document.querySelectorAll(
+                    ".zone-points"
+                );
+
+
+            const zonesClone =
+                clone.querySelectorAll(
+                    ".zone-points"
+                );
+
+
+            zonesOriginales.forEach(
+                (zone, index) => {
+
+                    const zoneClone =
+                        zonesClone[index];
+
+
+                    if (
+                        !zoneClone
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const input =
+                        zone.querySelector(
+                            "input"
+                        );
+
+
+                    const valeur =
+                        input
+                            ? (
+                                input.value ||
+                                "0"
+                            )
+                            : "0";
+
+
+                    let maximum =
+                        "2";
+
+
+                    if (
+                        input
+                    ) {
+
+                        maximum =
+                            input.dataset.max ||
+                            input.max ||
+                            "2";
+
+                    }
+
+
+                    if (
+                        input &&
+                        input.classList.contains(
+                            "bonus-score"
+                        )
+                    ) {
+
+                        zoneClone.innerHTML =
+                            "<strong>Bonus attribué : +" +
+                            echapperHTML(
+                                valeur
+                            ) +
+                            " / 2</strong>";
+
+                    } else {
+
+                        zoneClone.innerHTML =
+                            "<strong>Points attribués : " +
+                            echapperHTML(
+                                valeur
+                            ) +
+                            " / " +
+                            echapperHTML(
+                                maximum
+                            ) +
+                            "</strong>";
+
+                    }
+
+                }
+            );
+
+
+            /*
+             * Remplacer la barre de travail
+             * par un résultat statique.
+             */
+            const barreClone =
+                clone.querySelector(
+                    "#barre-prof"
+                );
+
+
+            if (
+                barreClone
+            ) {
+
+                const nom =
+                    document.getElementById(
+                        "nom-eleve-correction"
+                    ).value.trim();
+
+
+                const prenom =
+                    document.getElementById(
+                        "prenom-eleve-correction"
+                    ).value.trim();
+
+
+                const points =
+                    document.getElementById(
+                        "total-points"
+                    ).textContent;
+
+
+                const bonus =
+                    document.getElementById(
+                        "total-bonus"
+                    ).textContent;
+
+
+                const note =
+                    document.getElementById(
+                        "note-finale"
+                    ).textContent;
+
+
+                barreClone.removeAttribute(
+                    "id"
+                );
+
+
+                barreClone.className =
+                    "bloc-resultat-final";
+
+
+                barreClone.innerHTML = `
+
+            <h2>
+                Résultat de la correction
+            </h2>
+
+            <p>
+                <strong>Élève :</strong>
+                ${echapperHTML(prenom)}
+                ${echapperHTML(nom)}
+            </p>
+
+            <p>
+                <strong>Points :</strong>
+                ${echapperHTML(points)} / 50
+            </p>
+
+            <p>
+                <strong>Bonus :</strong>
+                + ${echapperHTML(bonus)} / 2
+            </p>
+
+            <p>
+                <strong>Note finale :</strong>
+                ${echapperHTML(note)}
+            </p>
+
+        `;
+
+            }
+
+
+            /*
+             * Enlever tous les scripts.
+             *
+             * Le fichier enregistré devient
+             * une archive statique.
+             */
+            clone
+                .querySelectorAll(
+                    "script"
+                )
+                .forEach(
+                    script => {
+
+                        script.remove();
+
+                    }
+                );
+
+
+            /*
+             * Retirer l'input fichier.
+             */
+            const inputFichierClone =
+                clone.querySelector(
+                    "#fichier-copie"
+                );
+
+
+            if (
+                inputFichierClone
+            ) {
+
+                inputFichierClone.remove();
+
+            }
+
+
+            /*
+             * Générer le HTML autonome.
+             */
+            const html =
+                "<!DOCTYPE html>\n" +
+                clone.outerHTML;
+
+
+            const blob =
+                new Blob(
+                    [html],
+                    {
+                        type:
+                            "text/html;charset=utf-8"
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            const lien =
+                document.createElement(
+                    "a"
+                );
+
+
+            const nom =
+                nettoyerNomFichier(
+                    document.getElementById(
+                        "nom-eleve-correction"
+                    ).value ||
+                    "ELEVE"
+                );
+
+
+            const prenom =
+                nettoyerNomFichier(
+                    document.getElementById(
+                        "prenom-eleve-correction"
+                    ).value ||
+                    ""
+                );
+
+
+            lien.href =
+                url;
+
+
+            lien.download =
+                "DS_3e_CORRIGE_" +
+                nom +
+                (
+                    prenom
+                        ? "_" + prenom
+                        : ""
+                ) +
+                ".html";
+
+
+            document.body.appendChild(
+                lien
+            );
+
+
+            lien.click();
+
+
+            lien.remove();
+
+
+            setTimeout(
+                () => {
+
+                    URL.revokeObjectURL(
+                        url
+                    );
+
+                },
+                1500
+            );
+
+        }
+
+
+        /* =========================================================
+           NOUVELLE COPIE
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-nouvelle"
+            )
+            .addEventListener(
+                "click",
+                nouvelleCopie
+            );
+
+
+        function nouvelleCopie() {
+
+            const confirmation =
+                confirm(
+                    "Commencer une nouvelle correction ?\n\n" +
+                    "La copie actuellement affichée et les points saisis seront effacés."
+                );
+
+
+            if (
+                !confirmation
+            ) {
+
+                return;
+
+            }
+
+
+            copieImportee =
+                null;
+
+
+            fichierCopie.value =
+                "";
+
+
+            document.getElementById(
+                "nom-eleve-correction"
+            ).value =
+                "";
+
+
+            document.getElementById(
+                "prenom-eleve-correction"
+            ).value =
+                "";
+
+
+            champsScore.forEach(
+                champ => {
+
+                    champ.value =
+                        "";
+
+                }
+            );
+
+
+            champBonus.value =
+                "";
+
+
+            document
+                .querySelectorAll(
+                    ".reponse-eleve"
+                )
+                .forEach(
+                    zone => {
+
+                        zone.classList.remove(
+                            "visible"
+                        );
+
+
+                        const texte =
+                            zone.querySelector(
+                                ".texte-reponse-eleve"
+                            );
+
+
+                        if (
+                            texte
+                        ) {
+
+                            texte.textContent =
+                                "";
+
+                            texte.classList.remove(
+                                "sans-reponse"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+            document.getElementById(
+                "informations-copie"
+            ).style.display =
+                "none";
+
+
+            const etat =
+                document.getElementById(
+                    "etat-import"
+                );
+
+
+            etat.className =
+                "";
+
+            etat.textContent =
+                "";
+
+            etat.style.display =
+                "none";
+
+
+            calculerNote();
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* =========================================================
+           IMPRESSION
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-imprimer"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    window.print();
+
+                }
+            );
+
+
+        /* =========================================================
+           MESSAGE
+           ========================================================= */
+
+        function afficherEtat(
+            texte,
+            type
+        ) {
+
+            const zone =
+                document.getElementById(
+                    "etat-import"
+                );
+
+
+            zone.className =
+                type;
+
+
+            zone.textContent =
+                texte;
+
+
+            zone.style.display =
+                "block";
+
+        }
+
+
+        /* =========================================================
+           SÉCURITÉ
+           ========================================================= */
+
+        function echapperHTML(
+            valeur
+        ) {
+
+            return String(
+                valeur ?? ""
+            )
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+        /* =========================================================
+           NOM DU FICHIER
+           ========================================================= */
+
+        function nettoyerNomFichier(
+            valeur
+        ) {
+
+            return String(
+                valeur
+            )
+
+                .normalize(
+                    "NFD"
+                )
+
+                .replace(
+                    /[\u0300-\u036f]/g,
+                    ""
+                )
+
+                .trim()
+
+                .replace(
+                    /\s+/g,
+                    "_"
+                )
+
+                .replace(
+                    /[^a-zA-Z0-9_-]/g,
+                    ""
+                );
+
+        }
+
+
+        /* =========================================================
+           PREMIER CALCUL
+           ========================================================= */
+
+        calculerNote();
+
+    </script>
+
 
 </body>
+
 </html>

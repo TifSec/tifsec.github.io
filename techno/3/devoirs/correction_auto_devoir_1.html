@@ -1,0 +1,5965 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Correction professeur – DS Technologie 3e – S02 à S05</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #eef2f6;
+            color: #1f2937;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.55;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        #correction-ds {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+
+        /* =========================================================
+   EN-TÊTE
+   ========================================================= */
+
+        .prof-header {
+            margin-bottom: 25px;
+            padding: 24px;
+
+            background: #243b53;
+            color: white;
+
+            border-radius: 14px;
+
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        }
+
+        .prof-header h1 {
+            margin: 0 0 8px;
+
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .prof-header p {
+            margin: 5px 0;
+            text-align: center;
+        }
+
+
+        /* =========================================================
+   BARRE PROFESSEUR
+   ========================================================= */
+
+        #barre-prof {
+            position: sticky;
+            top: 6px;
+            z-index: 1000;
+
+            margin: 20px 0 30px;
+            padding: 18px;
+
+            background: white;
+
+            border: 2px solid #2563eb;
+            border-radius: 12px;
+
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        #barre-prof h2 {
+            margin: 0 0 14px;
+            color: #1d4ed8;
+        }
+
+        #fichier-copie {
+            display: none;
+        }
+
+        .actions-principales {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            margin-bottom: 15px;
+        }
+
+        .actions-principales button {
+            padding: 10px 15px;
+
+            border: 0;
+            border-radius: 7px;
+
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #btn-importer {
+            background: #d97706;
+            color: white;
+        }
+
+        #btn-recalcul-auto {
+            background: #7c3aed;
+            color: white;
+        }
+
+        #btn-enregistrer {
+            background: #16a34a;
+            color: white;
+        }
+
+        #btn-imprimer {
+            background: #2563eb;
+            color: white;
+        }
+
+        #btn-nouvelle {
+            background: #64748b;
+            color: white;
+        }
+
+
+        /* =========================================================
+   MESSAGE
+   ========================================================= */
+
+        #etat-import {
+            display: none;
+
+            margin: 12px 0;
+            padding: 11px 14px;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+        }
+
+        #etat-import.succes {
+            display: block;
+
+            background: #dcfce7;
+            border: 1px solid #86efac;
+
+            color: #166534;
+        }
+
+        #etat-import.erreur {
+            display: block;
+
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+
+            color: #991b1b;
+        }
+
+
+        /* =========================================================
+   IDENTITÉ
+   ========================================================= */
+
+        .identite-correction {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+
+            margin-bottom: 15px;
+        }
+
+        .identite-correction input {
+            width: 100%;
+
+            margin-top: 4px;
+            padding: 9px;
+
+            border: 1px solid #94a3b8;
+            border-radius: 6px;
+        }
+
+
+        /* =========================================================
+   NOTE
+   ========================================================= */
+
+        .resultats-note {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .resultat-note {
+            padding: 10px;
+
+            background: #eff6ff;
+
+            border-radius: 8px;
+
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .resultat-note strong {
+            display: block;
+
+            margin-top: 4px;
+
+            color: #1d4ed8;
+
+            font-size: 1.35rem;
+        }
+
+        #note-finale {
+            font-size: 1.6rem;
+        }
+
+
+        /* =========================================================
+   INFORMATIONS COPIE
+   ========================================================= */
+
+        #informations-copie {
+            display: none;
+
+            margin: 20px 0 30px;
+            padding: 18px;
+
+            background: white;
+
+            border-left: 6px solid #7c3aed;
+            border-radius: 10px;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        #informations-copie h2 {
+            margin-top: 0;
+            color: #6d28d9;
+        }
+
+        .grille-informations {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .information {
+            padding: 10px 12px;
+
+            background: #f5f3ff;
+
+            border-radius: 7px;
+        }
+
+        .information strong {
+            display: block;
+            color: #6d28d9;
+        }
+
+
+        /* =========================================================
+   RÉSUMÉ
+   ========================================================= */
+
+        .resume-bareme {
+            margin: 20px 0 30px;
+            padding: 18px 22px;
+
+            background: white;
+
+            border-left: 6px solid #486581;
+            border-radius: 10px;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+
+        /* =========================================================
+   EXERCICES
+   ========================================================= */
+
+        .exercice {
+            margin: 30px 0;
+            padding: 24px;
+
+            background: white;
+
+            border-radius: 12px;
+
+            box-shadow: 0 2px 9px rgba(0, 0, 0, 0.08);
+        }
+
+        .exercice>h2 {
+            margin: -24px -24px 22px;
+            padding: 14px 18px;
+
+            background: #d9e2ec;
+            color: #102a43;
+
+            border-radius: 12px 12px 0 0;
+
+            font-size: 1.35rem;
+        }
+
+        .question {
+            margin: 24px 0;
+            padding: 16px;
+
+            background: #f8fafc;
+
+            border-left: 4px solid #486581;
+            border-radius: 7px;
+        }
+
+        .question>p:first-child {
+            margin-top: 0;
+        }
+
+        .bareme {
+            color: #526d82;
+            font-weight: bold;
+        }
+
+
+        /* =========================================================
+   RÉPONSE ÉLÈVE
+   ========================================================= */
+
+        .reponse-eleve {
+            display: none;
+
+            margin-top: 12px;
+            padding: 14px 16px;
+
+            background: #fffbeb;
+
+            border: 1px solid #fde68a;
+            border-left: 5px solid #d97706;
+            border-radius: 8px;
+        }
+
+        .reponse-eleve.visible {
+            display: block;
+        }
+
+        .reponse-eleve strong {
+            color: #92400e;
+        }
+
+        .texte-reponse-eleve {
+            margin: 8px 0 0;
+
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .sans-reponse {
+            color: #78716c;
+            font-style: italic;
+        }
+
+
+        /* =========================================================
+   RÉPONSE PERDUE
+   ========================================================= */
+
+        .reponse-perdue {
+            margin-top: 12px;
+            padding: 14px 16px;
+
+            background: #fef2f2;
+
+            border: 1px solid #fca5a5;
+            border-left: 5px solid #dc2626;
+            border-radius: 8px;
+
+            color: #991b1b;
+        }
+
+
+        /* =========================================================
+   CORRECTION
+   ========================================================= */
+
+        .correction {
+            margin-top: 12px;
+            padding: 14px 16px;
+
+            background: #ecfdf3;
+
+            border: 1px solid #86efac;
+            border-left: 5px solid #16a34a;
+            border-radius: 8px;
+        }
+
+        .correction strong {
+            color: #166534;
+        }
+
+        .bareme-detail {
+            margin-top: 10px;
+            padding: 11px 14px;
+
+            background: #eff6ff;
+
+            border-left: 4px solid #2563eb;
+            border-radius: 6px;
+        }
+
+        .accepter {
+            margin-top: 10px;
+            padding: 11px 14px;
+
+            background: #fff7ed;
+
+            border-left: 4px solid #ea580c;
+            border-radius: 6px;
+        }
+
+
+        /* =========================================================
+   AUTOCORRECTION
+   ========================================================= */
+
+        .auto-evaluation {
+            display: none;
+
+            margin-top: 12px;
+            padding: 12px 14px;
+
+            background: #f5f3ff;
+
+            border: 1px solid #c4b5fd;
+            border-left: 5px solid #7c3aed;
+            border-radius: 7px;
+        }
+
+        .auto-evaluation.visible {
+            display: block;
+        }
+
+        .auto-evaluation strong {
+            color: #6d28d9;
+        }
+
+        .auto-detail {
+            margin-top: 6px;
+
+            color: #4c1d95;
+
+            font-size: 0.92rem;
+        }
+
+        .auto-confiance {
+            display: inline-block;
+
+            margin-left: 8px;
+            padding: 2px 7px;
+
+            background: white;
+
+            border-radius: 10px;
+
+            font-size: 0.78rem;
+            font-weight: bold;
+        }
+
+
+        /* =========================================================
+   POINTS
+   ========================================================= */
+
+        .zone-points {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            margin-top: 14px;
+            padding-top: 12px;
+
+            border-top: 1px dashed #94a3b8;
+        }
+
+        .zone-points label {
+            font-weight: bold;
+        }
+
+        .zone-points input {
+            width: 75px;
+
+            padding: 7px;
+
+            border: 2px solid #2563eb;
+            border-radius: 6px;
+
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .zone-points input.modifie-prof {
+            background: #fff7ed;
+            border-color: #ea580c;
+        }
+
+        .indicateur-manuel {
+            display: none;
+
+            padding: 3px 8px;
+
+            background: #fff7ed;
+            color: #9a3412;
+
+            border-radius: 8px;
+
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .indicateur-manuel.visible {
+            display: inline-block;
+        }
+
+
+        /* =========================================================
+   COPIE FINALE
+   ========================================================= */
+
+        .bloc-resultat-final {
+            margin: 20px 0 30px;
+            padding: 20px;
+
+            background: #ecfdf3;
+
+            border: 2px solid #16a34a;
+            border-radius: 10px;
+        }
+
+
+        /* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+        @media (max-width: 750px) {
+
+            #correction-ds {
+                padding: 12px;
+            }
+
+            .identite-correction,
+            .resultats-note,
+            .grille-informations {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* =========================================================
+   IMPRESSION
+   ========================================================= */
+
+        @media print {
+
+            body {
+                background: white;
+                font-size: 10pt;
+            }
+
+            #barre-prof {
+                position: static;
+                box-shadow: none;
+            }
+
+            .actions-principales,
+            #etat-import {
+                display: none !important;
+            }
+
+            .exercice,
+            .prof-header,
+            #informations-copie {
+                box-shadow: none;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <main id="correction-ds">
+
+
+        <header class="prof-header">
+
+            <h1>Correction professeur – Technologie 3e</h1>
+
+            <p>
+                <strong>Devoir surveillé – Séances 2 à 5</strong>
+            </p>
+
+            <p>
+                50 points + 2 points bonus
+            </p>
+
+        </header>
+
+
+        <!-- =========================================================
+     BARRE PROF
+     ========================================================= -->
+
+        <section id="barre-prof">
+
+            <h2>Correction de la copie</h2>
+
+            <input id="fichier-copie" type="file" accept=".html,.htm,text/html">
+
+
+            <div class="actions-principales">
+
+                <button id="btn-importer" type="button">
+                    📂 Importer une copie
+                </button>
+
+                <button id="btn-recalcul-auto" type="button">
+                    🤖 Refaire l'analyse automatique
+                </button>
+
+                <button id="btn-enregistrer" type="button">
+                    💾 Enregistrer la copie corrigée
+                </button>
+
+                <button id="btn-imprimer" type="button">
+                    🖨 Imprimer
+                </button>
+
+                <button id="btn-nouvelle" type="button">
+                    ↻ Nouvelle copie
+                </button>
+
+            </div>
+
+
+            <div id="etat-import"></div>
+
+
+            <div class="identite-correction">
+
+                <label>
+                    Nom :
+                    <input type="text" id="nom-eleve-correction">
+                </label>
+
+                <label>
+                    Prénom :
+                    <input type="text" id="prenom-eleve-correction">
+                </label>
+
+            </div>
+
+
+            <div class="resultats-note">
+
+                <div class="resultat-note">
+
+                    Points
+
+                    <strong>
+                        <span id="total-points">0</span> / 50
+                    </strong>
+
+                </div>
+
+
+                <div class="resultat-note">
+
+                    Bonus
+
+                    <strong>
+                        + <span id="total-bonus">0</span> / 2
+                    </strong>
+
+                </div>
+
+
+                <div class="resultat-note">
+
+                    Note brute
+
+                    <strong>
+                        <span id="note-brute">0</span> / 20
+                    </strong>
+
+                </div>
+
+
+                <div class="resultat-note">
+
+                    Note finale
+
+                    <strong id="note-finale">
+                        0 / 20
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     INFORMATIONS
+     ========================================================= -->
+
+        <section id="informations-copie">
+
+            <h2>Informations de la copie</h2>
+
+            <div class="grille-informations">
+
+                <div class="information">
+                    <strong>Fichier</strong>
+                    <span id="info-fichier">—</span>
+                </div>
+
+                <div class="information">
+                    <strong>Élève</strong>
+                    <span id="info-eleve">—</span>
+                </div>
+
+                <div class="information">
+                    <strong>Début</strong>
+                    <span id="info-debut">—</span>
+                </div>
+
+                <div class="information">
+                    <strong>Fin</strong>
+                    <span id="info-fin">—</span>
+                </div>
+
+                <div class="information">
+                    <strong>Durée</strong>
+                    <span id="info-duree">—</span>
+                </div>
+
+                <div class="information">
+                    <strong>Sorties de page</strong>
+                    <span id="info-sorties">—</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="resume-bareme">
+
+            <strong>Répartition :</strong>
+
+            <br><br>
+
+            Exercice 1 : 7 pts |
+            Exercice 2 : 6 pts |
+            Exercice 3 : 9 pts |
+            Exercice 4 : 6 pts |
+            Exercice 5 : 8 pts |
+            Exercice 6 : 8 pts |
+            Exercice 7 : 6 pts |
+            Bonus : +2 pts
+
+            <p>
+                <strong>Principe de l'analyse automatique :</strong>
+                seuls les éléments clairement identifiables sont validés.
+                Le professeur reste libre de modifier tous les points proposés.
+            </p>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 1
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 1 – Pourquoi les objets techniques évoluent-ils ? – 7 points
+            </h2>
+
+
+            <div class="question" data-id="q1_1">
+
+                <p>
+                    <strong>1.1.</strong>
+                    Quel besoin commun satisfait l'ensemble de ces solutions ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q1_1">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+                    <strong>Réponse attendue :</strong><br>
+                    Communiquer à distance.
+                </div>
+
+                <div class="bareme-detail">
+                    <strong>Barème :</strong>
+                    1 pt si le besoin est correctement identifié.
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q1_2">
+
+                <p>
+                    <strong>1.2.</strong>
+                    Expliquez pourquoi ces objets peuvent appartenir à une même famille.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q1_2">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>Réponse attendue :</strong><br>
+
+                    Ils appartiennent à une même famille car ils répondent au même besoin :
+                    communiquer à distance.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q1_3">
+
+                <p>
+                    <strong>1.3.</strong>
+                    Donnez une différence importante entre un téléphone fixe et un smartphone.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q1_3">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>Réponses possibles :</strong>
+
+                    <ul>
+                        <li>mobilité ;</li>
+                        <li>accès à Internet ;</li>
+                        <li>applications ;</li>
+                        <li>photographie ;</li>
+                        <li>GPS ;</li>
+                        <li>multiplication des fonctions.</li>
+                    </ul>
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q1_4">
+
+                <p>
+                    <strong>1.4.</strong>
+
+                    Donnez une fonction technique du smartphone
+                    puis une solution technique permettant de la réaliser.
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q1_4">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>Exemples :</strong>
+
+                    <ul>
+                        <li>afficher une information → écran ;</li>
+                        <li>capter une image → capteur photographique ;</li>
+                        <li>stocker des données → mémoire électronique ;</li>
+                        <li>communiquer sans fil → antenne / module réseau ;</li>
+                        <li>se localiser → récepteur GNSS/GPS.</li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+
+                    <strong>Barème :</strong><br>
+
+                    1 pt : fonction cohérente.<br>
+                    1 pt : solution technique cohérente.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q1_5">
+
+                <p>
+                    <strong>1.5.</strong>
+
+                    Une batterie offrant deux heures d'autonomie supplémentaires
+                    correspond-elle plutôt à une amélioration progressive
+                    ou à une innovation importante ? Justifiez.
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q1_5">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>Réponse :</strong>
+
+                    amélioration progressive, car on améliore une performance
+                    sans transformer complètement le principe ou les usages de l'objet.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q1_6">
+
+                <p>
+                    <strong>1.6.</strong>
+
+                    Le passage du téléphone fixe au smartphone
+                    constitue-t-il une évolution plus importante ?
+
+                    Justifiez.
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q1_6">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>Réponse :</strong>
+
+                    oui, car le smartphone transforme fortement
+                    les fonctions et les usages.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 2
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 2 – Les technologies transforment-elles toujours positivement la société ? – 6 points
+            </h2>
+
+
+            <div class="question" data-id="q2_1">
+
+                <p>
+                    <strong>2.1.</strong>
+                    Donnez deux avantages de l'application de transports.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q2_1">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>Réponses possibles :</strong>
+
+                    <ul>
+                        <li>horaires en temps réel ;</li>
+                        <li>position des véhicules ;</li>
+                        <li>calcul d'itinéraire ;</li>
+                        <li>alertes en cas de retard ;</li>
+                        <li>meilleure anticipation.</li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par avantage pertinent.
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q2_2">
+
+                <p>
+                    <strong>2.2.</strong>
+                    Donnez deux limites ou contraintes possibles.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q2_2">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>Réponses possibles :</strong>
+
+                    <ul>
+                        <li>besoin d'un smartphone ;</li>
+                        <li>batterie nécessaire ;</li>
+                        <li>connexion nécessaire ;</li>
+                        <li>problème d'accessibilité ;</li>
+                        <li>collecte de données ;</li>
+                        <li>dépendance au service.</li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par limite ou contrainte pertinente.
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q2_3">
+
+                <p>
+                    <strong>2.3.</strong>
+
+                    Pourquoi ne peut-on pas affirmer qu'une technologie est meilleure
+                    uniquement parce qu'elle est plus récente ?
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q2_3">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    Une nouvelle technologie peut apporter des avantages
+                    mais également créer de nouvelles contraintes.
+
+                    Elle doit être comparée selon plusieurs critères :
+                    coût, usage, sécurité, environnement, accessibilité, etc.
+
+                </div>
+
+                <div class="bareme-detail">
+
+                    <strong>Barème :</strong><br>
+
+                    1 pt : la technologie récente peut aussi avoir des inconvénients.<br>
+
+                    1 pt : nécessité de comparer plusieurs critères.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 3
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 3 – Choisir entre plusieurs solutions techniques – 9 points
+            </h2>
+
+
+            <div class="question" data-id="q3_1">
+
+                <p>
+                    <strong>3.1.</strong>
+                    Relevez le coût de la plateforme élévatrice.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q3_1">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+                    <strong>16 000 €</strong>
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q3_2">
+
+                <p>
+                    <strong>3.2.</strong>
+                    Donnez deux critères pour lesquels l'ascenseur est plus performant.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q3_2">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+                    Capacité et temps de trajet.
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par critère correct.
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q3_3">
+
+                <p>
+                    <strong>3.3.</strong>
+                    Donnez deux avantages de la plateforme.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q3_3">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+                    Coût inférieur et travaux plus limités.
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par avantage correct.
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q3_4">
+
+                <p>
+                    <strong>3.4.</strong>
+
+                    Pourquoi « l'ascenseur est forcément meilleur
+                    puisqu'il est plus rapide » est-il insuffisant ?
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q3_4">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    Il faut comparer plusieurs critères,
+                    pas seulement la vitesse :
+
+                    coût, travaux, capacité,
+                    accessibilité, contexte d'utilisation...
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q3_5">
+
+                <p>
+                    <strong>3.5.</strong>
+
+                    Quelle solution proposer avec environ 20 utilisateurs par jour
+                    et un budget limité ?
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q3_5">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>Réponse privilégiée :</strong>
+
+                    plateforme élévatrice :
+
+                    <ul>
+                        <li>16 000 € contre 45 000 € ;</li>
+                        <li>travaux limités ;</li>
+                        <li>accessible en fauteuil ;</li>
+                        <li>faible fréquentation.</li>
+                    </ul>
+
+                </div>
+
+                <div class="accepter">
+
+                    <strong>À accepter :</strong>
+
+                    ascenseur si le choix est correctement argumenté.
+
+                </div>
+
+                <div class="bareme-detail">
+
+                    <strong>Barème :</strong><br>
+
+                    1 pt : choix cohérent.<br>
+                    1 pt : justification s'appuyant sur les données.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 4
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 4 – Transformer des attentes en exigences – 6 points
+            </h2>
+
+
+            <div class="question" data-id="q4_1">
+
+                <p>
+                    <strong>4.1.</strong>
+                    Proposer trois exigences vérifiables.
+                    <span class="bareme">(3 pts)</span>
+                </p>
+
+                <div class="reponse-perdue">
+
+                    <strong>Réponses élève indisponibles :</strong><br>
+
+                    les trois champs du tableau 4.1
+                    n'ont pas été enregistrés dans les copies HTML générées
+                    avec cette version du devoir.
+
+                </div>
+
+                <div class="correction">
+
+                    <ul>
+                        <li>trajet inférieur à 15 s ;</li>
+                        <li>transport d'au moins 4 personnes ;</li>
+                        <li>niveau sonore inférieur à 50 dB.</li>
+                    </ul>
+
+                </div>
+
+                <div class="accepter">
+
+                    <strong>À accepter :</strong>
+
+                    d'autres valeurs sont acceptables
+                    si les exigences sont mesurables.
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par exigence mesurable et vérifiable.
+                </div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="3" step="0.5" data-max="3" data-no-auto="1">
+
+                    <span>/ 3</span>
+
+                    <span class="indicateur-manuel">
+                        notation professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q4_4">
+
+                <p>
+                    <strong>4.2.</strong>
+
+                    Pourquoi « rapide » est-il moins précis
+                    que « moins de 15 secondes » ?
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q4_4">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    « Rapide » est subjectif.
+
+                    « Moins de 15 secondes »
+                    est mesurable et vérifiable.
+
+                </div>
+
+                <div class="bareme-detail">
+
+                    1 pt : caractère subjectif de « rapide ».<br>
+
+                    1 pt : caractère mesurable / vérifiable
+                    de la valeur chiffrée.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q4_5">
+
+                <p>
+                    <strong>4.3.</strong>
+                    À quoi sert un cahier des charges ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q4_5">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    À préciser les besoins,
+                    contraintes et exigences
+                    que la solution devra respecter.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 5
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 5 – Vérifier les performances d'une solution – 8 points
+            </h2>
+
+
+            <div class="question" data-id="q5_1">
+
+                <p>
+                    <strong>5.1.</strong>
+                    Moyenne du prototype A.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q5_1">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    (2,8 + 3,0 + 2,9) ÷ 3
+                    = 8,7 ÷ 3
+                    = <strong>2,9 W</strong>
+
+                </div>
+
+                <div class="bareme-detail">
+
+                    <strong>Barème :</strong><br>
+
+                    1 pt : calcul correctement posé.<br>
+                    1 pt : résultat correct avec unité.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q5_2">
+
+                <p>
+                    <strong>5.2.</strong>
+                    Moyenne du prototype B.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q5_2">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    (3,4 + 3,2 + 3,3) ÷ 3
+                    = 9,9 ÷ 3
+                    = <strong>3,3 W</strong>
+
+                </div>
+
+                <div class="bareme-detail">
+
+                    <strong>Barème :</strong><br>
+
+                    1 pt : calcul correctement posé.<br>
+                    1 pt : résultat correct avec unité.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q5_3">
+
+                <p>
+                    <strong>5.3.</strong>
+                    Prototype A validé ?
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q5_3">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>Non.</strong>
+
+                    <ul>
+                        <li>2,9 W &lt; 3 W : non respecté ;</li>
+                        <li>46 dB &lt; 50 dB : respecté ;</li>
+                        <li>350 g &lt; 500 g : respecté.</li>
+                    </ul>
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q5_4">
+
+                <p>
+                    <strong>5.4.</strong>
+                    Prototype B validé ?
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q5_4">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>Non.</strong>
+
+                    <ul>
+                        <li>3,3 W ≥ 3 W : respecté ;</li>
+                        <li>53 dB &gt; 50 dB : non respecté ;</li>
+                        <li>430 g &lt; 500 g : respecté.</li>
+                    </ul>
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 6
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 6 – Concevoir une expérience correcte – 8 points
+            </h2>
+
+
+            <div class="question" data-id="q6_1">
+
+                <p>
+                    <strong>6.1.</strong>
+                    Paramètre modifié ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q6_1">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+                    Le nombre de pales.
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q6_2">
+
+                <p>
+                    <strong>6.2.</strong>
+                    Grandeur mesurée ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q6_2">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+                    La tension électrique, en volts (V).
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q6_3">
+
+                <p>
+                    <strong>6.3.</strong>
+                    Quatre paramètres constants.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q6_3">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>Exemples :</strong>
+
+                    <ul>
+                        <li>distance ;</li>
+                        <li>vitesse du ventilateur ;</li>
+                        <li>même générateur ;</li>
+                        <li>même orientation ;</li>
+                        <li>même multimètre ;</li>
+                        <li>même méthode de mesure.</li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+
+                    0,5 pt par paramètre constant pertinent,
+                    dans la limite de 2 pts.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q6_4">
+
+                <p>
+                    <strong>6.4.</strong>
+                    Pourquoi plusieurs mesures ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q6_4">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    Pour obtenir un résultat plus représentatif
+                    et limiter l'influence d'une mesure inhabituelle.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q6_5">
+
+                <p>
+                    <strong>6.5.</strong>
+                    Ordre logique.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q6_5">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+                    <strong>D → G → B → E → A → F → C</strong>
+                </div>
+
+                <div class="accepter">
+
+                    <strong>À accepter :</strong>
+
+                    un ordre légèrement différent
+                    peut être accepté s'il reste expérimentalement cohérent.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q6_6">
+
+                <p>
+                    <strong>6.6.</strong>
+
+                    Pourquoi 30 cm puis 80 cm
+                    invalide la comparaison ?
+
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q6_6">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    Parce que deux paramètres changent simultanément :
+                    le nombre de pales et la distance au ventilateur.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     EXERCICE 7
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Exercice 7 – Analyser des résultats – 6 points
+            </h2>
+
+
+            <div class="question" data-id="q7_1">
+
+                <p>
+                    <strong>7.1.</strong>
+                    Valeur inhabituelle ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q7_1">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+                    <strong>5,9 W</strong>
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q7_2">
+
+                <p>
+                    <strong>7.2.</strong>
+                    Deux explications possibles.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q7_2">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>Exemples :</strong>
+
+                    <ul>
+                        <li>erreur de lecture ;</li>
+                        <li>erreur de saisie ;</li>
+                        <li>mauvais réglage ;</li>
+                        <li>conditions différentes ;</li>
+                        <li>déplacement du matériel ;</li>
+                        <li>problème de mesure.</li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par explication plausible.
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q7_3">
+
+                <p>
+                    <strong>7.3.</strong>
+
+                    Pourquoi ne pas calculer directement la moyenne ?
+
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q7_3">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    Une valeur aberrante peut modifier fortement la moyenne
+                    et conduire à une conclusion trompeuse.
+
+                </div>
+
+                <div class="bareme-detail">
+
+                    <strong>Barème :</strong><br>
+
+                    1 pt : influence sur la moyenne.<br>
+
+                    1 pt : risque de conclusion erronée ou trompeuse.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+
+                    <span>/ 2</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="question" data-id="q7_4">
+
+                <p>
+                    <strong>7.4.</strong>
+                    Que faire avant de conclure ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="reponse-eleve" data-question="q7_4">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    Refaire la mesure
+                    et vérifier le protocole ou le matériel.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+                <div class="zone-points">
+
+                    <label>Points :</label>
+
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+
+                    <span>/ 1</span>
+
+                    <span class="indicateur-manuel">
+                        modifié par le professeur
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     BONUS
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>
+                Bonus – Vrai ou faux ? – +2 points
+            </h2>
+
+
+            <div class="question" data-id="bonus_1">
+
+                <p>
+                    <strong>A.</strong>
+
+                    Deux objets répondant au même besoin
+                    utilisent forcément la même solution technique.
+                </p>
+
+                <div class="reponse-eleve" data-question="bonus_1">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>FAUX.</strong>
+
+                    Plusieurs solutions peuvent répondre au même besoin.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+            </div>
+
+
+            <div class="question" data-id="bonus_2">
+
+                <p>
+                    <strong>B.</strong>
+
+                    La meilleure solution technique dépend
+                    des exigences et du contexte.
+                </p>
+
+                <div class="reponse-eleve" data-question="bonus_2">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+                    <strong>VRAI.</strong>
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+            </div>
+
+
+            <div class="question" data-id="bonus_3">
+
+                <p>
+                    <strong>C.</strong>
+
+                    Une seule mesure suffit toujours
+                    pour comparer deux prototypes.
+                </p>
+
+                <div class="reponse-eleve" data-question="bonus_3">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+
+                    <strong>FAUX.</strong>
+
+                    Il est préférable de répéter les mesures.
+
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+            </div>
+
+
+            <div class="question" data-id="bonus_4">
+
+                <p>
+                    <strong>D.</strong>
+
+                    Un protocole peut être amélioré
+                    après les premiers essais.
+                </p>
+
+                <div class="reponse-eleve" data-question="bonus_4">
+                    <strong>Réponse de l'élève :</strong>
+                    <p class="texte-reponse-eleve"></p>
+                </div>
+
+                <div class="correction">
+                    <strong>VRAI.</strong>
+                </div>
+
+                <div class="auto-evaluation"></div>
+
+            </div>
+
+
+            <div class="bareme-detail">
+
+                <strong>Barème du bonus :</strong><br>
+
+                0,5 pt par réponse correcte.<br>
+
+                Maximum : +2 pts.
+
+            </div>
+
+
+            <div class="zone-points">
+
+                <label>Bonus :</label>
+
+                <input class="bonus-score" type="number" min="0" max="2" step="0.5">
+
+                <span>/ 2</span>
+
+                <span class="indicateur-manuel">
+                    modifié par le professeur
+                </span>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script>
+
+        "use strict";
+
+
+        /* =========================================================
+           VARIABLES
+           ========================================================= */
+
+        let copieImportee = null;
+        let analyseEnCours = false;
+
+
+        const fichierCopie =
+            document.getElementById(
+                "fichier-copie"
+            );
+
+
+        const champsScore =
+            document.querySelectorAll(
+                ".score"
+            );
+
+
+        const champBonus =
+            document.querySelector(
+                ".bonus-score"
+            );
+
+
+        /* =========================================================
+           NORMALISATION TEXTE
+           ========================================================= */
+
+        function normaliser(texte) {
+
+            return String(
+                texte ?? ""
+            )
+
+                .toLowerCase()
+
+                .normalize(
+                    "NFD"
+                )
+
+                .replace(
+                    /[\u0300-\u036f]/g,
+                    ""
+                )
+
+                .replace(
+                    /œ/g,
+                    "oe"
+                )
+
+                .replace(
+                    /[’']/g,
+                    " "
+                )
+
+                .replace(
+                    /[^a-z0-9.,<>+=/%\s-]/g,
+                    " "
+                )
+
+                .replace(
+                    /\s+/g,
+                    " "
+                )
+
+                .trim();
+
+        }
+
+
+        function contientExpression(
+            texte,
+            expressions
+        ) {
+
+            const t =
+                normaliser(
+                    texte
+                );
+
+
+            return expressions.some(
+                expression =>
+                    t.includes(
+                        normaliser(
+                            expression
+                        )
+                    )
+            );
+
+        }
+
+
+        function compterGroupesDistincts(
+            texte,
+            groupes
+        ) {
+
+            let total =
+                0;
+
+
+            groupes.forEach(
+                groupe => {
+
+                    if (
+                        contientExpression(
+                            texte,
+                            groupe
+                        )
+                    ) {
+
+                        total++;
+
+                    }
+
+                }
+            );
+
+
+            return total;
+
+        }
+
+
+        /* =========================================================
+           IMPORT COPIE
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-importer"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    fichierCopie.click();
+
+                }
+            );
+
+
+        fichierCopie.addEventListener(
+            "change",
+            async () => {
+
+                const fichier =
+                    fichierCopie.files[0];
+
+
+                if (!fichier) {
+                    return;
+                }
+
+
+                try {
+
+                    const contenu =
+                        await fichier.text();
+
+
+                    copieImportee =
+                        extraireCopieDepuisHTML(
+                            contenu,
+                            fichier.name
+                        );
+
+
+                    afficherCopie(
+                        copieImportee
+                    );
+
+
+                    analyserToutesLesReponses();
+
+
+                    afficherEtat(
+                        "Copie importée et analysée automatiquement.",
+                        "succes"
+                    );
+
+                } catch (erreur) {
+
+                    console.error(
+                        erreur
+                    );
+
+
+                    afficherEtat(
+                        "Impossible de lire cette copie.",
+                        "erreur"
+                    );
+
+                }
+
+
+                fichierCopie.value =
+                    "";
+
+            }
+        );
+
+
+        /* =========================================================
+           EXTRACTION COPIE HTML ÉLÈVE
+           ========================================================= */
+
+        function extraireCopieDepuisHTML(
+            html,
+            nomFichier
+        ) {
+
+            const doc =
+                new DOMParser()
+                    .parseFromString(
+                        html,
+                        "text/html"
+                    );
+
+
+            if (
+                !doc.querySelector(
+                    ".question-copie"
+                )
+            ) {
+
+                throw new Error(
+                    "Format de copie non reconnu."
+                );
+
+            }
+
+
+            const copie = {
+
+                fichier:
+                    nomFichier,
+
+                eleve: {
+
+                    nom:
+                        "",
+
+                    prenom:
+                        ""
+
+                },
+
+                reponses:
+                    {},
+
+                surveillance: {
+
+                    debut:
+                        "",
+
+                    fin:
+                        "",
+
+                    duree:
+                        "",
+
+                    sorties:
+                        ""
+
+                }
+
+            };
+
+
+            /* =====================================================
+               IDENTITÉ
+               ===================================================== */
+
+            const infos =
+                doc.querySelector(
+                    ".infos"
+                );
+
+
+            if (infos) {
+
+                infos
+                    .querySelectorAll(
+                        "p"
+                    )
+                    .forEach(
+                        p => {
+
+                            const texte =
+                                p.textContent.trim();
+
+
+                            if (
+                                /^Nom\s*:/i.test(
+                                    texte
+                                )
+                            ) {
+
+                                copie.eleve.nom =
+                                    texte
+                                        .replace(
+                                            /^Nom\s*:\s*/i,
+                                            ""
+                                        )
+                                        .trim();
+
+                            }
+
+
+                            else if (
+                                /^Prénom\s*:/i.test(
+                                    texte
+                                )
+                            ) {
+
+                                copie.eleve.prenom =
+                                    texte
+                                        .replace(
+                                            /^Prénom\s*:\s*/i,
+                                            ""
+                                        )
+                                        .trim();
+
+                            }
+
+
+                            else if (
+                                /^Début\s*:/i.test(
+                                    texte
+                                )
+                            ) {
+
+                                copie.surveillance.debut =
+                                    texte
+                                        .replace(
+                                            /^Début\s*:\s*/i,
+                                            ""
+                                        )
+                                        .trim();
+
+                            }
+
+
+                            else if (
+                                /^Fin\s*:/i.test(
+                                    texte
+                                )
+                            ) {
+
+                                copie.surveillance.fin =
+                                    texte
+                                        .replace(
+                                            /^Fin\s*:\s*/i,
+                                            ""
+                                        )
+                                        .trim();
+
+                            }
+
+
+                            else if (
+                                /^Durée approximative\s*:/i.test(
+                                    texte
+                                )
+                            ) {
+
+                                copie.surveillance.duree =
+                                    texte
+                                        .replace(
+                                            /^Durée approximative\s*:\s*/i,
+                                            ""
+                                        )
+                                        .trim();
+
+                            }
+
+                        }
+                    );
+
+            }
+
+
+            /* =====================================================
+               SURVEILLANCE
+               ===================================================== */
+
+            const surveillance =
+                doc.querySelector(
+                    ".surveillance"
+                );
+
+
+            if (surveillance) {
+
+                const match =
+                    surveillance
+                        .textContent
+                        .match(
+                            /Nombre de sorties[^:]*:\s*(\d+)/i
+                        );
+
+
+                if (match) {
+
+                    copie.surveillance.sorties =
+                        Number(
+                            match[1]
+                        );
+
+                }
+
+            }
+
+
+            /* =====================================================
+               CORRESPONDANCES
+               ===================================================== */
+
+            const correspondances = [
+
+                ["1.1.", "q1_1"],
+                ["1.2.", "q1_2"],
+                ["1.3.", "q1_3"],
+                ["1.4.", "q1_4"],
+                ["1.5.", "q1_5"],
+                ["1.6.", "q1_6"],
+
+                ["2.1.", "q2_1"],
+                ["2.2.", "q2_2"],
+                ["2.3.", "q2_3"],
+
+                ["3.1.", "q3_1"],
+                ["3.2.", "q3_2"],
+                ["3.3.", "q3_3"],
+                ["3.4.", "q3_4"],
+                ["3.5.", "q3_5"],
+
+                ["4.2.", "q4_4"],
+                ["4.3.", "q4_5"],
+
+                ["5.1.", "q5_1"],
+                ["5.2.", "q5_2"],
+                ["5.3.", "q5_3"],
+                ["5.4.", "q5_4"],
+
+                ["6.1.", "q6_1"],
+                ["6.2.", "q6_2"],
+                ["6.3.", "q6_3"],
+                ["6.4.", "q6_4"],
+                ["6.5.", "q6_5"],
+                ["6.6.", "q6_6"],
+
+                ["7.1.", "q7_1"],
+                ["7.2.", "q7_2"],
+                ["7.3.", "q7_3"],
+                ["7.4.", "q7_4"]
+
+            ];
+
+
+            doc
+                .querySelectorAll(
+                    ".question-copie"
+                )
+                .forEach(
+                    bloc => {
+
+                        const titre =
+                            bloc.querySelector(
+                                "h3"
+                            );
+
+
+                        const reponse =
+                            bloc.querySelector(
+                                ".reponse"
+                            );
+
+
+                        if (
+                            !titre ||
+                            !reponse
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const question =
+                            titre.textContent.trim();
+
+
+                        let texteReponse =
+                            reponse.textContent.trim();
+
+
+                        if (
+                            texteReponse ===
+                            "[Aucune réponse]"
+                        ) {
+
+                            texteReponse =
+                                "";
+
+                        }
+
+
+                        const correspondance =
+                            correspondances.find(
+                                item =>
+                                    question.startsWith(
+                                        item[0]
+                                    )
+                            );
+
+
+                        if (
+                            correspondance
+                        ) {
+
+                            copie.reponses[
+                                correspondance[1]
+                            ] =
+                                texteReponse;
+
+
+                            return;
+
+                        }
+
+
+                        /* BONUS */
+
+                        if (
+                            question.startsWith(
+                                "A."
+                            )
+                        ) {
+
+                            copie.reponses.bonus_1 =
+                                texteReponse;
+
+                        }
+
+
+                        else if (
+                            question.startsWith(
+                                "B."
+                            )
+                        ) {
+
+                            copie.reponses.bonus_2 =
+                                texteReponse;
+
+                        }
+
+
+                        else if (
+                            question.startsWith(
+                                "C."
+                            )
+                        ) {
+
+                            copie.reponses.bonus_3 =
+                                texteReponse;
+
+                        }
+
+
+                        else if (
+                            question.startsWith(
+                                "D."
+                            )
+                        ) {
+
+                            copie.reponses.bonus_4 =
+                                texteReponse;
+
+                        }
+
+                    }
+                );
+
+
+            return copie;
+
+        }
+
+
+        /* =========================================================
+           AFFICHAGE COPIE
+           ========================================================= */
+
+        function afficherCopie(
+            copie
+        ) {
+
+            document.getElementById(
+                "nom-eleve-correction"
+            ).value =
+                copie.eleve.nom;
+
+
+            document.getElementById(
+                "prenom-eleve-correction"
+            ).value =
+                copie.eleve.prenom;
+
+
+            document
+                .querySelectorAll(
+                    ".reponse-eleve[data-question]"
+                )
+                .forEach(
+                    zone => {
+
+                        const id =
+                            zone.dataset.question;
+
+
+                        const valeur =
+                            copie.reponses[id] ||
+                            "";
+
+
+                        const texte =
+                            zone.querySelector(
+                                ".texte-reponse-eleve"
+                            );
+
+
+                        zone.classList.add(
+                            "visible"
+                        );
+
+
+                        if (
+                            valeur.trim() ===
+                            ""
+                        ) {
+
+                            texte.textContent =
+                                "Aucune réponse enregistrée.";
+
+
+                            texte.classList.add(
+                                "sans-reponse"
+                            );
+
+                        } else {
+
+                            texte.textContent =
+                                valeur;
+
+
+                            texte.classList.remove(
+                                "sans-reponse"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+            document.getElementById(
+                "informations-copie"
+            ).style.display =
+                "block";
+
+
+            document.getElementById(
+                "info-fichier"
+            ).textContent =
+                copie.fichier;
+
+
+            document.getElementById(
+                "info-eleve"
+            ).textContent =
+                (
+                    copie.eleve.prenom +
+                    " " +
+                    copie.eleve.nom
+                ).trim();
+
+
+            document.getElementById(
+                "info-debut"
+            ).textContent =
+                copie.surveillance.debut ||
+                "—";
+
+
+            document.getElementById(
+                "info-fin"
+            ).textContent =
+                copie.surveillance.fin ||
+                "—";
+
+
+            document.getElementById(
+                "info-duree"
+            ).textContent =
+                copie.surveillance.duree ||
+                "—";
+
+
+            document.getElementById(
+                "info-sorties"
+            ).textContent =
+                String(
+                    copie.surveillance.sorties ??
+                    "—"
+                );
+
+        }
+
+
+        /* =========================================================
+           RÉSULTAT ANALYSE
+           ========================================================= */
+
+        function resultat(
+            points,
+            detail,
+            confiance = "moyenne"
+        ) {
+
+            return {
+
+                points:
+                    points,
+
+                detail:
+                    detail,
+
+                confiance:
+                    confiance
+
+            };
+
+        }
+
+
+        /* =========================================================
+           AUTOCORRECTION STRICTE
+           ========================================================= */
+
+        function analyserReponse(
+            id,
+            brute
+        ) {
+
+            const texte =
+                normaliser(
+                    brute
+                );
+
+
+            if (
+                !texte
+            ) {
+
+                return resultat(
+                    0,
+                    "Aucune réponse.",
+                    "forte"
+                );
+
+            }
+
+
+            switch (id) {
+
+
+                /* =================================================
+                   EXERCICE 1
+                   ================================================= */
+
+                case "q1_1":
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "communiquer a distance",
+                                "communication a distance",
+                                "envoyer des messages",
+                                "envoyer des informations"
+                            ]
+                        )
+                    ) {
+
+                        return resultat(
+                            1,
+                            "Le besoin de communication est clairement identifié.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "Le besoin attendu n'est pas clairement identifiable.",
+                        "forte"
+                    );
+
+
+                case "q1_2":
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "meme besoin"
+                            ]
+                        )
+                        ||
+                        (
+                            contientExpression(
+                                texte,
+                                [
+                                    "tous"
+                                ]
+                            )
+                            &&
+                            contientExpression(
+                                texte,
+                                [
+                                    "communiquer a distance",
+                                    "envoyer des informations",
+                                    "envoyer des messages"
+                                ]
+                            )
+                        )
+                    ) {
+
+                        return resultat(
+                            1,
+                            "Le besoin commun est clairement identifiable.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "L'idée de besoin commun n'est pas suffisamment explicite.",
+                        "forte"
+                    );
+
+
+                case "q1_3":
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "internet",
+                                "application",
+                                "gps",
+                                "photo",
+                                "prendre des photos",
+                                "portable",
+                                "partout",
+                                "mobile",
+                                "transport",
+                                "se deplacer"
+                            ]
+                        )
+                    ) {
+
+                        return resultat(
+                            1,
+                            "Une différence importante est clairement identifiable.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "Aucune différence suffisamment claire.",
+                        "forte"
+                    );
+
+
+                case "q1_4": {
+
+                    const fonction =
+                        contientExpression(
+                            texte,
+                            [
+                                "afficher",
+                                "capter une image",
+                                "prendre / faire une photo",
+                                "stocker",
+                                "communiquer sans fil",
+                                "se localiser"
+                            ]
+                        );
+
+
+                    const solution =
+                        contientExpression(
+                            texte,
+                            [
+                                "ecran",
+                                "capteur",
+                                "camera / appareil photo",
+                                "memoire",
+                                "antenne",
+                                "module reseau",
+                                "gps",
+                                "gnss"
+                            ]
+                        );
+
+
+                    if (
+                        fonction &&
+                        solution
+                    ) {
+
+                        return resultat(
+                            2,
+                            "Fonction et solution technique clairement identifiables.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    if (
+                        fonction ||
+                        solution
+                    ) {
+
+                        return resultat(
+                            1,
+                            "Un seul des deux éléments est clairement identifiable.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "Fonction et solution technique non identifiables.",
+                        "forte"
+                    );
+
+                }
+
+
+                case "q1_5":
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "amelioration progressive"
+                            ]
+                        )
+                    ) {
+
+                        return resultat(
+                            1,
+                            "« Amélioration progressive » est clairement donnée.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "La catégorie attendue n'est pas clairement donnée.",
+                        "forte"
+                    );
+
+
+                case "q1_6":
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "oui"
+                            ]
+                        )
+                        &&
+                        contientExpression(
+                            texte,
+                            [
+                                "partout",
+                                "portable",
+                                "photo",
+                                "internet",
+                                "application",
+                                "gps",
+                                "fonction",
+                                "usage"
+                            ]
+                        )
+                    ) {
+
+                        return resultat(
+                            1,
+                            "Réponse affirmative accompagnée d'une évolution clairement identifiable.",
+                            "moyenne"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "La justification n'est pas suffisamment identifiable.",
+                        "moyenne"
+                    );
+
+
+                /* =================================================
+                   EXERCICE 2
+                   ================================================= */
+
+                case "q2_1": {
+
+                    const nombre =
+                        compterGroupesDistincts(
+                            texte,
+                            [
+                                [
+                                    "horaires en temps reel",
+                                    "savoir quand il arrive"
+                                ],
+                                [
+                                    "position des vehicules",
+                                    "position du bus"
+                                ],
+                                [
+                                    "calcul d itineraire",
+                                    "itineraire"
+                                ],
+                                [
+                                    "alerte",
+                                    "prevenir si",
+                                    "retard"
+                                ],
+                                [
+                                    "moins attendre",
+                                    "partir plus tard",
+                                    "anticiper"
+                                ]
+                            ]
+                        );
+
+
+                    return resultat(
+                        Math.min(
+                            2,
+                            nombre
+                        ),
+                        nombre +
+                        " avantage(s) clairement identifiable(s).",
+                        "moyenne"
+                    );
+
+                }
+
+
+                case "q2_2": {
+
+                    const nombre =
+                        compterGroupesDistincts(
+                            texte,
+                            [
+                                [
+                                    "smartphone",
+                                    "telephone obligatoire"
+                                ],
+                                [
+                                    "batterie"
+                                ],
+                                [
+                                    "connexion",
+                                    "internet",
+                                    "reseau"
+                                ],
+                                [
+                                    "accessibilite"
+                                ],
+                                [
+                                    "collecte de donnees",
+                                    "donnees personnelles"
+                                ],
+                                [
+                                    "dependance"
+                                ],
+                                [
+                                    "bug",
+                                    "panne",
+                                    "mauvaise heure",
+                                    "information fausse"
+                                ]
+                            ]
+                        );
+
+
+                    return resultat(
+                        Math.min(
+                            2,
+                            nombre
+                        ),
+                        nombre +
+                        " limite(s) clairement identifiable(s).",
+                        "moyenne"
+                    );
+
+                }
+
+
+                case "q2_3": {
+
+                    let points =
+                        0;
+
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "inconvenient",
+                                "contrainte",
+                                "limite",
+                                "probleme"
+                            ]
+                        )
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "plusieurs criteres",
+                                "comparer plusieurs criteres"
+                            ]
+                        )
+                        ||
+                        compterGroupesDistincts(
+                            texte,
+                            [
+                                ["cout"],
+                                ["usage"],
+                                ["securite"],
+                                ["environnement"],
+                                ["accessibilite"]
+                            ]
+                        ) >= 2
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    return resultat(
+                        points,
+                        points === 2
+                            ? "Les deux éléments du barème sont clairement présents."
+                            : points === 1
+                                ? "Un seul élément du barème est clairement présent."
+                                : "Les éléments attendus ne sont pas suffisamment explicites.",
+                        "moyenne"
+                    );
+
+                }
+
+
+                /* =================================================
+                   EXERCICE 3
+                   ================================================= */
+
+                case "q3_1":
+
+                    return /16000|16\s*000/.test(
+                        texte
+                    )
+                        ? resultat(
+                            1,
+                            "16 000 € est correctement relevé.",
+                            "forte"
+                        )
+                        : resultat(
+                            0,
+                            "Valeur attendue non retrouvée.",
+                            "forte"
+                        );
+
+
+                case "q3_2": {
+
+                    let points =
+                        0;
+
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "capacite",
+                                "6 personnes",
+                                "plus de personnes",
+                                "prendre plus"
+                            ]
+                        )
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "temps de trajet",
+                                "plus rapide",
+                                "10 s",
+                                "10s",
+                                "moins de temps"
+                            ]
+                        )
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    return resultat(
+                        points,
+                        points +
+                        " critère(s) attendu(s) clairement identifiable(s).",
+                        "forte"
+                    );
+
+                }
+
+
+                case "q3_3": {
+
+                    let points =
+                        0;
+
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "cout",
+                                "prix",
+                                "moins cher"
+                            ]
+                        )
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "travaux",
+                                "moins de travaux",
+                                "travaux limites"
+                            ]
+                        )
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    return resultat(
+                        points,
+                        points +
+                        " avantage(s) attendu(s) clairement identifiable(s).",
+                        "forte"
+                    );
+
+                }
+
+
+                case "q3_4":
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "prix",
+                                "cout",
+                                "cher",
+                                "travaux",
+                                "capacite",
+                                "accessibilite"
+                            ]
+                        )
+                    ) {
+
+                        return resultat(
+                            2,
+                            "Un autre critère que la vitesse est clairement pris en compte.",
+                            "moyenne"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "Aucun autre critère n'est clairement identifiable.",
+                        "moyenne"
+                    );
+
+
+                case "q3_5": {
+
+                    const choix =
+                        contientExpression(
+                            texte,
+                            [
+                                "plateforme elevatrice",
+                                "plateforme"
+                            ]
+                        );
+
+
+                    const justifications =
+                        compterGroupesDistincts(
+                            texte,
+                            [
+                                [
+                                    "moins cher",
+                                    "cout",
+                                    "prix",
+                                    "budget"
+                                ],
+                                [
+                                    "travaux limites",
+                                    "moins de travaux"
+                                ],
+                                [
+                                    "faible frequentation",
+                                    "peu d utilisateurs",
+                                    "pas beaucoup",
+                                    "vingtaine"
+                                ],
+                                [
+                                    "fauteuil",
+                                    "accessible"
+                                ]
+                            ]
+                        );
+
+
+                    if (
+                        choix &&
+                        justifications >= 1
+                    ) {
+
+                        return resultat(
+                            2,
+                            "Choix cohérent et justification clairement identifiable.",
+                            "moyenne"
+                        );
+
+                    }
+
+
+                    if (
+                        choix
+                    ) {
+
+                        return resultat(
+                            1,
+                            "Choix cohérent mais justification insuffisamment identifiable.",
+                            "moyenne"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "Le choix attendu n'est pas clairement identifiable.",
+                        "moyenne"
+                    );
+
+                }
+
+
+                /* =================================================
+                   EXERCICE 4
+                   ================================================= */
+
+                case "q4_4": {
+
+                    let points =
+                        3;
+
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "subjectif",
+                                "pas precis",
+                                "moins precis",
+                                "vague"
+                            ]
+                        )
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "mesurable",
+                                "verifiable",
+                                "15 secondes",
+                                "valeur chiffree"
+                            ]
+                        )
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    return resultat(
+                        points,
+                        points === 2
+                            ? "Les deux idées attendues sont clairement présentes."
+                            : points === 1
+                                ? "Une seule idée du barème est clairement présente."
+                                : "Réponse trop vague pour attribuer automatiquement un point.",
+                        "moyenne"
+                    );
+
+                }
+
+
+                case "q4_5":
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "besoins contraintes exigences",
+                                "exigences a respecter",
+                                "contraintes a respecter",
+                                "solution doit respecter"
+                            ]
+                        )
+                    ) {
+
+                        return resultat(
+                            1,
+                            "Le rôle du cahier des charges est clairement identifiable.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "Réponse trop vague ou rôle non clairement identifié.",
+                        "forte"
+                    );
+
+
+                /* =================================================
+                   EXERCICE 5
+                   ================================================= */
+
+                case "q5_1": {
+
+                    let points =
+                        0;
+
+
+                    const calculVisible =
+                        (
+                            texte.includes(
+                                "2.8"
+                            )
+                            ||
+                            texte.includes(
+                                "2,8"
+                            )
+                        )
+                        &&
+                        (
+                            texte.includes(
+                                "3"
+                            )
+                        )
+                        &&
+                        (
+                            texte.includes(
+                                "2.9"
+                            )
+                            ||
+                            texte.includes(
+                                "2,9"
+                            )
+                        )
+                        &&
+                        (
+                            texte.includes(
+                                "/3"
+                            )
+                            ||
+                            texte.includes(
+                                "/ 3"
+                            )
+                            ||
+                            texte.includes(
+                                "÷3"
+                            )
+                            ||
+                            texte.includes(
+                                ":3"
+                            )
+                            ||
+                            texte.includes(
+                                ": 3"
+                            )
+                        );
+
+
+                    const resultatCorrect =
+                        /2[.,]9/.test(
+                            texte
+                        );
+
+
+                    const unite =
+                        /\bw\b/.test(
+                            texte
+                        )
+                        ||
+                        contientExpression(
+                            texte,
+                            [
+                                "watt",
+                                "watts"
+                            ]
+                        );
+
+
+                    if (
+                        calculVisible
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    if (
+                        resultatCorrect &&
+                        unite
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    return resultat(
+                        points,
+                        points === 2
+                            ? "Calcul et résultat avec unité clairement corrects."
+                            : points === 1
+                                ? "Un seul élément du barème est clairement validé."
+                                : "Calcul ou résultat attendu insuffisamment identifiable.",
+                        "forte"
+                    );
+
+                }
+
+
+                case "q5_2": {
+
+                    let points =
+                        0;
+
+
+                    const calculVisible =
+                        (
+                            texte.includes(
+                                "3.4"
+                            )
+                            ||
+                            texte.includes(
+                                "3,4"
+                            )
+                        )
+                        &&
+                        (
+                            texte.includes(
+                                "3.2"
+                            )
+                            ||
+                            texte.includes(
+                                "3,2"
+                            )
+                        )
+                        &&
+                        (
+                            texte.includes(
+                                "3.3"
+                            )
+                            ||
+                            texte.includes(
+                                "3,3"
+                            )
+                        )
+                        &&
+                        (
+                            texte.includes(
+                                "/3"
+                            )
+                            ||
+                            texte.includes(
+                                "/ 3"
+                            )
+                            ||
+                            texte.includes(
+                                "÷3"
+                            )
+                        );
+
+
+                    const resultatCorrect =
+                        /3[.,]3/.test(
+                            texte
+                        );
+
+
+                    const unite =
+                        /\bw\b/.test(
+                            texte
+                        )
+                        ||
+                        contientExpression(
+                            texte,
+                            [
+                                "watt",
+                                "watts"
+                            ]
+                        );
+
+
+                    if (
+                        calculVisible
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    if (
+                        resultatCorrect &&
+                        unite
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    return resultat(
+                        points,
+                        points === 2
+                            ? "Calcul et résultat avec unité clairement corrects."
+                            : points === 1
+                                ? "Un seul élément du barème est clairement validé."
+                                : "Calcul ou résultat attendu insuffisamment identifiable.",
+                        "forte"
+                    );
+
+                }
+
+
+                case "q5_3": {
+
+                    const conclusion =
+                        contientExpression(
+                            texte,
+                            [
+                                "non"
+                            ]
+                        );
+
+
+                    const puissance =
+                        contientExpression(
+                            texte,
+                            [
+                                "puissance",
+                                "2,9 w",
+                                "2.9 w",
+                                "inferieur a 3",
+                                "moins de 3 w"
+                            ]
+                        );
+
+
+                    if (
+                        conclusion &&
+                        puissance
+                    ) {
+
+                        return resultat(
+                            2,
+                            "Conclusion et justification par la puissance clairement identifiées.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    if (
+                        conclusion
+                    ) {
+
+                        return resultat(
+                            1,
+                            "Conclusion correcte mais justification insuffisamment précise.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "Conclusion correcte non identifiée.",
+                        "forte"
+                    );
+
+                }
+
+
+                case "q5_4": {
+
+                    const conclusion =
+                        contientExpression(
+                            texte,
+                            [
+                                "non"
+                            ]
+                        );
+
+
+                    const bruit =
+                        contientExpression(
+                            texte,
+                            [
+                                "bruit",
+                                "niveau sonore",
+                                "53 db",
+                                "53db",
+                                "superieur a 50",
+                                "trop fort"
+                            ]
+                        );
+
+
+                    if (
+                        conclusion &&
+                        bruit
+                    ) {
+
+                        return resultat(
+                            2,
+                            "Conclusion et justification par le bruit clairement identifiées.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    if (
+                        conclusion
+                    ) {
+
+                        return resultat(
+                            1,
+                            "Conclusion correcte mais justification insuffisamment précise.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "Conclusion correcte non identifiée.",
+                        "forte"
+                    );
+
+                }
+
+
+                /* =================================================
+                   EXERCICE 6
+                   ================================================= */
+
+                case "q6_1":
+
+                    return contientExpression(
+                        texte,
+                        [
+                            "nombre de pales"
+                        ]
+                    )
+                        ? resultat(
+                            1,
+                            "Le nombre de pales est clairement identifié.",
+                            "forte"
+                        )
+                        : resultat(
+                            0,
+                            "Paramètre attendu non clairement identifié.",
+                            "forte"
+                        );
+
+
+                case "q6_2":
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "tension"
+                            ]
+                        )
+                        &&
+                        (
+                            /\bv\b/.test(
+                                texte
+                            )
+                            ||
+                            contientExpression(
+                                texte,
+                                [
+                                    "volt",
+                                    "volts"
+                                ]
+                            )
+                        )
+                    ) {
+
+                        return resultat(
+                            1,
+                            "Grandeur et unité correctement identifiées.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "Il faut identifier explicitement la tension et le volt.",
+                        "forte"
+                    );
+
+
+                case "q6_3": {
+
+                    const nombre =
+                        compterGroupesDistincts(
+                            texte,
+                            [
+                                [
+                                    "distance"
+                                ],
+                                [
+                                    "vitesse du ventilateur",
+                                    "meme ventilateur"
+                                ],
+                                [
+                                    "meme generateur",
+                                    "generateur"
+                                ],
+                                [
+                                    "meme orientation",
+                                    "orientation"
+                                ],
+                                [
+                                    "meme multimetre",
+                                    "multimetre"
+                                ],
+                                [
+                                    "meme methode de mesure",
+                                    "methode de mesure"
+                                ]
+                            ]
+                        );
+
+
+                    return resultat(
+                        Math.min(
+                            2,
+                            nombre * 0.5
+                        ),
+                        nombre +
+                        " paramètre(s) constant(s) clairement identifiable(s).",
+                        "moyenne"
+                    );
+
+                }
+
+
+                case "q6_4":
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "moyenne",
+                                "resultat plus representatif",
+                                "mesure inhabituelle",
+                                "reduire les erreurs",
+                                "limiter les erreurs"
+                            ]
+                        )
+                    ) {
+
+                        return resultat(
+                            1,
+                            "L'intérêt de répéter les mesures est clairement identifiable.",
+                            "moyenne"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "L'intérêt des répétitions n'est pas suffisamment identifiable.",
+                        "moyenne"
+                    );
+
+
+                case "q6_5": {
+
+                    const ordre =
+                        texte
+                            .toUpperCase()
+                            .replace(
+                                /[^A-G]/g,
+                                ""
+                            );
+
+
+                    if (
+                        ordre ===
+                        "DGBEAFC"
+                        ||
+                        ordre ===
+                        "DBGEAFC"
+                        ||
+                        ordre ===
+                        "GDBEAFC"
+                        ||
+                        ordre ===
+                        "GBDEAFC"
+                        ||
+                        ordre ===
+                        "BDGEAFC"
+                        ||
+                        ordre ===
+                        "BGDEAFC"
+                    ) {
+
+                        return resultat(
+                            2,
+                            "Ordre attendu exact.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "Ordre différent du corrigé : vérification professeur nécessaire.",
+                        "moyenne"
+                    );
+
+                }
+
+
+                case "q6_6":
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "pas la meme distance",
+                                "distance differente",
+                                "30 cm",
+                                "80 cm",
+                                "pas place a la meme distance",
+                                "meme distance"
+                            ]
+                        )
+                    ) {
+
+                        return resultat(
+                            1,
+                            "La différence de distance est clairement identifiée.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "Le problème de distance n'est pas clairement identifié.",
+                        "forte"
+                    );
+
+
+                /* =================================================
+                   EXERCICE 7
+                   ================================================= */
+
+                case "q7_1":
+
+                    return /5[.,]9/.test(
+                        texte
+                    )
+                        ? resultat(
+                            1,
+                            "5,9 W est identifié.",
+                            "forte"
+                        )
+                        : resultat(
+                            0,
+                            "Valeur attendue non identifiée.",
+                            "forte"
+                        );
+
+
+                case "q7_2": {
+
+                    const nombre =
+                        compterGroupesDistincts(
+                            texte,
+                            [
+                                [
+                                    "erreur de lecture",
+                                    "erreur de saisie",
+                                    "mal releve"
+                                ],
+                                [
+                                    "mauvais reglage",
+                                    "probleme de reglage"
+                                ],
+                                [
+                                    "conditions differentes",
+                                    "plus de vent",
+                                    "vent different"
+                                ],
+                                [
+                                    "deplacement du materiel"
+                                ],
+                                [
+                                    "probleme de mesure",
+                                    "appareil"
+                                ]
+                            ]
+                        );
+
+
+                    return resultat(
+                        Math.min(
+                            2,
+                            nombre
+                        ),
+                        nombre +
+                        " explication(s) clairement identifiable(s).",
+                        "moyenne"
+                    );
+
+                }
+
+
+                case "q7_3": {
+
+                    let points =
+                        0;
+
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "valeur aberrante",
+                                "valeur inhabituelle"
+                            ]
+                        )
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "fausser la moyenne",
+                                "modifier la moyenne",
+                                "moyenne trompeuse",
+                                "conclusion trompeuse",
+                                "conclusion fausse"
+                            ]
+                        )
+                    ) {
+
+                        points +=
+                            1;
+
+                    }
+
+
+                    return resultat(
+                        points,
+                        points === 2
+                            ? "Les deux éléments du barème sont clairement présents."
+                            : points === 1
+                                ? "Un seul élément du barème est clairement présent."
+                                : "Réponse trop vague pour valider automatiquement.",
+                        "moyenne"
+                    );
+
+                }
+
+
+                case "q7_4":
+
+                    if (
+                        contientExpression(
+                            texte,
+                            [
+                                "refaire la mesure",
+                                "recommencer la mesure",
+                                "verifier le protocole",
+                                "verifier le materiel",
+                                "verifier l appareil",
+                                "verifier plusieurs fois",
+                                "recommencer"
+                            ]
+                        )
+                    ) {
+
+                        return resultat(
+                            1,
+                            "Action correcte clairement identifiable.",
+                            "forte"
+                        );
+
+                    }
+
+
+                    return resultat(
+                        0,
+                        "Action attendue non clairement identifiable.",
+                        "forte"
+                    );
+
+
+                default:
+
+                    return null;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           BONUS
+           ========================================================= */
+
+        function analyserBonus() {
+
+            const attentes = {
+
+                bonus_1:
+                    false,
+
+                bonus_2:
+                    true,
+
+                bonus_3:
+                    false,
+
+                bonus_4:
+                    true
+
+            };
+
+
+            let bonus =
+                0;
+
+
+            Object.entries(
+                attentes
+            )
+                .forEach(
+                    ([id, attendu]) => {
+
+                        const texte =
+                            normaliser(
+                                copieImportee.reponses[id] ||
+                                ""
+                            );
+
+
+                        let valeur =
+                            null;
+
+
+                        if (
+                            texte === "vrai"
+                            ||
+                            texte === "oui"
+                            ||
+                            texte.startsWith(
+                                "vrai "
+                            )
+                        ) {
+
+                            valeur =
+                                true;
+
+                        }
+
+
+                        else if (
+                            texte === "faux"
+                            ||
+                            texte === "non"
+                            ||
+                            texte === "nn"
+                            ||
+                            texte.startsWith(
+                                "faux "
+                            )
+                            ||
+                            texte.startsWith(
+                                "non "
+                            )
+                        ) {
+
+                            valeur =
+                                false;
+
+                        }
+
+
+                        if (
+                            valeur === attendu
+                        ) {
+
+                            bonus +=
+                                0.5;
+
+                        }
+
+
+                        const bloc =
+                            document.querySelector(
+                                '.question[data-id="' +
+                                id +
+                                '"]'
+                            );
+
+
+                        if (
+                            bloc
+                        ) {
+
+                            const auto =
+                                bloc.querySelector(
+                                    ".auto-evaluation"
+                                );
+
+
+                            auto.classList.add(
+                                "visible"
+                            );
+
+
+                            auto.innerHTML =
+                                "<strong>Suggestion automatique :</strong> " +
+                                (
+                                    valeur === attendu
+                                        ? "réponse correcte (+0,5)."
+                                        : "réponse non validée automatiquement."
+                                );
+
+                        }
+
+                    }
+                );
+
+
+            champBonus.value =
+                bonus;
+
+        }
+
+
+        /* =========================================================
+           ANALYSER TOUTES LES RÉPONSES
+           ========================================================= */
+
+        function analyserToutesLesReponses() {
+
+            if (
+                !copieImportee
+            ) {
+
+                return;
+
+            }
+
+
+            analyseEnCours =
+                true;
+
+
+            document
+                .querySelectorAll(
+                    ".question[data-id]"
+                )
+                .forEach(
+                    question => {
+
+                        const id =
+                            question.dataset.id;
+
+
+                        if (
+                            id.startsWith(
+                                "bonus_"
+                            )
+                            ||
+                            id ===
+                            "q4_1"
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const input =
+                            question.querySelector(
+                                ".score"
+                            );
+
+
+                        const auto =
+                            question.querySelector(
+                                ".auto-evaluation"
+                            );
+
+
+                        if (
+                            !input ||
+                            !auto
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const reponse =
+                            copieImportee.reponses[id] ||
+                            "";
+
+
+                        const analyse =
+                            analyserReponse(
+                                id,
+                                reponse
+                            );
+
+
+                        if (
+                            !analyse
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        input.value =
+                            analyse.points;
+
+
+                        input.classList.remove(
+                            "modifie-prof"
+                        );
+
+
+                        const indicateur =
+                            question.querySelector(
+                                ".indicateur-manuel"
+                            );
+
+
+                        if (
+                            indicateur
+                        ) {
+
+                            indicateur.classList.remove(
+                                "visible"
+                            );
+
+                        }
+
+
+                        auto.classList.add(
+                            "visible"
+                        );
+
+
+                        auto.innerHTML =
+
+                            "<strong>Suggestion automatique : " +
+                            analyse.points +
+                            " / " +
+                            input.dataset.max +
+                            "</strong>" +
+
+                            '<span class="auto-confiance">' +
+                            "confiance " +
+                            analyse.confiance +
+                            "</span>" +
+
+                            '<div class="auto-detail">' +
+                            echapperHTML(
+                                analyse.detail
+                            ) +
+                            "</div>";
+
+                    }
+                );
+
+
+            analyserBonus();
+
+
+            analyseEnCours =
+                false;
+
+
+            calculerNote();
+
+        }
+
+
+        /* =========================================================
+           MODIFICATION MANUELLE
+           ========================================================= */
+
+        champsScore.forEach(
+            input => {
+
+                input.addEventListener(
+                    "input",
+                    () => {
+
+                        if (
+                            !analyseEnCours
+                        ) {
+
+                            input.classList.add(
+                                "modifie-prof"
+                            );
+
+
+                            const question =
+                                input.closest(
+                                    ".question"
+                                );
+
+
+                            const indicateur =
+                                question
+                                    ? question.querySelector(
+                                        ".indicateur-manuel"
+                                    )
+                                    : null;
+
+
+                            if (
+                                indicateur
+                            ) {
+
+                                indicateur.classList.add(
+                                    "visible"
+                                );
+
+                            }
+
+                        }
+
+
+                        calculerNote();
+
+                    }
+                );
+
+            }
+        );
+
+
+        champBonus.addEventListener(
+            "input",
+            () => {
+
+                if (
+                    !analyseEnCours
+                ) {
+
+                    champBonus.classList.add(
+                        "modifie-prof"
+                    );
+
+
+                    const indicateur =
+                        champBonus
+                            .closest(
+                                ".zone-points"
+                            )
+                            .querySelector(
+                                ".indicateur-manuel"
+                            );
+
+
+                    if (
+                        indicateur
+                    ) {
+
+                        indicateur.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+                }
+
+
+                calculerNote();
+
+            }
+        );
+
+
+        /* =========================================================
+           RECALCUL AUTO
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-recalcul-auto"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        !copieImportee
+                    ) {
+
+                        alert(
+                            "Importez d'abord une copie."
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    const confirmation =
+                        confirm(
+                            "Les modifications manuelles seront remplacées par les propositions automatiques. Continuer ?"
+                        );
+
+
+                    if (
+                        !confirmation
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    champsScore.forEach(
+                        input => {
+
+                            if (
+                                input.dataset.noAuto !==
+                                "1"
+                            ) {
+
+                                input.value =
+                                    "";
+
+                            }
+
+                        }
+                    );
+
+
+                    analyserToutesLesReponses();
+
+                }
+            );
+
+
+        /* =========================================================
+           CALCUL NOTE
+           ========================================================= */
+
+        function calculerNote() {
+
+            let total =
+                0;
+
+
+            champsScore.forEach(
+                champ => {
+
+                    let valeur =
+                        Number(
+                            champ.value ||
+                            0
+                        );
+
+
+                    const maximum =
+                        Number(
+                            champ.dataset.max
+                        );
+
+
+                    valeur =
+                        Math.max(
+                            0,
+                            Math.min(
+                                maximum,
+                                valeur
+                            )
+                        );
+
+
+                    total +=
+                        valeur;
+
+                }
+            );
+
+
+            let bonus =
+                Number(
+                    champBonus.value ||
+                    0
+                );
+
+
+            bonus =
+                Math.max(
+                    0,
+                    Math.min(
+                        2,
+                        bonus
+                    )
+                );
+
+
+            const noteBrute =
+                total /
+                2.5;
+
+
+            const noteFinale =
+                Math.min(
+                    20,
+                    noteBrute +
+                    bonus /
+                    2.5
+                );
+
+
+            document.getElementById(
+                "total-points"
+            ).textContent =
+                formatNombre(
+                    total
+                );
+
+
+            document.getElementById(
+                "total-bonus"
+            ).textContent =
+                formatNombre(
+                    bonus
+                );
+
+
+            document.getElementById(
+                "note-brute"
+            ).textContent =
+                formatNombre(
+                    noteBrute
+                );
+
+
+            document.getElementById(
+                "note-finale"
+            ).textContent =
+                formatNombre(
+                    noteFinale
+                ) +
+                " / 20";
+
+        }
+
+
+        function formatNombre(
+            nombre
+        ) {
+
+            return Number(
+                nombre.toFixed(
+                    2
+                )
+            )
+                .toString()
+                .replace(
+                    ".",
+                    ","
+                );
+
+        }
+
+
+        /* =========================================================
+           ENREGISTRER COPIE CORRIGÉE
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-enregistrer"
+            )
+            .addEventListener(
+                "click",
+                enregistrerCopieCorrigee
+            );
+
+
+        function enregistrerCopieCorrigee() {
+
+            if (
+                !copieImportee
+            ) {
+
+                alert(
+                    "Importez d'abord une copie."
+                );
+
+
+                return;
+
+            }
+
+
+            calculerNote();
+
+
+            /*
+             * Clone complet de la page.
+             */
+            const clone =
+                document.documentElement
+                    .cloneNode(
+                        true
+                    );
+
+
+            /* =====================================================
+               TRANSFORMER LES POINTS EN TEXTE FIXE
+               ===================================================== */
+
+            const zonesOriginales =
+                document.querySelectorAll(
+                    ".zone-points"
+                );
+
+
+            const zonesClone =
+                clone.querySelectorAll(
+                    ".zone-points"
+                );
+
+
+            zonesOriginales.forEach(
+                (zone, index) => {
+
+                    const zoneClone =
+                        zonesClone[index];
+
+
+                    if (
+                        !zoneClone
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const input =
+                        zone.querySelector(
+                            "input"
+                        );
+
+
+                    if (
+                        !input
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const valeur =
+                        input.value ||
+                        "0";
+
+
+                    const maximum =
+                        input.classList.contains(
+                            "bonus-score"
+                        )
+                            ? "2"
+                            : (
+                                input.dataset.max ||
+                                input.max ||
+                                ""
+                            );
+
+
+                    if (
+                        input.classList.contains(
+                            "bonus-score"
+                        )
+                    ) {
+
+                        zoneClone.innerHTML =
+                            "<strong>Bonus attribué : +" +
+                            echapperHTML(
+                                valeur
+                            ) +
+                            " / 2</strong>";
+
+                    } else {
+
+                        zoneClone.innerHTML =
+                            "<strong>Points attribués : " +
+                            echapperHTML(
+                                valeur
+                            ) +
+                            " / " +
+                            echapperHTML(
+                                maximum
+                            ) +
+                            "</strong>";
+
+                    }
+
+                }
+            );
+
+
+            /* =====================================================
+               RETIRER LES SUGGESTIONS AUTOMATIQUES
+               DU FICHIER DESTINÉ À L'ÉLÈVE
+               ===================================================== */
+
+            clone
+                .querySelectorAll(
+                    ".auto-evaluation"
+                )
+                .forEach(
+                    zone => {
+
+                        zone.remove();
+
+                    }
+                );
+
+
+            /* =====================================================
+               RETIRER LES INDICATEURS
+               "MODIFIÉ PAR LE PROFESSEUR"
+               ===================================================== */
+
+            clone
+                .querySelectorAll(
+                    ".indicateur-manuel"
+                )
+                .forEach(
+                    zone => {
+
+                        zone.remove();
+
+                    }
+                );
+
+
+            /* =====================================================
+               REMPLACER LA BARRE PROF PAR LE RÉSULTAT FINAL
+               ===================================================== */
+
+            const barre =
+                clone.querySelector(
+                    "#barre-prof"
+                );
+
+
+            if (
+                barre
+            ) {
+
+                barre.removeAttribute(
+                    "id"
+                );
+
+
+                barre.className =
+                    "bloc-resultat-final";
+
+
+                barre.innerHTML = `
+
+            <h2>Résultat final</h2>
+
+            <p>
+                <strong>Élève :</strong>
+                ${echapperHTML(
+                    document.getElementById(
+                        "prenom-eleve-correction"
+                    ).value
+                )}
+                ${echapperHTML(
+                    document.getElementById(
+                        "nom-eleve-correction"
+                    ).value
+                )}
+            </p>
+
+            <p>
+                <strong>Points :</strong>
+                ${echapperHTML(
+                    document.getElementById(
+                        "total-points"
+                    ).textContent
+                )}
+                / 50
+            </p>
+
+            <p>
+                <strong>Bonus :</strong>
+                +
+                ${echapperHTML(
+                    document.getElementById(
+                        "total-bonus"
+                    ).textContent
+                )}
+                / 2
+            </p>
+
+            <p>
+                <strong>Note finale :</strong>
+                ${echapperHTML(
+                    document.getElementById(
+                        "note-finale"
+                    ).textContent
+                )}
+            </p>
+
+        `;
+
+            }
+
+
+            /* =====================================================
+               SUPPRIMER LES SCRIPTS
+               ===================================================== */
+
+            clone
+                .querySelectorAll(
+                    "script"
+                )
+                .forEach(
+                    script => {
+
+                        script.remove();
+
+                    }
+                );
+
+
+            /* =====================================================
+               SUPPRIMER INPUT FICHIER
+               ===================================================== */
+
+            const inputFichier =
+                clone.querySelector(
+                    "#fichier-copie"
+                );
+
+
+            if (
+                inputFichier
+            ) {
+
+                inputFichier.remove();
+
+            }
+
+
+            /* =====================================================
+               GÉNÉRER LE HTML FINAL
+               ===================================================== */
+
+            const html =
+                "<!DOCTYPE html>\n" +
+                clone.outerHTML;
+
+
+            const blob =
+                new Blob(
+                    [html],
+                    {
+                        type:
+                            "text/html;charset=utf-8"
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            const lien =
+                document.createElement(
+                    "a"
+                );
+
+
+            lien.href =
+                url;
+
+
+            lien.download =
+                "DS_3e_CORRIGE_" +
+                nettoyerNomFichier(
+                    copieImportee.eleve.nom
+                ) +
+                "_" +
+                nettoyerNomFichier(
+                    copieImportee.eleve.prenom
+                ) +
+                ".html";
+
+
+            document.body.appendChild(
+                lien
+            );
+
+
+            lien.click();
+
+
+            lien.remove();
+
+
+            setTimeout(
+                () => {
+
+                    URL.revokeObjectURL(
+                        url
+                    );
+
+                },
+                1500
+            );
+
+        }
+
+
+        /* =========================================================
+           NOUVELLE COPIE
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-nouvelle"
+            )
+            .addEventListener(
+                "click",
+                nouvelleCopie
+            );
+
+
+        function nouvelleCopie() {
+
+            const confirmation =
+                confirm(
+                    "Effacer cette correction et passer à une nouvelle copie ?"
+                );
+
+
+            if (
+                !confirmation
+            ) {
+
+                return;
+
+            }
+
+
+            copieImportee =
+                null;
+
+
+            fichierCopie.value =
+                "";
+
+
+            document.getElementById(
+                "nom-eleve-correction"
+            ).value =
+                "";
+
+
+            document.getElementById(
+                "prenom-eleve-correction"
+            ).value =
+                "";
+
+
+            champsScore.forEach(
+                input => {
+
+                    input.value =
+                        "";
+
+
+                    input.classList.remove(
+                        "modifie-prof"
+                    );
+
+                }
+            );
+
+
+            champBonus.value =
+                "";
+
+
+            champBonus.classList.remove(
+                "modifie-prof"
+            );
+
+
+            document
+                .querySelectorAll(
+                    ".reponse-eleve"
+                )
+                .forEach(
+                    zone => {
+
+                        zone.classList.remove(
+                            "visible"
+                        );
+
+
+                        const texte =
+                            zone.querySelector(
+                                ".texte-reponse-eleve"
+                            );
+
+
+                        if (
+                            texte
+                        ) {
+
+                            texte.textContent =
+                                "";
+
+
+                            texte.classList.remove(
+                                "sans-reponse"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+            document
+                .querySelectorAll(
+                    ".auto-evaluation"
+                )
+                .forEach(
+                    zone => {
+
+                        zone.classList.remove(
+                            "visible"
+                        );
+
+
+                        zone.innerHTML =
+                            "";
+
+                    }
+                );
+
+
+            document
+                .querySelectorAll(
+                    ".indicateur-manuel"
+                )
+                .forEach(
+                    zone => {
+
+                        zone.classList.remove(
+                            "visible"
+                        );
+
+                    }
+                );
+
+
+            document.getElementById(
+                "informations-copie"
+            ).style.display =
+                "none";
+
+
+            const etat =
+                document.getElementById(
+                    "etat-import"
+                );
+
+
+            etat.className =
+                "";
+
+
+            etat.textContent =
+                "";
+
+
+            etat.style.display =
+                "none";
+
+
+            calculerNote();
+
+
+            window.scrollTo({
+
+                top:
+                    0,
+
+                behavior:
+                    "smooth"
+
+            });
+
+        }
+
+
+        /* =========================================================
+           IMPRESSION
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-imprimer"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    window.print();
+
+                }
+            );
+
+
+        /* =========================================================
+           MESSAGES
+           ========================================================= */
+
+        function afficherEtat(
+            texte,
+            type
+        ) {
+
+            const zone =
+                document.getElementById(
+                    "etat-import"
+                );
+
+
+            zone.className =
+                type;
+
+
+            zone.textContent =
+                texte;
+
+
+            zone.style.display =
+                "block";
+
+        }
+
+
+        /* =========================================================
+           SÉCURITÉ HTML
+           ========================================================= */
+
+        function echapperHTML(
+            texte
+        ) {
+
+            return String(
+                texte ?? ""
+            )
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+        /* =========================================================
+           NOM DU FICHIER
+           ========================================================= */
+
+        function nettoyerNomFichier(
+            valeur
+        ) {
+
+            return String(
+                valeur ||
+                "ELEVE"
+            )
+
+                .normalize(
+                    "NFD"
+                )
+
+                .replace(
+                    /[\u0300-\u036f]/g,
+                    ""
+                )
+
+                .trim()
+
+                .replace(
+                    /\s+/g,
+                    "_"
+                )
+
+                .replace(
+                    /[^a-zA-Z0-9_-]/g,
+                    ""
+                );
+
+        }
+
+
+        /* =========================================================
+           PREMIER CALCUL
+           ========================================================= */
+
+        calculerNote();
+
+    </script>
+
+</body>
+
+</html>
