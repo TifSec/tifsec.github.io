@@ -1,0 +1,3485 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DS Technologie 5e – Séances 2 à 5</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #eef2f6;
+            color: #1f2937;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.55;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        /* =========================================================
+   DÉMARRAGE
+   ========================================================= */
+
+        #ecran-demarrage {
+            display: none;
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 30px;
+        }
+
+        .carte-demarrage {
+            padding: 28px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
+        }
+
+        .carte-demarrage h1 {
+            margin-top: 0;
+            color: #243b53;
+            text-align: center;
+        }
+
+        .chrome-obligatoire {
+            margin: 20px 0;
+            padding: 16px;
+            background: #fff7ed;
+            border: 2px solid #ea580c;
+            border-radius: 10px;
+        }
+
+        .identite-demarrage {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .identite-demarrage label {
+            font-weight: bold;
+        }
+
+        .identite-demarrage input {
+            width: 100%;
+            margin-top: 6px;
+            padding: 11px;
+            border: 1px solid #9fb3c8;
+            border-radius: 7px;
+        }
+
+        #btn-commencer {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            border: 0;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #btn-commencer:hover {
+            background: #1d4ed8;
+        }
+
+        /* =========================================================
+   NAVIGATEUR REFUSÉ
+   ========================================================= */
+
+        #navigateur-refuse {
+            display: none;
+            max-width: 700px;
+            margin: 80px auto;
+            padding: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            background: #fee2e2;
+            border: 3px solid #dc2626;
+            border-radius: 14px;
+            color: #7f1d1d;
+        }
+
+        #navigateur-refuse h1 {
+            margin-top: 0;
+            color: #991b1b;
+        }
+
+        .ouvrir-chrome {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            font-size: 1.15rem;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+   DEVOIR
+   ========================================================= */
+
+        #evaluation-s02-s05 {
+            display: none;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .ds-header {
+            margin-bottom: 25px;
+            padding: 24px;
+            background: #243b53;
+            color: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        }
+
+        .ds-header h1 {
+            margin: 0 0 8px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .ds-header p {
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        .identite-affichee {
+            margin: 15px 0;
+            padding: 12px;
+            background: #edf2f7;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+   CONSIGNES
+   ========================================================= */
+
+        .consigne-examen {
+            margin: 20px 0 30px;
+            padding: 22px;
+            background: #fff7ed;
+            border: 2px solid #c2410c;
+            border-radius: 12px;
+        }
+
+        .consigne-examen h2 {
+            margin-top: 0;
+            color: #9a3412;
+        }
+
+        .consigne-examen strong {
+            color: #9a3412;
+        }
+
+        .avertissement {
+            margin: 18px 0;
+            padding: 15px;
+            background: #fee2e2;
+            border-left: 6px solid #dc2626;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .conseil-reponse {
+            margin: 18px 0;
+            padding: 15px;
+            background: #eff6ff;
+            border-left: 6px solid #2563eb;
+            border-radius: 8px;
+        }
+
+        /* =========================================================
+   SURVEILLANCE
+   ========================================================= */
+
+        #surveillance-ds {
+            position: sticky;
+            top: 6px;
+            z-index: 1000;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin: 15px 0 25px;
+            padding: 12px;
+            background: #fee2e2;
+            border: 2px solid #dc2626;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        .compteur {
+            padding: 5px 8px;
+            background: white;
+            border-radius: 7px;
+        }
+
+        #etat-sauvegarde {
+            color: #166534;
+        }
+
+        /* =========================================================
+   EXERCICES
+   ========================================================= */
+
+        .exercice {
+            margin: 30px 0;
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 9px rgba(0, 0, 0, 0.08);
+        }
+
+        .exercice>h2 {
+            margin: -24px -24px 22px;
+            padding: 14px 18px;
+            background: #d9e2ec;
+            color: #102a43;
+            border-radius: 12px 12px 0 0;
+            font-size: 1.35rem;
+        }
+
+        .question {
+            margin: 22px 0;
+            padding: 15px;
+            background: #f8fafc;
+            border-left: 4px solid #486581;
+            border-radius: 7px;
+        }
+
+        .question>p:first-child {
+            margin-top: 0;
+        }
+
+        .exemple {
+            margin: 10px 0 15px;
+            padding: 12px;
+            background: #fefce8;
+            border-left: 4px solid #ca8a04;
+            border-radius: 6px;
+        }
+
+        .reponse-lignes {
+            margin: 8px 0;
+            font-weight: bold;
+            color: #475569;
+        }
+
+        textarea,
+        input.reponse-courte,
+        select {
+            width: 100%;
+            margin-top: 10px;
+            padding: 11px;
+            background: white;
+            border: 1px solid #9fb3c8;
+            border-radius: 7px;
+            color: #111827;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        textarea.reponse-longue {
+            min-height: 155px;
+        }
+
+        textarea.reponse-courte-zone {
+            min-height: 70px;
+        }
+
+        textarea:focus,
+        input:focus,
+        select:focus {
+            outline: 3px solid rgba(72, 101, 129, 0.22);
+            border-color: #486581;
+        }
+
+        table {
+            width: 100%;
+            margin: 18px 0;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            vertical-align: top;
+        }
+
+        th {
+            background: #d9e2ec;
+            color: #102a43;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .bareme {
+            white-space: nowrap;
+            font-weight: bold;
+            color: #526d82;
+        }
+
+        .document {
+            margin: 18px 0;
+            padding: 18px;
+            background: #edf6ff;
+            border-left: 5px solid #2563eb;
+            border-radius: 8px;
+        }
+
+        blockquote {
+            margin: 18px 0;
+            padding: 15px 20px;
+            background: #fff7ed;
+            border-left: 5px solid #c05621;
+            border-radius: 7px;
+            font-style: italic;
+        }
+
+        /* =========================================================
+   FIN
+   ========================================================= */
+
+        .zone-fin {
+            margin: 35px 0;
+            padding: 25px;
+            background: #e8f5e9;
+            border: 2px solid #2e7d32;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .zone-fin h2 {
+            color: #1b5e20;
+        }
+
+        #btn-terminer {
+            margin-top: 15px;
+            padding: 16px 32px;
+            background: #b91c1c;
+            border: 0;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #btn-terminer:hover {
+            background: #991b1b;
+        }
+
+        #message-restauration {
+            display: none;
+            margin: 15px 0;
+            padding: 14px;
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            color: #166534;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+   PAGE TERMINÉE
+   ========================================================= */
+
+        body.devoir-termine {
+            margin: 0 !important;
+            background: white !important;
+        }
+
+        body.devoir-termine * {
+            display: none !important;
+        }
+
+        @media (max-width: 700px) {
+
+            #evaluation-s02-s05,
+            #ecran-demarrage {
+                padding: 12px;
+            }
+
+            .identite-demarrage,
+            #surveillance-ds {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+     NAVIGATEUR REFUSÉ
+     ========================================================= -->
+
+    <section id="navigateur-refuse">
+
+        <h1>Navigateur non autorisé</h1>
+
+        <p>
+            Ce devoir doit obligatoirement être réalisé avec
+            <strong>Google Chrome</strong>.
+        </p>
+
+        <p>
+            Fermez cette fenêtre.
+        </p>
+
+        <div class="ouvrir-chrome">
+            Clic droit sur le fichier<br>
+            → Ouvrir avec<br>
+            → Google Chrome
+        </div>
+
+        <p>
+            Microsoft Edge, Firefox, Opera et les autres navigateurs
+            ne permettent pas de commencer le devoir.
+        </p>
+
+    </section>
+
+    <!-- =========================================================
+     DÉMARRAGE
+     ========================================================= -->
+
+    <section id="ecran-demarrage">
+
+        <div class="carte-demarrage">
+
+            <h1>Devoir surveillé – Technologie 5e</h1>
+
+            <p style="text-align:center;">
+                <strong>Séances 2 à 5 – Durée : 2 heures</strong>
+            </p>
+
+            <div class="chrome-obligatoire">
+                <strong>Google Chrome est obligatoire.</strong><br>
+                N'utilisez qu'un seul onglet pendant tout le devoir.
+            </div>
+
+            <p>
+                Vos réponses sont enregistrées automatiquement.
+            </p>
+
+            <p>
+                Si Google Chrome ou la fenêtre se ferme accidentellement,
+                prévenez immédiatement l'adulte présent puis rouvrez
+                <strong>le même fichier placé sur votre Bureau avec Google Chrome</strong>.
+                Votre travail devrait être restauré automatiquement.
+            </p>
+
+            <div class="identite-demarrage">
+
+                <label>
+                    Nom :
+                    <input type="text" id="nom-demarrage" autocomplete="off">
+                </label>
+
+                <label>
+                    Prénom :
+                    <input type="text" id="prenom-demarrage" autocomplete="off">
+                </label>
+
+            </div>
+
+            <button id="btn-commencer" type="button">
+                Commencer le devoir
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- =========================================================
+     DEVOIR
+     ========================================================= -->
+
+    <main id="evaluation-s02-s05">
+
+        <header class="ds-header">
+
+            <h1>Devoir surveillé – Technologie 5e</h1>
+
+            <p><strong>Séances 2 à 5</strong></p>
+
+            <p>Durée : 2 heures – Travail individuel</p>
+
+            <p>Barème : 60 points + 2 points bonus</p>
+
+        </header>
+
+        <div class="identite-affichee">
+            Élève :
+            <span id="identite-eleve"></span>
+        </div>
+
+        <div id="message-restauration">
+            Votre copie précédente a été retrouvée et restaurée automatiquement.
+        </div>
+
+        <!-- =========================================================
+     CONSIGNES
+     ========================================================= -->
+
+        <section class="consigne-examen">
+
+            <h2>Consignes du devoir</h2>
+
+            <p>
+                <strong>Vous devez répondre directement dans cette page.</strong>
+            </p>
+
+            <p>
+                Lisez entièrement chaque question avant de répondre.
+            </p>
+
+            <div class="conseil-reponse">
+                <strong>Important pour la notation :</strong><br><br>
+
+                Une réponse contenant uniquement un mot ou une affirmation
+                peut ne rapporter qu'une partie des points.
+
+                Lorsque la question vous demande d'expliquer, de comparer ou de justifier,
+                une réponse <strong>développée et argumentée</strong> rapportera davantage de points.
+
+                Utilisez les informations présentes dans le sujet pour montrer
+                comment vous avez trouvé votre réponse.
+            </div>
+
+            <p>
+                Vous devez utiliser uniquement <strong>Google Chrome</strong>
+                et conserver uniquement l'onglet du devoir.
+            </p>
+
+            <p>Il est interdit de consulter :</p>
+
+            <ul>
+                <li>les cours ;</li>
+                <li>un autre site Internet ;</li>
+                <li>un moteur de recherche ;</li>
+                <li>une intelligence artificielle ;</li>
+                <li>une messagerie ;</li>
+                <li>un autre document ou logiciel permettant de rechercher une réponse.</li>
+            </ul>
+
+            <div class="avertissement">
+                Toute sortie réelle de la page est enregistrée dans votre copie.
+            </div>
+
+            <p>
+                Certains raccourcis du navigateur sont également bloqués et enregistrés.
+                Ils sont comptés séparément des sorties de page.
+            </p>
+
+            <p>
+                <strong>Attention aux touches F1 à F12 :</strong>
+                sur les ordinateurs de la salle, certaines fonctions du clavier,
+                par exemple la luminosité, nécessitent d'utiliser la touche
+                <strong>Fn</strong>.
+            </p>
+
+            <p>
+                Appuyer directement sur <strong>F5</strong> demande normalement
+                à Google Chrome d'actualiser la page.
+                Cette commande est donc bloquée pendant le devoir.
+            </p>
+
+            <p>
+                En cas de problème informatique,
+                <strong>ne faites pas plusieurs essais au hasard</strong> :
+                prévenez immédiatement l'adulte présent.
+            </p>
+
+            <p>
+                Lorsque vous cliquez sur <strong>« Terminer mon devoir »</strong>,
+                votre copie est générée puis la page devient entièrement blanche.
+            </p>
+
+            <p>
+                <strong>
+                    À partir de ce moment, vous ne pouvez plus reprendre,
+                    continuer ou recommencer le devoir.
+                </strong>
+            </p>
+
+        </section>
+
+        <div id="surveillance-ds">
+
+            <div class="compteur">
+                Sorties de page :
+                <span id="nb-sorties">0</span>
+            </div>
+
+            <div class="compteur">
+                Raccourcis bloqués :
+                <span id="nb-raccourcis">0</span>
+            </div>
+
+            <div class="compteur" id="etat-sauvegarde">
+                Sauvegardé
+            </div>
+
+        </div>
+
+        <!-- =========================================================
+     EXERCICE 1
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 1 – Les objets qui nous entourent – 7 points</h2>
+
+            <div class="document">
+                Pendant une sortie, on observe les éléments suivants :
+                <strong>une branche d'arbre, une gourde, une pierre,
+                    une lampe de poche, un banc en bois et une pomme.</strong>
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.1.</strong>
+                    Rangez les six éléments en <strong>deux groupes</strong>,
+                    selon ce que vous avez appris en cours.
+                    Donnez ensuite un nom à chacun de vos deux groupes.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <p class="reponse-lignes">
+                    Faites clairement apparaître :<br>
+                    Groupe 1 : ...<br>
+                    Groupe 2 : ...
+                </p>
+
+                <textarea id="q1_1"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.2.</strong>
+                    Expliquez la différence entre vos deux groupes.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <p>
+                    Ne vous contentez pas d'écrire « l'un est ... et l'autre ... ».
+                    Expliquez ce qui permet de les différencier.
+                </p>
+
+                <textarea id="q1_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.3.</strong>
+                    Une personne part marcher pendant plusieurs heures.
+                    Elle emporte une gourde.
+                    <br><br>
+                    <strong>À quoi cette gourde lui sert-elle pendant sa randonnée ?</strong>
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q1_3" class="reponse-courte-zone"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.4.</strong>
+                    Donnez le nom d'un <strong>autre objet</strong>
+                    qu'une personne pourrait utiliser à la place d'une gourde
+                    pour répondre au même besoin.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q1_4" class="reponse-courte-zone"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.5.</strong>
+                    La gourde et l'objet que vous avez proposé en 1.4
+                    sont-ils obligatoirement identiques ?
+                    Expliquez pourquoi ils peuvent pourtant servir au même usage.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q1_5"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 2
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 2 – Un objet n'est jamais tout seul – 7 points</h2>
+
+            <div class="exemple">
+
+                <strong>Exemple :</strong><br><br>
+
+                Sur un voilier :
+                <ul>
+                    <li>la coque est en contact avec l'eau ;</li>
+                    <li>la voile reçoit l'action de l'air ;</li>
+                    <li>le marin agit sur le gouvernail pour changer de direction.</li>
+                </ul>
+
+                Ces éléments agissent les uns sur les autres :
+                on dit qu'ils sont en <strong>interaction</strong>.
+
+            </div>
+
+            <div class="document">
+
+                Maintenant, on étudie un vélo utilisé pour aller au collège.
+
+                Autour du vélo, on peut trouver par exemple :
+                <strong>le cycliste, l'air, etc... .</strong>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.1.</strong>
+                    En vous aidant des <strong>éléments</strong> de la liste ci-dessus, donez
+                    au moins 4 éléments qui peuvent agir sur le vélo ou avec lesquels le vélo est en contact.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <p class="reponse-lignes">
+                    Écrivez une réponse par ligne.
+                </p>
+
+                <textarea id="q2_1"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.2.</strong>
+                    Le cycliste et le vélo agissent l'un sur l'autre.
+                    Donnez <strong>deux exemples précis</strong>.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="exemple">
+                    Exemple sur un autre objet :
+                    « Une personne appuie sur le bouton d'une lampe,
+                    et la lampe produit de la lumière. »
+                </div>
+
+                <p class="reponse-lignes">
+                    Exemple 1 : ...<br>
+                    Exemple 2 : ...
+                </p>
+
+                <textarea id="q2_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.3.</strong>
+                    Expliquez ce qui se passe entre
+                    <strong>les pneus du vélo et la route</strong>
+                    lorsque le vélo avance.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q2_3"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.4.</strong>
+                    Imaginez maintenant que le vélo soit utilisé sous une forte pluie.
+                    Donnez <strong>une partie du vélo</strong>
+                    qui peut être concernée par cette pluie
+                    et expliquez pourquoi.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q2_4"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.5.</strong>
+                    Pourquoi un fabricant doit-il réfléchir
+                    à l'utilisateur, à la route, à la pluie ou aux autres véhicules
+                    lorsqu'il conçoit un vélo ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <p>
+                    Aidez-vous de cette phrase :
+                    <strong>« Le vélo doit pouvoir... »</strong>
+                </p>
+
+                <textarea id="q2_5"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 3
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 3 – Ce que doit faire le vélo et comment il le fait – 7 points</h2>
+
+            <p>
+                Un vélo doit réaliser plusieurs actions.
+            </p>
+
+            <p>
+                En technologie :
+            </p>
+
+            <ul>
+                <li>
+                    <strong>ce que doit faire le vélo</strong>
+                    correspond à une <strong>fonction technique</strong> ;
+                </li>
+
+                <li>
+                    <strong>comment il le fait</strong>
+                    correspond à une <strong>solution technique</strong>.
+                </li>
+            </ul>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ce que doit faire le vélo<br>(fonction technique)</th>
+                        <th>Comment le fait-il ?<br>(solution technique)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Permettre au cycliste de ralentir ou de s'arrêter</td>
+                        <td>À trouver</td>
+                    </tr>
+
+                    <tr>
+                        <td>Permettre au cycliste de changer de direction</td>
+                        <td>À trouver</td>
+                    </tr>
+
+                    <tr>
+                        <td>Transmettre l'effort du cycliste jusqu'à la roue arrière</td>
+                        <td>À trouver</td>
+                    </tr>
+
+                    <tr>
+                        <td>Permettre au cycliste de s'asseoir</td>
+                        <td>À trouver</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.1.</strong>
+                    Complétez le tableau dans votre réponse :
+                    pour chacune des quatre actions,
+                    donnez la partie du vélo qui permet de la réaliser.
+                    <span class="bareme">(4 pts)</span>
+                </p>
+
+                <p class="reponse-lignes">
+                    Une réponse par ligne :<br>
+                    1. Ralentir / s'arrêter → ...<br>
+                    2. Changer de direction → ...<br>
+                    3. Transmettre l'effort → ...<br>
+                    4. S'asseoir → ...
+                </p>
+
+                <textarea id="q3_1" class="reponse-longue"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.2.</strong>
+                    Avec vos propres mots, expliquez la différence entre une fonction technique et une solution
+                    technique :
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <p>
+                    Une fonction technique ...<br>
+                    Une solution technique ...</strong>
+                </p>
+
+                <textarea id="q3_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.3.</strong>
+                    Un vélo possède des freins sur jante.
+                    Un autre possède des freins à disque.
+                    <br><br>
+                    Est-ce que ces deux vélos peuvent quand même
+                    <strong>faire la même chose lorsqu'on freine</strong> ?
+                    Expliquez.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q3_3"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 4
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 4 – À quoi servent les différentes parties d'un vélo ? – 5 points</h2>
+
+            <p>
+                Pour chaque élément suivant, indiquez
+                <strong>le problème qu'il permet de résoudre</strong>
+                ou ce qu'il permet au vélo de faire.
+            </p>
+
+            <ul>
+                <li>un pneu cranté ;</li>
+                <li>un phare ;</li>
+                <li>un dérailleur ;</li>
+                <li>une béquille ;</li>
+                <li>un garde-boue.</li>
+            </ul>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.1.</strong>
+                    Expliquez le rôle de chacun des cinq éléments.
+                    <span class="bareme">(5 pts)</span>
+                </p>
+
+                <p class="reponse-lignes">
+                    Faites obligatoirement <strong>une ligne par élément</strong> :<br><br>
+
+                    Pneu cranté → ...<br>
+                    Phare → ...<br>
+                    Dérailleur → ...<br>
+                    Béquille → ...<br>
+                    Garde-boue → ...
+                </p>
+
+                <textarea id="q4_1" class="reponse-longue"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 5
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 5 – Pourquoi les vélos ont-ils changé ? – 7 points</h2>
+
+            <div class="document">
+
+                Les vélos n'ont pas toujours ressemblé aux vélos actuels.
+
+                Au cours du temps, on a par exemple vu apparaître :
+
+                <ul>
+                    <li>les pédales ;</li>
+                    <li>la transmission par chaîne ;</li>
+                    <li>les pneus gonflables ;</li>
+                    <li>des systèmes de freinage plus efficaces ;</li>
+                    <li>les VTT ;</li>
+                    <li>les vélos à assistance électrique.</li>
+                </ul>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.1.</strong>
+                    Dans la liste ci-dessus,
+                    choisissez <strong>deux évolutions</strong>.
+                    Pour chacune, expliquez ce qu'elle peut apporter à l'utilisateur.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <p class="reponse-lignes">
+                    Évolution 1 → ... parce que ...<br>
+                    Évolution 2 → ... parce que ...
+                </p>
+
+                <textarea id="q5_1"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.2.</strong>
+                    Parmi les raisons suivantes, choisissez les <strong>trois raisons valables</strong>
+                    pouvant expliquer pourquoi un objet technique évolue.
+                    <span class="bareme">(1,5 pt)</span>
+                </p>
+
+                <ul>
+                    <li>améliorer la sécurité ;</li>
+                    <li>suivre une mode ;</li>
+                    <li>répondre à un nouvel usage ;</li>
+                    <li>changer l'apparence extérieure de l'objet ;</li>
+                    <li>utiliser une nouvelle technologie ;</li>
+                    <li>ajouter une fonction supplémentaire qui ne répond pas à un besoin ;</li>
+                </ul>
+
+                <p>
+                    Recopiez uniquement les <strong>trois raisons que vous pensez correctes</strong>.
+                </p>
+
+                <textarea id="q5_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.3.</strong>
+                    Une ancienne draisienne et un vélo moderne
+                    sont très différents.
+                    <br><br>
+                    Pourtant, ils appartiennent à une même famille d'objets.
+                    <br><br>
+                    Complétez la phrase :
+                    <span class="bareme">(1,5 pt)</span>
+                </p>
+
+                <p>
+                    « Ils appartiennent à la même famille parce qu'ils servent tous les deux à... »
+                </p>
+
+                <textarea id="q5_3"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.4.</strong>
+                    Un fabricant remplace un ancien système de freinage
+                    par un système plus efficace.
+                    <br><br>
+                    Le besoin principal du vélo change-t-il ?
+                    <br>
+                    Répondez par <strong>oui ou non</strong>,
+                    puis expliquez ce qui a réellement changé.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q5_4"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.5.</strong>
+                    Imaginez une amélioration permettant de rendre
+                    un vélo plus sûr la nuit.
+                    <br><br>
+                    Donnez votre idée puis expliquez en quoi elle améliore la sécurité.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q5_5"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 6
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 6 – Vélo classique ou vélo électrique ? – 6 points</h2>
+
+            <div class="document">
+
+                On compare un vélo classique et une version électrique.
+
+                Le vélo électrique :
+
+                <ul>
+                    <li>aide le cycliste dans les montées ;</li>
+                    <li>permet de parcourir plus facilement de longues distances ;</li>
+                    <li>est plus lourd ;</li>
+                    <li>est plus cher ;</li>
+                    <li>possède une batterie qu'il faut recharger.</li>
+                </ul>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>6.1.</strong>
+                    Recopiez <strong>deux avantages</strong>
+                    du vélo électrique présents dans le texte.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <p class="reponse-lignes">
+                    Avantage 1 : ...<br>
+                    Avantage 2 : ...
+                </p>
+
+                <textarea id="q6_1"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>6.2.</strong>
+                    Recopiez <strong>deux contraintes ou inconvénients</strong>
+                    présents dans le texte.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <p class="reponse-lignes">
+                    Contrainte 1 : ...<br>
+                    Contrainte 2 : ...
+                </p>
+
+                <textarea id="q6_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>6.3.</strong>
+                    Imaginez deux personnes :
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>Personne A :</strong>
+                        roule 2 km sur une route plate et veut dépenser le moins possible.
+                    </li>
+
+                    <li>
+                        <strong>Personne B :</strong>
+                        roule 15 km avec plusieurs montées et veut limiter son effort.
+                    </li>
+                </ul>
+
+                <p>
+                    Pour chaque personne, choisissez
+                    <strong>vélo classique ou vélo électrique</strong>
+                    puis expliquez votre choix.
+                </p>
+
+                <p class="reponse-lignes">
+                    Personne A → ... parce que ...<br>
+                    Personne B → ... parce que ...
+                </p>
+
+                <textarea id="q6_3" class="reponse-longue"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 7
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 7 – Comparer plusieurs vélos – 9 points</h2>
+
+            <p>
+                Les valeurs ci-dessous sont simplifiées pour faciliter la comparaison.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Vélo</th>
+                        <th>Masse</th>
+                        <th>Prix</th>
+                        <th>Terrain principal</th>
+                        <th>Transport</th>
+                        <th>Particularité</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>A – Ville</td>
+                        <td>18 kg</td>
+                        <td>300 €</td>
+                        <td>Routes urbaines</td>
+                        <td>Petit chargement possible</td>
+                        <td>Équipé pour les trajets quotidiens</td>
+                    </tr>
+
+                    <tr>
+                        <td>B – VTT</td>
+                        <td>15 kg</td>
+                        <td>500 €</td>
+                        <td>Chemins et terrains accidentés</td>
+                        <td>Faible</td>
+                        <td>Suspension et pneus adaptés</td>
+                    </tr>
+
+                    <tr>
+                        <td>C – Route</td>
+                        <td>10 kg</td>
+                        <td>900 €</td>
+                        <td>Route</td>
+                        <td>Faible</td>
+                        <td>Très léger</td>
+                    </tr>
+
+                    <tr>
+                        <td>D – Cargo électrique</td>
+                        <td>66 kg</td>
+                        <td>5 000 €</td>
+                        <td>Ville et route</td>
+                        <td>Très important</td>
+                        <td>Assistance électrique</td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <div class="question">
+
+                <p>
+                    <strong>7.1.</strong>
+                    Répondez aux quatre petites questions suivantes.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <ul>
+                    <li>Quel vélo est le plus léger ?</li>
+                    <li>Quel vélo est le moins cher ?</li>
+                    <li>Quel vélo est prévu pour les chemins accidentés ?</li>
+                    <li>Quel vélo permet de transporter le plus de choses ?</li>
+                </ul>
+
+                <p class="reponse-lignes">
+                    Écrivez obligatoirement <strong>une réponse par ligne</strong>.
+                </p>
+
+                <textarea id="q7_1"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>7.2.</strong>
+                    Léa roule surtout sur des chemins en mauvais état.
+                    <br><br>
+                    Quel vélo choisiriez-vous pour elle ?
+                    <br><br>
+                    Donnez :
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <ul>
+                    <li>le nom du vélo ;</li>
+                    <li>deux informations du tableau qui expliquent votre choix.</li>
+                </ul>
+
+                <textarea id="q7_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>7.3.</strong>
+                    Une famille souhaite transporter deux enfants
+                    et des courses en ville.
+                    <br><br>
+                    Quel vélo semble le plus adapté ?
+                    Utilisez au moins <strong>deux informations du tableau</strong>.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <textarea id="q7_3"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>7.4.</strong>
+                    Le vélo C est le plus léger.
+                    Est-ce que cela suffit pour dire qu'il est le meilleur
+                    pour tout le monde ?
+                    <br><br>
+                    Répondez puis donnez un exemple d'utilisateur
+                    pour lequel un autre vélo serait préférable.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q7_4"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>7.5.</strong>
+                    Un vélo peut être :
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <ul>
+                    <li>plus léger mais plus cher ;</li>
+                    <li>plus pratique pour transporter mais beaucoup plus lourd ;</li>
+                    <li>plus adapté aux chemins mais moins adapté aux longues routes.</li>
+                </ul>
+
+                <p>
+                    Expliquez pourquoi, lorsqu'on choisit un vélo,
+                    on doit parfois accepter un avantage
+                    <strong>et</strong> un inconvénient.
+                </p>
+
+                <p>
+                    Le mot utilisé en technologie est :
+                    <strong>compromis</strong>.
+                </p>
+
+                <textarea id="q7_5"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 8
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 8 – À vous de choisir – 6 points</h2>
+
+            <div class="document">
+
+                Vous devez conseiller un vélo à <strong>Mathis</strong>.
+
+                Mathis :
+
+                <ul>
+                    <li>habite à 4 km du collège ;</li>
+                    <li>roule principalement sur la route ;</li>
+                    <li>transporte un sac de cours ;</li>
+                    <li>ne veut pas dépenser plus de 600 € ;</li>
+                    <li>ne cherche pas un vélo de compétition.</li>
+                </ul>
+
+                Vous devez choisir parmi les vélos A, B, C et D
+                du tableau de l'exercice précédent.
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>8.1.</strong>
+                    Avant de choisir un vélo,
+                    recopiez les <strong>trois informations</strong>
+                    qui vous semblent les plus importantes dans la situation de Mathis.
+                    <span class="bareme">(1,5 pt)</span>
+                </p>
+
+                <p class="reponse-lignes">
+                    Critère important 1 : ...<br>
+                    Critère important 2 : ...<br>
+                    Critère important 3 : ...
+                </p>
+
+                <textarea id="q8_1"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>8.2.</strong>
+                    Éliminez au moins <strong>un vélo</strong>
+                    qui vous semble mal adapté.
+                    <br><br>
+                    Indiquez lequel et expliquez pourquoi.
+                    <span class="bareme">(1,5 pt)</span>
+                </p>
+
+                <textarea id="q8_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>8.3.</strong>
+                    Choisissez maintenant le vélo
+                    que vous conseilleriez à Mathis.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q8_3" class="reponse-courte-zone"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>8.4.</strong>
+                    Justifiez votre choix en utilisant
+                    <strong>au moins trois informations</strong>
+                    de la situation ou du tableau.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <p class="reponse-lignes">
+                    Je choisis ... parce que :<br>
+                    1. ...<br>
+                    2. ...<br>
+                    3. ...
+                </p>
+
+                <textarea id="q8_4" class="reponse-longue"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 9
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 9 – Vérifier ce que vous avez compris – 6 points</h2>
+
+            <p>
+                Pour chaque affirmation :
+            </p>
+
+            <ol>
+                <li>écrivez <strong>VRAI</strong> ou <strong>FAUX</strong> ;</li>
+                <li>si elle est fausse, corrigez-la.</li>
+            </ol>
+
+            <div class="question">
+
+                <p>
+                    <strong>9.1.</strong>
+                    « Un objet technique existe naturellement dans la nature. »
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q9_1"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>9.2.</strong>
+                    « Deux objets différents peuvent répondre au même besoin. »
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q9_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>9.3.</strong>
+                    « Une fonction technique explique ce que doit faire une partie de l'objet. »
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q9_3"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>9.4.</strong>
+                    « Une seule fonction technique ne peut avoir qu'une seule solution technique. »
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q9_4"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>9.5.</strong>
+                    « L'objet le plus cher est automatiquement le meilleur. »
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q9_5"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>9.6.</strong>
+                    « Le meilleur choix dépend de l'usage et des critères importants pour l'utilisateur. »
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q9_6"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     BONUS
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Bonus – Concevoir le vélo d'un collégien – +2 points</h2>
+
+            <div class="document">
+
+                Imaginez qu'un fabricant veuille créer
+                un nouveau vélo pour un élève qui habite
+                à environ 5 km de son collège.
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    Vous allez l'aider en trois étapes.
+                </p>
+
+                <p>
+                    <strong>Étape 1 :</strong>
+                    choisissez <strong>quatre critères</strong> dans la liste :
+                </p>
+
+                <ul>
+                    <li>prix ;</li>
+                    <li>masse ;</li>
+                    <li>confort ;</li>
+                    <li>sécurité ;</li>
+                    <li>éclairage ;</li>
+                    <li>transport du sac ;</li>
+                    <li>adaptation à la route ;</li>
+                    <li>entretien ;</li>
+                    <li>assistance électrique.</li>
+                </ul>
+
+                <p>
+                    <strong>Étape 2 :</strong>
+                    classez ces quatre critères
+                    du plus important au moins important.
+                </p>
+
+                <p>
+                    <strong>Étape 3 :</strong>
+                    expliquez en une phrase pourquoi
+                    votre critère numéro 1 est le plus important.
+                </p>
+
+                <p class="reponse-lignes">
+                    1. ...<br>
+                    2. ...<br>
+                    3. ...<br>
+                    4. ...<br><br>
+
+                    Mon critère n°1 est important parce que...
+                </p>
+
+                <textarea id="bonus" class="reponse-longue"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     FIN
+     ========================================================= -->
+
+        <section class="zone-fin">
+
+            <h2>Vous pensez avoir terminé ?</h2>
+
+            <p>
+                Il vous reste peut-être du temps :
+                utilisez-le pour améliorer vos réponses.
+            </p>
+
+            <p>
+                Vérifiez en particulier :
+            </p>
+
+            <ul style="text-align:left; display:inline-block;">
+                <li>que toutes les questions ont une réponse ;</li>
+                <li>que les réponses demandant « pourquoi » comportent une explication ;</li>
+                <li>que vous avez utilisé les informations des tableaux lorsque cela est demandé ;</li>
+                <li>que vos réponses sont suffisamment précises ;</li>
+                <li>que vous n'avez pas répondu uniquement par un mot lorsqu'une justification était attendue.</li>
+            </ul>
+
+            <p>
+                <strong>
+                    Après validation, le sujet deviendra entièrement blanc.
+                </strong>
+            </p>
+
+            <p>
+                Vous ne pourrez plus revenir en arrière,
+                reprendre ou recommencer le devoir.
+            </p>
+
+            <button id="btn-terminer" type="button">
+                Terminer mon devoir
+            </button>
+
+        </section>
+
+    </main>
+
+    <script>
+        /* =========================================================
+           CONFIGURATION
+           ========================================================= */
+
+        const PREFIXE_GLOBAL = "DS5E_S02_S05_V3_";
+        const CLE_SESSION_ACTIVE = PREFIXE_GLOBAL + "SESSION_ACTIVE";
+
+        let sessionId = null;
+        let prefixe = null;
+
+        let devoirCommence = false;
+        let devoirTermine = false;
+
+        let sorties = 0;
+        let raccourcis = 0;
+
+        let historiqueSorties = [];
+        let historiqueRaccourcis = [];
+
+        let incidentEnCours = false;
+        let heureSortie = null;
+
+        let sauvegardeTimer = null;
+        let surveillanceFocusTimer = null;
+
+        /* =========================================================
+           OUTILS
+           ========================================================= */
+
+        function nettoyerTexte(texte) {
+            return texte
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-zA-Z0-9_-]/g, "_")
+                .toUpperCase();
+        }
+
+        function echapperHTML(texte) {
+            return String(texte)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function formatDate(date) {
+            return date.toLocaleString(
+                "fr-FR",
+                {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit"
+                }
+            );
+        }
+
+        /* =========================================================
+           GOOGLE CHROME UNIQUEMENT
+           ========================================================= */
+
+        async function estGoogleChrome() {
+
+            if (
+                navigator.userAgentData &&
+                navigator.userAgentData.brands
+            ) {
+
+                const marques =
+                    navigator.userAgentData.brands.map(
+                        marque => marque.brand
+                    );
+
+                const chrome =
+                    marques.includes("Google Chrome");
+
+                const edge =
+                    marques.includes("Microsoft Edge");
+
+                const opera =
+                    marques.includes("Opera");
+
+                return chrome && !edge && !opera;
+            }
+
+            const ua =
+                navigator.userAgent;
+
+            const chrome =
+                /Chrome\//.test(ua);
+
+            const edge =
+                /Edg\//.test(ua);
+
+            const opera =
+                /OPR\//.test(ua);
+
+            const firefox =
+                /Firefox\//.test(ua);
+
+            return (
+                chrome &&
+                !edge &&
+                !opera &&
+                !firefox
+            );
+        }
+
+        function afficherNavigateurRefuse() {
+
+            document.title =
+                "Navigateur non autorisé";
+
+            document.getElementById(
+                "navigateur-refuse"
+            ).style.display = "block";
+
+            document.getElementById(
+                "ecran-demarrage"
+            ).style.display = "none";
+
+            document.getElementById(
+                "evaluation-s02-s05"
+            ).style.display = "none";
+        }
+
+        /* =========================================================
+           INITIALISATION
+           ========================================================= */
+
+        async function initialiserDevoir() {
+
+            const navigateurOK =
+                await estGoogleChrome();
+
+            if (!navigateurOK) {
+
+                afficherNavigateurRefuse();
+
+                return;
+            }
+
+            document.getElementById(
+                "ecran-demarrage"
+            ).style.display = "block";
+
+            const sessionActiveExistante =
+                localStorage.getItem(
+                    CLE_SESSION_ACTIVE
+                );
+
+            if (sessionActiveExistante) {
+
+                sessionId =
+                    sessionActiveExistante;
+
+                prefixe =
+                    PREFIXE_GLOBAL +
+                    sessionId +
+                    "_";
+
+                const termine =
+                    localStorage.getItem(
+                        prefixe + "termine"
+                    ) === "1";
+
+                if (termine) {
+
+                    afficherPageTerminee();
+
+                    return;
+                }
+
+                restaurerSessionExistante();
+
+                return;
+            }
+
+            document
+                .getElementById(
+                    "btn-commencer"
+                )
+                .addEventListener(
+                    "click",
+                    commencerDevoir
+                );
+        }
+
+        initialiserDevoir();
+
+        /* =========================================================
+           COMMENCER LE DEVOIR
+           ========================================================= */
+
+        function commencerDevoir() {
+
+            const nom =
+                document.getElementById(
+                    "nom-demarrage"
+                ).value.trim();
+
+            const prenom =
+                document.getElementById(
+                    "prenom-demarrage"
+                ).value.trim();
+
+            if (!nom || !prenom) {
+
+                alert(
+                    "Vous devez renseigner votre nom et votre prénom."
+                );
+
+                return;
+            }
+
+            sessionId =
+                nettoyerTexte(nom) +
+                "_" +
+                nettoyerTexte(prenom);
+
+            prefixe =
+                PREFIXE_GLOBAL +
+                sessionId +
+                "_";
+
+            const ancienneSession =
+                localStorage.getItem(
+                    prefixe + "debut"
+                );
+
+            if (ancienneSession) {
+
+                const termine =
+                    localStorage.getItem(
+                        prefixe + "termine"
+                    ) === "1";
+
+                if (termine) {
+
+                    alert(
+                        "Ce devoir a déjà été terminé sur ce poste.\n\n" +
+                        "Il n'est pas possible de le recommencer."
+                    );
+
+                    afficherPageTerminee();
+
+                    return;
+                }
+            }
+
+            localStorage.setItem(
+                CLE_SESSION_ACTIVE,
+                sessionId
+            );
+
+            localStorage.setItem(
+                prefixe + "nom",
+                nom
+            );
+
+            localStorage.setItem(
+                prefixe + "prenom",
+                prenom
+            );
+
+            if (!ancienneSession) {
+
+                localStorage.setItem(
+                    prefixe + "debut",
+                    new Date().toISOString()
+                );
+            }
+
+            lancerInterfaceDevoir(
+                nom,
+                prenom
+            );
+
+            initialiserSauvegarde();
+
+            enregistrerToutesLesReponses();
+
+            initialiserSurveillanceFocus();
+        }
+
+        /* =========================================================
+           RESTAURATION
+           ========================================================= */
+
+        function restaurerSessionExistante() {
+
+            const nom =
+                localStorage.getItem(
+                    prefixe + "nom"
+                ) || "";
+
+            const prenom =
+                localStorage.getItem(
+                    prefixe + "prenom"
+                ) || "";
+
+            devoirCommence = true;
+
+            sorties =
+                Number(
+                    localStorage.getItem(
+                        prefixe + "sorties"
+                    ) || 0
+                );
+
+            raccourcis =
+                Number(
+                    localStorage.getItem(
+                        prefixe + "raccourcis"
+                    ) || 0
+                );
+
+            historiqueSorties =
+                JSON.parse(
+                    localStorage.getItem(
+                        prefixe + "historiqueSorties"
+                    ) || "[]"
+                );
+
+            historiqueRaccourcis =
+                JSON.parse(
+                    localStorage.getItem(
+                        prefixe + "historiqueRaccourcis"
+                    ) || "[]"
+                );
+
+            lancerInterfaceDevoir(
+                nom,
+                prenom
+            );
+
+            restaurerToutesLesReponses();
+
+            document.getElementById(
+                "message-restauration"
+            ).style.display = "block";
+
+            mettreAJourCompteurs();
+
+            initialiserSauvegarde();
+
+            initialiserSurveillanceFocus();
+        }
+
+        /* =========================================================
+           AFFICHAGE DU DEVOIR
+           ========================================================= */
+
+        function lancerInterfaceDevoir(
+            nom,
+            prenom
+        ) {
+
+            devoirCommence = true;
+
+            document.getElementById(
+                "ecran-demarrage"
+            ).style.display = "none";
+
+            document.getElementById(
+                "evaluation-s02-s05"
+            ).style.display = "block";
+
+            document.getElementById(
+                "identite-eleve"
+            ).textContent =
+                nom + " " + prenom;
+
+            sorties =
+                Number(
+                    localStorage.getItem(
+                        prefixe + "sorties"
+                    ) || 0
+                );
+
+            raccourcis =
+                Number(
+                    localStorage.getItem(
+                        prefixe + "raccourcis"
+                    ) || 0
+                );
+
+            historiqueSorties =
+                JSON.parse(
+                    localStorage.getItem(
+                        prefixe + "historiqueSorties"
+                    ) || "[]"
+                );
+
+            historiqueRaccourcis =
+                JSON.parse(
+                    localStorage.getItem(
+                        prefixe + "historiqueRaccourcis"
+                    ) || "[]"
+                );
+
+            mettreAJourCompteurs();
+        }
+
+        /* =========================================================
+           SAUVEGARDE
+           ========================================================= */
+
+        function initialiserSauvegarde() {
+
+            const champs =
+                document.querySelectorAll(
+                    "#evaluation-s02-s05 textarea, " +
+                    "#evaluation-s02-s05 input, " +
+                    "#evaluation-s02-s05 select"
+                );
+
+            champs.forEach(
+                champ => {
+
+                    const valeur =
+                        localStorage.getItem(
+                            prefixe +
+                            "champ_" +
+                            champ.id
+                        );
+
+                    if (valeur !== null) {
+
+                        champ.value =
+                            valeur;
+                    }
+
+                    champ.addEventListener(
+                        "input",
+                        () => {
+
+                            if (
+                                devoirTermine
+                            ) {
+                                return;
+                            }
+
+                            localStorage.setItem(
+                                prefixe +
+                                "champ_" +
+                                champ.id,
+                                champ.value
+                            );
+
+                            afficherEtatSauvegarde();
+                        }
+                    );
+                }
+            );
+
+            sauvegardeTimer =
+                setInterval(
+                    () => {
+
+                        if (
+                            devoirCommence &&
+                            !devoirTermine
+                        ) {
+                            enregistrerToutesLesReponses();
+                        }
+                    },
+                    3000
+                );
+        }
+
+        function enregistrerToutesLesReponses() {
+
+            if (
+                !prefixe ||
+                devoirTermine
+            ) {
+                return;
+            }
+
+            const champs =
+                document.querySelectorAll(
+                    "#evaluation-s02-s05 textarea, " +
+                    "#evaluation-s02-s05 input, " +
+                    "#evaluation-s02-s05 select"
+                );
+
+            champs.forEach(
+                champ => {
+
+                    localStorage.setItem(
+                        prefixe +
+                        "champ_" +
+                        champ.id,
+                        champ.value
+                    );
+                }
+            );
+
+            localStorage.setItem(
+                prefixe +
+                "derniereSauvegarde",
+                new Date().toISOString()
+            );
+
+            afficherEtatSauvegarde();
+        }
+
+        function restaurerToutesLesReponses() {
+
+            const champs =
+                document.querySelectorAll(
+                    "#evaluation-s02-s05 textarea, " +
+                    "#evaluation-s02-s05 input, " +
+                    "#evaluation-s02-s05 select"
+                );
+
+            champs.forEach(
+                champ => {
+
+                    const valeur =
+                        localStorage.getItem(
+                            prefixe +
+                            "champ_" +
+                            champ.id
+                        );
+
+                    if (valeur !== null) {
+
+                        champ.value =
+                            valeur;
+                    }
+                }
+            );
+        }
+
+        function afficherEtatSauvegarde() {
+
+            const el =
+                document.getElementById(
+                    "etat-sauvegarde"
+                );
+
+            if (!el) {
+                return;
+            }
+
+            el.textContent =
+                "Sauvegardé à " +
+                new Date().toLocaleTimeString(
+                    "fr-FR",
+                    {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit"
+                    }
+                );
+        }
+
+        window.addEventListener(
+            "beforeunload",
+            () => {
+
+                enregistrerToutesLesReponses();
+            }
+        );
+
+        window.addEventListener(
+            "pagehide",
+            () => {
+
+                enregistrerToutesLesReponses();
+            }
+        );
+
+        /* =========================================================
+           RACCOURCIS BLOQUÉS
+           ========================================================= */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    !devoirCommence ||
+                    devoirTermine
+                ) {
+                    return;
+                }
+
+                let raccourci =
+                    null;
+
+                if (
+                    event.key === "F5"
+                ) {
+
+                    raccourci =
+                        "F5 – actualisation";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key.toLowerCase() === "r"
+                ) {
+
+                    raccourci =
+                        event.shiftKey
+                            ? "Ctrl+Shift+R – actualisation forcée"
+                            : "Ctrl+R – actualisation";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key.toLowerCase() === "t"
+                ) {
+
+                    raccourci =
+                        "Ctrl+T – nouvel onglet";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key.toLowerCase() === "n"
+                ) {
+
+                    raccourci =
+                        "Ctrl+N – nouvelle fenêtre";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key.toLowerCase() === "w"
+                ) {
+
+                    raccourci =
+                        "Ctrl+W – fermeture onglet";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key.toLowerCase() === "l"
+                ) {
+
+                    raccourci =
+                        "Ctrl+L – barre d'adresse";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key.toLowerCase() === "o"
+                ) {
+
+                    raccourci =
+                        "Ctrl+O – ouvrir un fichier";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key.toLowerCase() === "u"
+                ) {
+
+                    raccourci =
+                        "Ctrl+U – code source";
+                }
+
+                else if (
+                    event.key === "F12"
+                ) {
+
+                    raccourci =
+                        "F12 – outils développeur";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.shiftKey &&
+                    (
+                        event.key.toLowerCase() === "i" ||
+                        event.key.toLowerCase() === "j"
+                    )
+                ) {
+
+                    raccourci =
+                        "Outils développeur";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key === "Tab"
+                ) {
+
+                    raccourci =
+                        "Ctrl+Tab – changement d'onglet";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key === "PageDown"
+                ) {
+
+                    raccourci =
+                        "Ctrl+PageDown – changement d'onglet";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key === "PageUp"
+                ) {
+
+                    raccourci =
+                        "Ctrl+PageUp – changement d'onglet";
+                }
+
+                else if (
+                    event.altKey &&
+                    event.key === "ArrowLeft"
+                ) {
+
+                    raccourci =
+                        "Alt+Flèche gauche – page précédente";
+                }
+
+                else if (
+                    event.altKey &&
+                    event.key === "ArrowRight"
+                ) {
+
+                    raccourci =
+                        "Alt+Flèche droite – page suivante";
+                }
+
+                if (raccourci) {
+
+                    event.preventDefault();
+
+                    enregistrerRaccourciBloque(
+                        raccourci
+                    );
+                }
+            }
+        );
+
+        document.addEventListener(
+            "contextmenu",
+            event => {
+
+                if (
+                    devoirCommence &&
+                    !devoirTermine
+                ) {
+
+                    event.preventDefault();
+
+                    enregistrerRaccourciBloque(
+                        "Clic droit bloqué"
+                    );
+                }
+            }
+        );
+
+        function enregistrerRaccourciBloque(
+            description
+        ) {
+
+            raccourcis++;
+
+            historiqueRaccourcis.push(
+                {
+                    date:
+                        new Date().toISOString(),
+
+                    description:
+                        description
+                }
+            );
+
+            localStorage.setItem(
+                prefixe +
+                "raccourcis",
+                String(raccourcis)
+            );
+
+            localStorage.setItem(
+                prefixe +
+                "historiqueRaccourcis",
+                JSON.stringify(
+                    historiqueRaccourcis
+                )
+            );
+
+            mettreAJourCompteurs();
+
+            afficherMessageTemporaire(
+                "Commande bloquée : " +
+                description
+            );
+        }
+
+        function afficherMessageTemporaire(
+            message
+        ) {
+
+            const zone =
+                document.getElementById(
+                    "etat-sauvegarde"
+                );
+
+            if (!zone) {
+                return;
+            }
+
+            zone.textContent =
+                message;
+
+            setTimeout(
+                () => {
+                    afficherEtatSauvegarde();
+                },
+                2500
+            );
+        }
+
+        /* =========================================================
+           SURVEILLANCE DES SORTIES
+           ========================================================= */
+
+        function commencerIncidentSortie(
+            type
+        ) {
+
+            if (
+                !devoirCommence ||
+                devoirTermine ||
+                incidentEnCours
+            ) {
+                return;
+            }
+
+            incidentEnCours =
+                true;
+
+            heureSortie =
+                new Date();
+
+            sorties++;
+
+            historiqueSorties.push(
+                {
+                    sortie:
+                        heureSortie.toISOString(),
+
+                    retour:
+                        null,
+
+                    type:
+                        type
+                }
+            );
+
+            sauvegarderSurveillance();
+
+            mettreAJourCompteurs();
+        }
+
+        function terminerIncidentSortie() {
+
+            if (
+                !incidentEnCours ||
+                devoirTermine
+            ) {
+                return;
+            }
+
+            const retour =
+                new Date();
+
+            const dernier =
+                historiqueSorties[
+                historiqueSorties.length - 1
+                ];
+
+            if (
+                dernier &&
+                dernier.retour === null
+            ) {
+
+                dernier.retour =
+                    retour.toISOString();
+            }
+
+            incidentEnCours =
+                false;
+
+            heureSortie =
+                null;
+
+            sauvegarderSurveillance();
+        }
+
+        document.addEventListener(
+            "visibilitychange",
+            () => {
+
+                if (
+                    !devoirCommence ||
+                    devoirTermine
+                ) {
+                    return;
+                }
+
+                if (
+                    document.hidden
+                ) {
+
+                    commencerIncidentSortie(
+                        "Page masquée ou changement d'onglet"
+                    );
+                }
+
+                else if (
+                    document.hasFocus()
+                ) {
+
+                    terminerIncidentSortie();
+                }
+            }
+        );
+
+        window.addEventListener(
+            "blur",
+            () => {
+
+                if (
+                    !devoirCommence ||
+                    devoirTermine
+                ) {
+                    return;
+                }
+
+                commencerIncidentSortie(
+                    "Perte de focus de la page"
+                );
+            }
+        );
+
+        window.addEventListener(
+            "focus",
+            () => {
+
+                if (
+                    !devoirCommence ||
+                    devoirTermine
+                ) {
+                    return;
+                }
+
+                if (
+                    !document.hidden
+                ) {
+
+                    terminerIncidentSortie();
+                }
+            }
+        );
+
+        /* Vérification régulière supplémentaire */
+
+        function initialiserSurveillanceFocus() {
+
+            if (
+                surveillanceFocusTimer
+            ) {
+
+                clearInterval(
+                    surveillanceFocusTimer
+                );
+            }
+
+            surveillanceFocusTimer =
+                setInterval(
+                    () => {
+
+                        if (
+                            !devoirCommence ||
+                            devoirTermine
+                        ) {
+                            return;
+                        }
+
+                        if (
+                            !document.hasFocus()
+                        ) {
+
+                            commencerIncidentSortie(
+                                "La page du devoir n'a plus le focus"
+                            );
+                        }
+
+                        else if (
+                            !document.hidden
+                        ) {
+
+                            terminerIncidentSortie();
+                        }
+
+                    },
+                    1000
+                );
+        }
+
+        function sauvegarderSurveillance() {
+
+            if (!prefixe) {
+                return;
+            }
+
+            localStorage.setItem(
+                prefixe +
+                "sorties",
+                String(sorties)
+            );
+
+            localStorage.setItem(
+                prefixe +
+                "historiqueSorties",
+                JSON.stringify(
+                    historiqueSorties
+                )
+            );
+        }
+
+        function mettreAJourCompteurs() {
+
+            const sortiesEl =
+                document.getElementById(
+                    "nb-sorties"
+                );
+
+            const raccourcisEl =
+                document.getElementById(
+                    "nb-raccourcis"
+                );
+
+            if (
+                sortiesEl
+            ) {
+
+                sortiesEl.textContent =
+                    sorties;
+            }
+
+            if (
+                raccourcisEl
+            ) {
+
+                raccourcisEl.textContent =
+                    raccourcis;
+            }
+        }
+
+        /* =========================================================
+           TERMINER LE DEVOIR
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-terminer"
+            )
+            .addEventListener(
+                "click",
+                terminerDevoir
+            );
+
+        function terminerDevoir() {
+
+            enregistrerToutesLesReponses();
+
+            const confirmation =
+                confirm(
+                    "ATTENTION\n\n" +
+                    "Voulez-vous vraiment terminer votre devoir ?\n\n" +
+                    "Après validation :\n" +
+                    "- votre copie sera téléchargée ;\n" +
+                    "- vos réponses seront définitivement verrouillées ;\n" +
+                    "- le sujet deviendra entièrement blanc ;\n" +
+                    "- vous ne pourrez ni reprendre, ni continuer, ni recommencer le devoir."
+                );
+
+            if (
+                !confirmation
+            ) {
+                return;
+            }
+
+            devoirTermine =
+                true;
+
+            if (
+                sauvegardeTimer
+            ) {
+
+                clearInterval(
+                    sauvegardeTimer
+                );
+            }
+
+            if (
+                surveillanceFocusTimer
+            ) {
+
+                clearInterval(
+                    surveillanceFocusTimer
+                );
+            }
+
+            if (
+                incidentEnCours
+            ) {
+
+                const dernier =
+                    historiqueSorties[
+                    historiqueSorties.length - 1
+                    ];
+
+                if (
+                    dernier &&
+                    dernier.retour === null
+                ) {
+
+                    dernier.retour =
+                        new Date().toISOString();
+                }
+
+                incidentEnCours =
+                    false;
+            }
+
+            sauvegarderSurveillance();
+
+            const fin =
+                new Date();
+
+            genererCopie(
+                fin
+            );
+
+            localStorage.setItem(
+                prefixe +
+                "termine",
+                "1"
+            );
+
+            setTimeout(
+                afficherPageTerminee,
+                500
+            );
+        }
+
+        /* =========================================================
+           GÉNÉRATION DE LA COPIE
+           ========================================================= */
+
+        function genererCopie(
+            fin
+        ) {
+
+            const nom =
+                localStorage.getItem(
+                    prefixe +
+                    "nom"
+                ) || "";
+
+            const prenom =
+                localStorage.getItem(
+                    prefixe +
+                    "prenom"
+                ) || "";
+
+            const debutISO =
+                localStorage.getItem(
+                    prefixe +
+                    "debut"
+                );
+
+            const debut =
+                debutISO
+                    ? new Date(
+                        debutISO
+                    )
+                    : new Date();
+
+            const dureeMs =
+                Math.max(
+                    0,
+                    fin - debut
+                );
+
+            const minutesTotales =
+                Math.round(
+                    dureeMs / 60000
+                );
+
+            const heures =
+                Math.floor(
+                    minutesTotales / 60
+                );
+
+            const minutes =
+                minutesTotales % 60;
+
+            const dureeTexte =
+                heures > 0
+                    ? `${heures} h ${String(minutes).padStart(2, "0")}`
+                    : `${minutes} min`;
+
+            const reponsesHTML =
+                construireReponsesCopie();
+
+            const sortiesHTML =
+                construireHistoriqueSorties();
+
+            const raccourcisHTML =
+                construireHistoriqueRaccourcis();
+
+            const copie = `
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+Copie DS Technologie 5e -
+${echapperHTML(nom)}
+${echapperHTML(prenom)}
+</title>
+
+<style>
+
+body {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f2937;
+    line-height: 1.5;
+}
+
+h1 {
+    padding: 18px;
+    background: #243b53;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.infos {
+    margin: 20px 0;
+    padding: 16px;
+    background: #edf2f7;
+    border-radius: 9px;
+}
+
+.surveillance {
+    margin: 20px 0;
+    padding: 16px;
+    background: #fff7ed;
+    border: 2px solid #ea580c;
+    border-radius: 9px;
+}
+
+.question-copie {
+    margin: 18px 0;
+    padding: 14px;
+    border-left: 4px solid #486581;
+    background: #f8fafc;
+}
+
+.reponse {
+    min-height: 35px;
+    margin-top: 8px;
+    padding: 10px;
+    background: white;
+    border: 1px solid #cbd5e1;
+    white-space: pre-wrap;
+}
+
+table {
+    width: 100%;
+    margin: 10px 0;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    vertical-align: top;
+}
+
+th {
+    background: #e2e8f0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+Devoir surveillé – Technologie 5e
+</h1>
+
+<div class="infos">
+
+    <p>
+        <strong>Nom :</strong>
+        ${echapperHTML(nom)}
+    </p>
+
+    <p>
+        <strong>Prénom :</strong>
+        ${echapperHTML(prenom)}
+    </p>
+
+    <p>
+        <strong>Début :</strong>
+        ${formatDate(debut)}
+    </p>
+
+    <p>
+        <strong>Fin :</strong>
+        ${formatDate(fin)}
+    </p>
+
+    <p>
+        <strong>Durée approximative :</strong>
+        ${dureeTexte}
+    </p>
+
+</div>
+
+<div class="surveillance">
+
+    <h2>Informations techniques</h2>
+
+    <p>
+        <strong>
+            Sorties de la page :
+            ${sorties}
+        </strong>
+    </p>
+
+    <p>
+        <strong>
+            Raccourcis navigateur bloqués :
+            ${raccourcis}
+        </strong>
+    </p>
+
+    <p>
+        Ces informations constituent des indicateurs techniques.
+        Elles doivent être interprétées par le professeur,
+        notamment en tenant compte des incidents signalés pendant le devoir.
+    </p>
+
+    <h3>Historique des sorties</h3>
+
+    ${sortiesHTML}
+
+    <h3>Raccourcis bloqués</h3>
+
+    ${raccourcisHTML}
+
+</div>
+
+<h2>Réponses de l'élève</h2>
+
+${reponsesHTML}
+
+</body>
+</html>
+`;
+
+            const blob =
+                new Blob(
+                    [copie],
+                    {
+                        type:
+                            "text/html;charset=utf-8"
+                    }
+                );
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+            const lien =
+                document.createElement(
+                    "a"
+                );
+
+            lien.href =
+                url;
+
+            lien.download =
+                "DS_5e_" +
+                nettoyerTexte(nom) +
+                "_" +
+                nettoyerTexte(prenom) +
+                ".html";
+
+            document.body.appendChild(
+                lien
+            );
+
+            lien.click();
+
+            lien.remove();
+
+            setTimeout(
+                () => {
+
+                    URL.revokeObjectURL(
+                        url
+                    );
+                },
+                3000
+            );
+        }
+
+        /* =========================================================
+           RÉPONSES DE LA COPIE
+           ========================================================= */
+
+        function construireReponsesCopie() {
+
+            const questions =
+                document.querySelectorAll(
+                    ".question"
+                );
+
+            let html =
+                "";
+
+            questions.forEach(
+                question => {
+
+                    const texteQuestion =
+                        question.querySelector(
+                            "p"
+                        )
+                            ? question.querySelector(
+                                "p"
+                            ).innerText
+                            : "";
+
+                    const champs =
+                        question.querySelectorAll(
+                            "textarea, input, select"
+                        );
+
+                    if (
+                        champs.length === 0
+                    ) {
+                        return;
+                    }
+
+                    html += `
+<div class="question-copie">
+
+    <strong>
+        ${echapperHTML(texteQuestion)}
+    </strong>
+`;
+
+                    champs.forEach(
+                        champ => {
+
+                            const reponse =
+                                champ.value.trim()
+                                || "[Aucune réponse]";
+
+                            html += `
+    <div class="reponse">
+        ${echapperHTML(reponse)}
+    </div>
+`;
+                        }
+                    );
+
+                    html += `
+</div>
+`;
+                }
+            );
+
+            return html;
+        }
+
+        /* =========================================================
+           HISTORIQUE DES SORTIES
+           ========================================================= */
+
+        function construireHistoriqueSorties() {
+
+            if (
+                historiqueSorties.length === 0
+            ) {
+
+                return "<p>Aucune sortie enregistrée.</p>";
+            }
+
+            let html = `
+<table>
+
+<thead>
+
+<tr>
+    <th>N°</th>
+    <th>Type</th>
+    <th>Sortie</th>
+    <th>Retour</th>
+    <th>Durée</th>
+</tr>
+
+</thead>
+
+<tbody>
+`;
+
+            historiqueSorties.forEach(
+                (
+                    entree,
+                    index
+                ) => {
+
+                    const sortie =
+                        new Date(
+                            entree.sortie
+                        );
+
+                    let retourTexte =
+                        "Non enregistré";
+
+                    let dureeTexte =
+                        "-";
+
+                    if (
+                        entree.retour
+                    ) {
+
+                        const retour =
+                            new Date(
+                                entree.retour
+                            );
+
+                        retourTexte =
+                            formatDate(
+                                retour
+                            );
+
+                        const secondes =
+                            Math.max(
+                                0,
+                                Math.round(
+                                    (
+                                        retour -
+                                        sortie
+                                    ) / 1000
+                                )
+                            );
+
+                        const min =
+                            Math.floor(
+                                secondes / 60
+                            );
+
+                        const sec =
+                            secondes % 60;
+
+                        dureeTexte =
+                            min > 0
+                                ? `${min} min ${sec} s`
+                                : `${sec} s`;
+                    }
+
+                    html += `
+<tr>
+
+    <td>
+        ${index + 1}
+    </td>
+
+    <td>
+        ${echapperHTML(
+                        entree.type || ""
+                    )}
+    </td>
+
+    <td>
+        ${formatDate(sortie)}
+    </td>
+
+    <td>
+        ${retourTexte}
+    </td>
+
+    <td>
+        ${dureeTexte}
+    </td>
+
+</tr>
+`;
+                }
+            );
+
+            html += `
+</tbody>
+</table>
+`;
+
+            return html;
+        }
+
+        /* =========================================================
+           HISTORIQUE DES RACCOURCIS
+           ========================================================= */
+
+        function construireHistoriqueRaccourcis() {
+
+            if (
+                historiqueRaccourcis.length === 0
+            ) {
+
+                return "<p>Aucun raccourci bloqué.</p>";
+            }
+
+            let html = `
+<table>
+
+<thead>
+
+<tr>
+    <th>N°</th>
+    <th>Heure</th>
+    <th>Commande</th>
+</tr>
+
+</thead>
+
+<tbody>
+`;
+
+            historiqueRaccourcis.forEach(
+                (
+                    entree,
+                    index
+                ) => {
+
+                    html += `
+<tr>
+
+    <td>
+        ${index + 1}
+    </td>
+
+    <td>
+        ${formatDate(
+                        new Date(
+                            entree.date
+                        )
+                    )}
+    </td>
+
+    <td>
+        ${echapperHTML(
+                        entree.description
+                    )}
+    </td>
+
+</tr>
+`;
+                }
+            );
+
+            html += `
+</tbody>
+</table>
+`;
+
+            return html;
+        }
+
+        /* =========================================================
+           PAGE BLANCHE DÉFINITIVE
+           ========================================================= */
+
+        function afficherPageTerminee() {
+
+            devoirTermine =
+                true;
+
+            if (
+                sauvegardeTimer
+            ) {
+
+                clearInterval(
+                    sauvegardeTimer
+                );
+            }
+
+            if (
+                surveillanceFocusTimer
+            ) {
+
+                clearInterval(
+                    surveillanceFocusTimer
+                );
+            }
+
+            document.documentElement.style.background =
+                "#ffffff";
+
+            document.body.className =
+                "devoir-termine";
+
+            document.body.innerHTML =
+                "";
+
+            document.body.style.margin =
+                "0";
+
+            document.body.style.background =
+                "#ffffff";
+
+            document.title =
+                "";
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,3085 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DS Technologie 4e – Séances 2 à 7</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #eef2f6;
+            color: #1f2937;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.55;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        /* =========================================================
+           DÉMARRAGE
+           ========================================================= */
+
+        #ecran-demarrage {
+            display: none;
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 30px;
+        }
+
+        .carte-demarrage {
+            padding: 28px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
+        }
+
+        .carte-demarrage h1 {
+            margin-top: 0;
+            color: #243b53;
+            text-align: center;
+        }
+
+        .chrome-obligatoire {
+            margin: 20px 0;
+            padding: 16px;
+            background: #fff7ed;
+            border: 2px solid #ea580c;
+            border-radius: 10px;
+        }
+
+        .identite-demarrage {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .identite-demarrage label {
+            font-weight: bold;
+        }
+
+        .identite-demarrage input {
+            width: 100%;
+            margin-top: 6px;
+            padding: 11px;
+            border: 1px solid #9fb3c8;
+            border-radius: 7px;
+        }
+
+        #btn-commencer {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            border: 0;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #btn-commencer:hover {
+            background: #1d4ed8;
+        }
+
+        /* =========================================================
+           NAVIGATEUR REFUSÉ
+           ========================================================= */
+
+        #navigateur-refuse {
+            display: none;
+            max-width: 700px;
+            margin: 80px auto;
+            padding: 30px;
+            text-align: center;
+            background: #fee2e2;
+            border: 3px solid #dc2626;
+            border-radius: 14px;
+            color: #7f1d1d;
+        }
+
+        #navigateur-refuse h1 {
+            margin-top: 0;
+            color: #991b1b;
+        }
+
+        .ouvrir-chrome {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            font-size: 1.15rem;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+           DEVOIR
+           ========================================================= */
+
+        #evaluation-s02-s07 {
+            display: none;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .ds-header {
+            margin-bottom: 25px;
+            padding: 24px;
+            background: #243b53;
+            color: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        }
+
+        .ds-header h1 {
+            margin: 0 0 8px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .ds-header p {
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        .identite-affichee {
+            margin: 15px 0;
+            padding: 12px;
+            background: #edf2f7;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+           CONSIGNES
+           ========================================================= */
+
+        .consigne-examen {
+            margin: 20px 0 30px;
+            padding: 22px;
+            background: #fff7ed;
+            border: 2px solid #c2410c;
+            border-radius: 12px;
+        }
+
+        .consigne-examen h2 {
+            margin-top: 0;
+            color: #9a3412;
+        }
+
+        .consigne-examen strong {
+            color: #9a3412;
+        }
+
+        .avertissement {
+            margin: 18px 0;
+            padding: 15px;
+            background: #fee2e2;
+            border-left: 6px solid #dc2626;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .conseil-reponse {
+            margin: 18px 0;
+            padding: 15px;
+            background: #eff6ff;
+            border-left: 6px solid #2563eb;
+            border-radius: 8px;
+        }
+
+        /* =========================================================
+           SURVEILLANCE
+           ========================================================= */
+
+        #surveillance-ds {
+            position: sticky;
+            top: 6px;
+            z-index: 1000;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin: 15px 0 25px;
+            padding: 12px;
+            background: #fee2e2;
+            border: 2px solid #dc2626;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        .compteur {
+            padding: 5px 8px;
+            background: white;
+            border-radius: 7px;
+        }
+
+        #etat-sauvegarde {
+            color: #166534;
+        }
+
+        /* =========================================================
+           EXERCICES
+           ========================================================= */
+
+        .exercice {
+            margin: 30px 0;
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 9px rgba(0, 0, 0, 0.08);
+        }
+
+        .exercice>h2 {
+            margin: -24px -24px 22px;
+            padding: 14px 18px;
+            background: #d9e2ec;
+            color: #102a43;
+            border-radius: 12px 12px 0 0;
+            font-size: 1.35rem;
+        }
+
+        .question {
+            margin: 22px 0;
+            padding: 15px;
+            background: #f8fafc;
+            border-left: 4px solid #486581;
+            border-radius: 7px;
+        }
+
+        .question>p:first-child {
+            margin-top: 0;
+        }
+
+        .exemple {
+            margin: 10px 0 15px;
+            padding: 12px;
+            background: #fefce8;
+            border-left: 4px solid #ca8a04;
+            border-radius: 6px;
+        }
+
+        .document {
+            margin: 18px 0;
+            padding: 18px;
+            background: #edf6ff;
+            border-left: 5px solid #2563eb;
+            border-radius: 8px;
+        }
+
+        .reponse-lignes {
+            margin: 8px 0;
+            font-weight: bold;
+            color: #475569;
+        }
+
+        textarea,
+        input.reponse-courte,
+        select {
+            width: 100%;
+            margin-top: 10px;
+            padding: 11px;
+            background: white;
+            border: 1px solid #9fb3c8;
+            border-radius: 7px;
+            color: #111827;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        textarea.reponse-longue {
+            min-height: 155px;
+        }
+
+        textarea.reponse-courte-zone {
+            min-height: 70px;
+        }
+
+        textarea.calcul {
+            min-height: 90px;
+        }
+
+        textarea:focus,
+        input:focus,
+        select:focus {
+            outline: 3px solid rgba(72, 101, 129, 0.22);
+            border-color: #486581;
+        }
+
+        table {
+            width: 100%;
+            margin: 18px 0;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            vertical-align: top;
+        }
+
+        th {
+            background: #d9e2ec;
+            color: #102a43;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .bareme {
+            white-space: nowrap;
+            font-weight: bold;
+            color: #526d82;
+        }
+
+        /* =========================================================
+           FIN
+           ========================================================= */
+
+        .zone-fin {
+            margin: 35px 0;
+            padding: 25px;
+            background: #e8f5e9;
+            border: 2px solid #2e7d32;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .zone-fin h2 {
+            color: #1b5e20;
+        }
+
+        #btn-terminer {
+            margin-top: 15px;
+            padding: 16px 32px;
+            background: #b91c1c;
+            border: 0;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #btn-terminer:hover {
+            background: #991b1b;
+        }
+
+        #message-restauration {
+            display: none;
+            margin: 15px 0;
+            padding: 14px;
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            color: #166534;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+           PAGE TERMINÉE
+           ========================================================= */
+
+        body.devoir-termine {
+            margin: 0 !important;
+            background: white !important;
+        }
+
+        body.devoir-termine * {
+            display: none !important;
+        }
+
+        @media (max-width: 700px) {
+
+            #evaluation-s02-s07,
+            #ecran-demarrage {
+                padding: 12px;
+            }
+
+            .identite-demarrage,
+            #surveillance-ds {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+
+            #surveillance-ds,
+            #btn-terminer {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         NAVIGATEUR REFUSÉ
+         ========================================================= -->
+
+    <section id="navigateur-refuse">
+
+        <h1>Navigateur non autorisé</h1>
+
+        <p>
+            Ce devoir doit obligatoirement être réalisé avec
+            <strong>Google Chrome</strong>.
+        </p>
+
+        <div class="ouvrir-chrome">
+            Clic droit sur le fichier<br>
+            → Ouvrir avec<br>
+            → Google Chrome
+        </div>
+
+        <p>
+            Microsoft Edge, Firefox, Opera et les autres navigateurs
+            ne permettent pas de commencer le devoir.
+        </p>
+
+    </section>
+
+    <!-- =========================================================
+         DÉMARRAGE
+         ========================================================= -->
+
+    <section id="ecran-demarrage">
+
+        <div class="carte-demarrage">
+
+            <h1>Devoir surveillé – Technologie 4e</h1>
+
+            <p style="text-align:center;">
+                <strong>Séances 2 à 7 – Durée : 50 minutes</strong>
+            </p>
+
+            <div class="chrome-obligatoire">
+                <strong>Google Chrome est obligatoire.</strong><br>
+                N'utilisez qu'un seul onglet pendant tout le devoir.
+            </div>
+
+            <p>
+                Vos réponses sont enregistrées automatiquement.
+            </p>
+
+            <p>
+                Si Google Chrome ou la fenêtre se ferme accidentellement,
+                prévenez immédiatement l'adulte présent puis rouvrez
+                <strong>le même fichier avec Google Chrome</strong>.
+                Votre travail devrait être restauré automatiquement.
+            </p>
+
+            <div class="identite-demarrage">
+
+                <label>
+                    Nom :
+                    <input type="text" id="nom-demarrage" autocomplete="off">
+                </label>
+
+                <label>
+                    Prénom :
+                    <input type="text" id="prenom-demarrage" autocomplete="off">
+                </label>
+
+            </div>
+
+            <button id="btn-commencer" type="button">
+                Commencer le devoir
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- =========================================================
+         DEVOIR
+         ========================================================= -->
+
+    <main id="evaluation-s02-s07">
+
+        <header class="ds-header">
+
+            <h1>Devoir surveillé – Technologie 4e</h1>
+
+            <p><strong>Séances 2 à 7</strong></p>
+
+            <p>Durée : 50 minutes – Travail individuel</p>
+
+            <p>Barème : 40 points + 2 points bonus</p>
+
+        </header>
+
+        <div class="identite-affichee">
+            Élève :
+            <span id="identite-eleve"></span>
+        </div>
+
+        <div id="message-restauration">
+            Votre copie précédente a été retrouvée et restaurée automatiquement.
+        </div>
+
+        <!-- =========================================================
+             CONSIGNES
+             ========================================================= -->
+
+        <section class="consigne-examen">
+
+            <h2>Consignes du devoir</h2>
+
+            <p>
+                <strong>Vous devez répondre directement dans cette page.</strong>
+            </p>
+
+            <p>
+                Lisez entièrement chaque question avant de répondre.
+            </p>
+
+            <div class="conseil-reponse">
+
+                <strong>Important pour la notation :</strong><br><br>
+
+                Ce devoir évalue principalement votre capacité à
+                <strong>raisonner, comparer et justifier</strong>.
+
+                Une réponse contenant seulement un mot ou une affirmation
+                peut ne rapporter qu'une partie des points.
+
+                Lorsque la question demande d'expliquer ou de justifier,
+                utilisez les informations du sujet et expliquez
+                <strong>pourquoi</strong> votre réponse est cohérente.
+
+            </div>
+
+            <p>
+                Il est interdit de consulter :
+            </p>
+
+            <ul>
+                <li>les cours ;</li>
+                <li>un moteur de recherche ;</li>
+                <li>un autre site Internet ;</li>
+                <li>une intelligence artificielle ;</li>
+                <li>une messagerie ;</li>
+                <li>un autre document ou logiciel permettant de rechercher une réponse.</li>
+            </ul>
+
+            <div class="avertissement">
+                Toute sortie réelle de la page est enregistrée dans votre copie.
+            </div>
+
+            <p>
+                Les raccourcis permettant d'ouvrir un autre onglet,
+                d'actualiser la page, de changer d'onglet ou d'afficher
+                le code source sont bloqués et enregistrés séparément.
+            </p>
+
+            <p>
+                Le copier, le couper, le coller et le clic droit
+                sont également désactivés pendant le devoir.
+            </p>
+
+            <p>
+                En cas de problème informatique,
+                <strong>ne faites pas plusieurs essais au hasard</strong> :
+                prévenez immédiatement l'adulte présent.
+            </p>
+
+            <p>
+                Lorsque vous cliquez sur <strong>« Terminer mon devoir »</strong>,
+                votre copie est téléchargée puis la page devient entièrement blanche.
+            </p>
+
+            <p>
+                <strong>
+                    Vous ne pourrez ensuite ni reprendre,
+                    ni continuer, ni recommencer ce devoir sur ce poste.
+                </strong>
+            </p>
+
+        </section>
+
+        <div id="surveillance-ds">
+
+            <div class="compteur">
+                Sorties de page :
+                <span id="nb-sorties">0</span>
+            </div>
+
+            <div class="compteur">
+                Raccourcis bloqués :
+                <span id="nb-raccourcis">0</span>
+            </div>
+
+            <div class="compteur" id="etat-sauvegarde">
+                Sauvegardé
+            </div>
+
+        </div>
+
+        <!-- =========================================================
+             EXERCICE 1 – 6 MIN – 5 PTS
+             ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 1 – Pourquoi les aspirateurs évoluent-ils ? – 5 points</h2>
+
+            <div class="document">
+
+                Pour nettoyer un sol, plusieurs solutions ont été utilisées
+                au cours du temps :
+
+                <ul>
+                    <li>balai ;</li>
+                    <li>aspirateur électrique avec fil ;</li>
+                    <li>aspirateur sans fil ;</li>
+                    <li>robot aspirateur ;</li>
+                    <li>robot avec station automatique.</li>
+                </ul>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.1.</strong>
+                    Quel besoin principal toutes ces solutions cherchent-elles à satisfaire ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q1_1" class="reponse-courte-zone"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.2.</strong>
+                    Pourquoi continue-t-on à inventer de nouvelles solutions
+                    alors que les anciennes fonctionnent encore ?
+                    Donnez <strong>deux raisons différentes</strong>.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <textarea id="q1_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.3.</strong>
+                    Complétez les deux évolutions suivantes.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="exemple">
+                    <strong>Exemple :</strong><br><br>
+
+                    Téléphone fixe → téléphone portable :<br>
+                    contrainte réduite :
+                    on n'est plus obligé de rester près du téléphone pour l'utiliser ;<br>
+                    nouvelle contrainte possible :
+                    il faut recharger la batterie.
+                    <br><br>
+
+                    <strong>À vous de faire le même raisonnement avec les aspirateurs.</strong>
+                </div>
+
+                <p class="reponse-lignes">
+                    Aspirateur avec fil → sans fil :<br>
+                    contrainte réduite : ...<br>
+                    nouvelle contrainte possible : ...<br><br>
+
+                    Aspirateur manuel → robot :<br>
+                    contrainte réduite : ...<br>
+                    nouvelle contrainte possible : ...
+                </p>
+
+                <textarea id="q1_3" class="reponse-longue"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+             EXERCICE 2 – 7 MIN – 6 PTS
+             ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 2 – Le même robot convient-il à tout le monde ? – 6 points</h2>
+
+            <div class="document">
+
+                <strong>Camille</strong> habite une ancienne maison de 100 m².
+
+                <ul>
+                    <li>plusieurs pièces sont séparées par de petits seuils ;</li>
+                    <li>il y a un escalier ;</li>
+                    <li>certaines pièces possèdent des tapis ;</li>
+                    <li>elle possède un chien ;</li>
+                    <li>elle souhaite intervenir le moins souvent possible ;</li>
+                    <li>son budget est limité à 450 €.</li>
+                </ul>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.1.</strong>
+                    Quel est le besoin principal de Camille ? Justifiez votre réponse.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q2_1" class="reponse-courte-zone"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.2.</strong>
+                    Relevez <strong>quatre contraintes</strong>
+                    importantes, pour Camille, à prendre en compte pour choisir son robot.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <textarea id="q2_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.3.</strong>
+                    Parmi ces contraintes, laquelle vous semble la plus importante ?
+                    Justifiez votre réponse.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q2_3"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.4.</strong>
+                    Expliquez pourquoi un robot très performant
+                    peut malgré tout être un mauvais choix pour Camille.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <textarea id="q2_4"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+             EXERCICE 3 – 9 MIN – 8 PTS
+             ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 3 – Comparer plusieurs robots – 8 points</h2>
+
+            <p>
+                Les données suivantes sont volontairement simplifiées
+                pour le devoir.
+            </p>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Critère</th>
+                        <th>Robot A</th>
+                        <th>Robot B</th>
+                        <th>Robot C</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Prix</td>
+                        <td>190 €</td>
+                        <td>390 €</td>
+                        <td>750 €</td>
+                    </tr>
+
+                    <tr>
+                        <td>Autonomie</td>
+                        <td>85 min</td>
+                        <td>150 min</td>
+                        <td>190 min</td>
+                    </tr>
+
+                    <tr>
+                        <td>Navigation</td>
+                        <td>Simple</td>
+                        <td>Cartographie</td>
+                        <td>Cartographie avancée</td>
+                    </tr>
+
+                    <tr>
+                        <td>Évitement d'obstacles</td>
+                        <td>Limité</td>
+                        <td>Correct</td>
+                        <td>Avancé</td>
+                    </tr>
+
+                    <tr>
+                        <td>Station automatique</td>
+                        <td>Non</td>
+                        <td>Non</td>
+                        <td>Oui</td>
+                    </tr>
+
+                    <tr>
+                        <td>Pièces détachées</td>
+                        <td>Peu disponibles</td>
+                        <td>Disponibles</td>
+                        <td>Disponibles</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <div class="document">
+
+                <strong>Utilisateur :</strong>
+
+                <ul>
+                    <li>appartement de 70 m² ;</li>
+                    <li>budget maximal : 450 € ;</li>
+                    <li>plusieurs meubles ;</li>
+                    <li>souhaite conserver le robot plusieurs années ;</li>
+                    <li>accepte de vider lui-même le bac.</li>
+                </ul>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.1.</strong>
+                    Choisissez <strong>trois critères prioritaires</strong>
+                    pour cet utilisateur et expliquez pourquoi chacun est important.
+                    <span class="bareme">(3 pts)</span>
+                </p>
+
+                <textarea id="q3_1" class="reponse-longue"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.2.</strong>
+                    Quel robot conseilleriez-vous ?
+                    Utilisez <strong>au moins trois informations du tableau</strong>
+                    pour justifier votre réponse.
+                    <span class="bareme">(3 pts)</span>
+                </p>
+
+                <textarea id="q3_2" class="reponse-longue"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.3.</strong>
+                    Quel compromis faut-il accepter avec votre choix (au moins 2)?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q3_3"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.4.</strong>
+                    Pourquoi le Robot C n'est-il pas automatiquement
+                    « le meilleur » simplement parce qu'il est le plus équipé ?
+                    Justifiez en vous basant sur le cas de notre utilisateur.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q3_4"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+             EXERCICE 4 – 12 MIN – 10 PTS
+             ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 4 – Vérifier une performance – 10 points</h2>
+
+            <div class="document">
+
+                Un fabricant affirme :
+
+                <blockquote>
+                    « Notre robot se déplace aussi efficacement
+                    sur un sol dur que sur un tapis. »
+                </blockquote>
+
+                On souhaite vérifier cette affirmation.
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.1.</strong>
+                    Transformez cette affirmation en une
+                    <strong>question testable / mesurable</strong>.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q4_1"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.2.</strong>
+                    Proposez une hypothèse puis justifiez-la.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <textarea id="q4_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.3.</strong>
+                    Préparez le test.
+                    <span class="bareme">(3 pts)</span>
+                </p>
+
+                <p class="reponse-lignes">
+                    Paramètre volontairement modifié : ...<br>
+                    Grandeur mesurée : ...<br>
+                    Instrument principal : ...<br>
+                    Quatre conditions devant rester identiques : ...
+                </p>
+
+                <textarea id="q4_3" class="reponse-longue"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.4.</strong>
+                    Écrivez un protocole suffisamment précis
+                    pour qu'un autre élève puisse réaliser le test
+                    sans vous demander d'explication.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <textarea id="q4_4" class="reponse-longue"></textarea>
+
+            </div>
+
+            <div class="document">
+
+                Trois mesures ont été obtenues sur une même surface :
+
+                <strong>4,2 s – 4,7 s – 4,4 s</strong>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.5.</strong>
+                    Calculez le temps moyen.
+                    Faites apparaître votre calcul.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q4_5" class="calcul"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.6.</strong>
+                    Pourquoi réalise-t-on plusieurs mesures
+                    plutôt qu'une seule ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q4_6"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+             EXERCICE 5 – 10 MIN – 8 PTS
+             ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 5 – Analyser des résultats – 8 points</h2>
+
+            <p>
+                Un système motorisé parcourt toujours la même distance.
+                Les résultats ci-dessous sont fictifs.
+            </p>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Surface</th>
+                        <th>Essai 1</th>
+                        <th>Essai 2</th>
+                        <th>Essai 3</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Sol dur</td>
+                        <td>3,8 s</td>
+                        <td>3,7 s</td>
+                        <td>3,9 s</td>
+                    </tr>
+
+                    <tr>
+                        <td>Tissu</td>
+                        <td>5,0 s</td>
+                        <td>4,9 s</td>
+                        <td>5,1 s</td>
+                    </tr>
+
+                    <tr>
+                        <td>Tapis</td>
+                        <td>6,2 s</td>
+                        <td>6,4 s</td>
+                        <td>6,3 s</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.1.</strong>
+                    Calculez le temps moyen pour chaque surface.
+                    <span class="bareme">(3 pts)</span>
+                </p>
+
+                <textarea id="q5_1" class="calcul"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.2.</strong>
+                    Classez les trois surfaces par ordre croissant de vitesse de déplacement du robot, de la surface sur
+                    laquelle il se
+                    déplace le plus lentement à celle sur laquelle il se déplace le plus rapidement.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q5_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.3.</strong>
+                    Rédigez une conclusion précise à partir des résultats.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <p>
+                    Attention : ne généralisez pas vos résultats
+                    à tous les robots et à tous les tapis.
+                </p>
+
+                <textarea id="q5_3" class="reponse-longue"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.4.</strong>
+                    Ces mesures permettent-elles de connaître
+                    avec certitude <strong>pourquoi</strong>
+                    le déplacement est plus lent sur certaines surfaces ?
+                    Justifiez.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <textarea id="q5_4"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+             EXERCICE 6 – 6 MIN – 3 PTS
+             ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 6 – Cycle de vie et environnement – 3 points</h2>
+
+            <div class="document">
+
+                Un constructeur présente un nouveau robot aspirateur
+                comme « plus écologique » car il consomme
+                15 % d'électricité en moins pendant son utilisation.
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>6.1.</strong>
+                    Pourquoi cette seule information ne suffit-elle pas
+                    pour comparer l'impact environnemental global
+                    de deux robots ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q6_1"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>6.2.</strong>
+                    Citez <strong>quatre autres éléments ou étapes</strong>
+                    qu'il faudrait prendre en compte.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q6_2"></textarea>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>6.3.</strong>
+                    Après quatre ans, seule la batterie du robot est usée.
+                    Elle peut être remplacée.
+                    <br><br>
+                    Expliquez pourquoi cette réparation peut être intéressante
+                    du point de vue du cycle de vie.
+                    <strong>Donnez au moins deux justifications différentes.</strong>
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <textarea id="q6_3"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+             BONUS
+             ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Bonus – Concevoir autrement – +2 points</h2>
+
+            <div class="document">
+
+                Vous participez à la conception
+                d'une nouvelle génération de robot aspirateur.
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    Proposez une amélioration permettant
+                    de réduire un impact environnemental.
+                </p>
+
+                <p>
+                    Votre réponse doit préciser :
+                </p>
+
+                <ul>
+                    <li>la modification proposée ;</li>
+                    <li>l'étape du cycle de vie concernée ;</li>
+                    <li>l'impact que vous cherchez à réduire ;</li>
+                    <li>une nouvelle contrainte pouvant apparaître.</li>
+                </ul>
+
+                <textarea id="bonus" class="reponse-longue"></textarea>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+             FIN
+             ========================================================= -->
+
+        <section class="zone-fin">
+
+            <h2>Vous pensez avoir terminé ?</h2>
+
+            <p>
+                Utilisez le temps restant pour relire vos réponses.
+            </p>
+
+            <p>
+                Vérifiez en particulier :
+            </p>
+
+            <ul style="text-align:left; display:inline-block;">
+                <li>que toutes les questions ont une réponse ;</li>
+                <li>que vous avez réellement justifié vos choix ;</li>
+                <li>que vos calculs apparaissent ;</li>
+                <li>que vous utilisez les données des tableaux lorsqu'elles sont demandées ;</li>
+                <li>que votre conclusion correspond réellement aux résultats observés.</li>
+            </ul>
+
+            <p>
+                <strong>
+                    Après validation, le sujet deviendra entièrement blanc.
+                </strong>
+            </p>
+
+            <button id="btn-terminer" type="button">
+                Terminer mon devoir
+            </button>
+
+        </section>
+
+    </main>
+
+    <script>
+        /* =========================================================
+           CONFIGURATION
+           ========================================================= */
+
+        const PREFIXE_GLOBAL = "DS4E_S02_S07_V1_";
+        const CLE_SESSION_ACTIVE = PREFIXE_GLOBAL + "SESSION_ACTIVE";
+
+        let sessionId = null;
+        let prefixe = null;
+
+        let devoirCommence = false;
+        let devoirTermine = false;
+
+        let sorties = 0;
+        let raccourcis = 0;
+
+        let historiqueSorties = [];
+        let historiqueRaccourcis = [];
+
+        let incidentEnCours = false;
+        let heureSortie = null;
+
+        let sauvegardeTimer = null;
+        let surveillanceFocusTimer = null;
+
+        /* =========================================================
+           OUTILS
+           ========================================================= */
+
+        function nettoyerTexte(texte) {
+
+            return texte
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-zA-Z0-9_-]/g, "_")
+                .toUpperCase();
+        }
+
+        function echapperHTML(texte) {
+
+            return String(texte)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function formatDate(date) {
+
+            return date.toLocaleString(
+                "fr-FR",
+                {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit"
+                }
+            );
+        }
+
+        /* =========================================================
+           GOOGLE CHROME UNIQUEMENT
+           ========================================================= */
+
+        async function estGoogleChrome() {
+
+            if (
+                navigator.userAgentData &&
+                navigator.userAgentData.brands
+            ) {
+
+                const marques =
+                    navigator.userAgentData.brands.map(
+                        marque => marque.brand
+                    );
+
+                const chrome =
+                    marques.includes("Google Chrome");
+
+                const edge =
+                    marques.includes("Microsoft Edge");
+
+                const opera =
+                    marques.includes("Opera");
+
+                return chrome && !edge && !opera;
+            }
+
+            const ua =
+                navigator.userAgent;
+
+            const chrome =
+                /Chrome\//.test(ua);
+
+            const edge =
+                /Edg\//.test(ua);
+
+            const opera =
+                /OPR\//.test(ua);
+
+            const firefox =
+                /Firefox\//.test(ua);
+
+            return (
+                chrome &&
+                !edge &&
+                !opera &&
+                !firefox
+            );
+        }
+
+        function afficherNavigateurRefuse() {
+
+            document.title =
+                "Navigateur non autorisé";
+
+            document.getElementById(
+                "navigateur-refuse"
+            ).style.display = "block";
+
+            document.getElementById(
+                "ecran-demarrage"
+            ).style.display = "none";
+
+            document.getElementById(
+                "evaluation-s02-s07"
+            ).style.display = "none";
+        }
+
+        /* =========================================================
+           INITIALISATION
+           ========================================================= */
+
+        async function initialiserDevoir() {
+
+            const navigateurOK =
+                await estGoogleChrome();
+
+            if (!navigateurOK) {
+
+                afficherNavigateurRefuse();
+
+                return;
+            }
+
+            document.getElementById(
+                "ecran-demarrage"
+            ).style.display = "block";
+
+            const sessionActiveExistante =
+                localStorage.getItem(
+                    CLE_SESSION_ACTIVE
+                );
+
+            if (sessionActiveExistante) {
+
+                sessionId =
+                    sessionActiveExistante;
+
+                prefixe =
+                    PREFIXE_GLOBAL +
+                    sessionId +
+                    "_";
+
+                const termine =
+                    localStorage.getItem(
+                        prefixe + "termine"
+                    ) === "1";
+
+                if (termine) {
+
+                    afficherPageTerminee();
+
+                    return;
+                }
+
+                restaurerSessionExistante();
+
+                return;
+            }
+
+            document
+                .getElementById(
+                    "btn-commencer"
+                )
+                .addEventListener(
+                    "click",
+                    commencerDevoir
+                );
+        }
+
+        initialiserDevoir();
+
+        /* =========================================================
+           COMMENCER LE DEVOIR
+           ========================================================= */
+
+        function commencerDevoir() {
+
+            const nom =
+                document.getElementById(
+                    "nom-demarrage"
+                ).value.trim();
+
+            const prenom =
+                document.getElementById(
+                    "prenom-demarrage"
+                ).value.trim();
+
+            if (!nom || !prenom) {
+
+                alert(
+                    "Vous devez renseigner votre nom et votre prénom."
+                );
+
+                return;
+            }
+
+            sessionId =
+                nettoyerTexte(nom) +
+                "_" +
+                nettoyerTexte(prenom);
+
+            prefixe =
+                PREFIXE_GLOBAL +
+                sessionId +
+                "_";
+
+            const ancienneSession =
+                localStorage.getItem(
+                    prefixe + "debut"
+                );
+
+            if (ancienneSession) {
+
+                const termine =
+                    localStorage.getItem(
+                        prefixe + "termine"
+                    ) === "1";
+
+                if (termine) {
+
+                    alert(
+                        "Ce devoir a déjà été terminé sur ce poste.\n\n" +
+                        "Il n'est pas possible de le recommencer."
+                    );
+
+                    afficherPageTerminee();
+
+                    return;
+                }
+            }
+
+            localStorage.setItem(
+                CLE_SESSION_ACTIVE,
+                sessionId
+            );
+
+            localStorage.setItem(
+                prefixe + "nom",
+                nom
+            );
+
+            localStorage.setItem(
+                prefixe + "prenom",
+                prenom
+            );
+
+            if (!ancienneSession) {
+
+                localStorage.setItem(
+                    prefixe + "debut",
+                    new Date().toISOString()
+                );
+            }
+
+            lancerInterfaceDevoir(
+                nom,
+                prenom
+            );
+
+            initialiserSauvegarde();
+
+            enregistrerToutesLesReponses();
+
+            initialiserSurveillanceFocus();
+        }
+
+        /* =========================================================
+           RESTAURATION
+           ========================================================= */
+
+        function restaurerSessionExistante() {
+
+            const nom =
+                localStorage.getItem(
+                    prefixe + "nom"
+                ) || "";
+
+            const prenom =
+                localStorage.getItem(
+                    prefixe + "prenom"
+                ) || "";
+
+            devoirCommence = true;
+
+            sorties =
+                Number(
+                    localStorage.getItem(
+                        prefixe + "sorties"
+                    ) || 0
+                );
+
+            raccourcis =
+                Number(
+                    localStorage.getItem(
+                        prefixe + "raccourcis"
+                    ) || 0
+                );
+
+            historiqueSorties =
+                JSON.parse(
+                    localStorage.getItem(
+                        prefixe + "historiqueSorties"
+                    ) || "[]"
+                );
+
+            historiqueRaccourcis =
+                JSON.parse(
+                    localStorage.getItem(
+                        prefixe + "historiqueRaccourcis"
+                    ) || "[]"
+                );
+
+            lancerInterfaceDevoir(
+                nom,
+                prenom
+            );
+
+            restaurerToutesLesReponses();
+
+            document.getElementById(
+                "message-restauration"
+            ).style.display = "block";
+
+            mettreAJourCompteurs();
+
+            initialiserSauvegarde();
+
+            initialiserSurveillanceFocus();
+        }
+
+        /* =========================================================
+           AFFICHAGE
+           ========================================================= */
+
+        function lancerInterfaceDevoir(
+            nom,
+            prenom
+        ) {
+
+            devoirCommence = true;
+
+            document.getElementById(
+                "ecran-demarrage"
+            ).style.display = "none";
+
+            document.getElementById(
+                "evaluation-s02-s07"
+            ).style.display = "block";
+
+            document.getElementById(
+                "identite-eleve"
+            ).textContent =
+                nom + " " + prenom;
+
+            sorties =
+                Number(
+                    localStorage.getItem(
+                        prefixe + "sorties"
+                    ) || 0
+                );
+
+            raccourcis =
+                Number(
+                    localStorage.getItem(
+                        prefixe + "raccourcis"
+                    ) || 0
+                );
+
+            historiqueSorties =
+                JSON.parse(
+                    localStorage.getItem(
+                        prefixe + "historiqueSorties"
+                    ) || "[]"
+                );
+
+            historiqueRaccourcis =
+                JSON.parse(
+                    localStorage.getItem(
+                        prefixe + "historiqueRaccourcis"
+                    ) || "[]"
+                );
+
+            mettreAJourCompteurs();
+        }
+
+        /* =========================================================
+           SAUVEGARDE
+           ========================================================= */
+
+        function initialiserSauvegarde() {
+
+            const champs =
+                document.querySelectorAll(
+                    "#evaluation-s02-s07 textarea, " +
+                    "#evaluation-s02-s07 input, " +
+                    "#evaluation-s02-s07 select"
+                );
+
+            champs.forEach(
+                champ => {
+
+                    const valeur =
+                        localStorage.getItem(
+                            prefixe +
+                            "champ_" +
+                            champ.id
+                        );
+
+                    if (valeur !== null) {
+
+                        champ.value =
+                            valeur;
+                    }
+
+                    champ.addEventListener(
+                        "input",
+                        () => {
+
+                            if (devoirTermine) {
+                                return;
+                            }
+
+                            localStorage.setItem(
+                                prefixe +
+                                "champ_" +
+                                champ.id,
+                                champ.value
+                            );
+
+                            afficherEtatSauvegarde();
+                        }
+                    );
+                }
+            );
+
+            sauvegardeTimer =
+                setInterval(
+                    () => {
+
+                        if (
+                            devoirCommence &&
+                            !devoirTermine
+                        ) {
+                            enregistrerToutesLesReponses();
+                        }
+                    },
+                    3000
+                );
+        }
+
+        function enregistrerToutesLesReponses() {
+
+            if (
+                !prefixe ||
+                devoirTermine
+            ) {
+                return;
+            }
+
+            const champs =
+                document.querySelectorAll(
+                    "#evaluation-s02-s07 textarea, " +
+                    "#evaluation-s02-s07 input, " +
+                    "#evaluation-s02-s07 select"
+                );
+
+            champs.forEach(
+                champ => {
+
+                    localStorage.setItem(
+                        prefixe +
+                        "champ_" +
+                        champ.id,
+                        champ.value
+                    );
+                }
+            );
+
+            localStorage.setItem(
+                prefixe +
+                "derniereSauvegarde",
+                new Date().toISOString()
+            );
+
+            afficherEtatSauvegarde();
+        }
+
+        function restaurerToutesLesReponses() {
+
+            const champs =
+                document.querySelectorAll(
+                    "#evaluation-s02-s07 textarea, " +
+                    "#evaluation-s02-s07 input, " +
+                    "#evaluation-s02-s07 select"
+                );
+
+            champs.forEach(
+                champ => {
+
+                    const valeur =
+                        localStorage.getItem(
+                            prefixe +
+                            "champ_" +
+                            champ.id
+                        );
+
+                    if (valeur !== null) {
+
+                        champ.value =
+                            valeur;
+                    }
+                }
+            );
+        }
+
+        function afficherEtatSauvegarde() {
+
+            const el =
+                document.getElementById(
+                    "etat-sauvegarde"
+                );
+
+            if (!el) {
+                return;
+            }
+
+            el.textContent =
+                "Sauvegardé à " +
+                new Date().toLocaleTimeString(
+                    "fr-FR",
+                    {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit"
+                    }
+                );
+        }
+
+        window.addEventListener(
+            "beforeunload",
+            () => {
+
+                enregistrerToutesLesReponses();
+            }
+        );
+
+        window.addEventListener(
+            "pagehide",
+            () => {
+
+                enregistrerToutesLesReponses();
+            }
+        );
+
+        /* =========================================================
+           COPIER / COLLER / CLIC DROIT
+           ========================================================= */
+
+        ["copy", "cut", "paste"].forEach(
+            type => {
+
+                document.addEventListener(
+                    type,
+                    event => {
+
+                        if (
+                            devoirCommence &&
+                            !devoirTermine
+                        ) {
+
+                            event.preventDefault();
+
+                            enregistrerRaccourciBloque(
+                                type === "copy"
+                                    ? "Copier bloqué"
+                                    : type === "cut"
+                                        ? "Couper bloqué"
+                                        : "Coller bloqué"
+                            );
+                        }
+                    }
+                );
+            }
+        );
+
+        document.addEventListener(
+            "contextmenu",
+            event => {
+
+                if (
+                    devoirCommence &&
+                    !devoirTermine
+                ) {
+
+                    event.preventDefault();
+
+                    enregistrerRaccourciBloque(
+                        "Clic droit bloqué"
+                    );
+                }
+            }
+        );
+
+        /* =========================================================
+           RACCOURCIS BLOQUÉS
+           ========================================================= */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    !devoirCommence ||
+                    devoirTermine
+                ) {
+                    return;
+                }
+
+                let raccourci = null;
+
+                const touche =
+                    event.key.toLowerCase();
+
+                if (
+                    event.key === "F5"
+                ) {
+
+                    raccourci =
+                        "F5 – actualisation";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    touche === "r"
+                ) {
+
+                    raccourci =
+                        "Ctrl+R – actualisation";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    touche === "t"
+                ) {
+
+                    raccourci =
+                        "Ctrl+T – nouvel onglet";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    touche === "n"
+                ) {
+
+                    raccourci =
+                        "Ctrl+N – nouvelle fenêtre";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    touche === "w"
+                ) {
+
+                    raccourci =
+                        "Ctrl+W – fermeture onglet";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    touche === "l"
+                ) {
+
+                    raccourci =
+                        "Ctrl+L – barre d'adresse";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    touche === "o"
+                ) {
+
+                    raccourci =
+                        "Ctrl+O – ouvrir un fichier";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    touche === "u"
+                ) {
+
+                    raccourci =
+                        "Ctrl+U – code source";
+                }
+
+                else if (
+                    event.key === "F12"
+                ) {
+
+                    raccourci =
+                        "F12 – outils développeur";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.shiftKey &&
+                    (
+                        touche === "i" ||
+                        touche === "j" ||
+                        touche === "c"
+                    )
+                ) {
+
+                    raccourci =
+                        "Outils développeur";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key === "Tab"
+                ) {
+
+                    raccourci =
+                        "Ctrl+Tab – changement d'onglet";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key === "PageDown"
+                ) {
+
+                    raccourci =
+                        "Ctrl+PageDown – changement d'onglet";
+                }
+
+                else if (
+                    event.ctrlKey &&
+                    event.key === "PageUp"
+                ) {
+
+                    raccourci =
+                        "Ctrl+PageUp – changement d'onglet";
+                }
+
+                else if (
+                    event.altKey &&
+                    event.key === "ArrowLeft"
+                ) {
+
+                    raccourci =
+                        "Alt+Flèche gauche – page précédente";
+                }
+
+                else if (
+                    event.altKey &&
+                    event.key === "ArrowRight"
+                ) {
+
+                    raccourci =
+                        "Alt+Flèche droite – page suivante";
+                }
+
+                if (raccourci) {
+
+                    event.preventDefault();
+
+                    enregistrerRaccourciBloque(
+                        raccourci
+                    );
+                }
+            }
+        );
+
+        function enregistrerRaccourciBloque(
+            description
+        ) {
+
+            raccourcis++;
+
+            historiqueRaccourcis.push(
+                {
+                    date:
+                        new Date().toISOString(),
+
+                    description:
+                        description
+                }
+            );
+
+            localStorage.setItem(
+                prefixe +
+                "raccourcis",
+                String(raccourcis)
+            );
+
+            localStorage.setItem(
+                prefixe +
+                "historiqueRaccourcis",
+                JSON.stringify(
+                    historiqueRaccourcis
+                )
+            );
+
+            mettreAJourCompteurs();
+
+            afficherMessageTemporaire(
+                "Commande bloquée : " +
+                description
+            );
+        }
+
+        function afficherMessageTemporaire(
+            message
+        ) {
+
+            const zone =
+                document.getElementById(
+                    "etat-sauvegarde"
+                );
+
+            if (!zone) {
+                return;
+            }
+
+            zone.textContent =
+                message;
+
+            setTimeout(
+                afficherEtatSauvegarde,
+                2500
+            );
+        }
+
+        /* =========================================================
+           SURVEILLANCE DES SORTIES
+           ========================================================= */
+
+        function commencerIncidentSortie(
+            type
+        ) {
+
+            if (
+                !devoirCommence ||
+                devoirTermine ||
+                incidentEnCours
+            ) {
+                return;
+            }
+
+            incidentEnCours =
+                true;
+
+            heureSortie =
+                new Date();
+
+            sorties++;
+
+            historiqueSorties.push(
+                {
+                    sortie:
+                        heureSortie.toISOString(),
+
+                    retour:
+                        null,
+
+                    type:
+                        type
+                }
+            );
+
+            sauvegarderSurveillance();
+
+            mettreAJourCompteurs();
+        }
+
+        function terminerIncidentSortie() {
+
+            if (
+                !incidentEnCours ||
+                devoirTermine
+            ) {
+                return;
+            }
+
+            const retour =
+                new Date();
+
+            const dernier =
+                historiqueSorties[
+                historiqueSorties.length - 1
+                ];
+
+            if (
+                dernier &&
+                dernier.retour === null
+            ) {
+
+                dernier.retour =
+                    retour.toISOString();
+            }
+
+            incidentEnCours =
+                false;
+
+            heureSortie =
+                null;
+
+            sauvegarderSurveillance();
+        }
+
+        document.addEventListener(
+            "visibilitychange",
+            () => {
+
+                if (
+                    !devoirCommence ||
+                    devoirTermine
+                ) {
+                    return;
+                }
+
+                if (
+                    document.hidden
+                ) {
+
+                    commencerIncidentSortie(
+                        "Page masquée ou changement d'onglet"
+                    );
+                }
+
+                else if (
+                    document.hasFocus()
+                ) {
+
+                    terminerIncidentSortie();
+                }
+            }
+        );
+
+        window.addEventListener(
+            "blur",
+            () => {
+
+                if (
+                    !devoirCommence ||
+                    devoirTermine
+                ) {
+                    return;
+                }
+
+                commencerIncidentSortie(
+                    "Perte de focus de la page"
+                );
+            }
+        );
+
+        window.addEventListener(
+            "focus",
+            () => {
+
+                if (
+                    !devoirCommence ||
+                    devoirTermine
+                ) {
+                    return;
+                }
+
+                if (
+                    !document.hidden
+                ) {
+
+                    terminerIncidentSortie();
+                }
+            }
+        );
+
+        function initialiserSurveillanceFocus() {
+
+            if (
+                surveillanceFocusTimer
+            ) {
+
+                clearInterval(
+                    surveillanceFocusTimer
+                );
+            }
+
+            surveillanceFocusTimer =
+                setInterval(
+                    () => {
+
+                        if (
+                            !devoirCommence ||
+                            devoirTermine
+                        ) {
+                            return;
+                        }
+
+                        if (
+                            !document.hasFocus()
+                        ) {
+
+                            commencerIncidentSortie(
+                                "La page du devoir n'a plus le focus"
+                            );
+                        }
+
+                        else if (
+                            !document.hidden
+                        ) {
+
+                            terminerIncidentSortie();
+                        }
+
+                    },
+                    1000
+                );
+        }
+
+        function sauvegarderSurveillance() {
+
+            if (!prefixe) {
+                return;
+            }
+
+            localStorage.setItem(
+                prefixe +
+                "sorties",
+                String(sorties)
+            );
+
+            localStorage.setItem(
+                prefixe +
+                "historiqueSorties",
+                JSON.stringify(
+                    historiqueSorties
+                )
+            );
+        }
+
+        function mettreAJourCompteurs() {
+
+            const sortiesEl =
+                document.getElementById(
+                    "nb-sorties"
+                );
+
+            const raccourcisEl =
+                document.getElementById(
+                    "nb-raccourcis"
+                );
+
+            if (sortiesEl) {
+
+                sortiesEl.textContent =
+                    sorties;
+            }
+
+            if (raccourcisEl) {
+
+                raccourcisEl.textContent =
+                    raccourcis;
+            }
+        }
+
+        /* =========================================================
+           TERMINER LE DEVOIR
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-terminer"
+            )
+            .addEventListener(
+                "click",
+                terminerDevoir
+            );
+
+        function terminerDevoir() {
+
+            enregistrerToutesLesReponses();
+
+            const confirmation =
+                confirm(
+                    "ATTENTION\n\n" +
+                    "Voulez-vous vraiment terminer votre devoir ?\n\n" +
+                    "Après validation :\n" +
+                    "- votre copie sera téléchargée ;\n" +
+                    "- vos réponses seront définitivement verrouillées ;\n" +
+                    "- le sujet deviendra entièrement blanc ;\n" +
+                    "- vous ne pourrez ni reprendre, ni continuer, ni recommencer le devoir."
+                );
+
+            if (
+                !confirmation
+            ) {
+                return;
+            }
+
+            devoirTermine =
+                true;
+
+            if (
+                sauvegardeTimer
+            ) {
+
+                clearInterval(
+                    sauvegardeTimer
+                );
+            }
+
+            if (
+                surveillanceFocusTimer
+            ) {
+
+                clearInterval(
+                    surveillanceFocusTimer
+                );
+            }
+
+            if (
+                incidentEnCours
+            ) {
+
+                const dernier =
+                    historiqueSorties[
+                    historiqueSorties.length - 1
+                    ];
+
+                if (
+                    dernier &&
+                    dernier.retour === null
+                ) {
+
+                    dernier.retour =
+                        new Date().toISOString();
+                }
+
+                incidentEnCours =
+                    false;
+            }
+
+            sauvegarderSurveillance();
+
+            const fin =
+                new Date();
+
+            genererCopie(
+                fin
+            );
+
+            localStorage.setItem(
+                prefixe +
+                "termine",
+                "1"
+            );
+
+            setTimeout(
+                afficherPageTerminee,
+                500
+            );
+        }
+
+        /* =========================================================
+           GÉNÉRATION DE LA COPIE
+           ========================================================= */
+
+        function genererCopie(
+            fin
+        ) {
+
+            const nom =
+                localStorage.getItem(
+                    prefixe +
+                    "nom"
+                ) || "";
+
+            const prenom =
+                localStorage.getItem(
+                    prefixe +
+                    "prenom"
+                ) || "";
+
+            const debutISO =
+                localStorage.getItem(
+                    prefixe +
+                    "debut"
+                );
+
+            const debut =
+                debutISO
+                    ? new Date(
+                        debutISO
+                    )
+                    : new Date();
+
+            const dureeMs =
+                Math.max(
+                    0,
+                    fin - debut
+                );
+
+            const minutesTotales =
+                Math.round(
+                    dureeMs / 60000
+                );
+
+            const dureeTexte =
+                `${minutesTotales} min`;
+
+            const reponsesHTML =
+                construireReponsesCopie();
+
+            const sortiesHTML =
+                construireHistoriqueSorties();
+
+            const raccourcisHTML =
+                construireHistoriqueRaccourcis();
+
+            const copie = `
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+Copie DS Technologie 4e -
+${echapperHTML(nom)}
+${echapperHTML(prenom)}
+</title>
+
+<style>
+
+body {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f2937;
+    line-height: 1.5;
+}
+
+h1 {
+    padding: 18px;
+    background: #243b53;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.infos {
+    margin: 20px 0;
+    padding: 16px;
+    background: #edf2f7;
+    border-radius: 9px;
+}
+
+.surveillance {
+    margin: 20px 0;
+    padding: 16px;
+    background: #fff7ed;
+    border: 2px solid #ea580c;
+    border-radius: 9px;
+}
+
+.question-copie {
+    margin: 18px 0;
+    padding: 14px;
+    border-left: 4px solid #486581;
+    background: #f8fafc;
+}
+
+.reponse {
+    min-height: 35px;
+    margin-top: 8px;
+    padding: 10px;
+    background: white;
+    border: 1px solid #cbd5e1;
+    white-space: pre-wrap;
+}
+
+table {
+    width: 100%;
+    margin: 10px 0;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    vertical-align: top;
+}
+
+th {
+    background: #e2e8f0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+Devoir surveillé – Technologie 4e
+</h1>
+
+<div class="infos">
+
+    <p>
+        <strong>Nom :</strong>
+        ${echapperHTML(nom)}
+    </p>
+
+    <p>
+        <strong>Prénom :</strong>
+        ${echapperHTML(prenom)}
+    </p>
+
+    <p>
+        <strong>Début :</strong>
+        ${formatDate(debut)}
+    </p>
+
+    <p>
+        <strong>Fin :</strong>
+        ${formatDate(fin)}
+    </p>
+
+    <p>
+        <strong>Durée approximative :</strong>
+        ${dureeTexte}
+    </p>
+
+</div>
+
+<div class="surveillance">
+
+    <h2>Informations techniques</h2>
+
+    <p>
+        <strong>
+            Sorties de page :
+            ${sorties}
+        </strong>
+    </p>
+
+    <p>
+        <strong>
+            Raccourcis / commandes bloqués :
+            ${raccourcis}
+        </strong>
+    </p>
+
+    <p>
+        Ces informations constituent des indicateurs techniques.
+        Elles doivent être interprétées par le professeur
+        en tenant compte des éventuels incidents signalés pendant le devoir.
+    </p>
+
+    <h3>Historique des sorties</h3>
+
+    ${sortiesHTML}
+
+    <h3>Historique des commandes bloquées</h3>
+
+    ${raccourcisHTML}
+
+</div>
+
+<h2>Réponses de l'élève</h2>
+
+${reponsesHTML}
+
+</body>
+</html>
+`;
+
+            const blob =
+                new Blob(
+                    [copie],
+                    {
+                        type:
+                            "text/html;charset=utf-8"
+                    }
+                );
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+            const lien =
+                document.createElement(
+                    "a"
+                );
+
+            lien.href =
+                url;
+
+            lien.download =
+                "DS_4e_S02-S07_" +
+                nettoyerTexte(nom) +
+                "_" +
+                nettoyerTexte(prenom) +
+                ".html";
+
+            document.body.appendChild(
+                lien
+            );
+
+            lien.click();
+
+            lien.remove();
+
+            setTimeout(
+                () => {
+
+                    URL.revokeObjectURL(
+                        url
+                    );
+                },
+                3000
+            );
+        }
+
+        /* =========================================================
+           RÉPONSES DE LA COPIE
+           ========================================================= */
+
+        function construireReponsesCopie() {
+
+            const questions =
+                document.querySelectorAll(
+                    ".question"
+                );
+
+            let html =
+                "";
+
+            questions.forEach(
+                question => {
+
+                    const paragraphe =
+                        question.querySelector(
+                            "p"
+                        );
+
+                    const texteQuestion =
+                        paragraphe
+                            ? paragraphe.innerText
+                            : "";
+
+                    const champs =
+                        question.querySelectorAll(
+                            "textarea, input, select"
+                        );
+
+                    if (
+                        champs.length === 0
+                    ) {
+                        return;
+                    }
+
+                    html += `
+<div class="question-copie">
+
+    <strong>
+        ${echapperHTML(texteQuestion)}
+    </strong>
+`;
+
+                    champs.forEach(
+                        champ => {
+
+                            const reponse =
+                                champ.value.trim()
+                                || "[Aucune réponse]";
+
+                            html += `
+    <div class="reponse">
+        ${echapperHTML(reponse)}
+    </div>
+`;
+                        }
+                    );
+
+                    html += `
+</div>
+`;
+                }
+            );
+
+            return html;
+        }
+
+        /* =========================================================
+           HISTORIQUE SORTIES
+           ========================================================= */
+
+        function construireHistoriqueSorties() {
+
+            if (
+                historiqueSorties.length === 0
+            ) {
+
+                return "<p>Aucune sortie enregistrée.</p>";
+            }
+
+            let html = `
+<table>
+
+<thead>
+
+<tr>
+    <th>N°</th>
+    <th>Type</th>
+    <th>Sortie</th>
+    <th>Retour</th>
+    <th>Durée</th>
+</tr>
+
+</thead>
+
+<tbody>
+`;
+
+            historiqueSorties.forEach(
+                (
+                    entree,
+                    index
+                ) => {
+
+                    const sortie =
+                        new Date(
+                            entree.sortie
+                        );
+
+                    let retourTexte =
+                        "Non enregistré";
+
+                    let dureeTexte =
+                        "-";
+
+                    if (
+                        entree.retour
+                    ) {
+
+                        const retour =
+                            new Date(
+                                entree.retour
+                            );
+
+                        retourTexte =
+                            formatDate(
+                                retour
+                            );
+
+                        const secondes =
+                            Math.max(
+                                0,
+                                Math.round(
+                                    (
+                                        retour -
+                                        sortie
+                                    ) / 1000
+                                )
+                            );
+
+                        const min =
+                            Math.floor(
+                                secondes / 60
+                            );
+
+                        const sec =
+                            secondes % 60;
+
+                        dureeTexte =
+                            min > 0
+                                ? `${min} min ${sec} s`
+                                : `${sec} s`;
+                    }
+
+                    html += `
+<tr>
+
+    <td>
+        ${index + 1}
+    </td>
+
+    <td>
+        ${echapperHTML(
+                        entree.type || ""
+                    )}
+    </td>
+
+    <td>
+        ${formatDate(sortie)}
+    </td>
+
+    <td>
+        ${retourTexte}
+    </td>
+
+    <td>
+        ${dureeTexte}
+    </td>
+
+</tr>
+`;
+                }
+            );
+
+            html += `
+</tbody>
+</table>
+`;
+
+            return html;
+        }
+
+        /* =========================================================
+           HISTORIQUE RACCOURCIS
+           ========================================================= */
+
+        function construireHistoriqueRaccourcis() {
+
+            if (
+                historiqueRaccourcis.length === 0
+            ) {
+
+                return "<p>Aucune commande bloquée.</p>";
+            }
+
+            let html = `
+<table>
+
+<thead>
+
+<tr>
+    <th>N°</th>
+    <th>Heure</th>
+    <th>Commande</th>
+</tr>
+
+</thead>
+
+<tbody>
+`;
+
+            historiqueRaccourcis.forEach(
+                (
+                    entree,
+                    index
+                ) => {
+
+                    html += `
+<tr>
+
+    <td>
+        ${index + 1}
+    </td>
+
+    <td>
+        ${formatDate(
+                        new Date(
+                            entree.date
+                        )
+                    )}
+    </td>
+
+    <td>
+        ${echapperHTML(
+                        entree.description
+                    )}
+    </td>
+
+</tr>
+`;
+                }
+            );
+
+            html += `
+</tbody>
+</table>
+`;
+
+            return html;
+        }
+
+        /* =========================================================
+           PAGE BLANCHE DÉFINITIVE
+           ========================================================= */
+
+        function afficherPageTerminee() {
+
+            devoirTermine =
+                true;
+
+            if (
+                sauvegardeTimer
+            ) {
+
+                clearInterval(
+                    sauvegardeTimer
+                );
+            }
+
+            if (
+                surveillanceFocusTimer
+            ) {
+
+                clearInterval(
+                    surveillanceFocusTimer
+                );
+            }
+
+            document.documentElement.style.background =
+                "#ffffff";
+
+            document.body.className =
+                "devoir-termine";
+
+            document.body.innerHTML =
+                "";
+
+            document.body.style.margin =
+                "0";
+
+            document.body.style.background =
+                "#ffffff";
+
+            document.title =
+                "";
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DS Technologie 3e – Séances 2 à 5</title>
+
+<style>
+/* =========================================================
+   DEVOIR SURVEILLÉ – TECHNOLOGIE 3e
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #eef2f6;
+    color: #1f2937;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.55;
+}
+
+#evaluation-s02-s05 {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+/* ---------- EN-TÊTE ---------- */
+
+.ds-header {
+    margin-bottom: 25px;
+    padding: 24px;
+    background: #243b53;
+    color: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.ds-header h1 {
+    margin: 0 0 8px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.ds-header p {
+    margin: 5px 0;
+    text-align: center;
+}
+
+/* ---------- IDENTITÉ ---------- */
+
+.identite {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 18px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.identite label {
+    font-weight: bold;
+}
+
+.identite input {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px;
+    border: 1px solid #9fb3c8;
+    border-radius: 7px;
+    font-size: 1rem;
+}
+
+/* ---------- CONSIGNES ---------- */
+
+.consigne-examen {
+    margin: 20px 0 30px;
+    padding: 22px;
+    background: #fff7ed;
+    border: 2px solid #c2410c;
+    border-radius: 12px;
+}
+
+.consigne-examen h2 {
+    margin-top: 0;
+    color: #9a3412;
+}
+
+.consigne-examen strong {
+    color: #9a3412;
+}
+
+.avertissement {
+    margin: 18px 0;
+    padding: 15px;
+    background: #fee2e2;
+    border-left: 6px solid #dc2626;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* ---------- COMPTEUR DE SURVEILLANCE ---------- */
+
+#surveillance-ds {
+    position: sticky;
+    top: 8px;
+    z-index: 1000;
+    margin: 15px 0 25px;
+    padding: 12px 18px;
+    background: #fee2e2;
+    border: 2px solid #dc2626;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+#nb-sorties {
+    display: inline-block;
+    min-width: 32px;
+    margin-left: 4px;
+    padding: 2px 8px;
+    background: white;
+    border-radius: 6px;
+    color: #b91c1c;
+    font-size: 1.2rem;
+}
+
+/* ---------- EXERCICES ---------- */
+
+.exercice {
+    margin: 30px 0;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.08);
+}
+
+.exercice h2 {
+    margin: -24px -24px 22px;
+    padding: 14px 18px;
+    background: #d9e2ec;
+    color: #102a43;
+    border-radius: 12px 12px 0 0;
+    font-size: 1.35rem;
+}
+
+.question {
+    margin: 22px 0;
+    padding: 15px;
+    background: #f8fafc;
+    border-left: 4px solid #486581;
+    border-radius: 7px;
+}
+
+.question > p:first-child {
+    margin-top: 0;
+}
+
+/* ---------- CHAMPS DE RÉPONSE ---------- */
+
+textarea,
+input.reponse-courte,
+select {
+    width: 100%;
+    margin-top: 10px;
+    padding: 11px;
+    background: white;
+    border: 1px solid #9fb3c8;
+    border-radius: 7px;
+    color: #111827;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+textarea.reponse-longue {
+    min-height: 150px;
+}
+
+textarea.calcul {
+    min-height: 90px;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+    outline: 3px solid rgba(72, 101, 129, 0.22);
+    border-color: #486581;
+}
+
+/* ---------- TABLEAUX ---------- */
+
+table {
+    width: 100%;
+    margin: 18px 0;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    vertical-align: top;
+}
+
+th {
+    background: #d9e2ec;
+    color: #102a43;
+}
+
+tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+/* ---------- DIVERS ---------- */
+
+blockquote {
+    margin: 18px 0;
+    padding: 15px 20px;
+    background: #fff7ed;
+    border-left: 5px solid #c05621;
+    border-radius: 7px;
+    font-style: italic;
+}
+
+.bareme {
+    white-space: nowrap;
+    font-weight: bold;
+    color: #526d82;
+}
+
+.donnees {
+    padding: 15px;
+    background: #edf6ff;
+    border-radius: 8px;
+}
+
+hr {
+    margin: 35px 0;
+    border: 0;
+    border-top: 2px dashed #9fb3c8;
+}
+
+/* ---------- FIN DU DEVOIR ---------- */
+
+.zone-fin {
+    margin: 35px 0;
+    padding: 25px;
+    background: #e8f5e9;
+    border: 2px solid #2e7d32;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.zone-fin h2 {
+    color: #1b5e20;
+}
+
+#btn-terminer {
+    margin-top: 15px;
+    padding: 15px 30px;
+    background: #b91c1c;
+    border: 0;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btn-terminer:hover {
+    background: #991b1b;
+}
+
+/* ---------- MODE TERMINÉ ---------- */
+
+body.devoir-termine {
+    background: white !important;
+}
+
+body.devoir-termine * {
+    display: none !important;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 700px) {
+    #evaluation-s02-s05 {
+        padding: 12px;
+    }
+
+    .identite {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- IMPRESSION DE SECOURS ---------- */
+
+@media print {
+    #surveillance-ds,
+    #btn-terminer {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+    }
+
+    .exercice {
+        box-shadow: none;
+        border: 1px solid #bbb;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main id="evaluation-s02-s05">
+
+    <header class="ds-header">
+        <h1>Devoir surveillé – Technologie 3e</h1>
+        <p><strong>Séances 2 à 5</strong></p>
+        <p>Durée : 1 h 30 – Barème : 50 points + 2 points bonus</p>
+    </header>
+
+    <section class="identite">
+        <label>
+            Nom :
+            <input type="text" id="nom" autocomplete="off">
+        </label>
+
+        <label>
+            Prénom :
+            <input type="text" id="prenom" autocomplete="off">
+        </label>
+    </section>
+
+    <section class="consigne-examen">
+        <h2>Consignes du devoir surveillé</h2>
+
+        <p><strong>Vous devez répondre directement dans cette page.</strong></p>
+
+        <p>
+            Aucun document extérieur n'est autorisé pendant l'évaluation.
+            Vous ne devez pas consulter les cours, un moteur de recherche,
+            une intelligence artificielle, une messagerie ou une autre page Web.
+        </p>
+
+        <div class="avertissement">
+            Aucune sortie de la page du devoir n'est autorisée avant d'avoir terminé et validé votre copie.
+        </div>
+
+        <p>
+            Chaque sortie de la page est automatiquement enregistrée.
+            Le nombre de sorties ainsi que leur horaire seront inscrits dans la copie remise au professeur.
+        </p>
+
+        <p>Une sortie peut notamment être détectée lorsque vous :</p>
+
+        <ul>
+            <li>changez d'onglet ;</li>
+            <li>ouvrez une autre page ;</li>
+            <li>réduisez la fenêtre ;</li>
+            <li>passez vers une autre application ;</li>
+            <li>quittez la page du devoir.</li>
+        </ul>
+
+        <p>
+            <strong>
+                Toute sortie non autorisée pourra entraîner une pénalité.
+                Selon la situation, la note pourra être divisée par le nombre
+                de sorties constatées ou être ramenée directement à 0/20.
+            </strong>
+        </p>
+
+        <p>
+            Exemple : une copie obtenant 15/20 avec trois sorties non autorisées
+            pourra être ramenée à 5/20.
+        </p>
+
+        <p>
+            Une fois votre devoir terminé, relisez-le entièrement puis cliquez sur
+            <strong>« Terminer mon devoir »</strong>.
+        </p>
+
+        <p>
+            Après confirmation, <strong>vos réponses seront définitivement verrouillées</strong>
+            et la page du devoir deviendra blanche.
+        </p>
+
+        <p>
+            Vous pourrez alors récupérer votre copie dans le dossier
+            <strong>Téléchargements</strong> et la déposer dans le dossier partagé indiqué par le professeur.
+        </p>
+    </section>
+
+    <div id="surveillance-ds">
+        Devoir en cours –
+        Sorties de la page détectées :
+        <span id="nb-sorties">0</span>
+    </div>
+
+    <!-- =====================================================
+         EXERCICE 1
+         ===================================================== -->
+
+    <section class="exercice">
+        <h2>Exercice 1 – Pourquoi les objets techniques évoluent-ils ? – 7 points</h2>
+
+        <p>
+            Au cours du temps, différentes solutions ont permis aux personnes
+            de communiquer à distance :
+        </p>
+
+        <ul>
+            <li>lettre ;</li>
+            <li>télégraphe ;</li>
+            <li>téléphone fixe ;</li>
+            <li>téléphone portable ;</li>
+            <li>smartphone.</li>
+        </ul>
+
+        <div class="question">
+            <p><strong>1.1.</strong> Quel besoin commun satisfait l'ensemble de ces solutions ? <span class="bareme">(1 pt)</span></p>
+            <textarea id="q1_1"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>1.2.</strong> Expliquez pourquoi ces objets peuvent appartenir à une même famille. <span class="bareme">(1 pt)</span></p>
+            <textarea id="q1_2"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>1.3.</strong> Donnez une différence importante entre un téléphone fixe et un smartphone. <span class="bareme">(1 pt)</span></p>
+            <textarea id="q1_3"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>1.4.</strong> Donnez une fonction technique du smartphone puis une solution technique permettant de la réaliser. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q1_4"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>1.5.</strong> Une batterie offrant deux heures d'autonomie supplémentaires correspond-elle plutôt à une amélioration progressive ou à une innovation importante ? Justifiez. <span class="bareme">(1 pt)</span></p>
+            <textarea id="q1_5"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>1.6.</strong> Le passage du téléphone fixe au smartphone constitue-t-il une évolution plus importante ? Justifiez. <span class="bareme">(1 pt)</span></p>
+            <textarea id="q1_6"></textarea>
+        </div>
+
+        <!--
+        CORRECTION :
+        1.1 Communiquer à distance.
+        1.2 Même besoin = même famille.
+        1.3 Mobilité, Internet, applications, photo, GPS...
+        1.4 Ex : afficher → écran ; communiquer sans fil → antenne/module radio.
+        1.5 Amélioration progressive : amélioration d'une performance.
+        1.6 Oui, transformation importante des fonctions et des usages.
+        -->
+    </section>
+
+    <!-- =====================================================
+         EXERCICE 2
+         ===================================================== -->
+
+    <section class="exercice">
+        <h2>Exercice 2 – Les technologies transforment-elles toujours positivement la société ? – 6 points</h2>
+
+        <p>
+            Une commune remplace progressivement les plans papier présents aux arrêts de bus
+            par une application donnant :
+        </p>
+
+        <ul>
+            <li>la position des véhicules ;</li>
+            <li>les horaires en temps réel ;</li>
+            <li>un calcul d'itinéraire ;</li>
+            <li>des alertes en cas de retard.</li>
+        </ul>
+
+        <div class="question">
+            <p><strong>2.1.</strong> Donnez deux avantages de cette solution. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q2_1"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>2.2.</strong> Donnez deux limites ou contraintes possibles. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q2_2"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>2.3.</strong> Pourquoi ne peut-on pas affirmer qu'une technologie est meilleure uniquement parce qu'elle est plus récente ? <span class="bareme">(2 pts)</span></p>
+            <textarea id="q2_3" class="reponse-longue"></textarea>
+        </div>
+
+        <!--
+        CORRECTION :
+        Avantages : temps réel, calcul itinéraire, alertes...
+        Limites : smartphone, batterie, connexion, accessibilité, collecte de données...
+        Une technologie doit être étudiée selon plusieurs critères et peut aussi créer
+        de nouvelles contraintes.
+        -->
+    </section>
+
+    <!-- =====================================================
+         EXERCICE 3
+         ===================================================== -->
+
+    <section class="exercice">
+        <h2>Exercice 3 – Choisir entre plusieurs solutions techniques – 9 points</h2>
+
+        <p>
+            Une mairie souhaite permettre aux personnes à mobilité réduite
+            d'accéder à une salle située 3 mètres au-dessus de la rue.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Critère</th>
+                    <th>Ascenseur</th>
+                    <th>Plateforme élévatrice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Coût</td>
+                    <td>45 000 €</td>
+                    <td>16 000 €</td>
+                </tr>
+                <tr>
+                    <td>Capacité</td>
+                    <td>6 personnes</td>
+                    <td>1 personne</td>
+                </tr>
+                <tr>
+                    <td>Temps de trajet</td>
+                    <td>10 s</td>
+                    <td>28 s</td>
+                </tr>
+                <tr>
+                    <td>Travaux</td>
+                    <td>Importants</td>
+                    <td>Limités</td>
+                </tr>
+                <tr>
+                    <td>Fauteuil roulant</td>
+                    <td>Oui</td>
+                    <td>Oui</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="question">
+            <p><strong>3.1.</strong> Relevez le coût de la plateforme élévatrice. <span class="bareme">(1 pt)</span></p>
+            <input class="reponse-courte" type="text" id="q3_1">
+        </div>
+
+        <div class="question">
+            <p><strong>3.2.</strong> Donnez deux critères pour lesquels l'ascenseur est plus performant. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q3_2"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>3.3.</strong> Donnez deux avantages de la plateforme. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q3_3"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>3.4.</strong> Un élève affirme : « L'ascenseur est forcément meilleur puisqu'il est plus rapide. » Expliquez pourquoi ce raisonnement est insuffisant. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q3_4"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>3.5.</strong> Le bâtiment reçoit seulement une vingtaine d'utilisateurs par jour et le budget est limité. Quelle solution proposeriez-vous ? Justifiez avec plusieurs données du tableau. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q3_5" class="reponse-longue"></textarea>
+        </div>
+
+        <!--
+        CORRECTION :
+        3.1 16 000 €
+        3.2 capacité + temps
+        3.3 coût + travaux
+        3.4 plusieurs critères doivent être étudiés.
+        3.5 plateforme probable : coût inférieur, travaux limités, accessibilité assurée,
+        faible fréquentation. Ascenseur accepté si correctement argumenté.
+        -->
+    </section>
+
+    <!-- =====================================================
+         EXERCICE 4
+         ===================================================== -->
+
+    <section class="exercice">
+        <h2>Exercice 4 – Transformer des attentes en exigences – 6 points</h2>
+
+        <p>Un fabricant reçoit les demandes suivantes :</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Attente</th>
+                    <th>Exigence vérifiable proposée</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Le système doit être rapide.</td>
+                    <td><textarea id="q4_1"></textarea></td>
+                </tr>
+                <tr>
+                    <td>Le système doit transporter plusieurs personnes.</td>
+                    <td><textarea id="q4_2"></textarea></td>
+                </tr>
+                <tr>
+                    <td>Le système doit être silencieux.</td>
+                    <td><textarea id="q4_3"></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="question">
+            <p><strong>4.1.</strong> Les trois propositions du tableau sont notées sur 3 points. Elles doivent être mesurables ou vérifiables.</p>
+        </div>
+
+        <div class="question">
+            <p><strong>4.2.</strong> Pourquoi « le système doit être rapide » est-il moins précis que « le trajet doit durer moins de 15 secondes » ? <span class="bareme">(2 pts)</span></p>
+            <textarea id="q4_4"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>4.3.</strong> À quoi sert un cahier des charges lors de la conception d'un objet technique ? <span class="bareme">(1 pt)</span></p>
+            <textarea id="q4_5"></textarea>
+        </div>
+
+        <!--
+        CORRECTION :
+        Exemples :
+        trajet < 15 s ;
+        capacité >= 4 personnes ;
+        bruit < 50 dB.
+        Une exigence doit pouvoir être vérifiée.
+        Cahier des charges : préciser les besoins, contraintes et exigences à respecter.
+        -->
+    </section>
+
+    <!-- =====================================================
+         EXERCICE 5
+         ===================================================== -->
+
+    <section class="exercice">
+        <h2>Exercice 5 – Vérifier les performances d'une solution – 8 points</h2>
+
+        <p>Deux prototypes d'éoliennes doivent respecter :</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Critère</th>
+                    <th>Exigence</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Puissance moyenne</td>
+                    <td>Au moins 3 W</td>
+                </tr>
+                <tr>
+                    <td>Niveau sonore</td>
+                    <td>Inférieur à 50 dB</td>
+                </tr>
+                <tr>
+                    <td>Masse</td>
+                    <td>Inférieure à 500 g</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Mesure</th>
+                    <th>Prototype A</th>
+                    <th>Prototype B</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Essai 1</td>
+                    <td>2,8 W</td>
+                    <td>3,4 W</td>
+                </tr>
+                <tr>
+                    <td>Essai 2</td>
+                    <td>3,0 W</td>
+                    <td>3,2 W</td>
+                </tr>
+                <tr>
+                    <td>Essai 3</td>
+                    <td>2,9 W</td>
+                    <td>3,3 W</td>
+                </tr>
+                <tr>
+                    <td>Niveau sonore</td>
+                    <td>46 dB</td>
+                    <td>53 dB</td>
+                </tr>
+                <tr>
+                    <td>Masse</td>
+                    <td>350 g</td>
+                    <td>430 g</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="question">
+            <p><strong>5.1.</strong> Calculez la puissance moyenne du prototype A. Faites apparaître votre calcul. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q5_1" class="calcul"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>5.2.</strong> Calculez la puissance moyenne du prototype B. Faites apparaître votre calcul. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q5_2" class="calcul"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>5.3.</strong> Le prototype A respecte-t-il toutes les exigences ? Justifiez. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q5_3"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>5.4.</strong> Le prototype B respecte-t-il toutes les exigences ? Justifiez. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q5_4"></textarea>
+        </div>
+
+        <!--
+        CORRECTION :
+        A = (2,8 + 3,0 + 2,9) / 3 = 2,9 W.
+        B = (3,4 + 3,2 + 3,3) / 3 = 3,3 W.
+
+        A non : puissance insuffisante.
+        B non : bruit trop élevé.
+        -->
+    </section>
+
+    <!-- =====================================================
+         EXERCICE 6
+         ===================================================== -->
+
+    <section class="exercice">
+        <h2>Exercice 6 – Concevoir une expérience correcte – 8 points</h2>
+
+        <p>
+            On souhaite déterminer si le nombre de pales influence
+            la tension produite par une petite éolienne.
+        </p>
+
+        <p>Matériel :</p>
+
+        <ul>
+            <li>rotor à 3 pales ;</li>
+            <li>rotor à 4 pales ;</li>
+            <li>rotor à 5 pales ;</li>
+            <li>un même générateur ;</li>
+            <li>un ventilateur ;</li>
+            <li>un multimètre.</li>
+        </ul>
+
+        <div class="question">
+            <p><strong>6.1.</strong> Quel paramètre doit volontairement changer ? <span class="bareme">(1 pt)</span></p>
+            <textarea id="q6_1"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>6.2.</strong> Quelle grandeur électrique doit être mesurée ? Indiquez également son unité. <span class="bareme">(1 pt)</span></p>
+            <textarea id="q6_2"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>6.3.</strong> Donnez quatre paramètres qui doivent rester identiques pendant les essais. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q6_3"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>6.4.</strong> Pourquoi faut-il réaliser plusieurs mesures pour chaque rotor ? <span class="bareme">(1 pt)</span></p>
+            <textarea id="q6_4"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>6.5.</strong> Remettez les étapes suivantes dans un ordre logique : <span class="bareme">(2 pts)</span></p>
+
+            <ul>
+                <li>A – Calculer la moyenne.</li>
+                <li>B – Installer le rotor.</li>
+                <li>C – Comparer les résultats.</li>
+                <li>D – Placer le ventilateur à une distance déterminée.</li>
+                <li>E – Réaliser trois mesures.</li>
+                <li>F – Recommencer avec les autres rotors.</li>
+                <li>G – Régler le ventilateur sans modifier ensuite ce réglage.</li>
+            </ul>
+
+            <textarea id="q6_5"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>6.6.</strong> Un groupe teste le rotor 3 pales à 30 cm du ventilateur et le rotor 4 pales à 80 cm. Pourquoi la comparaison n'est-elle pas valide ? <span class="bareme">(1 pt)</span></p>
+            <textarea id="q6_6"></textarea>
+        </div>
+
+        <!--
+        CORRECTION :
+        6.1 nombre de pales.
+        6.2 tension en volts.
+        6.3 même distance, même ventilateur, même vitesse, même générateur,
+        même orientation, même appareil...
+        6.4 moyenne / réduire influence d'une mesure inhabituelle.
+        6.5 D-G-B-E-A-F-C, ou ordre cohérent équivalent.
+        6.6 deux paramètres changent simultanément.
+        -->
+    </section>
+
+    <!-- =====================================================
+         EXERCICE 7
+         ===================================================== -->
+
+    <section class="exercice">
+        <h2>Exercice 7 – Analyser des résultats – 6 points</h2>
+
+        <p>Trois groupes testent le même prototype :</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Groupe</th>
+                    <th>Mesure 1</th>
+                    <th>Mesure 2</th>
+                    <th>Mesure 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A</td>
+                    <td>2,8 W</td>
+                    <td>2,9 W</td>
+                    <td>2,8 W</td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>2,8 W</td>
+                    <td>5,9 W</td>
+                    <td>2,9 W</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>2,7 W</td>
+                    <td>2,8 W</td>
+                    <td>2,9 W</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="question">
+            <p><strong>7.1.</strong> Quelle valeur semble inhabituelle ? <span class="bareme">(1 pt)</span></p>
+            <textarea id="q7_1"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>7.2.</strong> Donnez deux explications possibles à cette valeur. <span class="bareme">(2 pts)</span></p>
+            <textarea id="q7_2"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>7.3.</strong> Pourquoi est-il risqué de calculer immédiatement une moyenne sans observer les valeurs ? <span class="bareme">(2 pts)</span></p>
+            <textarea id="q7_3"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>7.4.</strong> Quelle action faudrait-il effectuer avant de tirer une conclusion ? <span class="bareme">(1 pt)</span></p>
+            <textarea id="q7_4"></textarea>
+        </div>
+
+        <!--
+        CORRECTION :
+        7.1 5,9 W.
+        7.2 erreur lecture/saisie/réglage/condition expérimentale...
+        7.3 valeur aberrante fausse la moyenne.
+        7.4 refaire la mesure / vérifier protocole et appareil.
+        -->
+    </section>
+
+    <!-- =====================================================
+         VRAI / FAUX
+         ===================================================== -->
+
+    <section class="exercice">
+        <h2>Exercice 8 – Vrai ou faux ? – Bonus +2 points</h2>
+
+        <p>
+            Répondez aux affirmations suivantes.
+            Lorsqu'une proposition est fausse, corrigez-la.
+        </p>
+
+        <div class="question">
+            <p><strong>A.</strong> Deux objets répondant au même besoin utilisent forcément la même solution technique.</p>
+            <textarea id="bonus_1"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>B.</strong> La meilleure solution technique dépend des exigences et du contexte.</p>
+            <textarea id="bonus_2"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>C.</strong> Une seule mesure suffit toujours pour comparer deux prototypes.</p>
+            <textarea id="bonus_3"></textarea>
+        </div>
+
+        <div class="question">
+            <p><strong>D.</strong> Un protocole peut être amélioré après les premiers essais.</p>
+            <textarea id="bonus_4"></textarea>
+        </div>
+
+        <!--
+        CORRECTION BONUS :
+        A faux.
+        B vrai.
+        C faux.
+        D vrai.
+        -->
+    </section>
+
+    <!-- =====================================================
+         FIN
+         ===================================================== -->
+
+    <section class="zone-fin">
+        <h2>Vous avez terminé ?</h2>
+
+        <p>
+            Relisez vos réponses et vérifiez que votre nom et votre prénom sont correctement renseignés.
+        </p>
+
+        <p>
+            <strong>
+                Après validation, il sera impossible de revenir au devoir.
+            </strong>
+        </p>
+
+        <button id="btn-terminer" type="button">
+            Terminer mon devoir
+        </button>
+    </section>
+
+</main>
+
+<script>
+/* =========================================================
+   CONFIGURATION
+   ========================================================= */
+
+const CLE_PREFIXE = "DS3E_S02_S05_";
+const CLE_TERMINE = CLE_PREFIXE + "termine";
+const CLE_SORTIES = CLE_PREFIXE + "sorties";
+const CLE_HISTORIQUE = CLE_PREFIXE + "historique";
+const CLE_DEBUT = CLE_PREFIXE + "debut";
+
+let devoirTermine = localStorage.getItem(CLE_TERMINE) === "1";
+let sorties = Number(localStorage.getItem(CLE_SORTIES) || 0);
+let historique = JSON.parse(localStorage.getItem(CLE_HISTORIQUE) || "[]");
+
+let sortieEnCours = false;
+let heureSortie = null;
+
+/* =========================================================
+   VERROUILLAGE AU CHARGEMENT
+   ========================================================= */
+
+if (devoirTermine) {
+    blanchirPage();
+}
+
+/* =========================================================
+   HEURE DE DÉBUT
+   ========================================================= */
+
+if (!localStorage.getItem(CLE_DEBUT) && !devoirTermine) {
+    localStorage.setItem(CLE_DEBUT, new Date().toISOString());
+}
+
+/* =========================================================
+   RESTAURATION DES RÉPONSES
+   ========================================================= */
+
+const champs = document.querySelectorAll(
+    "#evaluation-s02-s05 textarea, #evaluation-s02-s05 input, #evaluation-s02-s05 select"
+);
+
+champs.forEach(champ => {
+    const cle = CLE_PREFIXE + "champ_" + champ.id;
+    const valeur = localStorage.getItem(cle);
+
+    if (valeur !== null) {
+        champ.value = valeur;
+    }
+
+    champ.addEventListener("input", () => {
+        if (!devoirTermine) {
+            localStorage.setItem(cle, champ.value);
+        }
+    });
+});
+
+/* =========================================================
+   AFFICHAGE COMPTEUR
+   ========================================================= */
+
+mettreAJourCompteur();
+
+function mettreAJourCompteur() {
+    const compteur = document.getElementById("nb-sorties");
+
+    if (compteur) {
+        compteur.textContent = sorties;
+    }
+}
+
+/* =========================================================
+   DÉTECTION DES SORTIES
+   ========================================================= */
+
+document.addEventListener("visibilitychange", () => {
+
+    if (devoirTermine) {
+        return;
+    }
+
+    if (document.hidden) {
+
+        if (!sortieEnCours) {
+            sortieEnCours = true;
+            heureSortie = new Date();
+
+            sorties++;
+
+            localStorage.setItem(CLE_SORTIES, String(sorties));
+            mettreAJourCompteur();
+
+            historique.push({
+                sortie: heureSortie.toISOString(),
+                retour: null
+            });
+
+            enregistrerHistorique();
+        }
+
+    } else {
+
+        if (sortieEnCours) {
+            const retour = new Date();
+
+            const dernier = historique[historique.length - 1];
+
+            if (dernier && dernier.retour === null) {
+                dernier.retour = retour.toISOString();
+            }
+
+            enregistrerHistorique();
+
+            sortieEnCours = false;
+            heureSortie = null;
+        }
+    }
+});
+
+function enregistrerHistorique() {
+    localStorage.setItem(
+        CLE_HISTORIQUE,
+        JSON.stringify(historique)
+    );
+}
+
+/* =========================================================
+   BOUTON TERMINER
+   ========================================================= */
+
+const btnTerminer = document.getElementById("btn-terminer");
+
+if (btnTerminer) {
+    btnTerminer.addEventListener("click", terminerDevoir);
+}
+
+function terminerDevoir() {
+
+    const nom = document.getElementById("nom").value.trim();
+    const prenom = document.getElementById("prenom").value.trim();
+
+    if (!nom || !prenom) {
+        alert("Vous devez renseigner votre nom et votre prénom avant de terminer.");
+        return;
+    }
+
+    const confirmation = confirm(
+        "ATTENTION\n\n" +
+        "Voulez-vous vraiment terminer votre devoir ?\n\n" +
+        "Après validation :\n" +
+        "- vos réponses seront verrouillées ;\n" +
+        "- votre copie sera téléchargée ;\n" +
+        "- le devoir deviendra entièrement blanc ;\n" +
+        "- vous ne pourrez plus revenir en arrière."
+    );
+
+    if (!confirmation) {
+        return;
+    }
+
+    devoirTermine = true;
+
+    localStorage.setItem(CLE_TERMINE, "1");
+
+    const fin = new Date();
+
+    genererCopie(nom, prenom, fin);
+
+    setTimeout(() => {
+        blanchirPage();
+    }, 350);
+}
+
+/* =========================================================
+   GÉNÉRATION DE LA COPIE
+   ========================================================= */
+
+function genererCopie(nom, prenom, fin) {
+
+    const debutISO = localStorage.getItem(CLE_DEBUT);
+    const debut = debutISO ? new Date(debutISO) : new Date();
+
+    const dureeMs = fin - debut;
+
+    const minutesTotales = Math.max(
+        0,
+        Math.round(dureeMs / 60000)
+    );
+
+    const heures = Math.floor(minutesTotales / 60);
+    const minutes = minutesTotales % 60;
+
+    const dureeTexte =
+        heures > 0
+            ? `${heures} h ${String(minutes).padStart(2, "0")}`
+            : `${minutes} min`;
+
+    const contenuReponses = construireCopieReponses();
+
+    const historiqueHTML = construireHistorique();
+
+    const copie = `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Copie DS 3e - ${echapperHTML(nom)} ${echapperHTML(prenom)}</title>
+
+<style>
+body {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f2937;
+    line-height: 1.5;
+}
+
+h1 {
+    padding: 18px;
+    background: #243b53;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.infos,
+.surveillance {
+    margin: 20px 0;
+    padding: 16px;
+    border-radius: 9px;
+}
+
+.infos {
+    background: #edf2f7;
+}
+
+.surveillance {
+    background: #fee2e2;
+    border: 2px solid #dc2626;
+}
+
+.question-copie {
+    margin: 18px 0;
+    padding: 14px;
+    border-left: 4px solid #486581;
+    background: #f8fafc;
+}
+
+.question-copie h3 {
+    margin-top: 0;
+}
+
+.reponse {
+    min-height: 35px;
+    margin-top: 8px;
+    padding: 10px;
+    background: white;
+    border: 1px solid #cbd5e1;
+    white-space: pre-wrap;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+}
+
+th {
+    background: #e2e8f0;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Devoir surveillé – Technologie 3e</h1>
+
+<div class="infos">
+    <p><strong>Nom :</strong> ${echapperHTML(nom)}</p>
+    <p><strong>Prénom :</strong> ${echapperHTML(prenom)}</p>
+    <p><strong>Début :</strong> ${formatDate(debut)}</p>
+    <p><strong>Fin :</strong> ${formatDate(fin)}</p>
+    <p><strong>Durée approximative :</strong> ${dureeTexte}</p>
+</div>
+
+<div class="surveillance">
+    <h2>Informations de surveillance</h2>
+
+    <p>
+        <strong>Nombre de sorties de la page avant validation :
+        ${sorties}</strong>
+    </p>
+
+    ${historiqueHTML}
+</div>
+
+${contenuReponses}
+
+</body>
+</html>
+`;
+
+    const blob = new Blob(
+        [copie],
+        { type: "text/html;charset=utf-8" }
+    );
+
+    const url = URL.createObjectURL(blob);
+
+    const lien = document.createElement("a");
+
+    lien.href = url;
+    lien.download =
+        "DS_3e_" +
+        nettoyerNom(nom) +
+        "_" +
+        nettoyerNom(prenom) +
+        ".html";
+
+    document.body.appendChild(lien);
+    lien.click();
+    lien.remove();
+
+    setTimeout(() => {
+        URL.revokeObjectURL(url);
+    }, 2000);
+}
+
+/* =========================================================
+   CONTENU DE LA COPIE
+   ========================================================= */
+
+function construireCopieReponses() {
+
+    const questions = document.querySelectorAll(".question");
+
+    let html = "<h2>Réponses de l'élève</h2>";
+
+    questions.forEach((question, index) => {
+
+        const texteQuestion =
+            question.querySelector("p")
+                ? question.querySelector("p").innerText
+                : "Question " + (index + 1);
+
+        const champsQuestion =
+            question.querySelectorAll("textarea, input, select");
+
+        if (champsQuestion.length === 0) {
+            return;
+        }
+
+        html += `
+        <div class="question-copie">
+            <h3>${echapperHTML(texteQuestion)}</h3>
+        `;
+
+        champsQuestion.forEach(champ => {
+
+            const reponse =
+                champ.value.trim() || "[Aucune réponse]";
+
+            html += `
+                <div class="reponse">${echapperHTML(reponse)}</div>
+            `;
+        });
+
+        html += "</div>";
+    });
+
+    return html;
+}
+
+/* =========================================================
+   HISTORIQUE SORTIES
+   ========================================================= */
+
+function construireHistorique() {
+
+    if (historique.length === 0) {
+        return "<p>Aucune sortie enregistrée.</p>";
+    }
+
+    let html = `
+    <table>
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Sortie</th>
+                <th>Retour</th>
+                <th>Durée</th>
+            </tr>
+        </thead>
+        <tbody>
+    `;
+
+    historique.forEach((entree, index) => {
+
+        const sortie = new Date(entree.sortie);
+
+        let retourTexte = "Non enregistré";
+        let dureeTexte = "-";
+
+        if (entree.retour) {
+            const retour = new Date(entree.retour);
+
+            retourTexte = formatDate(retour);
+
+            const secondes =
+                Math.max(
+                    0,
+                    Math.round((retour - sortie) / 1000)
+                );
+
+            const min = Math.floor(secondes / 60);
+            const sec = secondes % 60;
+
+            dureeTexte =
+                min > 0
+                    ? `${min} min ${sec} s`
+                    : `${sec} s`;
+        }
+
+        html += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${formatDate(sortie)}</td>
+                <td>${retourTexte}</td>
+                <td>${dureeTexte}</td>
+            </tr>
+        `;
+    });
+
+    html += `
+        </tbody>
+    </table>
+    `;
+
+    return html;
+}
+
+/* =========================================================
+   PAGE BLANCHE DÉFINITIVE
+   ========================================================= */
+
+function blanchirPage() {
+
+    document.documentElement.style.background = "#ffffff";
+    document.body.className = "devoir-termine";
+
+    document.body.innerHTML = "";
+
+    document.body.style.margin = "0";
+    document.body.style.background = "#ffffff";
+
+    document.title = "";
+}
+
+/* =========================================================
+   OUTILS
+   ========================================================= */
+
+function formatDate(date) {
+
+    return date.toLocaleString(
+        "fr-FR",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        }
+    );
+}
+
+function nettoyerNom(texte) {
+
+    return texte
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9_-]/g, "_");
+}
+
+function echapperHTML(texte) {
+
+    return String(texte)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+</script>
+
+</body>
+</html>

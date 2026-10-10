@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Correction professeur – DS Technologie 5e – S02 à S05 – V3</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #eef2f6;
+            color: #1f2937;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.55;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        #correction-ds {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* =========================================================
+   EN-TÊTE
+   ========================================================= */
+
+        .prof-header {
+            margin-bottom: 25px;
+            padding: 24px;
+            background: #243b53;
+            color: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        }
+
+        .prof-header h1 {
+            margin: 0 0 8px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .prof-header p {
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        /* =========================================================
+   CALCULATEUR DE NOTE
+   ========================================================= */
+
+        #calculateur-note {
+            position: sticky;
+            top: 6px;
+            z-index: 1000;
+            margin: 20px 0 30px;
+            padding: 18px;
+            background: #ffffff;
+            border: 2px solid #2563eb;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        #calculateur-note h2 {
+            margin: 0 0 12px;
+            color: #1d4ed8;
+        }
+
+        .identite-correction {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .identite-correction input {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid #94a3b8;
+            border-radius: 6px;
+        }
+
+        .resultats-note {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .resultat-note {
+            padding: 10px;
+            background: #eff6ff;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .resultat-note strong {
+            display: block;
+            margin-top: 4px;
+            font-size: 1.35rem;
+            color: #1d4ed8;
+        }
+
+        #note-finale {
+            font-size: 1.6rem;
+        }
+
+        .actions-note {
+            margin-top: 12px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .actions-note button {
+            padding: 9px 14px;
+            border: 0;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #btn-reset-note {
+            background: #64748b;
+            color: white;
+        }
+
+        #btn-imprimer {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* =========================================================
+   RÉSUMÉ
+   ========================================================= */
+
+        .resume-bareme {
+            margin: 20px 0 30px;
+            padding: 18px 22px;
+            background: white;
+            border-left: 6px solid #486581;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        /* =========================================================
+   EXERCICES
+   ========================================================= */
+
+        .exercice {
+            margin: 30px 0;
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 9px rgba(0, 0, 0, 0.08);
+        }
+
+        .exercice>h2 {
+            margin: -24px -24px 22px;
+            padding: 14px 18px;
+            background: #d9e2ec;
+            color: #102a43;
+            border-radius: 12px 12px 0 0;
+            font-size: 1.35rem;
+        }
+
+        .question {
+            margin: 24px 0;
+            padding: 16px;
+            background: #f8fafc;
+            border-left: 4px solid #486581;
+            border-radius: 7px;
+        }
+
+        .question>p:first-child {
+            margin-top: 0;
+        }
+
+        .bareme {
+            font-weight: bold;
+            color: #526d82;
+        }
+
+        /* =========================================================
+   CORRECTIONS
+   ========================================================= */
+
+        .correction {
+            margin-top: 12px;
+            padding: 14px 16px;
+            background: #ecfdf3;
+            border: 1px solid #86efac;
+            border-left: 5px solid #16a34a;
+            border-radius: 8px;
+        }
+
+        .correction strong {
+            color: #166534;
+        }
+
+        .bareme-detail {
+            margin-top: 10px;
+            padding: 11px 14px;
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            border-radius: 6px;
+        }
+
+        .bareme-detail strong {
+            color: #1d4ed8;
+        }
+
+        .accepter {
+            margin-top: 10px;
+            padding: 11px 14px;
+            background: #fff7ed;
+            border-left: 4px solid #ea580c;
+            border-radius: 6px;
+        }
+
+        .vigilance {
+            margin-top: 10px;
+            padding: 11px 14px;
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+            border-radius: 6px;
+        }
+
+        .correction-rapide {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #f5f3ff;
+            border-left: 4px solid #7c3aed;
+            border-radius: 6px;
+        }
+
+        .correction-rapide strong {
+            color: #6d28d9;
+        }
+
+        /* =========================================================
+   SAISIE DES POINTS
+   ========================================================= */
+
+        .zone-points {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed #94a3b8;
+        }
+
+        .zone-points label {
+            font-weight: bold;
+        }
+
+        .zone-points input {
+            width: 75px;
+            padding: 7px;
+            border: 2px solid #2563eb;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .zone-points span {
+            color: #64748b;
+        }
+
+        /* =========================================================
+   TABLEAUX
+   ========================================================= */
+
+        table {
+            width: 100%;
+            margin: 18px 0;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            vertical-align: top;
+        }
+
+        th {
+            background: #d9e2ec;
+            color: #102a43;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* =========================================================
+   OUTILS PROF
+   ========================================================= */
+
+        .outils-prof {
+            margin: 40px 0;
+            padding: 24px;
+            background: #fff7ed;
+            border: 2px solid #ea580c;
+            border-radius: 12px;
+        }
+
+        .outils-prof h2 {
+            margin-top: 0;
+            color: #9a3412;
+        }
+
+        #btn-reset-ds {
+            margin-top: 15px;
+            padding: 14px 22px;
+            background: #c2410c;
+            color: white;
+            border: 0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #btn-reset-ds:hover {
+            background: #9a3412;
+        }
+
+        #message-reset {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            border-radius: 7px;
+            color: #166534;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+   IMPRESSION
+   ========================================================= */
+
+        @media print {
+            body {
+                background: white;
+                font-size: 10pt;
+            }
+
+            #correction-ds {
+                max-width: none;
+                padding: 0;
+            }
+
+            #calculateur-note {
+                position: static;
+                box-shadow: none;
+            }
+
+            .exercice,
+            .prof-header,
+            .resume-bareme {
+                box-shadow: none;
+            }
+
+            .question,
+            .correction,
+            .bareme-detail,
+            .accepter,
+            .vigilance,
+            .correction-rapide {
+                break-inside: avoid;
+            }
+
+            .outils-prof,
+            .actions-note {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main id="correction-ds">
+
+        <header class="prof-header">
+            <h1>Correction professeur – Technologie 5e</h1>
+            <p><strong>Devoir surveillé – Séances 2 à 5 – V3</strong></p>
+            <p>60 points + 2 points bonus</p>
+        </header>
+
+        <!-- =========================================================
+     CALCULATEUR
+     ========================================================= -->
+
+        <section id="calculateur-note">
+
+            <h2>Correction de la copie</h2>
+
+            <div class="identite-correction">
+
+                <label>
+                    Nom :
+                    <input type="text" id="nom-eleve-correction">
+                </label>
+
+                <label>
+                    Prénom :
+                    <input type="text" id="prenom-eleve-correction">
+                </label>
+
+            </div>
+
+            <div class="resultats-note">
+
+                <div class="resultat-note">
+                    Points
+                    <strong>
+                        <span id="total-points">0</span> / 60
+                    </strong>
+                </div>
+
+                <div class="resultat-note">
+                    Bonus
+                    <strong>
+                        + <span id="total-bonus">0</span> / 2
+                    </strong>
+                </div>
+
+                <div class="resultat-note">
+                    Note brute
+                    <strong>
+                        <span id="note-brute">0</span> / 20
+                    </strong>
+                </div>
+
+                <div class="resultat-note">
+                    Note finale
+                    <strong id="note-finale">0 / 20</strong>
+                </div>
+
+            </div>
+
+            <div class="actions-note">
+
+                <button id="btn-reset-note" type="button">
+                    Nouvelle copie
+                </button>
+
+                <button id="btn-imprimer" type="button">
+                    Imprimer cette correction
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="resume-bareme">
+
+            <strong>Répartition :</strong><br><br>
+
+            Exercice 1 : 7 pts |
+            Exercice 2 : 7 pts |
+            Exercice 3 : 7 pts |
+            Exercice 4 : 5 pts |
+            Exercice 5 : 7 pts |
+            Exercice 6 : 6 pts |
+            Exercice 7 : 9 pts |
+            Exercice 8 : 6 pts |
+            Exercice 9 : 6 pts |
+            Bonus : +2 pts
+
+            <p>
+                <strong>Conversion :</strong>
+                60 points = 20/20.
+                La note brute correspond donc à <strong>points ÷ 3</strong>.
+            </p>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 1
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 1 – Les objets qui nous entourent – 7 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.1.</strong>
+                    Ranger les six éléments en deux groupes et donner un nom aux deux groupes.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>Réponse attendue :</strong>
+
+                    <p>
+                        <strong>Objets naturels :</strong>
+                        branche d'arbre, pierre, pomme.
+                    </p>
+
+                    <p>
+                        <strong>Objets techniques :</strong>
+                        gourde, lampe de poche, banc en bois.
+                    </p>
+                </div>
+
+                <div class="bareme-detail">
+                    <strong>Barème conseillé :</strong><br>
+                    1 pt : classement globalement correct.<br>
+                    1 pt : les deux catégories sont correctement nommées.
+                </div>
+
+                <div class="accepter">
+                    <strong>À accepter :</strong>
+                    « naturel / technique », « objets de la nature / objets fabriqués par l'humain »
+                    ou formulation clairement équivalente.
+                </div>
+
+                <div class="correction-rapide">
+                    <strong>Correction rapide :</strong>
+                    si les 6 objets sont bien rangés et les deux groupes nommés → 2/2.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.2.</strong>
+                    Expliquer la différence entre les deux groupes.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>Réponse attendue :</strong><br>
+                    Les objets naturels existent dans la nature sans avoir été fabriqués par l'être humain.
+                    Les objets techniques sont fabriqués ou transformés par l'être humain pour répondre à un besoin.
+                </div>
+
+                <div class="bareme-detail">
+                    <strong>Barème :</strong><br>
+                    1 pt : explication correcte des objets naturels.<br>
+                    1 pt : fabrication/transformation humaine et idée de besoin.
+                </div>
+
+                <div class="accepter">
+                    Ne pas exiger la définition mot pour mot.
+                    « Les objets techniques sont fabriqués par les humains » peut déjà valoir une partie des points.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.3.</strong>
+                    À quoi sert la gourde pendant une randonnée ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>Réponses attendues :</strong>
+                    transporter de l'eau, conserver de l'eau, permettre de boire ou de s'hydrater.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.4.</strong>
+                    Donner un autre objet permettant de transporter de l'eau.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>Exemples :</strong>
+                    bouteille, bidon, poche à eau, thermos, récipient adapté.
+                </div>
+
+                <div class="accepter">
+                    Accepter toute solution réaliste permettant effectivement de transporter de l'eau.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.5.</strong>
+                    Pourquoi les deux objets peuvent-ils servir au même usage sans être identiques ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>Réponse attendue :</strong><br>
+                    Deux objets différents peuvent répondre au même besoin ou permettre le même usage
+                    en utilisant des formes ou des solutions différentes.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 2
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 2 – Un objet n'est jamais tout seul – 7 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.1.</strong>
+                    Choisir quatre éléments qui peuvent agir sur le vélo ou être en contact avec lui.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>Réponses possibles :</strong>
+                    cycliste, route, air, pluie, véhicules, piétons.
+                </div>
+
+                <div class="bareme-detail">
+                    0,5 pt par élément correct.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.2.</strong>
+                    Donner deux exemples d'action entre le cycliste et le vélo.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>Exemples :</strong>
+                    le cycliste pédale ;
+                    tourne le guidon ;
+                    actionne les freins ;
+                    s'assoit sur la selle ;
+                    change de vitesse.
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par interaction pertinente.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.3.</strong>
+                    Que se passe-t-il entre les pneus et la route ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    Les pneus sont en contact avec la route.
+                    Ils roulent dessus et doivent suffisamment adhérer pour permettre au vélo d'avancer,
+                    tourner et freiner.
+                </div>
+
+                <div class="accepter">
+                    Une réponse simple du type « les pneus roulent sur la route » peut obtenir une partie du point.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.4.</strong>
+                    Donner une partie du vélo concernée par la pluie et expliquer pourquoi.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>Exemples :</strong>
+                    freins → peuvent être mouillés ;
+                    pneus → adhérence modifiée ;
+                    chaîne → exposée à l'eau ;
+                    cycliste → peut recevoir les projections ;
+                    garde-boue → limite les projections.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.5.</strong>
+                    Pourquoi le fabricant doit-il tenir compte de l'utilisateur et de l'environnement ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    Le vélo doit fonctionner correctement dans les conditions où il sera utilisé :
+                    porter l'utilisateur, rouler sur une route, résister aux conditions extérieures,
+                    permettre de freiner, être visible, etc.
+                </div>
+
+                <div class="accepter">
+                    Accepter toute idée montrant que l'objet doit être adapté à son usage réel.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 3
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 3 – Ce que doit faire le vélo et comment il le fait – 7 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.1.</strong>
+                    Associer quatre fonctions à des solutions techniques.
+                    <span class="bareme">(4 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ce que doit faire le vélo</th>
+                                <th>Comment il le fait</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Ralentir / s'arrêter</td>
+                                <td>Freins, patins, disque, étriers...</td>
+                            </tr>
+
+                            <tr>
+                                <td>Changer de direction</td>
+                                <td>Guidon, fourche, roue avant</td>
+                            </tr>
+
+                            <tr>
+                                <td>Transmettre l'effort</td>
+                                <td>Pédalier, chaîne, pignons</td>
+                            </tr>
+
+                            <tr>
+                                <td>Permettre de s'asseoir</td>
+                                <td>Selle</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par association correcte.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="4" step="0.5" data-max="4">
+                    <span>/ 4</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.2.</strong>
+                    Compléter les définitions de fonction technique et solution technique.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>Fonction technique :</strong>
+                    ce que l'objet ou une partie de l'objet doit faire.<br><br>
+
+                    <strong>Solution technique :</strong>
+                    comment cette fonction est réalisée.
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par idée correctement exprimée.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.3.</strong>
+                    Freins sur jante et freins à disque : peuvent-ils faire la même chose ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    Oui. Ce sont deux solutions techniques différentes
+                    permettant d'assurer la même fonction :
+                    ralentir ou arrêter le vélo.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 4
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 4 – À quoi servent les différentes parties d'un vélo ? – 5 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.1.</strong>
+                    Donner le rôle des cinq éléments.
+                    <span class="bareme">(5 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    <p><strong>Pneu cranté :</strong> améliorer l'adhérence, notamment sur terrain meuble ou irrégulier.
+                    </p>
+
+                    <p><strong>Phare :</strong> éclairer la route et/ou rendre le cycliste visible.</p>
+
+                    <p><strong>Dérailleur :</strong> changer de rapport afin d'adapter l'effort ou la vitesse.</p>
+
+                    <p><strong>Béquille :</strong> maintenir le vélo debout à l'arrêt.</p>
+
+                    <p><strong>Garde-boue :</strong> limiter les projections d'eau et de boue.</p>
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par réponse correcte.
+                </div>
+
+                <div class="accepter">
+                    Ne pas pénaliser une formulation maladroite si la fonction est comprise.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="5" step="0.5" data-max="5">
+                    <span>/ 5</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 5
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 5 – Pourquoi les vélos ont-ils changé ? – 7 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.1.</strong>
+                    Choisir deux évolutions et expliquer ce qu'elles apportent.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    Exemples :
+                    pneus gonflables → confort / adhérence ;
+                    meilleurs freins → sécurité ;
+                    chaîne → transmission plus efficace ;
+                    VTT → adaptation aux chemins ;
+                    assistance électrique → moins d'effort.
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par évolution correctement reliée à un bénéfice.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="correction">
+                <strong>Réponses attendues :</strong>
+                <ul>
+                    <li>améliorer la sécurité ;</li>
+                    <li>répondre à un nouvel usage ;</li>
+                    <li>utiliser une nouvelle technologie.</li>
+                </ul>
+            </div>
+
+            <div class="bareme-detail">
+                <strong>Barème :</strong><br>
+                0,5 pt par bonne raison sélectionnée.<br>
+                Maximum : 1,5 pt.
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.3.</strong>
+                    Pourquoi draisienne et vélo actuel appartiennent-ils à la même famille ?
+                    <span class="bareme">(1,5 pt)</span>
+                </p>
+
+                <div class="correction">
+                    Ils servent tous les deux à permettre à une personne de se déplacer.
+                    Ils répondent donc à un besoin commun malgré leurs différences techniques.
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt : déplacement.<br>
+                    0,5 pt : idée de besoin commun ou famille d'objets.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1.5" step="0.5" data-max="1.5">
+                    <span>/ 1,5</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.4.</strong>
+                    Changer les freins change-t-il le besoin principal ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    Non.
+                    Le besoin principal reste le déplacement.
+                    C'est la solution technique ou la performance du freinage qui change.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.5.</strong>
+                    Imaginer une amélioration de sécurité pour rouler la nuit.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    Exemples :
+                    meilleur phare, feu arrière,
+                    bandes réfléchissantes,
+                    clignotants,
+                    vêtements réfléchissants.
+                </div>
+
+                <div class="bareme-detail">
+                    Le point est accordé si l'amélioration est cohérente et expliquée.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 6
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 6 – Vélo classique ou vélo électrique ? – 6 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>6.1.</strong>
+                    Deux avantages.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    Aide dans les montées ;
+                    longues distances plus faciles.
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par avantage correct.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>6.2.</strong>
+                    Deux contraintes.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    Plus lourd ;
+                    plus cher ;
+                    batterie à recharger.
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par contrainte.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>6.3.</strong>
+                    Choisir un vélo pour les personnes A et B.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>Personne A :</strong>
+                    plutôt vélo classique :
+                    trajet court, plat, priorité au prix.
+                    <br><br>
+
+                    <strong>Personne B :</strong>
+                    plutôt vélo électrique :
+                    trajet long, montées, volonté de limiter l'effort.
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par choix correctement justifié.
+                </div>
+
+                <div class="accepter">
+                    Une autre décision peut être acceptée si elle est réellement argumentée avec les informations
+                    données.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 7
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 7 – Comparer plusieurs vélos – 9 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>7.1.</strong>
+                    Quatre réponses simples.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    Plus léger → C.<br>
+                    Moins cher → A.<br>
+                    Chemins accidentés → B.<br>
+                    Plus grande capacité de transport → D.
+                </div>
+
+                <div class="bareme-detail">
+                    0,5 pt par réponse.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>7.2.</strong>
+                    Choix pour Léa.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    Vélo B – VTT.
+                    Il est prévu pour les chemins et terrains accidentés,
+                    possède une suspension et des pneus adaptés.
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt : vélo B.<br>
+                    1 pt : au moins deux informations pertinentes.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>7.3.</strong>
+                    Famille avec deux enfants et des courses.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    Vélo D – Cargo électrique.
+                    Grande capacité de transport ;
+                    assistance électrique ;
+                    adapté à la ville et à la route.
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt : vélo D.<br>
+                    1 pt : justification correcte.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>7.4.</strong>
+                    Le vélo C est-il meilleur pour tout le monde ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    Non.
+                    Sa faible masse est seulement un critère.
+                    Pour transporter des enfants ou rouler sur des chemins,
+                    un autre vélo est plus adapté.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>7.5.</strong>
+                    Expliquer l'idée de compromis.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    Faire un compromis signifie choisir une solution
+                    qui répond bien aux critères les plus importants,
+                    même si elle présente aussi certains inconvénients
+                    ou n'est pas la meilleure sur tous les critères.
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt : plusieurs critères sont pris en compte.<br>
+                    1 pt : accepter qu'une solution ait à la fois avantages et inconvénients.
+                </div>
+
+                <div class="accepter">
+                    « On choisit le vélo qui convient le mieux même s'il n'est pas parfait »
+                    = idée correcte.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 8
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 8 – À vous de choisir – 6 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>8.1.</strong>
+                    Trois informations importantes pour Mathis.
+                    <span class="bareme">(1,5 pt)</span>
+                </p>
+
+                <div class="correction">
+                    Exemples particulièrement pertinents :
+                    budget maximum 600 € ;
+                    trajet de 4 km ;
+                    principalement route ;
+                    transport du sac ;
+                    pas besoin d'un vélo de compétition.
+                </div>
+
+                <div class="bareme-detail">
+                    0,5 pt par critère cohérent.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1.5" step="0.5" data-max="1.5">
+                    <span>/ 1,5</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>8.2.</strong>
+                    Éliminer au moins un vélo.
+                    <span class="bareme">(1,5 pt)</span>
+                </p>
+
+                <div class="correction">
+                    Le C peut être éliminé car il coûte 900 €,
+                    donc dépasse le budget de 600 €.
+                    <br><br>
+
+                    Le D peut être éliminé car il coûte 5 000 €,
+                    est très lourd et possède une capacité de transport inutile pour ce besoin.
+                </div>
+
+                <div class="bareme-detail">
+                    0,5 pt : vélo identifié.<br>
+                    1 pt : justification pertinente.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1.5" step="0.5" data-max="1.5">
+                    <span>/ 1,5</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>8.3.</strong>
+                    Choisir le vélo.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    Le vélo A – Ville semble le choix le plus logique.
+                    <br><br>
+                    Le B peut éventuellement être accepté si la justification est cohérente.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>8.4.</strong>
+                    Justifier avec trois informations.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+                    Pour le vélo A :
+                    prix 300 € donc inférieur au budget ;
+                    adapté aux routes urbaines ;
+                    possibilité de transporter un petit chargement ;
+                    adapté aux trajets quotidiens.
+                </div>
+
+                <div class="bareme-detail">
+                    0,5 pt : choix repris clairement.<br>
+                    1,5 pt : trois arguments pertinents.
+                </div>
+
+                <div class="correction-rapide">
+                    <strong>Correction rapide :</strong>
+                    si l'élève a A + prix + route + sac/usage quotidien → 2/2.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     EXERCICE 9
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 9 – Vérifier ce que vous avez compris – 6 points</h2>
+
+            <div class="question">
+
+                <p><strong>9.1.</strong> « Un objet technique existe naturellement dans la nature. » <span
+                        class="bareme">(1 pt)</span></p>
+
+                <div class="correction">
+                    <strong>FAUX.</strong>
+                    Un objet technique est fabriqué ou transformé par l'être humain.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p><strong>9.2.</strong> « Deux objets différents peuvent répondre au même besoin. » <span
+                        class="bareme">(1 pt)</span></p>
+
+                <div class="correction">
+                    <strong>VRAI.</strong>
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p><strong>9.3.</strong> « Une fonction technique explique ce que doit faire une partie de l'objet. »
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>VRAI.</strong>
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p><strong>9.4.</strong> « Une seule fonction technique ne peut avoir qu'une seule solution technique. »
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>FAUX.</strong>
+                    Plusieurs solutions techniques différentes peuvent assurer la même fonction.
+                    Exemple : freins à disque et freins sur jante.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p><strong>9.5.</strong> « L'objet le plus cher est automatiquement le meilleur. » <span
+                        class="bareme">(1 pt)</span></p>
+
+                <div class="correction">
+                    <strong>FAUX.</strong>
+                    Le choix dépend du besoin, de l'usage et des critères importants.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p><strong>9.6.</strong> « Le meilleur choix dépend de l'usage et des critères importants pour
+                    l'utilisateur. » <span class="bareme">(1 pt)</span></p>
+
+                <div class="correction">
+                    <strong>VRAI.</strong>
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     BONUS
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Bonus – Concevoir le vélo d'un collégien – +2 points</h2>
+
+            <div class="question">
+
+                <div class="correction">
+                    Il n'existe pas un classement unique.
+
+                    <p>
+                        Exemples de critères valables :
+                        sécurité, prix, éclairage, confort,
+                        transport du sac, adaptation à la route,
+                        entretien, masse ou assistance électrique.
+                    </p>
+
+                    <p>
+                        L'essentiel est que l'élève choisisse quatre critères,
+                        les classe et justifie correctement le premier.
+                    </p>
+                </div>
+
+                <div class="bareme-detail">
+                    <strong>Barème :</strong><br>
+                    1 pt : quatre critères cohérents et classés.<br>
+                    1 pt : justification cohérente du critère n°1.
+                </div>
+
+                <div class="accepter">
+                    Le classement dépend de l'élève :
+                    ne pas chercher une « bonne » hiérarchie unique.
+                </div>
+
+                <div class="zone-points">
+                    <label>Bonus :</label>
+                    <input class="bonus-score" type="number" min="0" max="2" step="0.5">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     OUTILS PROFESSEUR
+     ========================================================= -->
+
+        <section class="outils-prof">
+
+            <h2>Outils professeur</h2>
+
+            <p>
+                Le bouton suivant remet complètement à zéro
+                la version <strong>V3</strong> du devoir élève sur ce poste.
+            </p>
+
+            <p>
+                Il efface les réponses, l'identité, les sorties,
+                les raccourcis, l'heure de début et l'état « devoir terminé ».
+            </p>
+
+            <button id="btn-reset-ds" type="button">
+                Réinitialiser le devoir élève V3
+            </button>
+
+            <div id="message-reset"></div>
+
+        </section>
+
+    </main>
+
+    <script>
+        /* =========================================================
+           CALCUL AUTOMATIQUE DE LA NOTE
+           ========================================================= */
+
+        const champsScore =
+            document.querySelectorAll(".score");
+
+        const champBonus =
+            document.querySelector(".bonus-score");
+
+        function calculerNote() {
+
+            let total =
+                0;
+
+            champsScore.forEach(
+                champ => {
+
+                    let valeur =
+                        Number(champ.value || 0);
+
+                    const maximum =
+                        Number(champ.dataset.max);
+
+                    if (valeur < 0) {
+                        valeur = 0;
+                    }
+
+                    if (valeur > maximum) {
+                        valeur = maximum;
+                        champ.value = maximum;
+                    }
+
+                    total += valeur;
+                }
+            );
+
+            let bonus =
+                Number(
+                    champBonus.value || 0
+                );
+
+            if (bonus < 0) {
+                bonus = 0;
+            }
+
+            if (bonus > 2) {
+                bonus = 2;
+                champBonus.value = 2;
+            }
+
+            const noteBrute =
+                total / 3;
+
+            /*
+             * Bonus ajouté après conversion.
+             *
+             * 2 pts bonus sur 60 correspondent
+             * à 0,67 point sur 20.
+             */
+
+            const bonusSur20 =
+                bonus / 3;
+
+            const noteFinale =
+                Math.min(
+                    20,
+                    noteBrute + bonusSur20
+                );
+
+            document.getElementById(
+                "total-points"
+            ).textContent =
+                formatNombre(total);
+
+            document.getElementById(
+                "total-bonus"
+            ).textContent =
+                formatNombre(bonus);
+
+            document.getElementById(
+                "note-brute"
+            ).textContent =
+                formatNombre(
+                    noteBrute
+                );
+
+            document.getElementById(
+                "note-finale"
+            ).textContent =
+                formatNombre(
+                    noteFinale
+                ) +
+                " / 20";
+        }
+
+        function formatNombre(nombre) {
+
+            return Number(
+                nombre.toFixed(2)
+            )
+                .toString()
+                .replace(".", ",");
+        }
+
+        champsScore.forEach(
+            champ => {
+
+                champ.addEventListener(
+                    "input",
+                    calculerNote
+                );
+            }
+        );
+
+        champBonus.addEventListener(
+            "input",
+            calculerNote
+        );
+
+        /* =========================================================
+           NOUVELLE COPIE
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-reset-note"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    const confirmation =
+                        confirm(
+                            "Effacer les points saisis et commencer la correction d'une nouvelle copie ?"
+                        );
+
+                    if (!confirmation) {
+                        return;
+                    }
+
+                    champsScore.forEach(
+                        champ => {
+                            champ.value = "";
+                        }
+                    );
+
+                    champBonus.value =
+                        "";
+
+                    document.getElementById(
+                        "nom-eleve-correction"
+                    ).value = "";
+
+                    document.getElementById(
+                        "prenom-eleve-correction"
+                    ).value = "";
+
+                    calculerNote();
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                }
+            );
+
+        /* =========================================================
+           IMPRESSION
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-imprimer"
+            )
+            .addEventListener(
+                "click",
+                () => {
+                    window.print();
+                }
+            );
+
+        /* =========================================================
+           RESET DU DEVOIR ÉLÈVE V3
+           ========================================================= */
+
+        const PREFIXE_DS =
+            "DS5E_S02_S05_V3_";
+
+        document
+            .getElementById(
+                "btn-reset-ds"
+            )
+            .addEventListener(
+                "click",
+                reinitialiserDevoirEleve
+            );
+
+        function reinitialiserDevoirEleve() {
+
+            const confirmation1 =
+                confirm(
+                    "Réinitialiser complètement le devoir élève V3 sur ce poste ?\n\n" +
+                    "Toutes les réponses, sorties et données du devoir seront supprimées."
+                );
+
+            if (!confirmation1) {
+                return;
+            }
+
+            const confirmation2 =
+                confirm(
+                    "DERNIÈRE CONFIRMATION\n\n" +
+                    "Cette opération est irréversible.\n\n" +
+                    "Continuer ?"
+                );
+
+            if (!confirmation2) {
+                return;
+            }
+
+            const clesASupprimer =
+                [];
+
+            for (
+                let i = 0;
+                i < localStorage.length;
+                i++
+            ) {
+
+                const cle =
+                    localStorage.key(i);
+
+                if (
+                    cle &&
+                    cle.startsWith(
+                        PREFIXE_DS
+                    )
+                ) {
+
+                    clesASupprimer.push(
+                        cle
+                    );
+                }
+            }
+
+            clesASupprimer.forEach(
+                cle => {
+
+                    localStorage.removeItem(
+                        cle
+                    );
+                }
+            );
+
+            const message =
+                document.getElementById(
+                    "message-reset"
+                );
+
+            message.style.display =
+                "block";
+
+            message.style.marginTop =
+                "15px";
+
+            message.style.padding =
+                "12px";
+
+            message.style.background =
+                "#dcfce7";
+
+            message.style.border =
+                "1px solid #86efac";
+
+            message.style.borderRadius =
+                "7px";
+
+            message.style.color =
+                "#166534";
+
+            message.style.fontWeight =
+                "bold";
+
+            message.textContent =
+                "Devoir V3 réinitialisé : " +
+                clesASupprimer.length +
+                " donnée(s) supprimée(s).";
+        }
+
+        /* Premier calcul */
+
+        calculerNote();
+    </script>
+
+</body>
+
+</html>

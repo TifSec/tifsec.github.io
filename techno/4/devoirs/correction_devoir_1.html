@@ -1,0 +1,2141 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Correction professeur – DS Technologie 4e – S02 à S07</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #eef2f6;
+            color: #1f2937;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.55;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        #correction-ds {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* =========================================================
+           EN-TÊTE
+           ========================================================= */
+
+        .prof-header {
+            margin-bottom: 25px;
+            padding: 24px;
+            background: #243b53;
+            color: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        }
+
+        .prof-header h1 {
+            margin: 0 0 8px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .prof-header p {
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        /* =========================================================
+           CALCULATEUR DE NOTE
+           ========================================================= */
+
+        #calculateur-note {
+            position: sticky;
+            top: 6px;
+            z-index: 1000;
+            margin: 20px 0 30px;
+            padding: 18px;
+            background: #ffffff;
+            border: 2px solid #2563eb;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        #calculateur-note h2 {
+            margin: 0 0 12px;
+            color: #1d4ed8;
+        }
+
+        .identite-correction {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .identite-correction input {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid #94a3b8;
+            border-radius: 6px;
+        }
+
+        .resultats-note {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .resultat-note {
+            padding: 10px;
+            background: #eff6ff;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .resultat-note strong {
+            display: block;
+            margin-top: 4px;
+            font-size: 1.35rem;
+            color: #1d4ed8;
+        }
+
+        #note-finale {
+            font-size: 1.6rem;
+        }
+
+        .actions-note {
+            margin-top: 12px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .actions-note button {
+            padding: 9px 14px;
+            border: 0;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #btn-reset-note {
+            background: #64748b;
+            color: white;
+        }
+
+        #btn-imprimer {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* =========================================================
+           RÉSUMÉ
+           ========================================================= */
+
+        .resume-bareme {
+            margin: 20px 0 30px;
+            padding: 18px 22px;
+            background: white;
+            border-left: 6px solid #486581;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        /* =========================================================
+           EXERCICES
+           ========================================================= */
+
+        .exercice {
+            margin: 30px 0;
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 9px rgba(0, 0, 0, 0.08);
+        }
+
+        .exercice>h2 {
+            margin: -24px -24px 22px;
+            padding: 14px 18px;
+            background: #d9e2ec;
+            color: #102a43;
+            border-radius: 12px 12px 0 0;
+            font-size: 1.35rem;
+        }
+
+        .question {
+            margin: 24px 0;
+            padding: 16px;
+            background: #f8fafc;
+            border-left: 4px solid #486581;
+            border-radius: 7px;
+        }
+
+        .question>p:first-child {
+            margin-top: 0;
+        }
+
+        .bareme {
+            font-weight: bold;
+            color: #526d82;
+        }
+
+        /* =========================================================
+           CORRECTIONS
+           ========================================================= */
+
+        .correction {
+            margin-top: 12px;
+            padding: 14px 16px;
+            background: #ecfdf3;
+            border: 1px solid #86efac;
+            border-left: 5px solid #16a34a;
+            border-radius: 8px;
+        }
+
+        .correction strong {
+            color: #166534;
+        }
+
+        .bareme-detail {
+            margin-top: 10px;
+            padding: 11px 14px;
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            border-radius: 6px;
+        }
+
+        .bareme-detail strong {
+            color: #1d4ed8;
+        }
+
+        .accepter {
+            margin-top: 10px;
+            padding: 11px 14px;
+            background: #fff7ed;
+            border-left: 4px solid #ea580c;
+            border-radius: 6px;
+        }
+
+        .vigilance {
+            margin-top: 10px;
+            padding: 11px 14px;
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+            border-radius: 6px;
+        }
+
+        .correction-rapide {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #f5f3ff;
+            border-left: 4px solid #7c3aed;
+            border-radius: 6px;
+        }
+
+        .correction-rapide strong {
+            color: #6d28d9;
+        }
+
+        /* =========================================================
+           SAISIE DES POINTS
+           ========================================================= */
+
+        .zone-points {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed #94a3b8;
+        }
+
+        .zone-points label {
+            font-weight: bold;
+        }
+
+        .zone-points input {
+            width: 75px;
+            padding: 7px;
+            border: 2px solid #2563eb;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .zone-points span {
+            color: #64748b;
+        }
+
+        /* =========================================================
+           TABLEAUX
+           ========================================================= */
+
+        table {
+            width: 100%;
+            margin: 18px 0;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            vertical-align: top;
+        }
+
+        th {
+            background: #d9e2ec;
+            color: #102a43;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* =========================================================
+           OUTILS PROF
+           ========================================================= */
+
+        .outils-prof {
+            margin: 40px 0;
+            padding: 24px;
+            background: #fff7ed;
+            border: 2px solid #ea580c;
+            border-radius: 12px;
+        }
+
+        .outils-prof h2 {
+            margin-top: 0;
+            color: #9a3412;
+        }
+
+        #btn-reset-ds {
+            margin-top: 15px;
+            padding: 14px 22px;
+            background: #c2410c;
+            color: white;
+            border: 0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #message-reset {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            border-radius: 7px;
+            color: #166534;
+            font-weight: bold;
+        }
+
+        @media print {
+            body {
+                background: white;
+                font-size: 10pt;
+            }
+
+            #correction-ds {
+                max-width: none;
+                padding: 0;
+            }
+
+            #calculateur-note {
+                position: static;
+                box-shadow: none;
+            }
+
+            .exercice,
+            .prof-header,
+            .resume-bareme {
+                box-shadow: none;
+            }
+
+            .question,
+            .correction,
+            .bareme-detail,
+            .accepter,
+            .vigilance,
+            .correction-rapide {
+                break-inside: avoid;
+            }
+
+            .outils-prof,
+            .actions-note {
+                display: none;
+            }
+        }
+
+        @media (max-width: 700px) {
+            #correction-ds {
+                padding: 12px;
+            }
+
+            .identite-correction,
+            .resultats-note {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main id="correction-ds">
+
+        <header class="prof-header">
+
+            <h1>Correction professeur – Technologie 4e</h1>
+
+            <p>
+                <strong>Devoir surveillé – Séances 2 à 7</strong>
+            </p>
+
+            <p>
+                40 points + 2 points bonus
+            </p>
+
+        </header>
+
+        <!-- =========================================================
+         CALCULATEUR
+         ========================================================= -->
+
+        <section id="calculateur-note">
+
+            <h2>Correction de la copie</h2>
+
+            <div class="identite-correction">
+
+                <label>
+                    Nom :
+                    <input type="text" id="nom-eleve-correction">
+                </label>
+
+                <label>
+                    Prénom :
+                    <input type="text" id="prenom-eleve-correction">
+                </label>
+
+            </div>
+
+            <div class="resultats-note">
+
+                <div class="resultat-note">
+                    Points
+                    <strong>
+                        <span id="total-points">0</span> / 40
+                    </strong>
+                </div>
+
+                <div class="resultat-note">
+                    Bonus
+                    <strong>
+                        + <span id="total-bonus">0</span> / 2
+                    </strong>
+                </div>
+
+                <div class="resultat-note">
+                    Note brute
+                    <strong>
+                        <span id="note-brute">0</span> / 20
+                    </strong>
+                </div>
+
+                <div class="resultat-note">
+                    Note finale
+                    <strong id="note-finale">
+                        0 / 20
+                    </strong>
+                </div>
+
+            </div>
+
+            <div class="actions-note">
+
+                <button id="btn-reset-note" type="button">
+                    Nouvelle copie
+                </button>
+
+                <button id="btn-imprimer" type="button">
+                    Imprimer cette correction
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="resume-bareme">
+
+            <strong>Répartition :</strong><br><br>
+
+            Exercice 1 : 5 pts |
+            Exercice 2 : 6 pts |
+            Exercice 3 : 8 pts |
+            Exercice 4 : 10 pts |
+            Exercice 5 : 8 pts |
+            Exercice 6 : 3 pts |
+            Bonus : +2 pts
+
+            <p>
+                <strong>Conversion :</strong>
+                40 points = 20/20.
+                La note brute correspond donc à
+                <strong>points ÷ 2</strong>.
+            </p>
+
+            <p>
+                Le bonus est ajouté après conversion :
+                2 points bonus correspondent à
+                <strong>+1 point maximum sur 20</strong>.
+            </p>
+
+        </section>
+
+        <!-- =========================================================
+         EXERCICE 1
+         ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 1 – Pourquoi les aspirateurs évoluent-ils ? – 5 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.1.</strong>
+                    Quel besoin principal toutes les solutions cherchent-elles à satisfaire ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    <strong>Réponse attendue :</strong><br><br>
+
+                    Nettoyer le sol ou maintenir le sol propre.
+
+                    <br><br>
+
+                    On peut également accepter :
+                    enlever la poussière, les saletés, les déchets ou les débris du sol.
+                </div>
+
+                <div class="accepter">
+                    <strong>À accepter :</strong>
+                    toute formulation qui exprime clairement le besoin de nettoyage du sol.
+                </div>
+
+                <div class="vigilance">
+                    Ne pas exiger « aspirer » :
+                    le balai n'aspire pas mais répond bien au même besoin principal.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.2.</strong>
+                    Pourquoi inventer de nouvelles solutions alors que les anciennes fonctionnent ?
+                    Deux raisons.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    <strong>Réponses possibles :</strong>
+
+                    <ul>
+                        <li>réduire l'effort de l'utilisateur ;</li>
+                        <li>gagner du temps ;</li>
+                        <li>augmenter l'autonomie ;</li>
+                        <li>augmenter les performances ;</li>
+                        <li>répondre à de nouveaux usages ;</li>
+                        <li>améliorer le confort ;</li>
+                        <li>réduire certaines contraintes ;</li>
+                        <li>automatiser une tâche ;</li>
+                        <li>améliorer la sécurité ;</li>
+                        <li>profiter de nouvelles technologies ;</li>
+                        <li>répondre à de nouveaux besoins ou habitudes.</li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+                    <strong>Barème conseillé :</strong><br>
+                    1 pt par raison différente et cohérente.
+                </div>
+
+                <div class="accepter">
+                    Accepter une réponse non présente dans la liste
+                    si elle montre réellement pourquoi une nouvelle solution
+                    peut répondre différemment au besoin.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>1.3.</strong>
+                    Pour deux évolutions, identifier une contrainte réduite
+                    et une nouvelle contrainte.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    <p>
+                        <strong>Aspirateur avec fil → sans fil</strong>
+                    </p>
+
+                    <p>
+                        Contrainte réduite :
+                        câble gênant, besoin d'une prise proche,
+                        déplacement limité, changement de prise.
+                    </p>
+
+                    <p>
+                        Nouvelle contrainte :
+                        batterie à recharger, autonomie limitée,
+                        batterie qui s'use, masse de la batterie,
+                        prix éventuellement plus élevé.
+                    </p>
+
+                    <hr>
+
+                    <p>
+                        <strong>Aspirateur manuel → robot aspirateur</strong>
+                    </p>
+
+                    <p>
+                        Contrainte réduite :
+                        temps passé à nettoyer,
+                        présence permanente de l'utilisateur,
+                        effort physique,
+                        déplacement manuel de l'appareil.
+                    </p>
+
+                    <p>
+                        Nouvelle contrainte :
+                        batterie, prix, entretien,
+                        obstacles au sol, seuils, escaliers,
+                        navigation, nécessité de vider le bac,
+                        besoin éventuel d'une station,
+                        disponibilité des pièces.
+                    </p>
+
+                </div>
+
+                <div class="bareme-detail">
+                    0,5 pt par élément cohérent :<br>
+                    - contrainte réduite sans fil ;<br>
+                    - nouvelle contrainte sans fil ;<br>
+                    - contrainte réduite robot ;<br>
+                    - nouvelle contrainte robot.
+                </div>
+
+                <div class="vigilance">
+                    L'objectif n'est pas de retrouver une phrase exacte du cours,
+                    mais de comprendre qu'une évolution
+                    <strong>résout certains problèmes tout en pouvant en créer d'autres</strong>.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+         EXERCICE 2
+         ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 2 – Le même robot convient-il à tout le monde ? – 6 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.1.</strong>
+                    Besoin principal de Camille.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    Nettoyer automatiquement ou en limitant fortement
+                    son intervention personnelle les sols de son logement.
+                </div>
+
+                <div class="accepter">
+                    « Nettoyer sa maison », « nettoyer les sols »,
+                    « automatiser le nettoyage » ou formulation équivalente.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.2.</strong>
+                    Quatre contraintes importantes.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    Réponses possibles :
+
+                    <ul>
+                        <li>budget maximal de 450 € ;</li>
+                        <li>surface de 100 m² ;</li>
+                        <li>présence de tapis ;</li>
+                        <li>présence de seuils ;</li>
+                        <li>présence d'un escalier ;</li>
+                        <li>poils du chien ;</li>
+                        <li>volonté d'intervenir le moins possible ;</li>
+                        <li>navigation entre plusieurs pièces ;</li>
+                        <li>autonomie suffisante ;</li>
+                        <li>capacité à éviter ou gérer certains obstacles.</li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+                    0,5 pt par contrainte pertinente.<br>
+                    Maximum : 2 pts.
+                </div>
+
+                <div class="vigilance">
+                    Ne pas exiger uniquement des contraintes techniques :
+                    le budget et les usages sont également des contraintes.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.3.</strong>
+                    Contrainte jugée la plus importante et justification.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+                    Il n'existe pas de réponse unique.
+                </div>
+
+                <div class="accepter">
+
+                    Exemples :
+
+                    <ul>
+                        <li>budget, car toute solution dépassant 450 € est impossible ;</li>
+                        <li>seuils, car le robot doit pouvoir passer d'une pièce à l'autre ;</li>
+                        <li>poils du chien, car le nettoyage doit rester efficace ;</li>
+                        <li>automatisation, car Camille veut intervenir le moins possible ;</li>
+                        <li>surface, car elle influence l'autonomie nécessaire.</li>
+                    </ul>
+
+                    Toute hiérarchie cohérente et justifiée doit être acceptée.
+
+                </div>
+
+                <div class="bareme-detail">
+                    0,5 pt : contrainte identifiée.<br>
+                    0,5 pt : justification cohérente.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>2.4.</strong>
+                    Pourquoi un robot très performant peut-il être un mauvais choix ?
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    Une bonne réponse doit montrer que
+                    <strong>la performance seule ne suffit pas</strong>.
+
+                    <p>
+                        Un robot peut être très performant mais :
+                    </p>
+
+                    <ul>
+                        <li>dépasser le budget ;</li>
+                        <li>être mal adapté aux seuils ou tapis ;</li>
+                        <li>avoir des fonctions inutiles ;</li>
+                        <li>être difficile à entretenir ;</li>
+                        <li>avoir des pièces difficiles à trouver ;</li>
+                        <li>ne pas répondre aux priorités réelles de l'utilisateur.</li>
+                    </ul>
+
+                    La meilleure solution dépend du besoin,
+                    du contexte et des critères prioritaires.
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt : idée que la performance n'est qu'un critère.<br>
+                    1 pt : exemple ou justification liée à Camille.
+                </div>
+
+                <div class="correction-rapide">
+                    <strong>Correction rapide :</strong>
+                    « Il peut être très performant mais trop cher ou mal adapté aux seuils » = 2/2.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+         EXERCICE 3
+         ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 3 – Comparer plusieurs robots – 8 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.1.</strong>
+                    Trois critères prioritaires et justification.
+                    <span class="bareme">(3 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    Critères particulièrement pertinents :
+
+                    <ul>
+                        <li>
+                            <strong>prix</strong> :
+                            budget maximal de 450 € ;
+                        </li>
+                        <li>
+                            <strong>navigation</strong> :
+                            plusieurs meubles ;
+                        </li>
+                        <li>
+                            <strong>pièces détachées / réparabilité</strong> :
+                            volonté de conserver le robot plusieurs années ;
+                        </li>
+                        <li>
+                            <strong>autonomie</strong> :
+                            cohérente avec 70 m² ;
+                        </li>
+                        <li>
+                            <strong>évitement d'obstacles</strong> :
+                            présence de meubles.
+                        </li>
+                    </ul>
+
+                    La station automatique est peu prioritaire
+                    puisque l'utilisateur accepte de vider le bac.
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par critère pertinent correctement expliqué.<br>
+                    Maximum : 3 pts.
+                </div>
+
+                <div class="accepter">
+                    Il n'existe pas obligatoirement trois critères uniques.
+                    Accepter toute sélection défendable avec la situation.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="3" step="0.5" data-max="3">
+                    <span>/ 3</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.2.</strong>
+                    Choix du robot avec trois informations du tableau.
+                    <span class="bareme">(3 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    <strong>Choix le plus logique : Robot B.</strong>
+
+                    <p>Arguments :</p>
+
+                    <ul>
+                        <li>390 €, donc inférieur au budget maximal de 450 € ;</li>
+                        <li>cartographie ;</li>
+                        <li>évitement d'obstacles correct ;</li>
+                        <li>pièces détachées disponibles ;</li>
+                        <li>150 minutes d'autonomie ;</li>
+                        <li>absence de station non problématique puisque l'utilisateur accepte de vider le bac.</li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt : Robot B.<br>
+                    0,5 pt par argument précis et correct, jusqu'à 2 pts.
+                </div>
+
+                <div class="accepter">
+                    Une autre réponse peut obtenir des points
+                    si elle est réellement argumentée,
+                    mais le Robot C dépasse clairement le budget.
+                </div>
+
+                <div class="vigilance">
+                    Un choix contredisant directement une contrainte incontournable,
+                    comme dépasser le budget,
+                    doit être pénalisé même si le robot possède de meilleures performances.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="3" step="0.5" data-max="3">
+                    <span>/ 3</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.3.</strong>
+                    Compromis accepté.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+
+                    Exemples pour le Robot B :
+
+                    <ul>
+                        <li>pas de station automatique ;</li>
+                        <li>navigation moins avancée que C ;</li>
+                        <li>autonomie inférieure à C ;</li>
+                        <li>évitement moins performant que C ;</li>
+                        <li>prix supérieur au Robot A.</li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt si le compromis est réel et cohérent avec le choix.
+                </div>
+
+                <div class="accepter">
+                    Formulation simple acceptée :
+                    « Il coûte plus cher que A mais il est mieux adapté et plus réparable. »
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>3.4.</strong>
+                    Pourquoi le Robot C n'est-il pas automatiquement le meilleur ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+
+                    Parce qu'une solution ne se juge pas uniquement
+                    au nombre de fonctions ou aux performances maximales.
+
+                    Ici, le Robot C coûte 750 €,
+                    ce qui dépasse le budget de 450 €.
+
+                    Certaines fonctions supplémentaires
+                    ne sont pas indispensables pour cet utilisateur.
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt si l'élève explique que « plus équipé » ne signifie pas
+                    automatiquement « mieux adapté ».
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+         EXERCICE 4
+         ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 4 – Vérifier une performance – 10 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.1.</strong>
+                    Transformer l'affirmation en question testable.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+
+                    Exemple :
+
+                    <strong>
+                        « Le robot met-il le même temps pour parcourir
+                        la même distance sur un sol dur et sur un tapis ? »
+                    </strong>
+
+                    <br><br>
+
+                    Autres formulations possibles :
+
+                    <ul>
+                        <li>Quelle est sa vitesse sur chaque surface ?</li>
+                        <li>Le type de surface influence-t-il son temps de déplacement ?</li>
+                        <li>Le robot se déplace-t-il à la même vitesse sur les deux surfaces ?</li>
+                    </ul>
+
+                </div>
+
+                <div class="vigilance">
+                    Une question du type
+                    « Est-ce que le robot marche bien ? »
+                    est trop vague et difficilement mesurable.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.2.</strong>
+                    Hypothèse et justification.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    Plusieurs hypothèses sont possibles.
+
+                    <p>Exemples :</p>
+
+                    <ul>
+                        <li>
+                            « Je pense qu'il sera plus lent sur le tapis
+                            car les roues rencontrent davantage de résistance. »
+                        </li>
+                        <li>
+                            « Je pense que les temps seront différents
+                            car les surfaces n'offrent pas les mêmes conditions de roulement. »
+                        </li>
+                        <li>
+                            « Je pense qu'il ira à peu près à la même vitesse
+                            car le moteur est commandé de la même manière. »
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt : hypothèse clairement exprimée.<br>
+                    1 pt : justification logique.
+                </div>
+
+                <div class="vigilance">
+                    Une hypothèse fausse n'est pas pénalisée parce qu'elle est fausse.
+                    Elle doit seulement être testable et justifiée.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.3.</strong>
+                    Préparation du test.
+                    <span class="bareme">(3 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Élément</th>
+                                <th>Réponse attendue</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Paramètre modifié</td>
+                                <td>type / nature de la surface</td>
+                            </tr>
+
+                            <tr>
+                                <td>Grandeur mesurée</td>
+                                <td>temps de parcours, ou éventuellement vitesse</td>
+                            </tr>
+
+                            <tr>
+                                <td>Instrument principal</td>
+                                <td>chronomètre</td>
+                            </tr>
+
+                            <tr>
+                                <td>Conditions identiques</td>
+                                <td>
+                                    même robot, même distance, même charge de batterie,
+                                    même point de départ, même réglage,
+                                    même trajectoire, même méthode de lancement,
+                                    même chronométrage...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="bareme-detail">
+                    0,5 pt : surface.<br>
+                    0,5 pt : grandeur mesurée.<br>
+                    0,5 pt : instrument.<br>
+                    1,5 pt : au moins quatre conditions pertinentes.
+                </div>
+
+                <div class="accepter">
+                    Mesurer directement la vitesse est acceptable
+                    si l'élève propose une méthode cohérente.
+                </div>
+
+                <div class="vigilance">
+                    L'idée essentielle :
+                    <strong>un seul paramètre doit volontairement changer</strong>.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="3" step="0.5" data-max="3">
+                    <span>/ 3</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.4.</strong>
+                    Protocole expérimental.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    Exemple de protocole :
+
+                    <ol>
+                        <li>Définir une distance identique pour tous les essais.</li>
+                        <li>Marquer le départ et l'arrivée.</li>
+                        <li>Placer le robot au même point de départ.</li>
+                        <li>Vérifier que ses réglages sont identiques.</li>
+                        <li>Démarrer le robot.</li>
+                        <li>Démarrer le chronomètre au passage du départ.</li>
+                        <li>Arrêter le chronomètre au passage de l'arrivée.</li>
+                        <li>Noter le résultat.</li>
+                        <li>Réaliser plusieurs essais.</li>
+                        <li>Recommencer avec l'autre surface sans changer les autres conditions.</li>
+                        <li>Calculer les moyennes.</li>
+                        <li>Comparer les résultats.</li>
+                    </ol>
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt : protocole suffisamment ordonné et réalisable.<br>
+                    1 pt : conditions de comparaison correctement contrôlées et répétition prévue.
+                </div>
+
+                <div class="accepter">
+                    Ne pas exiger exactement cet ordre
+                    si le protocole de l'élève permet réellement
+                    de réaliser un test comparable.
+                </div>
+
+                <div class="vigilance">
+                    Un protocole extrêmement court du type
+                    « faire rouler le robot puis regarder »
+                    ne permet pas d'obtenir les 2 points.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.5.</strong>
+                    Calculer la moyenne de 4,2 s ; 4,7 s ; 4,4 s.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+
+                    Calcul :
+
+                    <p>
+                        (4,2 + 4,7 + 4,4) ÷ 3
+                    </p>
+
+                    <p>
+                        = 13,3 ÷ 3
+                    </p>
+
+                    <p>
+                        ≈ <strong>4,43 s</strong>
+                    </p>
+
+                    Accepter <strong>4,4 s</strong> si arrondi au dixième.
+
+                </div>
+
+                <div class="bareme-detail">
+                    0,5 pt : calcul correctement posé.<br>
+                    0,5 pt : résultat correct ou arrondi cohérent.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>4.6.</strong>
+                    Pourquoi plusieurs mesures ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+
+                    Les mesures peuvent légèrement varier à cause :
+
+                    <ul>
+                        <li>du chronométrage ;</li>
+                        <li>du démarrage ;</li>
+                        <li>du comportement du robot ;</li>
+                        <li>des petites différences de conditions ;</li>
+                        <li>des imprécisions de mesure.</li>
+                    </ul>
+
+                    Répéter permet d'obtenir une valeur plus représentative
+                    et de repérer éventuellement une mesure inhabituelle.
+
+                </div>
+
+                <div class="accepter">
+                    « Pour être plus précis », « pour vérifier le résultat »,
+                    « pour calculer une moyenne » = réponses acceptables.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+         EXERCICE 5
+         ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 5 – Analyser des résultats – 8 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.1.</strong>
+                    Calculer les trois moyennes.
+                    <span class="bareme">(3 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    <p>
+                        <strong>Sol dur :</strong><br>
+                        (3,8 + 3,7 + 3,9) ÷ 3<br>
+                        = 11,4 ÷ 3<br>
+                        = <strong>3,8 s</strong>
+                    </p>
+
+                    <p>
+                        <strong>Tissu :</strong><br>
+                        (5,0 + 4,9 + 5,1) ÷ 3<br>
+                        = 15 ÷ 3<br>
+                        = <strong>5,0 s</strong>
+                    </p>
+
+                    <p>
+                        <strong>Tapis :</strong><br>
+                        (6,2 + 6,4 + 6,3) ÷ 3<br>
+                        = 18,9 ÷ 3<br>
+                        = <strong>6,3 s</strong>
+                    </p>
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt par moyenne correcte.<br>
+                    Une petite erreur de calcul avec démarche correcte peut valoir 0,5 pt.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="3" step="0.5" data-max="3">
+                    <span>/ 3</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.2.</strong>
+                    Classement du plus rapide au plus lent.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+
+                    1. Sol dur : 3,8 s<br>
+                    2. Tissu : 5,0 s<br>
+                    3. Tapis : 6,3 s
+
+                    <p>
+                        La distance étant identique,
+                        un temps plus faible correspond ici à un déplacement plus rapide.
+                    </p>
+
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.3.</strong>
+                    Conclusion précise.
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    Exemple :
+
+                    <blockquote>
+                        Dans cette expérience simulée,
+                        le système met en moyenne 3,8 s sur le sol dur,
+                        5,0 s sur le tissu et 6,3 s sur le tapis.
+                        Il se déplace donc plus rapidement sur le sol dur
+                        et plus lentement sur le tapis dans les conditions de ce test.
+                    </blockquote>
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt : comparaison correcte des résultats.<br>
+                    1 pt : conclusion limitée aux données et conditions du test.
+                </div>
+
+                <div class="vigilance">
+                    Éviter :
+                    « Tous les robots sont toujours plus lents sur tous les tapis. »
+                </div>
+
+                <div class="correction-rapide">
+                    <strong>Très bonne réponse :</strong>
+                    utilisation des valeurs numériques + formulation
+                    « dans les conditions de cette expérience ».
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>5.4.</strong>
+                    Les mesures expliquent-elles avec certitude la cause ?
+                    <span class="bareme">(2 pts)</span>
+                </p>
+
+                <div class="correction">
+
+                    <strong>Non.</strong>
+
+                    Les résultats montrent seulement
+                    qu'il existe une différence de temps entre les surfaces.
+
+                    Ils ne prouvent pas directement
+                    pourquoi cette différence existe.
+
+                    Causes possibles :
+
+                    <ul>
+                        <li>résistance au roulement ;</li>
+                        <li>surface plus souple ;</li>
+                        <li>roues qui s'enfoncent ;</li>
+                        <li>frottements ;</li>
+                        <li>adhérence ;</li>
+                        <li>irrégularités de la surface.</li>
+                    </ul>
+
+                    Il faudrait un autre test pour vérifier précisément
+                    l'une de ces hypothèses.
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt : réponse « non » correctement comprise.<br>
+                    1 pt : distinction entre observation et explication / proposition d'un autre test.
+                </div>
+
+                <div class="vigilance">
+                    Une cause proposée par l'élève
+                    doit être présentée comme une hypothèse,
+                    pas comme une certitude démontrée par ces seules données.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="2" step="0.5" data-max="2">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+         EXERCICE 6
+         ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 6 – Cycle de vie et environnement – 3 points</h2>
+
+            <div class="question">
+
+                <p>
+                    <strong>6.1.</strong>
+                    Pourquoi une baisse de consommation ne suffit-elle pas ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+
+                    Parce que la consommation électrique pendant l'utilisation
+                    ne représente qu'une partie du cycle de vie.
+
+                    Il faut également prendre en compte les impacts
+                    avant l'utilisation et après l'utilisation.
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt si l'élève montre clairement qu'il faut considérer
+                    plusieurs étapes du cycle de vie.
+                </div>
+
+                <div class="accepter">
+                    « Il faut regarder comment il est fabriqué,
+                    combien de temps il dure et ce qu'il devient après »
+                    = réponse correcte.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>6.2.</strong>
+                    Quatre autres éléments ou étapes.
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+
+                    Exemples :
+
+                    <ul>
+                        <li>matières premières ;</li>
+                        <li>extraction des ressources ;</li>
+                        <li>fabrication ;</li>
+                        <li>assemblage ;</li>
+                        <li>transport ;</li>
+                        <li>distribution ;</li>
+                        <li>emballage ;</li>
+                        <li>durée de vie ;</li>
+                        <li>réparation ;</li>
+                        <li>remplacement de pièces ;</li>
+                        <li>recyclage ;</li>
+                        <li>fin de vie ;</li>
+                        <li>production de déchets.</li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+                    0,25 pt par élément pertinent.<br>
+                    Maximum : 1 pt.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.25" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+            <div class="question">
+
+                <p>
+                    <strong>6.3.</strong>
+                    Pourquoi remplacer seulement la batterie peut-il être intéressant ?
+                    <span class="bareme">(1 pt)</span>
+                </p>
+
+                <div class="correction">
+
+                    Remplacer uniquement la batterie peut :
+
+                    <ul>
+                        <li>remettre en service un appareil encore fonctionnel ;</li>
+                        <li>éviter de remplacer toutes les autres pièces ;</li>
+                        <li>prolonger la durée d'utilisation ;</li>
+                        <li>retarder la fabrication d'un appareil complet de remplacement ;</li>
+                        <li>réduire certains déchets.</li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+                    1 pt si l'idée de prolongation de la durée d'utilisation
+                    et/ou d'évitement d'un remplacement complet apparaît clairement.
+                </div>
+
+                <div class="vigilance">
+                    Ne pas exiger « réparer est toujours meilleur ».
+                    La question concerne ici une batterie remplaçable
+                    et un robot encore fonctionnel.
+                </div>
+
+                <div class="zone-points">
+                    <label>Points :</label>
+                    <input class="score" type="number" min="0" max="1" step="0.5" data-max="1">
+                    <span>/ 1</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+         BONUS
+         ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Bonus – Concevoir autrement – +2 points</h2>
+
+            <div class="question">
+
+                <div class="correction">
+
+                    Il n'existe pas une seule réponse.
+
+                    <p>
+                        L'élève doit établir une chaîne cohérente :
+                    </p>
+
+                    <p>
+                        <strong>
+                            modification → étape du cycle de vie →
+                            impact recherché → nouvelle contrainte
+                        </strong>
+                    </p>
+
+                    <hr>
+
+                    <p><strong>Exemple 1 : batterie facilement remplaçable</strong></p>
+
+                    <ul>
+                        <li>Étape : entretien / réparation.</li>
+                        <li>Impact recherché : prolonger la durée d'utilisation.</li>
+                        <li>Contrainte : démontage ou conception plus complexe.</li>
+                    </ul>
+
+                    <p><strong>Exemple 2 : réduire la quantité de plastique</strong></p>
+
+                    <ul>
+                        <li>Étape : matières premières / fabrication.</li>
+                        <li>Impact recherché : réduire l'utilisation de matière.</li>
+                        <li>Contrainte : risque de réduire la rigidité ou la robustesse.</li>
+                    </ul>
+
+                    <p><strong>Exemple 3 : rendre les roues facilement remplaçables</strong></p>
+
+                    <ul>
+                        <li>Étape : entretien / réparation.</li>
+                        <li>Impact recherché : éviter le remplacement complet.</li>
+                        <li>Contrainte : nécessité de conserver des pièces détachées.</li>
+                    </ul>
+
+                    <p><strong>Exemple 4 : réduire la consommation électrique</strong></p>
+
+                    <ul>
+                        <li>Étape : utilisation.</li>
+                        <li>Impact recherché : réduire l'énergie consommée.</li>
+                        <li>Contrainte : performance éventuellement réduite ou technologie plus coûteuse.</li>
+                    </ul>
+
+                </div>
+
+                <div class="bareme-detail">
+                    <strong>Barème :</strong><br>
+                    0,5 pt : modification cohérente.<br>
+                    0,5 pt : étape du cycle de vie correcte.<br>
+                    0,5 pt : impact recherché cohérent.<br>
+                    0,5 pt : nouvelle contrainte plausible.
+                </div>
+
+                <div class="accepter">
+                    Valoriser toute proposition différente
+                    si elle est techniquement cohérente.
+                </div>
+
+                <div class="vigilance">
+                    La nouvelle contrainte est importante :
+                    le but du bonus est notamment de vérifier
+                    si l'élève a compris la notion de compromis.
+                </div>
+
+                <div class="zone-points">
+                    <label>Bonus :</label>
+                    <input class="bonus-score" type="number" min="0" max="2" step="0.5">
+                    <span>/ 2</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+         APPRÉCIATION GLOBALE
+         ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Lecture globale de la copie</h2>
+
+            <div class="correction">
+
+                <strong>Une très bonne copie de 4e doit montrer que l'élève sait :</strong>
+
+                <ul>
+                    <li>distinguer besoin, contrainte et critère ;</li>
+                    <li>comprendre qu'un objet évolue pour répondre différemment à un besoin ;</li>
+                    <li>justifier un choix à partir de plusieurs données ;</li>
+                    <li>accepter qu'une solution comporte des compromis ;</li>
+                    <li>transformer une affirmation en question testable ;</li>
+                    <li>identifier ce que l'on modifie et ce que l'on doit conserver ;</li>
+                    <li>proposer un protocole reproductible ;</li>
+                    <li>utiliser plusieurs mesures et calculer une moyenne ;</li>
+                    <li>distinguer résultat observé et cause supposée ;</li>
+                    <li>raisonner à l'échelle du cycle de vie d'un produit.</li>
+                </ul>
+
+            </div>
+
+            <div class="vigilance">
+
+                <strong>Ne pas survaloriser la récitation.</strong>
+
+                Une réponse formulée avec les mots de l'élève,
+                mais montrant un raisonnement correct,
+                doit pouvoir obtenir tous les points.
+
+                <br><br>
+
+                Inversement, l'utilisation d'un mot de vocabulaire correct
+                sans justification ne suffit pas nécessairement.
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+         OUTILS PROFESSEUR
+         ========================================================= -->
+
+        <section class="outils-prof">
+
+            <h2>Outils professeur</h2>
+
+            <p>
+                Le bouton suivant remet complètement à zéro
+                le devoir élève 4e S02-S07 sur ce poste.
+            </p>
+
+            <p>
+                Il supprime les réponses, l'identité,
+                les sorties de page, les raccourcis bloqués,
+                l'heure de début et l'état « devoir terminé ».
+            </p>
+
+            <button id="btn-reset-ds" type="button">
+                Réinitialiser le devoir élève
+            </button>
+
+            <div id="message-reset"></div>
+
+        </section>
+
+    </main>
+
+    <script>
+        /* =========================================================
+           CALCUL AUTOMATIQUE DE LA NOTE
+           ========================================================= */
+
+        const champsScore =
+            document.querySelectorAll(".score");
+
+        const champBonus =
+            document.querySelector(".bonus-score");
+
+        function calculerNote() {
+
+            let total = 0;
+
+            champsScore.forEach(
+                champ => {
+
+                    let valeur =
+                        Number(
+                            champ.value || 0
+                        );
+
+                    const maximum =
+                        Number(
+                            champ.dataset.max
+                        );
+
+                    if (valeur < 0) {
+                        valeur = 0;
+                    }
+
+                    if (valeur > maximum) {
+
+                        valeur =
+                            maximum;
+
+                        champ.value =
+                            maximum;
+                    }
+
+                    total +=
+                        valeur;
+                }
+            );
+
+            let bonus =
+                Number(
+                    champBonus.value || 0
+                );
+
+            if (bonus < 0) {
+                bonus = 0;
+            }
+
+            if (bonus > 2) {
+
+                bonus = 2;
+
+                champBonus.value =
+                    2;
+            }
+
+            /*
+             * 40 points = 20/20
+             * donc note brute = total / 2.
+             */
+
+            const noteBrute =
+                total / 2;
+
+            /*
+             * 2 points bonus sur 40
+             * correspondent à +1 sur 20.
+             */
+
+            const bonusSur20 =
+                bonus / 2;
+
+            const noteFinale =
+                Math.min(
+                    20,
+                    noteBrute +
+                    bonusSur20
+                );
+
+            document.getElementById(
+                "total-points"
+            ).textContent =
+                formatNombre(
+                    total
+                );
+
+            document.getElementById(
+                "total-bonus"
+            ).textContent =
+                formatNombre(
+                    bonus
+                );
+
+            document.getElementById(
+                "note-brute"
+            ).textContent =
+                formatNombre(
+                    noteBrute
+                );
+
+            document.getElementById(
+                "note-finale"
+            ).textContent =
+                formatNombre(
+                    noteFinale
+                ) +
+                " / 20";
+        }
+
+        function formatNombre(
+            nombre
+        ) {
+
+            return Number(
+                nombre.toFixed(2)
+            )
+                .toString()
+                .replace(
+                    ".",
+                    ","
+                );
+        }
+
+        champsScore.forEach(
+            champ => {
+
+                champ.addEventListener(
+                    "input",
+                    calculerNote
+                );
+            }
+        );
+
+        champBonus.addEventListener(
+            "input",
+            calculerNote
+        );
+
+        /* =========================================================
+           NOUVELLE COPIE
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-reset-note"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    const confirmation =
+                        confirm(
+                            "Effacer tous les points saisis et commencer la correction d'une nouvelle copie ?"
+                        );
+
+                    if (!confirmation) {
+                        return;
+                    }
+
+                    champsScore.forEach(
+                        champ => {
+
+                            champ.value =
+                                "";
+                        }
+                    );
+
+                    champBonus.value =
+                        "";
+
+                    document.getElementById(
+                        "nom-eleve-correction"
+                    ).value =
+                        "";
+
+                    document.getElementById(
+                        "prenom-eleve-correction"
+                    ).value =
+                        "";
+
+                    calculerNote();
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                }
+            );
+
+        /* =========================================================
+           IMPRESSION
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-imprimer"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    window.print();
+                }
+            );
+
+        /* =========================================================
+           RESET DU DEVOIR ÉLÈVE
+           ========================================================= */
+
+        const PREFIXE_DS =
+            "DS4E_S02_S07_V1_";
+
+        document
+            .getElementById(
+                "btn-reset-ds"
+            )
+            .addEventListener(
+                "click",
+                reinitialiserDevoirEleve
+            );
+
+        function reinitialiserDevoirEleve() {
+
+            const confirmation1 =
+                confirm(
+                    "Réinitialiser complètement le devoir élève 4e S02-S07 sur ce poste ?\n\n" +
+                    "Toutes les réponses, sorties et données du devoir seront supprimées."
+                );
+
+            if (!confirmation1) {
+                return;
+            }
+
+            const confirmation2 =
+                confirm(
+                    "DERNIÈRE CONFIRMATION\n\n" +
+                    "Cette opération est irréversible.\n\n" +
+                    "Continuer ?"
+                );
+
+            if (!confirmation2) {
+                return;
+            }
+
+            const clesASupprimer =
+                [];
+
+            for (
+                let i = 0;
+                i < localStorage.length;
+                i++
+            ) {
+
+                const cle =
+                    localStorage.key(
+                        i
+                    );
+
+                if (
+                    cle &&
+                    cle.startsWith(
+                        PREFIXE_DS
+                    )
+                ) {
+
+                    clesASupprimer.push(
+                        cle
+                    );
+                }
+            }
+
+            clesASupprimer.forEach(
+                cle => {
+
+                    localStorage.removeItem(
+                        cle
+                    );
+                }
+            );
+
+            const message =
+                document.getElementById(
+                    "message-reset"
+                );
+
+            message.style.display =
+                "block";
+
+            message.textContent =
+                "Devoir 4e S02-S07 réinitialisé : " +
+                clesASupprimer.length +
+                " donnée(s) supprimée(s).";
+        }
+
+        /* Premier calcul */
+
+        calculerNote();
+    </script>
+
+</body>
+
+</html>
