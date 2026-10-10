@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Devoir surveillé</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #eef2f6;
+            color: #1f2937;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.55;
+        }
+
+        #devoir {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        header {
+            padding: 24px;
+            background: #243b53;
+            color: white;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .identite,
+        .exercice,
+        .zone-fin {
+            margin: 25px 0;
+            padding: 22px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .identite {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .identite input {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .exercice h2 {
+            margin-top: 0;
+        }
+
+        .question {
+            margin: 22px 0;
+            padding: 16px;
+            background: #f8fafc;
+            border-left: 4px solid #486581;
+            border-radius: 7px;
+        }
+
+        textarea,
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        input[type="time"],
+        select {
+            width: 100%;
+            margin-top: 8px;
+            padding: 10px;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        #surveillance-ds {
+            position: sticky;
+            top: 8px;
+            z-index: 1000;
+
+            margin: 15px 0;
+            padding: 12px;
+
+            background: #fee2e2;
+            border: 2px solid #dc2626;
+            border-radius: 10px;
+
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #btn-terminer {
+            padding: 15px 30px;
+            background: #b91c1c;
+            color: white;
+            border: 0;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .zone-fin {
+            text-align: center;
+            background: #ecfdf3;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <main id="devoir" data-devoir-id="TECHNO_3E_DS_S02_S05" data-devoir-version="1">
+
+        <header>
+
+            <h1>Devoir surveillé – Technologie 3e</h1>
+
+            <p>
+                Séances 2 à 5
+            </p>
+
+        </header>
+
+
+        <section class="identite">
+
+            <label>
+                Nom :
+                <input type="text" id="nom" autocomplete="off">
+            </label>
+
+            <label>
+                Prénom :
+                <input type="text" id="prenom" autocomplete="off">
+            </label>
+
+        </section>
+
+
+        <div id="surveillance-ds">
+
+            Sorties de page :
+            <span id="nb-sorties">0</span>
+
+        </div>
+
+
+        <!-- =========================================================
+     EXEMPLE QUESTION TEXTE
+     ========================================================= -->
+
+        <section class="exercice">
+
+            <h2>Exercice 1</h2>
+
+
+            <div class="question" data-question-id="q1_1">
+
+                <p>
+                    <strong>1.1.</strong>
+                    Quel besoin satisfait cet objet ?
+                </p>
+
+                <textarea></textarea>
+
+            </div>
+
+
+            <!-- =========================================================
+     EXEMPLE QUESTION AVEC PLUSIEURS CHAMPS
+     ========================================================= -->
+
+            <div class="question" data-question-id="q1_2">
+
+                <p>
+                    <strong>1.2.</strong>
+                    Complétez les informations suivantes.
+                </p>
+
+                <label>
+                    Fonction :
+                    <input type="text">
+                </label>
+
+                <label>
+                    Valeur :
+                    <input type="number">
+                </label>
+
+                <label>
+                    Catégorie :
+
+                    <select>
+
+                        <option value="">
+                            Choisir
+                        </option>
+
+                        <option value="A">
+                            A
+                        </option>
+
+                        <option value="B">
+                            B
+                        </option>
+
+                    </select>
+
+                </label>
+
+            </div>
+
+
+            <!-- =========================================================
+     EXEMPLE QCM
+     ========================================================= -->
+
+            <div class="question" data-question-id="q1_3">
+
+                <p>
+                    <strong>1.3.</strong>
+                    Sélectionnez la bonne réponse.
+                </p>
+
+                <label>
+                    <input type="radio" name="q1_3_radio" value="A">
+                    Réponse A
+                </label>
+
+                <br>
+
+                <label>
+                    <input type="radio" name="q1_3_radio" value="B">
+                    Réponse B
+                </label>
+
+                <br>
+
+                <label>
+                    <input type="radio" name="q1_3_radio" value="C">
+                    Réponse C
+                </label>
+
+            </div>
+
+
+            <!-- =========================================================
+     EXEMPLE CASES À COCHER
+     ========================================================= -->
+
+            <div class="question" data-question-id="q1_4">
+
+                <p>
+                    <strong>1.4.</strong>
+                    Sélectionnez les réponses correctes.
+                </p>
+
+                <label>
+                    <input type="checkbox" value="moteur">
+                    Moteur
+                </label>
+
+                <br>
+
+                <label>
+                    <input type="checkbox" value="capteur">
+                    Capteur
+                </label>
+
+                <br>
+
+                <label>
+                    <input type="checkbox" value="batterie">
+                    Batterie
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <section class="zone-fin">
+
+            <h2>Vous avez terminé ?</h2>
+
+            <button id="btn-terminer" type="button">
+
+                Terminer mon devoir
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        "use strict";
+
+
+        /* =========================================================
+           CONFIGURATION GÉNÉRIQUE
+           ========================================================= */
+
+        const devoir =
+            document.getElementById("devoir");
+
+
+        const DEVOIR_ID =
+            devoir.dataset.devoirId;
+
+
+        const DEVOIR_VERSION =
+            devoir.dataset.devoirVersion ||
+            "1";
+
+
+        const PREFIXE =
+            "DS_" +
+            DEVOIR_ID +
+            "_";
+
+
+        const CLE_TERMINE =
+            PREFIXE +
+            "termine";
+
+
+        const CLE_SORTIES =
+            PREFIXE +
+            "sorties";
+
+
+        const CLE_HISTORIQUE =
+            PREFIXE +
+            "historique";
+
+
+        const CLE_DEBUT =
+            PREFIXE +
+            "debut";
+
+
+        let devoirTermine =
+            localStorage.getItem(
+                CLE_TERMINE
+            ) === "1";
+
+
+        let sorties =
+            Number(
+                localStorage.getItem(
+                    CLE_SORTIES
+                ) || 0
+            );
+
+
+        let historique =
+            JSON.parse(
+                localStorage.getItem(
+                    CLE_HISTORIQUE
+                ) || "[]"
+            );
+
+
+        /* =========================================================
+           DÉBUT DU DEVOIR
+           ========================================================= */
+
+        if (
+            !localStorage.getItem(
+                CLE_DEBUT
+            ) &&
+            !devoirTermine
+        ) {
+
+            localStorage.setItem(
+                CLE_DEBUT,
+                new Date().toISOString()
+            );
+
+        }
+
+
+        /* =========================================================
+           IDENTIFIANT UNIQUE POUR CHAQUE CHAMP
+           ========================================================= */
+
+        function preparerChamps() {
+
+            document
+                .querySelectorAll(
+                    ".question[data-question-id]"
+                )
+                .forEach(question => {
+
+                    const questionId =
+                        question.dataset.questionId;
+
+
+                    const champs =
+                        question.querySelectorAll(
+                            "input, textarea, select, [contenteditable='true']"
+                        );
+
+
+                    champs.forEach(
+                        (champ, index) => {
+
+                            if (
+                                !champ.dataset.fieldId
+                            ) {
+
+                                champ.dataset.fieldId =
+                                    "champ_" +
+                                    (index + 1);
+
+                            }
+
+
+                            champ.dataset.questionId =
+                                questionId;
+
+                        }
+                    );
+
+                });
+
+        }
+
+
+        preparerChamps();
+
+
+        /* =========================================================
+           SAUVEGARDE AUTOMATIQUE
+           ========================================================= */
+
+        document
+            .querySelectorAll(
+                ".question[data-question-id] input, " +
+                ".question[data-question-id] textarea, " +
+                ".question[data-question-id] select, " +
+                ".question[data-question-id] [contenteditable='true']"
+            )
+            .forEach(champ => {
+
+                const questionId =
+                    champ.dataset.questionId;
+
+
+                const fieldId =
+                    champ.dataset.fieldId;
+
+
+                const cle =
+                    PREFIXE +
+                    "reponse_" +
+                    questionId +
+                    "_" +
+                    fieldId;
+
+
+                restaurerChamp(
+                    champ,
+                    cle
+                );
+
+
+                const evenement =
+                    champ.matches(
+                        "[contenteditable='true']"
+                    )
+                        ? "input"
+                        : "change";
+
+
+                champ.addEventListener(
+                    "input",
+                    () => {
+
+                        sauvegarderChamp(
+                            champ,
+                            cle
+                        );
+
+                    }
+                );
+
+
+                champ.addEventListener(
+                    evenement,
+                    () => {
+
+                        sauvegarderChamp(
+                            champ,
+                            cle
+                        );
+
+                    }
+                );
+
+            });
+
+
+        function sauvegarderChamp(
+            champ,
+            cle
+        ) {
+
+            if (
+                devoirTermine
+            ) {
+                return;
+            }
+
+
+            const valeur =
+                lireChamp(
+                    champ
+                );
+
+
+            localStorage.setItem(
+                cle,
+                JSON.stringify(
+                    valeur
+                )
+            );
+
+        }
+
+
+        function restaurerChamp(
+            champ,
+            cle
+        ) {
+
+            const sauvegarde =
+                localStorage.getItem(
+                    cle
+                );
+
+
+            if (
+                sauvegarde === null
+            ) {
+                return;
+            }
+
+
+            let valeur;
+
+
+            try {
+
+                valeur =
+                    JSON.parse(
+                        sauvegarde
+                    );
+
+            } catch {
+
+                valeur =
+                    sauvegarde;
+
+            }
+
+
+            ecrireChamp(
+                champ,
+                valeur
+            );
+
+        }
+
+
+        /* =========================================================
+           LECTURE GÉNÉRIQUE D'UN CHAMP
+           ========================================================= */
+
+        function lireChamp(
+            champ
+        ) {
+
+            if (
+                champ.matches(
+                    "[contenteditable='true']"
+                )
+            ) {
+
+                return champ.innerText;
+
+            }
+
+
+            if (
+                champ.type ===
+                "checkbox"
+            ) {
+
+                return {
+                    checked:
+                        champ.checked,
+
+                    value:
+                        champ.value
+                };
+
+            }
+
+
+            if (
+                champ.type ===
+                "radio"
+            ) {
+
+                return {
+                    checked:
+                        champ.checked,
+
+                    value:
+                        champ.value
+                };
+
+            }
+
+
+            return champ.value;
+
+        }
+
+
+        /* =========================================================
+           RESTAURATION GÉNÉRIQUE
+           ========================================================= */
+
+        function ecrireChamp(
+            champ,
+            valeur
+        ) {
+
+            if (
+                champ.matches(
+                    "[contenteditable='true']"
+                )
+            ) {
+
+                champ.innerText =
+                    valeur || "";
+
+                return;
+
+            }
+
+
+            if (
+                champ.type ===
+                "checkbox" ||
+                champ.type ===
+                "radio"
+            ) {
+
+                if (
+                    typeof valeur ===
+                    "object"
+                ) {
+
+                    champ.checked =
+                        Boolean(
+                            valeur.checked
+                        );
+
+                }
+
+                return;
+
+            }
+
+
+            champ.value =
+                valeur ?? "";
+
+        }
+
+
+        /* =========================================================
+           EXTRACTION DE TOUTES LES RÉPONSES
+           ========================================================= */
+
+        function collecterToutesLesReponses() {
+
+            const reponses =
+                {};
+
+
+            document
+                .querySelectorAll(
+                    ".question[data-question-id]"
+                )
+                .forEach(question => {
+
+                    const questionId =
+                        question.dataset.questionId;
+
+
+                    const champs =
+                        question.querySelectorAll(
+                            "input, textarea, select, [contenteditable='true']"
+                        );
+
+
+                    const valeurs =
+                        [];
+
+
+                    champs.forEach(
+                        champ => {
+
+                            valeurs.push({
+
+                                fieldId:
+                                    champ.dataset.fieldId,
+
+                                type:
+                                    determinerTypeChamp(
+                                        champ
+                                    ),
+
+                                name:
+                                    champ.name || "",
+
+                                value:
+                                    lireChamp(
+                                        champ
+                                    )
+
+                            });
+
+                        }
+                    );
+
+
+                    reponses[
+                        questionId
+                    ] = {
+
+                        texteQuestion:
+                            extraireTexteQuestion(
+                                question
+                            ),
+
+                        champs:
+                            valeurs
+
+                    };
+
+                });
+
+
+            return reponses;
+
+        }
+
+
+        function determinerTypeChamp(
+            champ
+        ) {
+
+            if (
+                champ.matches(
+                    "[contenteditable='true']"
+                )
+            ) {
+
+                return "contenteditable";
+
+            }
+
+
+            if (
+                champ.tagName ===
+                "TEXTAREA"
+            ) {
+
+                return "textarea";
+
+            }
+
+
+            if (
+                champ.tagName ===
+                "SELECT"
+            ) {
+
+                return "select";
+
+            }
+
+
+            return (
+                champ.type ||
+                "text"
+            );
+
+        }
+
+
+        /* =========================================================
+           TEXTE DE LA QUESTION
+           ========================================================= */
+
+        function extraireTexteQuestion(
+            question
+        ) {
+
+            const clone =
+                question.cloneNode(
+                    true
+                );
+
+
+            clone
+                .querySelectorAll(
+                    "input, textarea, select, [contenteditable='true']"
+                )
+                .forEach(
+                    element =>
+                        element.remove()
+                );
+
+
+            return clone
+                .innerText
+                .trim();
+
+        }
+
+
+        /* =========================================================
+           SURVEILLANCE
+           ========================================================= */
+
+        function mettreAJourCompteur() {
+
+            document.getElementById(
+                "nb-sorties"
+            ).textContent =
+                sorties;
+
+        }
+
+
+        mettreAJourCompteur();
+
+
+        let sortieEnCours =
+            false;
+
+
+        document.addEventListener(
+            "visibilitychange",
+            () => {
+
+                if (
+                    devoirTermine
+                ) {
+                    return;
+                }
+
+
+                if (
+                    document.hidden &&
+                    !sortieEnCours
+                ) {
+
+                    sortieEnCours =
+                        true;
+
+
+                    sorties++;
+
+
+                    localStorage.setItem(
+                        CLE_SORTIES,
+                        String(sorties)
+                    );
+
+
+                    historique.push({
+
+                        sortie:
+                            new Date()
+                                .toISOString(),
+
+                        retour:
+                            null
+
+                    });
+
+
+                    enregistrerHistorique();
+
+
+                    mettreAJourCompteur();
+
+                }
+
+
+                else if (
+                    !document.hidden &&
+                    sortieEnCours
+                ) {
+
+                    const dernier =
+                        historique[
+                        historique.length - 1
+                        ];
+
+
+                    if (
+                        dernier &&
+                        !dernier.retour
+                    ) {
+
+                        dernier.retour =
+                            new Date()
+                                .toISOString();
+
+                    }
+
+
+                    sortieEnCours =
+                        false;
+
+
+                    enregistrerHistorique();
+
+                }
+
+            }
+        );
+
+
+        function enregistrerHistorique() {
+
+            localStorage.setItem(
+                CLE_HISTORIQUE,
+                JSON.stringify(
+                    historique
+                )
+            );
+
+        }
+
+
+        /* =========================================================
+           TERMINER
+           ========================================================= */
+
+        document
+            .getElementById(
+                "btn-terminer"
+            )
+            .addEventListener(
+                "click",
+                terminerDevoir
+            );
+
+
+        function terminerDevoir() {
+
+            const nom =
+                document.getElementById(
+                    "nom"
+                )
+                    .value
+                    .trim();
+
+
+            const prenom =
+                document.getElementById(
+                    "prenom"
+                )
+                    .value
+                    .trim();
+
+
+            if (
+                !nom ||
+                !prenom
+            ) {
+
+                alert(
+                    "Renseignez votre nom et votre prénom."
+                );
+
+                return;
+
+            }
+
+
+            const confirmation =
+                confirm(
+                    "Terminer définitivement le devoir ?"
+                );
+
+
+            if (
+                !confirmation
+            ) {
+                return;
+            }
+
+
+            const fin =
+                new Date();
+
+
+            devoirTermine =
+                true;
+
+
+            localStorage.setItem(
+                CLE_TERMINE,
+                "1"
+            );
+
+
+            genererCopie(
+                nom,
+                prenom,
+                fin
+            );
+
+        }
+
+
+        /* =========================================================
+           CRÉATION DE LA COPIE STRUCTURÉE
+           ========================================================= */
+
+        function genererCopie(
+            nom,
+            prenom,
+            fin
+        ) {
+
+            const debutISO =
+                localStorage.getItem(
+                    CLE_DEBUT
+                );
+
+
+            const donnees =
+            {
+
+                format:
+                    "COPIE_DS_GENERIQUE_V1",
+
+                devoir: {
+
+                    id:
+                        DEVOIR_ID,
+
+                    version:
+                        DEVOIR_VERSION,
+
+                    titre:
+                        document.title
+
+                },
+
+                eleve: {
+
+                    nom:
+                        nom,
+
+                    prenom:
+                        prenom
+
+                },
+
+                temps: {
+
+                    debut:
+                        debutISO,
+
+                    fin:
+                        fin.toISOString()
+
+                },
+
+                surveillance: {
+
+                    sorties:
+                        sorties,
+
+                    historique:
+                        historique
+
+                },
+
+                reponses:
+                    collecterToutesLesReponses()
+
+            };
+
+
+            genererHTMLCopie(
+                donnees
+            );
+
+        }
+
+
+        /* =========================================================
+           COPIE HTML + JSON EMBARQUÉ
+           ========================================================= */
+
+        function genererHTMLCopie(
+            donnees
+        ) {
+
+            let reponsesHTML =
+                "";
+
+
+            Object.entries(
+                donnees.reponses
+            )
+                .forEach(
+                    ([questionId, question]) => {
+
+                        reponsesHTML += `
+
+                <section
+                    class="question-copie"
+                    data-question-id="${echapperHTML(questionId)}">
+
+                    <h3>
+                        ${echapperHTML(question.texteQuestion)}
+                    </h3>
+
+                    ${genererChampsCopie(
+                            question.champs
+                        )}
+
+                </section>
+
+            `;
+
+                    }
+                );
+
+
+            /*
+             * JSON rendu sûr pour insertion dans script type application/json.
+             */
+            const jsonIntegre =
+                JSON.stringify(
+                    donnees
+                )
+                    .replace(
+                        /</g,
+                        "\\u003c"
+                    );
+
+
+            const html =
+                `<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+Copie – ${echapperHTML(donnees.eleve.nom)}
+${echapperHTML(donnees.eleve.prenom)}
+</title>
+
+<style>
+
+body {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.infos,
+.surveillance,
+.question-copie {
+    margin: 20px 0;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.infos {
+    background: #edf2f7;
+}
+
+.surveillance {
+    background: #fee2e2;
+}
+
+.question-copie {
+    background: #f8fafc;
+    border-left: 4px solid #486581;
+}
+
+.reponse-copie {
+    margin: 8px 0;
+    padding: 10px;
+    background: white;
+    border: 1px solid #cbd5e1;
+    white-space: pre-wrap;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<h1>
+    ${echapperHTML(donnees.devoir.titre)}
+</h1>
+
+
+<section class="infos">
+
+    <p>
+        <strong>Nom :</strong>
+        ${echapperHTML(donnees.eleve.nom)}
+    </p>
+
+    <p>
+        <strong>Prénom :</strong>
+        ${echapperHTML(donnees.eleve.prenom)}
+    </p>
+
+</section>
+
+
+<section class="surveillance">
+
+    <strong>
+        Sorties de page :
+        ${donnees.surveillance.sorties}
+    </strong>
+
+</section>
+
+
+<h2>
+    Réponses de l'élève
+</h2>
+
+
+${reponsesHTML}
+
+
+<script
+    type="application/json"
+    id="copie-json">
+${jsonIntegre}
+<\/script>
+
+
+</body>
+
+</html>`;
+
+
+            telechargerFichier(
+                html,
+                "DS_" +
+                nettoyerNom(
+                    donnees.eleve.nom
+                ) +
+                "_" +
+                nettoyerNom(
+                    donnees.eleve.prenom
+                ) +
+                ".html"
+            );
+
+        }
+
+
+        /* =========================================================
+           AFFICHAGE DES CHAMPS DANS LA COPIE
+           ========================================================= */
+
+        function genererChampsCopie(
+            champs
+        ) {
+
+            if (
+                champs.length === 0
+            ) {
+
+                return `
+            <div class="reponse-copie">
+                [Aucun champ de réponse]
+            </div>
+        `;
+
+            }
+
+
+            return champs
+                .map(
+                    (champ, index) => {
+
+                        return `
+                    <div class="reponse-copie">
+
+                        <strong>
+                            Réponse ${index + 1} :
+                        </strong>
+
+                        ${echapperHTML(
+                            afficherValeurChamp(
+                                champ
+                            )
+                        )}
+
+                    </div>
+                `;
+
+                    }
+                )
+                .join("");
+
+        }
+
+
+        function afficherValeurChamp(
+            champ
+        ) {
+
+            if (
+                champ.type ===
+                "checkbox" ||
+                champ.type ===
+                "radio"
+            ) {
+
+                return (
+                    champ.value.checked
+                        ? "Sélectionné : " +
+                        champ.value.value
+                        : "Non sélectionné : " +
+                        champ.value.value
+                );
+
+            }
+
+
+            return (
+                champ.value ||
+                "[Aucune réponse]"
+            );
+
+        }
+
+
+        /* =========================================================
+           TÉLÉCHARGEMENT
+           ========================================================= */
+
+        function telechargerFichier(
+            contenu,
+            nom
+        ) {
+
+            const blob =
+                new Blob(
+                    [contenu],
+                    {
+                        type:
+                            "text/html;charset=utf-8"
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            const lien =
+                document.createElement(
+                    "a"
+                );
+
+
+            lien.href =
+                url;
+
+
+            lien.download =
+                nom;
+
+
+            document.body.appendChild(
+                lien
+            );
+
+
+            lien.click();
+
+
+            lien.remove();
+
+
+            setTimeout(
+                () =>
+                    URL.revokeObjectURL(
+                        url
+                    ),
+                1000
+            );
+
+        }
+
+
+        /* =========================================================
+           OUTILS
+           ========================================================= */
+
+        function nettoyerNom(
+            texte
+        ) {
+
+            return texte
+
+                .normalize("NFD")
+
+                .replace(
+                    /[\u0300-\u036f]/g,
+                    ""
+                )
+
+                .replace(
+                    /[^a-zA-Z0-9_-]/g,
+                    "_"
+                );
+
+        }
+
+
+        function echapperHTML(
+            texte
+        ) {
+
+            return String(
+                texte ?? ""
+            )
+
+                .replace(/&/g, "&amp;")
+
+                .replace(/</g, "&lt;")
+
+                .replace(/>/g, "&gt;")
+
+                .replace(/"/g, "&quot;")
+
+                .replace(/'/g, "&#039;");
+
+        }
+
+    </script>
+
+</body>
+
+</html>

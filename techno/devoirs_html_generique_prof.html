@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Correcteur de devoir</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #eef2f6;
+            color: #1f2937;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+        }
+
+        #correcteur {
+            max-width: 1150px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        header {
+            padding: 22px;
+            background: #243b53;
+            color: white;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        #barre-prof {
+            position: sticky;
+            top: 5px;
+            z-index: 1000;
+
+            margin: 20px 0;
+            padding: 18px;
+
+            background: white;
+
+            border: 2px solid #2563eb;
+            border-radius: 10px;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: 0;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #importer {
+            background: #d97706;
+            color: white;
+        }
+
+        #enregistrer {
+            background: #16a34a;
+            color: white;
+        }
+
+        #nouvelle {
+            background: #64748b;
+            color: white;
+        }
+
+        #fichier {
+            display: none;
+        }
+
+        .question-correction {
+            margin: 25px 0;
+            padding: 18px;
+
+            background: white;
+
+            border-radius: 10px;
+        }
+
+        .reponse-eleve {
+            margin: 12px 0;
+            padding: 12px;
+
+            background: #fffbeb;
+
+            border-left: 5px solid #d97706;
+        }
+
+        .reponse-attendue {
+            margin: 12px 0;
+            padding: 12px;
+
+            background: #ecfdf3;
+
+            border-left: 5px solid #16a34a;
+        }
+
+        .zone-note {
+            margin-top: 12px;
+            padding-top: 10px;
+
+            border-top: 1px dashed #94a3b8;
+        }
+
+        .zone-note input {
+            width: 80px;
+            padding: 7px;
+        }
+
+        .auto-ok {
+            background: #dcfce7;
+        }
+
+        .auto-erreur {
+            background: #fee2e2;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <main id="correcteur">
+
+        <header>
+
+            <h1>
+                Correcteur générique
+            </h1>
+
+        </header>
+
+
+        <section id="barre-prof">
+
+            <input type="file" id="fichier" accept=".html,.htm">
+
+
+            <div class="actions">
+
+                <button id="importer" type="button">
+
+                    Importer une copie
+
+                </button>
+
+
+                <button id="enregistrer" type="button">
+
+                    Enregistrer la correction
+
+                </button>
+
+
+                <button id="nouvelle" type="button">
+
+                    Nouvelle copie
+
+                </button>
+
+            </div>
+
+
+            <p id="identite"></p>
+
+
+            <p>
+
+                <strong>Total :</strong>
+
+                <span id="total">
+                    0
+                </span>
+
+                /
+
+                <span id="total-max">
+                    0
+                </span>
+
+            </p>
+
+        </section>
+
+
+        <section id="questions"></section>
+
+
+    </main>
+
+
+    <script>
+
+        "use strict";
+
+
+        /* =========================================================
+           CORRIGÉ
+           ========================================================= */
+
+        /*
+         * Ce bloc est la seule partie réellement spécifique
+         * au devoir.
+         *
+         * Les questions absentes de ce tableau restent
+         * corrigées manuellement.
+         */
+
+        const CORRIGE = {
+
+            /*
+             * TEXTE EXACT
+             */
+
+            q1_1: {
+
+                points:
+                    1,
+
+                type:
+                    "text",
+
+                auto:
+                    "contains",
+
+                accepted: [
+                    "communiquer",
+                    "communication"
+                ],
+
+                attendu:
+                    "Communiquer à distance."
+
+            },
+
+
+            /*
+             * NOMBRE AVEC TOLÉRANCE
+             */
+
+            q2_1: {
+
+                points:
+                    2,
+
+                type:
+                    "number",
+
+                auto:
+                    "number",
+
+                value:
+                    2.9,
+
+                tolerance:
+                    0.01,
+
+                attendu:
+                    "2,9"
+
+            },
+
+
+            /*
+             * CHOIX EXACT
+             */
+
+            q3_1: {
+
+                points:
+                    1,
+
+                type:
+                    "choice",
+
+                auto:
+                    "exact",
+
+                accepted: [
+                    "B"
+                ],
+
+                attendu:
+                    "B"
+
+            },
+
+
+            /*
+             * PLUSIEURS CASES À COCHER
+             */
+
+            q4_1: {
+
+                points:
+                    2,
+
+                type:
+                    "set",
+
+                auto:
+                    "set",
+
+                accepted: [
+                    "moteur",
+                    "batterie"
+                ],
+
+                attendu:
+                    "Moteur + batterie"
+
+            }
+
+        };
+
+
+        /* =========================================================
+           VARIABLES
+           ========================================================= */
+
+        let copie =
+            null;
+
+
+        const fichier =
+            document.getElementById(
+                "fichier"
+            );
+
+
+        /* =========================================================
+           IMPORT
+           ========================================================= */
+
+        document
+            .getElementById(
+                "importer"
+            )
+            .addEventListener(
+                "click",
+                () =>
+                    fichier.click()
+            );
+
+
+        fichier.addEventListener(
+            "change",
+            async () => {
+
+                const selection =
+                    fichier.files[0];
+
+
+                if (!selection) {
+                    return;
+                }
+
+
+                const html =
+                    await selection.text();
+
+
+                const doc =
+                    new DOMParser()
+                        .parseFromString(
+                            html,
+                            "text/html"
+                        );
+
+
+                const json =
+                    doc.querySelector(
+                        "#copie-json"
+                    );
+
+
+                if (!json) {
+
+                    alert(
+                        "Cette copie ne contient pas le format générique attendu."
+                    );
+
+                    return;
+
+                }
+
+
+                copie =
+                    JSON.parse(
+                        json.textContent
+                    );
+
+
+                afficherCopie();
+
+            }
+        );
+
+
+        /* =========================================================
+           AFFICHAGE
+           ========================================================= */
+
+        function afficherCopie() {
+
+            document.getElementById(
+                "identite"
+            ).textContent =
+                copie.eleve.prenom +
+                " " +
+                copie.eleve.nom;
+
+
+            const conteneur =
+                document.getElementById(
+                    "questions"
+                );
+
+
+            conteneur.innerHTML =
+                "";
+
+
+            Object.entries(
+                copie.reponses
+            )
+                .forEach(
+                    ([questionId, question]) => {
+
+                        const correction =
+                            CORRIGE[
+                            questionId
+                            ] ||
+                            null;
+
+
+                        const section =
+                            document.createElement(
+                                "section"
+                            );
+
+
+                        section.className =
+                            "question-correction";
+
+
+                        section.dataset.questionId =
+                            questionId;
+
+
+                        const titre =
+                            document.createElement(
+                                "h2"
+                            );
+
+
+                        titre.textContent =
+                            question.texteQuestion;
+
+
+                        section.appendChild(
+                            titre
+                        );
+
+
+                        /*
+                         * RÉPONSES ÉLÈVE
+                         */
+
+                        question.champs.forEach(
+                            (champ, index) => {
+
+                                const bloc =
+                                    document.createElement(
+                                        "div"
+                                    );
+
+
+                                bloc.className =
+                                    "reponse-eleve";
+
+
+                                const strong =
+                                    document.createElement(
+                                        "strong"
+                                    );
+
+
+                                strong.textContent =
+                                    "Réponse " +
+                                    (index + 1) +
+                                    " : ";
+
+
+                                bloc.appendChild(
+                                    strong
+                                );
+
+
+                                const valeur =
+                                    document.createElement(
+                                        "span"
+                                    );
+
+
+                                valeur.textContent =
+                                    valeurLisible(
+                                        champ
+                                    );
+
+
+                                bloc.appendChild(
+                                    valeur
+                                );
+
+
+                                section.appendChild(
+                                    bloc
+                                );
+
+                            }
+                        );
+
+
+                        /*
+                         * CORRIGÉ
+                         */
+
+                        if (
+                            correction
+                        ) {
+
+                            const attendu =
+                                document.createElement(
+                                    "div"
+                                );
+
+
+                            attendu.className =
+                                "reponse-attendue";
+
+
+                            attendu.textContent =
+                                "Réponse attendue : " +
+                                correction.attendu;
+
+
+                            section.appendChild(
+                                attendu
+                            );
+
+                        }
+
+
+                        /*
+                         * NOTATION
+                         */
+
+                        const zone =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        zone.className =
+                            "zone-note";
+
+
+                        const maximum =
+                            correction
+                                ? correction.points
+                                : 0;
+
+
+                        const input =
+                            document.createElement(
+                                "input"
+                            );
+
+
+                        input.type =
+                            "number";
+
+
+                        input.min =
+                            "0";
+
+
+                        input.step =
+                            "0.5";
+
+
+                        input.max =
+                            String(
+                                maximum
+                            );
+
+
+                        input.dataset.max =
+                            String(
+                                maximum
+                            );
+
+
+                        input.className =
+                            "points-question";
+
+
+                        /*
+                         * Correction automatique si possible.
+                         */
+
+                        if (
+                            correction &&
+                            correction.auto
+                        ) {
+
+                            const resultat =
+                                corrigerAutomatiquement(
+                                    question,
+                                    correction
+                                );
+
+
+                            if (
+                                resultat !== null
+                            ) {
+
+                                input.value =
+                                    resultat
+                                        ? maximum
+                                        : 0;
+
+
+                                section.classList.add(
+                                    resultat
+                                        ? "auto-ok"
+                                        : "auto-erreur"
+                                );
+
+                            }
+
+                        }
+
+
+                        input.addEventListener(
+                            "input",
+                            calculerTotal
+                        );
+
+
+                        zone.append(
+                            "Points : ",
+                            input,
+                            " / " + maximum
+                        );
+
+
+                        section.appendChild(
+                            zone
+                        );
+
+
+                        conteneur.appendChild(
+                            section
+                        );
+
+                    }
+                );
+
+
+            calculerTotal();
+
+        }
+
+
+        /* =========================================================
+           CORRECTION AUTOMATIQUE
+           ========================================================= */
+
+        function corrigerAutomatiquement(
+            question,
+            regle
+        ) {
+
+            const valeurs =
+                extraireValeursSimples(
+                    question
+                );
+
+
+            /*
+             * EXACT
+             */
+
+            if (
+                regle.auto ===
+                "exact"
+            ) {
+
+                const valeur =
+                    normaliserTexte(
+                        valeurs.join(" ")
+                    );
+
+
+                return regle.accepted
+                    .map(normaliserTexte)
+                    .includes(
+                        valeur
+                    );
+
+            }
+
+
+            /*
+             * CONTIENT UN MOT OU UNE EXPRESSION
+             */
+
+            if (
+                regle.auto ===
+                "contains"
+            ) {
+
+                const texte =
+                    normaliserTexte(
+                        valeurs.join(" ")
+                    );
+
+
+                return regle.accepted
+                    .some(
+                        mot =>
+                            texte.includes(
+                                normaliserTexte(
+                                    mot
+                                )
+                            )
+                    );
+
+            }
+
+
+            /*
+             * NOMBRE
+             */
+
+            if (
+                regle.auto ===
+                "number"
+            ) {
+
+                const nombre =
+                    convertirNombre(
+                        valeurs[0]
+                    );
+
+
+                if (
+                    Number.isNaN(
+                        nombre
+                    )
+                ) {
+
+                    return false;
+
+                }
+
+
+                return (
+                    Math.abs(
+                        nombre -
+                        regle.value
+                    ) <=
+                    (
+                        regle.tolerance ||
+                        0
+                    )
+                );
+
+            }
+
+
+            /*
+             * ENSEMBLE DE CASES
+             */
+
+            if (
+                regle.auto ===
+                "set"
+            ) {
+
+                const selection =
+                    valeurs
+                        .map(normaliserTexte)
+                        .sort();
+
+
+                const attendu =
+                    regle.accepted
+                        .map(normaliserTexte)
+                        .sort();
+
+
+                return (
+                    JSON.stringify(
+                        selection
+                    ) ===
+                    JSON.stringify(
+                        attendu
+                    )
+                );
+
+            }
+
+
+            return null;
+
+        }
+
+
+        /* =========================================================
+           VALEURS SIMPLES
+           ========================================================= */
+
+        function extraireValeursSimples(
+            question
+        ) {
+
+            const resultats =
+                [];
+
+
+            question.champs.forEach(
+                champ => {
+
+                    if (
+                        champ.type ===
+                        "checkbox" ||
+                        champ.type ===
+                        "radio"
+                    ) {
+
+                        if (
+                            champ.value.checked
+                        ) {
+
+                            resultats.push(
+                                champ.value.value
+                            );
+
+                        }
+
+                    } else {
+
+                        resultats.push(
+                            String(
+                                champ.value ?? ""
+                            )
+                        );
+
+                    }
+
+                }
+            );
+
+
+            return resultats;
+
+        }
+
+
+        /* =========================================================
+           NORMALISATION
+           ========================================================= */
+
+        function normaliserTexte(
+            texte
+        ) {
+
+            return String(
+                texte
+            )
+
+                .toLowerCase()
+
+                .normalize(
+                    "NFD"
+                )
+
+                .replace(
+                    /[\u0300-\u036f]/g,
+                    ""
+                )
+
+                .replace(
+                    /[^\p{L}\p{N}]+/gu,
+                    " "
+                )
+
+                .trim();
+
+        }
+
+
+        function convertirNombre(
+            valeur
+        ) {
+
+            const texte =
+                String(
+                    valeur
+                )
+
+                    .replace(
+                        ",",
+                        "."
+                    )
+
+                    .replace(
+                        /[^0-9.+-]/g,
+                        ""
+                    );
+
+
+            return Number(
+                texte
+            );
+
+        }
+
+
+        /* =========================================================
+           AFFICHAGE D'UNE VALEUR
+           ========================================================= */
+
+        function valeurLisible(
+            champ
+        ) {
+
+            if (
+                champ.type ===
+                "checkbox" ||
+                champ.type ===
+                "radio"
+            ) {
+
+                return (
+                    champ.value.checked
+                        ? "✓ " +
+                        champ.value.value
+                        : "✗ " +
+                        champ.value.value
+                );
+
+            }
+
+
+            return (
+                String(
+                    champ.value || ""
+                ) ||
+                "[Aucune réponse]"
+            );
+
+        }
+
+
+        /* =========================================================
+           TOTAL
+           ========================================================= */
+
+        function calculerTotal() {
+
+            let total =
+                0;
+
+
+            let maximum =
+                0;
+
+
+            document
+                .querySelectorAll(
+                    ".points-question"
+                )
+                .forEach(
+                    input => {
+
+                        total +=
+                            Number(
+                                input.value || 0
+                            );
+
+
+                        maximum +=
+                            Number(
+                                input.dataset.max || 0
+                            );
+
+                    }
+                );
+
+
+            document.getElementById(
+                "total"
+            ).textContent =
+                total;
+
+
+            document.getElementById(
+                "total-max"
+            ).textContent =
+                maximum;
+
+        }
+
+
+        /* =========================================================
+           NOUVELLE COPIE
+           ========================================================= */
+
+        document
+            .getElementById(
+                "nouvelle"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    copie =
+                        null;
+
+
+                    fichier.value =
+                        "";
+
+
+                    document.getElementById(
+                        "questions"
+                    ).innerHTML =
+                        "";
+
+
+                    document.getElementById(
+                        "identite"
+                    ).textContent =
+                        "";
+
+
+                    calculerTotal();
+
+                }
+            );
+
+    </script>
+
+</body>
+
+</html>
