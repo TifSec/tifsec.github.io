@@ -35,7 +35,51 @@
     const bucket = () => { const k = key(); return state.groups[k] || (state.groups[k] = { total: null, done: {}, lessons: {} }); };
     const sNum = n => 'S' + String(n).padStart(2, '0'); const distinctSlot = x => `${x.date}|${x.start}|${x.end}|${x.subject}|${x.group}`;
     function groupOptions() { $('group').replaceChildren(); for (const [id, label] of GROUPS[$('subject').value]) { $('group').add(new Option(label, id)); } render(); }
-    function groupFromLabel(s) { const t = s.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); if (/4EME EA|3EME EA A CHEVAL/.test(t)) return 'cheval'; if (/3EME EA B MULTI/.test(t)) return 'multi'; if (/CAPA?\s*1/.test(t)) return 'capa1'; if (/CAPA?\s*2/.test(t)) return 'capa2'; if (/BACPRO\s*1\s*A/.test(t)) return 'bp1a'; if (/BACPRO\s*1\s*B/.test(t)) return 'bp1b'; if (/BACPRO\s*2\s*A/.test(t)) return 'bp2a'; if (/BACPRO\s*2\s*B/.test(t)) return 'bp2b'; if (/BTS\s*1/.test(t)) return 'bts1'; if (/BTS\s*2/.test(t)) return 'bts2'; if (/2NDE|SECONDE|2DE/.test(t)) return '2de'; return null; }
+    // function groupFromLabel(s) { const t = s.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); if (/4EME EA|3EME EA A CHEVAL/.test(t)) return 'cheval'; if (/3EME EA B MULTI/.test(t)) return 'multi'; if (/CAPA?\s*1/.test(t)) return 'capa1'; if (/CAPA?\s*2/.test(t)) return 'capa2'; if (/BACPRO\s*1\s*A/.test(t)) return 'bp1a'; if (/BACPRO\s*1\s*B/.test(t)) return 'bp1b'; if (/BACPRO\s*2\s*A/.test(t)) return 'bp2a'; if (/BACPRO\s*2\s*B/.test(t)) return 'bp2b'; if (/BTS\s*1/.test(t)) return 'bts1'; if (/BTS\s*2/.test(t)) return 'bts2'; if (/2NDE|SECONDE|2DE/.test(t)) return '2de'; return null; }
+
+    function groupFromLabel(s) {
+        const t = s
+            .toUpperCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[\u2019']/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+
+        // Groupes 4e/3e de la MFR
+        // On vérifie le groupe multi-métiers en premier.
+        if (
+            /3\s*(?:EME|E)\b.*\bMULTI\b/.test(t) ||
+            /\bMULTI[\s-]*METIERS\b/.test(t)
+        ) {
+            return 'multi';
+        }
+
+        if (
+            /4\s*(?:EME|E)\b.*\bEA\b/.test(t) ||
+            /3\s*(?:EME|E)\b.*\bEA\b.*\bCHEVAL\b/.test(t) ||
+            /\bCHEVAL\b/.test(t)
+        ) {
+            return 'cheval';
+        }
+
+        // Autres classes
+        if (/CAPA?\s*1\b/.test(t)) return 'capa1';
+        if (/CAPA?\s*2\b/.test(t)) return 'capa2';
+
+        if (/BAC\s*PRO\s*1\s*A\b/.test(t)) return 'bp1a';
+        if (/BAC\s*PRO\s*1\s*B\b/.test(t)) return 'bp1b';
+        if (/BAC\s*PRO\s*2\s*A\b/.test(t)) return 'bp2a';
+        if (/BAC\s*PRO\s*2\s*B\b/.test(t)) return 'bp2b';
+
+        if (/BTS\s*1\b/.test(t)) return 'bts1';
+        if (/BTS\s*2\b/.test(t)) return 'bts2';
+
+        if (/\b(?:2NDE|SECONDE|2DE)\b/.test(t)) return '2de';
+
+        return null;
+    }
+
     function parsePlanning(html) { const doc = new DOMParser().parseFromString(html, 'text/html'); const result = []; for (const node of doc.querySelectorAll('[data-jour][data-min_debut][data-min_fin]')) { const text = node.textContent.replace(/\s+/g, ' ').trim(); const match = text.match(/Cours\s*:\s*(.*?)\s*-\s*(.*?)\s+salle\s*:/i); if (!match) continue; const group = groupFromLabel(match[1]); const mat = match[2]; const subject = /MATHS|MATHEMATIQUES/i.test(mat) ? 'maths' : /TIM|INFORMATIQUE/i.test(mat) ? 'tim' : null; if (!subject || !group || !GROUPS[subject].some(x => x[0] === group)) continue; const date = node.dataset.jour; const start = Number(node.dataset.min_debut), end = Number(node.dataset.min_fin); if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(start) || !Number.isFinite(end) || end <= start) continue; result.push({ date, start, end, subject, group }); } return result; }
     // Merge duplicate group entries and adjoining one-hour segments into a single appointment.
     function normalizeSlots(input) { const slots = [...new Map(input.map(x => [distinctSlot(x), x])).values()].sort((a, b) => a.date.localeCompare(b.date) || a.start - b.start); const result = []; for (const x of slots) { const prev = result[result.length - 1]; if (prev && prev.date === x.date && prev.subject === x.subject && prev.group === x.group && x.start <= prev.end) { prev.end = Math.max(prev.end, x.end); } else result.push({ ...x }); } return result; }
