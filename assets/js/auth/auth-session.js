@@ -13,7 +13,7 @@ export async function checkSession() {
 
         const { data: profile, error: profileError } = await db
             .from("profiles")
-            .select("role, classe")
+            .select("prenom, nom, role, classe")
             .eq("user_id", data.user.id)
             .single();
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'fr' }}">
+{% include head.html %}
+
+<body>
+    <div id="prof-loading">Vérification de votre accès...</div>
+
+    <div id="prof-access-denied" hidden>
+        <h1>Accès non autorisé</h1>
+        <p>Vous devez être connecté avec un compte professeur.</p>
+        <a href="{{ '/auth-test/' | relative_url }}">Se connecter</a>
+    </div>
+
+    <div id="prof-content" hidden>
+        {% include prof/prof-header.html %}
+        <main class="prof-main">
+            {{ content }}
+        </main>
+        {% include footer.html %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="{{ '/assets/js/auth/prof-guard.js' | relative_url }}"></script>
+</body>
+
+</html>

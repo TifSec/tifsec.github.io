@@ -1,0 +1,84 @@
+
+/* ========== TABLEAU DE BORD PROFESSEUR ========== */
+
+.prof-dashboard h2 {
+    margin: 0 0 10px;
+    color: var(--color-primary, #243b53);
+    font-size: 1.8rem;
+}
+
+.prof-dashboard > p {
+    margin: 0 0 30px;
+    color: #64748b;
+}
+
+.prof-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.prof-dashboard-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 220px;
+    padding: 30px 20px;
+    border: 1px solid #d9e2ec;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    text-decoration: none;
+    color: #243b53;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.prof-dashboard-card:hover {
+    transform: translateY(-5px);
+    border-color: #486581;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.prof-dashboard-card:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 4px;
+}
+
+.prof-dashboard-icon {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.prof-dashboard-card h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: inherit;
+}
+
+.prof-dashboard-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* ========== VERSION TABLETTE ET MOBILE ========== */
+
+@media (max-width: 850px) {
+    .prof-dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .prof-dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .prof-dashboard-card {
+        min-height: 170px;
+    }
+}

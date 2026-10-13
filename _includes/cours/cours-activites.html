@@ -1,0 +1,55 @@
+<!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    {% for activite in include.cours.activites %}
+    <article class="cours-activite" id="{{ activite.id }}">
+        <h2>Activité {{ forloop.index }} — {{ activite.titre | escape }}</h2>
+
+        {% if activite.consigne %}
+        <p>{{ activite.consigne | escape }}</p>
+        {% endif %}
+
+        {% for question in activite.questions %}
+        <div class="cours-question" data-question="{{ question.id }}">
+            {% if question.enonce %}
+            <h3>Question {{ forloop.index }} — {{ question.enonce | escape }}</h3>
+            {% endif %}
+
+            {% case question.type %}
+                {% when "texte" %}
+                <textarea id="{{ activite.id }}-{{ question.id }}" data-answer-id="{{ activite.id }}_{{ question.id }}" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                {% when "tableau" %}
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                {% for colonne in question.colonnes %}
+                                <th>{{ colonne | escape }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ligne in question.lignes %}
+                            {% assign ligne_index = forloop.index0 %}
+                            <tr>
+                                {% for cellule in ligne %}
+                                <td>
+                                    {% if cellule == "" %}
+                                    <input type="text" data-answer-id="{{ activite.id }}_{{ question.id }}_r{{ ligne_index }}_c{{ forloop.index0 }}" data-row="{{ ligne_index }}" data-col="{{ forloop.index0 }}" aria-label="Ligne {{ ligne_index | plus: 1 }}, colonne {{ forloop.index }}">
+                                    {% else %}
+                                    {{ cellule | escape }}
+                                    {% endif %}
+                                </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endcase %}
+        </div>
+        {% endfor %}
+    </article>
+    {% endfor %}
+</section>

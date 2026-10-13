@@ -1,0 +1,33 @@
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro">
+    <h1>{{ include.cours.titre | escape }}</h1>
+
+    {% if include.cours.theme %}
+    <p class="cours-theme">
+        <strong>Thème :</strong> {{ include.cours.theme | escape }}
+    </p>
+    {% endif %}
+
+    {% if include.cours.problematique %}
+    <p class="cours-problematique">
+        <strong>Problématique :</strong> {{ include.cours.problematique | escape }}
+    </p>
+    {% endif %}
+
+    <section class="cours-objectifs">
+        <h2>Ce que vous allez apprendre</h2>
+        <ul>
+            {% for objectif in include.cours.objectifs.connaissances %}
+            <li>{{ objectif | escape }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Ce que vous allez apprendre à faire</h2>
+        <ul>
+            {% for competence in include.cours.objectifs.competences %}
+            <li>{{ competence | escape }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+</header>
