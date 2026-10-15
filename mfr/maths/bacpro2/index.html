@@ -45,12 +45,2068 @@
                 <tbody id="calendar-body"></tbody>
             </table>
 
-            <div class="supplementary-lessons">
-                <h3>Mathématiques renforcées</h3>
-                <a href="../bacpro2/renforcement/index.html">
-                    Gérer le stock de foin avec les suites — 2 h
-                </a>
+
+        </section>
+
+        <section id="session0" class="content-section">
+            <h1>Gérer le stock de foin d'une écurie avec les suites</h1>
+            <!--
+    ======================================================================
+    FICHE PROFESSEUR — MATHÉMATIQUES RENFORCÉES — TERMINALE CGEH
+    ======================================================================
+    DURÉE : 120 minutes
+    NIVEAU : Terminale Bac Pro CGEH
+    THÈME : Pourcentages, suites géométriques, modèles discrets,
+            suites arithmético-géométriques, interprétation de modèles.
+    ORGANISATION : Binômes, mise en commun et application individuelle.
+    MATÉRIEL :
+    - Calculatrice pour chaque élève.
+    - Ordinateur avec Excel ou LibreOffice Calc.
+    - Site de cours et sauvegarde habituelle des réponses.
+    - Tableau pour la correction collective.
+    - Aucun matériel spécifique à la filière équine.
+
+    RÉPARTITION :
+    00-15 min : Automatismes et calcul mental.
+    15-35 min : Retour de stage et situation professionnelle.
+    35-75 min : Modélisation et recherche guidée.
+    75-95 min : Institutionnalisation, suite géométrique, équilibre.
+    95-115 min : Application au tableur et interprétation.
+    115-120 min : Bilan et travail de prolongement.
+
+    POINT MATHÉMATIQUE IMPORTANT :
+    La relation u(n+1) = 0,88u(n) + 2 ne définit pas une suite
+    géométrique. Elle définit une suite arithmético-géométrique.
+    Pour obtenir une suite géométrique, on étudie l'écart au point
+    d'équilibre L = 50/3 :
+        v(n) = u(n) - 50/3
+        v(n+1) = 0,88v(n)
+        v(0) = 130/3.
+    D'où :
+        u(n) = 50/3 + (130/3) × 0,88^n.
+
+    VALEURS IMPORTANTES :
+        u(0)  = 60 t
+        u(1)  = 54,8 t
+        u(2)  = 50,224 t
+        u(3)  = 46,19712 t
+        u(12) ≈ 26,01242 t
+        u(13) ≈ 24,89093 t
+        u(24) ≈ 18,68227 t
+        L = 16,666666... t
+
+    PREMIER PASSAGE SOUS 25 T :
+        n = 13.
+    Attention : n=0 correspond au 1er novembre de départ.
+    n=13 correspond donc au 1er décembre de l'année suivante,
+    et NON au treizième mois de l'hiver en cours.
+
+    VIGILANCE PROFESSIONNELLE :
+    Les chiffres constituent un scénario pédagogique simplifié.
+    Consommer chaque mois 12 % du stock restant n'est pas
+    équivalent à une ration constante par cheval et par jour.
+    Le seuil de 25 t est une hypothèse d'exercice, pas une norme
+    officielle applicable à toutes les écuries.
+    Ne pas présenter le modèle comme une prévision réelle.
+    ======================================================================
+    -->
+            <div class="learning-objectives">
+                <h2>Ce que vous allez apprendre</h2>
+                <ul>
+                    <li>Comprendre comment les pourcentages permettent de décrire une évolution.</li>
+                    <li>Reconnaître une suite numérique et son mode de calcul.</li>
+                    <li>Comprendre la différence entre une suite géométrique et une suite arithmético-géométrique.</li>
+                    <li>Déterminer vers quelle valeur un stock semble se stabiliser.</li>
+                    <li>Comprendre les limites d'un modèle mathématique appliqué à une entreprise.</li>
+                </ul>
+                <h2>Ce que vous allez apprendre à faire</h2>
+                <ul>
+                    <li>Calculer une augmentation ou une diminution en pourcentage.</li>
+                    <li>Traduire une situation professionnelle par une relation mathématique.</li>
+                    <li>Calculer et interpréter les termes d'une suite.</li>
+                    <li>Utiliser une calculatrice et un tableur pour effectuer une simulation.</li>
+                    <li>Comparer des résultats à un seuil de sécurité.</li>
+                    <li>Justifier une décision de gestion.</li>
+                </ul>
             </div>
+            <div class="activity">
+                <h2>Préparation — Votre document de travail</h2>
+                <p>Travaillez en binôme. Chacun doit être capable d'expliquer les calculs réalisés.</p>
+                <p>Vos réponses doivent être enregistrées dans votre espace de travail habituel.</p>
+                <p>Lorsque vous calculez un résultat, indiquez autant que possible le calcul utilisé, et pas seulement
+                    le nombre obtenu.</p>
+                <!--
+        PROF — CONSIGNE DE DÉPART
+        Dire :
+        « Aujourd'hui, je ne cherche pas seulement à savoir si vous
+        savez utiliser une calculatrice. Je veux surtout voir si vous
+        savez expliquer pourquoi vous choisissez un calcul. »
+
+        Donner un exemple :
+        Résultat seul : 44.
+        Démarche : 50 × 0,88 = 44 tonnes.
+
+        La deuxième réponse montre une compréhension.
+        Une démarche correcte avec une erreur arithmétique reste
+        pédagogiquement plus intéressante qu'un nombre juste
+        sans explication.
+
+        Ne pas faire créer un second document externe si l'interface
+        actuelle enregistre déjà directement les réponses élèves.
+        Vérifier la connexion et l'identité du binôme si nécessaire.
+        -->
+            </div>
+            <div class="activity">
+                <h2>1. Automatismes — Pourcentages et calcul mental <span class="duration">15 min</span></h2>
+                <p><strong>Calculatrice : interdite.</strong></p>
+                <p>Répondez en utilisant vos connaissances et des calculs simples.</p>
+                <div class="question">
+                    <p><strong>1.</strong> Une tonne de granulés coûte 450 €. Son prix augmente de 4 %. Quel est son
+                        nouveau prix ?</p>
+                    <p>Calcul : <input type="text" name="q1_calcul" class="short-answer" autocomplete="off"></p>
+                    <p>Nouveau prix : <input type="text" name="q1_reponse" class="short-answer" autocomplete="off"> €
+                    </p>
+                    <details class="hint" data-hint-level="1">
+                        <summary>Indice 1</summary>
+                        <p>Commencez par chercher combien représentent 4 % de 450 €.</p>
+                    </details>
+                    <details class="hint" data-hint-level="2">
+                        <summary>Indice 2</summary>
+                        <p>1 % de 450 € représente 4,50 €. Donc 4 % représente quatre fois cette somme.</p>
+                    </details>
+                    <details class="hint" data-hint-level="3">
+                        <summary>Indice 3</summary>
+                        <p>Une hausse de 4 % correspond également à multiplier le prix par 1,04.</p>
+                    </details>
+                </div>
+                <!--
+        PROF — QUESTION 1 — CORRECTION DÉTAILLÉE
+
+        RÉSULTAT : 468 €.
+
+        MÉTHODE 1 — CALCUL MENTAL PAR 1 % :
+        Prix initial = 450 €.
+        1 % = 450 ÷ 100 = 4,50 €.
+        4 % = 4 × 4,50 = 18 €.
+        Nouveau prix = 450 + 18 = 468 €.
+
+        MÉTHODE 2 — CALCUL PAR DÉCOMPOSITION :
+        4 % = 2 % + 2 %.
+        10 % de 450 = 45 €.
+        2 % de 450 = 9 €.
+        4 % de 450 = 18 €.
+        Nouveau prix = 450 + 18 = 468 €.
+
+        MÉTHODE 3 — COEFFICIENT MULTIPLICATEUR :
+        4 % = 0,04.
+        Coefficient = 1 + 0,04 = 1,04.
+        450 × 1,04 = 468 €.
+
+        EXPLICATION ORALE SIMPLE :
+        « Augmenter de 4 %, c'est garder les 100 % de départ
+        et ajouter 4 %. On arrive à 104 %.
+        Or 104 %, c'est 1,04. »
+
+        ERREUR FRÉQUENTE :
+        450 × 0,04 = 18 €.
+        Ce calcul n'est pas faux, mais il représente seulement
+        L'AUGMENTATION, pas le prix final.
+
+        RELANCE :
+        « Les 18 €, c'est le prix total ou seulement ce qu'on ajoute ? »
+
+        Ne pas confondre :
+        - Montant de l'augmentation : 18 €.
+        - Prix final : 468 €.
+
+        OBSERVATION :
+        Accepter les trois méthodes.
+        Valoriser une décomposition mentale correcte.
+        -->
+                <div class="question">
+                    <p><strong>2.</strong> Une quantité est multipliée par 0,92 chaque mois. Quel est son pourcentage
+                        d'évolution ?</p>
+                    <p>Évolution : <input type="text" name="q2_reponse" class="short-answer" autocomplete="off"> %</p>
+                    <details class="hint" data-hint-level="1">
+                        <summary>Indice 1</summary>
+                        <p>Multiplier par 1 signifie conserver 100 % de la quantité.</p>
+                    </details>
+                    <details class="hint" data-hint-level="2">
+                        <summary>Indice 2</summary>
+                        <p>0,92 correspond à 92 %.</p>
+                    </details>
+                    <details class="hint" data-hint-level="3">
+                        <summary>Indice 3</summary>
+                        <p>Comparez 92 % aux 100 % de départ.</p>
+                    </details>
+                </div>
+                <!--
+        PROF — QUESTION 2
+
+        RÉSULTAT : diminution de 8 %, ou évolution de -8 %.
+
+        MÉTHODE 1 — POURCENTAGES :
+        0,92 = 92/100 = 92 %.
+        Quantité initiale = 100 %.
+        Quantité conservée = 92 %.
+        100 - 92 = 8 % de diminution.
+
+        MÉTHODE 2 — FORMULE :
+        Taux = (coefficient - 1) × 100.
+        Taux = (0,92 - 1) × 100.
+        Taux = -0,08 × 100.
+        Taux = -8 %.
+
+        EXPLICATION ORALE :
+        « Quand on multiplie par un nombre inférieur à 1,
+        la quantité diminue. Ici, on conserve 92 % :
+        on a donc perdu 8 %. »
+
+        ASTUCE :
+        1,08 -> hausse de 8 %.
+        0,92 -> baisse de 8 %.
+        1,20 -> hausse de 20 %.
+        0,80 -> baisse de 20 %.
+
+        ERREUR FRÉQUENTE :
+        Répondre « baisse de 92 % ».
+        Faire distinguer la quantité RESTANTE de la quantité PERDUE.
+
+        Accepter « baisse de 8 % » ou « -8 % ».
+        -->
+                <div class="question">
+                    <p><strong>3.</strong> Un stock de 50 tonnes diminue de 12 %. Quelle quantité reste-t-il ?</p>
+                    <p>Calcul : <input type="text" name="q3_calcul" class="short-answer" autocomplete="off"></p>
+                    <p>Stock restant : <input type="text" name="q3_reponse" class="short-answer" autocomplete="off">
+                        tonnes</p>
+                    <details class="hint" data-hint-level="1">
+                        <summary>Indice 1</summary>
+                        <p>Calculez d'abord 10 % puis 2 % de 50 tonnes.</p>
+                    </details>
+                    <details class="hint" data-hint-level="2">
+                        <summary>Indice 2</summary>
+                        <p>10 % de 50 = 5 et 2 % de 50 = 1.</p>
+                    </details>
+                    <details class="hint" data-hint-level="3">
+                        <summary>Indice 3</summary>
+                        <p>Il reste 100 % - 12 % = 88 % du stock.</p>
+                    </details>
+                </div>
+                <!--
+        PROF — QUESTION 3
+
+        RÉSULTAT : 44 tonnes.
+
+        MÉTHODE 1 — CALCUL DE LA PERTE :
+        10 % de 50 = 5 t.
+        2 % de 50 = 1 t.
+        12 % de 50 = 5 + 1 = 6 t.
+        50 - 6 = 44 t.
+
+        MÉTHODE 2 — STOCK RESTANT :
+        100 % - 12 % = 88 %.
+        88 % = 0,88.
+        50 × 0,88 = 44 t.
+
+        MÉTHODE 3 — DÉCOMPOSITION :
+        50 × (1 - 0,12)
+        = 50 × 1 - 50 × 0,12
+        = 50 - 6
+        = 44.
+
+        EXPLICATION ORALE :
+        « Pour calculer ce qui reste, on peut soit enlever ce
+        qui a été consommé, soit calculer directement les 88 %
+        qui restent. Les deux méthodes donnent le même résultat. »
+
+        Insister : la perte de 6 t n'est pas le stock restant.
+        -->
+                <div class="question">
+                    <p><strong>4.</strong> Quel coefficient multiplicateur correspond à une diminution de 12 % ?</p>
+                    <p>Coefficient : <input type="text" name="q4_reponse" class="short-answer" autocomplete="off"></p>
+                </div>
+                <!--
+        PROF — QUESTION 4
+
+        RÉSULTAT : 0,88.
+
+        EXPLICATION 1 :
+        On conserve 100 - 12 = 88 %.
+        88 % = 88 ÷ 100 = 0,88.
+
+        EXPLICATION 2 :
+        Coefficient = 1 - 12/100
+                    = 1 - 0,12
+                    = 0,88.
+
+        PETITE VÉRIFICATION AU TABLEAU :
+        100 × 0,88 = 88.
+        On est bien passé de 100 à 88.
+        C'est donc une baisse de 12.
+
+        BILAN DE L'ACTIVITÉ :
+        Afficher au tableau :
+        Augmentation de t % -> 1 + t/100.
+        Diminution de t % -> 1 - t/100.
+
+        NE PAS PASSER TROP DE TEMPS SUR LES FORMULES :
+        Les élèves doivent avant tout comprendre le raisonnement
+        « ce que je garde + ce que j'ajoute ou retire ».
+
+        Répartition possible :
+        2 min consignes.
+        8 min recherche.
+        5 min correction collective.
+        -->
+            </div>
+            <div class="activity">
+                <h2>2. Retour de stage — Comment gérer le foin ? <span class="duration">20 min</span></h2>
+                <p><strong>Calculatrice : non nécessaire.</strong></p>
+                <p>Discutez avec votre binôme de la gestion du foin dans les structures où vous avez effectué vos
+                    stages.</p>
+                <div class="question">
+                    <p><strong>1.</strong> Comment le responsable de votre structure surveille-t-il les quantités de
+                        foin disponibles ?</p>
+                    <textarea name="q5_reponse" rows="3" placeholder="Expliquez votre observation..."></textarea>
+                </div>
+                <!--
+        PROF — QUESTION 1
+
+        OBJECTIF :
+        Partir des connaissances professionnelles des élèves.
+        Éviter de leur présenter immédiatement une formule abstraite.
+
+        RÉPONSES POSSIBLES :
+        - Comptage des bottes ou balles restantes.
+        - Estimation à partir du volume de stockage.
+        - Suivi des livraisons et de la distribution.
+        - Tableau de suivi ou logiciel.
+        - Contrôle visuel du stock.
+        - Inventaire ponctuel.
+        - Aucun système précis observé.
+
+        AUCUNE MÉTHODE UNIQUE N'EST ATTENDUE.
+
+        RELANCE ORALE :
+        « Si votre responsable part en vacances, comment une autre
+        personne pourrait-elle savoir combien il reste de foin ? »
+
+        Mettre en valeur l'utilité d'une information écrite.
+        -->
+                <div class="question">
+                    <p><strong>2.</strong> Les achats se font-ils à dates fixes, en une grande livraison, ou seulement
+                        lorsque le stock diminue ?</p>
+                    <textarea name="q6_reponse" rows="3" placeholder="Décrivez la stratégie observée..."></textarea>
+                </div>
+                <!--
+        PROF — QUESTION 2
+
+        RÉPONSES POSSIBLES :
+        - Achat annuel.
+        - Achat avant l'hiver.
+        - Plusieurs livraisons.
+        - Production de foin par la structure elle-même.
+        - Achat selon la disponibilité ou les prix.
+        - Aucun achat car production interne suffisante.
+
+        QUESTION DE RELANCE :
+        « Est-ce toujours plus intéressant d'acheter tout le foin
+        d'un seul coup ? »
+
+        AVANTAGES POSSIBLES :
+        - Prix éventuellement négocié.
+        - Moins de déplacements.
+        - Sécurisation du stock.
+        - Moins de dépendance aux approvisionnements futurs.
+
+        INCONVÉNIENTS POSSIBLES :
+        - Besoin de place.
+        - Trésorerie immobilisée.
+        - Risque de détérioration.
+        - Difficultés de manutention.
+
+        NE PAS IMPOSER DE RÉPONSE ÉCONOMIQUE ABSOLUE :
+        Le choix dépend de l'entreprise et de ses contraintes.
+        -->
+                <div class="question">
+                    <p><strong>3.</strong> Quels problèmes peut provoquer un stock de foin trop faible ? Et un stock
+                        beaucoup trop important ?</p>
+                    <textarea name="q7_reponse" rows="4"
+                        placeholder="Expliquez les conséquences possibles..."></textarea>
+                </div>
+                <!--
+        PROF — QUESTION 3
+
+        STOCK TROP FAIBLE :
+        - Risque de rupture d'approvisionnement.
+        - Achat dans l'urgence.
+        - Moins de choix de fournisseurs.
+        - Difficulté de maintenir une ration adaptée.
+        - Dépendance aux livraisons et aux conditions météo.
+
+        STOCK TROP IMPORTANT :
+        - Coût de stockage.
+        - Argent immobilisé.
+        - Besoin d'un bâtiment adapté.
+        - Pertes possibles liées à une mauvaise conservation.
+        - Manutention supplémentaire.
+
+        EXPLICATION :
+        « En gestion, avoir le maximum de stock n'est pas
+        nécessairement la meilleure solution. On cherche plutôt
+        une quantité suffisante, sans coût inutile. »
+
+        Faire remarquer que les maths vont aider à quantifier
+        une partie du problème, sans résoudre seules tous
+        les choix de gestion.
+        -->
+                <div class="question">
+                    <p><strong>4.</strong> Quels éléments peuvent modifier la consommation de foin ?</p>
+                    <label><input type="checkbox" name="q8" value="effectif"> Le nombre de chevaux</label><br>
+                    <label><input type="checkbox" name="q8" value="meteo"> La météo</label><br>
+                    <label><input type="checkbox" name="q8" value="paturage"> L'accès au pâturage</label><br>
+                    <label><input type="checkbox" name="q8" value="ration"> La ration distribuée</label><br>
+                    <label><input type="checkbox" name="q8" value="pertes"> Les pertes lors de la distribution</label>
+                </div>
+                <!--
+        PROF — QUESTION 4
+
+        TOUTES LES CASES PEUVENT ÊTRE COCHÉES.
+
+        Faire distinguer :
+        - Besoin alimentaire des animaux.
+        - Quantité réellement distribuée.
+        - Quantité sortie du stock.
+        - Pertes éventuelles.
+
+        Cette distinction est utile pour éviter de présenter
+        un modèle de stock comme un modèle nutritionnel complet.
+
+        POUR ALLER PLUS LOIN À L'ORAL :
+        « Si l'effectif passe de 20 à 25 chevaux, pensez-vous
+        que la consommation sera exactement identique ? »
+        Réponse attendue : non, en général.
+
+        TRANSITION VERS LES MATHÉMATIQUES :
+        « Nous allons maintenant simplifier cette réalité pour
+        construire un outil de prévision. »
+        -->
+                <div class="context-box">
+                    <h3>Le problème à résoudre</h3>
+                    <p>Une écurie héberge <strong>20 chevaux</strong>. Au 1er novembre, elle possède <strong>60 tonnes
+                            de foin</strong>.</p>
+                    <p>Pour étudier une stratégie simplifiée, on suppose qu'à chaque période d'un mois :</p>
+                    <ul>
+                        <li>l'écurie utilise <strong>12 % du stock présent au début du mois</strong> ;</li>
+                        <li>après cette consommation, elle achète <strong>2 tonnes de foin</strong> ;</li>
+                        <li>le stock disponible est mesuré à nouveau au début du mois suivant.</li>
+                    </ul>
+                    <p>Le responsable considère qu'un stock inférieur à <strong>25 tonnes</strong> constitue un signal
+                        d'alerte.</p>
+                    <p><strong>Notre mission :</strong> prévoir l'évolution du stock et déterminer si cette stratégie
+                        est suffisante.</p>
+                </div>
+                <!--
+        PROF — EXPLICATION DU MODÈLE
+
+        DESSIN POSSIBLE AU TABLEAU :
+
+        STOCK AU DÉBUT DU MOIS
+                  |
+                  v
+           CONSOMMATION 12 %
+                  |
+                  v
+          STOCK RESTANT 88 %
+                  |
+                  v
+             ACHAT +2 t
+                  |
+                  v
+        STOCK AU DÉBUT DU MOIS SUIVANT
+
+        INSISTER SUR L'ORDRE :
+        On consomme d'abord, puis on rachète 2 t.
+
+        Si on achetait avant de consommer, l'expression serait
+        différente : 0,88 × (u(n) + 2).
+        Ici, on utilise 0,88u(n) + 2.
+
+        POINT DE VIGILANCE :
+        Ce modèle suppose une consommation proportionnelle au stock.
+        Ce n'est pas nécessairement réaliste pour 20 chevaux.
+        C'est une hypothèse choisie pour découvrir les suites.
+
+        RÉPARTITION POSSIBLE :
+        3 min présentation.
+        10 min échanges binômes et réponses.
+        5 min mise en commun.
+        2 min transition vers la modélisation.
+        -->
+            </div>
+            <div class="activity">
+                <h2>3. Recherche — Prévoir l'évolution du stock <span class="duration">40 min</span></h2>
+                <p><strong>Travail en binôme.</strong></p>
+                <p><strong>Calculatrice : interdite pour la première étape, puis autorisée.</strong></p>
+                <div class="notation-box">
+                    <p>On appelle <strong>u<sub>n</sub></strong> la quantité de foin, en tonnes, au début du mois numéro
+                        <strong>n</strong>.
+                    </p>
+                    <p>Le mois numéro 0 correspond au 1er novembre de départ.</p>
+                    <p class="formula">u<sub>0</sub> = 60</p>
+                </div>
+                <!--
+        PROF — INTRODUIRE LA NOTATION u(n)
+
+        EXPLICATION ORALE :
+        « En mathématiques, une suite, c'est simplement une liste
+        de nombres ordonnés. Ici, chaque nombre représente un stock
+        à une date différente. »
+
+        Écrire :
+        u0 = stock initial.
+        u1 = stock un mois plus tard.
+        u2 = stock deux mois plus tard.
+        u3 = stock trois mois plus tard.
+
+        Puis :
+        u(n) = stock au mois numéro n.
+        u(n+1) = stock au mois qui suit.
+
+        Exemples :
+        Si n = 4, n+1 = 5.
+        Si n = 12, n+1 = 13.
+
+        ERREUR FRÉQUENTE :
+        Certains élèves interprètent u(n+1) comme
+        u(n) + 1.
+        Expliquer qu'il s'agit du TERME SUIVANT,
+        pas de l'ajout d'une tonne.
+
+        AUTRE VIGILANCE :
+        u0 n'est pas égal à zéro.
+        Le 0 désigne le numéro du mois, pas la quantité.
+
+        Montrer au tableau :
+        n     0       1       2       3
+        u(n)  60      ?       ?       ?
+        -->
+                <h3>A. Traduire la situation en calcul</h3>
+                <div class="question">
+                    <p><strong>1.</strong> Après une consommation de 12 %, quel pourcentage du stock reste-t-il ?</p>
+                    <p>Réponse : <input type="text" name="q9_reponse" class="short-answer" autocomplete="off"> %</p>
+                </div>
+                <!--
+        PROF — QUESTION 1
+        Calcul : 100 % - 12 % = 88 %.
+        Réponse : 88 %.
+
+        Méthode simple :
+        « Si on utilise 12 % du stock, il en reste 88 %. »
+
+        Ne pas additionner l'achat de 2 t à ce stade :
+        la question porte uniquement sur la consommation.
+        -->
+                <div class="question">
+                    <p><strong>2.</strong> Complétez le calcul du stock restant après consommation :</p>
+                    <p class="formula">Stock restant = u<sub>n</sub> × <input type="text" name="q10_reponse"
+                            class="formula-input" autocomplete="off"></p>
+                </div>
+                <!--
+        PROF — QUESTION 2
+        Réponse : 0,88.
+
+        Démonstration :
+        88 % = 88/100 = 0,88.
+        Donc stock restant = 0,88 × u(n).
+
+        Avec une valeur numérique :
+        Si u(n) = 60 :
+        60 × 0,88 = 52,8 tonnes restantes.
+
+        Faire remarquer que l'on n'a pas encore ajouté l'achat.
+        -->
+                <div class="question">
+                    <p><strong>3.</strong> Le responsable achète ensuite 2 tonnes. Complétez la relation :</p>
+                    <p class="formula">u<sub>n+1</sub> = <input type="text" name="q11a_reponse" class="formula-input"
+                            autocomplete="off"> × u<sub>n</sub> + <input type="text" name="q11b_reponse"
+                            class="formula-input" autocomplete="off"></p>
+                    <details class="hint" data-hint-level="1">
+                        <summary>Indice 1</summary>
+                        <p>Le stock suivant est égal au stock restant après consommation, auquel on ajoute les achats.
+                        </p>
+                    </details>
+                    <details class="hint" data-hint-level="2">
+                        <summary>Indice 2</summary>
+                        <p>Le stock restant vaut 0,88 fois le stock précédent.</p>
+                    </details>
+                    <details class="hint" data-hint-level="3">
+                        <summary>Indice 3</summary>
+                        <p>La relation attendue est u<sub>n+1</sub> = 0,88u<sub>n</sub> + 2.</p>
+                    </details>
+                </div>
+                <!--
+        PROF — QUESTION 3 — POINT CENTRAL
+
+        RELATION ATTENDUE :
+        u(n+1) = 0,88u(n) + 2.
+
+        MÉTHODE 1 — RAISONNEMENT VERBAL :
+        « Je prends le stock du mois précédent.
+        J'en garde 88 %, puis j'ajoute 2 tonnes. »
+
+        MÉTHODE 2 — À PARTIR DE LA CONSOMMATION :
+        Stock initial = u(n).
+        Quantité consommée = 0,12u(n).
+        Stock restant = u(n) - 0,12u(n).
+        Nouvel achat = 2.
+        Donc :
+        u(n+1) = u(n) - 0,12u(n) + 2.
+        On factorise :
+        u(n+1) = (1 - 0,12)u(n) + 2.
+        Ainsi :
+        u(n+1) = 0,88u(n) + 2.
+
+        MÉTHODE 3 — EXEMPLE NUMÉRIQUE :
+        Avec un stock de 100 t :
+        Consommation de 12 t.
+        Il reste 88 t.
+        Achat de 2 t.
+        Nouveau stock = 90 t.
+
+        Vérification :
+        0,88 × 100 + 2 = 90.
+
+        ERREURS À SURVEILLER :
+        1) u(n+1) = u(n) - 12 + 2.
+           Faux : on retire 12 %, pas 12 tonnes.
+
+        2) u(n+1) = 0,12u(n) + 2.
+           Faux : 0,12u(n) est ce qui a été consommé.
+
+        3) u(n+1) = 0,88(u(n) + 2).
+           Cela correspond à l'achat avant consommation.
+
+        EXPLICATION TRÈS SIMPLE :
+        « Multiplier par 0,88, c'est retirer 12 %.
+        Ajouter 2, c'est la livraison.
+        Nous avons résumé toute la gestion mensuelle
+        de l'écurie dans une seule formule. »
+
+        PRÉCISION :
+        On appelle cette relation une relation de récurrence :
+        on calcule un terme à partir du précédent.
+        -->
+                <h3>B. Calculer les trois premiers mois</h3>
+                <div class="question">
+                    <p><strong>4.</strong> Calculez u<sub>1</sub>, le stock disponible après un mois.</p>
+                    <p>Calcul : <input type="text" name="q12_calcul" class="long-answer" autocomplete="off"></p>
+                    <p>u<sub>1</sub> = <input type="text" name="q12_reponse" class="short-answer" autocomplete="off">
+                        tonnes</p>
+                    <details class="hint" data-hint-level="1">
+                        <summary>Indice 1</summary>
+                        <p>Dans la formule, remplacez u<sub>0</sub> par 60.</p>
+                    </details>
+                    <details class="hint" data-hint-level="2">
+                        <summary>Indice 2</summary>
+                        <p>Calculez 60 × 0,88, puis ajoutez 2.</p>
+                    </details>
+                    <details class="hint" data-hint-level="3">
+                        <summary>Indice 3</summary>
+                        <p>60 × 0,88 = 52,8 tonnes avant livraison.</p>
+                    </details>
+                </div>
+                <!--
+        PROF — QUESTION 4
+
+        RÉSULTAT : u1 = 54,8 tonnes.
+
+        MÉTHODE 1 — FORMULE :
+        u1 = 0,88 × u0 + 2.
+        u1 = 0,88 × 60 + 2.
+        u1 = 52,8 + 2.
+        u1 = 54,8 t.
+
+        MÉTHODE 2 — POURCENTAGE :
+        12 % de 60 = 60 × 0,12 = 7,2 t.
+        Après consommation :
+        60 - 7,2 = 52,8 t.
+        Après achat :
+        52,8 + 2 = 54,8 t.
+
+        MÉTHODE 3 — CALCUL MENTAL :
+        10 % de 60 = 6.
+        2 % de 60 = 1,2.
+        12 % de 60 = 7,2.
+        60 - 7,2 + 2 = 54,8.
+
+        VÉRIFICATION :
+        Le stock doit diminuer car la consommation (7,2 t)
+        est supérieure à l'achat (2 t).
+
+        ERREUR :
+        Trouver 52,8 t = oubli de la livraison.
+
+        EXPLICATION ORALE :
+        « Nous avions 60 tonnes.
+        Nous avons utilisé 7,2 tonnes.
+        Il restait 52,8 tonnes.
+        Nous en achetons 2.
+        Nous terminons donc avec 54,8 tonnes. »
+        -->
+                <div class="question">
+                    <p><strong>5.</strong> Calculez u<sub>2</sub>, le stock disponible après deux mois.</p>
+                    <p>Calcul : <input type="text" name="q13_calcul" class="long-answer" autocomplete="off"></p>
+                    <p>u<sub>2</sub> = <input type="text" name="q13_reponse" class="short-answer" autocomplete="off">
+                        tonnes</p>
+                </div>
+                <!--
+        PROF — QUESTION 5
+
+        RÉSULTAT : u2 = 50,224 tonnes.
+
+        ÉTAPES :
+        u2 = 0,88 × u1 + 2.
+        u2 = 0,88 × 54,8 + 2.
+
+        Calcul de la multiplication :
+        54,8 × 0,88
+        = 54,8 × (0,8 + 0,08)
+        = 43,84 + 4,384
+        = 48,224.
+
+        Puis :
+        48,224 + 2 = 50,224 t.
+
+        AUTRE MÉTHODE :
+        Consommation :
+        54,8 × 0,12 = 6,576 t.
+        Stock après consommation :
+        54,8 - 6,576 = 48,224 t.
+        Livraison :
+        48,224 + 2 = 50,224 t.
+
+        EXPLICATION SIMPLE :
+        « On recommence exactement la même opération,
+        mais cette fois le stock de départ n'est plus 60 :
+        c'est 54,8. »
+
+        ERREUR FRÉQUENTE :
+        Reprendre systématiquement 60 comme stock de départ.
+        Insister sur le fait que le modèle utilise le
+        STOCK PRÉCÉDENT, pas le stock initial.
+
+        CONSEIL :
+        Garder la valeur complète dans la calculatrice.
+        Éviter les arrondis à chaque étape.
+        -->
+                <div class="question">
+                    <p><strong>6.</strong> Calculez u<sub>3</sub>, le stock disponible après trois mois.</p>
+                    <p>Calcul : <input type="text" name="q14_calcul" class="long-answer" autocomplete="off"></p>
+                    <p>u<sub>3</sub> ≈ <input type="text" name="q14_reponse" class="short-answer" autocomplete="off">
+                        tonnes</p>
+                </div>
+                <!--
+        PROF — QUESTION 6
+
+        RÉSULTAT EXACT POUR CETTE ÉTAPE :
+        u3 = 46,19712 tonnes.
+
+        ARRONDI AU CENTIÈME :
+        u3 ≈ 46,20 tonnes.
+
+        MÉTHODE 1 :
+        u3 = 0,88 × u2 + 2.
+        u3 = 0,88 × 50,224 + 2.
+        u3 = 44,19712 + 2.
+        u3 = 46,19712.
+
+        MÉTHODE 2 — CONSOMMATION :
+        50,224 × 0,12 = 6,02688 t.
+        50,224 - 6,02688 = 44,19712 t.
+        44,19712 + 2 = 46,19712 t.
+
+        COMMENT EXPLIQUER L'ARRONDI :
+        46,19712.
+        Pour arrondir au centième :
+        On garde deux chiffres après la virgule.
+        Les deux premiers chiffres sont 1 et 9.
+        Le troisième chiffre est 7.
+        Comme 7 >= 5, on augmente le centième.
+        46,19 devient 46,20.
+
+        Attention :
+        46,20 et 46,2 désignent la même quantité.
+        Écrire 46,20 montre simplement un arrondi
+        au centième.
+
+        POINT PÉDAGOGIQUE :
+        Ne pas pénaliser une réponse 46,197 t si la
+        méthode est correcte.
+
+        RAPPEL :
+        Pour la suite de l'activité, conserver les
+        valeurs non arrondies autant que possible.
+        -->
+                <h3>C. Quand le stock devient-il insuffisant ?</h3>
+                <p>Le responsable souhaite conserver au moins 25 tonnes de foin.</p>
+                <div class="question">
+                    <p><strong>7.</strong> Poursuivez les calculs à l'aide de la calculatrice. Complétez le tableau
+                        jusqu'au mois où le stock passe sous 25 tonnes.</p>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Mois n</th>
+                                <th>Stock en tonnes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td>60</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>54,8</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>50,224</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>46,197</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><input type="text" name="q15_4" class="table-input" autocomplete="off"></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td><input type="text" name="q15_5" class="table-input" autocomplete="off"></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td><input type="text" name="q15_6" class="table-input" autocomplete="off"></td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td><input type="text" name="q15_7" class="table-input" autocomplete="off"></td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td><input type="text" name="q15_8" class="table-input" autocomplete="off"></td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td><input type="text" name="q15_9" class="table-input" autocomplete="off"></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td><input type="text" name="q15_10" class="table-input" autocomplete="off"></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td><input type="text" name="q15_11" class="table-input" autocomplete="off"></td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td><input type="text" name="q15_12" class="table-input" autocomplete="off"></td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td><input type="text" name="q15_13" class="table-input" autocomplete="off"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Premier mois où le stock devient inférieur à 25 tonnes : <input type="text" name="q15_reponse"
+                            class="short-answer" autocomplete="off"></p>
+                    <details class="hint" data-hint-level="1">
+                        <summary>Indice 1</summary>
+                        <p>Calculez chaque nouvelle valeur à partir de la précédente.</p>
+                    </details>
+                    <details class="hint" data-hint-level="2">
+                        <summary>Indice 2</summary>
+                        <p>Pour chaque ligne, multipliez par 0,88 puis ajoutez 2.</p>
+                    </details>
+                    <details class="hint" data-hint-level="3">
+                        <summary>Indice 3</summary>
+                        <p>Examinez particulièrement les résultats des mois 12 et 13.</p>
+                    </details>
+                </div>
+                <!--
+        PROF — QUESTION 7 — CORRIGÉ INTÉGRAL
+
+        TABLEAU DES VALEURS :
+        n=0  : 60
+        n=1  : 54,8
+        n=2  : 50,224
+        n=3  : 46,197120
+        n=4  : 42,6534656
+        n=5  : 39,535049728
+        n=6  : 36,79084376064
+        n=7  : 34,37594250936...
+        n=8  : 32,25082940824...
+        n=9  : 30,38072987925...
+        n=10 : 28,73504229374...
+        n=11 : 27,28683721849...
+        n=12 : 26,01241675227...
+        n=13 : 24,89092674200...
+
+        TABLEAU AU CENTIÈME :
+        0  -> 60,00
+        1  -> 54,80
+        2  -> 50,22
+        3  -> 46,20
+        4  -> 42,65
+        5  -> 39,54
+        6  -> 36,79
+        7  -> 34,38
+        8  -> 32,25
+        9  -> 30,38
+        10 -> 28,74
+        11 -> 27,29
+        12 -> 26,01
+        13 -> 24,89
+
+        NE PAS RECALCULER À PARTIR DES VALEURS ARRONDIES :
+        Afficher des valeurs à 2 décimales est acceptable,
+        mais conserver la précision dans les calculs.
+
+        RÉPONSE :
+        Au mois 12, u12 ≈ 26,01 t > 25 t.
+        Au mois 13, u13 ≈ 24,89 t < 25 t.
+        Premier mois sous le seuil : n=13.
+
+        MÉTHODE 1 — CALCULATRICE :
+        Saisir 60.
+        Appliquer ×0,88 +2.
+        Réutiliser le résultat à chaque étape.
+        Selon le modèle de calculatrice, utiliser Ans
+        ou le mode Suite.
+
+        MÉTHODE 2 — TABLEUR :
+        À présenter plus tard dans la séance.
+        Le tableur répétera automatiquement la relation.
+
+        MÉTHODE 3 — FORMULE EXPLICITE :
+        À ne présenter qu'après l'institutionnalisation.
+        u(n) = 50/3 + (130/3) × 0,88^n.
+        Cette formule permet de calculer u13 directement.
+
+        EXPLICATION ORALE :
+        « Le stock passe sous 25 tonnes au treizième mois
+        après notre date de départ. Cela ne signifie pas que
+        nous avons eu une rupture de foin. Cela signifie
+        simplement que le seuil d'alerte choisi est franchi. »
+
+        ATTENTION À LA DATE :
+        n=0 : 1er novembre de l'année de départ.
+        n=1 : 1er décembre de la même année.
+        n=2 : 1er janvier de l'année suivante.
+        n=12 : 1er novembre de l'année suivante.
+        n=13 : 1er décembre de l'année suivante.
+
+        ERREUR CLASSIQUE :
+        Écrire n=12 car le stock s'approche de 25 t.
+        Il faut respecter l'inégalité STRICTE :
+        u(n) < 25.
+
+        DIFFÉRENCIATION :
+        Si les élèves sont en difficulté avec les calculs,
+        fournir oralement les valeurs jusqu'au mois 10 et
+        leur demander uniquement de déterminer le passage
+        sous le seuil.
+        -->
+                <div class="question">
+                    <p><strong>8.</strong> Le responsable peut-il conserver durablement un stock supérieur à 25 tonnes
+                        en achetant seulement 2 tonnes par mois ? Justifiez avec vos résultats.</p>
+                    <textarea name="q16_reponse" rows="4"
+                        placeholder="Répondez avec au moins une valeur numérique..."></textarea>
+                </div>
+                <!--
+        PROF — QUESTION 8
+
+        RÉPONSE ATTENDUE :
+        Non, selon le modèle, la stratégie ne permet pas
+        de conserver durablement plus de 25 tonnes.
+        Au mois 12 il reste environ 26,01 t.
+        Au mois 13 il reste seulement 24,89 t.
+        Le seuil de sécurité est donc franchi.
+
+        VERSION COURTE ACCEPTABLE :
+        « Non, car après 13 mois il reste 24,89 tonnes,
+        ce qui est inférieur aux 25 tonnes souhaitées. »
+
+        VERSION PLUS DÉVELOPPÉE :
+        « Les achats mensuels ne compensent pas suffisamment
+        la consommation. Le stock diminue et finit par passer
+        sous le seuil fixé. Il faudrait revoir la stratégie
+        d'approvisionnement pour garantir ce seuil. »
+
+        NE PAS EXIGER DÈS MAINTENANT :
+        - Calcul d'une limite.
+        - Démonstration d'une suite géométrique.
+        - Calcul d'un achat optimal.
+
+        Ces notions arrivent ensuite.
+
+        BILAN DE LA RECHERCHE :
+        La formule mathématique permet déjà de prévoir
+        un risque avant qu'il ne se produise.
+
+        RÉPARTITION RECOMMANDÉE :
+        8 min construction de la formule.
+        12 min premiers calculs.
+        12 min recherche du seuil.
+        8 min correction, échanges et justification.
+        -->
+            </div>
+            <div class="activity">
+                <h2>4. Comprendre la suite — Vers quel stock se dirige-t-on ? <span class="duration">20 min</span></h2>
+                <p><strong>Calculatrice : autorisée.</strong></p>
+                <p>Le stock diminue. Mais cela signifie-t-il qu'il va nécessairement atteindre zéro ?</p>
+                <h3>A. Trouver le stock d'équilibre</h3>
+                <p>On cherche une quantité <strong>L</strong> qui resterait identique d'un mois à l'autre dans notre
+                    modèle.</p>
+                <p>Si le stock ne change plus :</p>
+                <p class="formula">L = 0,88L + 2</p>
+                <div class="question">
+                    <p><strong>1.</strong> Résolvez cette équation.</p>
+                    <textarea name="q17_reponse" rows="4" placeholder="Détaillez chaque étape du calcul..."></textarea>
+                    <details class="hint" data-hint-level="1">
+                        <summary>Indice 1</summary>
+                        <p>Regroupez les termes contenant L d'un seul côté de l'égalité.</p>
+                    </details>
+                    <details class="hint" data-hint-level="2">
+                        <summary>Indice 2</summary>
+                        <p>Soustrayez 0,88L des deux côtés.</p>
+                    </details>
+                    <details class="hint" data-hint-level="3">
+                        <summary>Indice 3</summary>
+                        <p>Vous devez obtenir 0,12L = 2, puis isoler L.</p>
+                    </details>
+                </div>
+                <!--
+        PROF — QUESTION 1 — ÉQUATION D'ÉQUILIBRE
+
+        ÉQUATION :
+        L = 0,88L + 2.
+
+        MÉTHODE 1 — RÉSOLUTION ALGÉBRIQUE :
+        L - 0,88L = 2.
+        (1 - 0,88)L = 2.
+        0,12L = 2.
+        L = 2 ÷ 0,12.
+        L = 16,666666...
+        L = 50/3.
+
+        MÉTHODE 2 — RAISONNEMENT PROFESSIONNEL :
+        À l'équilibre :
+        quantité consommée = quantité achetée.
+
+        Consommation = 12 % du stock.
+        Achat = 2 tonnes.
+
+        Donc :
+        12 % de L = 2.
+        0,12 × L = 2.
+        L = 2 ÷ 0,12.
+        L ≈ 16,67 t.
+
+        MÉTHODE 3 — PRODUIT EN CROIX :
+        12 % du stock correspondent à 2 tonnes.
+        100 % correspondent à L tonnes.
+
+        12     -> 2
+        100    -> L
+
+        L = (100 × 2) ÷ 12.
+        L = 200/12.
+        L = 50/3.
+        L ≈ 16,67 t.
+
+        C'EST UNE EXCELLENTE MÉTHODE ALTERNATIVE
+        POUR LES ÉLÈVES QUI PEINENT AVEC LES ÉQUATIONS.
+
+        EXPLICATION ORALE :
+        « Si le stock ne baisse plus et ne monte plus,
+        cela signifie qu'on achète exactement la quantité
+        consommée. On achète 2 tonnes. Il faut donc que
+        les 12 % consommés représentent exactement 2 tonnes. »
+
+        ERREUR FRÉQUENTE :
+        L = 2/0,88.
+        Faire remarquer que ce calcul ne résout pas
+        l'équation de départ.
+
+        VÉRIFICATION :
+        16,666... × 0,88 + 2
+        = 14,666... + 2
+        = 16,666...
+
+        La valeur retrouvée est identique à la valeur
+        de départ : c'est bien un équilibre.
+
+        IMPORTANT :
+        Il ne s'agit pas d'une valeur de sécurité recommandée.
+        C'est un équilibre mathématique du modèle.
+        -->
+                <div class="question">
+                    <p><strong>2.</strong> Quelle est la valeur du stock d'équilibre, arrondie au centième ?</p>
+                    <p>L ≈ <input type="text" name="q18_reponse" class="short-answer" autocomplete="off"> tonnes</p>
+                </div>
+                <!--
+        PROF — QUESTION 2
+
+        RÉPONSE : 16,67 tonnes.
+
+        VALEUR EXACTE : 50/3 tonnes.
+
+        EXPLICATION :
+        2/0,12 = 200/12 = 50/3.
+        50 ÷ 3 = 16,666666...
+
+        ARRONDI :
+        Au centième : 16,67.
+
+        Ne pas remplacer 50/3 par 16,67 dans les
+        démonstrations qui suivent, car on perd l'égalité
+        exacte. Utiliser 16,67 uniquement pour expliquer
+        et interpréter les résultats.
+        -->
+                <div class="question">
+                    <p><strong>3.</strong> Ce stock d'équilibre est-il supérieur ou inférieur au seuil de 25 tonnes ?
+                        Que peut-on en conclure ?</p>
+                    <textarea name="q19_reponse" rows="3" placeholder="Comparez les deux valeurs..."></textarea>
+                </div>
+                <!--
+        PROF — QUESTION 3
+
+        16,67 < 25.
+
+        ÉCART :
+        25 - 16,666666...
+        = 8,333333...
+        ≈ 8,33 tonnes.
+
+        RÉPONSE :
+        Le niveau d'équilibre est inférieur au seuil
+        d'alerte de 25 tonnes. La stratégie ne permet
+        donc pas de respecter ce seuil à long terme
+        dans le cadre du modèle.
+
+        EXPLICATION ORALE :
+        « Le stock ne va pas forcément arriver à zéro.
+        En revanche, il risque de se stabiliser trop bas
+        par rapport à ce que souhaite le responsable. »
+
+        NE PAS CONFONDRE :
+        - Stock nul : plus aucun foin.
+        - Seuil d'alerte : limite décidée par le responsable.
+        - Stock d'équilibre : valeur mathématique où
+          consommation et achat se compensent.
+        -->
+                <h3>B. Comprendre ce qu'est une suite géométrique</h3>
+                <div class="theory-box">
+                    <p>Une <strong>suite géométrique</strong> est une suite dans laquelle chaque terme s'obtient en
+                        multipliant le précédent par un même nombre, appelé <strong>raison</strong>.</p>
+                    <p class="formula">v<sub>n+1</sub> = q × v<sub>n</sub></p>
+                    <p>Pour connaître directement le terme numéro n :</p>
+                    <p class="formula">v<sub>n</sub> = v<sub>0</sub> × q<sup>n</sup></p>
+                </div>
+                <!--
+        PROF — DÉFINITION D'UNE SUITE GÉOMÉTRIQUE
+
+        EXEMPLE SIMPLE À PRÉSENTER AVANT LE MODÈLE :
+
+        100 ; 80 ; 64 ; 51,2 ; ...
+
+        Pour passer de 100 à 80 :
+        100 × 0,8 = 80.
+
+        Pour passer de 80 à 64 :
+        80 × 0,8 = 64.
+
+        Pour passer de 64 à 51,2 :
+        64 × 0,8 = 51,2.
+
+        On multiplie toujours par 0,8.
+        La raison q est donc 0,8.
+
+        FORMULE :
+        v0 = 100.
+        v1 = 100 × 0,8.
+        v2 = 100 × 0,8 × 0,8.
+        v2 = 100 × 0,8².
+        v3 = 100 × 0,8³.
+        vn = 100 × 0,8^n.
+
+        EXPLICATION ORALE SIMPLE :
+        « Une puissance, c'est une multiplication répétée.
+        0,8³ signifie 0,8 × 0,8 × 0,8. »
+
+        ATTENTION :
+        0,8³ n'est PAS 0,8 × 3.
+
+        COMMENT RECONNAÎTRE UNE SUITE GÉOMÉTRIQUE ?
+        Il faut toujours multiplier par le même coefficient.
+
+        Exemples :
+        10 ; 20 ; 40 ; 80 -> géométrique, q=2.
+        100 ; 90 ; 81 -> géométrique, q=0,9.
+        10 ; 15 ; 20 ; 25 -> arithmétique, +5.
+        Notre suite u -> pas géométrique, car +2.
+
+        Pour vérifier géométriquement une suite de
+        termes non nuls, on peut comparer les quotients
+        de deux termes consécutifs.
+
+        DONNER DU SENS À q :
+        q > 1 : multiplication donnant une croissance
+        pour une suite de valeurs positives.
+        0 < q < 1 : décroissance pour des valeurs positives.
+        q = 1 : valeur constante.
+
+        Ne pas développer ici les raisons négatives :
+        ce n'est pas nécessaire pour l'objectif.
+        -->
+                <div class="question">
+                    <p><strong>4.</strong> Notre suite u<sub>n+1</sub> = 0,88u<sub>n</sub> + 2 est-elle directement
+                        géométrique ?</p>
+                    <label><input type="radio" name="q20" value="oui"> Oui</label><br>
+                    <label><input type="radio" name="q20" value="non"> Non</label>
+                    <p>Pourquoi ?</p>
+                    <textarea name="q20_justification" rows="2" placeholder="Justifiez..."></textarea>
+                </div>
+                <!--
+        PROF — QUESTION 4
+
+        RÉPONSE : NON.
+
+        EXPLICATION :
+        Une suite géométrique doit vérifier :
+        u(n+1) = q × u(n).
+
+        Ici :
+        u(n+1) = 0,88u(n) + 2.
+
+        Il y a une addition de 2.
+        Ce n'est donc pas directement une suite
+        géométrique.
+
+        PREUVE NUMÉRIQUE POSSIBLE :
+        u1/u0 = 54,8/60 ≈ 0,9133.
+        u2/u1 = 50,224/54,8 ≈ 0,9165.
+        Les rapports sont différents.
+        Il n'y a donc pas de raison constante.
+
+        ERREUR POSSIBLE :
+        « Oui, parce qu'on multiplie par 0,88. »
+        Relancer :
+        « Et les 2 tonnes supplémentaires, où sont-elles
+        dans une suite géométrique classique ? »
+        -->
+                <h3>C. Faire apparaître une véritable suite géométrique</h3>
+                <p>On décide d'étudier l'écart entre le stock du mois n et le stock d'équilibre.</p>
+                <p>On définit :</p>
+                <p class="formula">v<sub>n</sub> = u<sub>n</sub> - 50/3</p>
+                <p>On peut démontrer que :</p>
+                <p class="formula">v<sub>n+1</sub> = 0,88v<sub>n</sub></p>
+                <div class="question">
+                    <p><strong>5.</strong> La suite v est-elle géométrique ? Si oui, quelle est sa raison ?</p>
+                    <p>Réponse : <input type="text" name="q21_reponse" class="short-answer" autocomplete="off"></p>
+                </div>
+                <!--
+        PROF — QUESTION 5 — CORRECTION ET DÉMONSTRATION
+
+        RÉPONSE :
+        Oui, v est géométrique de raison 0,88.
+
+        DÉMONSTRATION COMPLÈTE À DESTINATION DU PROF :
+
+        On pose :
+        L = 50/3.
+
+        On sait :
+        u(n+1) = 0,88u(n) + 2.
+        L = 0,88L + 2.
+
+        On définit :
+        v(n) = u(n) - L.
+
+        Alors :
+        v(n+1) = u(n+1) - L.
+
+        On remplace u(n+1) :
+        v(n+1) = 0,88u(n) + 2 - L.
+
+        Or :
+        L = 0,88L + 2.
+        Donc :
+        2 - L = -0,88L.
+
+        Ainsi :
+        v(n+1) = 0,88u(n) - 0,88L.
+
+        On met 0,88 en facteur :
+        v(n+1) = 0,88[u(n) - L].
+
+        Comme v(n) = u(n) - L :
+        v(n+1) = 0,88v(n).
+
+        C'EST UNE SUITE GÉOMÉTRIQUE.
+
+        AUTRE DÉMONSTRATION AVEC FRACTIONS :
+
+        0,88 = 22/25.
+        L = 50/3.
+
+        v(n+1) = 0,88u(n) + 2 - 50/3.
+        2 - 50/3 = 6/3 - 50/3 = -44/3.
+        0,88 × 50/3 = (22/25) × (50/3)
+                    = 44/3.
+        Donc :
+        v(n+1) = 0,88u(n) - 44/3.
+        v(n+1) = 0,88[u(n) - 50/3].
+        v(n+1) = 0,88v(n).
+
+        EXPLICATION ORALE SIMPLIFIÉE :
+        « Notre stock se rapproche de 16,67 tonnes.
+        Au lieu de regarder tout le stock, on regarde
+        seulement la distance qui nous sépare de 16,67.
+        Cette distance, elle, est multipliée par 0,88
+        chaque mois. »
+
+        ILLUSTRATION NUMÉRIQUE :
+        Écart initial :
+        60 - 16,666... = 43,333... t.
+
+        Après un mois :
+        54,8 - 16,666... = 38,133... t.
+
+        Or :
+        43,333... × 0,88 = 38,133...
+
+        L'écart a diminué de 12 %.
+        On retrouve bien le coefficient 0,88.
+
+        POUR LES ÉLÈVES FRAGILES :
+        Ne pas imposer toute la démonstration algébrique
+        en autonomie. Les faire comprendre le raisonnement
+        sur les écarts numériques.
+        -->
+                <div class="trace-box">
+                    <h3>À retenir</h3>
+                    <p>Une suite géométrique de premier terme v<sub>0</sub> et de raison q vérifie :</p>
+                    <p class="formula">v<sub>n</sub> = v<sub>0</sub> × q<sup>n</sup></p>
+                    <p>Dans notre situation :</p>
+                    <p class="formula">u<sub>n</sub> = 50/3 + (130/3) × 0,88<sup>n</sup></p>
+                    <p>Le stock se rapproche progressivement de <strong>16,67 tonnes</strong>, une valeur inférieure au
+                        seuil d'alerte.</p>
+                    <p>Cette conclusion est valable <strong>dans le modèle étudié</strong>.</p>
+                </div>
+                <!--
+        PROF — FORMULE EXPLICITE — DÉTAIL COMPLET
+
+        On sait :
+        v(n) = u(n) - 50/3.
+        v(n+1) = 0,88v(n).
+
+        Il s'agit d'une suite géométrique.
+
+        ÉTAPE 1 — CALCULER v0 :
+        v0 = u0 - 50/3.
+        v0 = 60 - 50/3.
+        60 = 180/3.
+        v0 = 180/3 - 50/3.
+        v0 = 130/3.
+
+        ÉTAPE 2 — TERME GÉNÉRAL :
+        v(n) = v0 × 0,88^n.
+        v(n) = (130/3) × 0,88^n.
+
+        ÉTAPE 3 — RETROUVER u(n) :
+        v(n) = u(n) - 50/3.
+        Donc :
+        u(n) = v(n) + 50/3.
+
+        D'où :
+        u(n) = 50/3 + (130/3) × 0,88^n.
+
+        VÉRIFICATION POUR n=0 :
+        0,88^0 = 1.
+        u0 = 50/3 + 130/3.
+        u0 = 180/3 = 60.
+
+        VÉRIFICATION POUR n=1 :
+        u1 = 50/3 + (130/3) × 0,88.
+        u1 = 16,666... + 38,133...
+        u1 = 54,8 t.
+
+        VÉRIFICATION POUR n=2 :
+        0,88² = 0,7744.
+        u2 = 50/3 + (130/3) × 0,7744.
+        u2 = 50,224 t.
+
+        INTERPRÉTATION DE LA LIMITE :
+        Comme 0 < 0,88 < 1 :
+        0,88^n tend vers 0 lorsque n devient grand.
+
+        Donc :
+        (130/3) × 0,88^n tend vers 0.
+
+        Il reste :
+        u(n) tend vers 50/3 ≈ 16,67 t.
+
+        EXPLICATION TRÈS SIMPLE :
+        « La formule contient deux parties :
+        une valeur fixe, 16,67,
+        et un écart qui devient de plus en plus petit.
+        Avec le temps, l'écart s'approche de zéro.
+        Il ne reste alors pratiquement que la valeur fixe. »
+
+        ATTENTION :
+        La suite approche cette limite.
+        Elle ne l'atteint pas exactement en un nombre
+        fini de mois puisque le terme géométrique
+        reste positif.
+
+        À MONTRER AUX ÉLÈVES SELON LE TEMPS :
+        Le développement complet de la formule peut être
+        présenté collectivement ou comme un approfondissement.
+        L'objectif prioritaire est de comprendre la raison
+        et la signification de la limite.
+        -->
+            </div>
+            <div class="activity">
+                <h2>5. Application numérique — Simuler les stocks avec un tableur <span class="duration">20 min</span>
+                </h2>
+                <p><strong>Calculatrice et ordinateur : autorisés.</strong></p>
+                <p>Nous allons maintenant utiliser Excel ou LibreOffice Calc pour simuler la gestion du stock sur 24
+                    mois.</p>
+                <h3>A. Construire le tableau</h3>
+                <ol>
+                    <li>Ouvrez un nouveau classeur.</li>
+                    <li>Dans la cellule <strong>A1</strong>, écrivez <strong>Mois</strong>.</li>
+                    <li>Dans la cellule <strong>B1</strong>, écrivez <strong>Stock de foin (t)</strong>.</li>
+                    <li>Dans la cellule <strong>A2</strong>, saisissez <strong>0</strong>.</li>
+                    <li>Dans la cellule <strong>A3</strong>, saisissez <strong>1</strong>.</li>
+                    <li>Sélectionnez A2 et A3, puis étirez la série jusqu'au mois <strong>24</strong>, en ligne 26.</li>
+                    <li>Dans <strong>B2</strong>, saisissez <strong>60</strong>.</li>
+                    <li>Dans <strong>B3</strong>, saisissez la formule <code>=B2*0,88+2</code>.</li>
+                    <li>Validez puis recopiez la formule jusqu'en <strong>B26</strong>.</li>
+                </ol>
+                <!--
+        PROF — TABLEUR — GUIDAGE PRÉCIS
+
+        STRUCTURE ATTENDUE :
+
+             A                   B
+        1    Mois                Stock de foin (t)
+        2    0                   60
+        3    1                   =B2*0,88+2
+        4    2                   =B3*0,88+2
+        5    3                   =B4*0,88+2
+        ...
+        26   24                  valeur finale
+
+        POURQUOI B3 = B2*0,88+2 ?
+        Parce que B2 contient le stock précédent.
+
+        EXPLICATION ORALE :
+        « Le tableur fait exactement les mêmes calculs
+        que vous, mais il les répète automatiquement. »
+
+        POURQUOI LA FORMULE CHANGE-T-ELLE ?
+        B3 contient =B2*0,88+2.
+        Après recopie, B4 contient =B3*0,88+2.
+        Puis B5 contient =B4*0,88+2.
+
+        Il s'agit d'une référence relative :
+        la cellule utilisée change lorsque l'on copie
+        la formule.
+
+        ERREUR COURANTE :
+        Écrire =60*0,88+2 à chaque ligne.
+        La valeur de départ doit être celle du mois
+        précédent, et pas toujours 60.
+
+        AUTRE ERREUR :
+        La colonne A s'arrête à 23 au lieu de 24.
+        Vérifier :
+        A2 = mois 0.
+        A26 = mois 24.
+
+        En configuration française, les nombres utilisent
+        généralement la virgule décimale.
+        Si le tableur est configuré en anglais, adapter
+        0,88 en 0.88.
+
+        FORMAT :
+        Pour l'affichage, choisir deux décimales.
+        Ne pas utiliser ARRONDI() dans la relation,
+        afin de préserver les calculs internes.
+
+        VÉRIFICATION RAPIDE :
+        B3 = 54,8.
+        B4 = 50,224.
+        B5 = 46,19712.
+
+        Si ces valeurs sont correctes, la formule fonctionne.
+        -->
+                <div class="question">
+                    <p><strong>1.</strong> Quel stock obtient-on au mois 24 ? Arrondissez au centième.</p>
+                    <p>Stock : <input type="text" name="q23_reponse" class="short-answer" autocomplete="off"> tonnes</p>
+                    <details class="hint" data-hint-level="1">
+                        <summary>Indice 1</summary>
+                        <p>Repérez la ligne correspondant au mois 24.</p>
+                    </details>
+                    <details class="hint" data-hint-level="2">
+                        <summary>Indice 2</summary>
+                        <p>Le mois 24 se trouve sur la ligne 26.</p>
+                    </details>
+                    <details class="hint" data-hint-level="3">
+                        <summary>Indice 3</summary>
+                        <p>La valeur recherchée est contenue dans la cellule B26.</p>
+                    </details>
+                </div>
+                <!--
+        PROF — QUESTION 1
+
+        RÉSULTAT : 18,68 tonnes.
+
+        VALEUR CALCULÉE :
+        u24 ≈ 18,6822746 tonnes.
+
+        MÉTHODE 1 — TABLEUR :
+        Lire la valeur en B26.
+
+        MÉTHODE 2 — FORMULE EXPLICITE :
+        u24 = 50/3 + (130/3) × 0,88^24.
+        u24 ≈ 18,6822746.
+        Donc u24 ≈ 18,68 t.
+
+        EXPLICATION :
+        Après 24 mois, le stock est toujours supérieur
+        à la limite de 16,67 t.
+        Mais il s'en est rapproché.
+
+        VÉRIFICATION DE COHÉRENCE :
+        u13 ≈ 24,89.
+        u24 ≈ 18,68.
+        Le stock a continué à baisser :
+        c'est cohérent avec l'évolution observée.
+
+        NE PAS DIRE :
+        « À 24 mois, le stock vaut 16,67 tonnes. »
+        C'est faux.
+        16,67 est la limite vers laquelle il tend.
+        -->
+                <h3>B. Représenter graphiquement l'évolution</h3>
+                <ol>
+                    <li>Sélectionnez les cellules <strong>A1 à B26</strong>.</li>
+                    <li>Dans le menu <strong>Insertion</strong>, choisissez un graphique.</li>
+                    <li>Choisissez un graphique de type <strong>XY (dispersion)</strong> avec points reliés par des
+                        lignes.</li>
+                    <li>Vérifiez que les mois sont sur l'axe horizontal et le stock sur l'axe vertical.</li>
+                    <li>Ajoutez le titre : <strong>Évolution du stock de foin sur 24 mois</strong>.</li>
+                    <li>Indiquez les unités des deux axes.</li>
+                </ol>
+                <div class="question">
+                    <p><strong>2.</strong> Comment évolue le stock ? Sa diminution semble-t-elle ralentir, accélérer ou
+                        rester identique chaque mois ?</p>
+                    <textarea name="q24_reponse" rows="3" placeholder="Décrivez ce que montre la courbe..."></textarea>
+                </div>
+                <!--
+        PROF — QUESTION 2
+
+        RÉPONSE :
+        Le stock diminue, mais sa baisse ralentit
+        progressivement.
+        La courbe s'aplatit.
+
+        EXPLICATION PAR LES VALEURS :
+        De u0 à u1 :
+        60 - 54,8 = 5,2 t de diminution.
+
+        De u1 à u2 :
+        54,8 - 50,224 = 4,576 t de diminution.
+
+        De u2 à u3 :
+        50,224 - 46,19712 = 4,02688 t.
+
+        Les pertes nettes diminuent :
+        5,2 ; 4,576 ; 4,02688 ; ...
+
+        EXPLICATION ORALE :
+        « Au début, 12 % d'un grand stock représente
+        une quantité importante.
+        Lorsque le stock devient plus faible,
+        12 % de ce stock représente moins de tonnes.
+        Et comme on continue d'ajouter 2 tonnes,
+        la baisse nette devient plus faible. »
+
+        POINT INTÉRESSANT :
+        La baisse est importante au départ,
+        puis de plus en plus faible.
+
+        NE PAS CONFONDRE :
+        Le stock baisse encore.
+        Ce n'est pas parce que la courbe s'aplatit
+        qu'elle remonte.
+
+        Il ne s'agit pas d'une décroissance linéaire.
+        -->
+                <div class="question">
+                    <p><strong>3.</strong> La courbe paraît se rapprocher d'une valeur. Laquelle ? Retrouvez-vous le
+                        résultat calculé précédemment ?</p>
+                    <textarea name="q25_reponse" rows="3"
+                        placeholder="Comparez la simulation et le calcul..."></textarea>
+                </div>
+                <!--
+        PROF — QUESTION 3
+
+        RÉPONSE :
+        La courbe semble se rapprocher de 16,67 t.
+        C'est cohérent avec le stock d'équilibre trouvé
+        en résolvant L = 0,88L + 2.
+
+        NUANCE :
+        Sur seulement 24 mois, on voit surtout une courbe
+        qui s'aplatit vers une valeur inférieure à 19 t.
+        La limite exacte 16,67 t est obtenue par le calcul,
+        pas par une lecture précise du graphique.
+
+        POSSIBILITÉ DE DÉMONSTRATION :
+        Prolonger la simulation jusqu'au mois 60,
+        sans en faire un travail supplémentaire obligatoire.
+
+        À n=60 :
+        Le résultat devient très proche de 16,67 t.
+
+        EXPLICATION ORALE :
+        « Le tableur nous aide à voir le comportement
+        de la suite. Mais le calcul mathématique permet
+        de déterminer précisément la valeur d'équilibre. »
+
+        Le graphique seul ne constitue pas une preuve
+        exacte de la limite.
+        -->
+                <h3>C. Prendre en compte l'inflation</h3>
+                <p>Le stock n'est pas la seule donnée qui intéresse le responsable. Le coût d'achat peut également
+                    évoluer.</p>
+                <p>On suppose, pour un deuxième modèle simplifié, que le prix du foin augmente de <strong>3 % par
+                        an</strong>.</p>
+                <div class="question">
+                    <p><strong>4.</strong> Quel coefficient multiplicateur représente cette hausse annuelle de 3 % ?</p>
+                    <p>Coefficient : <input type="text" name="q26_reponse" class="short-answer" autocomplete="off"></p>
+                </div>
+                <!--
+        PROF — QUESTION 4
+
+        RÉSULTAT : 1,03.
+
+        MÉTHODE 1 :
+        100 % + 3 % = 103 %.
+        103 % = 1,03.
+
+        MÉTHODE 2 :
+        1 + 3/100 = 1,03.
+
+        EXPLICATION :
+        « Chaque année, le prix devient égal à 103 %
+        du prix de l'année précédente. »
+
+        VIGILANCE :
+        Nous utilisons une hausse ANNUELLE de 3 %.
+        Le modèle du stock utilise, lui, des mois.
+        Il ne faut pas confondre les deux échelles
+        de temps.
+
+        Ne pas appliquer 1,03 à chaque mois :
+        cela reviendrait à supposer une hausse de 3 %
+        tous les mois, ce qui est une autre hypothèse.
+        -->
+                <div class="question">
+                    <p><strong>5.</strong> Si P<sub>0</sub> représente le prix initial d'une tonne de foin, écrivez le
+                        prix P<sub>a</sub> après a années.</p>
+                    <p class="formula">P<sub>a</sub> = P<sub>0</sub> × <input type="text" name="q27_reponse"
+                            class="formula-input" autocomplete="off"><sup>a</sup></p>
+                </div>
+                <!--
+        PROF — QUESTION 5
+
+        FORMULE :
+        P(a) = P0 × 1,03^a.
+
+        C'EST UNE SUITE GÉOMÉTRIQUE :
+        Premier terme P0.
+        Raison q = 1,03.
+
+        EXEMPLE PÉDAGOGIQUE :
+        Supposons un prix initial FICTIF de 200 €/t.
+
+        Première année :
+        P0 = 200 €.
+
+        Après une année :
+        P1 = 200 × 1,03 = 206 €.
+
+        Après deux années :
+        P2 = 200 × 1,03².
+        P2 = 200 × 1,0609.
+        P2 = 212,18 €.
+
+        AUTRE MÉTHODE :
+        Deuxième année :
+        P2 = 206 × 1,03.
+        P2 = 212,18 €.
+
+        Après trois années :
+        P3 = 200 × 1,03³.
+        P3 = 200 × 1,092727.
+        P3 ≈ 218,55 €.
+
+        DIFFÉRENCE ENTRE AUGMENTATION SIMPLE
+        ET AUGMENTATION COMPOSÉE :
+
+        Incorrect :
+        200 + 3 × 6 = 218 €.
+        Cela supposerait une augmentation fixe
+        de 6 € par année.
+
+        Correct :
+        Chaque année, les 3 % sont calculés
+        sur le nouveau prix.
+        P3 ≈ 218,55 €.
+
+        EXPLICATION ORALE :
+        « Les pourcentages successifs se multiplient.
+        Ils ne s'additionnent pas directement. »
+
+        ATTENTION :
+        Le prix de 200 € est purement fictif.
+        Ne pas le présenter comme un prix de marché.
+        -->
+                <div class="question">
+                    <p><strong>6.</strong> Expliquez pourquoi attendre le dernier moment pour acheter du foin peut être
+                        risqué lorsque les prix augmentent.</p>
+                    <textarea name="q28_reponse" rows="4" placeholder="Rédigez votre réponse..."></textarea>
+                </div>
+                <!--
+        PROF — QUESTION 6
+
+        RÉPONSE ATTENDUE :
+        Si les prix augmentent, acheter plus tard peut
+        coûter plus cher. En outre, si le stock est
+        insuffisant, l'écurie peut être obligée d'acheter
+        dans l'urgence, avec moins de possibilités
+        de comparer les fournisseurs.
+
+        RÉPONSE PLUS NUANCÉE :
+        Il n'est cependant pas forcément intéressant
+        d'acheter immédiatement un stock énorme :
+        il faut aussi prendre en compte la capacité
+        de stockage, la qualité du foin et la trésorerie.
+
+        LIEN MATHÉMATIQUE :
+        Deux évolutions différentes :
+        - Stock : suite arithmético-géométrique.
+        - Prix annuel : suite géométrique.
+
+        Les maths servent ici à prévoir les conséquences
+        d'une politique de gestion.
+
+        QUESTION BONUS ORALE SI LE TEMPS LE PERMET :
+        « Si le prix augmente de 3 % par an,
+        cela signifie-t-il nécessairement que
+        les achats d'aujourd'hui sont toujours préférables ? »
+
+        Réponse : non. Il faut aussi comparer les coûts
+        de stockage, les capacités et les besoins.
+
+        LIEN TIM :
+        La modélisation peut être prolongée en tableur
+        par l'ajout de colonnes :
+        consommation, achats, prix par tonne et coût.
+        Cela permet de relier le raisonnement mathématique
+        au traitement numérique de données.
+        -->
+            </div>
+            <div class="activity">
+                <h2>6. Bilan — Conseiller le responsable de l'écurie <span class="duration">5 min</span></h2>
+                <p><strong>Calculatrice : non nécessaire.</strong></p>
+                <div class="question">
+                    <p><strong>Rédigez votre conclusion :</strong></p>
+                    <p>La stratégie « consommer 12 % du stock puis acheter 2 tonnes chaque mois » est-elle suffisante
+                        pour conserver durablement au moins 25 tonnes ? Justifiez en utilisant deux résultats de la
+                        séance.</p>
+                    <textarea name="q29_reponse" rows="4" placeholder="Votre conclusion argumentée..."></textarea>
+                </div>
+                <!--
+        PROF — CONCLUSION
+
+        RÉPONSE COMPLÈTE ATTENDUE :
+        « Non, cette stratégie ne permet pas de conserver
+        durablement un stock d'au moins 25 tonnes.
+        D'après les calculs, le stock passe sous le
+        seuil au mois 13, avec environ 24,89 tonnes.
+        De plus, le stock tend vers un équilibre
+        d'environ 16,67 tonnes, inférieur au seuil.
+        Il faudrait donc revoir les achats mensuels
+        si l'objectif est de rester au-dessus de 25 t. »
+
+        RÉPONSE MINIMALE ACCEPTABLE :
+        « Non, car au mois 13 le stock est de 24,89 t,
+        donc inférieur à 25 t. »
+
+        EN CAS DE DIFFICULTÉ :
+        Proposer trois amorces :
+        1. Je constate que...
+        2. Le calcul montre que...
+        3. Je conseille donc...
+
+        ÉVALUATION DE LA PROGRESSION :
+        Observer :
+        - L'utilisation du bon coefficient.
+        - La compréhension de la relation de récurrence.
+        - La présence de calculs et justifications.
+        - L'interprétation des résultats.
+        - Le recours aux indices.
+        - L'investissement dans la recherche.
+        - La capacité à corriger une erreur.
+
+        NE PAS SE LIMITER AU RÉSULTAT NUMÉRIQUE :
+        Une conclusion argumentée montre que l'élève
+        a donné du sens au modèle mathématique.
+        -->
+            </div>
+            <div class="homework-box">
+                <h2>Pour le prochain retour de stage</h2>
+                <p>Recherchez, si ces informations sont accessibles dans votre structure :</p>
+                <ul>
+                    <li>le prix d'une botte ou d'une balle de foin ;</li>
+                    <li>sa masse approximative ;</li>
+                    <li>la consommation moyenne de foin par cheval et par jour ;</li>
+                    <li>le nombre de chevaux de la structure ;</li>
+                    <li>la quantité de foin achetée ou produite pour l'hiver.</li>
+                </ul>
+                <p>Des estimations suffisent. Ne communiquez aucune information confidentielle.</p>
+                <!--
+        PROF — PROLONGEMENT FUTUR
+
+        OBJECTIF :
+        Faire évoluer le modèle vers une situation
+        professionnelle davantage réaliste.
+
+        PISTE 1 — CONSOMMATION FIXE :
+        Si chaque cheval consomme k kg de foin par jour,
+        avec N chevaux et D jours :
+        Consommation = N × k × D.
+
+        Exemple fictif :
+        N = 20 chevaux.
+        k = 10 kg/jour.
+        D = 30 jours.
+        20 × 10 × 30 = 6000 kg.
+        Soit 6 tonnes sur 30 jours.
+
+        Un modèle avec consommation fixe mensuelle
+        pourrait alors devenir :
+        u(n+1) = u(n) - 6 + A,
+        où A est la quantité achetée chaque mois.
+
+        C'est une suite arithmétique.
+        On pourra comparer ce modèle au modèle
+        proportionnel de la séance.
+
+        PISTE 2 — COÛT :
+        Coût = quantité achetée × prix par tonne.
+
+        PISTE 3 — COMPARAISON :
+        - Gros achat en début de saison.
+        - Petits achats réguliers.
+        - Approvisionnement selon un seuil.
+
+        NE PAS TRAITER CES PROLONGEMENTS AUJOURD'HUI :
+        Ils serviront de point de départ à une autre séance.
+        -->
+            </div>
+            <div class="summary-box">
+                <h2>À retenir</h2>
+                <ul>
+                    <li>Une baisse de 12 % correspond à multiplier par <strong>0,88</strong>.</li>
+                    <li>Une suite permet de représenter l'évolution d'une quantité au cours du temps.</li>
+                    <li>Dans notre modèle : <strong>u<sub>n+1</sub> = 0,88u<sub>n</sub> + 2</strong>.</li>
+                    <li>Cette suite est arithmético-géométrique, et non directement géométrique.</li>
+                    <li>Une suite géométrique vérifie <strong>v<sub>n+1</sub> = q × v<sub>n</sub></strong>.</li>
+                    <li>Son terme général est <strong>v<sub>n</sub> = v<sub>0</sub> × q<sup>n</sup></strong>.</li>
+                    <li>Le stock étudié tend vers <strong>16,67 tonnes</strong>.</li>
+                    <li>Le seuil des 25 tonnes est franchi au <strong>mois 13</strong>.</li>
+                    <li>Une simulation doit toujours être interprétée à partir des contraintes réelles de l'entreprise.
+                    </li>
+                </ul>
+            </div>
+            <!--
+    ======================================================================
+    CORRIGÉ PROFESSEUR — SYNTHÈSE RAPIDE
+    ======================================================================
+
+    AUTOMATISMES :
+    Q1  : 468 €
+    Q2  : -8 %
+    Q3  : 44 t
+    Q4  : 0,88
+
+    RETOUR DE STAGE :
+    Q5-Q7 : réponses ouvertes argumentées.
+    Q8    : toutes les propositions sont pertinentes.
+
+    MODÉLISATION :
+    Q9  : 88 %
+    Q10 : 0,88
+    Q11 : 0,88 et 2
+    Q12 : 54,8 t
+    Q13 : 50,224 t
+    Q14 : 46,19712 t ≈ 46,20 t
+    Q15 : n=13 ; u13≈24,89 t
+    Q16 : stratégie insuffisante pour rester >=25 t
+
+    ÉQUILIBRE ET SUITES :
+    Q17 : L=0,88L+2 -> 0,12L=2 -> L=50/3
+    Q18 : 16,67 t
+    Q19 : équilibre inférieur au seuil
+    Q20 : non, car présence de +2
+    Q21 : oui, raison 0,88
+
+    TABLEUR :
+    Q23 : 18,68 t
+    Q24 : stock décroissant, baisse qui ralentit
+    Q25 : rapprochement vers 16,67 t
+    Q26 : 1,03
+    Q27 : P(a)=P0×1,03^a
+    Q28 : risque d'achat tardif plus coûteux, à nuancer
+
+    BILAN :
+    Q29 : stock sous 25 t à n=13 ;
+          équilibre de 16,67 t ;
+          stratégie insuffisante à long terme.
+
+    ======================================================================
+    COMPLÉMENT PROF — QUESTION D'APPROFONDISSEMENT
+    ======================================================================
+
+    Quelle quantité faudrait-il acheter chaque mois pour
+    avoir un STOCK D'ÉQUILIBRE égal à 25 tonnes ?
+
+    On remplace les 2 tonnes par une quantité A :
+
+        u(n+1) = 0,88u(n) + A.
+
+    À l'équilibre L=25 :
+
+        25 = 0,88×25 + A.
+        25 = 22 + A.
+        A = 3 tonnes.
+
+    AUTRE MÉTHODE :
+    Consommation à partir de 25 tonnes :
+    12 % de 25 = 25×0,12 = 3 tonnes.
+    Pour compenser exactement cette consommation,
+    il faut racheter 3 tonnes.
+
+    NUANCE ESSENTIELLE :
+    Avec A=3 et u0=60, la suite reste supérieure
+    à 25 tonnes à chaque mois fini et tend vers 25.
+    Ce n'est pas une garantie générale de sécurité
+    si le stock initial était inférieur à 25 tonnes,
+    ou si les hypothèses du modèle changeaient.
+
+    FORMULE AVEC A=3 :
+        u(n) = 25 + 35×0,88^n.
+
+    Si l'on veut un équilibre STRICTEMENT supérieur à 25,
+    il faut A > 3 tonnes par mois.
+
+    QUESTION SUPPLÉMENTAIRE :
+    Pourquoi acheter 3 tonnes plutôt que 2 ?
+
+    Réponse :
+    Car à un stock de 25 tonnes, la consommation vaut
+    3 tonnes. L'achat de 2 tonnes ne suffit pas
+    à compenser cette consommation.
+
+    ======================================================================
+    COMPLÉMENT PROF — MÉTHODE EXPERTE POUR LE SEUIL
+    ======================================================================
+
+    On veut résoudre :
+        u(n) < 25.
+
+    Avec :
+        u(n) = 50/3 + (130/3)×0,88^n.
+
+    Alors :
+        50/3 + (130/3)×0,88^n < 25.
+
+    On soustrait 50/3 :
+        (130/3)×0,88^n < 25 - 50/3.
+
+    Or :
+        25 = 75/3.
+        75/3 - 50/3 = 25/3.
+
+    Donc :
+        (130/3)×0,88^n < 25/3.
+
+    On multiplie par 3 :
+        130×0,88^n < 25.
+
+    On divise par 130 :
+        0,88^n < 25/130.
+        0,88^n < 5/26.
+
+    Avec les logarithmes :
+        n×ln(0,88) < ln(5/26).
+
+    Comme ln(0,88) est négatif, le sens de
+    l'inégalité change lors de la division :
+        n > ln(5/26)/ln(0,88).
+
+    Numériquement :
+        n > 12,8969...
+
+    Le premier entier possible est :
+        n=13.
+
+    Cette méthode est une extension et ne doit pas
+    être exigée si les logarithmes ne font pas partie
+    des acquis de la classe.
+    Pour la séance courante, le tableau de valeurs
+    est la méthode attendue.
+
+    ======================================================================
+    DERNIER CONSEIL PROF
+    ======================================================================
+
+    Si la séance prend du retard :
+    - Préserver les automatismes.
+    - Préserver la construction de u(n+1).
+    - Préserver le calcul de u1, u2, u3.
+    - Préserver la recherche du seuil.
+    - Préserver l'explication de l'équilibre.
+    - Présenter la démonstration complète de v(n)
+      collectivement plutôt que de la faire rechercher.
+    - Réduire le nombre de commentaires écrits sur
+      le graphique.
+
+    La compréhension de la modélisation est prioritaire
+    sur la quantité d'exercices terminés.
+
+    FIN DE LA SÉANCE.
+    ======================================================================
+    -->
         </section>
 
         <section id="session1" class="content-section">
