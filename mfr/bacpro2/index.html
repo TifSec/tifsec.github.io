@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme de Technologie de l'Informatique et du Multimédia Terminales Bac Pro</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js"></script>
+</head>
+<body data-course-id="mfr-bacpro2">
+    <header>
+        <h1>Programme de Technologie de l'Informatique et du Multimédia Terminales Bac Pro</h1>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
+    </header>
+    <!-- Menu hamburger sur la gauche -->
+    <aside id="menu">
+        <nav id="session-nav">
+            <ul>
+                <!-- CALENDRIER -->
+                <li><a href="#" onclick="showSession('calendar')">Calendrier de cours</a></li>
+                <!-- <li><a href="#" onclick="showSession('Cours_IA')">Cours IA</a></li> -->
+            </ul>
+        </nav>
+    </aside>
+    <main id="content">
+        <!-- Calendrier -->
+        <section id="calendar" class="content-section">
+            <h2>Calendrier des séances</h2>
+            <div id="course-status"></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>État</th>
+                        <th>Séance</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body"></tbody>
+            </table>
+        </section>
+        <section id="session1" class="content-section">
+            <h2>Séance 1 — Des données brutes à une décision professionnelle</h2>
+            <!-- PROF DURÉE : 1 h.
+    Cette première séance doit démarrer directement par une situation professionnelle.
+    Ne pas faire de présentation générale du TIM : les élèves connaissent déjà l'enseignant et ont déjà utilisé l'informatique.
+    L'objectif est de donner immédiatement du sens au travail de Terminale :
+    une donnée seule n'est pas très utile ; c'est son organisation, son traitement et son interprétation qui permettent de prendre une décision.
+    Cette séance constitue la première étape d'une progression qui ira vers :
+    données brutes → données propres → indicateurs → graphiques → tableau de bord → décision. -->
+            <div class="objectifs">
+                <h3>Ce que vous allez apprendre</h3>
+                <p>Une entreprise produit chaque jour de nombreuses <strong>données</strong> : quantité de foin
+                    distribuée, nombre de chevaux, dépenses, heures de travail, fréquentation, consommation d'eau...</p>
+                <p>Aujourd'hui, vous allez apprendre à transformer ces données brutes en <strong>informations utiles
+                        pour prendre une décision</strong>.</p>
+                <!-- PROF Dire oralement :
+        « Une écurie possède énormément de chiffres. Mais avoir des chiffres ne suffit pas. Ce qui nous intéresse, c'est de pouvoir répondre à une question professionnelle grâce à eux. » -->
+                <h3>À quoi cela va-t-il servir ?</h3>
+                <p>Dans une entreprise hippique, cela peut servir à :</p>
+                <ul>
+                    <li>surveiller les consommations ;</li>
+                    <li>repérer une valeur inhabituelle ;</li>
+                    <li>prévoir les besoins ;</li>
+                    <li>comparer plusieurs périodes ;</li>
+                    <li>justifier une décision avec des chiffres.</li>
+                </ul>
+                <!-- PROF Faire le lien avec leur stage :
+        « Un responsable d'écurie ne peut pas simplement dire "je trouve qu'on consomme beaucoup de foin". Il doit être capable de vérifier cette impression avec des données. » -->
+                <h3>Ce que vous allez apprendre à faire</h3>
+                <ul>
+                    <li>organiser correctement des données dans un tableur ;</li>
+                    <li>repérer des données inutilisables ou incohérentes ;</li>
+                    <li>calculer quelques indicateurs ;</li>
+                    <li>interpréter les résultats ;</li>
+                    <li>proposer une décision professionnelle argumentée.</li>
+                </ul>
+            </div>
+            <h3>1. Votre situation professionnelle</h3>
+            <p>Vous travaillez dans une écurie accueillant <strong>20 chevaux</strong>.</p>
+            <p>Le responsable constate que le stock de foin diminue rapidement. Il vous demande :</p>
+            <div class="mission">
+                <p><strong>« Notre consommation de foin est-elle régulière et combien devons-nous prévoir pour les
+                        prochains jours ? »</strong></p>
+            </div>
+            <!-- PROF Il est important de poser la question AVANT d'utiliser Calc.
+    Le référentiel C1.2 commence par l'analyse du contexte et de la problématique.
+    Faire remarquer qu'on ne choisit pas les calculs au hasard : ils doivent permettre de répondre à une question. -->
+            <p>Pour répondre, vous disposez du relevé suivant :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jour</th>
+                        <th>Nombre de chevaux</th>
+                        <th>Foin distribué</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lundi</td>
+                        <td>20</td>
+                        <td>180 kg</td>
+                    </tr>
+                    <tr>
+                        <td>Mardi</td>
+                        <td>20</td>
+                        <td>176 kg</td>
+                    </tr>
+                    <tr>
+                        <td>Mercredi</td>
+                        <td>20</td>
+                        <td>185 kg</td>
+                    </tr>
+                    <tr>
+                        <td>Jeudi</td>
+                        <td>18</td>
+                        <td>164 kg</td>
+                    </tr>
+                    <tr>
+                        <td>Vendredi</td>
+                        <td>18</td>
+                        <td>170 kg</td>
+                    </tr>
+                    <tr>
+                        <td>Samedi</td>
+                        <td>20</td>
+                        <td>205 kg</td>
+                    </tr>
+                    <tr>
+                        <td>Dimanche</td>
+                        <td>20</td>
+                        <td>182 kg</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- PROF Jeu de données volontairement pédagogique.
+    La valeur du samedi est plus forte mais pas absurde.
+    Le jeudi et le vendredi, deux chevaux sont absents : cela permettra de montrer que comparer uniquement les kg distribués peut conduire à une mauvaise conclusion.
+    C'est précisément ce qui justifiera la création d'un indicateur « kg par cheval ». -->
+            <h3>2. Créer votre fichier de travail</h3>
+            <p><strong>Pourquoi ?</strong> Avant d'analyser des données, il faut pouvoir les stocker de manière
+                structurée et les retrouver facilement.</p>
+            <!-- PROF Transition pédagogique :
+    « Avant de faire des calculs, il faut disposer d'un jeu de données propre. Si les données sont mal rangées, tout ce qu'on fera ensuite sera plus difficile ou faux. » -->
+            <ol>
+                <li>Ouvrez <strong>LibreOffice Calc</strong>.</li>
+                <!-- PROF Vérifier qu'ils ouvrent Calc et non Writer. -->
+                <li>Enregistrez immédiatement votre fichier sous le nom <strong>Term_TIM_S01_NOM_Prenom.ods</strong>.
+                </li>
+                <!-- PROF Insister sur l'enregistrement dès le début. En cas de problème ou de fermeture accidentelle, le travail est déjà localisé. -->
+                <li>Reproduisez le tableau fourni.</li>
+                <!-- PROF Laisser les élèves saisir les sept lignes : le volume reste volontairement faible. L'objectif n'est pas la vitesse de frappe mais la compréhension de la structure du tableau. -->
+            </ol>
+            <div class="vigilance">
+                <strong>VIGILANCE</strong>
+                <p>Dans la colonne « Foin distribué », saisissez uniquement les nombres : <strong>180</strong>,
+                    <strong>176</strong>, etc. Ne saisissez pas « 180 kg ».
+                </p>
+            </div>
+            <!-- PROF Questionner avant d'expliquer :
+    « Pourquoi je vous demande de ne pas écrire "180 kg" dans la cellule ? »
+    Réponse attendue : parce que Calc doit reconnaître la valeur comme un nombre pour pouvoir calculer dessus.
+    On pourra ensuite afficher l'unité avec le format de cellule.
+    C'est une première introduction à la notion de mise en qualité des données. -->
+            <h3>3. Une donnée est-elle directement une information ?</h3>
+            <p><strong>Pourquoi cet exercice ?</strong> Avant de calculer, vous devez comprendre ce que les nombres
+                représentent et vérifier s'ils permettent réellement de répondre à la question.</p>
+            <!-- PROF Cette étape évite le réflexe « on ouvre Calc et on fait une moyenne ».
+    Le référentiel demande une analyse du contexte et de la problématique avant le traitement. -->
+            <ol>
+                <li>Quel est le jour où la quantité totale de foin distribuée est la plus élevée ?</li>
+                <!-- PROF Réponse : samedi, 205 kg. Ne pas s'arrêter à cette réponse. -->
+                <li>Quel est le jour où elle est la plus faible ?</li><!-- PROF Réponse : jeudi, 164 kg. -->
+                <li>Peut-on conclure que les chevaux ont moins mangé jeudi que lundi ? Justifiez.</li>
+                <!-- PROF Réponse attendue : non, car il n'y avait que 18 chevaux jeudi contre 20 lundi. Faire émerger spontanément l'idée de ramener la quantité à un cheval. -->
+            </ol>
+            <div class="aide">
+                <strong>AIDE SI BESOIN</strong>
+                <p>Comparer deux quantités totales n'est pertinent que si elles concernent des situations comparables.
+                </p>
+            </div>
+            <p><strong>Nous changeons maintenant de méthode.</strong> Les quantités totales ne permettent pas de
+                comparer correctement les jours où le nombre de chevaux change. Nous allons donc créer un nouvel
+                indicateur : la <strong>quantité de foin par cheval</strong>.</p>
+            <!-- PROF Règle pédagogique appliquée : expliciter pourquoi on passe à l'exercice suivant.
+    Dire :
+    « Nous avons découvert une limite de notre premier tableau. Le problème n'est pas le chiffre, mais la manière de le regarder. On va fabriquer une information plus pertinente. » -->
+            <h3>4. Créer un indicateur utile</h3>
+            <p><strong>Pourquoi ?</strong> Un indicateur transforme plusieurs données en une information plus facile à
+                comparer.</p>
+            <ol>
+                <li>Ajoutez une quatrième colonne nommée <strong>Foin par cheval (kg)</strong>.</li>
+                <!-- PROF Cette colonne correspond à un indicateur calculé, contrairement aux trois premières qui contiennent des données directement saisies. -->
+                <li>Dans la première ligne de données, calculez la quantité de foin par cheval avec une formule.</li>
+                <!-- PROF Si B2 contient 20 et C2 contient 180, formule attendue en D2 : =C2/B2. Résultat : 9. Plusieurs emplacements de colonnes sont possibles si l'élève a organisé le tableau différemment. -->
+                <li>Recopiez la formule jusqu'au dimanche.</li>
+                <!-- PROF Faire utiliser la poignée de recopie plutôt que ressaisir sept formules. Expliquer que la référence relative s'adapte automatiquement : C2/B2 devient C3/B3, etc. -->
+                <li>Affichez les résultats avec <strong>2 décimales maximum</strong>.</li>
+                <!-- PROF Rappeler qu'une précision excessive n'apporte rien ici. L'affichage doit rester lisible. -->
+            </ol>
+            <div class="attendu">
+                <strong>ATTENDU</strong>
+                <p>Vous devez obtenir une valeur exprimant le nombre de kilogrammes de foin distribués par cheval et par
+                    jour.</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN</strong>
+                <p>Quantité par cheval = quantité totale distribuée ÷ nombre de chevaux.</p>
+            </div>
+            <h3>5. Résumer une semaine avec quelques nombres</h3>
+            <p><strong>Pourquoi ?</strong> Maintenant que les journées sont comparables, nous pouvons résumer la semaine
+                sans devoir relire toutes les lignes du tableau.</p>
+            <!-- PROF Expliquer la transition :
+    « Nous avions sept valeurs. Pour décider rapidement, un responsable a souvent besoin de quelques indicateurs de synthèse. » -->
+            <p>Sous votre tableau, calculez :</p>
+            <ol>
+                <li>la <strong>consommation moyenne par cheval</strong> sur la semaine ;</li>
+                <!-- PROF Formule attendue : =MOYENNE(D2:D8), selon l'emplacement réel. Avec les données proposées, environ 9,24 kg/cheval/jour. -->
+                <li>la <strong>valeur minimale</strong> ;</li><!-- PROF =MIN(D2:D8). Avec les données : 8,80 kg. -->
+                <li>la <strong>valeur maximale</strong>.</li><!-- PROF =MAX(D2:D8). Avec les données : 10,25 kg. -->
+            </ol>
+            <div class="aide">
+                <strong>AIDE SI BESOIN</strong>
+                <p>Les fonctions utiles sont <strong>MOYENNE</strong>, <strong>MIN</strong> et <strong>MAX</strong>.</p>
+            </div>
+            <p>À quoi servent ces trois valeurs ?</p>
+            <textarea rows="3" placeholder="Expliquez avec vos propres mots..."></textarea>
+            <!-- PROF Réponse possible :
+    La moyenne donne une valeur représentative pour prévoir la consommation.
+    Le minimum et le maximum indiquent l'étendue des consommations observées et permettent de repérer les journées plus faibles ou plus fortes.
+    Accepter toute formulation correcte. -->
+            <h3>6. Prendre une décision</h3>
+            <p><strong>Pourquoi cet exercice ?</strong> Le tableur n'est pas utilisé uniquement pour faire des calculs.
+                Les résultats doivent servir à répondre à la question professionnelle de départ.</p>
+            <!-- PROF C'est le cœur de la compétence C1.2 : traiter puis représenter/interpréter des données afin d'aider à la prise de décision. -->
+            <p>Lundi prochain, l'écurie accueillera de nouveau <strong>20 chevaux</strong>.</p>
+            <ol>
+                <li>À partir de votre consommation moyenne, estimez la quantité de foin à prévoir pour une journée.</li>
+                <!-- PROF Avec environ 9,24 kg/cheval/jour : 9,24 × 20 ≈ 184,8 kg, donc environ 185 kg. Accepter une valeur légèrement différente selon les arrondis. -->
+                <li>Estimez la quantité nécessaire pour <strong>7 jours</strong>.</li>
+                <!-- PROF ≈ 1 294 kg, soit environ 1,3 tonne. -->
+                <li>Le responsable dispose de <strong>900 kg</strong> de foin. Ce stock semble-t-il suffisant pour une
+                    semaine ?</li><!-- PROF Non. Manque approximatif de 394 kg. -->
+                <li>Rédigez une recommandation courte au responsable.</li>
+                <!-- PROF Exemple : « Avec une consommation moyenne d'environ 9,24 kg par cheval et par jour, 20 chevaux consommeraient environ 1,3 t de foin sur une semaine. Le stock actuel de 900 kg est insuffisant ; il faudrait prévoir environ 400 kg supplémentaires. » Ne pas exiger cette formulation exacte. -->
+            </ol>
+            <textarea rows="4" placeholder="Votre recommandation au responsable..."></textarea>
+            <div class="vigilance">
+                <strong>VIGILANCE</strong>
+                <p>Une estimation n'est pas une certitude. Les besoins réels peuvent varier selon les chevaux, leur
+                    activité, leur ration, la qualité du fourrage ou les conditions de conduite.</p>
+            </div>
+            <!-- PROF Important : éviter de faire croire que le calcul constitue une ration recommandée.
+    Nous exploitons ici des données observées dans un cas pédagogique.
+    L'objectif TIM est le traitement et l'interprétation des données, pas la prescription alimentaire. -->
+            <h3>7. Ce qu'il faut retenir</h3>
+            <div class="retenir">
+                <p><strong>Donnée brute → organisation → calcul → indicateur → interprétation → décision.</strong></p>
+                <p>Un chiffre n'a de sens que s'il est replacé dans son contexte.</p>
+                <p>Un bon indicateur permet de comparer des situations et d'aider à prendre une décision.</p>
+            </div>
+            <!-- PROF Faire verbaliser une dernière fois :
+    « Pourquoi n'avons-nous finalement pas simplement comparé les kilogrammes distribués chaque jour ? »
+    Réponse : parce que le nombre de chevaux variait. La quantité par cheval est un indicateur plus pertinent. -->
+            <h3>8. Fin de séance</h3>
+            <p>Vérifiez que votre fichier contient :</p>
+            <ul>
+                <li>le tableau correctement structuré ;</li>
+                <li>la colonne « Foin par cheval » calculée avec une formule ;</li>
+                <li>la moyenne, le minimum et le maximum ;</li>
+                <li>votre estimation pour les 7 prochains jours ;</li>
+                <li>votre recommandation finale.</li>
+            </ul>
+            <p>Enregistrez une dernière fois votre fichier sous :</p>
+            <p><strong>Term_TIM_S01_NOM_Prenom.ods</strong></p>
+            <!-- PROF Évaluation de séance possible selon le fonctionnement habituel :
+    - fichier correctement créé et nommé ;
+    - données organisées ;
+    - formules réellement utilisées et non résultats saisis manuellement ;
+    - compréhension de la différence quantité totale / quantité par cheval ;
+    - interprétation et recommandation cohérentes ;
+    - implication et progression pendant la séance.
+    Ne pas transformer cette séance en contrôle de fonctions Calc. -->
+        </section>
+        <section id="session2" class="content-section">
+            <h2>Séance 2 — Peut-on faire confiance aux données d'une écurie ?</h2>
+            <!-- PROF — DURÉE : 60 minutes.
+    Répartition conseillée :
+    1. Situation professionnelle et fichier : 8 min.
+    2. Recherche des anomalies : 10 min.
+    3. Vérification et correction : 15 min.
+    4. Calcul et comparaison : 15 min.
+    5. Décision et bilan : 12 min.
+    RÉFÉRENTIEL : Bac Pro CGEH, MG1, capacité C1.2.
+    Objectif : mettre en qualité des données professionnelles.
+    CONTINUITÉ : En S01, les élèves ont calculé des indicateurs de consommation de foin.
+    En S02, ils découvrent qu'un indicateur calculé à partir de mauvaises données
+    risque de conduire à une mauvaise décision.
+    Ne pas commencer par expliquer toutes les erreurs.
+    Les élèves doivent d'abord les découvrir. -->
+            <div class="objectifs">
+                <h3>Ce que vous allez apprendre</h3>
+                <p>Aujourd'hui, nous allons travailler sur la <strong>qualité des données</strong>.</p>
+                <p>Une donnée peut être absente, mal écrite, enregistrée deux fois ou simplement fausse.</p>
+                <p><strong>Nettoyer des données</strong> consiste à identifier ces problèmes, à vérifier les
+                    informations et à préparer un tableau fiable pour pouvoir l'utiliser.</p>
+                <!-- PROF — FORMULATION ORALE :
+        « Lors de la séance précédente, nous avons utilisé des données pour calculer la consommation de foin.
+        Mais nous avons supposé que toutes ces données étaient correctes.
+        Aujourd'hui, nous allons vérifier ce qui se passe quand ce n'est pas le cas. »
+        Exemple concret : une quantité saisie à 2050 kg au lieu de 205 kg
+        modifie fortement le total et la moyenne. -->
+                <h3>À quoi cela va-t-il servir ?</h3>
+                <p>Dans une entreprise hippique, des données incorrectes peuvent entraîner :</p>
+                <ul>
+                    <li>une commande de foin trop importante ou insuffisante ;</li>
+                    <li>un mauvais suivi des dépenses ;</li>
+                    <li>des erreurs dans les stocks ;</li>
+                    <li>des décisions reposant sur des informations trompeuses.</li>
+                </ul>
+                <!-- PROF Faire comprendre qu'une erreur de saisie ne reste pas
+        forcément limitée à une cellule : elle peut modifier les résultats
+        de plusieurs calculs et donc les décisions prises ensuite. -->
+                <h3>Ce que vous allez apprendre à faire</h3>
+                <ul>
+                    <li>repérer des valeurs inhabituelles dans un tableau ;</li>
+                    <li>reconnaître une donnée manquante, un doublon et une erreur de format ;</li>
+                    <li>vérifier une donnée avant de la modifier ;</li>
+                    <li>corriger les erreurs avec LibreOffice Calc ;</li>
+                    <li>comparer des résultats avant et après nettoyage.</li>
+                </ul>
+            </div>
+            <h3>1. Mission professionnelle : un stock de foin inquiétant</h3>
+            <p>Vous travaillez dans une écurie accueillant habituellement 20 chevaux.</p>
+            <p>Le responsable vous transmet un tableau de suivi des quantités de foin distribuées pendant une semaine.
+            </p>
+            <p>Il souhaite connaître la consommation totale pour préparer sa prochaine commande.</p>
+            <div class="mission">
+                <p><strong>Votre mission :</strong> vérifier si les données sont fiables, corriger les erreurs
+                    justifiées, puis calculer la quantité réelle de foin distribuée.</p>
+            </div>
+            <!-- PROF — 2 minutes.
+    Demander oralement :
+    « Que feriez-vous si votre responsable vous donnait un tableau contenant une quantité manifestement étrange ? »
+    Réponses possibles : vérifier, rechercher le relevé original, demander confirmation.
+    Insister sur un point : on ne remplace pas automatiquement
+    une valeur par celle qui nous paraît la plus logique. -->
+            <h3>2. Créer le fichier de travail</h3>
+            <p><strong>Pourquoi ?</strong> Pour étudier les erreurs, il nous faut d'abord un tableau de données à
+                analyser.</p>
+            <!-- PROF — 6 minutes.
+    Cette première activité sert à construire le support de travail.
+    Les élèves doivent enregistrer le fichier avant toute manipulation.
+    Le tableau contient volontairement quatre problèmes différents. -->
+            <ol>
+                <li>Ouvrez <strong>LibreOffice Calc</strong>.</li>
+                <!-- PROF Vérifier que les élèves disposent bien d'un classeur Calc. -->
+                <li>Enregistrez le fichier sous le nom <strong>Term_TIM_S02_NOM_Prenom.ods</strong>.</li>
+                <!-- PROF Utiliser le dossier habituel de travail. Rappeler Ctrl+S. -->
+                <li>En A1, écrivez <strong>Jour</strong>.</li><!-- PROF Colonne A : identification du jour. -->
+                <li>En B1, écrivez <strong>Nombre de chevaux</strong>.</li><!-- PROF Colonne B : effectif présent. -->
+                <li>En C1, écrivez <strong>Foin distribué (kg)</strong>.</li>
+                <!-- PROF Colonne C : quantité distribuée. L'unité est placée dans l'en-tête, pas dans les cellules numériques. -->
+                <li>Recopiez exactement les données ci-dessous, même si certaines vous semblent étranges.</li>
+                <!-- PROF Ne pas laisser corriger immédiatement. Nous avons besoin de conserver les données d'origine pour comparer les résultats. -->
+            </ol>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jour</th>
+                        <th>Nombre de chevaux</th>
+                        <th>Foin distribué (kg)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lundi</td>
+                        <td>20</td>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <td>Mardi</td>
+                        <td>20</td>
+                        <td>176 kg</td>
+                    </tr>
+                    <tr>
+                        <td>Mercredi</td>
+                        <td>20</td>
+                        <td>185</td>
+                    </tr>
+                    <tr>
+                        <td>Jeudi</td>
+                        <td>18</td>
+                        <td>164</td>
+                    </tr>
+                    <tr>
+                        <td>Vendredi</td>
+                        <td>18</td>
+                        <td>Cellule vide</td>
+                    </tr>
+                    <tr>
+                        <td>Samedi</td>
+                        <td>20</td>
+                        <td>2050</td>
+                    </tr>
+                    <tr>
+                        <td>Dimanche</td>
+                        <td>20</td>
+                        <td>182</td>
+                    </tr>
+                    <tr>
+                        <td>Mardi</td>
+                        <td>20</td>
+                        <td>176</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Pour le vendredi, laissez réellement la cellule vide.</p>
+            <!-- PROF — STRUCTURE ATTENDUE :
+    A2:C9 : huit enregistrements.
+    Erreurs volontaires :
+    C3 = « 176 kg » : texte au lieu d'un nombre.
+    C6 = vide : donnée manquante.
+    C7 = 2050 : valeur erronée.
+    A9:C9 = doublon exact du mardi après normalisation.
+    ATTENTION : dans LibreOffice Calc, « 176 kg » peut être interprété
+    différemment selon les paramètres de saisie.
+    Vérifier sur le poste enseignant.
+    Le problème pédagogique porte sur la distinction entre une cellule
+    numérique exploitable et un texte contenant une quantité. -->
+            <h3>3. Enquête : quelles données semblent incorrectes ?</h3>
+            <p><strong>Pourquoi cet exercice ?</strong> Avant de corriger un tableau, il faut apprendre à identifier les
+                différentes anomalies.</p>
+            <p>Nous ne cherchons pas encore à réparer le tableau. Nous cherchons à comprendre les problèmes.</p>
+            <!-- PROF — 10 minutes.
+    Faire travailler les élèves en autonomie.
+    Ne pas leur donner directement le nombre ou l'emplacement des erreurs.
+    Il est intéressant d'observer si certains remarquent
+    l'erreur de format, tandis que d'autres repèrent surtout 2050. -->
+            <ol>
+                <li>Observez les données. Quelles lignes vous semblent problématiques ?</li><!-- PROF CORRECTION :
+        Mardi ligne 3 : unité intégrée à la valeur.
+        Vendredi ligne 6 : donnée absente.
+        Samedi ligne 7 : valeur anormalement élevée.
+        Mardi ligne 9 : deuxième enregistrement du même jour.
+        VIGILANCE : le samedi à 2050 kg est suspect, mais pas encore
+        prouvé faux à cette étape. -->
+                <li>Pourquoi la quantité du samedi paraît-elle inhabituelle ?</li><!-- PROF CORRECTION :
+        Les autres journées sont comprises entre 164 et 185 kg
+        pour les valeurs numériques visibles.
+        La quantité de 2050 kg est environ dix fois supérieure.
+        Faire expliquer que la comparaison est un signal d'alerte,
+        pas une preuve permettant d'inventer une correction. -->
+                <li>Quel problème pose la cellule du vendredi ?</li><!-- PROF CORRECTION :
+        La quantité n'est pas renseignée.
+        Cela ne signifie pas que les chevaux n'ont rien reçu.
+        Une cellule vide représente une information inconnue.
+        Ne jamais transformer automatiquement un manque en zéro. -->
+                <li>Quel problème pourrait poser l'écriture « 176 kg » dans un calcul ?</li><!-- PROF CORRECTION :
+        Si Calc considère « 176 kg » comme du texte, certaines fonctions
+        ne le prennent pas en compte.
+        Distinguer la valeur numérique 176 et son unité kg.
+        L'unité doit être documentée dans l'en-tête ou via un format adapté. -->
+                <li>Pourquoi faut-il vérifier la dernière ligne ?</li><!-- PROF CORRECTION :
+        Mardi apparaît deux fois avec le même nombre de chevaux
+        et la même quantité.
+        Il s'agit ici d'un doublon de saisie.
+        Dans un autre contexte, deux enregistrements d'un même jour
+        pourraient représenter deux distributions distinctes :
+        il faudrait donc vérifier avant de supprimer. -->
+            </ol>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 1</strong>
+                <p>Comparez les valeurs, cherchez les cases vides et vérifiez si un jour apparaît plusieurs fois.</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 2</strong>
+                <p>Un problème peut concerner la valeur elle-même, son écriture ou sa présence dans le tableau.</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 3</strong>
+                <p>Examinez précisément les deux mardis, le vendredi, le samedi et la manière d'écrire la quantité du
+                    premier mardi.</p>
+            </div>
+            <h3>4. Nettoyer les données sans inventer</h3>
+            <p><strong>Pourquoi changeons-nous d'activité ?</strong> Vous avez repéré des anomalies. Il faut maintenant
+                vérifier les informations avant de les corriger.</p>
+            <p>Une valeur inhabituelle n'est pas forcément fausse. Un professionnel doit rechercher une source fiable
+                avant toute modification.</p>
+            <!-- PROF — 15 minutes.
+    TRANSITION ORALE :
+    « Vous avez découvert plusieurs problèmes. Mais si je remplace
+    simplement 2050 par 200 parce que cela paraît plus raisonnable,
+    est-ce que j'ai réellement corrigé le tableau ?
+    Non, j'ai inventé une valeur.
+    Il faut donc retrouver l'information originale. » -->
+            <p>Le responsable retrouve son carnet de distribution original :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Information vérifiée</th>
+                        <th>Relevé original</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Quantité de vendredi</td>
+                        <td>170 kg</td>
+                    </tr>
+                    <tr>
+                        <td>Quantité de samedi</td>
+                        <td>205 kg</td>
+                    </tr>
+                    <tr>
+                        <td>Premier mardi</td>
+                        <td>176 kg</td>
+                    </tr>
+                    <tr>
+                        <td>Deuxième mardi</td>
+                        <td>Copie accidentelle du premier</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- PROF Source simulée pour l'exercice.
+    Les données sont fictives et ne constituent pas un relevé réel d'exploitation.
+    Elles permettent d'apprendre à vérifier une saisie à partir
+    d'une source considérée comme fiable dans cette situation. -->
+            <ol>
+                <li>Renommez l'onglet actuel <strong>Donnees_brutes</strong>.</li><!-- PROF MÉTHODE :
+        Double-cliquer sur l'onglet Feuille1 en bas de Calc.
+        Saisir Donnees_brutes puis valider.
+        Cette feuille conservera les erreurs initiales pour comparaison. -->
+                <li>Faites un clic droit sur cet onglet, choisissez <strong>Déplacer ou copier la feuille</strong>,
+                    cochez <strong>Copier</strong>, puis validez.</li><!-- PROF Vérifier que la case Copier est bien cochée.
+        Une autre méthode acceptable est de créer une deuxième feuille
+        puis de copier A1:C9.
+        Le résultat attendu est de posséder deux versions indépendantes. -->
+                <li>Renommez la nouvelle feuille <strong>Donnees_nettoyees</strong>.</li><!-- PROF Montrer la différence entre données d'origine
+        et données de travail. Cela permet de retrouver la source
+        en cas d'erreur de manipulation. -->
+                <li>Sur la feuille nettoyée, remplacez <strong>176 kg</strong> par <strong>176</strong>.</li><!-- PROF C3 doit contenir le nombre 176.
+        Montrer que l'unité est déjà précisée en C1.
+        Demander à l'élève de vérifier que Calc reconnaît bien un nombre. -->
+                <li>Complétez la quantité du vendredi en utilisant le carnet original.</li><!-- PROF C6 = 170.
+        Demander : « Pourquoi met-on 170 et pas 0 ? »
+        Réponse : 170 est confirmé par le document source ;
+        0 aurait signifié une distribution nulle, ce qui est faux ici. -->
+                <li>Corrigez la quantité du samedi.</li><!-- PROF C7 = 205.
+        Faire remarquer qu'il ne suffisait pas de retirer arbitrairement
+        un zéro : la correction doit provenir du carnet. -->
+                <li>Supprimez la ligne correspondant au mardi ajouté une deuxième fois.</li><!-- PROF Sélectionner le numéro de ligne 9,
+        puis clic droit > Supprimer des lignes.
+        Vérifier que la ligne entière disparaît et non uniquement
+        le contenu d'une cellule.
+        La feuille doit maintenant contenir les sept jours, lignes 2 à 8. -->
+                <li>Enregistrez votre travail avec <strong>Ctrl + S</strong>.</li><!-- PROF Contrôler les deux feuilles.
+        L'élève ne doit pas avoir modifié Donnees_brutes.
+        Il doit pouvoir expliquer au moins une correction. -->
+            </ol>
+            <div class="attendu">
+                <strong>ATTENDU</strong>
+                <p>Votre fichier contient deux feuilles :</p>
+                <ul>
+                    <li><strong>Donnees_brutes</strong> : les données initiales, avec leurs erreurs ;</li>
+                    <li><strong>Donnees_nettoyees</strong> : sept journées et des valeurs vérifiées, exploitables dans
+                        Calc.</li>
+                </ul>
+            </div>
+            <div class="vigilance">
+                <strong>VIGILANCE</strong>
+                <p>Ne corrigez jamais une donnée uniquement parce qu'elle vous semble étrange. Cherchez d'abord une
+                    preuve ou une source fiable.</p>
+            </div>
+            <h3>5. Mesurer les conséquences d'un mauvais tableau</h3>
+            <p><strong>Pourquoi ce nouvel exercice ?</strong> Jusqu'à présent, vous avez nettoyé les données. Nous
+                allons maintenant vérifier si ce nettoyage change réellement les résultats.</p>
+            <!-- PROF — 15 minutes.
+    TRANSITION :
+    « Nous avons passé du temps à corriger quatre problèmes.
+    Est-ce que cela change vraiment quelque chose pour le responsable ?
+    Nous allons comparer les calculs pour le vérifier. »
+    Objectif : introduire la comparaison avant/après.
+    Aucune nouvelle fonction complexe n'est nécessaire.
+    On réutilise SOMME, déjà accessible à ce niveau. -->
+            <h4>5.1. Calculer le total des données brutes</h4>
+            <ol>
+                <li>Retournez sur la feuille <strong>Donnees_brutes</strong>.</li>
+                <!-- PROF S'assurer que les élèves travaillent bien sur la feuille contenant les erreurs. -->
+                <li>En A11, écrivez <strong>Total brut</strong>.</li>
+                <!-- PROF Laisser une ligne vide entre le tableau et les indicateurs. -->
+                <li>En C11, saisissez la formule <strong>=SOMME(C2:C9)</strong>.</li><!-- PROF CORRECTION :
+        Résultat généralement obtenu : 2761 kg.
+        Calcul : 180 + 185 + 164 + 2050 + 182 + 176 = 2937 kg.
+        ATTENTION : résultat correct = 2937 kg.
+        Le mardi en texte est ignoré par SOMME lorsque Calc le traite
+        effectivement comme du texte, et le second mardi est compté.
+        Si le logiciel interprète « 176 kg » autrement, contrôler
+        le type réel de C3 et expliquer l'écart observé.
+        On attend donc 2937 kg dans le cas où C3 est du texte. -->
+                <li>Notez ce résultat dans une cellule libre ou sur votre espace de réponse.</li>
+                <!-- PROF Ce total servira de référence pour mesurer l'écart. -->
+            </ol>
+            <h4>5.2. Calculer le total des données nettoyées</h4>
+            <p>Nous utilisons maintenant la feuille corrigée pour refaire exactement le même calcul.</p>
+            <ol>
+                <li>Ouvrez la feuille <strong>Donnees_nettoyees</strong>.</li>
+                <!-- PROF Vérifier qu'il ne reste que sept journées. -->
+                <li>En A10, écrivez <strong>Total vérifié</strong>.</li>
+                <!-- PROF Le tableau propre se termine en ligne 8. -->
+                <li>En C10, saisissez <strong>=SOMME(C2:C8)</strong>.</li><!-- PROF CORRECTION :
+        180 + 176 + 185 + 164 + 170 + 205 + 182 = 1262 kg.
+        Le résultat doit être 1262. -->
+                <li>En A11, écrivez <strong>Écart constaté</strong>.</li>
+                <!-- PROF Cet indicateur mesure la différence entre les deux résultats. -->
+                <li>En C11, saisissez <strong>=Donnees_brutes.C11-C10</strong>.</li><!-- PROF CORRECTION :
+        2937 - 1262 = 1675 kg d'écart si C3 est du texte.
+        Syntaxe Calc : =Donnees_brutes.C11-C10.
+        On peut aussi sélectionner la cellule C11 de la feuille brute
+        pendant la création de la formule pour éviter une erreur de référence. -->
+            </ol>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 1</strong>
+                <p>La fonction <strong>SOMME</strong> additionne les valeurs numériques d'une plage de cellules.</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 2</strong>
+                <p>Une plage comme <strong>C2:C8</strong> contient toutes les cellules de C2 à C8.</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 3</strong>
+                <p>Pour calculer une différence entre deux feuilles, cliquez sur la première valeur pendant la saisie de
+                    la formule, tapez le signe moins, puis cliquez sur la seconde valeur.</p>
+            </div>
+            <h4>5.3. Comprendre les résultats</h4>
+            <p>Nous avons maintenant deux résultats différents pour une même semaine. Il faut comprendre ce que cela
+                signifie.</p>
+            <ol>
+                <li>Quel total est le plus fiable : celui du premier tableau ou celui du tableau nettoyé ? Pourquoi ?
+                </li><!-- PROF CORRECTION :
+        Le total nettoyé, 1262 kg, car toutes les valeurs ont été
+        vérifiées à partir du carnet et le doublon a été retiré.
+        Valoriser la justification plutôt que le seul résultat. -->
+                <li>Que risquerait le responsable en commandant du foin à partir du premier résultat ?</li><!-- PROF CORRECTION :
+        Il pourrait surestimer fortement les besoins et immobiliser
+        inutilement de l'argent dans un stock trop important.
+        On peut aussi parler de capacité de stockage et de gestion des achats. -->
+                <li>Le tableur a-t-il commis une erreur en calculant le premier total ?</li><!-- PROF CORRECTION ESSENTIELLE :
+        Non. Le logiciel additionne les valeurs numériques présentes.
+        Il ne sait pas que 2050 est une erreur de saisie ou que
+        le mardi a été copié accidentellement.
+        Formulation orale :
+        « Un ordinateur peut calculer correctement avec de mauvaises
+        données et nous donner un résultat parfaitement faux
+        du point de vue professionnel. » -->
+            </ol>
+            <div class="retenir">
+                <p><strong>Un calcul exact ne garantit pas une information fiable.</strong></p>
+                <p>Il faut vérifier la qualité des données avant d'interpréter les résultats.</p>
+            </div>
+            <h3>6. Rédiger une recommandation professionnelle</h3>
+            <p><strong>Pourquoi terminons-nous ainsi ?</strong> Le but du TIM n'est pas seulement de manipuler un
+                logiciel. Il faut savoir communiquer une information fiable et utile à son responsable.</p>
+            <!-- PROF — 8 minutes.
+    C'est une première activité de communication professionnelle
+    qui prépare les futures séances consacrées aux tableaux de bord.
+    On attend une réponse courte, compréhensible et argumentée. -->
+            <p>Le responsable vous demande :</p>
+            <div class="mission">
+                <p><strong>« Quelle quantité de foin avons-nous réellement distribuée cette semaine, et pourquoi
+                        avez-vous modifié mon tableau ? »</strong></p>
+            </div>
+            <p>Rédigez un court message de <strong>3 à 5 phrases</strong> dans une cellule de votre feuille nettoyée, ou
+                dans l'espace de réponse prévu sur le site.</p>
+            <p>Vous devez préciser :</p>
+            <ul>
+                <li>la quantité totale vérifiée ;</li>
+                <li>au moins deux erreurs découvertes ;</li>
+                <li>pourquoi le nouveau tableau est plus fiable ;</li>
+                <li>une précaution à prendre pour les prochains relevés.</li>
+            </ul>
+            <!-- PROF EXEMPLE DE CORRECTION :
+    « Après vérification, l'écurie a distribué 1262 kg de foin
+    pendant la semaine.
+    Le tableau initial contenait notamment une erreur de saisie
+    le samedi, une valeur manquante le vendredi et un mardi en double.
+    Les corrections ont été faites à partir du carnet original.
+    Pour éviter ces problèmes, il faudrait contrôler les saisies
+    et utiliser systématiquement le même format numérique. »
+    Autres réponses acceptées si elles sont cohérentes.
+    Ne pas pénaliser une formulation différente tant que
+    les informations essentielles sont présentes. -->
+            <h3>7. À retenir</h3>
+            <div class="retenir">
+                <p><strong>Nettoyer des données</strong> signifie les contrôler, vérifier les anomalies et corriger les
+                    erreurs confirmées avant de les utiliser.</p>
+                <p>Les problèmes les plus fréquents sont :</p>
+                <ul>
+                    <li>les <strong>valeurs manquantes</strong> ;</li>
+                    <li>les <strong>doublons</strong> ;</li>
+                    <li>les <strong>erreurs de saisie</strong> ;</li>
+                    <li>les <strong>formats incompatibles</strong>.</li>
+                </ul>
+                <p><strong>Données fiables → calculs exploitables → décisions mieux justifiées.</strong></p>
+            </div>
+            <!-- PROF — 2 minutes.
+    Question finale orale :
+    « Est-ce que le problème venait du logiciel ou des données ? »
+    Réponse : des données.
+    Préparer la séance suivante :
+    nous savons maintenant construire et nettoyer un petit tableau ;
+    nous apprendrons à exploiter un tableau comportant davantage
+    de lignes grâce aux tris et aux filtres. -->
+            <h3>8. Fin de séance — Travail à rendre</h3>
+            <p>Avant de terminer, vérifiez que votre fichier contient :</p>
+            <ul>
+                <li>une feuille Donnees_brutes conservée intacte ;</li>
+                <li>une feuille Donnees_nettoyees avec les sept jours corrects ;</li>
+                <li>le total brut et le total vérifié ;</li>
+                <li>l'écart entre les deux résultats ;</li>
+                <li>votre recommandation professionnelle.</li>
+            </ul>
+            <p>Enregistrez votre fichier :</p>
+            <p><strong>Term_TIM_S02_NOM_Prenom.ods</strong></p>
+            <!-- PROF — ÉVALUATION DU RENDU :
+    Privilégier l'implication, la progression et la méthode.
+    Observer :
+    - la capacité à identifier des anomalies ;
+    - la vérification des sources avant correction ;
+    - la maîtrise des manipulations dans Calc ;
+    - l'utilisation de formules ;
+    - la capacité à expliquer le résultat.
+    Une erreur de calcul corrigée pendant la séance
+    doit être valorisée comme une progression.
+    MATÉRIEL : ordinateur avec LibreOffice Calc.
+    Aucun équipement supplémentaire et aucun fichier externe requis.
+    SECOURS : si Calc est indisponible, réaliser les calculs et corrections
+    sur papier à partir des tableaux présents dans le cours,
+    puis reporter le travail sur ordinateur ultérieurement. -->
+        </section>
+        <section id="session3" class="content-section">
+            <h2>Séance 3 — Retrouver les informations utiles dans les dépenses d'une écurie</h2>
+            <!-- PROF — DURÉE : 60 minutes.
+    CLASSE : Terminale Bac Pro CGEH.
+    DISCIPLINE : TIM.
+    RÉFÉRENTIEL : MG1, capacité C1.2.
+    OBJECTIF : exploiter des données organisées à l'aide des outils de tri et de filtrage.
+    CONTINUITÉ :
+    S01 : organiser des données et calculer des indicateurs.
+    S02 : identifier, vérifier et corriger des données problématiques.
+    S03 : sélectionner et organiser les données utiles à une décision.
+    DURÉES :
+    1. Situation professionnelle : 5 min.
+    2. Création du registre : 12 min.
+    3. Tri des dépenses : 10 min.
+    4. Filtrage des dépenses : 12 min.
+    5. Recherche multicritère : 10 min.
+    6. Recommandation et rendu : 11 min.
+    MATÉRIEL : ordinateur avec LibreOffice Calc.
+    Aucun fichier supplémentaire à distribuer.
+    Toutes les données sont intégrées à la séance.
+    Jeu de données fictif à vocation pédagogique. -->
+            <div class="objectifs">
+                <h3>Ce que vous allez apprendre</h3>
+                <p>Aujourd'hui, nous allons apprendre à <strong>trier et filtrer des données</strong> dans un tableur.
+                </p>
+                <p><strong>Trier</strong> consiste à ranger des informations dans un ordre précis : du plus petit au
+                    plus grand, du plus récent au plus ancien, ou par ordre alphabétique.</p>
+                <p><strong>Filtrer</strong> consiste à afficher uniquement les lignes correspondant à un ou plusieurs
+                    critères, sans supprimer les autres données.</p>
+                <!-- PROF — EXPLICATION ORALE :
+        « Vous connaissez déjà le principe du classement.
+        Dans un répertoire téléphonique, les noms sont classés
+        par ordre alphabétique : c'est un tri.
+        Si vous recherchez seulement les contacts d'une entreprise,
+        vous sélectionnez une partie de la liste : c'est un filtre.
+        Aujourd'hui, nous allons appliquer ces principes
+        à la gestion des dépenses d'une écurie. » -->
+                <h3>À quoi cela va-t-il servir ?</h3>
+                <p>Dans une entreprise hippique, cela permet notamment de :</p>
+                <ul>
+                    <li>identifier rapidement les dépenses les plus importantes ;</li>
+                    <li>retrouver les achats liés à une activité ;</li>
+                    <li>comparer plusieurs catégories de dépenses ;</li>
+                    <li>préparer un bilan ou un budget ;</li>
+                    <li>justifier une décision à partir de données précises.</li>
+                </ul>
+                <!-- PROF — LIEN PROFESSIONNEL :
+        Un responsable d'écurie peut disposer de centaines de factures.
+        Il ne peut pas raisonnablement les relire une par une
+        chaque fois qu'il recherche une information.
+        Le tableur doit lui permettre de retrouver rapidement
+        les lignes utiles à sa question. -->
+                <h3>Ce que vous allez apprendre à faire</h3>
+                <ul>
+                    <li>créer un registre d'achats structuré ;</li>
+                    <li>trier les dépenses par montant ;</li>
+                    <li>filtrer les achats par catégorie ;</li>
+                    <li>combiner plusieurs critères ;</li>
+                    <li>extraire les informations nécessaires à une décision.</li>
+                </ul>
+            </div>
+            <h3>1. Mission professionnelle : où passe l'argent de l'écurie ?</h3>
+            <p>Vous travaillez dans une écurie de 20 chevaux.</p>
+            <p>Le responsable souhaite mieux comprendre les dépenses réalisées pendant le mois de septembre.</p>
+            <p>Il vous transmet un registre regroupant les achats de l'entreprise.</p>
+            <div class="mission">
+                <p><strong>Votre mission :</strong> identifier les dépenses les plus importantes, retrouver celles
+                    concernant l'entretien et préparer une recommandation au responsable.</p>
+            </div>
+            <p>Avant de commencer, réfléchissez à la question suivante :</p>
+            <ol>
+                <li>Si une entreprise possède plusieurs centaines de factures, pourquoi serait-il difficile de retrouver
+                    une dépense en les lisant une par une ?</li><!-- PROF — CORRECTION :
+        Cela prendrait beaucoup de temps.
+        On pourrait oublier certaines factures ou commettre des erreurs.
+        Une liste structurée, associée à des outils de recherche,
+        facilite le travail.
+        Ne pas exiger une réponse écrite longue.
+        Une réponse orale ou une phrase courte suffit.
+        Faire émerger le besoin avant de présenter les outils. -->
+            </ol>
+            <h3>2. Construire le registre des dépenses</h3>
+            <p><strong>Pourquoi cet exercice ?</strong> Pour rechercher efficacement des informations, elles doivent
+                être correctement organisées dans un tableau.</p>
+            <p>Comme lors des séances précédentes, nous commençons par créer un fichier professionnel.</p>
+            <!-- PROF — 12 minutes.
+    TRANSITION ORALE :
+    « Pour retrouver rapidement une information, il faut
+    commencer par ranger correctement les données.
+    C'est exactement ce que nous allons faire avant de découvrir
+    les outils de recherche. »
+    Ne pas donner immédiatement la manipulation du tri.
+    Les élèves doivent d'abord disposer d'un tableau structuré. -->
+            <ol>
+                <li>Ouvrez <strong>LibreOffice Calc</strong>.</li>
+                <!-- PROF Vérifier que tous les élèves ouvrent Calc. -->
+                <li>Enregistrez immédiatement votre fichier sous le nom <strong>Term_TIM_S03_NOM_Prenom.ods</strong>.
+                </li><!-- PROF Utiliser le dossier habituel.
+        Rappeler Ctrl+S et le principe d'enregistrement régulier. -->
+                <li>Renommez la première feuille <strong>Depenses</strong>.</li>
+                <!-- PROF Double-clic sur l'onglet de la feuille, saisir Depenses, valider. -->
+                <li>Créez les colonnes suivantes : <strong>Date, Catégorie, Désignation, Quantité, Prix unitaire (€),
+                        Montant total (€)</strong>.</li><!-- PROF Colonnes A à F.
+        Préciser que chaque ligne doit correspondre à un achat.
+        Chaque colonne doit contenir un seul type d'information.
+        Ne pas fusionner les cellules.
+        Ne pas insérer de ligne vide dans le registre. -->
+                <li>Recopiez les données du tableau ci-dessous dans les cinq premières colonnes.</li><!-- PROF Pour gagner du temps, les élèves peuvent sélectionner
+        les données du tableau HTML et les coller dans Calc,
+        puis vérifier la répartition des colonnes.
+        La saisie manuelle reste possible.
+        L'enjeu n'est pas la vitesse de frappe mais la structure
+        et l'exploitation du tableau. -->
+            </ol>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Catégorie</th>
+                        <th>Désignation</th>
+                        <th>Quantité</th>
+                        <th>Prix unitaire (€)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>02/09/2026</td>
+                        <td>Alimentation</td>
+                        <td>Granulés</td>
+                        <td>20</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td>03/09/2026</td>
+                        <td>Litière</td>
+                        <td>Copeaux</td>
+                        <td>30</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>04/09/2026</td>
+                        <td>Entretien</td>
+                        <td>Fourche</td>
+                        <td>3</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>05/09/2026</td>
+                        <td>Foin</td>
+                        <td>Bottes de foin</td>
+                        <td>40</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>08/09/2026</td>
+                        <td>Entretien</td>
+                        <td>Balai</td>
+                        <td>4</td>
+                        <td>14</td>
+                    </tr>
+                    <tr>
+                        <td>10/09/2026</td>
+                        <td>Alimentation</td>
+                        <td>Complément minéral</td>
+                        <td>10</td>
+                        <td>32</td>
+                    </tr>
+                    <tr>
+                        <td>12/09/2026</td>
+                        <td>Litière</td>
+                        <td>Paille</td>
+                        <td>25</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>15/09/2026</td>
+                        <td>Entretien</td>
+                        <td>Réparation abreuvoir</td>
+                        <td>1</td>
+                        <td>185</td>
+                    </tr>
+                    <tr>
+                        <td>17/09/2026</td>
+                        <td>Foin</td>
+                        <td>Bottes de foin</td>
+                        <td>50</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>20/09/2026</td>
+                        <td>Entretien</td>
+                        <td>Produit désinfectant</td>
+                        <td>6</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>23/09/2026</td>
+                        <td>Alimentation</td>
+                        <td>Granulés</td>
+                        <td>25</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td>25/09/2026</td>
+                        <td>Litière</td>
+                        <td>Copeaux</td>
+                        <td>35</td>
+                        <td>12</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- PROF — DONNÉES :
+    12 achats fictifs, lignes 2 à 13.
+    Les unités ne sont pas précisées dans le tableau :
+    la quantité représente le nombre d'unités facturées.
+    Pour un registre réel, il faudrait ajouter une colonne
+    « Unité » (sac, botte, intervention, etc.).
+    Ici, la simplification permet de se concentrer sur le tri
+    et le filtrage.
+    Les dates doivent être reconnues comme de vraies dates
+    par Calc pour permettre un tri chronologique. -->
+            <h4>2.1. Calculer les montants des achats</h4>
+            <p><strong>Pourquoi ?</strong> Le prix unitaire ne correspond pas toujours à la dépense réelle. Il faut
+                tenir compte de la quantité achetée.</p>
+            <ol>
+                <li>Dans la cellule F2, écrivez la formule permettant de calculer le montant total du premier achat.
+                </li><!-- PROF — CORRECTION :
+        =D2*E2
+        20 × 18 = 360 €.
+        Expliquer que * est le signe de multiplication dans Calc.
+        Il faut utiliser les références des cellules, pas écrire =20*18. -->
+                <li>Recopiez cette formule jusqu'à la dernière ligne.</li><!-- PROF — MÉTHODE :
+        Cliquer sur F2.
+        Repérer le petit carré dans le coin inférieur droit.
+        Le faire glisser jusqu'à F13.
+        Les références sont relatives :
+        =D2*E2 devient =D3*E3, etc.
+        Vérifier que les résultats changent correctement. -->
+                <li>Affichez les montants au format monétaire, en euros.</li><!-- PROF — MÉTHODE :
+        Sélectionner F2:F13.
+        Utiliser le bouton de format monétaire de la barre d'outils,
+        ou Format > Cellules > Nombres > Monétaire.
+        Choisir l'euro.
+        VIGILANCE : ne pas taper manuellement le symbole €
+        dans la formule. -->
+                <li>Élargissez les colonnes si certains textes ou montants ne sont pas entièrement visibles.</li><!-- PROF Faire double-cliquer sur la bordure droite
+        de l'en-tête de colonne pour ajuster la largeur.
+        C'est un premier critère de qualité du document professionnel. -->
+            </ol>
+            <div class="attendu">
+                <strong>ATTENDU</strong>
+                <p>Votre tableau contient 12 achats, six colonnes et une formule calculant automatiquement chaque
+                    montant.</p>
+            </div>
+            <h3>3. Trier les dépenses : lesquelles coûtent le plus cher ?</h3>
+            <p>Le responsable vous demande maintenant d'identifier les achats les plus coûteux.</p>
+            <p><strong>Pourquoi changeons-nous de méthode ?</strong> Les dépenses sont actuellement rangées dans l'ordre
+                des dates. Cet ordre ne permet pas de voir immédiatement les montants les plus importants.</p>
+            <p>Nous allons donc utiliser un <strong>tri décroissant</strong>, qui classe les valeurs de la plus grande à
+                la plus petite.</p>
+            <!-- PROF — 10 minutes.
+    TRANSITION :
+    « Notre tableau fonctionne, mais pour trouver les plus grosses
+    dépenses, vous devez regarder les montants un à un.
+    Nous allons demander au logiciel de les classer pour nous.
+    C'est le principe du tri. »
+    Insister sur la conservation des relations entre les colonnes :
+    si on trie uniquement les montants, les achats
+    ne correspondront plus aux bonnes catégories. -->
+            <ol>
+                <li>Cliquez sur une cellule du tableau, puis sélectionnez la plage <strong>A1:F13</strong>.</li><!-- PROF Sélectionner le tableau entier, en-têtes compris.
+        Éviter de sélectionner uniquement F2:F13.
+        Un tri sur une seule colonne pourrait désorganiser
+        les relations entre les données. -->
+                <li>Ouvrez le menu <strong>Données &gt; Trier</strong>.</li><!-- PROF Dans la boîte de dialogue, vérifier l'option
+        signalant la présence des en-têtes de colonnes.
+        Le réglage peut apparaître dans l'onglet Options
+        selon la version de LibreOffice. -->
+                <li>Choisissez la colonne <strong>Montant total (€)</strong>.</li>
+                <!-- PROF Vérifier que le tri porte sur la colonne F. -->
+                <li>Choisissez l'ordre <strong>décroissant</strong>, puis validez.</li><!-- PROF La première ligne de données doit correspondre
+        à la dépense de 450 € (granulés du 23 septembre).
+        La deuxième est de 420 € (copeaux du 25 septembre).
+        La troisième est de 400 € (foin du 17 septembre). -->
+                <li>Vérifiez que chaque montant est toujours associé au bon achat.</li><!-- PROF Montrer qu'une ligne constitue un enregistrement.
+        Si seule la colonne F a bougé, le tableau est corrompu.
+        Faire annuler immédiatement avec Ctrl+Z, puis recommencer
+        en sélectionnant la plage entière. -->
+            </ol>
+            <p>Répondez aux questions suivantes dans votre fichier, sous votre tableau, en laissant au moins une ligne
+                vide.</p>
+            <ol>
+                <li>Quel est l'achat le plus coûteux ? Indiquez sa désignation et son montant.</li><!-- PROF — CORRECTION :
+        Granulés du 23 septembre, 25 × 18 = 450 €.
+        Attention : il s'agit de l'achat individuel le plus élevé,
+        pas nécessairement de la catégorie la plus coûteuse. -->
+                <li>Quels sont les trois achats les plus coûteux ?</li><!-- PROF — CORRECTION :
+        Granulés : 450 €.
+        Copeaux : 420 €.
+        Bottes de foin : 400 €.
+        Ils doivent figurer dans cet ordre après le tri. -->
+                <li>Pourquoi un tri décroissant est-il plus adapté qu'un tri alphabétique pour cette question ?</li><!-- PROF — CORRECTION :
+        Nous cherchons les dépenses les plus importantes,
+        pas les noms des articles.
+        Le choix du tri dépend de la question professionnelle.
+        Un classement alphabétique serait utile pour retrouver
+        un article, mais pas pour identifier le coût maximal. -->
+            </ol>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 1</strong>
+                <p>Le tri décroissant place les valeurs les plus grandes en premier.</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 2</strong>
+                <p>Sélectionnez tout le tableau, puis choisissez le montant comme critère de tri.</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 3</strong>
+                <p>Sélectionnez A1:F13, ouvrez Données &gt; Trier, choisissez Montant total (€), puis Décroissant.</p>
+            </div>
+            <h3>4. Filtrer : retrouver seulement les dépenses d'entretien</h3>
+            <p>Le responsable doit maintenant préparer un bilan des achats et interventions concernant l'entretien des
+                installations.</p>
+            <p><strong>Pourquoi changeons-nous d'outil ?</strong> Le tri classe toutes les dépenses, mais nous avons
+                maintenant besoin de voir uniquement celles d'une catégorie.</p>
+            <p>Nous allons utiliser un <strong>filtre</strong> : les lignes qui ne correspondent pas à notre recherche
+                seront temporairement masquées, sans être supprimées.</p>
+            <!-- PROF — 12 minutes.
+    TRANSITION :
+    « Trier nous a permis de classer les dépenses.
+    Mais si je veux seulement les dépenses d'entretien,
+    le classement par montant ne suffit pas.
+    Nous allons demander à Calc d'afficher uniquement
+    les lignes qui nous intéressent. »
+    Montrer au tableau la différence entre masquer
+    et supprimer une ligne. -->
+            <ol>
+                <li>Sélectionnez à nouveau la plage <strong>A1:F13</strong>.</li><!-- PROF Inclure les en-têtes et toutes les lignes.
+        Le tableau peut être dans un ordre différent
+        depuis l'activité précédente : cela ne gêne pas. -->
+                <li>Ouvrez <strong>Données &gt; AutoFiltre</strong>.</li><!-- PROF Des flèches doivent apparaître dans les en-têtes.
+        Selon la configuration, la commande peut être accessible
+        par une icône de la barre d'outils. -->
+                <li>Cliquez sur la flèche située dans l'en-tête <strong>Catégorie</strong>.</li><!-- PROF Les différentes catégories doivent apparaître
+        dans les choix disponibles :
+        Alimentation, Entretien, Foin, Litière. -->
+                <li>Conservez uniquement la catégorie <strong>Entretien</strong>, puis validez.</li><!-- PROF Décocher les autres catégories selon l'interface.
+        Résultat attendu : quatre achats visibles.
+        Fourche 75 €, Balai 56 €,
+        Réparation abreuvoir 185 €,
+        Produit désinfectant 132 €. -->
+                <li>Observez le tableau. Les autres achats ont-ils été supprimés ?</li><!-- PROF — CORRECTION :
+        Non. Ils sont simplement masqués par le filtre.
+        Leurs numéros de lignes ne sont plus tous visibles
+        dans la progression habituelle.
+        Expliquer qu'il est possible de retrouver
+        toutes les données en retirant le filtre. -->
+            </ol>
+            <p>Répondez maintenant aux questions suivantes :</p>
+            <ol>
+                <li>Combien de dépenses concernent l'entretien ?</li><!-- PROF — CORRECTION :
+        Quatre achats : fourche, balai, réparation abreuvoir
+        et produit désinfectant. -->
+                <li>Quelle est la dépense d'entretien la plus importante ?</li><!-- PROF — CORRECTION :
+        Réparation abreuvoir : 185 €. -->
+                <li>Pourquoi serait-il dangereux de supprimer définitivement les autres lignes pour ne conserver que
+                    l'entretien ?</li><!-- PROF — CORRECTION :
+        Les autres données pourraient être nécessaires plus tard,
+        pour réaliser un bilan complet ou étudier une autre catégorie.
+        Un filtre est réversible.
+        La suppression détruirait les informations concernées
+        si aucune copie n'était conservée. -->
+            </ol>
+            <h4>4.1. Retrouver toutes les données</h4>
+            <ol>
+                <li>Ouvrez à nouveau le filtre de la colonne Catégorie.</li>
+                <!-- PROF Faire constater que le filtre est encore actif. -->
+                <li>Réactivez l'affichage de toutes les catégories.</li><!-- PROF Utiliser « Tout sélectionner » ou la commande
+        équivalente de l'interface, puis valider.
+        Les 12 achats doivent réapparaître. -->
+                <li>Vérifiez qu'aucune ligne n'a été perdue.</li><!-- PROF Faire vérifier les douze enregistrements.
+        Rappeler : le filtrage ne modifie pas les valeurs. -->
+            </ol>
+            <div class="retenir">
+                <p><strong>Le tri</strong> change l'ordre d'affichage des données.</p>
+                <p><strong>Le filtre</strong> sélectionne temporairement les données affichées selon un critère.</p>
+                <p>Les deux outils sont complémentaires, mais ne répondent pas au même besoin.</p>
+            </div>
+            <h3>5. Rechercher avec plusieurs critères</h3>
+            <p>Le responsable souhaite maintenant connaître les dépenses d'alimentation dont le montant dépasse 300 €.
+            </p>
+            <p><strong>Pourquoi cet exercice ?</strong> Dans une entreprise, une recherche porte rarement sur un seul
+                critère. Il faut parfois sélectionner à la fois une catégorie et un montant.</p>
+            <p>Nous allons donc combiner deux filtres pour obtenir uniquement les achats qui respectent les deux
+                conditions.</p>
+            <!-- PROF — 10 minutes.
+    TRANSITION :
+    « Nous savons retrouver toutes les dépenses d'entretien.
+    Mais si je vous demande seulement les dépenses d'alimentation
+    supérieures à 300 €, un seul filtre ne suffit plus.
+    Nous devons préciser deux conditions :
+    la catégorie ET le montant. »
+    Insister sur le mot ET : les deux conditions doivent
+    être respectées en même temps. -->
+            <ol>
+                <li>Dans le filtre de la colonne <strong>Catégorie</strong>, sélectionnez uniquement
+                    <strong>Alimentation</strong>.</li><!-- PROF Trois lignes doivent apparaître :
+        Granulés 360 €,
+        Complément minéral 320 €,
+        Granulés 450 €. -->
+                <li>Dans le filtre de la colonne <strong>Montant total (€)</strong>, sélectionnez uniquement les
+                    montants <strong>strictement supérieurs à 300 €</strong>.</li><!-- PROF — MÉTHODE :
+        Dans le menu du filtre, chercher le filtre numérique
+        ou la condition de filtre standard selon la version.
+        Choisir l'opérateur > et saisir 300.
+        Alternative simple et acceptable :
+        cocher les valeurs 320, 360 et 450.
+        L'objectif est de combiner les critères,
+        pas de mémoriser une interface particulière. -->
+                <li>Combien d'achats correspondent aux deux conditions ?</li><!-- PROF — CORRECTION :
+        Trois achats.
+        360 €, 320 € et 450 €.
+        Ils appartiennent tous à Alimentation
+        et leurs montants sont strictement supérieurs à 300 €. -->
+                <li>Quel est le montant le plus élevé parmi ces achats ?</li><!-- PROF — CORRECTION :
+        450 €, correspondant aux granulés du 23 septembre. -->
+                <li>Si le responsable demande maintenant les achats de foin, quelle modification faut-il faire ?</li><!-- PROF — CORRECTION :
+        Retirer d'abord le filtre de montant,
+        puis remplacer Alimentation par Foin.
+        Expliquer pourquoi : garder le filtre > 300
+        exclurait éventuellement des achats de foin moins chers.
+        Le résultat dépend toujours de l'ensemble
+        des filtres encore actifs. -->
+            </ol>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 1</strong>
+                <p>Les deux critères doivent être respectés en même temps : la bonne catégorie ET le bon montant.</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 2</strong>
+                <p>Commencez par filtrer Alimentation, puis examinez les montants restants.</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 3</strong>
+                <p>Dans Catégorie, conservez Alimentation. Dans Montant total, sélectionnez les valeurs supérieures à
+                    300 : 320, 360 et 450.</p>
+            </div>
+            <div class="vigilance">
+                <strong>VIGILANCE</strong>
+                <p>Plusieurs filtres peuvent rester actifs simultanément. Avant une nouvelle recherche, vérifiez
+                    toujours quels critères sont encore appliqués.</p>
+            </div>
+            <h3>6. Mission finale : conseiller le responsable</h3>
+            <p><strong>Pourquoi cette dernière activité ?</strong> Maintenant que vous savez retrouver et classer les
+                données, il faut utiliser ces informations pour répondre à une question professionnelle.</p>
+            <!-- PROF — 11 minutes, rendu inclus.
+    TRANSITION :
+    « Vous savez maintenant créer le registre, classer les achats
+    et retrouver les dépenses d'une catégorie.
+    Mais le responsable n'attend pas seulement un tableau :
+    il attend une information qu'il peut utiliser. »
+    Ne pas faire intervenir de nouveau logiciel.
+    Les élèves doivent réutiliser les connaissances acquises. -->
+            <p>Le responsable de l'écurie vous demande :</p>
+            <div class="mission">
+                <p><strong>« Je souhaite surveiller nos dépenses. Quelles sont les trois dépenses individuelles les plus
+                        importantes du mois, et combien avons-nous dépensé pour l'entretien ? »</strong></p>
+            </div>
+            <h4>6.1. Rechercher les informations</h4>
+            <ol>
+                <li>Retirez les filtres actifs afin de retrouver les 12 achats.</li><!-- PROF Vérifier que les trois achats d'alimentation
+        ne sont plus les seuls visibles.
+        Les élèves doivent maîtriser le retour à l'ensemble
+        des données avant de commencer une autre analyse. -->
+                <li>Retrouvez les trois dépenses individuelles les plus importantes.</li><!-- PROF — CORRECTION :
+        Granulés : 450 €.
+        Copeaux : 420 €.
+        Bottes de foin : 400 €.
+        Il suffit de classer les montants par ordre décroissant. -->
+                <li>Filtrez les achats pour afficher uniquement les dépenses d'entretien.</li><!-- PROF Quatre lignes attendues :
+        75 €, 56 €, 185 € et 132 €. -->
+                <li>Calculez le total de ces quatre dépenses dans une cellule située hors du tableau, par exemple H2.
+                </li><!-- PROF — CORRECTION :
+        75 + 56 + 185 + 132 = 448 €.
+        Pour cette première séance sur les filtres,
+        les élèves peuvent écrire une formule additionnant
+        les quatre montants identifiés : =75+56+185+132.
+        Une somme de références de cellules est préférable
+        lorsqu'ils maîtrisent leur repérage.
+        IMPORTANT : ne pas utiliser directement SOMME(F2:F13)
+        sur le tableau filtré en pensant qu'elle ignorera
+        automatiquement les lignes masquées.
+        La fonction SOMME peut inclure ces lignes.
+        La fonction SOUS.TOTAL sera abordée ultérieurement. -->
+            </ol>
+            <h4>6.2. Rédiger une recommandation</h4>
+            <p>Dans une zone libre de votre fichier, rédigez un court message professionnel de 3 à 5 phrases.</p>
+            <p>Votre message doit indiquer :</p>
+            <ul>
+                <li>les trois achats les plus coûteux ;</li>
+                <li>le total des dépenses d'entretien ;</li>
+                <li>une proposition de vérification ou de suivi des dépenses ;</li>
+                <li>l'intérêt du tri ou du filtrage pour cette analyse.</li>
+            </ul>
+            <!-- PROF — EXEMPLE DE CORRECTION :
+    « Les trois achats les plus importants sont les granulés
+    pour 450 €, les copeaux pour 420 € et le foin pour 400 €.
+    Les dépenses d'entretien représentent 448 €.
+    Je recommande de suivre régulièrement les dépenses
+    par catégorie afin d'identifier les évolutions.
+    Le tri permet de classer les achats par importance
+    et le filtre permet d'étudier une catégorie précise. »
+    Cette recommandation reste prudente :
+    une dépense importante n'est pas nécessairement excessive.
+    On ne dispose pas encore d'éléments suffisants
+    pour affirmer qu'une catégorie doit être réduite.
+    Valoriser toute réponse cohérente et argumentée. -->
+            <h3>7. À retenir</h3>
+            <div class="retenir">
+                <p><strong>Trier</strong> permet de ranger les données dans un ordre précis.</p>
+                <p><strong>Filtrer</strong> permet de n'afficher que les données correspondant à un ou plusieurs
+                    critères.</p>
+                <p>Ces outils permettent de retrouver rapidement les informations utiles dans un tableau contenant de
+                    nombreux enregistrements.</p>
+                <p><strong>Une recherche pertinente commence toujours par une question précise.</strong></p>
+            </div>
+            <!-- PROF — SYNTHÈSE ORALE :
+    « Si je veux connaître les achats les plus chers,
+    quel outil dois-je utiliser ? »
+    Réponse : le tri décroissant.
+    « Si je veux uniquement les dépenses d'entretien ? »
+    Réponse : le filtre.
+    « Si je veux les dépenses d'entretien supérieures à 100 € ? »
+    Réponse : combiner deux critères.
+    Faire expliquer les réponses, pas seulement donner
+    le nom de la fonction. -->
+            <h3>8. Fin de séance — Travail à rendre</h3>
+            <p>Votre fichier doit contenir :</p>
+            <ul>
+                <li>le tableau de 12 achats correctement structuré ;</li>
+                <li>les montants calculés avec des formules ;</li>
+                <li>les réponses aux questions ;</li>
+                <li>le total des dépenses d'entretien ;</li>
+                <li>votre recommandation professionnelle.</li>
+            </ul>
+            <p>Avant de terminer, retirez les filtres actifs et vérifiez que tous les achats sont visibles.</p>
+            <p>Enregistrez votre fichier sous :</p>
+            <p><strong>Term_TIM_S03_NOM_Prenom.ods</strong></p>
+            <!-- PROF — ÉVALUATION DU RENDU :
+    Évaluer prioritairement :
+    - l'investissement dans le travail ;
+    - la progression pendant la séance ;
+    - la compréhension du tri ;
+    - la compréhension du filtrage ;
+    - la conservation de l'intégrité du tableau ;
+    - la pertinence des informations extraites ;
+    - la justification de la recommandation.
+    Pas de contrôle ponctuel.
+    Les erreurs corrigées au cours de l'activité témoignent
+    d'une progression et doivent être valorisées.
+    SITUATION DE SECOURS :
+    Si Calc ne fonctionne pas, les élèves peuvent
+    recopier le tableau, calculer les montants,
+    classer les achats et sélectionner les dépenses
+    sur papier, sans découvrir les commandes logicielles.
+    Prévoir ensuite une reprise pratique sur Calc. -->
+        </section>
+        <section id="session4" class="content-section">
+            <h2>Séance 4 — Créer un bilan automatique des dépenses d'une écurie</h2>
+            <!-- PROF — DURÉE : 60 minutes.
+    CLASSE : Terminale Bac Pro CGEH.
+    DISCIPLINE : TIM.
+    RÉFÉRENTIEL : Bac Pro CGEH, MG1, capacité C1.2.
+    OBJECTIF : traiter des données numériques à l'aide de fonctions conditionnelles
+    et produire des indicateurs permettant une prise de décision.
+    PROGRESSION :
+    S01 : organiser les données et calculer des indicateurs.
+    S02 : vérifier et nettoyer les données.
+    S03 : trier et filtrer les dépenses.
+    S04 : automatiser les calculs par catégorie.
+    DÉROULEMENT :
+    1. Situation et reprise du fichier : 7 min.
+    2. Première somme conditionnelle : 13 min.
+    3. Bilan par catégorie : 12 min.
+    4. Compter les achats : 8 min.
+    5. Totaliser les lignes filtrées : 10 min.
+    6. Décision et rendu : 10 min.
+    MATÉRIEL : ordinateur et LibreOffice Calc.
+    Aucun document supplémentaire à distribuer.
+    DONNÉES : jeu de données fictif utilisé en S03.
+    CONCEPTION PÉDAGOGIQUE :
+    Présenter chaque fonction seulement lorsque les élèves
+    rencontrent un problème concret.
+    Expliquer systématiquement ce qui change par rapport
+    à l'activité précédente et ce que la nouvelle méthode apporte.
+    Ne pas demander de mémoriser les fonctions sans leur donner du sens. -->
+            <div class="objectifs">
+                <h3>Ce que vous allez apprendre</h3>
+                <p>Aujourd'hui, nous allons apprendre à réaliser des <strong>calculs conditionnels</strong> dans un
+                    tableur.</p>
+                <p>Un calcul conditionnel est un calcul réalisé uniquement sur les données qui respectent une condition
+                    précise.</p>
+                <p>Par exemple, nous pouvons demander à Calc d'additionner uniquement les dépenses d'alimentation, sans
+                    additionner les autres dépenses.</p>
+                <!-- PROF — EXPLICATION ORALE :
+        « Jusqu'à maintenant, nous demandions au tableur de calculer
+        des sommes sur des cellules que nous choisissions.
+        Aujourd'hui, nous allons lui demander de choisir lui-même
+        les cellules à additionner selon une condition. »
+        Exemple :
+        « Additionne les dépenses uniquement si la catégorie
+        est Alimentation. »
+        Écrire éventuellement :
+        SI catégorie = Alimentation, ALORS prendre en compte le montant.
+        Préciser que ce principe n'impose pas d'utiliser
+        directement la fonction SI. -->
+                <h3>À quoi cela va-t-il servir ?</h3>
+                <p>Dans une entreprise hippique, ces calculs permettent de :</p>
+                <ul>
+                    <li>connaître les dépenses totales par catégorie ;</li>
+                    <li>compter les achats réalisés ;</li>
+                    <li>mettre automatiquement à jour des résultats ;</li>
+                    <li>comparer plusieurs postes de dépenses ;</li>
+                    <li>préparer un budget ou un tableau de bord.</li>
+                </ul>
+                <!-- PROF Faire remarquer qu'un calcul automatique
+        devient particulièrement intéressant avec un grand tableau :
+        plusieurs dizaines ou centaines de factures.
+        Les mêmes formules peuvent alors être réutilisées. -->
+                <h3>Ce que vous allez apprendre à faire</h3>
+                <ul>
+                    <li>utiliser la fonction SOMME.SI ;</li>
+                    <li>utiliser la fonction NB.SI ;</li>
+                    <li>utiliser la fonction SOUS.TOTAL ;</li>
+                    <li>construire un bilan automatique des dépenses ;</li>
+                    <li>interpréter des résultats pour conseiller un responsable.</li>
+                </ul>
+            </div>
+            <h3>1. Situation professionnelle : préparer le bilan mensuel</h3>
+            <p>Lors de la séance précédente, vous avez créé un registre des dépenses de septembre pour une écurie.</p>
+            <p>Vous avez appris à trier les achats et à filtrer les différentes catégories.</p>
+            <p>Mais le responsable souhaite désormais obtenir un bilan complet sans devoir refaire les calculs
+                manuellement.</p>
+            <div class="mission">
+                <p><strong>Votre mission :</strong> construire un tableau qui calcule automatiquement le total et le
+                    nombre d'achats de chaque catégorie.</p>
+            </div>
+            <p>Le responsable vous pose une question :</p>
+            <p><em>« Si j'ajoute une nouvelle facture dans mon tableau, faudra-t-il recommencer tous les calculs ?
+                    »</em></p>
+            <!-- PROF — 2 minutes.
+    Faire verbaliser les limites de la méthode précédente.
+    En S03, les élèves ont isolé les lignes avec un filtre
+    et additionné quatre montants pour obtenir 448 €.
+    Cette méthode fonctionne mais reste manuelle.
+    Aujourd'hui, nous allons rendre les résultats
+    plus faciles à recalculer.
+    ATTENTION : les plages utilisées aujourd'hui sont limitées
+    aux lignes 2 à 13. Elles ne s'étendent pas automatiquement
+    aux nouvelles lignes ajoutées hors de cette plage.
+    Ce point devra être clairement expliqué avant la fin. -->
+            <h3>2. Retrouver et préparer le fichier</h3>
+            <p><strong>Pourquoi ?</strong> Nous allons reprendre un tableau déjà connu pour nous concentrer sur les
+                nouvelles méthodes de calcul, plutôt que sur la saisie de données.</p>
+            <ol>
+                <li>Ouvrez votre fichier <strong>Term_TIM_S03_NOM_Prenom.ods</strong>.</li><!-- PROF Vérifier la présence du tableau des 12 achats.
+        En cas de fichier manquant, utiliser le tableau de secours ci-dessous. -->
+                <li>Enregistrez une nouvelle copie sous <strong>Term_TIM_S04_NOM_Prenom.ods</strong> avec Fichier &gt;
+                    Enregistrer sous.</li><!-- PROF Important :
+        ne pas écraser le fichier de la séance 3.
+        On conserve ainsi un historique des réalisations. -->
+                <li>Retirez tous les filtres actifs pour faire réapparaître les 12 achats.</li><!-- PROF Si nécessaire :
+        cliquer sur les flèches des filtres et réactiver toutes les valeurs.
+        Vérifier que les douze lignes sont visibles. -->
+                <li>Vérifiez que votre tableau comporte les six colonnes et que tous les montants sont calculés.</li><!-- PROF Structure attendue :
+        A : Date
+        B : Catégorie
+        C : Désignation
+        D : Quantité
+        E : Prix unitaire
+        F : Montant total
+        Données : lignes 2 à 13.
+        Si les élèves ont trié les lignes en S03, ce n'est pas grave :
+        les calculs conditionnels fonctionneront quel que soit l'ordre. -->
+            </ol>
+            <details>
+                <summary>Je n'ai pas mon fichier précédent — Données de secours</summary>
+                <p>Créez un nouveau fichier Calc, reproduisez ce tableau et calculez les montants avec la formule
+                    <strong>=D2*E2</strong>, recopiée jusqu'à F13.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Catégorie</th>
+                            <th>Désignation</th>
+                            <th>Quantité</th>
+                            <th>Prix unitaire</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>02/09/2026</td>
+                            <td>Alimentation</td>
+                            <td>Granulés</td>
+                            <td>20</td>
+                            <td>18</td>
+                        </tr>
+                        <tr>
+                            <td>03/09/2026</td>
+                            <td>Litière</td>
+                            <td>Copeaux</td>
+                            <td>30</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>04/09/2026</td>
+                            <td>Entretien</td>
+                            <td>Fourche</td>
+                            <td>3</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td>05/09/2026</td>
+                            <td>Foin</td>
+                            <td>Bottes de foin</td>
+                            <td>40</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>08/09/2026</td>
+                            <td>Entretien</td>
+                            <td>Balai</td>
+                            <td>4</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <td>10/09/2026</td>
+                            <td>Alimentation</td>
+                            <td>Complément minéral</td>
+                            <td>10</td>
+                            <td>32</td>
+                        </tr>
+                        <tr>
+                            <td>12/09/2026</td>
+                            <td>Litière</td>
+                            <td>Paille</td>
+                            <td>25</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td>15/09/2026</td>
+                            <td>Entretien</td>
+                            <td>Réparation abreuvoir</td>
+                            <td>1</td>
+                            <td>185</td>
+                        </tr>
+                        <tr>
+                            <td>17/09/2026</td>
+                            <td>Foin</td>
+                            <td>Bottes de foin</td>
+                            <td>50</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>20/09/2026</td>
+                            <td>Entretien</td>
+                            <td>Produit désinfectant</td>
+                            <td>6</td>
+                            <td>22</td>
+                        </tr>
+                        <tr>
+                            <td>23/09/2026</td>
+                            <td>Alimentation</td>
+                            <td>Granulés</td>
+                            <td>25</td>
+                            <td>18</td>
+                        </tr>
+                        <tr>
+                            <td>25/09/2026</td>
+                            <td>Litière</td>
+                            <td>Copeaux</td>
+                            <td>35</td>
+                            <td>12</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </details>
+            <!-- PROF — SECOURS :
+    Le tableau est identique à celui de S03.
+    Il n'y a donc pas de nouveau fichier à préparer.
+    Si plusieurs élèves n'ont pas leur classeur précédent,
+    leur faire copier-coller les données lorsque c'est possible.
+    L'objectif principal de cette séance n'est pas la saisie. -->
+            <h3>3. Calculer automatiquement les dépenses d'alimentation</h3>
+            <p><strong>Pourquoi cet exercice ?</strong> En séance 3, nous devions filtrer les achats puis additionner
+                leurs montants. Nous allons maintenant demander au tableur de faire directement ce travail.</p>
+            <p>Pour cela, nous découvrons une nouvelle fonction : <strong>SOMME.SI</strong>.</p>
+            <p>Elle signifie : <em>« Additionne les montants uniquement si la condition est respectée. »</em></p>
+            <!-- PROF — 13 minutes.
+    FORMULATION ORALE :
+    « SOMME, vous connaissez : elle additionne.
+    SOMME.SI fait presque la même chose, mais elle vérifie
+    d'abord une condition.
+    C'est comme demander à quelqu'un d'additionner
+    uniquement les factures portant la mention Alimentation. »
+    Exemple sans tableur :
+    Trois achats : Alimentation 100 €, Entretien 50 €,
+    Alimentation 200 €.
+    SOMME donne 350 €.
+    SOMME.SI avec Alimentation donne 300 €.
+    Prendre deux minutes pour rendre l'idée compréhensible. -->
+            <h4>3.1. Créer une zone de bilan</h4>
+            <ol>
+                <li>En H1, écrivez <strong>Catégorie</strong>.</li><!-- PROF La colonne H est volontairement séparée du registre
+        par une colonne G vide.
+        Cela évite de mélanger données sources et résultats. -->
+                <li>En I1, écrivez <strong>Total (€)</strong>.</li>
+                <!-- PROF Il s'agit des montants calculés par catégorie. -->
+                <li>En H2, écrivez <strong>Alimentation</strong>.</li><!-- PROF Le texte doit être identique à la catégorie
+        présente dans le registre. -->
+                <li>En I2, saisissez la formule <strong>=SOMME.SI(B2:B13;H2;F2:F13)</strong>.</li><!-- PROF — CORRECTION : 1130 €.
+        Décomposition détaillée :
+        B2:B13 = cellules contenant les catégories.
+        H2 = catégorie recherchée : Alimentation.
+        F2:F13 = cellules contenant les montants.
+        La fonction lit chaque ligne :
+        si la catégorie correspond à H2, elle ajoute le montant F.
+        Résultat :
+        360 + 320 + 450 = 1130 €.
+        VIGILANCE :
+        utiliser des points-virgules entre les arguments en Calc FR.
+        Ne pas inverser les plages B et F.
+        Les plages doivent correspondre aux mêmes lignes. -->
+            </ol>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 1</strong>
+                <p>La fonction a besoin de savoir où chercher, quoi chercher et quels montants additionner.</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 2</strong>
+                <p>Les catégories sont en colonne B. Les montants sont en colonne F. Le critère est écrit en H2.</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 3</strong>
+                <p>Cliquez sur I2, saisissez <strong>=SOMME.SI(B2:B13;H2;F2:F13)</strong>, puis validez avec Entrée.</p>
+            </div>
+            <h4>3.2. Comprendre ce que fait la formule</h4>
+            <p>Avant de continuer, vérifions que nous comprenons le résultat.</p>
+            <ol>
+                <li>Pourquoi la fonction n'ajoute-t-elle pas les dépenses de foin ou d'entretien ?</li><!-- PROF — CORRECTION :
+        Parce que le critère indique uniquement Alimentation.
+        Les autres catégories ne respectent pas la condition.
+        Faire relire la formule et identifier H2. -->
+                <li>Si nous remplaçons Alimentation par Entretien dans H2, que devrait-il se passer ?</li><!-- PROF — CORRECTION :
+        Le résultat doit devenir 448 €.
+        Il s'agit du total des quatre dépenses d'entretien :
+        75 + 56 + 185 + 132.
+        Faire réellement tester puis remettre Alimentation en H2.
+        Cela démontre l'intérêt de placer le critère dans une cellule. -->
+                <li>Quel avantage présente cette méthode par rapport à une addition écrite manuellement ?</li><!-- PROF — CORRECTION :
+        Le tableur sélectionne automatiquement les montants
+        correspondant à la catégorie.
+        Si une valeur située dans la plage change, le résultat
+        est recalculé sans refaire l'addition.
+        VIGILANCE :
+        cela ne signifie pas que les nouvelles lignes hors de
+        B2:B13 et F2:F13 seront automatiquement prises en compte. -->
+            </ol>
+            <h3>4. Construire le bilan des quatre catégories</h3>
+            <p><strong>Pourquoi passons-nous à cet exercice ?</strong> Nous savons calculer le total d'une catégorie. Le
+                responsable a maintenant besoin de comparer toutes les catégories.</p>
+            <p>Nous allons réutiliser la même méthode, sans apprendre une nouvelle fonction.</p>
+            <!-- PROF — 12 minutes.
+    TRANSITION ORALE :
+    « Nous avons réussi à calculer les dépenses d'alimentation.
+    Il serait dommage de recommencer une méthode différente
+    pour les autres catégories.
+    Nous allons conserver la même formule et modifier seulement
+    le critère recherché. »
+    Cette activité consolide la notion de plage et prépare
+    l'utilisation des références absolues. -->
+            <ol>
+                <li>En H3, H4 et H5, écrivez respectivement <strong>Litière</strong>, <strong>Entretien</strong> et
+                    <strong>Foin</strong>.</li><!-- PROF Vérifier la correspondance exacte avec
+        les intitulés utilisés dans la colonne B.
+        Attention aux accents. -->
+                <li>En I3, saisissez <strong>=SOMME.SI($B$2:$B$13;H3;$F$2:$F$13)</strong>.</li><!-- PROF — CORRECTION : 1005 €.
+        360 + 225 + 420 = 1005.
+        EXPLICATION DES $ :
+        $B$2:$B$13 reste fixe si la formule est recopiée.
+        $F$2:$F$13 reste fixe.
+        H3 reste relatif et deviendra H4 puis H5.
+        Il s'agit d'une introduction pratique aux références absolues.
+        Ne pas en faire un long cours théorique :
+        montrer ce qui se passe et pourquoi cela sert. -->
+                <li>Modifiez également la formule de I2 pour utiliser <strong>$B$2:$B$13</strong> et
+                    <strong>$F$2:$F$13</strong>.</li><!-- PROF Formule attendue :
+        =SOMME.SI($B$2:$B$13;H2;$F$2:$F$13)
+        Le résultat doit rester 1130 €.
+        Faire comprendre que les $ n'affectent pas le résultat :
+        ils modifient le comportement des références lors de la recopie. -->
+                <li>Recopiez la formule de I3 jusqu'en I5 avec la poignée de recopie.</li><!-- PROF — RÉSULTATS :
+        I3 Litière = 1005 €.
+        I4 Entretien = 448 €.
+        I5 Foin = 720 €.
+        Vérifier que H3 devient H4 puis H5,
+        tandis que les plages contenant les données restent fixes. -->
+                <li>En H6, écrivez <strong>Total général</strong>, puis calculez ce total en I6 avec
+                    <strong>=SOMME(I2:I5)</strong>.</li><!-- PROF — CORRECTION :
+        1130 + 1005 + 448 + 720 = 3303 €.
+        Faire remarquer qu'on additionne les quatre catégories.
+        Le résultat doit correspondre à la somme des douze achats. -->
+            </ol>
+            <div class="attendu">
+                <strong>ATTENDU — Bilan des dépenses</strong>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Catégorie</th>
+                            <th>Total (€)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Alimentation</td>
+                            <td>1 130</td>
+                        </tr>
+                        <tr>
+                            <td>Litière</td>
+                            <td>1 005</td>
+                        </tr>
+                        <tr>
+                            <td>Entretien</td>
+                            <td>448</td>
+                        </tr>
+                        <tr>
+                            <td>Foin</td>
+                            <td>720</td>
+                        </tr>
+                        <tr>
+                            <th>Total général</th>
+                            <th>3 303</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ol>
+                <li>Quelle catégorie représente la dépense totale la plus importante ?</li><!-- PROF — CORRECTION :
+        Alimentation : 1130 €.
+        Ne pas confondre catégorie la plus coûteuse
+        et achat individuel le plus coûteux. -->
+                <li>Pourquoi est-il utile de comparer les totaux par catégorie plutôt que les achats individuellement ?
+                </li><!-- PROF — CORRECTION :
+        Plusieurs petites dépenses peuvent représenter
+        un montant cumulé important.
+        Les totaux par catégorie permettent de voir
+        comment les dépenses se répartissent.
+        Exemple : l'entretien compte quatre achats,
+        mais ne représente que 448 €. -->
+            </ol>
+            <h3>5. Compter automatiquement les achats</h3>
+            <p><strong>Pourquoi apprendre une nouvelle fonction ?</strong> Nous connaissons maintenant le montant
+                dépensé dans chaque catégorie. Mais nous ne savons pas encore combien d'achats ont été réalisés.</p>
+            <p>Pour répondre à cette question, nous découvrons <strong>NB.SI</strong>.</p>
+            <p>Cette fonction signifie : <em>« Compte les cellules qui respectent une condition. »</em></p>
+            <!-- PROF — 8 minutes.
+    TRANSITION :
+    « Deux catégories peuvent avoir le même montant total,
+    mais pas du tout le même nombre d'achats.
+    Cela peut être intéressant pour comprendre comment
+    l'entreprise dépense son argent.
+    Nous avons donc besoin de compter, et non plus d'additionner. »
+    EXEMPLE ORAL :
+    Alimentation apparaît trois fois.
+    NB.SI doit donc répondre 3.
+    La fonction ne compte pas le nombre d'unités achetées :
+    elle compte les lignes correspondant au critère. -->
+            <ol>
+                <li>En J1, écrivez <strong>Nombre d'achats</strong>.</li>
+                <!-- PROF On complète le même bilan sans créer un autre tableau. -->
+                <li>En J2, saisissez <strong>=NB.SI($B$2:$B$13;H2)</strong>.</li><!-- PROF — CORRECTION : 3.
+        $B$2:$B$13 = plage examinée.
+        H2 = critère Alimentation.
+        NB.SI compte les lignes correspondantes.
+        Il ne faut pas lui donner une plage de somme :
+        contrairement à SOMME.SI, on ne calcule pas un montant. -->
+                <li>Recopiez cette formule jusqu'en J5.</li><!-- PROF — RÉSULTATS :
+        Alimentation = 3.
+        Litière = 3.
+        Entretien = 4.
+        Foin = 2.
+        TOTAL = 12 achats. -->
+                <li>En J6, calculez le nombre total d'achats avec <strong>=SOMME(J2:J5)</strong>.</li><!-- PROF — CORRECTION : 12.
+        Cela correspond aux douze lignes du registre. -->
+            </ol>
+            <h4>5.1. Interpréter le bilan</h4>
+            <ol>
+                <li>Quelle catégorie contient le plus grand nombre d'achats ?</li><!-- PROF — CORRECTION :
+        Entretien, avec quatre achats. -->
+                <li>Est-ce également la catégorie qui coûte le plus cher ?</li><!-- PROF — CORRECTION :
+        Non.
+        Entretien : 448 € et 4 achats.
+        Alimentation : 1130 € et 3 achats.
+        Faire comprendre la différence entre fréquence
+        et montant total. -->
+                <li>Pourquoi ces deux indicateurs peuvent-ils être intéressants pour le responsable ?</li><!-- PROF — CORRECTION :
+        Ils permettent de distinguer les achats fréquents
+        et les postes de dépenses importants.
+        Ces informations peuvent aider à organiser
+        le suivi des achats et les commandes.
+        Ne pas conclure qu'un grand nombre d'achats
+        indique forcément une mauvaise gestion. -->
+            </ol>
+            <h3>6. Calculer uniquement les lignes visibles</h3>
+            <p><strong>Pourquoi découvrir encore une fonction ?</strong> Lors de la séance 3, vous avez utilisé des
+                filtres. Mais la fonction SOMME classique peut continuer à compter des lignes masquées.</p>
+            <p>Pour calculer un total qui suit le filtre actif, nous allons utiliser <strong>SOUS.TOTAL</strong>.</p>
+            <!-- PROF — 10 minutes.
+    TRANSITION :
+    « SOMME.SI est utile lorsque je connais le critère recherché.
+    Mais parfois je veux simplement afficher une catégorie
+    avec un filtre et voir immédiatement son total.
+    SOUS.TOTAL nous permettra de faire cela. »
+    Différence importante :
+    SOMME.SI sélectionne selon un critère écrit dans la formule.
+    SOUS.TOTAL(9;...) tient compte du filtre actif.
+    Ne pas utiliser la somme du tableau de bilan comme plage,
+    mais bien les données sources F2:F13. -->
+            <ol>
+                <li>Vérifiez que les 12 achats sont visibles et que le filtre automatique est activé sur A1:F13.</li><!-- PROF Si nécessaire :
+        sélectionner A1:F13 puis Données > AutoFiltre.
+        Vérifier que les flèches apparaissent dans les en-têtes.
+        Ne pas inclure le bilan H:J dans la plage filtrée. -->
+                <li>En H8, écrivez <strong>Total affiché</strong>.</li><!-- PROF Cette cellule est hors du tableau filtré
+        et reste donc visible pendant les manipulations. -->
+                <li>En I8, saisissez <strong>=SOUS.TOTAL(9;F2:F13)</strong>.</li><!-- PROF — CORRECTION :
+        Sans filtre, résultat = 3303 €.
+        9 correspond à l'opération SOMME.
+        F2:F13 contient les montants.
+        Les lignes masquées par un AutoFiltre sont exclues.
+        Pour ignorer également les lignes masquées manuellement,
+        on pourrait utiliser 109 au lieu de 9.
+        Pour cette séance, 9 suffit. -->
+                <li>Filtrez la colonne Catégorie pour conserver uniquement <strong>Foin</strong>.</li><!-- PROF — CORRECTION :
+        Deux lignes visibles.
+        320 + 400 = 720 €.
+        La cellule I8 doit afficher 720 €. -->
+                <li>Remplacez le filtre Foin par <strong>Entretien</strong>.</li><!-- PROF — CORRECTION :
+        Quatre achats visibles.
+        I8 doit afficher 448 €.
+        Faire constater que la formule n'a pas été modifiée.
+        Seul le filtre a changé. -->
+                <li>Retirez tous les filtres pour retrouver le total général.</li><!-- PROF — CORRECTION :
+        I8 revient à 3303 €.
+        Demander :
+        « Le calcul change-t-il parce qu'on écrit une nouvelle formule ? »
+        Réponse : non, il change parce que les lignes visibles changent. -->
+            </ol>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 1</strong>
+                <p>SOUS.TOTAL permet de calculer une somme adaptée aux lignes affichées après filtrage.</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 2</strong>
+                <p>Dans la fonction, le nombre 9 signifie « calculer une somme ».</p>
+            </div>
+            <div class="aide">
+                <strong>AIDE SI BESOIN — Niveau 3</strong>
+                <p>Saisissez <strong>=SOUS.TOTAL(9;F2:F13)</strong> dans I8, puis filtrez la colonne B par catégorie.
+                </p>
+            </div>
+            <div class="vigilance">
+                <strong>VIGILANCE</strong>
+                <p><strong>SOMME.SI</strong> suit un critère défini dans la formule. <strong>SOUS.TOTAL</strong> suit
+                    les lignes affichées par le filtre. Ce ne sont donc pas deux outils interchangeables.</p>
+            </div>
+            <h3>7. Mission finale : interpréter le bilan</h3>
+            <p><strong>Pourquoi terminons-nous ainsi ?</strong> Un responsable n'a pas seulement besoin de calculs. Il
+                doit comprendre ses dépenses pour prendre des décisions adaptées.</p>
+            <!-- PROF — 10 minutes, conclusion et rendu compris.
+    Le travail demandé reste court.
+    Les élèves ont déjà manipulé plusieurs nouvelles fonctions.
+    On cherche ici à vérifier la compréhension,
+    pas à produire un rapport de plusieurs pages. -->
+            <div class="mission">
+                <p><strong>Le responsable vous demande :</strong> « Quelle catégorie représente notre plus grande
+                    dépense ? Quel poste contient le plus d'achats ? Que me conseillez-vous pour améliorer le suivi de
+                    nos dépenses ? »</p>
+            </div>
+            <ol>
+                <li>Identifiez la catégorie dont le montant total est le plus important.</li><!-- PROF — CORRECTION :
+        Alimentation, 1130 €. -->
+                <li>Identifiez celle qui contient le plus d'achats.</li><!-- PROF — CORRECTION :
+        Entretien, quatre achats. -->
+                <li>Expliquez pourquoi ces deux réponses sont différentes.</li><!-- PROF — CORRECTION :
+        Un grand nombre d'achats ne signifie pas
+        nécessairement un montant total élevé.
+        Alimentation : trois achats pour 1130 €.
+        Entretien : quatre achats pour 448 €.
+        Les montants unitaires sont différents. -->
+                <li>Proposez une action concrète permettant au responsable de mieux suivre ses dépenses.</li><!-- PROF — CORRECTION :
+        Exemples acceptables :
+        - mettre à jour le registre après chaque facture ;
+        - suivre les totaux par catégorie chaque mois ;
+        - comparer les dépenses de plusieurs mois ;
+        - vérifier les achats importants ;
+        - préparer un budget prévisionnel.
+        Ne pas imposer une réduction des dépenses :
+        les données d'un seul mois ne suffisent pas
+        pour conclure qu'elles sont excessives. -->
+            </ol>
+            <p>Rédigez votre conclusion dans une zone libre de votre fichier Calc, par exemple à partir de H11.</p>
+            <!-- PROF — EXEMPLE :
+    « En septembre, les dépenses totales sont de 3303 €.
+    L'alimentation représente le montant le plus important
+    avec 1130 €, tandis que l'entretien regroupe le plus
+    grand nombre d'achats, soit quatre.
+    Il serait utile de suivre les dépenses par catégorie
+    chaque mois pour repérer leurs évolutions. »
+    Cette réponse constitue un exemple, pas une formulation obligatoire. -->
+            <h3>8. À retenir</h3>
+            <div class="retenir">
+                <p><strong>SOMME.SI</strong> additionne les montants qui respectent une condition.</p>
+                <p><strong>NB.SI</strong> compte les cellules qui respectent une condition.</p>
+                <p><strong>SOUS.TOTAL</strong> permet notamment d'additionner les lignes visibles après un filtrage.</p>
+                <p>Ces fonctions permettent de construire des indicateurs utiles à la gestion d'une entreprise.</p>
+                <p><strong>Une donnée bien organisée peut devenir une information automatiquement actualisée.</strong>
+                </p>
+            </div>
+            <!-- PROF — PRÉCISION FINALE :
+    Le bilan recalcule les résultats lorsque les valeurs existantes changent.
+    Mais les formules actuelles utilisent les lignes 2 à 13 :
+    si de nouvelles dépenses sont ajoutées en ligne 14,
+    il faudra étendre les plages.
+    Faire comprendre cette limite sans alourdir la séance.
+    Dans un futur cours, on pourra construire un registre évolutif
+    avec des plages adaptées. -->
+            <h3>9. Fin de séance — Travail à rendre</h3>
+            <p>Vérifiez que votre fichier contient :</p>
+            <ul>
+                <li>les 12 achats de septembre ;</li>
+                <li>les montants calculés avec des formules ;</li>
+                <li>un bilan comprenant les quatre catégories ;</li>
+                <li>le total et le nombre d'achats de chaque catégorie ;</li>
+                <li>une formule SOUS.TOTAL fonctionnelle ;</li>
+                <li>votre conclusion professionnelle.</li>
+            </ul>
+            <p>Retirez tous les filtres actifs, puis enregistrez votre fichier sous :</p>
+            <p><strong>Term_TIM_S04_NOM_Prenom.ods</strong></p>
+            <!-- PROF — ÉVALUATION :
+    Pas de contrôle ponctuel.
+    Critères d'observation :
+    - implication dans les manipulations ;
+    - progression pendant la séance ;
+    - compréhension des critères ;
+    - bonne utilisation des fonctions ;
+    - cohérence des résultats ;
+    - capacité à interpréter les données ;
+    - qualité de la recommandation.
+    L'élève qui rencontre une difficulté mais réussit à la résoudre
+    avec les indices doit voir sa progression valorisée.
+    SÉANCE SUIVANTE :
+    Comparer visuellement les dépenses et choisir
+    une représentation graphique pertinente. -->
+        </section>
+    </main>
+</body>
+</html>
