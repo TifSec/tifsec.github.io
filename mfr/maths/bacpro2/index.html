@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../../style.css">
     <script src="../../script.js"></script>
 </head>
+
 <body data-course-id="mfr-bacpro2">
     <header>
         <h1>Programme Mathématiques Terminales Bac Pro</h1>
@@ -4296,7 +4298,7 @@
                 <!-- PROF DÉFI Q5 : Exemple : « Pour six interventions, sans remise, B est moins chère : 200 € contre 220 € pour A. Avec une remise de 15 %, A coûte 187 €, soit 13 € de moins que B. Je choisirais donc A si la remise est confirmée et si les prestations restent équivalentes. » Valoriser l'actualisation du raisonnement lorsque de nouvelles données apparaissent. -->
             </ol>
         </section>
-        <section id="session8" class="content-section">
+        <section id="session8" class="content-section" style="visibility: hidden;">
             <h1>Séance 8 : Bilan de compétences – Calculer, modéliser et décider</h1>
             <h2>Ce que vous allez travailler</h2>
             <ul>
@@ -4603,6 +4605,412 @@
                 d'une valeur précise.</p>
             <p><strong>À quoi ça sert ?</strong> Il permet de connaître la pente de la courbe à un endroit donné.</p>
             <p>Graphiquement, le nombre dérivé est le coefficient directeur de la tangente à la courbe.</p>
+
+            <div id="derivee-graphique" class="derivee-widget">
+                <style>
+                    #derivee-graphique {
+                        max-width: 850px;
+                        margin: 24px auto;
+                        padding: 18px;
+                        border: 1px solid #d5dce5;
+                        border-radius: 12px;
+                        background: #ffffff;
+                        color: #243247;
+                        font-family: Arial, sans-serif;
+                    }
+
+                    #derivee-graphique * {
+                        box-sizing: border-box;
+                    }
+
+                    #derivee-graphique h3 {
+                        margin: 0 0 8px;
+                    }
+
+                    #derivee-graphique .dg-description {
+                        margin-bottom: 14px;
+                    }
+
+                    #derivee-graphique .dg-graph {
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                        background: #fbfcff;
+                        border: 1px solid #e3e8ef;
+                        border-radius: 8px;
+                    }
+
+                    #derivee-graphique .dg-grid {
+                        stroke: #e3e8ef;
+                        stroke-width: 1;
+                    }
+
+                    #derivee-graphique .dg-axis {
+                        stroke: #344054;
+                        stroke-width: 1.8;
+                    }
+
+                    #derivee-graphique .dg-curve {
+                        fill: none;
+                        stroke: #2563eb;
+                        stroke-width: 3.5;
+                        stroke-linecap: round;
+                    }
+
+                    #derivee-graphique .dg-tangent {
+                        stroke: #dc2626;
+                        stroke-width: 3;
+                        stroke-linecap: round;
+                    }
+
+                    #derivee-graphique .dg-point {
+                        fill: #ffffff;
+                        stroke: #172554;
+                        stroke-width: 3;
+                    }
+
+                    #derivee-graphique .dg-minimum {
+                        fill: #16a34a;
+                    }
+
+                    #derivee-graphique .dg-axis-label {
+                        fill: #475467;
+                        font-size: 12px;
+                    }
+
+                    #derivee-graphique .dg-controls {
+                        margin-top: 16px;
+                    }
+
+                    #derivee-graphique .dg-controls label {
+                        display: block;
+                        margin-bottom: 8px;
+                        font-weight: bold;
+                    }
+
+                    #derivee-graphique input[type="range"] {
+                        width: 100%;
+                        accent-color: #2563eb;
+                        cursor: pointer;
+                    }
+
+                    #derivee-graphique .dg-results {
+                        display: grid;
+                        grid-template-columns: repeat(3, minmax(0, 1fr));
+                        gap: 10px;
+                        margin-top: 16px;
+                    }
+
+                    #derivee-graphique .dg-result {
+                        padding: 12px;
+                        background: #f1f5f9;
+                        border-radius: 8px;
+                        text-align: center;
+                    }
+
+                    #derivee-graphique .dg-result span {
+                        display: block;
+                        font-size: 0.85rem;
+                        margin-bottom: 6px;
+                    }
+
+                    #derivee-graphique .dg-result strong {
+                        font-size: 1.15rem;
+                    }
+
+                    #derivee-graphique .dg-message {
+                        margin-top: 14px;
+                        padding: 12px;
+                        background: #eff6ff;
+                        border-left: 4px solid #2563eb;
+                        border-radius: 5px;
+                    }
+
+                    #derivee-graphique .dg-buttons {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 8px;
+                        margin-top: 14px;
+                    }
+
+                    #derivee-graphique .dg-buttons button {
+                        padding: 8px 13px;
+                        border: 1px solid #cbd5e1;
+                        border-radius: 7px;
+                        background: #ffffff;
+                        color: #1e293b;
+                        cursor: pointer;
+                    }
+
+                    #derivee-graphique .dg-buttons button:hover {
+                        background: #e0edff;
+                    }
+
+                    #derivee-graphique .dg-legend {
+                        margin-top: 12px;
+                        font-size: 0.9rem;
+                    }
+
+                    #derivee-graphique .dg-legend span {
+                        display: inline-block;
+                        margin-right: 14px;
+                    }
+
+                    #derivee-graphique .dg-blue {
+                        color: #2563eb;
+                    }
+
+                    #derivee-graphique .dg-red {
+                        color: #dc2626;
+                    }
+
+                    #derivee-graphique .dg-green {
+                        color: #15803d;
+                    }
+
+                    @media (max-width: 550px) {
+                        #derivee-graphique {
+                            padding: 10px;
+                        }
+
+                        #derivee-graphique .dg-results {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+                </style>
+                <h3>Observer une parabole et sa tangente</h3>
+                <p class="dg-description">
+                    Déplace le curseur pour observer comment évoluent
+                    le coût et la pente de la tangente.
+                    <strong>C(x) = 5x² - 40x + 260</strong>
+                </p>
+                <svg class="dg-graph" viewBox="0 0 720 410" role="img"
+                    aria-label="Graphique interactif du coût en fonction du nombre d'interventions, avec tangente mobile">
+                    <g class="dg-grid-layer"></g>
+                    <g class="dg-axis-layer"></g>
+                    <path class="dg-curve"></path>
+                    <line class="dg-tangent"></line>
+                    <circle class="dg-minimum" r="5"></circle>
+                    <circle class="dg-point" r="7"></circle>
+                    <text class="dg-point-label" font-size="13" font-weight="bold" fill="#172554"></text>
+                    <text x="360" y="402" text-anchor="middle" class="dg-axis-label">
+                        Nombre d'interventions
+                    </text>
+                    <text x="18" y="18" class="dg-axis-label">
+                        Coût en €
+                    </text>
+                </svg>
+                <div class="dg-legend">
+                    <span class="dg-blue">● Courbe du coût</span>
+                    <span class="dg-red">— Tangente</span>
+                    <span class="dg-green">● Minimum</span>
+                </div>
+                <div class="dg-controls">
+                    <label for="dg-slider">
+                        Nombre d'interventions :
+                        <output id="dg-x-value">3</output>
+                    </label>
+                    <input id="dg-slider" type="range" min="1" max="8" step="0.1" value="3">
+                </div>
+                <div class="dg-buttons">
+                    <button type="button" data-dg-x="3">
+                        Avant le minimum
+                    </button>
+                    <button type="button" data-dg-x="4">
+                        Au minimum
+                    </button>
+                    <button type="button" data-dg-x="5">
+                        Après le minimum
+                    </button>
+                </div>
+                <div class="dg-results" aria-live="polite">
+                    <div class="dg-result">
+                        <span>Coût C(x)</span>
+                        <strong id="dg-cost">185 €</strong>
+                    </div>
+                    <div class="dg-result">
+                        <span>Dérivée C'(x)</span>
+                        <strong id="dg-slope">−10</strong>
+                    </div>
+                    <div class="dg-result">
+                        <span>Évolution locale</span>
+                        <strong id="dg-direction">Décroissante</strong>
+                    </div>
+                </div>
+                <div class="dg-message" id="dg-message" aria-live="polite">
+                    La tangente descend : la dérivée est négative.
+                </div>
+                <p class="dg-description">
+                    <small>
+                        Le modèle est étudié sur un intervalle continu
+                        pour comprendre la dérivée. Dans la réalité,
+                        les interventions sont comptées en nombres entiers.
+                    </small>
+                </p>
+                <script>
+                    (() => {
+                        "use strict";
+                        const root = document.getElementById("derivee-graphique");
+                        if (!root || root.dataset.initialized === "true") return;
+                        root.dataset.initialized = "true";
+                        const svg = root.querySelector("svg");
+                        const NS = "http://www.w3.org/2000/svg";
+                        const slider = root.querySelector("#dg-slider");
+                        const xValue = root.querySelector("#dg-x-value");
+                        const costValue = root.querySelector("#dg-cost");
+                        const slopeValue = root.querySelector("#dg-slope");
+                        const direction = root.querySelector("#dg-direction");
+                        const message = root.querySelector("#dg-message");
+                        const curve = root.querySelector(".dg-curve");
+                        const tangent = root.querySelector(".dg-tangent");
+                        const point = root.querySelector(".dg-point");
+                        const minimum = root.querySelector(".dg-minimum");
+                        const pointLabel = root.querySelector(".dg-point-label");
+                        const gridLayer = root.querySelector(".dg-grid-layer");
+                        const axisLayer = root.querySelector(".dg-axis-layer");
+                        const plot = {
+                            left: 65,
+                            right: 680,
+                            top: 35,
+                            bottom: 355,
+                            xMin: 0,
+                            xMax: 9,
+                            yMin: 160,
+                            yMax: 285
+                        };
+                        const C = x => 5 * x * x - 40 * x + 260;
+                        const dC = x => 10 * x - 40;
+                        const px = x => plot.left +
+                            (x - plot.xMin) / (plot.xMax - plot.xMin) *
+                            (plot.right - plot.left);
+                        const py = y => plot.bottom -
+                            (y - plot.yMin) / (plot.yMax - plot.yMin) *
+                            (plot.bottom - plot.top);
+                        const create = (tag, attrs, parent) => {
+                            const element = document.createElementNS(NS, tag);
+                            for (const [key, value] of Object.entries(attrs)) {
+                                element.setAttribute(key, value);
+                            }
+                            parent.appendChild(element);
+                            return element;
+                        };
+                        const format = value => {
+                            const rounded = Math.round(value * 10) / 10;
+                            return rounded.toLocaleString("fr-FR", {
+                                maximumFractionDigits: 1
+                            });
+                        };
+                        for (let x = 0; x <= 9; x++) {
+                            create("line", {
+                                x1: px(x),
+                                y1: plot.top,
+                                x2: px(x),
+                                y2: plot.bottom,
+                                class: "dg-grid"
+                            }, gridLayer);
+                            const label = create("text", {
+                                x: px(x),
+                                y: plot.bottom + 19,
+                                "text-anchor": "middle",
+                                class: "dg-axis-label"
+                            }, axisLayer);
+                            label.textContent = x;
+                        }
+                        for (let y = 160; y <= 280; y += 20) {
+                            create("line", {
+                                x1: plot.left,
+                                y1: py(y),
+                                x2: plot.right,
+                                y2: py(y),
+                                class: "dg-grid"
+                            }, gridLayer);
+                            const label = create("text", {
+                                x: plot.left - 10,
+                                y: py(y) + 4,
+                                "text-anchor": "end",
+                                class: "dg-axis-label"
+                            }, axisLayer);
+                            label.textContent = y;
+                        }
+                        create("line", {
+                            x1: plot.left,
+                            y1: plot.top,
+                            x2: plot.left,
+                            y2: plot.bottom,
+                            class: "dg-axis"
+                        }, axisLayer);
+                        create("line", {
+                            x1: plot.left,
+                            y1: plot.bottom,
+                            x2: plot.right,
+                            y2: plot.bottom,
+                            class: "dg-axis"
+                        }, axisLayer);
+                        let path = "";
+                        for (let x = 0.5; x <= 8.501; x += 0.025) {
+                            const command = path ? "L" : "M";
+                            path += `${command}${px(x).toFixed(2)},${py(C(x)).toFixed(2)} `;
+                        }
+                        curve.setAttribute("d", path);
+                        minimum.setAttribute("cx", px(4));
+                        minimum.setAttribute("cy", py(180));
+                        function update(x) {
+                            x = Math.min(8, Math.max(1, Number(x)));
+                            const y = C(x);
+                            const slope = dC(x);
+                            const delta = 0.65;
+                            const y1 = y - slope * delta;
+                            const y2 = y + slope * delta;
+                            tangent.setAttribute("x1", px(x - delta));
+                            tangent.setAttribute("y1", py(y1));
+                            tangent.setAttribute("x2", px(x + delta));
+                            tangent.setAttribute("y2", py(y2));
+                            point.setAttribute("cx", px(x));
+                            point.setAttribute("cy", py(y));
+                            pointLabel.setAttribute("x", px(x) + 12);
+                            pointLabel.setAttribute("y", py(y) - 12);
+                            pointLabel.textContent =
+                                `(${format(x)} ; ${format(y)})`;
+                            xValue.textContent = format(x);
+                            costValue.textContent = `${format(y)} €`;
+                            slopeValue.textContent = format(slope);
+                            if (Math.abs(slope) < 0.00001) {
+                                direction.textContent = "Minimum";
+                                message.textContent =
+                                    "La tangente est horizontale : C'(4) = 0. " +
+                                    "La dérivée passe du négatif au positif. " +
+                                    "Le coût minimal est de 180 € pour 4 interventions.";
+                                tangent.style.stroke = "#16a34a";
+                            } else if (slope < 0) {
+                                direction.textContent = "Décroissante";
+                                message.textContent =
+                                    "La tangente descend de gauche à droite. " +
+                                    "La dérivée est négative : " +
+                                    "le coût diminue localement.";
+                                tangent.style.stroke = "#dc2626";
+                            } else {
+                                direction.textContent = "Croissante";
+                                message.textContent =
+                                    "La tangente monte de gauche à droite. " +
+                                    "La dérivée est positive : " +
+                                    "le coût augmente localement.";
+                                tangent.style.stroke = "#ea580c";
+                            }
+                        }
+                        slider.addEventListener("input", () => {
+                            update(slider.value);
+                        });
+                        root.querySelectorAll("[data-dg-x]").forEach(button => {
+                            button.addEventListener("click", () => {
+                                slider.value = button.dataset.dgX;
+                                update(slider.value);
+                            });
+                        });
+                        update(slider.value);
+                    })();
+                </script>
+            </div>
+
             <p>Nous conservons notre fonction :</p>
             <p><strong>C(x) = 5x² - 40x + 260</strong></p>
             <p>Nous allons regarder ce qui se passe au voisinage de x = 3.</p>
@@ -4793,4 +5201,5 @@
         </section>
     </main>
 </body>
+
 </html>
