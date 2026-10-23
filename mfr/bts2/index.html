@@ -3776,7 +3776,8 @@
                     <li>automatiser une règle avec <strong>SI</strong> ;</li>
                     <li>croiser plusieurs conditions avec <strong>ET</strong> et <strong>OU</strong> ;</li>
                     <li>choisir une fonction adaptée parmi <strong>NB.SI</strong>, <strong>SOMME.SI</strong> et
-                        <strong>MOYENNE.SI</strong> ;</li>
+                        <strong>MOYENNE.SI</strong> ;
+                    </li>
                     <li>réaliser une synthèse avec une table dynamique ;</li>
                     <li>produire une représentation graphique adaptée ;</li>
                     <li>interpréter les résultats sans aller au-delà de ce que montrent les données.</li>
@@ -4231,6 +4232,1562 @@
                     elles.</p>
                 <p>Nous commencerons donc la prochaine fois à travailler sur les <strong>bases de données
                         relationnelles</strong>.</p>
+            </section>
+            <section id="session9" class="content-section">
+                <h2>Séance 9 : Préparation au CCF – Traiter, trier, analyser et représenter un grand jeu de données</h2>
+                <p><strong>Durée prévue : 1 h 50</strong></p>
+                <h3>Notions et compétences travaillées</h3>
+                <ul>
+                    <li>formules simples : division, somme, moyenne, minimum et maximum ;</li>
+                    <li>calcul d'un indicateur ramené à une unité commune ;</li>
+                    <li>calcul d'une évolution en pourcentage ;</li>
+                    <li>fonction <strong>SI</strong> ;</li>
+                    <li>révision guidée de <strong>NB.SI</strong>, <strong>SOMME.SI</strong> et
+                        <strong>MOYENNE.SI</strong> ;</li>
+                    <li>tri croissant et décroissant ;</li>
+                    <li>filtrage d'un grand tableau ;</li>
+                    <li>table dynamique ;</li>
+                    <li>analyse de données techniques, économiques et sanitaires ;</li>
+                    <li>choix et création de plusieurs types de graphiques ;</li>
+                    <li>lecture critique d'un graphique ;</li>
+                    <li>distinction entre constat, interprétation et décision.</li>
+                </ul>
+                <!-- PROF - OBJECTIF GENERAL :
+    Cette séance est une préparation directe au travail informatique du CCF.
+    Ne pas chercher à introduire de nouvelles fonctions complexes.
+    L'objectif est de rendre les étudiants plus solides sur des compétences déjà rencontrées mais encore fragiles.
+    POINTS CONSIDERES COMME FRAGILES :
+    - NB.SI ;
+    - SOMME.SI ;
+    - MOYENNE.SI ;
+    - table dynamique.
+    Ils sont donc réexpliqués et guidés.
+    En revanche, on augmente fortement :
+    - la quantité de données ;
+    - le besoin de trier et filtrer ;
+    - le choix des indicateurs ;
+    - le nombre de graphiques ;
+    - l'autonomie dans le choix de la représentation.
+    Le jeu de données comporte 36 mois × 15 variables = plus de 500 valeurs.
+    C'est volontaire.
+    Les données sont fictives mais construites pour ressembler à un export plausible d'une exploitation bovine laitière.
+    Découpage conseillé :
+    00-10 min : prise en main du fichier et lecture des données
+    10-30 min : formules de base + indicateurs
+    30-45 min : tri et filtres
+    45-60 min : NB.SI / SOMME.SI / MOYENNE.SI + TCD guidé
+    60-100 min : graphiques
+    100-110 min : analyse et bilan
+    -->
+                <h3>Pourquoi allons-nous travailler cela ?</h3>
+                <p>Lors du CCF, les données ne seront pas forcément présentées sous la forme d'un petit tableau
+                    contenant uniquement les informations utiles.</p>
+                <p>Vous pourrez devoir travailler dans un classeur comportant :</p>
+                <ul>
+                    <li>plusieurs indicateurs ;</li>
+                    <li>plusieurs années ;</li>
+                    <li>des données techniques ;</li>
+                    <li>des données économiques ;</li>
+                    <li>des données sanitaires.</li>
+                </ul>
+                <p>La difficulté n'est donc pas seulement de connaître une formule.</p>
+                <p>Il faut être capable de :</p>
+                <p><strong>trouver les données utiles → choisir le traitement → vérifier le résultat → choisir une
+                        représentation → interpréter.</strong></p>
+                <!-- PROF - FORMULATION ORALE POSSIBLE :
+    « Au CCF, personne ne va forcément vous écrire :
+    utilisez SOMME.SI ici, faites une moyenne là et créez un histogramme ensuite.
+    On va surtout vous donner un problème et des données.
+    Ce que l'on travaille aujourd'hui, c'est votre capacité à décider quoi faire avec ces données. »
+    -->
+                <h3>À quoi cela va-t-il vous servir ?</h3>
+                <p>Ce type de travail correspond à ce que l'on peut rencontrer lorsqu'on récupère un export provenant
+                    d'un logiciel d'élevage, d'un suivi comptable ou d'un tableau de bord :</p>
+                <ul>
+                    <li>beaucoup de lignes ;</li>
+                    <li>plusieurs indicateurs ;</li>
+                    <li>certaines informations utiles pour une question et inutiles pour une autre ;</li>
+                    <li>des données qu'il faut regrouper avant de pouvoir les interpréter.</li>
+                </ul>
+                <h3>1. Le dossier professionnel</h3>
+                <p>Vous travaillez sur une exploitation bovine laitière fictive : <strong>GAEC du Plateau</strong>.</p>
+                <p>L'exploitation suit mensuellement plusieurs indicateurs depuis janvier 2024.</p>
+                <p>Votre mission consiste à préparer un premier diagnostic à partir des données disponibles.</p>
+                <p>Créez un classeur nommé :</p>
+                <p><strong>BTS2_ACSAGRI_PREPA_CCF_NOM_Prenom.ods</strong></p>
+                <p>Créez les feuilles suivantes :</p>
+                <ul>
+                    <li><strong>Donnees</strong></li>
+                    <li><strong>Calculs</strong></li>
+                    <li><strong>TCD</strong></li>
+                    <li><strong>Graphiques</strong></li>
+                    <li><strong>Assolement</strong></li>
+                    <li><strong>Bilan</strong></li>
+                </ul>
+                <!-- PROF :
+    Ne pas faire saisir les 36 lignes manuellement.
+    Les étudiants doivent copier directement le tableau depuis la page et le coller dans Calc.
+    Objectif : travailler sur le traitement des données, pas sur la vitesse de frappe.
+    -->
+                <h3>2. Importer un vrai volume de données</h3>
+                <p>Sélectionnez le tableau suivant, copiez-le puis collez-le à partir de la cellule A1 de la feuille
+                    <strong>Donnees</strong>.</p>
+                <p><strong>Ne recopiez pas les valeurs une par une.</strong></p>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Année</th>
+                                <th>Mois</th>
+                                <th>VL</th>
+                                <th>Lait (L)</th>
+                                <th>Concentrés (kg)</th>
+                                <th>Coût concentrés (€)</th>
+                                <th>Frais vétérinaires (€)</th>
+                                <th>Mammites</th>
+                                <th>Cellules/mL</th>
+                                <th>Boiteries</th>
+                                <th>Traitements antibiotiques</th>
+                                <th>Veaux nés</th>
+                                <th>Veaux morts</th>
+                                <th>Heures atelier</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01/01/2024</td>
+                                <td>2024</td>
+                                <td>Jan</td>
+                                <td>73</td>
+                                <td>48800</td>
+                                <td>12400</td>
+                                <td>4464</td>
+                                <td>820</td>
+                                <td>1</td>
+                                <td>182000</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>338</td>
+                            </tr>
+                            <tr>
+                                <td>01/02/2024</td>
+                                <td>2024</td>
+                                <td>Fév</td>
+                                <td>73</td>
+                                <td>47400</td>
+                                <td>12100</td>
+                                <td>4356</td>
+                                <td>760</td>
+                                <td>1</td>
+                                <td>176000</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>5</td>
+                                <td>0</td>
+                                <td>326</td>
+                            </tr>
+                            <tr>
+                                <td>01/03/2024</td>
+                                <td>2024</td>
+                                <td>Mar</td>
+                                <td>74</td>
+                                <td>50200</td>
+                                <td>12500</td>
+                                <td>4562,5</td>
+                                <td>910</td>
+                                <td>2</td>
+                                <td>188000</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>7</td>
+                                <td>0</td>
+                                <td>341</td>
+                            </tr>
+                            <tr>
+                                <td>01/04/2024</td>
+                                <td>2024</td>
+                                <td>Avr</td>
+                                <td>74</td>
+                                <td>51500</td>
+                                <td>12600</td>
+                                <td>4599</td>
+                                <td>860</td>
+                                <td>1</td>
+                                <td>194000</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>346</td>
+                            </tr>
+                            <tr>
+                                <td>01/05/2024</td>
+                                <td>2024</td>
+                                <td>Mai</td>
+                                <td>74</td>
+                                <td>53200</td>
+                                <td>12800</td>
+                                <td>4736</td>
+                                <td>780</td>
+                                <td>1</td>
+                                <td>201000</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>5</td>
+                                <td>0</td>
+                                <td>351</td>
+                            </tr>
+                            <tr>
+                                <td>01/06/2024</td>
+                                <td>2024</td>
+                                <td>Juin</td>
+                                <td>74</td>
+                                <td>54800</td>
+                                <td>13000</td>
+                                <td>4810</td>
+                                <td>740</td>
+                                <td>1</td>
+                                <td>207000</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>5</td>
+                                <td>0</td>
+                                <td>358</td>
+                            </tr>
+                            <tr>
+                                <td>01/07/2024</td>
+                                <td>2024</td>
+                                <td>Juil</td>
+                                <td>74</td>
+                                <td>56100</td>
+                                <td>13200</td>
+                                <td>4950</td>
+                                <td>790</td>
+                                <td>1</td>
+                                <td>214000</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>362</td>
+                            </tr>
+                            <tr>
+                                <td>01/08/2024</td>
+                                <td>2024</td>
+                                <td>Août</td>
+                                <td>74</td>
+                                <td>55200</td>
+                                <td>13100</td>
+                                <td>4912,5</td>
+                                <td>850</td>
+                                <td>2</td>
+                                <td>222000</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>359</td>
+                            </tr>
+                            <tr>
+                                <td>01/09/2024</td>
+                                <td>2024</td>
+                                <td>Sep</td>
+                                <td>74</td>
+                                <td>52600</td>
+                                <td>12700</td>
+                                <td>4826</td>
+                                <td>920</td>
+                                <td>2</td>
+                                <td>231000</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>5</td>
+                                <td>0</td>
+                                <td>348</td>
+                            </tr>
+                            <tr>
+                                <td>01/10/2024</td>
+                                <td>2024</td>
+                                <td>Oct</td>
+                                <td>74</td>
+                                <td>51000</td>
+                                <td>12500</td>
+                                <td>4750</td>
+                                <td>980</td>
+                                <td>2</td>
+                                <td>218000</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>6</td>
+                                <td>1</td>
+                                <td>344</td>
+                            </tr>
+                            <tr>
+                                <td>01/11/2024</td>
+                                <td>2024</td>
+                                <td>Nov</td>
+                                <td>73</td>
+                                <td>49500</td>
+                                <td>12300</td>
+                                <td>4735,5</td>
+                                <td>890</td>
+                                <td>1</td>
+                                <td>205000</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>7</td>
+                                <td>0</td>
+                                <td>337</td>
+                            </tr>
+                            <tr>
+                                <td>01/12/2024</td>
+                                <td>2024</td>
+                                <td>Déc</td>
+                                <td>73</td>
+                                <td>48200</td>
+                                <td>12200</td>
+                                <td>4697</td>
+                                <td>840</td>
+                                <td>1</td>
+                                <td>191000</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>332</td>
+                            </tr>
+                            <tr>
+                                <td>01/01/2025</td>
+                                <td>2025</td>
+                                <td>Jan</td>
+                                <td>74</td>
+                                <td>49500</td>
+                                <td>12600</td>
+                                <td>4914</td>
+                                <td>900</td>
+                                <td>1</td>
+                                <td>196000</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>342</td>
+                            </tr>
+                            <tr>
+                                <td>01/02/2025</td>
+                                <td>2025</td>
+                                <td>Fév</td>
+                                <td>74</td>
+                                <td>48600</td>
+                                <td>12400</td>
+                                <td>4836</td>
+                                <td>880</td>
+                                <td>2</td>
+                                <td>201000</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>334</td>
+                            </tr>
+                            <tr>
+                                <td>01/03/2025</td>
+                                <td>2025</td>
+                                <td>Mar</td>
+                                <td>75</td>
+                                <td>51100</td>
+                                <td>12800</td>
+                                <td>5056</td>
+                                <td>960</td>
+                                <td>2</td>
+                                <td>209000</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>7</td>
+                                <td>0</td>
+                                <td>348</td>
+                            </tr>
+                            <tr>
+                                <td>01/04/2025</td>
+                                <td>2025</td>
+                                <td>Avr</td>
+                                <td>75</td>
+                                <td>52400</td>
+                                <td>13000</td>
+                                <td>5135</td>
+                                <td>1010</td>
+                                <td>2</td>
+                                <td>218000</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>6</td>
+                                <td>1</td>
+                                <td>352</td>
+                            </tr>
+                            <tr>
+                                <td>01/05/2025</td>
+                                <td>2025</td>
+                                <td>Mai</td>
+                                <td>75</td>
+                                <td>54100</td>
+                                <td>13200</td>
+                                <td>5280</td>
+                                <td>940</td>
+                                <td>1</td>
+                                <td>226000</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>5</td>
+                                <td>0</td>
+                                <td>357</td>
+                            </tr>
+                            <tr>
+                                <td>01/06/2025</td>
+                                <td>2025</td>
+                                <td>Juin</td>
+                                <td>75</td>
+                                <td>55600</td>
+                                <td>13400</td>
+                                <td>5360</td>
+                                <td>900</td>
+                                <td>2</td>
+                                <td>234000</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>5</td>
+                                <td>0</td>
+                                <td>364</td>
+                            </tr>
+                            <tr>
+                                <td>01/07/2025</td>
+                                <td>2025</td>
+                                <td>Juil</td>
+                                <td>75</td>
+                                <td>56700</td>
+                                <td>13600</td>
+                                <td>5508</td>
+                                <td>990</td>
+                                <td>2</td>
+                                <td>241000</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>5</td>
+                                <td>0</td>
+                                <td>368</td>
+                            </tr>
+                            <tr>
+                                <td>01/08/2025</td>
+                                <td>2025</td>
+                                <td>Août</td>
+                                <td>75</td>
+                                <td>55900</td>
+                                <td>13500</td>
+                                <td>5467,5</td>
+                                <td>1040</td>
+                                <td>2</td>
+                                <td>249000</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>365</td>
+                            </tr>
+                            <tr>
+                                <td>01/09/2025</td>
+                                <td>2025</td>
+                                <td>Sep</td>
+                                <td>75</td>
+                                <td>53500</td>
+                                <td>13200</td>
+                                <td>5412</td>
+                                <td>1090</td>
+                                <td>3</td>
+                                <td>262000</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>5</td>
+                                <td>1</td>
+                                <td>354</td>
+                            </tr>
+                            <tr>
+                                <td>01/10/2025</td>
+                                <td>2025</td>
+                                <td>Oct</td>
+                                <td>75</td>
+                                <td>51700</td>
+                                <td>12900</td>
+                                <td>5289</td>
+                                <td>1120</td>
+                                <td>2</td>
+                                <td>255000</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>350</td>
+                            </tr>
+                            <tr>
+                                <td>01/11/2025</td>
+                                <td>2025</td>
+                                <td>Nov</td>
+                                <td>74</td>
+                                <td>50100</td>
+                                <td>12700</td>
+                                <td>5270,5</td>
+                                <td>1060</td>
+                                <td>2</td>
+                                <td>238000</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>7</td>
+                                <td>0</td>
+                                <td>343</td>
+                            </tr>
+                            <tr>
+                                <td>01/12/2025</td>
+                                <td>2025</td>
+                                <td>Déc</td>
+                                <td>74</td>
+                                <td>48900</td>
+                                <td>12600</td>
+                                <td>5229</td>
+                                <td>1020</td>
+                                <td>2</td>
+                                <td>224000</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>338</td>
+                            </tr>
+                            <tr>
+                                <td>01/01/2026</td>
+                                <td>2026</td>
+                                <td>Jan</td>
+                                <td>75</td>
+                                <td>49200</td>
+                                <td>12900</td>
+                                <td>5418</td>
+                                <td>1080</td>
+                                <td>2</td>
+                                <td>228000</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>350</td>
+                            </tr>
+                            <tr>
+                                <td>01/02/2026</td>
+                                <td>2026</td>
+                                <td>Fév</td>
+                                <td>75</td>
+                                <td>47800</td>
+                                <td>12700</td>
+                                <td>5334</td>
+                                <td>1120</td>
+                                <td>2</td>
+                                <td>236000</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>6</td>
+                                <td>1</td>
+                                <td>344</td>
+                            </tr>
+                            <tr>
+                                <td>01/03/2026</td>
+                                <td>2026</td>
+                                <td>Mar</td>
+                                <td>76</td>
+                                <td>50400</td>
+                                <td>13200</td>
+                                <td>5610</td>
+                                <td>1190</td>
+                                <td>3</td>
+                                <td>248000</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>7</td>
+                                <td>0</td>
+                                <td>359</td>
+                            </tr>
+                            <tr>
+                                <td>01/04/2026</td>
+                                <td>2026</td>
+                                <td>Avr</td>
+                                <td>76</td>
+                                <td>51600</td>
+                                <td>13400</td>
+                                <td>5695</td>
+                                <td>1260</td>
+                                <td>3</td>
+                                <td>259000</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>6</td>
+                                <td>1</td>
+                                <td>365</td>
+                            </tr>
+                            <tr>
+                                <td>01/05/2026</td>
+                                <td>2026</td>
+                                <td>Mai</td>
+                                <td>76</td>
+                                <td>52900</td>
+                                <td>13700</td>
+                                <td>5891</td>
+                                <td>1320</td>
+                                <td>3</td>
+                                <td>271000</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>5</td>
+                                <td>0</td>
+                                <td>371</td>
+                            </tr>
+                            <tr>
+                                <td>01/06/2026</td>
+                                <td>2026</td>
+                                <td>Juin</td>
+                                <td>76</td>
+                                <td>53800</td>
+                                <td>13900</td>
+                                <td>5977</td>
+                                <td>1280</td>
+                                <td>2</td>
+                                <td>283000</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>5</td>
+                                <td>1</td>
+                                <td>378</td>
+                            </tr>
+                            <tr>
+                                <td>01/07/2026</td>
+                                <td>2026</td>
+                                <td>Juil</td>
+                                <td>76</td>
+                                <td>54500</td>
+                                <td>14100</td>
+                                <td>6133,5</td>
+                                <td>1390</td>
+                                <td>3</td>
+                                <td>295000</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>5</td>
+                                <td>0</td>
+                                <td>384</td>
+                            </tr>
+                            <tr>
+                                <td>01/08/2026</td>
+                                <td>2026</td>
+                                <td>Août</td>
+                                <td>76</td>
+                                <td>53600</td>
+                                <td>14000</td>
+                                <td>6090</td>
+                                <td>1450</td>
+                                <td>4</td>
+                                <td>318000</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>382</td>
+                            </tr>
+                            <tr>
+                                <td>01/09/2026</td>
+                                <td>2026</td>
+                                <td>Sep</td>
+                                <td>76</td>
+                                <td>51400</td>
+                                <td>13700</td>
+                                <td>6028</td>
+                                <td>1510</td>
+                                <td>4</td>
+                                <td>327000</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>1</td>
+                                <td>374</td>
+                            </tr>
+                            <tr>
+                                <td>01/10/2026</td>
+                                <td>2026</td>
+                                <td>Oct</td>
+                                <td>76</td>
+                                <td>49700</td>
+                                <td>13400</td>
+                                <td>5896</td>
+                                <td>1480</td>
+                                <td>3</td>
+                                <td>309000</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>369</td>
+                            </tr>
+                            <tr>
+                                <td>01/11/2026</td>
+                                <td>2026</td>
+                                <td>Nov</td>
+                                <td>75</td>
+                                <td>48200</td>
+                                <td>13200</td>
+                                <td>5874</td>
+                                <td>1560</td>
+                                <td>4</td>
+                                <td>292000</td>
+                                <td>2</td>
+                                <td>4</td>
+                                <td>7</td>
+                                <td>1</td>
+                                <td>361</td>
+                            </tr>
+                            <tr>
+                                <td>01/12/2026</td>
+                                <td>2026</td>
+                                <td>Déc</td>
+                                <td>75</td>
+                                <td>46800</td>
+                                <td>13000</td>
+                                <td>5785</td>
+                                <td>1620</td>
+                                <td>4</td>
+                                <td>276000</td>
+                                <td>2</td>
+                                <td>4</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>356</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><em>Ces données sont fictives. Elles simulent trois années de suivi mensuel d'un atelier bovin
+                        laitier.</em></p>
+                <!-- PROF - POINT A FAIRE REMARQUER :
+    Le tableau comporte 36 enregistrements et 15 variables.
+    Il n'est PAS nécessaire de tout utiliser pour chaque question.
+    C'est précisément une compétence à travailler :
+    identifier les colonnes utiles pour répondre à une question.
+    Exemple :
+    pour calculer le lait par VL, seules VL et Lait sont nécessaires.
+    Le nombre de boiteries n'a aucune utilité pour ce calcul.
+    -->
+                <h3>3. Première lecture : comprendre les données avant de calculer</h3>
+                <p>Avant de créer une formule, observez les titres des colonnes.</p>
+                <p>Dans la feuille <strong>Bilan</strong>, classez au moins deux variables dans chacune des catégories
+                    suivantes :</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type de donnée</th>
+                            <th>Exemples</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Production</td>
+                            <td>À compléter</td>
+                        </tr>
+                        <tr>
+                            <td>Économie</td>
+                            <td>À compléter</td>
+                        </tr>
+                        <tr>
+                            <td>Santé</td>
+                            <td>À compléter</td>
+                        </tr>
+                        <tr>
+                            <td>Travail</td>
+                            <td>À compléter</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- PROF - ATTENDU :
+    Production :
+    lait, VL, éventuellement concentrés.
+    Économie :
+    coût concentrés, frais vétérinaires.
+    Santé :
+    mammites, cellules, boiteries, antibiotiques, mortalité veaux.
+    Travail :
+    heures atelier.
+    L'objectif n'est pas d'obtenir une classification parfaite.
+    Il s'agit surtout de faire lire les données avant de manipuler Calc.
+    -->
+                <h3>4. Réactiver les formules de base</h3>
+                <p>Nous allons commencer par des formules simples.</p>
+                <p><strong>Pourquoi commencer par cela ?</strong> Parce que les fonctions plus avancées reposent
+                    toujours sur la capacité à comprendre ce que représentent les cellules utilisées dans le calcul.</p>
+                <p>Dans la feuille <strong>Calculs</strong>, recopiez les colonnes Date, Année, Mois, VL, Lait,
+                    Concentrés, Coût concentrés et Frais vétérinaires.</p>
+                <p>Ajoutez quatre colonnes :</p>
+                <ul>
+                    <li><strong>Lait par VL (L/VL/mois)</strong></li>
+                    <li><strong>Concentrés par VL (kg/VL/mois)</strong></li>
+                    <li><strong>Coût concentrés pour 1000 L (€)</strong></li>
+                    <li><strong>Frais vétérinaires pour 1000 L (€)</strong></li>
+                </ul>
+                <p>Construisez les formules pour le premier mois puis recopiez-les vers le bas.</p>
+                <div class="student-hints">
+                    <details class="student-hint" data-exercise="S09-A4" data-hint-level="1">
+                        <summary><strong>Indice 1</strong></summary>
+                        <p>Commencez par écrire avec des mots ce que vous voulez calculer. Exemple : litres de lait ÷
+                            nombre de vaches.</p>
+                    </details>
+                    <details class="student-hint" data-exercise="S09-A4" data-hint-level="2">
+                        <summary><strong>Indice 2</strong></summary>
+                        <p>Pour obtenir un coût pour 1000 L, calculez d'abord le coût pour 1 L puis multipliez par 1000.
+                        </p>
+                    </details>
+                    <details class="student-hint" data-exercise="S09-A4" data-hint-level="3">
+                        <summary><strong>Indice 3</strong></summary>
+                        <p>Si VL est en D, Lait en E, Concentrés en F, Coût concentrés en G et Frais vétérinaires en H :
+                            <code>=E2/D2</code>, <code>=F2/D2</code>, <code>=G2/E2*1000</code> et
+                            <code>=H2/E2*1000</code>.</p>
+                    </details>
+                    <p data-hint-status="S09-A4"></p>
+                    <textarea data-save="hints-S09-A4" hidden></textarea>
+                </div>
+                <!-- PROF - ATTENDU :
+    Formules si les colonnes restent dans l'ordre fourni :
+    Lait/VL = E2/D2
+    Concentrés/VL = F2/D2
+    Coût concentrés/1000 L = G2/E2*1000
+    Frais vétérinaires/1000 L = H2/E2*1000
+    L'objectif est de travailler :
+    valeur totale → indicateur comparable.
+    Exemple janvier 2024 :
+    lait/VL = 48800 / 73 ≈ 668,49 L/VL/mois
+    concentrés/VL = 12400 / 73 ≈ 169,86 kg/VL/mois
+    coût concentrés/1000 L ≈ 91,48 €
+    frais vétérinaires/1000 L ≈ 16,80 €
+    Ne pas leur demander de retenir ces nombres.
+    Ils servent uniquement de contrôle professeur.
+    -->
+                <!-- PROF - EXPLICATION ORALE :
+    « Au CCF, si deux exploitations ou deux années n'ont pas exactement le même nombre de vaches ou le même volume de lait, les montants totaux ne suffisent pas toujours.
+    On crée donc des indicateurs qui ramènent les résultats à une unité commune. »
+    -->
+                <h3>5. Les quatre fonctions simples à retrouver rapidement</h3>
+                <p>Dans une petite zone de la feuille Calculs, déterminez pour la colonne <strong>Lait par VL</strong> :
+                </p>
+                <ul>
+                    <li>la moyenne ;</li>
+                    <li>la valeur minimale ;</li>
+                    <li>la valeur maximale.</li>
+                </ul>
+                <p>Calculez également la quantité totale de lait du tableau.</p>
+                <!-- PROF - ATTENDU :
+    Fonctions :
+    =MOYENNE(...)
+    =MIN(...)
+    =MAX(...)
+    =SOMME(...)
+    Ce sont des automatismes à sécuriser.
+    Ne pas donner immédiatement les formules.
+    Demander d'abord :
+    « Je veux un total : quelle fonction ? »
+    « Je veux la plus grande valeur : quelle fonction ? »
+    -->
+                <h3>6. Trier un gros tableau pour trouver rapidement une information</h3>
+                <p>Nous avons calculé des indicateurs. Nous allons maintenant apprendre à <strong>faire ressortir
+                        rapidement les valeurs importantes sans modifier les données</strong>.</p>
+                <p>Retournez dans la feuille <strong>Donnees</strong>.</p>
+                <p>Triez l'ensemble du tableau selon la colonne <strong>Cellules/mL</strong>, de la valeur la plus
+                    élevée à la plus faible.</p>
+                <p>Utilisez :</p>
+                <p><strong>Données → Trier</strong></p>
+                <p>Q1 : Quels sont les cinq mois présentant les niveaux cellulaires les plus élevés ?</p>
+                <!-- PROF - ATTENDU :
+    1. septembre 2026 : 327 000
+    2. août 2026 : 318 000
+    3. octobre 2026 : 309 000
+    4. juillet 2026 : 295 000
+    5. novembre 2026 : 292 000
+    Très important :
+    il faut trier TOUT le tableau et pas uniquement la colonne Cellules.
+    Si les dates ne suivent plus les valeurs correspondantes, l'étudiant a cassé la structure du tableau.
+    -->
+                <!-- PROF - EXPLICATION :
+    « Une ligne représente un enregistrement complet.
+    Si je déplace seulement le nombre de cellules sans déplacer le mois, les mammites, les coûts, etc., je crée de fausses informations. »
+    -->
+                <p>Q2 : Que remarquez-vous sur les autres indicateurs sanitaires pendant ces mois ?</p>
+                <!-- PROF - ATTENDU :
+    Les mois concernés sont essentiellement la seconde moitié de 2026.
+    On observe aussi plusieurs mammites, boiteries, traitements antibiotiques et des frais vétérinaires élevés.
+    Ne pas exiger un diagnostic causal.
+    On constate une association temporelle.
+    -->
+                <h3>7. Filtrer : ne regarder que les lignes utiles</h3>
+                <p>Un tri réorganise toutes les lignes.</p>
+                <p>Un <strong>filtre</strong> permet au contraire de masquer temporairement les lignes qui ne répondent
+                    pas à nos critères.</p>
+                <p>Activez :</p>
+                <p><strong>Données → AutoFiltre</strong></p>
+                <p>Affichez uniquement :</p>
+                <ul>
+                    <li>l'année <strong>2026</strong> ;</li>
+                    <li>les mois ayant au moins <strong>3 cas de mammites</strong>.</li>
+                </ul>
+                <p>Q3 : Combien de mois restent affichés ?</p>
+                <!-- PROF - ATTENDU :
+    8 mois :
+    mars, avril, mai, juillet, août, septembre, octobre, novembre, décembre ?
+    Vérification du dataset :
+    mars=3
+    avril=3
+    mai=3
+    juin=2
+    juillet=3
+    août=4
+    septembre=4
+    octobre=3
+    novembre=4
+    décembre=4
+    Cela fait 9 mois, pas 8.
+    Réponse attendue : 9 mois.
+    -->
+                <!-- PROF - VIGILANCE :
+    Penser à faire réinitialiser le filtre après la question.
+    Données → Filtre → Réinitialiser le filtre.
+    -->
+                <h3>8. Révision guidée : NB.SI</h3>
+                <p><strong>NB.SI est considéré ici comme une notion à consolider.</strong></p>
+                <p>On ne cherche donc pas à aller vite : on reconstruit la méthode.</p>
+                <p>Question :</p>
+                <p><strong>Combien de mois présentent au moins 250 000 cellules/mL ?</strong></p>
+                <p>Avant d'écrire la formule, posez-vous deux questions :</p>
+                <ol>
+                    <li>Dans quelle colonne dois-je chercher ?</li>
+                    <li>Quelle condition doit être respectée ?</li>
+                </ol>
+                <p>Rappel :</p>
+                <p><code>=NB.SI(plage;critère)</code></p>
+                <div class="student-hints">
+                    <details class="student-hint" data-exercise="S09-NBSI" data-hint-level="1">
+                        <summary><strong>Indice 1</strong></summary>
+                        <p>La plage est la colonne Cellules/mL.</p>
+                    </details>
+                    <details class="student-hint" data-exercise="S09-NBSI" data-hint-level="2">
+                        <summary><strong>Indice 2</strong></summary>
+                        <p>Le critère signifie « supérieur ou égal à 250000 ».</p>
+                    </details>
+                    <details class="student-hint" data-exercise="S09-NBSI" data-hint-level="3">
+                        <summary><strong>Indice 3</strong></summary>
+                        <p>Exemple : <code>=NB.SI(J2:J37;"&gt;=250000")</code>.</p>
+                    </details>
+                    <p data-hint-status="S09-NBSI"></p>
+                    <textarea data-save="hints-S09-NBSI" hidden></textarea>
+                </div>
+                <!-- PROF - ATTENDU :
+    Résultat = 11 mois.
+    Décomposition à faire oralement :
+    J2:J37 = où chercher ?
+    ">=250000" = quoi chercher ?
+    Traduction :
+    « Compte les cellules de J2 à J37 dont la valeur est supérieure ou égale à 250000. »
+    C'est cette phrase qu'ils doivent comprendre.
+    -->
+                <h3>9. Révision guidée : SOMME.SI</h3>
+                <p>Question :</p>
+                <p><strong>Quelle quantité totale de lait a été produite pendant l'année 2026 ?</strong></p>
+                <p>Cette fois, nous devons :</p>
+                <ol>
+                    <li>chercher les lignes correspondant à 2026 ;</li>
+                    <li>additionner le lait de ces lignes.</li>
+                </ol>
+                <p>Rappel :</p>
+                <p><code>=SOMME.SI(plage_du_critère;critère;plage_à_additionner)</code></p>
+                <div class="student-hints">
+                    <details class="student-hint" data-exercise="S09-SOMMESI" data-hint-level="1">
+                        <summary><strong>Indice 1</strong></summary>
+                        <p>Le critère se trouve dans la colonne Année.</p>
+                    </details>
+                    <details class="student-hint" data-exercise="S09-SOMMESI" data-hint-level="2">
+                        <summary><strong>Indice 2</strong></summary>
+                        <p>La colonne à additionner est Lait.</p>
+                    </details>
+                    <details class="student-hint" data-exercise="S09-SOMMESI" data-hint-level="3">
+                        <summary><strong>Indice 3</strong></summary>
+                        <p>Exemple : <code>=SOMME.SI(B2:B37;2026;E2:E37)</code>.</p>
+                    </details>
+                    <p data-hint-status="S09-SOMMESI"></p>
+                    <textarea data-save="hints-S09-SOMMESI" hidden></textarea>
+                </div>
+                <!-- PROF - ATTENDU :
+    Résultat = 609 900 L.
+    Décomposition :
+    B2:B37 = là où je regarde l'année.
+    2026 = l'année recherchée.
+    E2:E37 = les nombres que j'additionne.
+    Formulation orale :
+    « Si l'année de la ligne est 2026, ajoute le lait de cette ligne. »
+    -->
+                <h3>10. Révision guidée : MOYENNE.SI</h3>
+                <p>Question :</p>
+                <p><strong>Quel est le niveau cellulaire moyen en 2026 ?</strong></p>
+                <p>Le raisonnement est presque identique :</p>
+                <p><strong>je sélectionne les lignes de 2026 → je calcule la moyenne des cellules.</strong></p>
+                <p>Rappel :</p>
+                <p><code>=MOYENNE.SI(plage_du_critère;critère;plage_à_moyenner)</code></p>
+                <div class="student-hints">
+                    <details class="student-hint" data-exercise="S09-MOYENNESI" data-hint-level="1">
+                        <summary><strong>Indice 1</strong></summary>
+                        <p>La colonne utilisée comme critère reste Année.</p>
+                    </details>
+                    <details class="student-hint" data-exercise="S09-MOYENNESI" data-hint-level="2">
+                        <summary><strong>Indice 2</strong></summary>
+                        <p>Cette fois, la colonne calculée est Cellules/mL.</p>
+                    </details>
+                    <details class="student-hint" data-exercise="S09-MOYENNESI" data-hint-level="3">
+                        <summary><strong>Indice 3</strong></summary>
+                        <p>Exemple : <code>=MOYENNE.SI(B2:B37;2026;J2:J37)</code>.</p>
+                    </details>
+                    <p data-hint-status="S09-MOYENNESI"></p>
+                    <textarea data-save="hints-S09-MOYENNESI" hidden></textarea>
+                </div>
+                <!-- PROF - ATTENDU :
+    Résultat = 278 500 cellules/mL.
+    Faire comparer les trois fonctions :
+    NB.SI :
+    une plage + un critère.
+    SOMME.SI :
+    une plage critère + un critère + une plage à additionner.
+    MOYENNE.SI :
+    même structure que SOMME.SI, mais on calcule la moyenne.
+    Astuce orale :
+    « Le SI choisit les lignes. Le début du nom de la fonction indique ce qu'on fait avec ces lignes :
+    NB = compter
+    SOMME = additionner
+    MOYENNE = moyenner. »
+    -->
+                <h3>11. Construire une synthèse annuelle avec une table dynamique</h3>
+                <p><strong>La table dynamique est elle aussi considérée comme fragile.</strong></p>
+                <p>Nous allons donc reprendre la méthode étape par étape.</p>
+                <p>Notre objectif est d'obtenir <strong>une ligne par année</strong>.</p>
+                <p>Pour chaque année, nous voulons :</p>
+                <ul>
+                    <li>la somme du lait ;</li>
+                    <li>la somme du coût des concentrés ;</li>
+                    <li>la somme des frais vétérinaires ;</li>
+                    <li>la moyenne du niveau cellulaire ;</li>
+                    <li>le nombre total de mammites ;</li>
+                    <li>le nombre total de boiteries ;</li>
+                    <li>le nombre total de traitements antibiotiques.</li>
+                </ul>
+                <p>Étapes :</p>
+                <ol>
+                    <li>cliquez dans le tableau Donnees ;</li>
+                    <li>sélectionnez l'ensemble du tableau ;</li>
+                    <li>ouvrez <strong>Données → Table dynamique → Insérer ou éditer</strong> ;</li>
+                    <li>utilisez la sélection actuelle ;</li>
+                    <li>placez <strong>Année</strong> dans les champs de ligne ;</li>
+                    <li>placez les indicateurs dans les champs de données ;</li>
+                    <li>vérifiez le type de calcul de chacun ;</li>
+                    <li>placez le résultat dans la feuille <strong>TCD</strong>.</li>
+                </ol>
+                <!-- PROF - EXPLICATION DETAILLEE :
+    Reprendre la question habituelle :
+    « Une ligne par quoi ? »
+    → une ligne par ANNEE.
+    Donc Année = champ de ligne.
+    « Qu'est-ce que je veux calculer pour chaque année ? »
+    → les autres champs vont dans les données.
+    CHOIX DES CALCULS :
+    Lait = Somme
+    Coût concentrés = Somme
+    Frais vétérinaires = Somme
+    Cellules = Moyenne
+    Mammites = Somme
+    Boiteries = Somme
+    Traitements antibiotiques = Somme
+    Insister :
+    le logiciel peut proposer SOMME automatiquement.
+    Cela ne signifie pas que SOMME a du sens partout.
+    Additionner les cellules/mL des douze mois ne décrit pas le niveau cellulaire annuel.
+    On choisit ici une moyenne.
+    -->
+                <p>Votre TCD doit donner des valeurs proches de :</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Année</th>
+                            <th>Lait (L)</th>
+                            <th>Coût concentrés (€)</th>
+                            <th>Frais vétérinaires (€)</th>
+                            <th>Cellules moyennes/mL</th>
+                            <th>Mammites</th>
+                            <th>Boiteries</th>
+                            <th>Antibiotiques</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024</td>
+                            <td>618500</td>
+                            <td>56398,5</td>
+                            <td>10140</td>
+                            <td>≈ 202417</td>
+                            <td>16</td>
+                            <td>10</td>
+                            <td>16</td>
+                        </tr>
+                        <tr>
+                            <td>2025</td>
+                            <td>628100</td>
+                            <td>62757</td>
+                            <td>11910</td>
+                            <td>≈ 229417</td>
+                            <td>23</td>
+                            <td>17</td>
+                            <td>23</td>
+                        </tr>
+                        <tr>
+                            <td>2026</td>
+                            <td>609900</td>
+                            <td>69731,5</td>
+                            <td>16260</td>
+                            <td>278500</td>
+                            <td>37</td>
+                            <td>27</td>
+                            <td>37</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- PROF - VIGILANCE :
+    Ne pas leur faire recopier ce tableau.
+    Il sert de contrôle.
+    Si leurs valeurs sont très différentes :
+    1. vérifier la plage source ;
+    2. vérifier qu'une seule ligne d'en-tête est sélectionnée ;
+    3. vérifier le type de calcul ;
+    4. vérifier qu'un filtre précédent n'a pas laissé le tableau dans un état inattendu.
+    -->
+                <h3>12. Calculer une évolution en pourcentage</h3>
+                <p>Le CCF peut vous demander de comparer deux campagnes.</p>
+                <p>La formule générale d'une évolution est :</p>
+                <p><code>(valeur finale - valeur initiale) / valeur initiale</code></p>
+                <p>Calculez l'évolution entre <strong>2024 et 2026</strong> pour :</p>
+                <ul>
+                    <li>la production totale de lait ;</li>
+                    <li>le coût des concentrés ;</li>
+                    <li>les frais vétérinaires.</li>
+                </ul>
+                <!-- PROF - ATTENDU :
+    Lait :
+    (609900 - 618500) / 618500
+    ≈ -1,39 %
+    Coût concentrés :
+    (69731,5 - 56398,5) / 56398,5
+    ≈ +23,64 %
+    Frais vétérinaires :
+    (16260 - 10140) / 10140
+    ≈ +60,36 %
+    INTERPRETATION :
+    production légèrement en baisse ;
+    coût concentrés en forte hausse ;
+    frais vétérinaires en très forte hausse.
+    Formulation orale :
+    « Le pourcentage n'est pas le diagnostic.
+    Il mesure la variation.
+    C'est ensuite à nous de mettre les variations en relation. »
+    -->
+                <h3>13. Maintenant : beaucoup de graphiques</h3>
+                <p>Le but n'est pas simplement de savoir cliquer sur <strong>Insertion → Diagramme</strong>.</p>
+                <p>À chaque fois, vous devez vous demander :</p>
+                <p><strong>Qu'est-ce que je veux montrer ?</strong></p>
+                <!-- PROF :
+    C'est le cœur de la seconde moitié de la séance.
+    Les élèves doivent produire au minimum quatre graphiques.
+    Le cinquième est un exercice CCF plus autonome.
+    Ne pas exiger de refaire toutes les mises en forme si un étudiant est lent.
+    Priorité :
+    choix correct des données + type de graphique + titre + axes + unités.
+    -->
+                <h3>14. Graphique n°1 – Une courbe pour suivre une évolution dans le temps</h3>
+                <p><strong>Question :</strong> comment la production mensuelle de lait évolue-t-elle entre janvier 2024
+                    et décembre 2026 ?</p>
+                <p>Sélectionnez :</p>
+                <ul>
+                    <li>Date ;</li>
+                    <li>Lait (L).</li>
+                </ul>
+                <p>Créez un <strong>diagramme en courbes</strong>.</p>
+                <p>Il doit contenir :</p>
+                <ul>
+                    <li>un titre ;</li>
+                    <li>les dates sur l'axe horizontal ;</li>
+                    <li>le lait en litres sur l'axe vertical.</li>
+                </ul>
+                <!-- PROF - POURQUOI UNE COURBE :
+    Les dates forment une succession ordonnée.
+    On veut observer une évolution.
+    La courbe est donc adaptée.
+    Formulation orale :
+    « Ici, l'ordre janvier → février → mars a du sens.
+    Relier les points permet de suivre l'évolution. »
+    -->
+                <!-- PROF - VIGILANCE :
+    36 points peuvent rendre les étiquettes de dates serrées.
+    C'est normal.
+    On peut réduire la fréquence des étiquettes ou agrandir le graphique.
+    Le but n'est pas d'afficher les 36 dates parfaitement si cela rend le graphique illisible.
+    -->
+                <h3>15. Graphique n°2 – Des colonnes pour comparer des montants annuels</h3>
+                <p>Nous voulons maintenant comparer les dépenses annuelles.</p>
+                <p>À partir du TCD, sélectionnez :</p>
+                <ul>
+                    <li>Année ;</li>
+                    <li>Coût concentrés ;</li>
+                    <li>Frais vétérinaires.</li>
+                </ul>
+                <p>Créez un <strong>diagramme en colonnes groupées</strong>.</p>
+                <p>Titre possible :</p>
+                <p><strong>Évolution des dépenses de concentrés et vétérinaires – 2024 à 2026</strong></p>
+                <!-- PROF - EXPLICATION :
+    Nous comparons ici des catégories discrètes : 2024, 2025, 2026.
+    Les deux séries utilisent la même unité : €.
+    On peut donc les placer ensemble.
+    Faire remarquer cependant que les coûts de concentrés sont beaucoup plus élevés que les frais vétérinaires.
+    Si la série vétérinaire paraît visuellement petite, ce n'est pas une erreur.
+    C'est une conséquence des échelles.
+    -->
+                <p>Q4 : Quel problème de lecture apparaît sur ce graphique ?</p>
+                <!-- PROF - ATTENDU :
+    Les coûts des concentrés sont autour de 56 000 à 70 000 €.
+    Les frais vétérinaires sont autour de 10 000 à 16 000 €.
+    La différence d'échelle rend les frais vétérinaires moins visibles.
+    C'est un excellent point de discussion :
+    même unité ne signifie pas forcément même échelle de lecture.
+    Ne pas imposer un axe secondaire aujourd'hui, mais on peut le montrer aux plus avancés.
+    -->
+                <h3>16. Graphique n°3 – Le nuage de points pour chercher une relation</h3>
+                <p>Nous voulons maintenant répondre à une question différente :</p>
+                <p><strong>Les mois où davantage de concentrés sont distribués par vache correspondent-ils aux mois où
+                        davantage de lait est produit par vache ?</strong></p>
+                <p>Utilisez les deux indicateurs calculés précédemment :</p>
+                <ul>
+                    <li>Concentrés par VL ;</li>
+                    <li>Lait par VL.</li>
+                </ul>
+                <p>Créez un <strong>diagramme XY / nuage de points</strong>.</p>
+                <p>Placez :</p>
+                <ul>
+                    <li>Concentrés/VL sur l'axe X ;</li>
+                    <li>Lait/VL sur l'axe Y.</li>
+                </ul>
+                <!-- PROF - EXPLICATION :
+    Très important :
+    un nuage de points n'est PAS un graphique chronologique.
+    Chaque point représente ici un mois.
+    Axe X = quantité de concentrés par VL.
+    Axe Y = quantité de lait par VL.
+    On cherche une RELATION entre deux variables numériques.
+    Formulation orale :
+    « Si les points ont tendance à monter lorsque l'on se déplace vers la droite, il existe une association positive.
+    Mais cela ne prouve pas que l'une des variables cause l'autre. »
+    -->
+                <p>Q5 : Peut-on conclure uniquement à partir du graphique que donner davantage de concentrés provoque
+                    automatiquement davantage de lait ?</p>
+                <!-- PROF - ATTENDU :
+    Non.
+    Un nuage de points peut montrer une association.
+    Il ne suffit pas à démontrer une relation de causalité.
+    D'autres variables interviennent :
+    stade de lactation, qualité des fourrages, saison, état sanitaire, nombre de VL, conduite du troupeau, etc.
+    -->
+                <h3>17. Graphique n°4 – Un graphique en secteurs pour représenter une répartition</h3>
+                <p>Un graphique en secteurs n'est pas adapté à une évolution dans le temps.</p>
+                <p>Il est utile lorsqu'on veut montrer comment un <strong>total</strong> est réparti entre quelques
+                    catégories.</p>
+                <p>Dans la feuille <strong>Assolement</strong>, saisissez :</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Utilisation de la SAU</th>
+                            <th>Surface 2026 (ha)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Prairies permanentes</td>
+                            <td>52</td>
+                        </tr>
+                        <tr>
+                            <td>Prairies temporaires</td>
+                            <td>18</td>
+                        </tr>
+                        <tr>
+                            <td>Maïs ensilage</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <td>Méteil</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>Céréales de vente</td>
+                            <td>16</td>
+                        </tr>
+                        <tr>
+                            <td>Autres surfaces</td>
+                            <td>7</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Créez un <strong>diagramme en secteurs</strong> représentant l'assolement 2026.</p>
+                <!-- PROF - ATTENDU :
+    Total = 115 ha.
+    Le graphique en secteurs est pertinent parce que :
+    les catégories constituent les différentes parties d'un même total de surface.
+    Faire explicitement comparer avec le rendement :
+    les rendements des cultures ne forment PAS un total.
+    Un camembert de rendements serait donc sans sens.
+    Formulation orale :
+    « Secteurs = comment mon gâteau total est-il partagé ? »
+    -->
+                <h3>18. Graphique n°5 – Mini-épreuve CCF</h3>
+                <p>Cette fois, aucune représentation ne vous est imposée.</p>
+                <p>À partir de la synthèse annuelle, vous devez montrer l'évolution de la <strong>situation
+                        sanitaire</strong> entre 2024 et 2026.</p>
+                <p>Choisissez au moins <strong>trois indicateurs</strong> parmi :</p>
+                <ul>
+                    <li>mammites ;</li>
+                    <li>niveau cellulaire moyen ;</li>
+                    <li>boiteries ;</li>
+                    <li>traitements antibiotiques ;</li>
+                    <li>frais vétérinaires.</li>
+                </ul>
+                <p>Vous pouvez réaliser :</p>
+                <ul>
+                    <li>un seul graphique si les données sont compatibles ;</li>
+                    <li>ou plusieurs graphiques si cela rend l'information plus lisible.</li>
+                </ul>
+                <p>Dans la feuille Bilan, justifiez votre choix en deux phrases.</p>
+                <!-- PROF - ATTENDU :
+    Plusieurs solutions possibles.
+    SOLUTION SIMPLE ET PERTINENTE :
+    Graphique 1 :
+    colonnes ou courbes avec :
+    mammites
+    boiteries
+    traitements antibiotiques
+    → mêmes types d'unités : nombres de cas/traitements annuels.
+    Graphique 2 :
+    cellules moyennes seules
+    → unité très différente : cellules/mL.
+    Éventuellement graphique 3 :
+    frais vétérinaires en €.
+    L'objectif est précisément qu'ils comprennent qu'un graphique unique avec :
+    278500 cellules/mL
+    37 mammites
+    16260 €
+    n'est PAS lisible sur une seule échelle.
+    Une bonne réponse peut donc être :
+    « Je sépare le niveau cellulaire des autres indicateurs parce que son unité et son ordre de grandeur sont très différents. »
+    -->
+                <!-- PROF - CORRECTION DES TENDANCES :
+    Mammites :
+    16 → 23 → 37.
+    Cellules moyennes :
+    ≈ 202 417 → 229 417 → 278 500.
+    Boiteries :
+    10 → 17 → 27.
+    Antibiotiques :
+    16 → 23 → 37.
+    Frais vétérinaires :
+    10 140 → 11 910 → 16 260 €.
+    Tous ces indicateurs montrent une dégradation de la situation sanitaire dans le jeu de données.
+    Ne pas demander aux étudiants d'identifier une cause certaine.
+    -->
+                <h3>19. Analyse : faire parler plusieurs indicateurs ensemble</h3>
+                <p>Un graphique seul n'est pas une analyse.</p>
+                <p>Dans la feuille <strong>Bilan</strong>, rédigez entre <strong>6 et 8 lignes</strong> répondant à la
+                    question :</p>
+                <p><strong>Comment évolue la performance de l'atelier entre 2024 et 2026 ?</strong></p>
+                <p>Votre réponse doit utiliser au moins :</p>
+                <ul>
+                    <li>un indicateur de production ;</li>
+                    <li>un indicateur économique ;</li>
+                    <li>deux indicateurs sanitaires.</li>
+                </ul>
+                <div class="student-hints">
+                    <details class="student-hint" data-exercise="S09-ANALYSE" data-hint-level="1">
+                        <summary><strong>Indice 1</strong></summary>
+                        <p>Commencez par regarder ce qui augmente et ce qui diminue entre 2024 et 2026.</p>
+                    </details>
+                    <details class="student-hint" data-exercise="S09-ANALYSE" data-hint-level="2">
+                        <summary><strong>Indice 2</strong></summary>
+                        <p>Comparez notamment le lait, les coûts de concentrés, les frais vétérinaires, les cellules et
+                            les mammites.</p>
+                    </details>
+                    <details class="student-hint" data-exercise="S09-ANALYSE" data-hint-level="3">
+                        <summary><strong>Indice 3</strong></summary>
+                        <p>Une bonne structure est : production → coûts → santé → conclusion prudente.</p>
+                    </details>
+                    <p data-hint-status="S09-ANALYSE"></p>
+                    <textarea data-save="hints-S09-ANALYSE" hidden></textarea>
+                </div>
+                <!-- PROF - ATTENDU DETAILLE :
+    Exemple de construction :
+    1. Production :
+    618 500 L en 2024
+    628 100 L en 2025
+    609 900 L en 2026
+    → entre 2024 et 2026 : environ -1,39 %.
+    2. Coût concentrés :
+    56 398,5 € → 69 731,5 €
+    → +23,64 %.
+    3. Frais vétérinaires :
+    10 140 € → 16 260 €
+    → +60,36 %.
+    4. Santé :
+    cellules moyennes :
+    202 417 → 278 500
+    → +37,59 %.
+    mammites :
+    16 → 37
+    → +131,25 %.
+    boiteries :
+    10 → 27
+    → +170 %.
+    5. Conclusion :
+    malgré une production relativement stable puis légèrement en baisse,
+    plusieurs coûts et indicateurs sanitaires se dégradent fortement.
+    Formulation professionnelle possible :
+    « Entre 2024 et 2026, la production de lait diminue légèrement d'environ 1,4 %, alors que le coût des concentrés augmente d'environ 23,6 % et les frais vétérinaires de 60,4 %. Parallèlement, le niveau cellulaire moyen augmente et le nombre de mammites et de boiteries progresse fortement. Ces éléments suggèrent une dégradation de plusieurs dimensions de la performance de l'atelier. Les données permettent d'identifier des points de vigilance, mais des informations complémentaires seraient nécessaires pour expliquer leurs causes. »
+    Accepter d'autres formulations cohérentes.
+    -->
+                <!-- PROF - VIGILANCE :
+    Faire distinguer :
+    CONSTAT :
+    « les frais vétérinaires augmentent ».
+    INTERPRETATION :
+    « cette augmentation est cohérente avec la hausse de plusieurs problèmes sanitaires ».
+    CAUSALITE NON PROUVEE :
+    « les mammites ont causé exactement l'augmentation des frais vétérinaires ».
+    Les données ne permettent pas de démontrer cette dernière affirmation.
+    -->
+                <h3>20. Le réflexe graphique pour le CCF</h3>
+                <p>Avant de créer un graphique, posez-vous toujours ces trois questions :</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Graphique souvent adapté</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Comment une valeur évolue-t-elle dans le temps ?</td>
+                            <td>Courbe</td>
+                        </tr>
+                        <tr>
+                            <td>Comment plusieurs catégories se comparent-elles ?</td>
+                            <td>Colonnes ou barres</td>
+                        </tr>
+                        <tr>
+                            <td>Comment un total est-il réparti ?</td>
+                            <td>Secteurs</td>
+                        </tr>
+                        <tr>
+                            <td>Existe-t-il une relation entre deux variables numériques ?</td>
+                            <td>Nuage de points XY</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- PROF - FORMULATION ORALE A RETENIR :
+    « Je ne choisis pas le graphique parce que je sais le faire.
+    Je le choisis parce qu'il répond à ma question. »
+    -->
+                <h3>21. Les erreurs classiques à éviter au CCF</h3>
+                <ul>
+                    <li>créer un graphique avant de savoir ce que l'on veut montrer ;</li>
+                    <li>sélectionner des colonnes sans rapport avec la question ;</li>
+                    <li>mélanger plusieurs unités très différentes sur un même axe sans réfléchir ;</li>
+                    <li>oublier le titre ;</li>
+                    <li>oublier l'unité ;</li>
+                    <li>mettre toutes les données « parce qu'elles sont disponibles » ;</li>
+                    <li>utiliser un graphique en secteurs pour une évolution dans le temps ;</li>
+                    <li>utiliser une courbe pour des catégories qui n'ont pas d'ordre ;</li>
+                    <li>confondre une association visible avec une relation de cause à effet.</li>
+                </ul>
+                <h3>22. Ce qu'il faut être capable de refaire seul</h3>
+                <p>À la fin de cette séance, vous devez pouvoir :</p>
+                <ul>
+                    <li>créer une formule simple à partir du sens du calcul ;</li>
+                    <li>calculer une évolution en pourcentage ;</li>
+                    <li>retrouver SOMME, MOYENNE, MIN et MAX ;</li>
+                    <li>trier et filtrer un grand tableau sans casser les lignes ;</li>
+                    <li>reconstruire progressivement NB.SI, SOMME.SI et MOYENNE.SI ;</li>
+                    <li>créer une table dynamique simple avec aide minimale ;</li>
+                    <li>choisir entre courbe, colonnes, secteurs et nuage de points ;</li>
+                    <li>présenter un graphique avec un titre et des unités ;</li>
+                    <li>mettre plusieurs indicateurs en relation dans une analyse.</li>
+                </ul>
+                <h3>23. Avant de rendre</h3>
+                <p>Votre classeur doit comporter au minimum :</p>
+                <ul>
+                    <li>les 36 mois de données ;</li>
+                    <li>les quatre indicateurs calculés ;</li>
+                    <li>les résultats de NB.SI, SOMME.SI et MOYENNE.SI ;</li>
+                    <li>une synthèse annuelle par table dynamique ;</li>
+                    <li>les évolutions entre 2024 et 2026 ;</li>
+                    <li>au moins quatre graphiques différents ;</li>
+                    <li>le mini-exercice graphique « santé » ;</li>
+                    <li>votre analyse finale.</li>
+                </ul>
+                <p>Enregistrez sous :</p>
+                <p><strong>BTS2_ACSAGRI_PREPA_CCF_NOM_Prenom.ods</strong></p>
+                <h3>À retenir</h3>
+                <ul>
+                    <li>Dans un grand tableau, la première compétence consiste à repérer les données utiles.</li>
+                    <li>Une formule doit toujours avoir un sens avant d'avoir une syntaxe.</li>
+                    <li>Le tri réorganise les lignes ; le filtre masque temporairement les lignes inutiles.</li>
+                    <li>NB.SI compte, SOMME.SI additionne et MOYENNE.SI calcule une moyenne après sélection par un
+                        critère.</li>
+                    <li>Une table dynamique permet de regrouper rapidement un grand volume de données.</li>
+                    <li>Le choix d'un graphique dépend de la question posée.</li>
+                    <li>Une courbe montre bien une évolution dans le temps.</li>
+                    <li>Les colonnes permettent de comparer des catégories.</li>
+                    <li>Un graphique en secteurs représente les parties d'un même total.</li>
+                    <li>Un nuage de points permet d'étudier la relation entre deux variables numériques.</li>
+                    <li>Un graphique facilite l'analyse mais ne remplace jamais l'interprétation professionnelle.</li>
+                </ul>
+                <h3>Sources et ressources</h3>
+                <ul>
+                    <li>Chlorofil – <a href="https://chlorofil.fr/diplomes/secondaire/btsa/acse/acs-agri-2025"
+                            target="_blank" rel="noopener noreferrer">BTSA ACS'AGRI – référentiel et documents
+                            d'accompagnement</a>.</li>
+                    <li>Inspection de l'enseignement agricole – <a
+                            href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf"
+                            target="_blank" rel="noopener noreferrer">Exemples d'utilisation des TIM dans des situations
+                            favorisant l'acquisition de capacités</a>.</li>
+                    <li>LibreOffice – <a href="https://help.libreoffice.org/latest/fr/text/scalc/main0112.html"
+                            target="_blank" rel="noopener noreferrer">Données dans Calc : tri, filtre et tables
+                            dynamiques</a>.</li>
+                    <li>LibreOffice – <a href="https://help.libreoffice.org/latest/fr/text/scalc/01/12030000.html"
+                            target="_blank" rel="noopener noreferrer">Trier des données</a>.</li>
+                    <li>LibreOffice – <a href="https://help.libreoffice.org/latest/fr/text/scalc/guide/filters.html"
+                            target="_blank" rel="noopener noreferrer">Application de filtres</a>.</li>
+                    <li>LibreOffice – <a
+                            href="https://help.libreoffice.org/latest/fr/text/shared/guide/chart_insert.html"
+                            target="_blank" rel="noopener noreferrer">Insertion de diagrammes</a>.</li>
+                    <li>LibreOffice – <a href="https://help.libreoffice.org/latest/fr/text/scalc/01/12090000.html"
+                            target="_blank" rel="noopener noreferrer">Tables dynamiques dans Calc</a>.</li>
+                </ul>
+                <p><em>Les données du GAEC du Plateau sont fictives et construites pour simuler un jeu de données
+                        professionnel réaliste. Elles ne décrivent aucune exploitation réelle.</em></p>
             </section>
         </div>
     </main>
