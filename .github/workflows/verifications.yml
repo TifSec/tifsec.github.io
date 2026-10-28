@@ -1,0 +1,49 @@
+name: Vérifications
+
+# Lance la compilation Jekyll et tous les tests à chaque envoi sur une branche
+# de travail et à chaque demande de fusion. Ne publie rien et ne touche pas à Supabase.
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verifications-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  site-et-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ruby et Jekyll
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Compiler le site
+        run: bundle exec jekyll build
+
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Dépendances des tests
+        working-directory: _checks
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+
+      - name: Tests
+        run: node --experimental-vm-modules --test _checks/*.test.mjs
+
+      - name: Contrôle de publication (aucun corrigé, secret ni dossier interne dans _site)
+        run: node _checks/check-publication.mjs
