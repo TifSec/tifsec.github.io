@@ -14,10 +14,12 @@ async function loader({ identity = lesson, ok = true } = {}) {
     const fixture = courseFixture();
     const context = createContext({ document: { createElement: tag => new Element(tag), importNode: clone },
         async fetch(url, options) { calls.push({ url, options }); return { ok, async text() { return 'PUBLIC_FIXTURE'; } }; },
-        DOMParser: class { parseFromString() { return { getElementById() { return { dataset: identity }; }, querySelectorAll: selector => fixture.preview.querySelectorAll(selector) }; } }
+        DOMParser: class { parseFromString() { return { getElementById: id => id === 'course-work' ? { dataset: identity } : null, querySelectorAll: selector => fixture.preview.querySelectorAll(selector) }; } }
     });
     const module = new SourceTextModule(readFileSync(new URL('../assets/js/prof/course-preview.js', import.meta.url), 'utf8'), { context });
-    await module.link(() => new SyntheticModule(['mountCourseGraphs'], function() { this.setExport('mountCourseGraphs', () => {}); }, { context })); await module.evaluate();
+    await module.link(specifier => specifier.includes('course-paper-tab')
+        ? new SyntheticModule(['openCoursePaperTab'], function() { this.setExport('openCoursePaperTab', () => true); }, { context })
+        : new SyntheticModule(['mountCourseGraphs'], function() { this.setExport('mountCourseGraphs', () => {}); }, { context })); await module.evaluate();
     return { load: module.namespace.loadCoursePreview, calls };
 }
 test('la vue professeur reprend les sections du cours et désactive la saisie', async () => {

@@ -19,7 +19,7 @@ async function harness({ session = pupil, read = async () => ({}), grades = fals
     elements.get('progressions-data').textContent = JSON.stringify(progressions);
     const controls = { session, reads: 0 };
     const model = { lessons: lessonRows, started: 0, finished: 0, withFeedback: 0, corrected: lessonRows.filter(row => row.grade).length };
-    const context = createContext({ setTimeout, clearTimeout, document: { visibilityState: 'visible', getElementById: id => elements.get(id), createElement: element, addEventListener() {} }, window: { addEventListener() {} } });
+    const context = createContext({ setTimeout, clearTimeout, document: { visibilityState: 'visible', getElementById: id => elements.get(id), createElement: element, addEventListener() {} }, window: { addEventListener() {}, location: { hostname: 'eleves.example' } } });
     const module = new SourceTextModule(readFileSync(new URL('../assets/js/eleve/student-dashboard.js', import.meta.url), 'utf8'), { context });
     const dependencies = {
         '../bdd/bdd-connect.js': { db: { auth: { onAuthStateChange(fn) { controls.auth = fn; } } } },
