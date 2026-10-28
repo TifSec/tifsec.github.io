@@ -12,7 +12,7 @@ async function harness({ enabled = true, session = { status: 'authenticated', us
     const controls = { session, invocations: 0, reads: 0, previews: 0 };
     const context = createContext({ setTimeout, clearTimeout, AbortController, URL, URLSearchParams, document: { getElementById: id => elements.get(id), createElement: node }, window: { location: { href: 'http://local/prof/cours/' + query }, addEventListener() {} }, Option: class extends Element { constructor(text, value) { super('option'); this.textContent = text; this.value = value; } } });
     const dependencies = {
-        '../bdd/bdd-connect.js': { db: { auth: { onAuthStateChange(fn) { controls.auth = fn; } }, functions: { async invoke() { controls.invocations++; return invoke ? invoke() : { data: { content: { seance: 'S02', version_cours: 'v1', preparation: { duree: '<script>exemple</script>' }, correction: [{ activite: 'a01', question: 'q01', attendu: 'EXEMPLE_FICTIF_PRIVE' }] } } }; } }, from() { controls.reads++; return { select() { return this; }, async eq() { return { data: assignments }; } }; } } },
+        '../bdd/bdd-connect.js': { db: { auth: { onAuthStateChange(fn) { controls.auth = fn; } }, functions: { async invoke() { controls.invocations++; return invoke ? invoke() : { data: { content: { seance: 'S02', version_cours: 'v1', preparation: { duree: '<script>exemple</script>' }, correction: [{ activite: 'a01', question: 'q01', attendu: '<script>corrige</script>' }] } } }; } }, from() { controls.reads++; return { select() { return this; }, async eq() { return { data: assignments }; } }; } } },
         './course-preview.js': { async loadCoursePreview(root, lesson, signal, isCurrent) { controls.previews++; if (preview) await preview(); if (!isCurrent()) return false; root.replaceChildren(...courseFixture().preview.children); return true; } },
         '../auth/auth-session.js': { async checkSession() { return controls.session; } }
     };
@@ -39,11 +39,12 @@ test('fonction désactivée : aucune invocation malgré un clic forcé', async (
 test('les contenus HTML des notes sont rendus par textContent uniquement', async () => {
     const h = await harness();
     await h.elements.get('teacher-course-private').fire('click');
-    const root = h.elements.get('teacher-course-notes');
-    assert.equal(root.hidden, false);
+    // Seul le corrigé est affiché (sous sa question), et toujours comme texte brut.
+    const question = h.elements.get('teacher-course-preview').querySelector('[data-question="q01"]');
     const flatten = item => [item.textContent, ...item.children.flatMap(flatten)];
-    assert.ok(flatten(root).some(value => value.includes('<script>exemple</script>')));
-    assert.equal(root.innerHTML, undefined);
+    assert.ok(flatten(question).some(value => value.includes('<script>corrige</script>')));
+    assert.equal(question.querySelector('script'), null);
+    assert.equal(question.innerHTML, undefined);
 });
 test('déconnexion pendant la demande : le corrigé tardif ne se réaffiche pas', async () => {
     let finish;
@@ -72,11 +73,13 @@ test('le cours professeur charge aussi le cours élève et place le corrigé pr�
     assert.equal(h.elements.get('teacher-course').dataset.mode, 'private');
 });
 
-test('cours public et notes privées chargés en parallèle après contrôle du professeur',async()=>{
+test('cours public affiché d’abord, puis notes privées demandées après contrôle du professeur',async()=>{
     let finish;const waiting=new Promise(done=>{finish=done;});const h=await harness({preview:()=>waiting});
+    // Depuis le 28 octobre : le cours élève est affiché d'abord, puis le corrigé est demandé.
     const loading=h.elements.get('teacher-course-private').fire('click');await turn();
-    assert.equal(h.controls.previews,1);assert.equal(h.controls.invocations,1);
+    assert.equal(h.controls.previews,1);assert.equal(h.controls.invocations,0);
     assert.equal(h.elements.get('teacher-course-notes').hidden,true);finish();await loading;
+    assert.equal(h.controls.invocations,1);
     assert.equal(h.elements.get('teacher-course').dataset.mode,'private');
 });
 test('la version élève retire tous les corrigés intégrés sans recharger les notes privées', async () => {

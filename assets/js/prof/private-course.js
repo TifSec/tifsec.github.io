@@ -103,6 +103,8 @@ export function initPrivateCourse() {
             if (privateMode) {
                 status.textContent = 'Cours chargé. Vérification et chargement des corrections privées…';
                 const response = await db.functions.invoke('teacher-course', { body, signal: controller.signal });
+                // Réponse arrivée après un changement de classe, de séance ou de compte : ne rien afficher.
+                if (current !== generation) return;
                 if (response.error || !response.data?.content) throw new Error('private_unavailable');
                 renderTeacherNotes(preview, notes, response.data.content, lesson);
                 root.dataset.mode = 'private';
