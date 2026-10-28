@@ -1,6 +1,7 @@
 -- Instantané du schéma de la base Supabase (projet aqbjykgppbyrzqxlzxuf, PostgreSQL 17, eu-west-1)
 -- Exporté en lecture seule le 28 octobre 2026, après la migration 20261028173039.
--- Contient la structure (tables, politiques RLS, fonctions, triggers, droits) : AUCUNE donnée d'élève.
+-- Contient la structure (tables, identités, politiques RLS, fonctions, triggers, droits) : AUCUNE donnée d'élève.
+-- Corrigé le 28 octobre : colonnes d'identité, droits sur le schéma privé et les séquences.
 -- Sert de référence : en cas de perte, la base peut être reconstruite à partir de ce fichier.
 -- Ne pas l'exécuter tel quel sur la base de production.
 
@@ -10,7 +11,7 @@ create schema if not exists refonte_private;
 -- TABLES
 
 create table public.course_exercises (
-    id bigint not null,
+    id bigint generated always as identity not null,
     session_id bigint not null,
     exercise_key text not null,
     titre text,
@@ -30,7 +31,7 @@ create table public.course_exercises (
 alter table public.course_exercises enable row level security;
 
 create table public.course_sessions (
-    id bigint not null,
+    id bigint generated always as identity not null,
     matiere text not null,
     classe text not null,
     seance text not null,
@@ -61,7 +62,7 @@ create table public.profiles (
 alter table public.profiles enable row level security;
 
 create table public.student_hints (
-    id bigint not null,
+    id bigint generated always as identity not null,
     user_id uuid not null,
     exercise_id bigint not null,
     hint_level smallint not null,
@@ -73,7 +74,7 @@ create table public.student_hints (
 alter table public.student_hints enable row level security;
 
 create table public.student_results (
-    id bigint not null,
+    id bigint generated always as identity not null,
     user_id uuid not null,
     exercise_id bigint not null,
     value text not null default ''::text,
@@ -88,7 +89,7 @@ create table public.student_results (
 alter table public.student_results enable row level security;
 
 create table public.student_sessions (
-    id bigint not null,
+    id bigint generated always as identity not null,
     user_id uuid not null,
     session_id bigint not null,
     status text not null default 'started'::text,
@@ -102,7 +103,7 @@ create table public.student_sessions (
 alter table public.student_sessions enable row level security;
 
 create table public.student_work (
-    id bigint not null,
+    id bigint generated always as identity not null,
     user_id uuid not null,
     exercise_id bigint not null,
     reponse text not null default ''::text,
@@ -124,7 +125,7 @@ create table public.teacher_class_assignments (
 alter table public.teacher_class_assignments enable row level security;
 
 create table public.work_answers (
-    id bigint not null,
+    id bigint generated always as identity not null,
     work_session_id bigint not null,
     question_key text not null,
     reponse text not null default ''::text,
@@ -140,7 +141,7 @@ create table public.work_answers (
 alter table public.work_answers enable row level security;
 
 create table public.work_evaluations (
-    id bigint not null,
+    id bigint generated always as identity not null,
     work_session_id bigint not null,
     teacher_id uuid not null,
     course_version text not null,
@@ -171,7 +172,7 @@ create table public.work_feedback (
 alter table public.work_feedback enable row level security;
 
 create table public.work_session_members (
-    id bigint not null,
+    id bigint generated always as identity not null,
     work_session_id bigint not null,
     user_id uuid not null,
     status text not null default 'pending'::text,
@@ -184,7 +185,7 @@ create table public.work_session_members (
 alter table public.work_session_members enable row level security;
 
 create table public.work_sessions (
-    id bigint not null,
+    id bigint generated always as identity not null,
     etablissement text not null,
     matiere text not null,
     classe text not null,
@@ -992,6 +993,51 @@ create policy refonte_own_individual_sessions_insert on public.work_sessions as 
   with check (((created_by = ( SELECT auth.uid() AS uid)) AND (max_members = 1) AND (NOT terminee) AND (length(TRIM(BOTH FROM matiere)) > 0) AND (length(TRIM(BOTH FROM seance)) > 0) AND (EXISTS ( SELECT 1
    FROM profiles p
   WHERE ((p.user_id = ( SELECT auth.uid() AS uid)) AND (p.role = 'student'::text) AND (p.etablissement = work_sessions.etablissement) AND (p.classe = work_sessions.classe)))) AND (NOT refonte_private.has_group(etablissement, matiere, classe, seance))));
+
+-- REMISE A ZERO DES DROITS (Supabase accorde par défaut des droits larges aux nouveaux objets)
+
+revoke all on schema refonte_private from public, anon, authenticated;
+grant usage on schema refonte_private to authenticated;
+revoke all on table public.course_exercises from public, anon, authenticated;
+revoke all on table public.course_sessions from public, anon, authenticated;
+revoke all on table public.profiles from public, anon, authenticated;
+revoke all on table public.student_hints from public, anon, authenticated;
+revoke all on table public.student_results from public, anon, authenticated;
+revoke all on table public.student_sessions from public, anon, authenticated;
+revoke all on table public.student_work from public, anon, authenticated;
+revoke all on table public.teacher_class_assignments from public, anon, authenticated;
+revoke all on table public.work_answers from public, anon, authenticated;
+revoke all on table public.work_evaluations from public, anon, authenticated;
+revoke all on table public.work_feedback from public, anon, authenticated;
+revoke all on table public.work_session_members from public, anon, authenticated;
+revoke all on table public.work_sessions from public, anon, authenticated;
+do $$ declare f record; begin for f in select p.oid::regprocedure sig from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname in ('public','refonte_private') and p.prokind='f' loop execute format('revoke all on function %s from public, anon, authenticated', f.sig); end loop; end $$;
+revoke all on sequence public.course_exercises_id_seq from public, anon, authenticated;
+grant usage on sequence public.course_exercises_id_seq to anon;
+grant usage on sequence public.course_exercises_id_seq to authenticated;
+revoke all on sequence public.course_sessions_id_seq from public, anon, authenticated;
+grant usage on sequence public.course_sessions_id_seq to anon;
+grant usage on sequence public.course_sessions_id_seq to authenticated;
+revoke all on sequence public.student_hints_id_seq from public, anon, authenticated;
+grant usage on sequence public.student_hints_id_seq to anon;
+grant usage on sequence public.student_hints_id_seq to authenticated;
+revoke all on sequence public.student_results_id_seq from public, anon, authenticated;
+grant usage on sequence public.student_results_id_seq to anon;
+grant usage on sequence public.student_results_id_seq to authenticated;
+revoke all on sequence public.student_sessions_id_seq from public, anon, authenticated;
+grant usage on sequence public.student_sessions_id_seq to anon;
+grant usage on sequence public.student_sessions_id_seq to authenticated;
+revoke all on sequence public.student_work_id_seq from public, anon, authenticated;
+grant usage on sequence public.student_work_id_seq to anon;
+grant usage on sequence public.student_work_id_seq to authenticated;
+revoke all on sequence public.work_answers_id_seq from public, anon, authenticated;
+grant usage on sequence public.work_answers_id_seq to authenticated;
+revoke all on sequence public.work_evaluations_id_seq from public, anon, authenticated;
+revoke all on sequence public.work_session_members_id_seq from public, anon, authenticated;
+grant usage on sequence public.work_session_members_id_seq to anon;
+grant usage on sequence public.work_session_members_id_seq to authenticated;
+revoke all on sequence public.work_sessions_id_seq from public, anon, authenticated;
+grant usage on sequence public.work_sessions_id_seq to authenticated;
 
 -- DROITS TABLES
 
