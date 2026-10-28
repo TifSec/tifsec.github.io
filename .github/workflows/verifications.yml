@@ -22,11 +22,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Ruby et Jekyll
+      - name: Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
-          bundler-cache: true
+
+      # Gemfile.lock a été créé sous Windows (plateforme x64-mingw-ucrt seulement) :
+      # on ajoute la plateforme Linux le temps de la vérification, sans modifier le dépôt.
+      - name: Jekyll
+        run: |
+          gem install bundler -v 4.0.22 --no-document || gem install bundler --no-document
+          bundle lock --add-platform x86_64-linux
+          bundle install --jobs 4
 
       - name: Compiler le site
         run: bundle exec jekyll build
