@@ -56,8 +56,11 @@ function harness({ sdk = true, registration = false } = {}) {
         mfr: { nom: "MFR", classes: [{ id: "3e", nom: "3e MFR" }] }
     });
     const fields = ["etablissement", "classe"].map(name => ({ ...element(), dataset: { profileField: name } }));
+    // Balises générées depuis _config.yml : adresse et clé publique de la base.
+    const meta = { 'supabase-url': 'https://exemple.supabase.co', 'supabase-publishable-key': 'sb_publishable_exemple' };
     const document = {
         getElementById(id) { return elements.get(id) || null; },
+        querySelector(selector) { const name = selector.match(/meta\[name="([^"]+)"\]/)?.[1]; return name in meta ? { content: meta[name] } : null; },
         querySelectorAll() { return fields; }
     };
     const events = new Map();
