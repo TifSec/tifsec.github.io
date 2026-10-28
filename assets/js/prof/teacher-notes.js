@@ -33,9 +33,9 @@ function contents(parent, value, depth = 0) {
         }
     } else parent.append(text('p', value === null ? 'Non renseigné' : String(value)));
 }
-function panel(title, value) {
+function panel(title, value, open = true) {
     const node = document.createElement('details');
-    node.dataset.teacherPrivate = 'true'; node.className = 'teacher-annotation'; node.open = true;
+    node.dataset.teacherPrivate = 'true'; node.className = 'teacher-annotation'; node.open = open;
     node.append(text('summary', title)); contents(node, value);
     return node;
 }
@@ -43,25 +43,41 @@ export function clearTeacherNotes(preview, summary) {
     preview.querySelectorAll('[data-teacher-private]').forEach(node => node.remove());
     summary.replaceChildren(); summary.hidden = true;
 }
+// Affiche, sans HTML interprété :
+// - la préparation et l'évaluation de séance en tête (repliées) ;
+// - l'accompagnement (relances, aides, difficultés…) sous le titre de chaque activité (replié) ;
+// - le corrigé sous la question correspondante (ouvert).
+// Toutes les cibles sont vérifiées avant la moindre insertion : rien n'est affiché partiellement.
 export function renderTeacherNotes(preview, summary, content, lesson) {
     clearTeacherNotes(preview, summary);
     if (content.seance !== lesson.seance || content.version_cours !== lesson.version) throw new Error('notes_mismatch');
     const staged = [];
     const id = value => typeof value === 'string' && /^[A-Za-z][A-Za-z0-9_-]{0,79}$/.test(value);
+    const activityOf = name => {
+        if (!id(name)) throw new Error('invalid_activity');
+        const activity = preview.querySelector('#' + name);
+        if (!activity) throw new Error('activity_missing');
+        return activity;
+    };
+    for (const note of content.accompagnement || []) {
+        const activity = activityOf(note.activite);
+        const body = Object.fromEntries(Object.entries(note).filter(([key]) => key !== 'activite'));
+        staged.push([activity, panel('Accompagnement — professeur', body, false), 'heading']);
+    }
     for (const note of content.correction || []) {
-        if (!id(note.activite) || !id(note.question)) throw new Error('invalid_question');
-        const activity = preview.querySelector('#' + note.activite);
-        const question = activity?.querySelector('[data-question="' + note.question + '"]');
+        if (!id(note.question)) throw new Error('invalid_question');
+        const question = activityOf(note.activite).querySelector('[data-question="' + note.question + '"]');
         if (!question) throw new Error('question_missing');
         const body = Object.fromEntries(Object.entries(note).filter(([key]) => correctionFields.has(key)));
-        staged.push([question, panel('Correction — professeur', body)]);
+        staged.push([question, panel('Correction — professeur', body), 'end']);
     }
-    // Afficher uniquement le corrigé, sous la question correspondante.
-    summary.replaceChildren();
-    summary.hidden = true;
-    for (const [target, annotation] of staged) {
-        if (target.matches('.cours-activite')) target.insertBefore(annotation, target.querySelector('.cours-question'));
+    const overview = [];
+    if (content.preparation && Object.keys(content.preparation).length) overview.push(panel('Préparation de la séance', content.preparation, false));
+    if (content.evaluation && Object.keys(content.evaluation).length) overview.push(panel('Évaluation', content.evaluation, false));
+    for (const [target, annotation, place] of staged) {
+        if (place === 'heading') target.insertBefore(annotation, target.querySelector('h2')?.nextSibling || null);
         else target.append(annotation);
     }
-    summary.hidden = false;
+    summary.replaceChildren(...overview);
+    summary.hidden = !overview.length;
 }

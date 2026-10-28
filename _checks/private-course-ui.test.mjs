@@ -39,12 +39,15 @@ test('fonction désactivée : aucune invocation malgré un clic forcé', async (
 test('les contenus HTML des notes sont rendus par textContent uniquement', async () => {
     const h = await harness();
     await h.elements.get('teacher-course-private').fire('click');
-    // Seul le corrigé est affiché (sous sa question), et toujours comme texte brut.
-    const question = h.elements.get('teacher-course-preview').querySelector('[data-question="q01"]');
+    // Préparation (en tête) et corrigé (sous sa question) sont rendus comme texte brut.
+    const root = h.elements.get('teacher-course-notes');
+    assert.equal(root.hidden, false);
     const flatten = item => [item.textContent, ...item.children.flatMap(flatten)];
+    assert.ok(flatten(root).some(value => value.includes('<script>exemple</script>')));
+    assert.equal(root.innerHTML, undefined);
+    const question = h.elements.get('teacher-course-preview').querySelector('[data-question="q01"]');
     assert.ok(flatten(question).some(value => value.includes('<script>corrige</script>')));
     assert.equal(question.querySelector('script'), null);
-    assert.equal(question.innerHTML, undefined);
 });
 test('déconnexion pendant la demande : le corrigé tardif ne se réaffiche pas', async () => {
     let finish;
