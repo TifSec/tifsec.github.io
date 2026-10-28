@@ -50,7 +50,15 @@ jobs:
           pnpm install --frozen-lockfile
 
       - name: Tests
-        run: node --experimental-vm-modules --test _checks/*.test.mjs
+        run: |
+          set +e
+          node --experimental-vm-modules --test --test-reporter=tap _checks/*.test.mjs > tests.tap 2>&1
+          status=$?
+          grep -E '^# (tests|pass|fail)' tests.tap | tee -a "$GITHUB_STEP_SUMMARY"
+          # Chaque test en échec devient une annotation lisible dans le résumé de l'exécution.
+          grep -E '^\s*not ok' tests.tap | sed 's/^\s*//' | head -60 | while read -r line; do echo "::error title=Test en échec::$line"; done
+          grep -E -A12 '^\s*not ok' tests.tap | grep -E "error:|message:|expected|actual|code:" | head -40 | while read -r line; do echo "::warning title=Détail::$line"; done
+          exit $status
 
       - name: Contrôle de publication (aucun corrigé, secret ni dossier interne dans _site)
         run: node _checks/check-publication.mjs
