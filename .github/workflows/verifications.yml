@@ -56,8 +56,17 @@ jobs:
           status=$?
           grep -E '^# (tests|pass|fail)' tests.tap | tee -a "$GITHUB_STEP_SUMMARY"
           # Chaque test en échec devient une annotation lisible dans le résumé de l'exécution.
-          grep -E '^\s*not ok' tests.tap | sed 's/^\s*//' | head -60 | while read -r line; do echo "::error title=Test en échec::$line"; done
-          grep -E -A12 '^\s*not ok' tests.tap | grep -E "error:|message:|expected|actual|code:" | head -40 | while read -r line; do echo "::warning title=Détail::$line"; done
+          # Une annotation par tranche (GitHub limite le nombre d'annotations par étape).
+          node -e '
+            const lines = require("fs").readFileSync("tests.tap", "utf8").split("\n");
+            const out = [];
+            lines.forEach((l, i) => { if (/^\s*not ok/.test(l)) {
+              const detail = lines.slice(i + 1, i + 25).filter(x => /error:|expected:|actual:|location:/.test(x)).slice(0, 4).map(x => "    " + x.trim()).join("\n");
+              out.push(l.trim() + "\n" + detail); } });
+            let chunk = "";
+            const flush = () => { if (chunk) console.log("::error title=Tests en échec::" + chunk.replace(/%/g, "%25").replace(/\r/g, "").replace(/\n/g, "%0A")); chunk = ""; };
+            for (const item of out) { if ((chunk + item).length > 3500) flush(); chunk += item + "\n"; }
+            flush();'
           exit $status
 
       - name: Contrôle de publication (aucun corrigé, secret ni dossier interne dans _site)
