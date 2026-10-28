@@ -6,7 +6,9 @@ import {createContext,SourceTextModule} from 'node:vm';
 async function harness(){
     let notify;
     const auth={onAuthStateChange(callback){notify=callback;return {data:{subscription:{unsubscribe(){}}}};}};
-    const context=createContext({window:{supabase:{createClient:()=>({auth})}}});
+    const meta={'supabase-url':'https://exemple.supabase.co','supabase-publishable-key':'sb_publishable_exemple'};
+    const document={querySelector:selector=>{const name=selector.match(/name="([^"]+)"/)?.[1];return name in meta?{content:meta[name]}:null;}};
+    const context=createContext({document,window:{supabase:{createClient:()=>({auth})}}});
     const module=new SourceTextModule(readFileSync(new URL('../assets/js/bdd/bdd-connect.js',import.meta.url),'utf8'),{context});
     await module.link(()=>{});await module.evaluate();
     const events=[];module.namespace.db.auth.onAuthStateChange((event,session)=>events.push([event,session?.user?.id]));
@@ -19,4 +21,10 @@ test('retour onglet : SIGNED_IN du même compte ne reconstruit pas les espaces',
 test('changement de compte, déconnexion et renouvellement restent transmis',async()=>{
     const h=await harness();h.notify('INITIAL_SESSION','a');h.notify('SIGNED_IN','b');h.notify('TOKEN_REFRESHED','b');h.notify('USER_UPDATED','b');h.notify('SIGNED_OUT');h.notify('SIGNED_IN','b');
     assert.deepEqual(h.events.map(e=>e[0]),['INITIAL_SESSION','SIGNED_IN','TOKEN_REFRESHED','USER_UPDATED','SIGNED_OUT','SIGNED_IN']);
+});
+test('sans adresse de base dans la page, aucune connexion n’est tentée',async()=>{
+    const context=createContext({window:{supabase:{createClient:()=>{throw new Error('ne doit pas être appelé');}}}});
+    const module=new SourceTextModule(readFileSync(new URL('../assets/js/bdd/bdd-connect.js',import.meta.url),'utf8'),{context});
+    await module.link(()=>{});await module.evaluate();
+    assert.equal(module.namespace.db,null);
 });

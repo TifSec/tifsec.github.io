@@ -35,8 +35,13 @@ jobs:
           bundle lock --add-platform x86_64-linux
           bundle install --jobs 4
 
-      - name: Compiler le site
-        run: bundle exec jekyll build
+      - name: Compiler le site (version des tests, brouillons compris)
+        run: bundle exec jekyll build --config _config.yml,_checks/config-tests.yml
+
+      - name: Compiler le site des élèves et le bac à sable
+        run: |
+          bundle exec jekyll build --config _config.yml,_config_eleves.yml -d _site_eleves
+          bundle exec jekyll build --config _config.yml,_config_bac_a_sable.yml -d _site_bac_a_sable
 
       - name: Node
         uses: actions/setup-node@v4
@@ -69,5 +74,18 @@ jobs:
             flush();'
           exit $status
 
-      - name: Contrôle de publication (aucun corrigé, secret ni dossier interne dans _site)
-        run: node _checks/check-publication.mjs
+      - name: Contrôle de publication (aucun corrigé, secret ni dossier interne publié)
+        run: |
+          node _checks/check-publication.mjs
+          node _checks/check-publication.mjs _site_eleves /tifsec-test-eleves
+          node _checks/check-publication.mjs _site_bac_a_sable /tifsec-bac-a-sable
+
+      - name: Aucun brouillon visible sur le site des élèves
+        run: node _checks/check-drafts.mjs _site_eleves
+
+      - name: Le site des élèves utilise la vraie base, le bac à sable la base de test
+        run: |
+          grep -q 'content="https://aqbjykgppbyrzqxlzxuf.supabase.co"' _site_eleves/eleve/index.html
+          grep -q 'content="https://evbfflwfyiitrkgzjhwt.supabase.co"' _site_bac_a_sable/eleve/index.html
+          ! grep -rq 'evbfflwfyiitrkgzjhwt' _site_eleves
+          ! grep -rq 'aqbjykgppbyrzqxlzxuf' _site_bac_a_sable

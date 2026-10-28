@@ -1,9 +1,12 @@
 /* ========== CONNEXION SUPABASE ========== */
 
-const SUPABASE_URL = "https://aqbjykgppbyrzqxlzxuf.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_QurNizkqNqwICBWfRgfPPA_VZ71c6WM";
+// Adresse et clé publique lues dans la page (générées depuis _config.yml) :
+// le même code sert au site des élèves (vraie base) et au bac à sable (base de test).
+const setting = name => globalThis.document?.querySelector?.('meta[name="' + name + '"]')?.content || '';
+const SUPABASE_URL = setting('supabase-url');
+const SUPABASE_PUBLISHABLE_KEY = setting('supabase-publishable-key');
 
-export const db = window.supabase?.createClient ? window.supabase.createClient(
+export const db = window.supabase?.createClient && SUPABASE_URL.startsWith('https://') && SUPABASE_PUBLISHABLE_KEY ? window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
 ) : null;

@@ -3,11 +3,13 @@
     {% if page.graphique_interactif or page.layout == 'prof' %}<link rel="stylesheet" href="{{ '/assets/css/cours/course-graph.css' | relative_url }}">{% endif %}
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="{{ site.supabase.url | escape }}">
+    <meta name="supabase-publishable-key" content="{{ site.supabase.publishable_key | escape }}">
 
     <meta name="description" content="{{ page.description | default: site.description | escape }}">
 
     {% if page.layout == "prof" or page.layout == "eleve" or page.layout == "cours" or page.layout == "auth" %}
-    <link rel="preconnect" href="https://aqbjykgppbyrzqxlzxuf.supabase.co" crossorigin>
+    <link rel="preconnect" href="{{ site.supabase.url | escape }}" crossorigin>
     <link rel="preload" as="script" href="{{ '/assets/vendor/supabase/supabase-2.118.0.js' | relative_url }}" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
     <link rel="modulepreload" href="{{ '/assets/js/auth/auth-session.js' | relative_url }}">
     {% endif %}

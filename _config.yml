@@ -5,6 +5,16 @@ url: "https://tifsec.github.io"
 baseurl: ""
 
 lang: fr
+
+# Base de données utilisée par les pages (projet de production).
+# Le bac à sable remplace ces valeurs dans _config_bac_a_sable.yml.
+supabase:
+  url: "https://aqbjykgppbyrzqxlzxuf.supabase.co"
+  publishable_key: "sb_publishable_QurNizkqNqwICBWfRgfPPA_VZ71c6WM"
+
+# Les séances marquées « statut: brouillon » dans _data/seances.yml ne sont
+# ni listées ni générées, sauf si cette option vaut true (bac à sable).
+afficher_brouillons: false
 encoding: utf-8
 
 markdown: kramdown
@@ -16,9 +26,14 @@ exclude:
   - _supabase
   - supabase
   - _site
+  - _site_eleves
+  - _site_bac_a_sable
   - README.md
   - Gemfile
   - Gemfile.lock
   - node_modules
   - vendor
   - refonte_site_cours.code-workspace
+  - _config_eleves.yml
+  - _config_bac_a_sable.yml
+  - .github

@@ -7,6 +7,14 @@
     {% include eleve/student-header.html identity_id="course-header-identity" logout_id="course-logout" course=true %}
     <main class="student-course-main" id="student-course-main">
 {% assign cours = site.data.cours[page.matiere][page.classe][page.seance] %}
+{% assign entree_seance = site.data.seances[page.matiere][page.classe] | where: 'id', page.seance | first %}
+{% if entree_seance.statut == 'brouillon' and site.afficher_brouillons != true %}
+<section class="course-draft-notice">
+    <h1>Séance en préparation</h1>
+    <p>Cette séance n’est pas encore ouverte. Elle apparaîtra dans ton espace quand ton professeur l’aura publiée.</p>
+    <p><a href="{{ '/eleve/' | relative_url }}">Retour à mon espace</a></p>
+</section>
+{% else %}
 
 <div id="course-work" data-etablissement="{{ page.etablissement }}" data-matiere="{{ page.matiere }}" data-classe="{{ page.classe }}" data-seance="{{ page.seance }}" data-saving-enabled="{% if page.saving_enabled == false %}false{% else %}{{ site.data.features.individual_work }}{% endif %}" data-collaboration-enabled="{% if page.saving_enabled == false %}false{% else %}{{ site.data.features.collaborative_work }}{% endif %}">
     <div class="course-save-panel course-toolbar">
@@ -58,6 +66,7 @@
 {% if page.graphique_interactif %}<script type="module" src="{{ '/assets/js/cours/course-graph-init.js' | relative_url }}"></script>{% endif %}
 
 <script type="module" src="{{ '/assets/js/eleve/student-theme.js' | relative_url }}"></script>
+{% endif %}
 
     </main>
     {% include footer.html %}
