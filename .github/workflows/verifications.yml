@@ -2,8 +2,9 @@ name: Vérifications
 
 # Lance la compilation Jekyll et tous les tests à chaque envoi sur une branche
 # de travail et à chaque demande de fusion. Ne publie rien et ne touche pas à Supabase.
-# Sur refonte-jekyll, si tout passe, les deux sites compilés sont rangés dans les
-# branches construit/eleves et construit/bac-a-sable (aperçu avant publication).
+# Sur refonte-jekyll, si tout passe, les deux sites compilés sont rangés dans les branches
+# construit/eleves (futur https://tifsec.github.io/, base réelle) et construit/bac-a-sable
+# (https://tifsec.github.io/tifsec-test-eleves/, base de test, brouillons visibles).
 on:
   push:
     branches-ignore: [main, 'construit/**']
@@ -44,7 +45,7 @@ jobs:
 
       - name: Compiler le site des élèves et le bac à sable
         run: |
-          bundle exec jekyll build --config _config.yml,_config_eleves.yml -d _site_eleves
+          bundle exec jekyll build --config _config.yml -d _site_eleves
           bundle exec jekyll build --config _config.yml,_config_bac_a_sable.yml -d _site_bac_a_sable
 
       - name: Node
@@ -83,8 +84,8 @@ jobs:
 
       - name: Contrôle de publication des deux sites
         run: |
-          node _checks/check-publication.mjs _site_eleves /tifsec-test-eleves
-          node _checks/check-publication.mjs _site_bac_a_sable /tifsec-bac-a-sable
+          node _checks/check-publication.mjs _site_eleves
+          node _checks/check-publication.mjs _site_bac_a_sable /tifsec-test-eleves
 
       - name: Aucun brouillon visible sur le site des élèves
         run: node _checks/check-drafts.mjs _site_eleves
