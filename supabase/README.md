@@ -38,7 +38,7 @@ Liste relevée dans la base le 28 octobre 2026, avec le fichier correspondant da
 | 20261021044911 | cours_mfr_cap2_s03_term_s05 | `_supabase/12_cours_mfr.sql` |
 | 20261021123304 | activate_imported_test_course_versions_without_math_term_s06 | `_supabase/13_import_cours.sql` |
 | 20261028173039 | refonte_register_techno_5e_s02_v2 | `_supabase/14_register_techno_5e_s02_v2.sql` (récupéré hors dépôt) |
-| — | *en attente d'accord pour la production* | `_supabase/15_suppression_tables_ancien_site.sql` — testé sur la copie locale et sur le projet de test le 28 octobre |
+| 20261028202050 | suppression_tables_ancien_site | `_supabase/15_suppression_tables_ancien_site.sql` (testé en local et sur le projet de test, appliqué avec l'accord du professeur) |
 
 Les fichiers `0x_verification_*.sql` sont des contrôles exécutés puis annulés (`ROLLBACK`) ; `90_` et `91_` sont des procédures de suspension d'urgence.
 
@@ -46,7 +46,7 @@ Les politiques de la table `profiles` antérieures à la refonte (« Créer son 
 
 **Règle à partir de maintenant :** toute modification de la base passe par un nouveau fichier numéroté dans `_supabase/`, appliqué d'abord sur le projet de test, puis l'instantané est régénéré.
 
-## Points relevés lors de l'export (non corrigés, à valider)
+## État après le 28 octobre 2026
 
-- **Tables de l'ancien site, vides et inutilisées** (`course_sessions`, `course_exercises`, `student_work`, `student_results`, `student_hints`, `student_sessions`) et fonction `public.set_updated_at` : suppression validée par le professeur, migration 15 prête (voir ci-dessus).
-- La protection contre les mots de passe compromis (HaveIBeenPwned) est désactivée dans Auth : un réglage à activer dans le tableau de bord Supabase.
+- L'instantané `schema-2026-10-28.sql` décrit la base **avant** la migration 15 : les six tables de l'ancien site et `public.set_updated_at` y figurent encore, mais ont été supprimées depuis (7 tables restantes).
+- Mots de passe : longueur minimale et exigences renforcées dans Auth par le professeur. La protection contre les mots de passe compromis (HaveIBeenPwned) n'est disponible qu'avec l'offre Pro : volontairement non activée (seul avertissement Supabase restant).
