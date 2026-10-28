@@ -2,9 +2,11 @@ name: Vérifications
 
 # Lance la compilation Jekyll et tous les tests à chaque envoi sur une branche
 # de travail et à chaque demande de fusion. Ne publie rien et ne touche pas à Supabase.
+# Sur refonte-jekyll, si tout passe, les deux sites compilés sont rangés dans les
+# branches construit/eleves et construit/bac-a-sable (aperçu avant publication).
 on:
   push:
-    branches-ignore: [main]
+    branches-ignore: [main, 'construit/**']
   pull_request:
   workflow_dispatch:
 
@@ -18,6 +20,8 @@ concurrency:
 jobs:
   site-et-tests:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -91,3 +95,16 @@ jobs:
           grep -q 'content="https://evbfflwfyiitrkgzjhwt.supabase.co"' _site_bac_a_sable/eleve/index.html
           ! grep -rq 'evbfflwfyiitrkgzjhwt' _site_eleves
           ! grep -rq 'aqbjykgppbyrzqxlzxuf' _site_bac_a_sable
+
+      - name: Ranger les sites compilés (refonte-jekyll uniquement)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/refonte-jekyll'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for pair in "_site_eleves construit/eleves" "_site_bac_a_sable construit/bac-a-sable"; do
+            set -- $pair
+            cd "$GITHUB_WORKSPACE/$1"
+            git init -q -b main . && git add -A
+            git commit -q -m "Site compilé depuis refonte-jekyll ${GITHUB_SHA::7}"
+            git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:"refs/heads/$2"
+          done
