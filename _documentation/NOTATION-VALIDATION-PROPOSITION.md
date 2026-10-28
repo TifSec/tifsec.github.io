@@ -24,7 +24,7 @@ Une correction validée est rechargée en lecture seule. Pour la modifier, rouvr
 
 ## Modification concrète soumise à validation
 
-SQL préparé : [`09_notation_PROPOSITION.sql`](../_supabase/09_notation_PROPOSITION.sql).
+SQL préparé : [`09_notation.sql`](../_supabase/09_notation.sql).
 
 - Ajouter `work_evaluations` : copie, professeur, version du cours, empreinte du corrigé, révisions des réponses, points/maxima et appréciations, total sur 20, participants et date. Aucun cours, énoncé, dictionnaire ou corrigé en base.
 - Ajouter à `work_sessions` la version du cours et la référence de sa correction courante. Seul le pilote S02 connu est rattaché à v1 ; les autres séances restent sans version jusqu’à une intégration explicite.

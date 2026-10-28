@@ -4,7 +4,7 @@
 
 ## État appliqué
 
-- Migration `20261020110703 refonte_notation_et_validation` appliquée avec succès. Source conservée dans `_supabase/09_notation_PROPOSITION.sql` (nom historique, ne pas réappliquer).
+- Migration `20261020110703 refonte_notation_et_validation` appliquée avec succès. Source conservée dans `_supabase/09_notation.sql` (nom historique, ne pas réappliquer).
 - `work_evaluations` créée avec RLS et lecture limitée au périmètre professeur ou à l’élève validé destinataire de sa correction courante. Aucun droit direct d’insertion/modification/suppression accordé aux clients.
 - Version du cours et correction courante ajoutées aux copies ; seul le pilote S02 est rattaché à v1.
 - Service `teacher-grade` version 1 actif, JWT obligatoire, réutilisant les contrôles du service de correction et du dépôt privé. Aucun nouveau secret.

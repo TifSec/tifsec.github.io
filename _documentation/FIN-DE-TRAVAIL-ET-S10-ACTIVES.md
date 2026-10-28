@@ -4,7 +4,7 @@ Le 20 octobre 2026, le professeur autorise le bouton à condition que l’élèv
 
 ## Déclaration sans verrouillage
 
-Migration appliquée : `20261020135647 refonte_fin_de_travail_et_versions_s10`, source `11_remise_PROPOSITION.sql` mise à jour. `submitted_at` et `submitted_by` tracent la déclaration. L’opération ne met jamais `terminee=true`. La comparaison des révisions protège contre une déclaration faite sur une ancienne version des réponses.
+Migration appliquée : `20261020135647 refonte_fin_de_travail_et_versions_s10`, source `11_remise.sql` mise à jour. `submitted_at` et `submitted_by` tracent la déclaration. L’opération ne met jamais `terminee=true`. La comparaison des révisions protège contre une déclaration faite sur une ancienne version des réponses.
 
 La déclaration fait avancer le parcours, sans note requise. L’élève peut revenir dans le cours et compléter ses réponses ; le marqueur reste présent. Les membres acceptés d’un groupe conservent les mêmes droits d’édition. La clôture ou la validation de note par le professeur bloque la saisie ; sa réouverture retire la déclaration et la note courante, avec conservation des évaluations historiques.
 

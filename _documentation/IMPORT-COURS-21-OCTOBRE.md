@@ -34,7 +34,7 @@ L’inventaire détaillé se trouve dans [IMPORT-COURS-INVENTAIRE.yml](IMPORT-CO
 
 ## Séparation et fonctionnement
 
-Les cours élèves sont dans `_data/cours/`, les routes dans `cours/`. Les 91 nouveaux fichiers professeur restent dans `../preparation-privee/`, hors du dépôt public. La proposition SQL `_supabase/13_import_cours_PROPOSITION.sql` n’est pas appliquée : elle ne contient que les identités et versions autorisées, aucun cours ni corrigé.
+Les cours élèves sont dans `_data/cours/`, les routes dans `cours/`. Les 91 nouveaux fichiers professeur restent dans `../preparation-privee/`, hors du dépôt public. La proposition SQL `_supabase/13_import_cours.sql` n’est pas appliquée : elle ne contient que les identités et versions autorisées, aucun cours ni corrigé.
 
 Les formules, démarches et résultats des exercices Calc/Excel sont recueillis sur le site ; les élèves pratiquent toujours dans leur logiciel et conservent leur classeur séparément. Aucun dépôt de fichier n’est ajouté.
 

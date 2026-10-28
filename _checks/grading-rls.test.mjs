@@ -12,7 +12,7 @@ const save = (db,copy,options={}) => db.query('select refonte_validate_grade($1,
 test('notation : migration proposée sur PostgreSQL local fictif', async t => {
     const db=new PGlite(); let copy,evaluation;
     try {
-        for (const path of ['./work-fixture.sql','../_supabase/01_copies_individuelles.sql','../_supabase/03_groupes_et_suivi.sql','../_supabase/05_copie_reference_et_historique.sql','../_supabase/07_validation_eleves.sql','../_supabase/09_notation_PROPOSITION.sql']) await db.exec(read(path));
+        for (const path of ['./work-fixture.sql','../_supabase/01_copies_individuelles.sql','../_supabase/03_groupes_et_suivi.sql','../_supabase/05_copie_reference_et_historique.sql','../_supabase/07_validation_eleves.sql','../_supabase/09_notation.sql']) await db.exec(read(path));
         await actor(db,A); copy=(await db.query("insert into work_sessions(etablissement,matiere,classe,seance,created_by) values('college','techno','3e','S02',$1) returning id",[A])).rows[0].id;
         await db.query("insert into work_answers(work_session_id,question_key,reponse) values($1,'q1','réponse fictive')",[copy]);
         await t.test('élève et anonyme ne peuvent valider une note', async()=>{

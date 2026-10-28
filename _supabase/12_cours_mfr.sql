@@ -1,3 +1,4 @@
+-- Appliqué le 21 octobre 2026 : migration 20261021044911 cours_mfr_cap2_s03_term_s05. Ne pas réappliquer.
 -- Deux cours MFR uniquement. Aucun cours, corrigé ou barème en base.
 -- Aucun changement de droits ; aucune reprise des anciennes copies.
 create or replace function refonte_private.grading_copy_state() returns trigger

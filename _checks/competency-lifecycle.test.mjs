@@ -23,7 +23,7 @@ async function overview(db,userId) {
 test('parcours complet notes → RLS → accueil → segments et réouverture, sur copies fictives',async t=>{
     const db=new PGlite();
     try {
-        for(const file of ['./work-fixture.sql','../_supabase/01_copies_individuelles.sql','../_supabase/03_groupes_et_suivi.sql','../_supabase/05_copie_reference_et_historique.sql','../_supabase/07_validation_eleves.sql','../_supabase/09_notation_PROPOSITION.sql','../_supabase/11_remise_PROPOSITION.sql']) await db.exec(read(file));
+        for(const file of ['./work-fixture.sql','../_supabase/01_copies_individuelles.sql','../_supabase/03_groupes_et_suivi.sql','../_supabase/05_copie_reference_et_historique.sql','../_supabase/07_validation_eleves.sql','../_supabase/09_notation.sql','../_supabase/11_remise.sql']) await db.exec(read(file));
         await actor(db,A);
         const copy=(await db.query("insert into work_sessions(etablissement,matiere,classe,seance,created_by) values('college','techno','3e','S02',$1) returning id",[A])).rows[0].id;
         await db.query("insert into work_answers(work_session_id,question_key,reponse) values($1,'a01_q02','Réponse fictive')",[copy]);

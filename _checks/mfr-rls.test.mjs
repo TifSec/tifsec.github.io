@@ -11,7 +11,7 @@ async function actor(db, id) { await db.exec('reset role; set role authenticated
 test('MFR : nouvelles versions, sauvegarde isolée, consentement et notation sans activation S11/S12', async () => {
     const db = new PGlite();
     try {
-        for (const file of ['./work-fixture.sql', '../_supabase/01_copies_individuelles.sql', '../_supabase/03_groupes_et_suivi.sql', '../_supabase/05_copie_reference_et_historique.sql', '../_supabase/07_validation_eleves.sql', '../_supabase/09_notation_PROPOSITION.sql', '../_supabase/11_remise_PROPOSITION.sql', '../_supabase/12_cours_mfr_PROPOSITION.sql']) await db.exec(read(file));
+        for (const file of ['./work-fixture.sql', '../_supabase/01_copies_individuelles.sql', '../_supabase/03_groupes_et_suivi.sql', '../_supabase/05_copie_reference_et_historique.sql', '../_supabase/07_validation_eleves.sql', '../_supabase/09_notation.sql', '../_supabase/11_remise.sql', '../_supabase/12_cours_mfr.sql']) await db.exec(read(file));
         for (const [subject, schoolClass, session] of [['tim', 'cap2', 'S03'], ['maths', 'term', 'S05']]) {
             await db.exec('reset role');
             await db.query("update profiles set etablissement='mfr',classe=$1 where role='student'", [schoolClass]);

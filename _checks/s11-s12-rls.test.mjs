@@ -14,7 +14,7 @@ test('S11/S12 : raccordement de version, sauvegarde, consentement et note sur Po
     try {
         for (const file of ['./work-fixture.sql', '../_supabase/01_copies_individuelles.sql', '../_supabase/03_groupes_et_suivi.sql',
             '../_supabase/05_copie_reference_et_historique.sql', '../_supabase/07_validation_eleves.sql',
-            '../_supabase/09_notation_PROPOSITION.sql', '../_supabase/11_remise_PROPOSITION.sql']) await db.exec(read(file));
+            '../_supabase/09_notation.sql', '../_supabase/11_remise.sql']) await db.exec(read(file));
         await actor(db, A);
         const old = (await db.query("insert into work_sessions(etablissement,matiere,classe,seance,created_by) values('college','techno','3e','S11',$1) returning *", [A])).rows[0];
         assert.equal(old.course_version, null);

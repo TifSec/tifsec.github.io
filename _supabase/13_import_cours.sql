@@ -1,4 +1,6 @@
--- PROPOSITION NON APPLIQUÉE : versions de nouvelles copies pour les 94 séances et les deux essais existants.
+-- Appliqué le 21 octobre 2026 : migration 20261021123304 activate_imported_test_course_versions_without_math_term_s06
+-- (sans maths/term/S06, conformément à la base relevée le 28 octobre). Ne pas réappliquer.
+-- Versions de nouvelles copies pour les 94 séances et les deux essais existants.
 -- Aucun cours, corrigé, barème ou réponse dans la base ; aucune ancienne copie mise à jour.
 -- Aucun changement de droits/RLS. S11/S12 restent exclues.
 create or replace function refonte_private.grading_copy_state() returns trigger

@@ -27,7 +27,7 @@ La copie collective de référence est utilisée, conformément au modèle exist
 
 ## Changements appliqués en base
 
-`_supabase/11_remise_PROPOSITION.sql`, appliqué sous `20261020135647 refonte_fin_de_travail_et_versions_s10` (nom de fichier conservé ; ne pas réappliquer) :
+`_supabase/11_remise.sql`, appliqué sous `20261020135647 refonte_fin_de_travail_et_versions_s10` (nom de fichier conservé ; ne pas réappliquer) :
 
 - Deux colonnes sur `work_sessions` : `submitted_at` et `submitted_by`, nulles pour les copies existantes ; index sur l’auteur.
 - Fonction privée de remise et wrapper public `refonte_submit_copy`, authentifiés, sans droit d’UPDATE direct accordé aux élèves.
