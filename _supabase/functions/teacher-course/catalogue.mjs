@@ -783,5 +783,13 @@ export const privateCatalogue = [
         "seance": "S02",
         "version": "v1",
         "path": "maths/1re/S02.v1.yml"
+    },
+    {
+        "etablissement": "college",
+        "matiere": "techno",
+        "classe": "5e",
+        "seance": "S02V2",
+        "version": "v2",
+        "path": "techno/5e/S02V2.v2.yml"
     }
 ];
