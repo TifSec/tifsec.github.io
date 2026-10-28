@@ -1,12 +1,15 @@
 import { AccessError, boundedText, createPrivateCourseHandler } from '../teacher-course/handler.mjs';
-import { privateCatalogue } from '../teacher-course/catalogue.mjs';
-import schemas from './question-catalogue.json' with { type: 'json' };
+import { siteCatalogue, catalogueGetter } from '../_shared/site-catalogue.mjs';
 import { prepareCopyProposal, answerSnapshot } from './proposal.mjs';
 
 const identityKeys = ['etablissement', 'matiere', 'classe', 'seance'];
 const copyColumns = ['id', ...identityKeys, 'max_members', 'terminee'];
-export function createTeacherCorrectionHandler({ env, fetch: fetcher = fetch, parseDocument, catalogue = privateCatalogue, questionSchemas = schemas }) {
-    const privateHandler = createPrivateCourseHandler({ env, fetch: fetcher, parseDocument, catalogue });
+export function createTeacherCorrectionHandler({ env, fetch: fetcher = fetch, parseDocument, catalogue, questionSchemas }) {
+    // Par défaut, la liste des séances et la structure des questions sont lues sur le site publié.
+    const fromSite = catalogueGetter(undefined, () => siteCatalogue({ env, fetch: fetcher }));
+    const getCatalogue = catalogue ? catalogueGetter(catalogue) : fromSite;
+    const getSchemas = questionSchemas ? catalogueGetter(questionSchemas) : fromSite;
+    const privateHandler = createPrivateCourseHandler({ env, fetch: fetcher, parseDocument, catalogue: getCatalogue });
     return async request => {
         const origin = request.headers.get('origin');
         const origins = (env('COURSES_ALLOWED_ORIGINS') || '').split(',').map(value => value.trim()).filter(Boolean);
@@ -51,10 +54,10 @@ export function createTeacherCorrectionHandler({ env, fetch: fetcher = fetch, pa
                 return rows[0];
             }
             const copy = await readCopy();
-            const candidates = catalogue.filter(row => identityKeys.every(key => row[key] === copy[key]));
+            const candidates = (await getCatalogue()).filter(row => identityKeys.every(key => row[key] === copy[key]));
             if (candidates.length !== 1) throw new AccessError(409, 'course_version_unavailable');
             const lesson = candidates[0];
-            const questionSchema = questionSchemas.find(row => [...identityKeys, 'version'].every(key => row[key] === lesson[key]));
+            const questionSchema = (await getSchemas()).find(row => [...identityKeys, 'version'].every(key => row[key] === lesson[key]));
             if (!questionSchema) throw new AccessError(409, 'course_version_unavailable');
             async function requireReferenceCopy() {
                 const rows = await read('/rest/v1/rpc/refonte_teacher_copies?' + new URLSearchParams({ select: 'copy_id,is_history', copy_id: 'eq.' + copyId }), {

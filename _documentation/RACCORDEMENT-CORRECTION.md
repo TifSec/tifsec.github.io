@@ -40,4 +40,4 @@ La sauvegarde des évaluations, leur validation, l’historique des changements 
 - En ligne : requête anonyme HTTP 401, faux JWT HTTP 401, prévol du navigateur HTTP 204 avec origine locale autorisée.
 - Dernier essai authentifié avec le compte professeur à effectuer par l’utilisateur. Aucun compte réel ni copie réelle modifiés par ces tests.
 
-Pour ajouter un cours au raccordement : exporter le schéma avec `node _checks/export-question-catalogue.mjs --write`, compléter le catalogue serveur autorisé et le YAML privé cohérent, exécuter les tests, puis redéployer le service. Ne jamais joindre un corrigé réel aux fichiers publics, même pour un test.
+Pour ajouter un cours au raccordement : régénérer `assets/data/questions-seances.json` avec `node _checks/export-question-catalogue.mjs --write` (la CI refuse un fichier pas à jour), déposer le YAML privé `<matiere>/<classe>/<seance>.<version>.yml` dans le dépôt privé, puis publier le site. Les fonctions lisent la liste sur le site : aucun redéploiement. Ne jamais joindre un corrigé réel aux fichiers publics, même pour un test.

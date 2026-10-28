@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { parse } from 'yaml';
 import { questionCatalogue } from './export-question-catalogue.mjs';
-import { privateCatalogue } from '../_supabase/functions/teacher-course/catalogue.mjs';
+import { privatePath } from '../_supabase/functions/_shared/site-catalogue.mjs';
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const yaml = path => parse(read(path));
 const source = read('assets/js/eleve/course-progression.js');
@@ -12,7 +12,7 @@ const { nextLessons } = await import('data:text/javascript;base64,' + Buffer.fro
 
 test('S11/S12 : clés uniques du contenu jusqu’au rendu et au catalogue serveur', () => {
     const schemas = questionCatalogue();
-    const deployed = JSON.parse(read('_supabase/functions/teacher-correction/question-catalogue.json'));
+    const deployed = JSON.parse(read('assets/data/questions-seances.json'));
     assert.deepEqual(deployed, schemas);
     for (const id of ['S11', 'S12']) {
         const course = yaml('_data/cours/techno/3e/' + id + '.yml');
@@ -22,7 +22,7 @@ test('S11/S12 : clés uniques du contenu jusqu’au rendu et au catalogue serveu
         assert.equal(schema.questions.length, 6);
         assert.equal(new Set(keys).size, keys.length);
         assert.deepEqual(keys, schema.questions.flatMap(row => row.champs));
-        assert.equal(privateCatalogue.find(row => techno3e(row) && row.seance === id)?.version, schema.version);
+        assert.equal(privatePath(schema), 'techno/3e/' + id + '.' + schema.version + '.yml');
         assert.ok(course.activites.at(-1).facultatif);
         assert.equal(course.activites.at(-1).questions.length, 0);
         assert.ok(html.includes('course-submit'));

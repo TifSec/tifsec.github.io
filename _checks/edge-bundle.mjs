@@ -7,5 +7,4 @@ function list(directory) {
         /\.(mjs|ts|json|jsonc)$/.test(entry.name)?[resolve(directory,entry.name)]:[]);
 }
 const files=list(root).map(path=>({name:relative(root,path).replaceAll('\\','/'),content:readFileSync(path,'utf8')}));
-if(!files.some(file=>file.name==='teacher-correction/question-catalogue.json'))throw new Error('missing_catalogue');
 process.stdout.write(JSON.stringify(files));

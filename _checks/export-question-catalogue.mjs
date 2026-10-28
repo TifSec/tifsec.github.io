@@ -21,8 +21,16 @@ export function questionCatalogue() {
     }
     return result;
 }
+// Fichier public lu par les fonctions professeur (aucune réponse : seulement la structure des questions).
+export const cataloguePath = resolve(root, 'assets/data/questions-seances.json');
+export const catalogueText = () => JSON.stringify(questionCatalogue()) + '\n';
 if (resolve(process.argv[1] || '') === fileURLToPath(import.meta.url)) {
-    const output = JSON.stringify(questionCatalogue(), null, 4) + '\n';
-    if (process.argv.includes('--write')) writeFileSync(resolve(root, '_supabase/functions/teacher-correction/question-catalogue.json'), output);
-    else process.stdout.write(output);
+    const output = catalogueText();
+    if (process.argv.includes('--write')) writeFileSync(cataloguePath, output);
+    else if (process.argv.includes('--check')) {
+        let current = '';
+        try { current = readFileSync(cataloguePath, 'utf8'); } catch {}
+        if (current !== output) { console.error('assets/data/questions-seances.json n\'est pas à jour : lancer node _checks/export-question-catalogue.mjs --write'); process.exitCode = 1; }
+        else console.log('OK : liste des séances des fonctions professeur à jour.');
+    } else process.stdout.write(output);
 }

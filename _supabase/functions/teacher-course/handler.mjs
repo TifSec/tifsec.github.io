@@ -1,32 +1,12 @@
-import { privateCatalogue } from './catalogue.mjs';
 import { readPrivateYaml } from './yaml-reader.mjs';
+import { AccessError, boundedText } from '../_shared/http.mjs';
+import { siteCatalogue, catalogueGetter, privatePath } from '../_shared/site-catalogue.mjs';
+
+export { AccessError, boundedText };
 
 const fields = ['etablissement', 'matiere', 'classe', 'seance', 'version'];
-export class AccessError extends Error {
-    constructor(status, code) { super(code); this.status = status; this.code = code; }
-}
-export async function boundedText(response, maximum) {
-    if (Number(response.headers.get('content-length')) > maximum) throw new AccessError(503, 'unavailable');
-    const reader = response.body?.getReader();
-    if (!reader) return '';
-    const chunks = [];
-    let size = 0;
-    try {
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            size += value.byteLength;
-            if (size > maximum) throw new AccessError(503, 'unavailable');
-            chunks.push(value);
-        }
-    } finally { await reader.cancel().catch(() => {}); }
-    const bytes = new Uint8Array(size);
-    let offset = 0;
-    for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
-    return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
-}
-
-export function createPrivateCourseHandler({ env, fetch: fetcher = fetch, parseDocument, catalogue = privateCatalogue }) {
+export function createPrivateCourseHandler({ env, fetch: fetcher = fetch, parseDocument, catalogue }) {
+    const getCatalogue = catalogueGetter(catalogue, () => siteCatalogue({ env, fetch: fetcher }));
     return async request => {
         const origin = request.headers.get('origin');
         const origins = (env('COURSES_ALLOWED_ORIGINS') || '').split(',').map(item => item.trim()).filter(Boolean);
@@ -43,14 +23,15 @@ export function createPrivateCourseHandler({ env, fetch: fetcher = fetch, parseD
             if (!/^Bearer [A-Za-z0-9._-]+$/.test(authorization) || authorization.length > 8192) throw new AccessError(401, 'unauthenticated');
             const input = JSON.parse(await boundedText(request, 4096));
             if (!input || Array.isArray(input) || Object.keys(input).some(key => !fields.includes(key)) || fields.some(key => typeof input[key] !== 'string' || input[key].length > 80)) throw new AccessError(400, 'invalid_request');
-            const lesson = catalogue.find(row => fields.every(key => row[key] === input[key]));
+            const lesson = (await getCatalogue()).find(row => fields.every(key => row[key] === input[key]));
             if (!lesson) throw new AccessError(404, 'course_unavailable');
             const supabaseUrl = env('SUPABASE_URL');
             const apiKey = env('COURSES_SUPABASE_PUBLISHABLE_KEY') || env('SUPABASE_ANON_KEY');
             if (!supabaseUrl?.startsWith('https://') || !apiKey) throw new AccessError(503, 'unavailable');
             const signal = AbortSignal.timeout(12000);
-            async function get(url, options, limit = 262144) {
+            async function get(url, options, limit = 262144, missing) {
                 const response = await fetcher(url, { ...options, signal, redirect: 'error', cache: 'no-store' });
+                if (response.status === 404 && missing) throw new AccessError(404, missing);
                 if (!response.ok) throw new AccessError(response.status === 401 ? 401 : 503, response.status === 401 ? 'unauthenticated' : 'unavailable');
                 return boundedText(response, limit);
             }
@@ -73,8 +54,8 @@ export function createPrivateCourseHandler({ env, fetch: fetcher = fetch, parseD
             const githubHeaders = { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
             const metadata = JSON.parse(await get(repoUrl, { headers: githubHeaders }));
             if (metadata.private !== true) throw new AccessError(503, 'unavailable');
-            const path = lesson.path.split('/').map(encodeURIComponent).join('/');
-            const yaml = await get(repoUrl + '/contents/' + path + '?ref=' + encodeURIComponent(ref), { headers: { ...githubHeaders, Accept: 'application/vnd.github.raw+json' } });
+            const path = privatePath(lesson).split('/').map(encodeURIComponent).join('/');
+            const yaml = await get(repoUrl + '/contents/' + path + '?ref=' + encodeURIComponent(ref), { headers: { ...githubHeaders, Accept: 'application/vnd.github.raw+json' } }, 262144, 'course_unavailable');
             const content = readPrivateYaml(yaml, parseDocument, lesson);
             return reply(200, { content });
         } catch (error) {

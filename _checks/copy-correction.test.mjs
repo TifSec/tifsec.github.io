@@ -57,8 +57,8 @@ function harness(options = {}) {
         ...(method === 'POST' ? { body: JSON.stringify(input) } : {})
     })) };
 }
-test('catalogue déployé aligné sur les clés publiques, sans énoncés ni corrigés', () => {
-    const generated = JSON.parse(readFileSync(new URL('../_supabase/functions/teacher-correction/question-catalogue.json', import.meta.url)));
+test('catalogue publié sur le site aligné sur les clés publiques, sans énoncés ni corrigés', () => {
+    const generated = JSON.parse(readFileSync(new URL('../assets/data/questions-seances.json', import.meta.url)));
     assert.deepEqual(generated, questionCatalogue());
     assert.equal(generated.find(row => row.matiere === 'techno' && row.classe === '3e' && row.seance === 'S02').questions.flatMap(row => row.champs).length, 8);
     assert.doesNotMatch(JSON.stringify(generated), /enonce|attendu|correction/);

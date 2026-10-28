@@ -26,7 +26,7 @@ Passerelle **déployée le 19 octobre 2026**, version 1, avec `verify_jwt=true`.
 
 ## Contrat actuel
 
-POST avec seulement `etablissement`, `matiere`, `classe`, `seance`, `version`. Le catalogue serveur autorise pour le moment uniquement le pilote : `college / techno / 3e / S02 / v1`, fichier `techno/3e/S02.v1.yml`. Une URL ou un chemin fourni par le navigateur est refusé. Étendre le catalogue serveur explicitement lors des prochains imports.
+POST avec seulement `etablissement`, `matiere`, `classe`, `seance`, `version`. La séance doit figurer dans `assets/data/questions-seances.json`, lu sur le site publié (`COURSES_SITE_URL`, par défaut `https://tifsec.github.io`, mis en cache 5 minutes). Le fichier privé est alors `<matiere>/<classe>/<seance>.<version>.yml` ; s'il n'existe pas, réponse 404 `course_unavailable`. Une URL ou un chemin fourni par le navigateur est refusé. Ajouter une séance au site suffit : aucun redéploiement des fonctions.
 
 Le YAML doit porter `seance: S02`, `version_cours: v1`, une section `preparation` et une liste `correction`. L’identité et la version doivent correspondre à la demande. Ne pas remplacer silencieusement des attendus ou un barème d’une version déjà évaluée : créer une nouvelle version et conserver l’ancienne.
 

@@ -19,7 +19,7 @@ function harness({ role = 'teacher', assignments = [{ teacher_id: id }], private
     const envs = { SUPABASE_URL: 'https://example.supabase.co', SUPABASE_ANON_KEY: 'public-example', COURSES_ALLOWED_ORIGINS: 'http://127.0.0.1:4000,https://tifsec.github.io',
         COURSES_GITHUB_TOKEN: 'private-example-token', COURSES_GITHUB_OWNER: 'Example', COURSES_GITHUB_REPO: 'private-courses', COURSES_GITHUB_REF: 'main', ...overrides };
     const calls = [];
-    const handler = createPrivateCourseHandler({ env: name => envs[name], parseDocument, async fetch(url, options) {
+    const handler = createPrivateCourseHandler({ env: name => envs[name], parseDocument, catalogue: [lesson], async fetch(url, options) {
         calls.push({ url: String(url), options });
         assert.equal(options.redirect, 'error');
         assert.equal(options.cache, 'no-store');

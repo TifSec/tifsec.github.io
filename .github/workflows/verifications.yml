@@ -79,6 +79,9 @@ jobs:
             flush();'
           exit $status
 
+      - name: Liste des séances lue par les fonctions professeur à jour
+        run: node _checks/export-question-catalogue.mjs --check
+
       - name: Contrôle de publication (aucun corrigé, secret ni dossier interne publié)
         run: node _checks/check-publication.mjs
 
