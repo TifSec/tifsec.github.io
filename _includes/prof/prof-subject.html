@@ -1,0 +1,16 @@
+<section class="prof-subject">
+    <h2>{{ page.title | escape }}</h2>
+    <p>Choisissez une classe pour consulter ses séances et les copies des élèves.</p>
+    <div class="prof-dashboard-grid">
+        {% assign classes = site.data.classes[page.etablissement].classes %}
+        {% for classe in classes %}
+        {% if classe.matieres contains page.matiere %}
+        <article class="prof-dashboard-card">
+            <span class="prof-dashboard-icon" aria-hidden="true">📚</span>
+            <h3>{{ classe.nom | escape }}</h3>
+            <p><a href="{{ '/prof/cours/' | relative_url }}?matiere={{ page.matiere | escape }}&amp;etablissement={{ page.etablissement | escape }}&amp;classe={{ classe.id | escape }}">Voir les séances</a></p>
+        </article>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>

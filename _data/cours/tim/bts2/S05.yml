@@ -1,0 +1,459 @@
+titre: Résumer automatiquement un ensemble de données
+theme: TIM — Résumer automatiquement un ensemble de données
+problematique: Résumer automatiquement un ensemble de données
+pourquoi: Notre fichier sait maintenant analyser chaque parcelle et lui attribuer automatiquement un niveau de priorité.
+application: Utilise les situations et les documents de la séance pour mettre les notions en pratique.
+lien_precedent: Reprends les méthodes des séances précédentes si elles te sont utiles ; les rappels du cours t’accompagnent.
+objectifs:
+    connaissances: []
+    competences: []
+activites:
+    - id: a01
+      titre: Pour commencer
+      contenu:
+          - type: paragraphe
+            texte: "Durée prévue : environ 1 heure"
+      questions: []
+    - id: a02
+      titre: Notions et compétences travaillées
+      contenu:
+          - type: liste
+            elements:
+                - fonction NB.SI ;
+                - fonction SOMME.SI ;
+                - fonction MOYENNE.SI ;
+                - critère de sélection ;
+                - plage de données ;
+                - synthèse automatique de données ;
+                - lecture et interprétation d'indicateurs globaux.
+      questions: []
+    - id: a03
+      titre: Pourquoi allons-nous travailler cela ?
+      contenu:
+          - type: paragraphe
+            texte: Notre fichier sait maintenant analyser chaque parcelle et lui attribuer automatiquement un niveau de priorité.
+          - type: paragraphe
+            texte: Mais si l'exploitation possède de nombreuses parcelles, lire les lignes une par une devient peu pratique.
+          - type: paragraphe
+            texte: "Nous voulons maintenant pouvoir répondre rapidement à des questions comme :"
+      questions:
+          - id: q01
+            type: texte
+            enonce: combien de parcelles sont prioritaires ?
+          - id: q02
+            type: texte
+            enonce: quelle surface totale est consacrée au maïs ensilage ?
+          - id: q03
+            type: texte
+            enonce: quel est le rendement moyen du maïs ensilage ?
+    - id: a04
+      titre: À quoi cela va-t-il vous servir ?
+      contenu:
+          - type: paragraphe
+            texte: "Dans une situation professionnelle, ces fonctions permettent par exemple de :"
+          - type: liste
+            elements:
+                - compter automatiquement des interventions d'un certain type ;
+                - calculer une surface totale pour une culture ;
+                - calculer un coût moyen pour une catégorie ;
+                - compter des alertes ou anomalies ;
+                - produire rapidement des indicateurs de synthèse ;
+                - préparer un tableau de bord sans refaire manuellement les calculs.
+      questions: []
+    - id: a05
+      titre: 1. Reprendre le tableau de bord
+      contenu:
+          - type: paragraphe
+            texte: "Ouvrez :"
+          - type: paragraphe
+            texte: BTS2_ACSAGRI_S04_NOM_Prenom.ods
+          - type: paragraphe
+            texte: "Enregistrez immédiatement une copie sous :"
+          - type: paragraphe
+            texte: BTS2_ACSAGRI_S05_NOM_Prenom.ods
+          - type: paragraphe
+            texte: "Vérifiez que la feuille Analyse contient toujours :"
+          - type: liste
+            elements:
+                - la parcelle ;
+                - la culture ;
+                - la surface ;
+                - le rendement ;
+                - le coût des intrants par hectare ;
+                - le temps de travail par hectare ;
+                - la priorité.
+          - type: paragraphe
+            texte: "Vérifiez également que votre colonne Priorité contient bien les trois états :"
+          - type: liste
+            elements:
+                - Prioritaire ;
+                - À surveiller ;
+                - OK.
+      questions: []
+    - id: a06
+      titre: 2. Créer une vraie feuille de synthèse
+      contenu:
+          - type: paragraphe
+            texte: Jusqu'ici, la feuille Analyse contient beaucoup de détails.
+          - type: paragraphe
+            texte: Nous allons maintenant créer une feuille destinée à répondre rapidement à quelques questions importantes.
+          - type: paragraphe
+            texte: "Créez une nouvelle feuille nommée :"
+          - type: paragraphe
+            texte: Synthese
+          - type: paragraphe
+            texte: "Créez le tableau suivant :"
+      questions:
+          - id: q01
+            type: tableau
+            enonce: Complète le tableau ci-dessous.
+            colonnes:
+                - Indicateur
+                - Résultat
+            lignes:
+                - - Nombre de parcelles prioritaires
+                  - ""
+                - - Nombre de parcelles à surveiller
+                  - ""
+                - - Surface totale en maïs ensilage
+                  - ""
+                - - Rendement moyen du maïs ensilage
+                  - ""
+    - id: a07
+      titre: 3. Compter selon un critère avec NB.SI
+      contenu:
+          - type: paragraphe
+            texte: "Commençons par répondre à la question :"
+          - type: paragraphe
+            texte: Combien de parcelles sont classées Prioritaire ?
+          - type: paragraphe
+            texte: Nous pourrions compter les lignes à la main.
+          - type: paragraphe
+            texte: Mais si le classement change, il faudrait recompter.
+          - type: paragraphe
+            texte: La fonction NB.SI permet de compter automatiquement le nombre de cellules correspondant à un critère.
+          - type: paragraphe
+            texte: "Sa structure générale est :"
+          - type: paragraphe
+            texte: =NB.SI(plage;critère)
+          - type: paragraphe
+            texte: "Dans notre cas :"
+          - type: liste
+            elements:
+                - la plage est la colonne contenant les niveaux de priorité ;
+                - le critère est le texte Prioritaire.
+          - type: paragraphe
+            texte: Créez la formule permettant de compter les parcelles prioritaires.
+          - type: titre
+            texte: Indice 1
+          - type: paragraphe
+            texte: Identifiez d'abord la colonne dans laquelle apparaissent les mots Prioritaire, À surveiller et OK.
+          - type: titre
+            texte: Indice 2
+          - type: paragraphe
+            texte: La fonction doit compter dans cette colonne les cellules contenant exactement le mot Prioritaire.
+          - type: titre
+            texte: Indice 3
+          - type: paragraphe
+            texte: 'Si la priorité se trouve en N2:N11 : =NB.SI(Analyse.N2:N11;"Prioritaire").'
+          - type: paragraphe
+            texte: Utilisez maintenant la même fonction pour calculer le nombre de parcelles À surveiller.
+      questions: []
+    - id: a08
+      titre: 4. Pourquoi passer de NB.SI à SOMME.SI ?
+      contenu:
+          - type: paragraphe
+            texte: Nous savons maintenant compter les lignes correspondant à un critère.
+          - type: paragraphe
+            texte: Mais imaginons que nous voulions connaître la surface totale consacrée au maïs ensilage.
+          - type: paragraphe
+            texte: "Compter les parcelles ne suffit pas :"
+          - type: paragraphe
+            texte: une parcelle de 3 ha et une parcelle de 9 ha comptent chacune pour une parcelle, mais elles n'ont pas la même surface.
+          - type: paragraphe
+            texte: "Nous devons donc :"
+          - type: etapes
+            elements:
+                - repérer les lignes où la culture est Maïs ensilage ;
+                - additionner uniquement les surfaces de ces lignes.
+      questions: []
+    - id: a09
+      titre: 5. Additionner selon un critère avec SOMME.SI
+      contenu:
+          - type: paragraphe
+            texte: La fonction SOMME.SI permet d'additionner uniquement les valeurs correspondant à un critère.
+          - type: paragraphe
+            texte: "Sa structure générale est :"
+          - type: paragraphe
+            texte: =SOMME.SI(plage_du_critère;critère;plage_à_additionner)
+          - type: paragraphe
+            texte: "Dans notre situation :"
+          - type: liste
+            elements:
+                - nous regardons la colonne Culture ;
+                - nous recherchons Maïs ensilage ;
+                - nous additionnons les valeurs de la colonne Surface.
+          - type: paragraphe
+            texte: Créez la formule permettant de calculer la surface totale en maïs ensilage.
+          - type: titre
+            texte: Indice 1
+          - type: paragraphe
+            texte: "Posez-vous trois questions : où est écrit le type de culture ? Quelle culture cherchez-vous ? Quelle colonne faut-il additionner ?"
+          - type: titre
+            texte: Indice 2
+          - type: paragraphe
+            texte: La plage du critère est la colonne Culture et la plage à additionner est la colonne Surface.
+          - type: titre
+            texte: Indice 3
+          - type: paragraphe
+            texte: 'Si Culture est en B et Surface en C : =SOMME.SI(Analyse.B2:B11;"Maïs ensilage";Analyse.C2:C11).'
+      questions: []
+    - id: a10
+      titre: 6. Pourquoi passer maintenant à une moyenne ?
+      contenu:
+          - type: paragraphe
+            texte: Nous connaissons maintenant la surface totale de maïs.
+          - type: paragraphe
+            texte: "Mais si nous voulons caractériser les performances de ces parcelles, nous pouvons aussi demander :"
+          - type: paragraphe
+            texte: Quel est leur rendement moyen ?
+          - type: paragraphe
+            texte: "Le principe est presque identique à SOMME.SI :"
+          - type: liste
+            elements:
+                - repérer les lignes où la culture est Maïs ensilage ;
+                - prendre le rendement de ces lignes ;
+                - calculer leur moyenne au lieu de leur somme.
+      questions: []
+    - id: a11
+      titre: 7. Calculer une moyenne selon un critère avec MOYENNE.SI
+      contenu:
+          - type: paragraphe
+            texte: "La fonction MOYENNE.SI suit la structure :"
+          - type: paragraphe
+            texte: =MOYENNE.SI(plage_du_critère;critère;plage_à_moyenner)
+          - type: paragraphe
+            texte: Calculez le rendement moyen des parcelles de maïs ensilage.
+          - type: titre
+            texte: Indice 1
+          - type: paragraphe
+            texte: Le critère est exactement le même que dans l'exercice précédent.
+          - type: titre
+            texte: Indice 2
+          - type: paragraphe
+            texte: Cette fois, la colonne utilisée pour le calcul n'est plus Surface mais Rendement.
+          - type: titre
+            texte: Indice 3
+          - type: paragraphe
+            texte: 'Si Culture est en B et Rendement en H : =MOYENNE.SI(Analyse.B2:B11;"Maïs ensilage";Analyse.H2:H11).'
+      questions: []
+    - id: a12
+      titre: 8. Comparer les trois fonctions
+      contenu:
+          - type: paragraphe
+            texte: Nous venons d'utiliser trois fonctions différentes, mais elles reposent sur la même idée.
+          - type: tableau
+            colonnes:
+                - Fonction
+                - Question posée
+                - Action réalisée
+            lignes:
+                - - NB.SI
+                  - Combien de lignes respectent le critère ?
+                  - Compter
+                - - SOMME.SI
+                  - Quel est le total pour les lignes respectant le critère ?
+                  - Additionner
+                - - MOYENNE.SI
+                  - Quelle est la moyenne pour les lignes respectant le critère ?
+                  - Calculer une moyenne
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q1 : Quel élément est commun aux trois fonctions ?"
+          - id: q02
+            type: texte
+            enonce: "Q2 : Quelle fonction choisiriez-vous pour connaître le nombre de parcelles en prairie permanente ?"
+          - id: q03
+            type: texte
+            enonce: "Q3 : Quelle fonction choisiriez-vous pour connaître la surface totale en prairie permanente ?"
+          - id: q04
+            type: texte
+            enonce: "Q4 : Quelle fonction choisiriez-vous pour connaître le coût moyen par hectare des prairies permanentes ?"
+    - id: a13
+      titre: 9. Lire la synthèse comme un professionnel
+      contenu:
+          - type: paragraphe
+            texte: "Votre feuille Synthese doit maintenant indiquer environ :"
+          - type: tableau
+            colonnes:
+                - Indicateur
+                - Résultat attendu
+            lignes:
+                - - Nombre de parcelles prioritaires
+                  - "3"
+                - - Nombre de parcelles à surveiller
+                  - "2"
+                - - Surface totale en maïs ensilage
+                  - 15,3 ha
+                - - Rendement moyen du maïs ensilage
+                  - ≈ 11,51 t MS/ha
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q5 : Qu'est-ce que ces quatre valeurs permettent de comprendre plus rapidement que le tableau détaillé ?"
+            suite:
+                - type: titre
+                  texte: Indice 1
+                - type: paragraphe
+                  texte: Comparez le temps nécessaire pour lire ces quatre résultats avec celui nécessaire pour lire les dix lignes une par une.
+                - type: titre
+                  texte: Indice 2
+                - type: paragraphe
+                  texte: Une synthèse permet de faire ressortir quelques informations importantes sans supprimer les données détaillées.
+                - type: titre
+                  texte: Indice 3
+                - type: paragraphe
+                  texte: Elle permet de voir immédiatement combien de parcelles demandent une attention particulière et de caractériser rapidement une culture.
+    - id: a14
+      titre: 10. Une moyenne peut-elle cacher des différences ?
+      contenu:
+          - type: paragraphe
+            texte: Le rendement moyen du maïs ensilage est d'environ 11,51 t MS/ha.
+          - type: paragraphe
+            texte: "Mais les trois parcelles n'ont pas exactement le même rendement :"
+          - type: liste
+            elements:
+                - P02 ≈ 11,70 t MS/ha ;
+                - P06 ≈ 11,04 t MS/ha ;
+                - P10 ≈ 11,78 t MS/ha.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q6 : Pourquoi faut-il conserver le tableau détaillé même lorsque nous disposons d'une moyenne ?"
+    - id: a15
+      titre: 11. Tester les formules
+      contenu:
+          - type: paragraphe
+            texte: Nous allons vérifier que notre synthèse est réellement automatique.
+          - type: paragraphe
+            texte: "Dans la feuille Analyse, modifiez temporairement la culture de P10 :"
+          - type: paragraphe
+            texte: Maïs ensilage → Prairie temporaire
+          - type: paragraphe
+            texte: "Observez dans Synthese :"
+          - type: liste
+            elements:
+                - la surface totale en maïs ;
+                - le rendement moyen du maïs.
+          - type: paragraphe
+            texte: Remettez ensuite P10 en Maïs ensilage.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q7 : Pourquoi les résultats ont-ils changé automatiquement ?"
+    - id: a16
+      titre: 12. Faire le lien avec les séances précédentes
+      contenu:
+          - type: paragraphe
+            texte: "Notre outil s'est construit étape par étape :"
+          - type: paragraphe
+            texte: "S02 : données → vérification → indicateurs"
+          - type: paragraphe
+            texte: "S03 : indicateurs → règles → alertes"
+          - type: paragraphe
+            texte: "S04 : plusieurs règles → niveaux de priorité"
+          - type: paragraphe
+            texte: "S05 : données détaillées → indicateurs de synthèse"
+          - type: paragraphe
+            texte: Nous sommes donc en train de transformer progressivement un simple tableau de données en un véritable outil d'analyse.
+      questions: []
+    - id: a17
+      titre: 13. Bilan de la séance
+      contenu:
+          - type: paragraphe
+            texte: "Dans la feuille Bilan, complétez :"
+          - type: liste
+            elements:
+                - NB.SI permet de ................................................................................................................
+                - SOMME.SI permet de ................................................................................................................
+                - MOYENNE.SI permet de ................................................................................................................
+                - Un critère sert à ................................................................................................................
+                - Une synthèse permet de ................................................................................................................
+          - type: paragraphe
+            texte: "Dernière question :"
+          - type: paragraphe
+            texte: Pourquoi une valeur de synthèse ne doit-elle pas remplacer complètement les données détaillées ?
+      questions: []
+    - id: a18
+      titre: 14. Avant de rendre
+      contenu:
+          - type: paragraphe
+            texte: "Vérifiez que votre feuille Synthese contient :"
+          - type: liste
+            elements:
+                - le nombre de parcelles prioritaires ;
+                - le nombre de parcelles à surveiller ;
+                - la surface totale en maïs ensilage ;
+                - le rendement moyen du maïs ensilage.
+          - type: paragraphe
+            texte: Vérifiez que ces quatre résultats sont obtenus avec des formules et non saisis manuellement.
+          - type: paragraphe
+            texte: Vérifiez également que P10 est bien revenue en Maïs ensilage.
+          - type: paragraphe
+            texte: "Enregistrez :"
+          - type: paragraphe
+            texte: BTS2_ACSAGRI_S05_NOM_Prenom.ods
+          - type: paragraphe
+            texte: Déposez le fichier dans l'espace indiqué par le professeur.
+      questions: []
+    - id: a19
+      titre: À retenir
+      contenu:
+          - type: liste
+            elements:
+                - NB.SI compte les données correspondant à un critère.
+                - SOMME.SI additionne les valeurs correspondant à un critère.
+                - MOYENNE.SI calcule une moyenne pour les données correspondant à un critère.
+                - Le critère indique quelles lignes doivent être prises en compte.
+                - Une synthèse permet de lire rapidement les informations importantes d'un ensemble de données.
+                - "Une synthèse ne remplace pas les données détaillées : elle les complète."
+      questions: []
+    - id: a20
+      titre: Pour la prochaine séance
+      contenu:
+          - type: paragraphe
+            texte: Nous savons maintenant construire plusieurs indicateurs de synthèse avec des formules.
+          - type: paragraphe
+            texte: Mais si nous voulons comparer rapidement toutes les cultures, il faudrait créer beaucoup de formules différentes.
+          - type: paragraphe
+            texte: "Lors de la prochaine séance, nous découvrirons un outil capable de regrouper et synthétiser automatiquement tout le tableau :"
+          - type: paragraphe
+            texte: la table dynamique.
+      questions: []
+    - id: a21
+      titre: Sources et ressources
+      contenu:
+          - type: liste
+            elements:
+                - Chlorofil – BTSA ACS'AGRI – référentiel et documents d'accompagnement.
+                - Inspection de l'enseignement agricole – Exemples d'utilisation des TIM dans des situations favorisant l'acquisition de capacités.
+          - type: lien
+            titre: BTSA ACS'AGRI – référentiel et documents d'accompagnement
+            url: https://chlorofil.fr/diplomes/secondaire/btsa/acse/acs-agri-2025
+          - type: lien
+            titre: Exemples d'utilisation des TIM dans des situations favorisant l'acquisition de capacités
+            url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf
+          - type: paragraphe
+            texte: Les données utilisées dans cette séance sont fictives et adaptées à des fins pédagogiques.
+      questions: []
+bilan: Relis tes réponses et vérifie les points demandés dans le bilan du cours. Tu peux revenir sur ton travail tant que le professeur ne l’a pas clôturé.
+ressources:
+    - type: paragraphe
+      texte: Réalise les manipulations dans le logiciel demandé. Conserve tes fichiers sur ton espace habituel. Le site enregistre seulement tes réponses écrites, tes résultats, tes formules et tes démarches ; aucun fichier n’est téléversé.
+reperes_officiels:
+    - type: paragraphe
+      texte: Dans cette page du ministère, retrouve le programme ou le référentiel de ta formation. Les objectifs précis étudiés aujourd’hui sont indiqués dans le cours.
+    - type: lien
+      titre: Consulter les programmes et attendus officiels
+      url: https://chlorofil.fr/diplomes/secondaire/btsa/acse/acs-agri-2025

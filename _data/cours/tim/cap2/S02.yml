@@ -1,0 +1,324 @@
+titre: Prévoir le stock de foin d'une écurie avec Calc
+theme: TIM — Prévoir le stock de foin d'une écurie avec Calc
+problematique: Prévoir le stock de foin d'une écurie avec Calc
+pourquoi: "Objectif de cette séance : Comprendre comment des données numériques peuvent aider à gérer une écurie."
+application: Vous travaillez dans une structure équestre hébergeant plusieurs chevaux.
+lien_precedent: Reprends les méthodes des séances précédentes si elles te sont utiles ; les rappels du cours t’accompagnent.
+objectifs:
+    connaissances:
+        - Comprendre comment des données numériques peuvent aider à gérer une écurie.
+        - Comprendre la différence entre le poids vif d'un cheval, la matière sèche et le poids brut du foin.
+        - Comprendre pourquoi une estimation doit toujours être interprétée avant de prendre une décision.
+    competences:
+        - Organiser des données professionnelles dans un tableur.
+        - Utiliser des pourcentages dans une formule.
+        - Utiliser les références de cellules.
+        - Recopier une formule.
+        - Calculer des besoins journaliers et hebdomadaires.
+        - Utiliser les résultats obtenus pour répondre à une situation professionnelle.
+activites:
+    - id: a03
+      titre: 1. Créez votre document de travail
+      contenu:
+          - type: paragraphe
+            texte: "Dans votre dossier CAPA2_TIM/02_Travaux, créez un dossier nommé :"
+          - type: paragraphe
+            texte: S02
+          - type: paragraphe
+            texte: "Ouvrez ensuite LibreOffice Calc et enregistrez immédiatement votre classeur sous le nom :"
+          - type: paragraphe
+            texte: CAPA2_S02_NOM_Prenom.ods
+          - type: paragraphe
+            texte: Enregistrez régulièrement votre travail pendant toute la séance.
+      questions: []
+    - id: a04
+      titre: 2. Situation professionnelle
+      contenu:
+          - type: paragraphe
+            texte: Vous travaillez dans une structure équestre hébergeant plusieurs chevaux.
+          - type: paragraphe
+            texte: Le responsable souhaite vérifier le stock de foin disponible pour les prochains jours.
+          - type: paragraphe
+            texte: Il connaît approximativement le poids de chaque cheval, mais il souhaite disposer d'un tableau permettant d'estimer rapidement les quantités de fourrage nécessaires.
+          - type: paragraphe
+            texte: Il vous demande de construire cet outil avec LibreOffice Calc.
+      questions: []
+    - id: a05
+      titre: "3. Avant de calculer : que disent les professionnels ?"
+      contenu:
+          - type: paragraphe
+            texte: L'IFCE — Institut français du cheval et de l'équitation indique que les quantités de fourrages consommées doivent généralement se situer autour de 1,5 à 2 % du poids vif du cheval en matière sèche.
+          - type: paragraphe
+            texte: "Exemple donné par l'IFCE :"
+          - type: liste
+            elements:
+                - "poids du cheval : 500 kg ;"
+                - 1,5 % de son poids vif = 7,5 kg de matière sèche ;
+                - avec un foin contenant 85 % de matière sèche, cela représente environ 8,8 kg de foin brut, soit environ 9 kg.
+          - type: paragraphe
+            texte: "Source professionnelle : IFCE – équipédia, Les besoins alimentaires du cheval ."
+          - type: lien
+            titre: Les besoins alimentaires du cheval
+            url: https://equipedia.ifce.fr/elevage-et-entretien/alimentation/nutrition-et-ration/les-besoins-alimentaires-du-cheval
+          - type: paragraphe
+            texte: Vous pouvez ouvrir la source pour retrouver les informations utilisées dans cette activité.
+          - type: paragraphe
+            texte: "Attention : ces valeurs sont des repères. Dans une situation réelle, la ration doit également être adaptée à l'état corporel, à l'activité du cheval, à son état physiologique et à la qualité des fourrages."
+      questions: []
+    - id: a06
+      titre: 4. Les chevaux de l'écurie
+      contenu:
+          - type: paragraphe
+            texte: "Le responsable vous transmet les estimations suivantes :"
+          - type: tableau
+            colonnes:
+                - Cheval
+                - Poids vif estimé
+            lignes:
+                - - Apache
+                  - 450 kg
+                - - Baya
+                  - 480 kg
+                - - Calypso
+                  - 500 kg
+                - - Django
+                  - 520 kg
+                - - Étoile
+                  - 550 kg
+                - - Flash
+                  - 600 kg
+          - type: paragraphe
+            texte: Les chevaux et leurs poids sont fictifs et ont été créés pour l'activité. Les règles utilisées pour effectuer les calculs proviennent de l'IFCE.
+      questions: []
+    - id: a07
+      titre: "5. Mission : construire l'outil de suivi"
+      contenu:
+          - type: paragraphe
+            texte: "Dans Calc, créez un tableau comportant les colonnes suivantes :"
+          - type: etapes
+            elements:
+                - Cheval
+                - Poids vif (kg)
+                - Fourrage à 1,5 % - MS* (kg)
+                - Fourrage à 2 % - MS* (kg)
+                - Foin brut correspondant à 1,5 % (kg)
+                - Foin brut correspondant à 2 % (kg)
+          - type: paragraphe
+            texte: "*MS = Matière Séche"
+          - type: paragraphe
+            texte: Recopiez les noms et les poids des six chevaux.
+      questions: []
+    - id: a08
+      titre: "6. Première formule : calculer 1,5 % du poids vif"
+      contenu:
+          - type: paragraphe
+            texte: Nous allons commencer avec Apache, qui pèse environ 450 kg.
+          - type: paragraphe
+            texte: "Dans la colonne Fourrage à 1,5 % - MS*, demandez à Calc de calculer automatiquement :"
+          - type: paragraphe
+            texte: 1,5 % du poids du cheval.
+          - type: paragraphe
+            texte: Essayez de trouver la formule avant d'utiliser les indices.
+          - type: titre
+            texte: Indice 1
+          - type: paragraphe
+            texte: Une formule dans Calc commence par =.
+          - type: titre
+            texte: Indice 2
+          - type: paragraphe
+            texte: Il faut utiliser la cellule contenant le poids du cheval et la multiplier par 1,5 %.
+          - type: titre
+            texte: Indice 3
+          - type: paragraphe
+            texte: "Si le poids d'Apache se trouve dans la cellule B2 :"
+          - type: paragraphe
+            texte: =B2*1,5%
+          - type: paragraphe
+            texte: Lorsque votre formule fonctionne, recopiez-la pour tous les chevaux.
+      questions: []
+    - id: a09
+      titre: 7. Calculez maintenant le repère à 2 %
+      contenu:
+          - type: paragraphe
+            texte: Dans la colonne suivante, réalisez le même travail pour calculer 2 % du poids vif.
+          - type: paragraphe
+            texte: Cette fois, aucun indice n'est donné.
+      questions: []
+    - id: a10
+      titre: 8. Mais un kilogramme de matière sèche n'est pas un kilogramme de foin
+      contenu:
+          - type: paragraphe
+            texte: L'IFCE utilise dans son exemple un foin contenant 85 % de matière sèche.
+          - type: paragraphe
+            texte: Cela signifie que 1 kg de foin brut ne contient pas 1 kg de matière sèche.
+          - type: paragraphe
+            texte: "Pour retrouver la quantité de foin réellement distribuée, on peut effectuer :"
+          - type: paragraphe
+            texte: quantité de matière sèche ÷ 85 %
+          - type: paragraphe
+            texte: "Calculez maintenant la quantité de foin brut correspondant :"
+          - type: liste
+            elements:
+                - au repère de 1,5 % ;
+                - au repère de 2 %.
+          - type: titre
+            texte: Besoin d'un indice ?
+          - type: paragraphe
+            texte: "Si votre quantité de matière sèche est en C2 :"
+          - type: paragraphe
+            texte: =C2/85%
+      questions: []
+    - id: a11
+      titre: 9. Vérification avec une vraie donnée IFCE
+      contenu:
+          - type: paragraphe
+            texte: Regardez la ligne de Calypso, qui pèse 500 kg.
+          - type: paragraphe
+            texte: "Comparez votre résultat à l'exemple donné par l'IFCE :"
+          - type: citation
+            texte: Pour un cheval de 500 kg consommant 1,5 % de son poids vif, l'IFCE obtient environ 7,5 kg de matière sèche, soit environ 9 kg de foin brut avec un foin à 85 % de matière sèche.
+          - type: paragraphe
+            texte: Vos résultats sont-ils cohérents avec la source professionnelle ?
+          - type: paragraphe
+            texte: Écrivez une courte réponse sous votre tableau.
+      questions: []
+    - id: a12
+      titre: "10. Mission : combien faut-il prévoir pour toute l'écurie ?"
+      contenu:
+          - type: paragraphe
+            texte: "Ajoutez en bas des deux colonnes de foin brut une ligne :"
+          - type: paragraphe
+            texte: TOTAL PAR JOUR
+          - type: paragraphe
+            texte: "Utilisez la fonction SOMME pour calculer :"
+          - type: liste
+            elements:
+                - le total correspondant au repère de 1,5 % ;
+                - le total correspondant au repère de 2 %.
+      questions: []
+    - id: a13
+      titre: 11. Préparer une semaine de stock
+      contenu:
+          - type: paragraphe
+            texte: Le responsable souhaite maintenant connaître la quantité de foin correspondant à 7 jours.
+          - type: paragraphe
+            texte: "Ajoutez une ligne :"
+          - type: paragraphe
+            texte: TOTAL POUR 7 JOURS
+          - type: paragraphe
+            texte: Utilisez une formule pour calculer les deux estimations.
+      questions: []
+    - id: a14
+      titre: 12. Prendre une décision professionnelle
+      contenu:
+          - type: paragraphe
+            texte: "L'écurie dispose actuellement de :"
+          - type: paragraphe
+            texte: 450 kg de foin.
+          - type: paragraphe
+            texte: "Répondez sous votre tableau :"
+      questions:
+          - id: q01
+            type: texte
+            enonce: 450 kg sont-ils suffisants pour une semaine avec le calcul basé sur 1,5 % ?
+            suite: []
+          - id: q02
+            type: texte
+            enonce: 450 kg sont-ils suffisants avec le calcul basé sur 2 % ?
+            suite: []
+          - id: q03
+            type: texte
+            enonce: "Peut-on simplement répondre : « 450 kg suffisent » sans autre information ? Expliquez votre réponse."
+            suite: []
+    - id: a15
+      titre: 13. Comparer avec une autre information professionnelle
+      contenu:
+          - type: paragraphe
+            texte: L'IFCE indique également que, lorsque le foin est donné seul et à volonté, la consommation peut être d'environ 2 à 2,8 kg de foin brut pour 100 kg de poids vif, soit environ 10 à 14 kg pour un cheval de 500 à 600 kg à l'entretien.
+          - type: paragraphe
+            texte: "Source professionnelle : IFCE – équipédia, Calculer le coût de la ration journalière ."
+          - type: lien
+            titre: Calculer le coût de la ration journalière
+            url: https://equipedia.ifce.fr/elevage-et-entretien/alimentation/nutrition-et-ration/calculer-le-cout-de-la-ration-journaliere
+          - type: paragraphe
+            texte: Regardez les résultats obtenus pour les chevaux pesant entre 500 et 600 kg.
+          - type: paragraphe
+            texte: Les ordres de grandeur sont-ils cohérents avec cette deuxième source ?
+      questions: []
+    - id: a16
+      titre: 14. Défi — Pour ceux qui ont terminé
+      contenu:
+          - type: paragraphe
+            texte: Améliorez votre outil afin qu'il soit utilisable plus facilement par le responsable de l'écurie.
+          - type: paragraphe
+            texte: "Vous pouvez par exemple :"
+          - type: liste
+            elements:
+                - arrondir les résultats à deux décimales ;
+                - mettre clairement les unités ;
+                - mettre en évidence les totaux ;
+                - créer un graphique comparant les besoins estimés des différents chevaux ;
+                - modifier le poids d'un cheval et observer automatiquement les conséquences sur le stock nécessaire.
+      questions: []
+    - id: a17
+      titre: 15. Rendu du travail
+      contenu:
+          - type: paragraphe
+            texte: "Avant de rendre votre fichier, vérifiez que :"
+          - type: liste
+            elements:
+                - votre fichier porte le bon nom ;
+                - les six chevaux sont présents ;
+                - les calculs sont réalisés avec des formules ;
+                - les formules ont été recopiées correctement ;
+                - les totaux journaliers sont calculés ;
+                - les besoins pour 7 jours sont calculés ;
+                - vous avez répondu aux questions professionnelles ;
+                - votre tableau est lisible.
+          - type: paragraphe
+            texte: "Enregistrez une dernière fois puis rendez :"
+          - type: paragraphe
+            texte: CAPA2_S02_NOM_Prenom.ods
+          - type: paragraphe
+            texte: Même si votre travail n'est pas terminé, le fichier doit être rendu.
+      questions: []
+    - id: a18
+      titre: À retenir
+      contenu:
+          - type: liste
+            elements:
+                - Un tableur permet d'effectuer automatiquement des calculs à partir de données professionnelles.
+                - Une formule commence par =.
+                - Les pourcentages peuvent être utilisés directement dans une formule.
+                - Une formule utilisant des références de cellules se recalcule lorsque les données changent.
+                - Un résultat numérique doit toujours être interprété avant de prendre une décision.
+                - Dans un contexte professionnel, il est important de connaître la source des données utilisées.
+      questions: []
+bilan: Relis tes réponses et vérifie les points demandés dans le bilan du cours. Tu peux revenir sur ton travail tant que le professeur ne l’a pas clôturé.
+ressources:
+    - type: paragraphe
+      texte: Réalise les manipulations dans le logiciel demandé. Conserve tes fichiers sur ton espace habituel. Le site enregistre seulement tes réponses écrites, tes résultats, tes formules et tes démarches ; aucun fichier n’est téléversé.
+introduction:
+    - type: titre
+      texte: Ce que vous allez apprendre
+    - type: liste
+      elements:
+          - Comprendre comment des données numériques peuvent aider à gérer une écurie.
+          - Comprendre la différence entre le poids vif d'un cheval, la matière sèche et le poids brut du foin.
+          - Comprendre pourquoi une estimation doit toujours être interprétée avant de prendre une décision.
+    - type: titre
+      texte: Ce que vous allez apprendre à faire
+    - type: liste
+      elements:
+          - Organiser des données professionnelles dans un tableur.
+          - Utiliser des pourcentages dans une formule.
+          - Utiliser les références de cellules.
+          - Recopier une formule.
+          - Calculer des besoins journaliers et hebdomadaires.
+          - Utiliser les résultats obtenus pour répondre à une situation professionnelle.
+reperes_officiels:
+    - type: paragraphe
+      texte: Dans cette page du ministère, retrouve le programme ou le référentiel de ta formation. Les objectifs précis étudiés aujourd’hui sont indiqués dans le cours.
+    - type: lien
+      titre: Consulter les programmes et attendus officiels
+      url: https://chlorofil.fr/diplomes/secondaire/capa

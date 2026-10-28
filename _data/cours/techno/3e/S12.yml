@@ -1,0 +1,196 @@
+titre: Comment décrire précisément le comportement d’un système automatisé ?
+theme: "Structure, fonctionnement, comportement : des données aux décisions"
+problematique: Quand le monte-charge doit-il monter ? Quand doit-il rester arrêté ?
+pourquoi: Écrire des règles qui donnent une réponse dans chaque situation.
+application: Un portail ou un volet suit aussi des règles avant de démarrer.
+lien_precedent: En S11, la carte donnait les ordres. Aujourd’hui, nous écrivons les règles qu’elle doit suivre.
+prerequis:
+    - Une donnée peut valoir 0 ou 1.
+    - Un capteur renseigne la carte sur une situation.
+notions:
+    - titre: "0 ou 1 : lis la légende"
+      texte: "C’est comme un voyant : sa valeur ne suffit pas, il faut savoir ce qu’il indique. Ici, P = 1 veut dire « porte fermée ». Le tableau donne le sens de chaque lettre."
+    - titre: "ET : tout doit être vrai"
+      texte: Pour monter dans un bus, il faut être à l’arrêt ET que la porte soit ouverte. Ici aussi, plusieurs conditions doivent être réunies. Avec OU, une seule pourrait suffire.
+    - titre: Des règles relues en boucle
+      texte: Un algorithme est une recette d’instructions. La carte relit les capteurs et choisit un ordre, puis recommence. Une anomalie prioritaire passe avant les autres règles.
+    - titre: Notre modèle
+      texte: Le bouton doit rester appuyé pendant la montée. Nous étudions les ordres, pas la descente ni le freinage d’une vraie machine.
+objectifs:
+    connaissances:
+        - ET impose plusieurs conditions à la fois.
+        - Une règle prioritaire passe avant les autres.
+    competences:
+        - Prévoir un ordre avec les données du tableau.
+        - Compléter une règle de programme.
+        - Trouver un test qui montre une erreur.
+activites:
+    - id: a01
+      titre: Lire les lettres et les règles
+      pourquoi: Comprendre les données avant de décider.
+      demarche:
+          - "Lis le tableau : que signifie chaque lettre ?"
+          - Utilise les règles pour répondre.
+      contenu:
+          - type: tableau
+            titre: Dossier — Entrées du modèle
+            colonnes:
+                - Lettre
+                - 0 signifie…
+                - 1 signifie…
+            lignes:
+                - - M
+                  - Bouton relâché
+                  - Bouton appuyé
+                - - P
+                  - Porte ouverte
+                  - Porte fermée
+                - - H
+                  - Pas en haut
+                  - En haut
+                - - B
+                  - Pas en bas
+                  - En bas
+          - type: liste
+            elements:
+                - "D’abord : si H = 1 ET B = 1, les capteurs disent « en haut et en bas à la fois ». C’est impossible : ARRÊT et signal ANOMALIE."
+                - "Sinon : MONTER si le bouton est appuyé, la porte fermée et la plateforme pas encore en haut. On écrit : M = 1 ET P = 1 ET H = 0."
+                - "Dans les autres cas : ARRÊT. Sans anomalie des capteurs, le signal est NORMAL."
+                - "H = 0 et B = 0 : la plateforme est entre les deux niveaux."
+      questions:
+          - id: q01
+            type: qcm
+            enonce: "P = 0 : que signifie cette donnée ?"
+            choix:
+                - id: ouverte
+                  texte: La porte est ouverte.
+                - id: haut
+                  texte: La plateforme est arrivée en haut.
+                - id: relache
+                  texte: Le bouton Monter est relâché.
+          - id: q02
+            type: texte
+            enonce: Le bouton est appuyé, mais la porte est ouverte. La plateforme est en bas. Faut-il commander MONTER ou ARRÊT ? Pourquoi ?
+      ressources:
+          - type: paragraphe
+            texte: "Si besoin : dans « Comment ça marche », cherche une instruction « si… alors… sinon ». Repère la condition et les deux actions possibles. Ne recopie pas le programme : notre monte-charge suit d’autres règles."
+          - &a1
+            type: lien
+            titre: micro:bit — Faire connaissance avec micro:bit (en français)
+            url: https://microbit.org/fr/projects/make-it-code-it/meet-your-microbit/
+    - id: a02
+      titre: Compléter puis essayer les règles
+      pourquoi: Vérifier chaque cas, comme lorsqu’on teste les règles d’un jeu.
+      demarche:
+          - Écris la condition manquante.
+          - Pour chaque ligne du tableau, suis le programme depuis le début.
+      contenu:
+          - type: paragraphe
+            texte: "Un algorithme est une suite d’instructions. Il manque ici la règle autorisant la montée : CONDITION_DE_MONTEE. Les espaces à gauche montrent les instructions qui vont ensemble."
+          - type: code
+            texte: |-
+                RÉPÉTER INDÉFINIMENT
+                    Lire M, P, H et B
+                    Signal ← NORMAL
+                    SI H = 1 ET B = 1 ALORS
+                        Commande ← ARRÊT
+                        Signal ← ANOMALIE
+                    SINON
+                        SI CONDITION_DE_MONTEE ALORS
+                            Commande ← MONTER
+                        SINON
+                            Commande ← ARRÊT
+          - type: paragraphe
+            texte: "Dans chaque case du tableau, écris un ordre et un signal : « MONTER ; NORMAL », « ARRÊT ; NORMAL » ou « ARRÊT ; ANOMALIE ». Tu essaies les règles à la main, sans logiciel supplémentaire."
+      questions:
+          - id: q01
+            type: texte
+            enonce: Remplace CONDITION_DE_MONTEE par la bonne règle avec M, P et H. Pourquoi faut-il ET plutôt que OU ?
+            aide: Retrouve les trois conditions de montée dans le dossier. Avec ET, elles doivent être vraies ensemble. Le cas des deux capteurs à 1 est déjà traité avant.
+          - id: q02
+            type: tableau
+            enonce: Quel ordre et quel signal obtiens-tu dans chaque situation ?
+            colonnes:
+                - "Situation : M ; P ; H ; B"
+                - Commande ; signal
+            lignes:
+                - - "A : 1 ; 1 ; 0 ; 1"
+                  - ""
+                - - "B : 0 ; 1 ; 0 ; 0"
+                  - ""
+                - - "C : 1 ; 1 ; 1 ; 0"
+                  - ""
+                - - "D : 1 ; 1 ; 1 ; 1"
+                  - ""
+      ressources:
+          - type: paragraphe
+            texte: "Si besoin : observe l’exemple « si… alors… sinon » dans « Comment ça marche ». Choisis mentalement une condition vraie, puis fausse : quelle action est exécutée ? Applique ensuite cette méthode au tableau du cours."
+          - *a1
+    - id: a03
+      titre: Trouver l’erreur — entraînement DNB
+      pourquoi: Prouver qu’une règle est fausse avec un exemple précis.
+      demarche:
+          - Compare ce programme avec les règles du dossier.
+          - Trouve un exemple où il donne le mauvais ordre.
+      contenu:
+          - type: paragraphe
+            texte: Le programme ci-dessous remplace seulement la règle de montée. Le contrôle prioritaire des deux capteurs à 1 est toujours présent avant.
+          - type: code
+            texte: |-
+                SI M = 1 ET P = 1 ALORS
+                    Commande ← MONTER
+                SINON
+                    Commande ← ARRÊT
+          - type: paragraphe
+            texte: "Comme dans un jeu : une règle peut marcher au début, puis échouer dans une situation oubliée. Un seul exemple suffit à montrer ce défaut."
+      questions:
+          - id: q01
+            type: texte
+            enonce: Trouve un exemple où ce programme commande une montée interdite. Réponds aux quatre points suivants.
+            aide: "Pense à l’arrivée en haut. Attention : ne choisis pas H = 1 et B = 1, car le contrôle prioritaire arrête déjà le système."
+            contenu:
+                - type: liste
+                  elements:
+                      - Donne les valeurs de M, P, H et B.
+                      - Quel ordre ce programme donne-t-il ?
+                      - Quel ordre devrait-il donner ?
+                      - Quelle condition manque dans le programme ?
+          - id: q02
+            type: texte
+            enonce: La plateforme monte entre les niveaux. Tu relâches le bouton ; la porte reste fermée. Réponds en deux phrases.
+            contenu:
+                - type: liste
+                  elements:
+                      - Quel ordre la carte doit-elle donner quand elle relit les entrées ? Pourquoi ?
+                      - Cet ordre suffit-il à expliquer comment une vraie plateforme freine ?
+      ressources:
+          - type: paragraphe
+            texte: "Si besoin : utilise l’exemple « si… alors… sinon » pour distinguer la condition testée de l’action produite. Reviens à notre programme et cherche le cas oublié. Reformule ton explication ; tu peux nommer la source consultée."
+          - *a1
+    - id: a04
+      titre: Pour aller plus loin
+      facultatif: true
+      pourquoi: Réutiliser ET et OU dans un jeu.
+      demarche:
+          - Imagine deux conditions à remplir pour gagner.
+          - Explique ce qui changerait avec ET ou avec OU.
+      contenu:
+          - type: paragraphe
+            texte: Facultatif. Après Pix, nous retrouverons ces règles dans MakeCode Arcade.
+      questions: []
+retenir:
+    - Je lis la légende pour comprendre 0 et 1.
+    - "ET : toutes les conditions doivent être vraies."
+    - Une règle prioritaire passe avant les autres.
+    - "Pour tester : choisir les données, prévoir le résultat, comparer."
+    - Donner l’ordre ARRÊT ne décrit pas le freinage d’une vraie machine.
+bilan: Ton exemple permet-il à quelqu’un d’autre de retrouver l’erreur ?
+reperes_officiels:
+    - type: paragraphe
+      texte: Nous préparons la lecture et la modification d’un programme. Dans l’annexe, consulte la page 11, notamment les conditions et les opérateurs ET/OU. Cette séance travaille une partie de ces attendus.
+    - type: lien
+      titre: Ministère — Programme de technologie, BO du 29 février 2024
+      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - type: lien
+      titre: "Ministère — Annexe du programme : programmation, page 11"
+      url: https://www.education.gouv.fr/sites/default/files/document/Annexe%20%E2%80%94%20Programme%20de%20technologie%20du%20cycle%204-368016.pdf#page=11

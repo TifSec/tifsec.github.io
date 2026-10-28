@@ -1,0 +1,494 @@
+titre: Peut-on faire confiance à toutes les données ?
+theme: TIM — Peut-on faire confiance à toutes les données ?
+problematique: Peut-on faire confiance à toutes les données ?
+pourquoi: "Imaginez maintenant que l'on demande à Calc de calculer :"
+application: Une structure équestre enregistre régulièrement des informations concernant les chevaux présents dans son écurie.
+lien_precedent: Reprends les méthodes des séances précédentes si elles te sont utiles ; les rappels du cours t’accompagnent.
+objectifs:
+    connaissances:
+        - Un tableau peut contenir des données incorrectes, incomplètes ou mal enregistrées.
+        - Avant d'analyser des données, il faut vérifier leur qualité.
+        - Une colonne doit contenir un seul type d'information.
+        - Une cellule doit contenir une seule valeur.
+        - Les unités et les formats doivent être cohérents.
+        - Une donnée douteuse ne doit jamais être corrigée au hasard.
+        - Les données originales doivent être conservées avant toute modification.
+    competences: []
+activites:
+    - id: a03
+      titre: 1. Créez votre document de travail
+      contenu:
+          - type: paragraphe
+            texte: "Téléchargez le fichier fourni par le professeur :"
+          - type: paragraphe
+            texte: BACPRO1_S03_donnees_brutes.xlsx
+          - type: lien
+            titre: BACPRO1_S03_donnees_brutes.xlsx
+            url: https://tifsec.github.io/mfr/bacpro1/BACPRO1_S03_donnees_brutes.xlsx
+          - type: paragraphe
+            texte: Ouvrez-le avec LibreOffice Calc.
+          - type: paragraphe
+            texte: "Enregistrez immédiatement une copie dans votre dossier MG1_INFORMATIQUE sous le nom :"
+          - type: paragraphe
+            texte: BACPRO1_S03_nom_prenom.ods
+          - type: paragraphe
+            texte: Utilisez ensuite régulièrement Ctrl + S pour enregistrer votre travail.
+          - type: paragraphe
+            texte: "Important : ne modifiez pas encore les données."
+      questions: []
+    - id: a04
+      titre: 2. Situation professionnelle
+      contenu:
+          - type: paragraphe
+            texte: Une structure équestre enregistre régulièrement des informations concernant les chevaux présents dans son écurie.
+          - type: paragraphe
+            texte: "Le fichier contient notamment :"
+          - type: liste
+            elements:
+                - un identifiant de relevé ;
+                - le nom du cheval ;
+                - la date du relevé ;
+                - son poids estimé ;
+                - la quantité quotidienne de foin distribuée ;
+                - son nombre d'heures de travail par semaine ;
+                - son statut actuel.
+          - type: paragraphe
+            texte: Ces données pourraient ensuite servir à suivre les animaux, préparer des calculs, observer une évolution ou aider le responsable de la structure à prendre certaines décisions.
+          - type: paragraphe
+            texte: Mais le fichier a été complété par plusieurs personnes et toutes n'ont pas utilisé les mêmes méthodes de saisie.
+          - type: paragraphe
+            texte: "Votre mission : rendre ce fichier propre et exploitable sans inventer de données."
+          - type: paragraphe
+            texte: "Sources professionnelles utilisées pour construire l'activité :"
+          - type: liste
+            elements:
+                - "IFCE – équipédia : Estimation du poids"
+                - "IFCE – équipédia : Les besoins alimentaires du cheval"
+                - Chlorofil – Document d'accompagnement du module MG1 du Bac professionnel
+          - type: lien
+            titre: "IFCE – équipédia : Estimation du poids"
+            url: https://equipedia.ifce.fr/elevage-et-entretien/alimentation/nutrition-et-ration/estimation-du-poids
+          - type: lien
+            titre: "IFCE – équipédia : Les besoins alimentaires du cheval"
+            url: https://equipedia.ifce.fr/elevage-et-entretien/alimentation/nutrition-et-ration/les-besoins-alimentaires-du-cheval
+          - type: lien
+            titre: Chlorofil – Document d'accompagnement du module MG1 du Bac professionnel
+            url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf
+          - type: paragraphe
+            texte: Les chevaux et les relevés de cette activité sont fictifs. Les valeurs ont été simplifiées et adaptées pédagogiquement à partir de références professionnelles afin de proposer une situation réaliste. Elles ne constituent pas des recommandations individuelles d'alimentation ou de suivi des animaux.
+      questions: []
+    - id: a05
+      titre: "3. Première mission : trouvez les problèmes"
+      contenu:
+          - type: paragraphe
+            texte: Observez attentivement la feuille DONNEES_BRUTES.
+          - type: paragraphe
+            texte: Ne modifiez encore aucune cellule.
+          - type: paragraphe
+            texte: Votre première mission consiste à repérer ce qui pourrait empêcher un ordinateur d'utiliser correctement ces données.
+          - type: paragraphe
+            texte: "Vous pouvez notamment rechercher :"
+          - type: liste
+            elements:
+                - des différences d'écriture ;
+                - des formats différents ;
+                - des valeurs manquantes ;
+                - des valeurs qui semblent surprenantes ;
+                - des doublons ;
+                - des nombres qui semblent avoir été enregistrés comme du texte ;
+                - des informations présentées de plusieurs manières différentes.
+          - type: paragraphe
+            texte: "Ajoutez une nouvelle feuille à votre classeur et nommez-la :"
+          - type: paragraphe
+            texte: DIAGNOSTIC
+          - type: paragraphe
+            texte: "Créez le tableau suivant :"
+          - type: tableau
+            colonnes:
+                - Problème repéré
+                - Exemple
+                - Pourquoi est-ce un problème ?
+                - Que faudrait-il faire ?
+            lignes:
+                - - Écritures différentes
+                  - Actif / actif / ACTIF
+                  - L'ordinateur peut considérer ces valeurs comme différentes
+                  - Choisir une écriture commune
+          - type: paragraphe
+            texte: Trouvez au moins 6 problèmes différents.
+      questions: []
+    - id: a06
+      titre: 4. Quels types de données contient le fichier ?
+      contenu:
+          - type: paragraphe
+            texte: "Dans la feuille DIAGNOSTIC, ajoutez le titre :"
+          - type: paragraphe
+            texte: Types de données
+          - type: paragraphe
+            texte: "Puis complétez le tableau suivant :"
+      questions:
+          - id: q01
+            type: tableau
+            enonce: Complète le tableau ci-dessous.
+            colonnes:
+                - Colonne
+                - Type de donnée attendu
+            lignes:
+                - - Identifiant
+                  - ""
+                - - Cheval
+                  - ""
+                - - Date
+                  - ""
+                - - Poids estimé
+                  - ""
+                - - Foin distribué
+                  - ""
+                - - Travail par semaine
+                  - ""
+                - - Statut
+                  - ""
+            suite:
+                - type: paragraphe
+                  texte: "Vous pouvez utiliser les catégories suivantes :"
+                - type: paragraphe
+                  texte: Texte – Nombre – Date – Catégorie
+    - id: a07
+      titre: 5. Comment organiser correctement des données ?
+      contenu:
+          - type: paragraphe
+            texte: "Pour qu'un tableau soit facilement exploitable par un ordinateur, nous allons respecter trois règles simples :"
+          - type: liste
+            elements:
+                - Une ligne = une observation.
+                - Une colonne = une information.
+                - Une cellule = une valeur.
+          - type: paragraphe
+            texte: "Exemple :"
+          - type: tableau
+            colonnes:
+                - Cheval
+                - Poids estimé (kg)
+                - Foin distribué (kg/jour)
+            lignes:
+                - - Volcan
+                  - "520"
+                  - "10"
+          - type: paragraphe
+            texte: Il est préférable d'écrire 10 dans la cellule plutôt que 10 kg.
+          - type: paragraphe
+            texte: L'unité kg/jour est déjà indiquée dans le titre de la colonne.
+          - type: paragraphe
+            texte: Calc pourra ainsi reconnaître la valeur comme un nombre et l'utiliser directement dans des calculs.
+      questions: []
+    - id: a08
+      titre: 6. Conservez toujours les données d'origine
+      contenu:
+          - type: paragraphe
+            texte: Avant de commencer le nettoyage, dupliquez la feuille DONNEES_BRUTES.
+          - type: paragraphe
+            texte: "Renommez la copie :"
+          - type: paragraphe
+            texte: DONNEES_NETTOYEES
+          - type: paragraphe
+            texte: "À partir de maintenant :"
+          - type: liste
+            elements:
+                - la feuille DONNEES_BRUTES ne doit plus être modifiée ;
+                - toutes les corrections doivent être réalisées dans DONNEES_NETTOYEES.
+          - type: paragraphe
+            texte: Pourquoi pensez-vous qu'il est important de conserver les données d'origine ?
+          - type: paragraphe
+            texte: Ajoutez votre réponse dans la feuille DIAGNOSTIC.
+      questions: []
+    - id: a09
+      titre: "7. Mission : uniformisez les textes"
+      contenu:
+          - type: paragraphe
+            texte: Travaillez maintenant uniquement dans DONNEES_NETTOYEES.
+          - type: paragraphe
+            texte: Observez la colonne Cheval.
+          - type: paragraphe
+            texte: "Les noms doivent tous respecter la même présentation :"
+          - type: paragraphe
+            texte: Première lettre en majuscule, autres lettres en minuscules.
+          - type: paragraphe
+            texte: "Exemple :"
+          - type: paragraphe
+            texte: VOLCAN → Volcan
+          - type: paragraphe
+            texte: Faites ensuite de même avec la colonne Statut.
+          - type: paragraphe
+            texte: "Les seules valeurs utilisées seront :"
+          - type: liste
+            elements:
+                - Actif
+                - Repos
+                - Soins
+          - type: paragraphe
+            texte: Vous pouvez modifier les cellules une par une ou rechercher une méthode permettant de remplacer plusieurs valeurs rapidement.
+          - type: paragraphe
+            texte: "Indice : cherchez la fonction Rechercher et remplacer."
+      questions: []
+    - id: a10
+      titre: "8. Mission : remettez les nombres au propre"
+      contenu:
+          - type: paragraphe
+            texte: "Observez les colonnes :"
+          - type: liste
+            elements:
+                - Poids estimé (kg) ;
+                - Foin distribué (kg/jour) ;
+                - Travail par semaine (h).
+          - type: paragraphe
+            texte: Ces colonnes doivent contenir uniquement des nombres.
+          - type: paragraphe
+            texte: "Corrigez les cellules contenant directement une unité, par exemple :"
+          - type: paragraphe
+            texte: 11 kg → 11
+          - type: paragraphe
+            texte: Vérifiez également les valeurs décimales.
+          - type: paragraphe
+            texte: Elles doivent être reconnues par Calc comme de véritables nombres et non comme du texte.
+      questions: []
+    - id: a11
+      titre: "9. Mission : uniformisez les dates"
+      contenu:
+          - type: paragraphe
+            texte: "Une même date peut être écrite de plusieurs manières :"
+          - type: liste
+            elements:
+                - 05/09/2026
+                - 5/9/26
+                - 05-09-2026
+                - 5 septembre 2026
+          - type: paragraphe
+            texte: Pour une personne, ces écritures peuvent représenter la même information.
+          - type: paragraphe
+            texte: Pour un tableur, certaines peuvent être reconnues comme des dates et d'autres comme du texte.
+          - type: paragraphe
+            texte: "Dans cette activité, toutes les dates devront être de véritables dates Calc et être affichées sous la forme :"
+          - type: paragraphe
+            texte: JJ/MM/AAAA
+          - type: paragraphe
+            texte: "Exemple :"
+          - type: paragraphe
+            texte: 05/09/2026
+          - type: paragraphe
+            texte: Uniformisez toutes les dates du tableau.
+      questions: []
+    - id: a12
+      titre: "10. Mission : que faire d'une donnée manquante ?"
+      contenu:
+          - type: paragraphe
+            texte: Le fichier contient plusieurs cellules vides.
+          - type: paragraphe
+            texte: Par exemple, le poids d'un cheval n'a pas été renseigné.
+          - type: paragraphe
+            texte: Vous pourriez être tenté d'écrire une valeur qui semble logique.
+          - type: paragraphe
+            texte: Ne le faites pas.
+          - type: paragraphe
+            texte: "Ajoutez à droite du tableau une nouvelle colonne :"
+          - type: paragraphe
+            texte: CONTROLE
+          - type: paragraphe
+            texte: "Lorsqu'une information importante manque sur une ligne, inscrivez :"
+          - type: paragraphe
+            texte: À vérifier
+          - type: paragraphe
+            texte: Pourquoi ne faut-il pas compléter la valeur manquante au hasard ?
+          - type: paragraphe
+            texte: Ajoutez votre réponse dans DIAGNOSTIC.
+      questions: []
+    - id: a13
+      titre: "11. Mission : une donnée semble anormale"
+      contenu:
+          - type: paragraphe
+            texte: "Une ligne du fichier indique un poids estimé de :"
+          - type: paragraphe
+            texte: 52 kg
+          - type: paragraphe
+            texte: Cette valeur est très différente des autres observations du fichier.
+          - type: paragraphe
+            texte: L'IFCE rappelle que le poids vif est notamment utilisé pour établir une ration, suivre l'état d'un cheval ou adapter certains traitements.
+          - type: paragraphe
+            texte: Il est donc particulièrement important que cette donnée soit fiable.
+          - type: paragraphe
+            texte: Quelle solution vous semble la plus professionnelle ?
+          - type: etapes
+            elements:
+                - Remplacer automatiquement 52 par 520.
+                - Supprimer la ligne.
+                - Conserver temporairement la valeur et signaler qu'elle doit être vérifiée.
+                - Retrouver le relevé original pour contrôler la valeur avant de la modifier.
+          - type: paragraphe
+            texte: Expliquez votre choix dans la feuille DIAGNOSTIC.
+          - type: paragraphe
+            texte: Une donnée surprenante n'est pas automatiquement une donnée fausse.
+          - type: paragraphe
+            texte: Si vous ne disposez pas de la source originale, vous ne connaissez pas la bonne valeur.
+      questions: []
+    - id: a14
+      titre: 12. Une référence professionnelle peut-elle corriger une donnée ?
+      contenu:
+          - type: paragraphe
+            texte: L'IFCE indique que la quantité de fourrage distribuée dépend notamment du poids vif et précise des ordres de grandeur exprimés en pourcentage de ce poids.
+          - type: paragraphe
+            texte: Une référence professionnelle peut donc nous aider à détecter qu'une valeur mérite d'être vérifiée.
+          - type: paragraphe
+            texte: Mais peut-elle nous permettre de connaître automatiquement la vraie valeur contenue dans le relevé original ?
+          - type: paragraphe
+            texte: Répondez dans DIAGNOSTIC et justifiez.
+      questions: []
+    - id: a15
+      titre: "13. Mission : cherchez le doublon"
+      contenu:
+          - type: paragraphe
+            texte: Une observation a été enregistrée deux fois dans le fichier.
+          - type: paragraphe
+            texte: Retrouvez les deux lignes concernées.
+          - type: paragraphe
+            texte: "Comparez attentivement :"
+          - type: liste
+            elements:
+                - l'identifiant ;
+                - le cheval ;
+                - la date ;
+                - le poids ;
+                - le foin distribué ;
+                - le temps de travail ;
+                - le statut.
+          - type: paragraphe
+            texte: Si les deux lignes correspondent exactement à la même observation, conservez-en une seule dans DONNEES_NETTOYEES.
+          - type: paragraphe
+            texte: "Dans DIAGNOSTIC, indiquez :"
+          - type: liste
+            elements:
+                - l'identifiant concerné ;
+                - comment vous avez déterminé qu'il s'agissait réellement d'un doublon.
+      questions: []
+    - id: a16
+      titre: 14. Contrôlez votre fichier
+      contenu:
+          - type: paragraphe
+            texte: Avant de terminer, vérifiez votre feuille DONNEES_NETTOYEES.
+          - type: paragraphe
+            texte: "Elle doit respecter les règles suivantes :"
+          - type: liste
+            elements:
+                - chaque ligne correspond à une observation ;
+                - les noms des chevaux utilisent la même présentation ;
+                - les statuts sont uniquement Actif, Repos ou Soins ;
+                - les colonnes numériques contiennent uniquement des nombres lorsque la donnée est connue ;
+                - les unités sont indiquées dans les titres et non dans les cellules ;
+                - les dates utilisent le même format et sont reconnues comme des dates ;
+                - les données manquantes sont signalées ;
+                - les données douteuses sont signalées et non inventées ;
+                - le doublon a été supprimé ;
+                - la feuille DONNEES_BRUTES est toujours intacte.
+      questions: []
+    - id: a17
+      titre: 15. Pourquoi nettoyer les données ?
+      contenu:
+          - type: paragraphe
+            texte: "Imaginez maintenant que l'on demande à Calc de calculer :"
+          - type: liste
+            elements:
+                - le poids moyen des chevaux ;
+                - la quantité totale de foin distribuée ;
+                - le nombre de chevaux actifs ;
+                - l'évolution du poids d'un cheval au cours du temps.
+          - type: paragraphe
+            texte: Si certaines données sont enregistrées comme du texte, dupliquées, manquantes ou incorrectes, les résultats peuvent être faux.
+          - type: paragraphe
+            texte: L'ordinateur peut effectuer un calcul parfaitement juste à partir de données incorrectes et produire malgré tout une conclusion fausse.
+          - type: paragraphe
+            texte: La qualité d'une analyse dépend donc aussi de la qualité des données utilisées.
+          - type: paragraphe
+            texte: "Dans votre feuille DIAGNOSTIC, répondez avec vos propres mots :"
+      questions:
+          - id: q01
+            type: texte
+            enonce: Pourquoi faut-il nettoyer les données avant de les analyser ?
+            suite: []
+          - id: q02
+            type: texte
+            enonce: Pourquoi faut-il conserver les données originales ?
+            suite: []
+          - id: q03
+            type: texte
+            enonce: Que faut-il faire lorsqu'une donnée semble fausse mais que l'on ne connaît pas la bonne valeur ?
+            suite: []
+          - id: q04
+            type: texte
+            enonce: Quelle différence faites-vous maintenant entre une donnée anormale et une donnée fausse ?
+            suite: []
+    - id: a18
+      titre: À retenir
+      contenu:
+          - type: liste
+            elements:
+                - Des données doivent être organisées, cohérentes et vérifiables avant d'être analysées.
+                - Une ligne = une observation.
+                - Une colonne = une information.
+                - Une cellule = une valeur.
+                - "Les nombres doivent rester des nombres : les unités sont de préférence indiquées dans les titres de colonnes."
+                - Les formats doivent être cohérents dans l'ensemble du tableau.
+                - Un doublon peut fausser les résultats d'une analyse.
+                - Une donnée manquante ne doit pas être inventée.
+                - Une donnée inhabituelle doit être contrôlée avant d'être corrigée.
+                - Une source professionnelle peut aider à détecter une incohérence mais ne permet pas forcément de retrouver la vraie valeur.
+                - Il est important de conserver les données brutes avant toute modification.
+                - Une correction doit pouvoir être justifiée et tracée.
+      questions: []
+    - id: a19
+      titre: Travail à rendre
+      contenu:
+          - type: paragraphe
+            texte: "À la fin de la séance, déposez le fichier :"
+          - type: paragraphe
+            texte: BACPRO1_S03_nom_prenom.ods
+          - type: paragraphe
+            texte: "Votre classeur doit contenir :"
+          - type: liste
+            elements:
+                - la feuille DONNEES_BRUTES non modifiée ;
+                - la feuille DONNEES_NETTOYEES corrigée ;
+                - la feuille DIAGNOSTIC avec les problèmes repérés et vos réponses ;
+                - la conclusion de la séance.
+          - type: paragraphe
+            texte: Le fichier doit être rendu même si tout n'est pas terminé.
+      questions: []
+bilan: Relis tes réponses et vérifie les points demandés dans le bilan du cours. Tu peux revenir sur ton travail tant que le professeur ne l’a pas clôturé.
+ressources:
+    - type: paragraphe
+      texte: Réalise les manipulations dans le logiciel demandé. Conserve tes fichiers sur ton espace habituel. Le site enregistre seulement tes réponses écrites, tes résultats, tes formules et tes démarches ; aucun fichier n’est téléversé.
+introduction:
+    - type: titre
+      texte: "Compétence visée : Organiser et préparer des données pour pouvoir les exploiter"
+    - type: paragraphe
+      texte: Objectifs d’apprentissage
+    - type: liste
+      elements:
+          - Un tableau peut contenir des données incorrectes, incomplètes ou mal enregistrées.
+          - Avant d'analyser des données, il faut vérifier leur qualité.
+          - Une colonne doit contenir un seul type d'information.
+          - Une cellule doit contenir une seule valeur.
+          - Les unités et les formats doivent être cohérents.
+          - Une donnée douteuse ne doit jamais être corrigée au hasard.
+          - Les données originales doivent être conservées avant toute modification.
+    - type: liste
+      elements:
+          - Repérer des erreurs dans un jeu de données.
+          - Identifier différents types de données.
+          - Uniformiser des textes, des nombres et des dates.
+          - Repérer et supprimer un doublon.
+          - Signaler une donnée manquante ou douteuse.
+          - Préparer un tableau afin qu'il puisse être utilisé pour une analyse.
+reperes_officiels:
+    - type: paragraphe
+      texte: Dans cette page du ministère, retrouve le programme ou le référentiel de ta formation. Les objectifs précis étudiés aujourd’hui sont indiqués dans le cours.
+    - type: lien
+      titre: Consulter les programmes et attendus officiels
+      url: https://chlorofil.fr/diplomes/secondaire/bac-pro/1re-tle/tronc-commun

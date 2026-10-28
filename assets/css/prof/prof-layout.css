@@ -1,14 +1,32 @@
-/* ========== CONTENU PRINCIPAL PROFESSEUR ========== */
-
-.prof-main {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px;
+.prof-shell { font-family: "Segoe UI", system-ui, sans-serif; background: #f3f6fa; color: #243047; }
+.prof-main { width: 100%; max-width: 1380px; margin: 0 auto; padding: 2.5rem 1.5rem 3.5rem; min-height: 65vh; }
+.prof-main h1 { font-size: clamp(1.65rem, 3vw, 2.15rem); letter-spacing: -.035em; line-height: 1.25; margin: .5rem 0 .8rem; color: #1e3a5f; }
+.prof-main h2 { font-size: 1.15rem; color: #243c58; }
+.prof-main .prof-eyebrow { margin: 0; color: #39718a; font-size: .73rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.prof-description, .prof-hint { color: #617086; line-height: 1.65; }
+.prof-description { max-width: 850px; margin-bottom: 1.6rem; }
+.prof-hint { font-size: .8rem; }
+.prof-main button, .prof-main select, .prof-main textarea, .prof-shell #prof-logout {
+    font: inherit;
+    font-size: .875rem;
+    border: 1px solid #cbd7e5;
+    border-radius: 8px;
+    padding: .7rem .85rem;
+    min-height: 44px;
+    color: #263d57;
+    background: white;
 }
-
-@media (max-width: 650px) {
-    .prof-main {
-        padding: 20px 15px;
-    }
-}
+.prof-main button { font-weight: 600; cursor: pointer; transition: background .15s, border-color .15s; }
+.prof-main button:hover { background: #edf3f9; border-color: #8aa7c5; }
+.prof-main button:disabled, .prof-main fieldset:disabled button { cursor: default; opacity: .6; }
+.prof-shell :is(a, button, select, textarea, input):focus-visible { outline: 3px solid #5294ba; outline-offset: 3px; }
+.prof-main :is(#tracking-save, .student-approve) { background: #244d75; border-color: #244d75; color: white; }
+.prof-main :is(#tracking-save, .student-approve):hover { background: #193b5b; }
+.prof-main :is(#tracking-status, #students-status) { padding: .85rem 1rem; margin: 1.25rem 0; border-radius: 8px; background: #e9f0f7; color: #3b5873; font-size: .875rem; line-height: 1.5; }
+.prof-filter { display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
+.prof-filter label { font-size: .75rem; color: #5a6a7d; font-weight: 600; }
+.prof-filter select { width: 100%; min-width: 0; }
+.prof-skip { position: fixed; top: -100px; left: 1rem; z-index: 100; background: white; padding: .8rem; border-radius: 6px; }
+.prof-skip:focus { top: 1rem; }
+@media (prefers-reduced-motion: reduce) { .prof-shell * { transition: none !important; scroll-behavior: auto; } }
+@media (max-width: 650px) { .prof-main { padding: 1.8rem 1rem 2.5rem; } }

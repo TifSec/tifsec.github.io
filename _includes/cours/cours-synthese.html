@@ -1,0 +1,4 @@
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul>{% for notion in include.cours.retenir %}<li>{{ notion | escape }}</li>{% endfor %}</ul>
+    {% if include.cours.bilan %}<h3>Faire le point</h3>{% if include.cours.bilan.first %}<ul>{% for question in include.cours.bilan %}<li>{{ question | escape }}</li>{% endfor %}</ul>{% else %}<p>{{ include.cours.bilan | escape }}</p>{% endif %}{% endif %}
+</section>

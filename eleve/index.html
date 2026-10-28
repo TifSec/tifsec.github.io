@@ -1,327 +1,61 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+---
+layout: eleve
+title: Espace élève
+permalink: /eleve/
+---
 
-    <title>Espace élève</title>
+<div class="student-grid">
+    <div class="student-sidebar">
+        <aside class="student-panel student-statistics" aria-labelledby="student-stats-title">
+            <p class="student-section-kicker">Mon parcours</p><h2 id="student-stats-title">Mes repères</h2><p class="student-muted">Un aperçu de mon travail.</p><dl id="student-stats"></dl>
+            <details id="student-help" class="student-help"><summary>Comment ça marche ?</summary>
+                <p>Tes réponses s’enregistrent automatiquement. Tu les retrouves à ta prochaine connexion.</p>
+                <p>{% if site.data.features.student_submission %}« J’ai terminé » permet de passer à la suite. Tu peux encore compléter ta copie jusqu’à sa clôture par ton professeur. La note peut arriver plus tard.{% else %}Une séance terminée correspond ici à une copie clôturée par ton professeur.{% endif %}</p>
+                <p>Ces repères montrent ton avancement, pas ce que tu maîtrises. Une note de groupe est commune aux participants.</p>
+            </details>
+        </aside>
 
-    <link rel="stylesheet" href="/css/eleve.css">
-
-    <link rel="icon" type="image/png" href="/favicon.png">
-</head>
-
-<body>
-
-<main class="student-dashboard">
-
-    <header class="student-header">
-
-        <div class="student-header-main">
-
-            <div class="student-avatar">
-                👤
+    </div>
+    <div class="student-content student-card-board" aria-label="Mon espace élève">
+        <details class="student-expand-card" id="student-card-next">
+            <summary><span class="student-card-icon" aria-hidden="true">→</span><span class="student-card-title">Le prochain pas</span><span class="student-card-preview">Retrouver la prochaine séance.</span><span class="student-card-hint">Ouvrir <span class="student-card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></span></summary>
+            <div class="student-card-body"><div class="student-card-toolbar"><strong>Le prochain pas</strong><button type="button" data-card-close aria-label="Refermer la carte" title="Refermer la carte"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button></div><p class="student-card-placeholder">Les informations s’afficheront après leur chargement.</p>
+        <section id="student-next-panel" class="student-panel student-next-panel" data-enabled="{{ site.data.features.course_progression }}" hidden aria-labelledby="student-next-title">
+            <p class="student-section-kicker">Le prochain pas</p><h2 id="student-next-title">Ma prochaine séance</h2>
+            <svg class="student-next-art" viewBox="0 0 200 190" aria-hidden="true" focusable="false"><circle cx="105" cy="95" r="76" fill="none" stroke="currentColor" stroke-dasharray="4 9"/><circle cx="164" cy="39" r="10" fill="#b9ecd8"/><circle cx="31" cy="129" r="6" fill="#f2cdb2"/><path d="M42 65Q70 52 98 69V139Q70 122 42 133Z" fill="#d7e7f8"/><path d="M98 69Q127 52 155 65V133Q127 122 98 139Z" fill="#b9ecd8"/><path d="M98 72V139M54 79Q72 72 86 81M54 94Q72 87 86 96M111 81Q127 73 143 79M111 96Q127 88 143 94" fill="none" stroke="#244b68" stroke-width="3" stroke-linecap="round"/><path d="M130 131L160 101L171 112L141 142L127 146Z" fill="#f2cdb2"/></svg>
+            <div id="student-next"></div>
+        </section>
             </div>
-
-            <div>
-                <p class="student-label">
-                    Espace élève
-                </p>
-
-                <h1 id="student-name">
-                    Chargement...
-                </h1>
-
-                <p id="student-class">
-                    —
-                </p>
+        </details>
+        <details class="student-expand-card" id="student-card-work">
+            <summary><span class="student-card-icon" aria-hidden="true">▤</span><span class="student-card-title">Mon espace de travail</span><span class="student-card-preview">Ouvrir ou reprendre mes séances.</span><span class="student-card-hint">Ouvrir <span class="student-card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></span></summary>
+            <div class="student-card-body"><div class="student-card-toolbar"><strong>Mon espace de travail</strong><button type="button" data-card-close aria-label="Refermer la carte" title="Refermer la carte"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button></div><p class="student-card-placeholder">Les informations s’afficheront après leur chargement.</p>
+        <section class="student-panel student-lessons-panel" aria-labelledby="student-lessons-title">
+            <div class="student-section-heading"><div><p class="student-section-kicker">Mon espace de travail</p><h2 id="student-lessons-title" tabindex="-1">Mes séances</h2><p>Reprendre, relire, comprendre mes retours.</p></div><button type="button" id="student-refresh" class="student-refresh">Actualiser</button></div>
+            <div id="student-filters" class="student-filters" role="group" aria-label="Afficher mes séances">
+                <button type="button" data-view="all" aria-pressed="true" disabled>Toutes</button><button type="button" data-view="started" aria-pressed="false" disabled>En cours</button><button type="button" data-view="finished" aria-pressed="false" disabled>Terminées</button><button type="button" data-view="feedback" aria-pressed="false" disabled>Retours et notes</button>
             </div>
-
-        </div>
-
-
-        <button
-            id="logout-button"
-            class="logout-button">
-
-            Se déconnecter
-
-        </button>
-
-    </header>
-
-
-    <section class="welcome-card">
-
-        <div>
-
-            <p class="eyebrow">
-                Bienvenue
-            </p>
-
-            <h2>
-                Reprends ton travail là où tu l'avais laissé.
-            </h2>
-
-            <p>
-                Tes réponses sont sauvegardées automatiquement.
-                Tu peux continuer depuis un autre ordinateur après connexion.
-            </p>
-
-        </div>
-
-
-        <button
-            id="continue-button"
-            class="continue-button"
-            disabled>
-
-            Continuer ma dernière séance
-
-        </button>
-
-    </section>
-
-
-    <section class="dashboard-section">
-
-        <div class="section-heading">
-
-            <div>
-
-                <p class="eyebrow">
-                    Mes cours
-                </p>
-
-                <h2>
-                    Choisis une matière
-                </h2>
-
+            <p id="student-dashboard-status" role="status" aria-live="polite">Chargement de tes séances…</p>
+            <div id="student-lessons" class="student-lessons" data-grades="{{ site.data.features.grade_validation }}" data-submission="{{ site.data.features.student_submission }}"></div>
+            <details id="student-history-panel" class="student-history" hidden><summary>Autres séances et anciens travaux <span id="student-history-count"></span></summary><div id="student-history" class="student-lessons"></div></details>
+        </section>
             </div>
-
-        </div>
-
-
-        <div class="subject-grid">
-
-            <a
-                href="#"
-                id="subject-maths-link"
-                class="subject-card subject-maths">
-
-                <div class="subject-icon">
-                    ∑
-                </div>
-
-                <div>
-
-                    <h3>
-                        Mathématiques
-                    </h3>
-
-                    <p>
-                        Exercices, progression et travail sauvegardé.
-                    </p>
-
-                </div>
-
-                <span class="subject-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <a
-                href="#"
-                id="subject-techno-link"
-                class="subject-card subject-techno">
-
-                <div class="subject-icon">
-                    ⚙
-                </div>
-
-                <div>
-
-                    <h3>
-                        Technologie
-                    </h3>
-
-                    <p>
-                        Activités, projets et travail en cours.
-                    </p>
-
-                </div>
-
-                <span class="subject-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <a
-                href="#"
-                id="subject-tim-link"
-                class="subject-card subject-tim">
-
-                <div class="subject-icon">
-                    💻
-                </div>
-
-                <div>
-
-                    <h3>
-                        TIM
-                    </h3>
-
-                    <p>
-                        Outils numériques et activités pratiques.
-                    </p>
-
-                </div>
-
-                <span class="subject-arrow">
-                    →
-                </span>
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <section class="dashboard-section">
-
-        <div class="section-heading">
-
-            <div>
-
-                <p class="eyebrow">
-                    Progression
-                </p>
-
-                <h2>
-                    Vue d'ensemble
-                </h2>
-
+        </details>
+        <details class="student-expand-card" id="student-card-followup">
+            <summary><span class="student-card-icon" aria-hidden="true">✓</span><span class="student-card-title">Comprendre et progresser</span><span class="student-card-preview">Relire mes retours et corrections.</span><span class="student-card-hint">Ouvrir <span class="student-card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></span></summary>
+            <div class="student-card-body"><div class="student-card-toolbar"><strong>Comprendre et progresser</strong><button type="button" data-card-close aria-label="Refermer la carte" title="Refermer la carte"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button></div><p class="student-card-placeholder">Les informations s’afficheront après leur chargement.</p>
+        <section id="student-followup-panel" class="student-panel student-followup-panel" hidden aria-labelledby="student-followup-title">
+            <p class="student-section-kicker">Comprendre et progresser</p><h2 id="student-followup-title">Mes retours</h2>
+            <div id="student-followup"></div>
+        </section>
             </div>
-
-        </div>
-
-
-        <div class="progress-card">
-
-            <div class="progress-placeholder">
-
-                <span class="progress-placeholder-icon">
-                    📈
-                </span>
-
-                <div>
-
-                    <h3>
-                        Progression bientôt disponible
-                    </h3>
-
-                    <p>
-                        Ici apparaîtront les séances terminées,
-                        celles en cours et ton niveau d'autonomie.
-                    </p>
-
-                </div>
-
+        </details>
+        {% include eleve/student-shop.html %}
+        <details class="student-expand-card" id="student-card-invitations">
+            <summary><span class="student-card-icon" aria-hidden="true">＋</span><span class="student-card-title">Invitations à collaborer</span><span class="student-card-preview">Voir les demandes de mes camarades.</span><span class="student-card-hint">Ouvrir <span class="student-card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></span></summary>
+            <div class="student-card-body"><div class="student-card-toolbar"><strong>Invitations à collaborer</strong><button type="button" data-card-close aria-label="Refermer la carte" title="Refermer la carte"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button></div><p class="student-card-placeholder">Les informations s’afficheront après leur chargement.</p>
+        <section id="student-invitations" class="collaboration-panel" data-enabled="{{ site.data.features.collaborative_work }}" hidden></section>
             </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="dashboard-section">
-
-        <div class="section-heading">
-
-            <div>
-
-                <p class="eyebrow">
-                    Sauvegarde
-                </p>
-
-                <h2>
-                    Ton travail
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="info-grid">
-
-            <article class="info-card">
-
-                <span class="info-icon">
-                    ☁
-                </span>
-
-                <h3>
-                    Sauvegarde automatique
-                </h3>
-
-                <p>
-                    Tes réponses sont enregistrées pendant ton travail.
-                </p>
-
-            </article>
-
-
-            <article class="info-card">
-
-                <span class="info-icon">
-                    ↻
-                </span>
-
-                <h3>
-                    Reprise facile
-                </h3>
-
-                <p>
-                    Connecte-toi depuis un autre ordinateur
-                    pour retrouver ton travail.
-                </p>
-
-            </article>
-
-
-            <article class="info-card">
-
-                <span class="info-icon">
-                    💡
-                </span>
-
-                <h3>
-                    Aides et indices
-                </h3>
-
-                <p>
-                    Tu peux utiliser les indices lorsqu'une activité
-                    te bloque.
-                </p>
-
-            </article>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/js/supabase-config.js"></script>
-<script src="/js/eleve.js"></script>
-
-</body>
-</html>
+        </details>
+    </div>
+</div>

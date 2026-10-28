@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'fr' }}">
+{% include head.html %}
+<body class="student-shell">
+    <a class="student-skip" href="#student-main">Aller à mes séances</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <p id="eleve-loading" class="session-panel" role="status">Chargement de ton profil…</p>
+    <section id="eleve-access-denied" class="session-panel" hidden>
+        <h1>Accès à ton espace</h1><p id="eleve-access-message"></p><a href="{{ '/connexion/' | relative_url }}">Se connecter</a>
+        <div class="session-actions"><button type="button" id="eleve-retry">Réessayer</button><button type="button" id="eleve-denied-logout">Se déconnecter</button></div>
+    </section>
+    <div id="eleve-content" hidden>
+        {% include eleve/student-header.html identity_id="eleve-identity" logout_id="eleve-logout" %}
+        <main id="student-main" class="student-main" tabindex="-1">{{ content }}</main>
+        {% include footer.html %}
+    </div>
+    <noscript><p>Active JavaScript pour te connecter et retrouver ton travail.</p></noscript>
+    {% include config/classes-data.html %}
+    {% include config/seances-data.html %}
+    {% include config/progressions-data.html %}
+    {% include config/referentiels-data.html %}
+    {% include config/competences-evaluees-data.html %}
+    {% include config/supabase-script.html %}
+    <script type="module" src="{{ '/assets/js/auth/eleve-guard.js' | relative_url }}"></script>
+    <script type="module" src="{{ '/assets/js/cours/student-collaboration.js' | relative_url }}"></script>
+    <script type="module" src="{{ '/assets/js/eleve/student-dashboard.js' | relative_url }}"></script>
+    <script type="module" src="{{ '/assets/js/eleve/student-theme.js' | relative_url }}"></script>
+    <script type="module" src="{{ '/assets/js/eleve/student-cards.js' | relative_url }}"></script>
+    <script type="module" src="{{ '/assets/js/eleve/student-shop-preview.js' | relative_url }}"></script>
+</body>
+</html>

@@ -1,9 +1,16 @@
 <head>
     <meta charset="UTF-8">
+    {% if page.graphique_interactif or page.layout == 'prof' %}<link rel="stylesheet" href="{{ '/assets/css/cours/course-graph.css' | relative_url }}">{% endif %}
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" content="{{ page.description | default: site.description | escape }}">
+
+    {% if page.layout == "prof" or page.layout == "eleve" or page.layout == "cours" or page.layout == "auth" %}
+    <link rel="preconnect" href="https://aqbjykgppbyrzqxlzxuf.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="{{ '/assets/vendor/supabase/supabase-2.118.0.js' | relative_url }}" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="{{ '/assets/js/auth/auth-session.js' | relative_url }}">
+    {% endif %}
 
     <title>
         {% if page.title %}
@@ -26,6 +33,8 @@
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
     <link rel="stylesheet" href="{{ '/assets/css/footer.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/auth/auth-message.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/auth/auth-session.css' | relative_url }}">
 
     {% if page.layout == "auth" %}
     <link rel="stylesheet" href="{{ '/assets/css/auth/auth-layout.css' | relative_url }}">
@@ -33,8 +42,28 @@
     <link rel="stylesheet" href="{{ '/assets/css/auth/auth-form.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/auth/auth-columns.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/auth/auth-register.css' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/auth/auth-message.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/auth/auth-footer.css' | relative_url }}">
+    {% endif %}
+
+    {% if page.layout == "eleve" or page.layout == "cours" %}
+    <link rel="stylesheet" href="{{ '/assets/css/eleve/student-header.css' | relative_url }}?v=20261022-shop-effects-2">
+    {% endif %}
+    {% if page.layout == "cours" %}
+    <link rel="stylesheet" href="{{ '/assets/css/cours/cours-activites.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/cours/course-layout.css' | relative_url }}">
+    {% if page.layout == 'cours' %}{% assign course_data = site.data.cours[page.matiere][page.classe][page.seance] %}{% if course_data.version_papier %}<link rel="stylesheet" href="{{ '/assets/css/cours/course-paper-version.css' | relative_url }}">{% endif %}{% endif %}
+    <link rel="stylesheet" href="{{ '/assets/css/cours/cours-sauvegarde.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/cours/collaboration.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/cours/student-evaluation.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/cours/course-shell.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/cours/course-learning-sequence.css' | relative_url }}">
+    {% endif %}
+    {% if page.layout == "eleve" %}
+    <link rel="stylesheet" href="{{ '/assets/css/eleve/student-dashboard.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/eleve/student-cards.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/eleve/student-competencies.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/eleve/student-shop.css' | relative_url }}?v=20261022-shop-preview-3">
+    <link rel="stylesheet" href="{{ '/assets/css/cours/collaboration.css' | relative_url }}">
     {% endif %}
 
     {% if page.layout == "prof" %}
@@ -44,4 +73,15 @@
     {% endif %}
 
 
+    {% if page.layout == "eleve" or page.layout == "cours" or page.layout == "prof" %}
+    <link rel="stylesheet" href="{{ '/assets/css/eleve/student-theme.css' | relative_url }}?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="{{ '/assets/css/eleve/student-theme-worlds.css' | relative_url }}?v=20261022-avatar-shop-1">
+    {% endif %}
+    {% if page.layout == "cours" %}<link rel="stylesheet" href="{{ '/assets/css/cours/course-quest-ui.css' | relative_url }}?v=20261022-quest-ui-2">{% endif %}
+    {% if page.layout == "prof" %}
+    <link rel="stylesheet" href="{{ '/assets/css/prof/prof-theme.css' | relative_url }}?v=20261021-contrast-notes">
+    {% endif %}
+    {% if page.layout == "eleve" or page.layout == "cours" or page.layout == "prof" %}
+    <link rel="stylesheet" href="{{ '/assets/css/eleve/theme-harmonization.css' | relative_url }}?v=20261022-theme-palette-4">
+    {% endif %}
 </head>

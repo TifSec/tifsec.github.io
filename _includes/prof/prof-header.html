@@ -2,16 +2,26 @@
 
 <header class="prof-header">
     <div class="prof-header-content">
-        <a href="{{ '/prof-test/' | relative_url }}" class="prof-logo">
+        <a href="{{ '/prof/' | relative_url }}" class="prof-logo">
             <img src="{{ '/images/logo.png' | relative_url }}" alt="Logo du portail">
         </a>
         <div class="prof-header-title">
-            <h1>Espace professeur</h1>
+            <p class="prof-brand">Espace professeur</p>
             <p>Technologie • TIM • Mathématiques</p>
         </div>
     </div>
     <div class="prof-header-actions">
         <span id="prof-identity">Professeur</span>
+        {% include config/student-theme.html %}
         <button type="button" id="prof-logout">Se déconnecter</button>
     </div>
 </header>
+<nav class="prof-nav" aria-label="Espace professeur">
+    <div class="prof-nav-content">
+        <a href="{{ '/prof/' | relative_url }}" {% unless page.url contains '/prof/eleves/' or page.url contains '/prof/suivi/' or page.url contains '/prof/cours/' or page.url contains '/prof/notes/' %}aria-current="page"{% endunless %}>Enseignements</a>
+        <a href="{{ '/prof/cours/' | relative_url }}" {% if page.url contains '/prof/cours/' %}aria-current="page"{% endif %}>Cours professeur</a>
+        <a href="{{ '/prof/eleves/' | relative_url }}" {% if page.url contains '/prof/eleves/' %}aria-current="page"{% endif %}>Élèves et inscriptions</a>
+        <a href="{{ '/prof/suivi/' | relative_url }}" {% if page.url contains '/prof/suivi/' %}aria-current="page"{% endif %}>Copies et corrections</a>
+        <a href="{{ '/prof/notes/' | relative_url }}" {% if page.url contains '/prof/notes/' %}aria-current="page"{% endif %}>Notes</a>
+    </div>
+</nav>

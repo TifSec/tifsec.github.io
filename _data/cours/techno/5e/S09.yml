@@ -1,0 +1,461 @@
+titre: Comment résoudre un problème compliqué ?
+theme: "Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre"
+problematique: Comment rendre un problème complexe plus simple à comprendre avant de chercher à le programmer ?
+pourquoi: "Objectif de cette séance : Comprendre qu'un problème complexe peut être décomposé en plusieurs problèmes plus simples."
+application: Utilise les situations et les documents de la séance pour mettre les notions en pratique.
+lien_precedent: Reprends les méthodes des séances précédentes si elles te sont utiles ; les rappels du cours t’accompagnent.
+objectifs:
+    connaissances:
+        - Comprendre qu'un problème complexe peut être décomposé en plusieurs problèmes plus simples.
+        - Comprendre que certaines parties d'un problème peuvent être étudiées séparément avant d'être assemblées.
+        - Découvrir la notion d'algorithme.
+        - Comprendre qu'un algorithme décrit une suite organisée d'actions.
+        - Comprendre que certaines actions sont déclenchées par un événement.
+        - Comprendre qu'un programme peut avoir besoin de mémoriser des informations pour les utiliser plus tard.
+    competences: []
+activites:
+    - id: a04
+      titre: 1. Une méthode que nous connaissons déjà
+      contenu:
+          - type: paragraphe
+            texte: Lors de la séance précédente, nous avons recherché l'origine de plusieurs dysfonctionnements.
+          - type: paragraphe
+            texte: Nous n'avons pas essayé de modifier toutes les pièces au hasard.
+          - type: paragraphe
+            texte: "Nous avons séparé le problème en plusieurs étapes :"
+          - type: paragraphe
+            texte: Observer → envisager plusieurs causes → vérifier → écarter ou conserver → intervenir → tester
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q1 : Pourquoi était-il plus simple d'étudier progressivement les différentes causes possibles ?"
+          - id: q02
+            type: texte
+            enonce: "Q2 : Pensez-vous que cette méthode de découpage puisse être utile pour un problème qui n'est pas une panne ? Donnez un exemple."
+    - id: a05
+      titre: 2. Un nouveau problème
+      contenu:
+          - type: paragraphe
+            texte: Vous allez maintenant préparer le fonctionnement d'un petit jeu vidéo.
+          - type: paragraphe
+            texte: "Le principe est :"
+          - type: paragraphe
+            texte: Le joueur doit récupérer un objet puis rejoindre la sortie.
+          - type: paragraphe
+            texte: Pour le moment, n'ouvrez pas MakeCode Arcade.
+          - type: paragraphe
+            texte: "Imaginez que quelqu'un vous donne seulement cette consigne :"
+          - type: paragraphe
+            texte: « Programme ce jeu. »
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q3 : Cette consigne vous semble-t-elle suffisamment précise pour commencer facilement ? Expliquez."
+    - id: a06
+      titre: 3. Que doit savoir faire notre jeu ?
+      contenu:
+          - type: paragraphe
+            texte: Plutôt que d'essayer de traiter tout le jeu en une seule fois, cherchons toutes les petites choses nécessaires à son fonctionnement.
+          - type: paragraphe
+            texte: Que doit savoir faire le jeu ?
+          - type: paragraphe
+            texte: En groupe, trouvez au minimum six éléments.
+          - type: paragraphe
+            texte: "Vous pouvez réfléchir :"
+          - type: liste
+            elements:
+                - au joueur ;
+                - à ses déplacements ;
+                - à l'objet à récupérer ;
+                - à la sortie ;
+                - aux contacts entre les différents éléments ;
+                - aux informations que le jeu doit conserver ;
+                - à la victoire ou à la défaite.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q4 : Listez les différents petits problèmes que vous pensez devoir résoudre."
+    - id: a07
+      titre: 4. Regrouper les petits problèmes
+      contenu:
+          - type: paragraphe
+            texte: Comparez vos propositions.
+          - type: paragraphe
+            texte: Plusieurs idées différentes peuvent parfois correspondre à un même grand sous-problème.
+          - type: paragraphe
+            texte: "Nous pouvons par exemple regrouper ainsi :"
+          - type: liste
+            elements:
+                - créer et contrôler le joueur ;
+                - créer les éléments du niveau ;
+                - gérer l'objet à récupérer ;
+                - gérer la sortie ;
+                - gérer les événements de contact ;
+                - gérer la victoire ou la défaite.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q5 : Le problème « créer le jeu » vous semble-t-il maintenant plus facile à comprendre ? Pourquoi ?"
+    - id: a08
+      titre: 5. Découvrir la décomposition
+      contenu:
+          - type: paragraphe
+            texte: Vous venez de transformer un problème complexe en plusieurs problèmes plus simples.
+          - type: paragraphe
+            texte: Cette méthode s'appelle la décomposition.
+          - type: paragraphe
+            texte: Décomposer un problème consiste à le séparer en plusieurs sous-problèmes que l'on peut comprendre et traiter plus facilement.
+          - type: paragraphe
+            texte: "Nous avons déjà utilisé cette méthode :"
+          - type: liste
+            elements:
+                - pour rechercher les fonctions d'un vélo ;
+                - pour comparer plusieurs solutions ;
+                - pour organiser une expérience ;
+                - pour rechercher l'origine d'un dysfonctionnement.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q6 : Choisissez un exemple provenant d'une séance précédente et expliquez comment le problème avait été décomposé."
+    - id: a09
+      titre: 6. Représenter la décomposition
+      contenu:
+          - type: paragraphe
+            texte: Dans votre document Writer, réalisez un schéma.
+          - type: paragraphe
+            texte: "Placez tout en haut ou au centre :"
+          - type: paragraphe
+            texte: CRÉER LE JEU
+          - type: paragraphe
+            texte: "Reliez ensuite cet objectif aux principaux sous-problèmes :"
+          - type: liste
+            elements:
+                - créer et contrôler le joueur ;
+                - créer le niveau ;
+                - gérer les obstacles ou dangers ;
+                - gérer l'objet à récupérer ;
+                - gérer la sortie ;
+                - gérer la victoire ou la défaite.
+          - type: paragraphe
+            texte: Certains sous-problèmes restent encore trop généraux.
+          - type: paragraphe
+            texte: Choisissez-en au moins deux et décomposez-les une nouvelle fois.
+          - type: paragraphe
+            texte: "Exemple 1 : gérer l'objet à récupérer"
+          - type: liste
+            elements:
+                - créer l'objet ;
+                - détecter lorsque le joueur le touche ;
+                - mémoriser qu'il a été récupéré ;
+                - faire disparaître l'objet.
+          - type: paragraphe
+            texte: Gérer l'objet → créer → détecter → mémoriser → faire disparaître
+          - type: paragraphe
+            texte: "Exemple 2 : gérer un danger"
+          - type: liste
+            elements:
+                - créer le danger ;
+                - détecter le contact avec le joueur ;
+                - modifier l'état du joueur ;
+                - décider de la suite de la partie.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q7 : Décomposez deux sous-problèmes de votre schéma en au moins trois actions ou questions plus simples."
+          - id: q02
+            type: texte
+            enonce: "Q8 : Parmi les petits problèmes obtenus, lequel vous semble le plus simple ? Lequel vous semble le plus difficile ? Expliquez."
+    - id: a10
+      titre: 7. Dans quel ordre réaliser les actions ?
+      contenu:
+          - type: paragraphe
+            texte: Décomposer permet de savoir quoi résoudre.
+          - type: paragraphe
+            texte: Mais certaines actions doivent aussi se produire dans un ordre précis.
+          - type: paragraphe
+            texte: Imaginons que notre jeu possède un ennemi et que le joueur commence avec 3 vies.
+          - type: paragraphe
+            texte: "Lorsque le joueur touche l'ennemi :"
+          - type: liste
+            elements:
+                - il perd une vie ;
+                - le programme vérifie le nombre de vies restantes ;
+                - s'il reste au moins une vie, le joueur revient au départ ;
+                - s'il ne reste aucune vie, la partie se termine.
+          - type: paragraphe
+            texte: "Voici les actions, volontairement placées dans le désordre :"
+          - type: paragraphe
+            texte: Replacer le joueur au point de départ.
+          - type: paragraphe
+            texte: Détecter le contact entre le joueur et l'ennemi.
+          - type: paragraphe
+            texte: Terminer la partie.
+          - type: paragraphe
+            texte: Retirer une vie.
+      questions:
+          - id: q01
+            type: texte
+            enonce: Après le retrait d'une vie, quelle règle permet de décider si le jeu continue ou s'arrête ?
+            suite:
+                - type: paragraphe
+                  texte: Si le joueur possède encore au moins une vie, continuer la partie.
+                - type: paragraphe
+                  texte: Si le nombre de vies est égal à zéro, déclencher la défaite.
+          - id: q02
+            type: texte
+            enonce: "Q9 : Recopiez les lettres dans l'ordre qui vous semble logique."
+          - id: q03
+            type: texte
+            enonce: "Q10 : Quelles actions ne seront pas exécutées à chaque contact ? De quoi cela dépend-il ?"
+          - id: q04
+            type: texte
+            enonce: "Q11 : Pourquoi faut-il retirer une vie et vérifier le nombre restant avant de décider de la suite ?"
+    - id: a11
+      titre: 8. Découvrir l'algorithme
+      contenu:
+          - type: paragraphe
+            texte: Vous venez d'organiser des actions pour obtenir le comportement souhaité.
+          - type: paragraphe
+            texte: Une suite organisée d'instructions permettant d'obtenir un résultat peut être décrite sous la forme d'un algorithme.
+          - type: paragraphe
+            texte: Avant de programmer, on peut écrire cet algorithme avec des phrases simples.
+          - type: paragraphe
+            texte: "Pour le contact avec l'ennemi :"
+          - type: paragraphe
+            texte: Attendre que le joueur touche l'ennemi.
+          - type: paragraphe
+            texte: Retirer une vie.
+      questions:
+          - id: q01
+            type: texte
+            enonce: Dans l'algorithme, comment distinguer le cas où il ne reste aucune vie du cas où il en reste encore ?
+            suite:
+                - type: paragraphe
+                  texte: Si aucune vie ne reste, terminer la partie.
+                - type: paragraphe
+                  texte: Sinon, replacer le joueur au point de départ et continuer.
+          - id: q02
+            type: texte
+            enonce: "Q12 : Comparez cet algorithme avec votre réponse à la question 9. Qu'aviez-vous correctement organisé ? Qu'avez-vous éventuellement modifié ?"
+          - id: q03
+            type: texte
+            enonce: "Q13 : En vous aidant du modèle précédent, écrivez maintenant un petit algorithme permettant de gérer la récupération de l'objet."
+            suite:
+                - type: paragraphe
+                  texte: "Votre algorithme doit préciser :"
+                - type: liste
+                  elements:
+                      - ce qui déclenche les actions ;
+                      - l'information qui doit être mémorisée ;
+                      - ce qui arrive ensuite à l'objet.
+    - id: a12
+      titre: 9. Rendre une consigne assez précise pour un programme
+      contenu:
+          - type: paragraphe
+            texte: Un ordinateur ne peut pas exécuter une consigne trop vague.
+          - type: paragraphe
+            texte: "Par exemple :"
+          - type: paragraphe
+            texte: « Quand le joueur touche un ennemi, il se passe quelque chose. »
+          - type: paragraphe
+            texte: Cette phrase ne précise pas suffisamment le comportement attendu.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q14 : Réécrivez-la afin d'indiquer précisément :"
+            suite:
+                - type: liste
+                  elements:
+                      - ce qui déclenche les actions ;
+                      - ce qui change ;
+                      - ce que le programme doit vérifier ;
+                      - ce qui doit se passer selon le résultat.
+          - id: q02
+            type: texte
+            enonce: "Q15 : Faites ensuite le même travail avec :"
+            suite:
+                - type: paragraphe
+                  texte: « Le joueur récupère un objet. »
+                - type: paragraphe
+                  texte: Votre description doit permettre à une autre personne de comprendre exactement le comportement attendu.
+    - id: a13
+      titre: 10. Préparer les parties du futur programme
+      contenu:
+          - type: paragraphe
+            texte: Lors de la prochaine séance, nous traduirons progressivement certaines de ces idées avec MakeCode Arcade.
+          - type: paragraphe
+            texte: "Pour préparer ce travail, complétez le tableau suivant :"
+      questions:
+          - id: q01
+            type: tableau
+            enonce: Complète le tableau ci-dessous.
+            colonnes:
+                - Élément du jeu
+                - Événement ou information détectée
+                - Action attendue
+                - Information à conserver pour plus tard ?
+            lignes:
+                - - Déplacement du joueur
+                  - ""
+                  - ""
+                  - Oui / Non
+                - - Contact avec un ennemi
+                  - ""
+                  - ""
+                  - Oui / Non
+                - - Récupération de l'objet
+                  - ""
+                  - ""
+                  - Oui / Non
+                - - Arrivée à la sortie
+                  - ""
+                  - ""
+                  - Oui / Non
+            suite:
+                - type: paragraphe
+                  texte: "Ces comportements seront programmés lors de la prochaine séance avec MakeCode Arcade. Ressource : Microsoft MakeCode Arcade – événements de chevauchement"
+                - type: lien
+                  titre: Microsoft MakeCode Arcade – événements de chevauchement
+                  url: https://arcade.makecode.com/reference/sprites/on-overlap
+          - id: q02
+            type: texte
+            enonce: "Q16 : Dans quelles situations le programme peut-il simplement réagir immédiatement ?"
+          - id: q03
+            type: texte
+            enonce: "Q17 : Dans quelles situations doit-il conserver une information pour l'utiliser plus tard ?"
+          - id: q04
+            type: texte
+            enonce: "Q18 : Donnez deux exemples d'informations que le programme pourrait devoir mémoriser pendant la partie."
+    - id: a14
+      titre: 11. Une information qui doit rester en mémoire
+      contenu:
+          - type: paragraphe
+            texte: Lorsque l'objet à récupérer disparaît de l'écran, le programme doit quand même pouvoir savoir qu'il a été récupéré.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q19 : Pourquoi cette information doit-elle être conservée jusqu'à ce que le joueur atteigne la sortie ?"
+          - id: q02
+            type: texte
+            enonce: "Q20 : Quelle information simple pourrait être mémorisée ?"
+            suite:
+                - type: paragraphe
+                  texte: "Par exemple :"
+                - type: paragraphe
+                  texte: "Objet récupéré : OUI / NON"
+                - type: paragraphe
+                  texte: Cette information constitue une donnée utilisée par le programme.
+                - type: paragraphe
+                  texte: De la même manière, si le jeu possède plusieurs vies, le nombre de vies restantes est également une donnée qui peut évoluer pendant la partie.
+    - id: a15
+      titre: "12. Petit défi : une fonctionnalité supplémentaire"
+      contenu:
+          - type: paragraphe
+            texte: Imaginons maintenant que le joueur possède trois vies.
+          - type: paragraphe
+            texte: "Lorsqu'il touche un danger :"
+          - type: liste
+            elements:
+                - il perd une vie ;
+                - le jeu vérifie le nombre de vies restantes ;
+                - s'il reste une vie ou plus, il revient au départ ;
+                - s'il n'en reste aucune, la partie se termine.
+          - type: paragraphe
+            texte: Ne cherchez pas de blocs MakeCode.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q21 : Décomposez cette fonctionnalité en plusieurs actions simples."
+          - id: q02
+            type: texte
+            enonce: "Q22 : Quelle donnée devra être conservée et modifiée pendant la partie ?"
+          - id: q03
+            type: texte
+            enonce: "Q23 : En vous aidant de l'algorithme fourni dans la partie 8, écrivez l'ordre des actions."
+    - id: a16
+      titre: 13. Conclusion du travail
+      contenu:
+          - type: paragraphe
+            texte: "Sans retourner lire les parties précédentes, complétez :"
+          - type: liste
+            elements:
+                - Séparer un problème complexe en plusieurs problèmes plus simples s'appelle la ................................................ .
+                - Une suite organisée d'actions permettant d'obtenir un résultat peut être décrite par un ................................................ .
+                - Un programme peut utiliser et produire des ................................................ .
+                - Avant de programmer une solution complexe, il peut être utile de commencer par ................................................ le problème.
+          - type: paragraphe
+            texte: "Dernière question :"
+          - type: paragraphe
+            texte: Expliquez en trois ou quatre phrases pourquoi la consigne « programme tout le jeu » est plus difficile à traiter que plusieurs petites consignes comme « créer le joueur », « gérer le déplacement » ou « détecter la récupération d'un objet ».
+          - type: paragraphe
+            texte: Enregistrez votre travail puis déposez-le dans l'espace d'échange.
+      questions: []
+    - id: a17
+      titre: Sources et ressources
+      contenu:
+          - type: liste
+            elements:
+                - "Ministère de l'Éducation nationale – Programme de technologie du cycle 4 : Programme officiel de technologie"
+                - "Ministère de l'Éducation nationale – Repères de progressivité en programmation : Algorithmique, programmation, événements et données"
+                - "Microsoft MakeCode Arcade – Events : Ressource officielle sur les événements"
+                - "Microsoft MakeCode Arcade – Sprite Overlap Events : Exemple officiel de détection du contact entre deux sprites"
+                - "Microsoft MakeCode Arcade – Déplacement d'un sprite : Documentation officielle du contrôle d'un personnage"
+          - type: lien
+            titre: Programme officiel de technologie
+            url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+          - type: lien
+            titre: Algorithmique, programmation, événements et données
+            url: https://www.education.gouv.fr/sites/default/files/document/Annexe%20%E2%80%94%20Programme%20de%20technologie%20du%20cycle%204-368016.pdf
+          - type: lien
+            titre: Ressource officielle sur les événements
+            url: https://arcade.makecode.com/courses/csintro3/events
+          - type: lien
+            titre: Exemple officiel de détection du contact entre deux sprites
+            url: https://arcade.makecode.com/courses/csintro3/events/overlap
+          - type: lien
+            titre: Documentation officielle du contrôle d'un personnage
+            url: https://arcade.makecode.com/reference/controller/move-sprite
+          - type: paragraphe
+            texte: "Cette séance prépare la programmation de la séance suivante. En 5e, l'écriture algorithmique proposée ici est volontairement guidée : les élèves décrivent et organisent des comportements simples en langage naturel avant de les retrouver progressivement sous forme de blocs MakeCode."
+      questions: []
+bilan: Relis tes réponses et vérifie les points demandés dans le bilan du cours. Tu peux revenir sur ton travail tant que le professeur ne l’a pas clôturé.
+introduction:
+    - type: titre
+      texte: "Compétence visée : Décomposer de manière guidée un problème, organiser une suite d'actions et décrire en langage naturel le comportement attendu d'un programme"
+    - type: paragraphe
+      texte: "Objectifs d’apprentissage :"
+    - type: liste
+      elements:
+          - Comprendre qu'un problème complexe peut être décomposé en plusieurs problèmes plus simples.
+          - Comprendre que certaines parties d'un problème peuvent être étudiées séparément avant d'être assemblées.
+          - Découvrir la notion d'algorithme.
+          - Comprendre qu'un algorithme décrit une suite organisée d'actions.
+          - Comprendre que certaines actions sont déclenchées par un événement.
+          - Comprendre qu'un programme peut avoir besoin de mémoriser des informations pour les utiliser plus tard.
+    - type: liste
+      elements:
+          - Identifier les principales parties d'un problème.
+          - Décomposer de manière guidée un objectif en plusieurs sous-problèmes.
+          - Organiser des actions dans un ordre logique.
+          - Représenter une décomposition sous la forme d'un schéma simple.
+          - Décrire avec des phrases précises ce qu'un futur programme devra faire.
+          - Identifier quelques informations qu'un programme doit utiliser ou mémoriser.
+    - type: liste
+      elements:
+          - Un document LibreOffice Writer nommé 5e_S9_nom1_nom2.odt.
+          - Les noms et prénoms des élèves du groupe.
+          - Le titre de la séance.
+          - Les réponses aux différentes questions.
+          - Un schéma présentant la décomposition d'un petit jeu vidéo.
+          - Des algorithmes simples écrits en langage naturel.
+          - Un tableau préparant les principales parties du futur programme.
+    - type: paragraphe
+      texte: Le document devra être rendu à la fin de la séance, même s'il n'est pas entièrement terminé.
+    - type: paragraphe
+      texte: "Important : aujourd'hui, vous ne programmez pas encore le jeu. Vous préparez sa logique afin de rendre la programmation de la prochaine séance plus simple."
+reperes_officiels:
+    - type: paragraphe
+      texte: Dans cette page du ministère, retrouve le programme ou le référentiel de ta formation. Les objectifs précis étudiés aujourd’hui sont indiqués dans le cours.
+    - type: lien
+      titre: Consulter les programmes et attendus officiels
+      url: https://eduscol.education.gouv.fr/5745/ressources-d-accompagnement-du-programme-de-technologie-au-cycle-4

@@ -1,0 +1,415 @@
+titre: Comment faire communiquer plusieurs réseaux ?
+theme: "Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre"
+problematique: Pourquoi deux réseaux qui fonctionnent séparément ne peuvent-ils pas forcément communiquer entre eux ?
+pourquoi: PC1 sait communiquer avec les machines de son réseau local.
+application: Utilise les situations et les documents de la séance pour mettre les notions en pratique.
+lien_precedent: Reprends les méthodes des séances précédentes si elles te sont utiles ; les rappels du cours t’accompagnent.
+objectifs:
+    connaissances:
+        - Deux équipements appartenant au même réseau local peuvent communiquer directement par l'intermédiaire d'un commutateur.
+        - Les adresses IP et le masque permettent de configurer les interfaces réseau.
+        - Un routeur relie plusieurs réseaux différents.
+        - Une passerelle indique à un équipement vers quel routeur envoyer les données destinées à un autre réseau.
+        - Une erreur d'adresse, de masque ou de passerelle peut empêcher la communication.
+        - La commande ping permet de tester si une machine est joignable.
+    competences: []
+activites:
+    - id: a05
+      titre: Production attendue
+      contenu:
+          - type: liste
+            elements:
+                - Un fichier LibreOffice Writer nommé 3e_S09_nom.odt.
+                - Une capture du premier réseau local fonctionnel.
+                - Les résultats de plusieurs tests ping.
+                - Une capture des deux réseaux reliés par un routeur.
+                - Une courte mission de dépannage.
+          - type: paragraphe
+            texte: Le fichier devra être déposé à la fin de la séance, même s'il n'est pas entièrement terminé.
+      questions: []
+    - id: a06
+      titre: 1. Préparez votre document de travail
+      contenu:
+          - type: paragraphe
+            texte: Ouvrez LibreOffice Writer.
+          - type: paragraphe
+            texte: Créez un nouveau document.
+          - type: paragraphe
+            texte: "Enregistrez-le immédiatement sous le nom : 3e_S09_nom.odt."
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Écrivez votre nom, votre prénom et le titre : Séance 9 – Comment faire communiquer plusieurs réseaux ?"
+            suite:
+                - type: paragraphe
+                  texte: Ouvrez ensuite Filius.
+                - type: paragraphe
+                  texte: "Ressource officielle : Éduscol STI – Comprendre le fonctionnement d'un réseau informatique"
+                - type: lien
+                  titre: Éduscol STI – Comprendre le fonctionnement d'un réseau informatique
+                  url: https://sti.eduscol.education.fr/technologie_college/ressources_pedagogiques/comprendre-le-fonctionnement-dun-reseau-informatique
+    - id: a07
+      titre: 2. Construisez un premier réseau local
+      contenu:
+          - type: paragraphe
+            texte: Dans Filius, restez d'abord en mode conception.
+          - type: paragraphe
+            texte: "Placez :"
+          - type: liste
+            elements:
+                - deux ordinateurs ;
+                - un commutateur ;
+                - les câbles permettant de relier chaque ordinateur au commutateur.
+          - type: paragraphe
+            texte: "Configurez les deux ordinateurs :"
+          - type: tableau
+            colonnes:
+                - Machine
+                - Adresse IP
+                - Masque
+            lignes:
+                - - PC1
+                  - 192.168.1.10
+                  - 255.255.255.0
+                - - PC2
+                  - 192.168.1.11
+                  - 255.255.255.0
+          - type: paragraphe
+            texte: Où configurer l'adresse ?
+          - type: paragraphe
+            texte: En mode conception, cliquez sur l'ordinateur.
+          - type: paragraphe
+            texte: Repérez les paramètres de son interface réseau.
+      questions:
+          - id: q01
+            type: texte
+            enonce: Indiquez l'adresse IP et le masque demandés.
+            suite: []
+    - id: a08
+      titre: 3. Comment vérifier que le réseau fonctionne ?
+      contenu:
+          - type: paragraphe
+            texte: Vous allez utiliser la commande ping.
+          - type: paragraphe
+            texte: "Pour ouvrir la ligne de commande dans Filius :"
+          - type: etapes
+            elements:
+                - Passez en mode simulation avec la flèche verte.
+                - Cliquez sur PC1.
+                - Ouvrez Installation des logiciels.
+                - Sélectionnez Ligne de commande dans les logiciels disponibles.
+                - Utilisez la flèche vers la gauche pour l'installer.
+                - Cliquez sur Appliquer les modifications.
+                - Ouvrez ensuite Ligne de commande.
+          - type: paragraphe
+            texte: "Saisissez :"
+          - type: code
+            texte: ping 192.168.1.11
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q1 : PC1 reçoit-il une réponse de PC2 ?"
+            suite:
+                - type: paragraphe
+                  texte: Ajoutez une capture d'écran du réseau et du résultat du test dans votre document.
+                - type: paragraphe
+                  texte: "Pour observer les échanges : pendant la simulation, faites un clic droit sur la machine cible puis activez Voir l'échange de données, puis relancez le ping."
+          - id: q02
+            type: texte
+            enonce: "Q2 : Que voyez-vous circuler entre les machines ?"
+    - id: a09
+      titre: 4. Une mauvaise adresse peut-elle provoquer une panne ?
+      contenu:
+          - type: paragraphe
+            texte: Retournez en mode conception.
+          - type: paragraphe
+            texte: "Modifiez PC2 :"
+          - type: paragraphe
+            texte: PC2 = 192.168.1.10
+          - type: paragraphe
+            texte: PC1 et PC2 possèdent donc maintenant la même adresse.
+          - type: paragraphe
+            texte: Retournez en mode simulation et recommencez le test.
+          - type: paragraphe
+            texte: "Dans votre document :"
+      questions:
+          - id: q01
+            type: texte
+            enonce: décrivez ce que vous observez ;
+            suite: []
+          - id: q02
+            type: texte
+            enonce: identifiez ce qui est incorrect dans la configuration ;
+            suite: []
+          - id: q03
+            type: texte
+            enonce: proposez la correction ;
+            suite:
+                - type: paragraphe
+                  texte: corrigez PC2 avant de continuer.
+    - id: a10
+      titre: 5. Construisez maintenant deux réseaux
+      contenu:
+          - type: paragraphe
+            texte: Ajoutez deux ordinateurs et un second commutateur.
+          - type: paragraphe
+            texte: "Construisez :"
+          - type: paragraphe
+            texte: "Réseau A :"
+          - type: liste
+            elements:
+                - "PC1 : 192.168.1.10 / 255.255.255.0"
+                - "PC2 : 192.168.1.11 / 255.255.255.0"
+          - type: paragraphe
+            texte: "Réseau B :"
+          - type: liste
+            elements:
+                - "PC3 : 192.168.2.10 / 255.255.255.0"
+                - "PC4 : 192.168.2.11 / 255.255.255.0"
+          - type: paragraphe
+            texte: PC1 et PC2 doivent être reliés au premier commutateur.
+          - type: paragraphe
+            texte: PC3 et PC4 doivent être reliés au second.
+          - type: paragraphe
+            texte: "Testez :"
+      questions:
+          - id: q01
+            type: tableau
+            enonce: Complète le tableau ci-dessous.
+            colonnes:
+                - Test
+                - Fonctionne ?
+            lignes:
+                - - PC1 → PC2
+                  - ""
+                - - PC3 → PC4
+                  - ""
+                - - PC1 → PC3
+                  - ""
+    - id: a11
+      titre: 6. Comment relier les deux réseaux ?
+      contenu: []
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q3 : Quel équipement étudié lors de la séance précédente permet de relier deux réseaux différents ?"
+            suite:
+                - type: paragraphe
+                  texte: Ajoutez un routeur entre les deux commutateurs.
+                - type: paragraphe
+                  texte: "Activez deux interfaces sur le routeur et configurez-les :"
+                - type: tableau
+                  colonnes:
+                      - Interface du routeur
+                      - Adresse
+                      - Masque
+                  lignes:
+                      - - Vers réseau A
+                        - 192.168.1.1
+                        - 255.255.255.0
+                      - - Vers réseau B
+                        - 192.168.2.1
+                        - 255.255.255.0
+                - type: paragraphe
+                  texte: Reliez chaque interface au commutateur correspondant.
+                - type: paragraphe
+                  texte: "Refaites maintenant :"
+                - type: code
+                  texte: ping 192.168.2.10
+          - id: q02
+            type: texte
+            enonce: "Q4 : Le test fonctionne-t-il maintenant ?"
+    - id: a12
+      titre: 7. Pourquoi le routeur ne suffit-il pas ?
+      contenu:
+          - type: paragraphe
+            texte: PC1 sait communiquer avec les machines de son réseau local.
+          - type: paragraphe
+            texte: Mais lorsqu'il veut atteindre 192.168.2.10, il doit savoir à quel équipement transmettre les données pour sortir de son réseau.
+          - type: paragraphe
+            texte: "Sur PC1, configurez :"
+          - type: paragraphe
+            texte: "Passerelle : 192.168.1.1"
+          - type: paragraphe
+            texte: "Sur PC2 :"
+          - type: paragraphe
+            texte: "Passerelle : 192.168.1.1"
+          - type: paragraphe
+            texte: "Sur PC3 et PC4 :"
+          - type: paragraphe
+            texte: "Passerelle : 192.168.2.1"
+          - type: paragraphe
+            texte: Refaites le test entre PC1 et PC3.
+          - type: titre
+            texte: "Mise en commun : la passerelle"
+          - type: paragraphe
+            texte: Une passerelle indique à une machine vers quel équipement envoyer les données lorsqu'elles doivent quitter son réseau local.
+          - type: paragraphe
+            texte: Dans notre réseau, cette passerelle correspond à l'interface du routeur présente dans le même réseau que l'ordinateur.
+      questions: []
+    - id: a13
+      titre: 8. Observez réellement le trajet des données
+      contenu:
+          - type: paragraphe
+            texte: Restez en mode simulation.
+          - type: paragraphe
+            texte: Activez si nécessaire Voir l'échange de données puis lancez un ping de PC1 vers PC3.
+          - type: paragraphe
+            texte: "Complétez :"
+          - type: paragraphe
+            texte: PC1 → ................................ → ................................ → ................................ → PC3
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q5 : Quel équipement permet aux données de passer du réseau 192.168.1.x au réseau 192.168.2.x ?"
+    - id: a14
+      titre: 9. Mission dépannage
+      contenu:
+          - type: paragraphe
+            texte: "Un réseau possède la configuration suivante :"
+          - type: liste
+            elements:
+                - "PC1 : 192.168.1.10"
+                - "masque : 255.255.255.0"
+                - "passerelle configurée : 192.168.1.254"
+                - "interface du routeur dans ce réseau : 192.168.1.1"
+          - type: paragraphe
+            texte: PC1 communique avec les machines de son réseau local mais n'arrive pas à joindre PC3 situé dans l'autre réseau.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q6 : Identifiez la cause de la panne."
+          - id: q02
+            type: texte
+            enonce: "Q7 : Indiquez précisément la correction à effectuer."
+    - id: a15
+      titre: 10. Et si le ping ne fonctionne pas ?
+      contenu:
+          - type: paragraphe
+            texte: Avant de modifier plusieurs paramètres au hasard, utilisez une méthode de diagnostic.
+          - type: paragraphe
+            texte: "Vérifiez dans cet ordre :"
+      questions:
+          - id: q01
+            type: texte
+            enonce: "les connexions : les câbles sont-ils correctement placés ?"
+            suite: []
+          - id: q02
+            type: texte
+            enonce: "les adresses IP : sont-elles correctes et différentes ?"
+            suite: []
+          - id: q03
+            type: texte
+            enonce: "les masques : correspondent-ils à la configuration demandée ?"
+            suite: []
+          - id: q04
+            type: texte
+            enonce: "le routeur : ses deux interfaces sont-elles correctement configurées ?"
+            suite: []
+          - id: q05
+            type: texte
+            enonce: "les passerelles : correspondent-elles aux interfaces du routeur ?"
+            suite: []
+          - id: q06
+            type: texte
+            enonce: "le ping : l'adresse saisie est-elle bien celle de la machine cible ?"
+            suite: []
+    - id: a16
+      titre: 11. Conclusion du travail
+      contenu:
+          - type: paragraphe
+            texte: "Complétez :"
+          - type: liste
+            elements:
+                - Dans un même réseau, les interfaces doivent posséder ........................................................ .
+                - La commande ping permet de ............................................................................................. .
+                - Un commutateur permet de ............................................................................................... .
+                - Un routeur permet de ........................................................................................................ .
+                - Une passerelle indique ........................................................................................................ .
+          - type: paragraphe
+            texte: "Répondez maintenant à la problématique en 4 à 6 lignes :"
+          - type: paragraphe
+            texte: Pourquoi deux réseaux qui fonctionnent séparément ne peuvent-ils pas forcément communiquer entre eux ?
+      questions: []
+    - id: a17
+      titre: Rendu attendu
+      contenu:
+          - type: paragraphe
+            texte: À la fin de la séance, déposez votre fichier 3e_S09_nom.odt.
+          - type: paragraphe
+            texte: "Il doit contenir au minimum :"
+          - type: liste
+            elements:
+                - une capture du premier réseau local fonctionnel ;
+                - le résultat d'un ping réussi ;
+                - le résultat de vos tests entre les deux réseaux ;
+                - une capture du réseau complet avec le routeur ;
+                - votre réponse à la mission dépannage.
+          - type: paragraphe
+            texte: Le fichier doit être rendu même si toutes les activités ne sont pas terminées.
+      questions: []
+    - id: a18
+      titre: À retenir
+      contenu:
+          - type: paragraphe
+            texte: Deux machines d'un même réseau local peuvent communiquer si leur configuration réseau est correcte.
+          - type: paragraphe
+            texte: La commande ping permet de vérifier qu'une machine est joignable.
+          - type: paragraphe
+            texte: Pour relier plusieurs réseaux, il faut utiliser un routeur.
+          - type: paragraphe
+            texte: La passerelle indique à un ordinateur vers quel routeur envoyer les données qui doivent quitter son réseau local.
+          - type: paragraphe
+            texte: Une panne réseau peut souvent être trouvée en vérifiant méthodiquement les connexions, adresses IP, masques, interfaces du routeur et passerelles.
+      questions: []
+    - id: a19
+      titre: Sources générales
+      contenu:
+          - type: liste
+            elements:
+                - Éduscol STI – Comprendre le fonctionnement d'un réseau informatique
+                - Académie de Toulouse – Didacticiel Réseau – Filius
+                - Filius – Site du logiciel Filius
+          - type: lien
+            titre: Comprendre le fonctionnement d'un réseau informatique
+            url: https://sti.eduscol.education.fr/technologie_college/ressources_pedagogiques/comprendre-le-fonctionnement-dun-reseau-informatique
+          - type: lien
+            titre: Didacticiel Réseau – Filius
+            url: https://pedagogie.ac-toulouse.fr/sii/didacticiel-reseau
+          - type: lien
+            titre: Site du logiciel Filius
+            url: https://www.lernsoftware-filius.de/
+      questions: []
+bilan: Relis tes réponses et vérifie les points demandés dans le bilan du cours. Tu peux revenir sur ton travail tant que le professeur ne l’a pas clôturé.
+introduction:
+    - type: titre
+      texte: "Compétence visée : Configurer, tester et dépanner un réseau informatique simulé"
+    - type: titre
+      texte: Objectifs d’apprentissage
+    - type: paragraphe
+      texte: "Ce que les élèves vont apprendre :"
+    - type: liste
+      elements:
+          - Deux équipements appartenant au même réseau local peuvent communiquer directement par l'intermédiaire d'un commutateur.
+          - Les adresses IP et le masque permettent de configurer les interfaces réseau.
+          - Un routeur relie plusieurs réseaux différents.
+          - Une passerelle indique à un équipement vers quel routeur envoyer les données destinées à un autre réseau.
+          - Une erreur d'adresse, de masque ou de passerelle peut empêcher la communication.
+          - La commande ping permet de tester si une machine est joignable.
+    - type: paragraphe
+      texte: "Ce qu'ils vont apprendre à faire :"
+    - type: liste
+      elements:
+          - Construire un réseau simple avec Filius.
+          - Configurer des adresses IP et des masques.
+          - Utiliser la commande ping.
+          - Identifier une erreur de configuration.
+          - Relier deux réseaux avec un routeur.
+          - Configurer une passerelle.
+          - Observer le trajet des données dans une simulation.
+reperes_officiels:
+    - type: paragraphe
+      texte: Dans cette page du ministère, retrouve le programme ou le référentiel de ta formation. Les objectifs précis étudiés aujourd’hui sont indiqués dans le cours.
+    - type: lien
+      titre: Consulter les programmes et attendus officiels
+      url: https://eduscol.education.gouv.fr/5745/ressources-d-accompagnement-du-programme-de-technologie-au-cycle-4

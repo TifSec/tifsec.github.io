@@ -1,0 +1,14 @@
+{% for bloc in include.blocs %}
+{% case bloc.type %}
+    {% when 'courbe-quadratique' %}<div class="course-graph" data-course-graph data-a="{{ bloc.a | escape }}" data-b="{{ bloc.b | escape }}" data-c="{{ bloc.c | escape }}" data-x-min="{{ bloc.x_min | escape }}" data-x-max="{{ bloc.x_max | escape }}" data-y-min="{{ bloc.y_min | escape }}" data-y-max="{{ bloc.y_max | escape }}"><svg viewBox="0 0 680 390" role="img" aria-label="Courbe du coût et tangente mobile au point choisi"></svg><label>Déplacer le point : valeur de x<input type="range" min="{{ bloc.x_min | escape }}" max="{{ bloc.x_max | escape }}" step="0.1" value="{{ bloc.depart | escape }}"></label><output aria-live="polite"></output><p>Courbe bleue : coût du modèle. Droite rouge : tangente.</p></div>
+    {% when 'code' %}<pre class="cours-code"><code>{{ bloc.texte | escape }}</code></pre>
+    {% when 'tableau' %}<div class="cours-table-wrapper"><table class="cours-table">{% if bloc.titre %}<caption>{{ bloc.titre | escape }}</caption>{% endif %}<thead><tr>{% for colonne in bloc.colonnes %}<th scope="col">{{ colonne | escape }}</th>{% endfor %}</tr></thead><tbody>{% for ligne in bloc.lignes %}<tr>{% for cellule in ligne %}<td>{{ cellule | escape }}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div>
+    {% when 'paragraphe' %}<p>{{ bloc.texte | escape }}</p>
+    {% when 'titre' %}<h4>{{ bloc.texte | escape }}</h4>
+    {% when 'citation' %}<blockquote>{{ bloc.texte | escape }}</blockquote>
+    {% when 'image' %}{% assign protocole = bloc.url | slice: 0, 8 %}{% assign dossier = bloc.url | slice: 0, 8 %}{% assign image_url = '' %}{% if protocole == 'https://' %}{% assign image_url = bloc.url %}{% elsif dossier == '/assets/' %}{% assign image_url = bloc.url | relative_url %}{% endif %}{% if image_url != '' %}<figure class="cours-document"><img src="{{ image_url | escape }}" alt="{{ bloc.alternative | escape }}" loading="lazy" decoding="async">{% if bloc.legende %}<figcaption>{{ bloc.legende | escape }}</figcaption>{% endif %}</figure>{% endif %}
+    {% when 'liste' %}<ul>{% for element in bloc.elements %}<li>{{ element | escape }}</li>{% endfor %}</ul>
+    {% when 'etapes' %}<ol>{% for element in bloc.elements %}<li>{{ element | escape }}</li>{% endfor %}</ol>
+    {% when 'lien' %}{% assign protocole = bloc.url | slice: 0, 8 %}{% if protocole == 'https://' %}<p><a href="{{ bloc.url | escape }}" target="_blank" rel="noopener noreferrer">{{ bloc.titre | escape }}</a></p>{% endif %}
+{% endcase %}
+{% endfor %}

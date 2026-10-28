@@ -1,0 +1,30 @@
+---
+layout: prof
+title: Tableau des notes
+permalink: /prof/notes/
+---
+<link rel="stylesheet" href="{{ '/assets/css/prof/gradebook.css' | relative_url }}">
+<section id="teacher-gradebook" data-enabled="{{ site.data.features.grade_validation }}" data-tracking-url="{{ '/prof/suivi/' | relative_url }}" data-student-submission="{{ site.data.features.student_submission }}">
+    <p class="prof-eyebrow">Suivre les évaluations</p>
+    <h1>Tableau des notes</h1>
+    <p>Retrouvez les notes validées sur 20 et les corrections précédentes. Une case sans note ne vaut pas zéro.</p>
+    <p id="notes-status" role="status" aria-live="polite">Chargement de vos enseignements…</p>
+    <fieldset id="notes-filters" class="gradebook-filters" disabled>
+        <legend>Choisir un enseignement</legend>
+        <label>Matière<select id="notes-subject"></select></label>
+        <label>Classe<select id="notes-class"></select></label>
+        <label>Séances<select id="notes-lesson"></select></label>
+        <button type="button" id="notes-refresh">Actualiser</button>
+    </fieldset>
+    <p id="notes-summary"></p>
+    <p class="prof-hint">Une note collective figure pour chaque participant. Les profils ayant changé de classe apparaissent comme « Ancien élève » ; ouvrez leur copie pour retrouver les participants.</p>
+    <div id="notes-table" class="gradebook-scroll" role="region" aria-label="Notes par élève et séance" tabindex="0"></div>
+    <section id="notes-detail" class="gradebook-detail" hidden aria-labelledby="notes-detail-title">
+        <h2 id="notes-detail-title"></h2>
+        <button type="button" id="notes-close">Fermer le détail</button>
+        <p id="notes-detail-status" role="status" aria-live="polite"></p>
+        <div id="notes-history"></div>
+    </section>
+</section>
+{% include config/seances-data.html %}
+<script type="module" src="{{ '/assets/js/prof/gradebook.js' | relative_url }}"></script>

@@ -1,0 +1,425 @@
+titre: Faire repérer automatiquement les situations à surveiller
+theme: TIM — Faire repérer automatiquement les situations à surveiller
+problematique: Faire repérer automatiquement les situations à surveiller
+pourquoi: Lors de la séance précédente, vous avez calculé des indicateurs comme le coût des intrants par hectare ou le temps de travail par hectare.
+application: Utilise les situations et les documents de la séance pour mettre les notions en pratique.
+lien_precedent: Reprends les méthodes des séances précédentes si elles te sont utiles ; les rappels du cours t’accompagnent.
+objectifs:
+    connaissances: []
+    competences: []
+activites:
+    - id: a01
+      titre: Pour commencer
+      contenu:
+          - type: paragraphe
+            texte: "Durée prévue : environ 1 heure"
+      questions: []
+    - id: a02
+      titre: Notions et compétences travaillées
+      contenu:
+          - type: liste
+            elements:
+                - fonction logique SI ;
+                - condition vraie / condition fausse ;
+                - objectif ou seuil de comparaison ;
+                - référence relative et référence absolue ;
+                - automatisation d'une règle simple dans un tableur ;
+                - utilisation d'un indicateur pour faire apparaître un point de vigilance.
+      questions: []
+    - id: a03
+      titre: Pourquoi allons-nous travailler cela ?
+      contenu:
+          - type: paragraphe
+            texte: Lors de la séance précédente, vous avez calculé des indicateurs comme le coût des intrants par hectare ou le temps de travail par hectare.
+          - type: paragraphe
+            texte: Ces indicateurs sont utiles, mais il faut encore les lire un par un pour repérer les valeurs importantes.
+          - type: paragraphe
+            texte: Lorsque le nombre de parcelles augmente, cette méthode devient lente et peut provoquer des oublis.
+          - type: paragraphe
+            texte: Nous allons donc demander au tableur de repérer automatiquement les valeurs qui dépassent un objectif fixé.
+      questions: []
+    - id: a04
+      titre: À quoi cela va-t-il vous servir ?
+      contenu:
+          - type: paragraphe
+            texte: "Ce principe est utilisé dans de nombreux outils professionnels :"
+          - type: liste
+            elements:
+                - faire apparaître un coût dépassant un objectif ;
+                - signaler un stock trop faible ;
+                - repérer une valeur hors d'une plage attendue ;
+                - identifier automatiquement des éléments nécessitant une vérification ;
+                - construire progressivement un outil d'aide à la décision.
+      questions: []
+    - id: a05
+      titre: 1. Reprendre les données fiables
+      contenu:
+          - type: paragraphe
+            texte: "Ouvrez votre fichier de la séance précédente :"
+          - type: paragraphe
+            texte: BTS2_ACSAGRI_S02_NOM_Prenom.ods
+          - type: paragraphe
+            texte: "Enregistrez immédiatement une copie sous le nom :"
+          - type: paragraphe
+            texte: BTS2_ACSAGRI_S03_NOM_Prenom.ods
+          - type: paragraphe
+            texte: Depuis la séance précédente, l'exploitant a vérifié les données signalées.
+          - type: liste
+            elements:
+                - "la production de P06 était bien erronée : la valeur correcte est 53,0 t MS ;"
+                - Prairie temp. correspond bien à Prairie temporaire ;
+                - "la quantité d'azote de P08 n'a pas pu être retrouvée : elle reste donc inconnue."
+          - type: paragraphe
+            texte: Corrigez uniquement les informations qui viennent d'être confirmées.
+          - type: paragraphe
+            texte: Vérifiez ensuite que les indicateurs de la feuille Analyse se recalculent automatiquement.
+      questions: []
+    - id: a06
+      titre: 2. Passer d'un indicateur à une règle
+      contenu:
+          - type: paragraphe
+            texte: Nous avons maintenant des indicateurs fiables.
+          - type: paragraphe
+            texte: Mais un indicateur ne dit pas automatiquement s'il faut y porter attention.
+          - type: paragraphe
+            texte: "Pour l'exercice, l'exploitant fixe l'objectif interne suivant :"
+          - type: paragraphe
+            texte: le coût des intrants ne doit pas dépasser 400 €/ha.
+          - type: paragraphe
+            texte: "Attention : 400 €/ha est une valeur fictive choisie uniquement pour apprendre à construire l'outil. Ce n'est pas une norme agricole."
+          - type: paragraphe
+            texte: "Nous pouvons traduire cette règle en langage courant :"
+          - type: paragraphe
+            texte: SI le coût par hectare dépasse 400 €, ALORS afficher « À surveiller », SINON afficher « OK ».
+          - type: paragraphe
+            texte: "Dans la feuille Analyse, ajoutez une nouvelle colonne nommée :"
+          - type: paragraphe
+            texte: Alerte coût
+          - type: paragraphe
+            texte: "Avant d'utiliser Calc, complétez dans votre tête :"
+          - type: liste
+            elements:
+                - "condition : ................................................................................................................"
+                - "si la condition est vraie : ................................................................................................................"
+                - "si la condition est fausse : ................................................................................................................"
+      questions: []
+    - id: a07
+      titre: 3. Traduire la règle dans Calc
+      contenu:
+          - type: paragraphe
+            texte: La fonction SI permet au tableur de choisir entre deux résultats selon qu'une condition est vraie ou fausse.
+          - type: paragraphe
+            texte: "Sa structure générale est :"
+          - type: paragraphe
+            texte: =SI(condition;résultat_si_vrai;résultat_si_faux)
+          - type: paragraphe
+            texte: "Si votre coût par hectare se trouve en I2, essayez de construire la formule permettant d'afficher :"
+          - type: liste
+            elements:
+                - À surveiller si I2 dépasse 400 ;
+                - OK dans le cas contraire.
+          - type: titre
+            texte: Indice 1
+          - type: paragraphe
+            texte: "Commencez par écrire uniquement la condition : est-ce que I2 est supérieur à 400 ?"
+          - type: titre
+            texte: Indice 2
+          - type: paragraphe
+            texte: Utilisez la structure =SI(condition;"À surveiller";"OK").
+          - type: titre
+            texte: Indice 3
+          - type: paragraphe
+            texte: Une formule possible est =SI(I2>400;"À surveiller";"OK").
+      questions: []
+    - id: a08
+      titre: 4. Pourquoi ne pas laisser 400 directement dans la formule ?
+      contenu:
+          - type: paragraphe
+            texte: Notre formule fonctionne.
+          - type: paragraphe
+            texte: Mais imaginons que l'exploitant modifie son objectif et décide de passer de 400 à 450 €/ha.
+          - type: paragraphe
+            texte: Si la valeur 400 est écrite dans de nombreuses formules, il faudra toutes les modifier.
+          - type: paragraphe
+            texte: "Nous allons donc séparer :"
+          - type: liste
+            elements:
+                - la règle de calcul ;
+                - la valeur du paramètre.
+          - type: paragraphe
+            texte: Créez une nouvelle feuille nommée Parametres.
+          - type: paragraphe
+            texte: "Créez le tableau suivant :"
+          - type: tableau
+            colonnes:
+                - Paramètre
+                - Valeur
+                - Unité
+            lignes:
+                - - Coût intrants maximum
+                  - "400"
+                  - €/ha
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q1 : Quel est l'intérêt d'écrire 400 une seule fois dans une feuille Parametres ?"
+            suite:
+                - type: titre
+                  texte: Indice 1
+                - type: paragraphe
+                  texte: Imaginez que le seuil change demain.
+                - type: titre
+                  texte: Indice 2
+                - type: paragraphe
+                  texte: "Comparez : modifier dix formules ou modifier une seule cellule."
+                - type: titre
+                  texte: Indice 3
+                - type: paragraphe
+                  texte: Une valeur centralisée facilite la mise à jour du fichier et limite les risques d'oublier une formule.
+    - id: a09
+      titre: 5. Faire pointer la formule vers le paramètre
+      contenu:
+          - type: paragraphe
+            texte: Nous allons maintenant remplacer le nombre 400 dans la formule par la cellule contenant ce paramètre.
+          - type: paragraphe
+            texte: "Mais une difficulté apparaît : lorsque nous recopions une formule vers le bas, Calc déplace normalement les références de cellules."
+          - type: paragraphe
+            texte: "Par exemple :"
+          - type: liste
+            elements:
+                - I2 devient I3 sur la ligne suivante ;
+                - puis I4, etc.
+          - type: paragraphe
+            texte: C'est utile pour le coût de chaque parcelle.
+          - type: paragraphe
+            texte: En revanche, notre cellule contenant 400 doit rester toujours la même.
+          - type: paragraphe
+            texte: Pour bloquer une référence, on utilise les signes $.
+          - type: paragraphe
+            texte: "Une référence comme :"
+          - type: paragraphe
+            texte: $B$2
+          - type: paragraphe
+            texte: est appelée une référence absolue.
+          - type: paragraphe
+            texte: Modifiez votre formule afin qu'elle utilise la cellule de la feuille Parametres contenant 400.
+          - type: titre
+            texte: Indice 1
+          - type: paragraphe
+            texte: La cellule contenant le coût maximum doit rester identique lorsque vous recopiez la formule.
+          - type: titre
+            texte: Indice 2
+          - type: paragraphe
+            texte: Utilisez les signes $ devant la colonne et devant le numéro de ligne du paramètre.
+          - type: titre
+            texte: Indice 3
+          - type: paragraphe
+            texte: Si le 400 se trouve en B2 de Parametres, la comparaison peut utiliser $Parametres.$B$2.
+      questions: []
+    - id: a10
+      titre: 6. Tester l'outil au lieu de simplement lui faire confiance
+      contenu:
+          - type: paragraphe
+            texte: Notre outil semble fonctionner.
+          - type: paragraphe
+            texte: Mais un résultat qui semble correct ne prouve pas que la formule est correctement construite.
+          - type: paragraphe
+            texte: Nous allons donc le tester.
+          - type: paragraphe
+            texte: "Dans la feuille Parametres :"
+          - type: etapes
+            elements:
+                - remplacez temporairement 400 par 700 ;
+                - observez la colonne Alerte coût ;
+                - remettez ensuite la valeur à 400.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q2 : Que devez-vous observer ?"
+          - id: q02
+            type: texte
+            enonce: "Q3 : Pourquoi ce test permet-il aussi de vérifier que votre référence absolue fonctionne ?"
+    - id: a11
+      titre: 7. Ajouter une deuxième règle
+      contenu:
+          - type: paragraphe
+            texte: Nous savons maintenant automatiser une première règle.
+          - type: paragraphe
+            texte: Nous allons simplement réutiliser exactement la même méthode sur un autre indicateur.
+          - type: paragraphe
+            texte: "L'exploitant fixe pour l'exercice un deuxième objectif interne :"
+          - type: paragraphe
+            texte: le temps de travail ne doit pas dépasser 9 h/ha.
+          - type: paragraphe
+            texte: Ajoutez ce paramètre dans la feuille Parametres.
+          - type: tableau
+            colonnes:
+                - Paramètre
+                - Valeur
+                - Unité
+            lignes:
+                - - Coût intrants maximum
+                  - "400"
+                  - €/ha
+                - - Temps de travail maximum
+                  - "9"
+                  - h/ha
+          - type: paragraphe
+            texte: "Dans Analyse, ajoutez une colonne :"
+          - type: paragraphe
+            texte: Alerte travail
+          - type: paragraphe
+            texte: "Construisez vous-même la formule permettant d'afficher :"
+          - type: liste
+            elements:
+                - À surveiller si le temps de travail par hectare dépasse 9 h ;
+                - OK sinon.
+      questions: []
+    - id: a12
+      titre: 8. Lire ce que le tableur signale
+      contenu:
+          - type: paragraphe
+            texte: "Nous disposons maintenant de deux colonnes d'alerte :"
+          - type: liste
+            elements:
+                - Alerte coût ;
+                - Alerte travail.
+          - type: paragraphe
+            texte: "Dans la feuille Bilan, répondez :"
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q4 : Quelles parcelles dépassent l'objectif de coût de 400 €/ha ?"
+          - id: q02
+            type: texte
+            enonce: "Q5 : Quelles parcelles dépassent l'objectif de 9 h de travail par hectare ?"
+          - id: q03
+            type: texte
+            enonce: "Q6 : Une parcelle affichée « À surveiller » est-elle forcément mal conduite ? Expliquez."
+            suite:
+                - type: titre
+                  texte: Indice 1
+                - type: paragraphe
+                  texte: Que signifie réellement l'alerte ? Elle compare uniquement une valeur à un objectif.
+                - type: titre
+                  texte: Indice 2
+                - type: paragraphe
+                  texte: L'outil connaît-il les raisons pour lesquelles le coût ou le temps est élevé ?
+                - type: titre
+                  texte: Indice 3
+                - type: paragraphe
+                  texte: « À surveiller » signifie seulement que le seuil fixé a été dépassé. Il faut encore analyser le contexte avant de juger ou décider.
+    - id: a13
+      titre: 9. Faire le lien entre les étapes
+      contenu:
+          - type: paragraphe
+            texte: "Lors de la séance précédente, nous avions :"
+          - type: paragraphe
+            texte: données → vérification → indicateurs.
+          - type: paragraphe
+            texte: "Aujourd'hui, nous avons ajouté :"
+          - type: paragraphe
+            texte: indicateurs → comparaison à un objectif → alerte automatique.
+          - type: paragraphe
+            texte: "Notre chaîne devient donc :"
+          - type: paragraphe
+            texte: données → vérification → indicateurs → règle → alerte.
+          - type: paragraphe
+            texte: La prochaine étape sera de croiser plusieurs alertes pour faire apparaître des niveaux de priorité.
+      questions: []
+    - id: a14
+      titre: 10. Bilan de la séance
+      contenu:
+          - type: paragraphe
+            texte: "Dans la feuille Bilan, complétez :"
+          - type: liste
+            elements:
+                - La fonction SI permet de ................................................................................................................
+                - Une condition est ................................................................................................................
+                - Une référence absolue permet de ................................................................................................................
+                - Un paramètre sert à ................................................................................................................
+                - Une alerte automatique permet de ................................................................................................................
+          - type: paragraphe
+            texte: "Dernière question :"
+          - type: paragraphe
+            texte: Pourquoi une alerte automatique ne remplace-t-elle pas l'analyse d'un professionnel ?
+      questions: []
+    - id: a15
+      titre: 11. Avant de rendre
+      contenu:
+          - type: paragraphe
+            texte: "Vérifiez que votre fichier contient :"
+          - type: liste
+            elements:
+                - les données corrigées après confirmation ;
+                - la feuille Parametres ;
+                - une colonne Alerte coût ;
+                - une colonne Alerte travail ;
+                - des formules utilisant des références absolues ;
+                - vos réponses dans la feuille Bilan.
+          - type: paragraphe
+            texte: "Vérifiez également que les paramètres sont revenus à :"
+          - type: liste
+            elements:
+                - 400 €/ha pour le coût ;
+                - 9 h/ha pour le temps de travail.
+          - type: paragraphe
+            texte: "Enregistrez sous :"
+          - type: paragraphe
+            texte: BTS2_ACSAGRI_S03_NOM_Prenom.ods
+          - type: paragraphe
+            texte: Déposez le fichier dans l'espace indiqué par le professeur.
+      questions: []
+    - id: a16
+      titre: À retenir
+      contenu:
+          - type: liste
+            elements:
+                - La fonction SI permet d'appliquer automatiquement une règle simple.
+                - Une condition peut être vraie ou fausse.
+                - Un paramètre permet de modifier facilement la règle sans réécrire toutes les formules.
+                - Une référence absolue reste fixe lorsque la formule est recopiée.
+                - Une alerte signale un dépassement ; elle n'explique pas sa cause.
+                - Automatiser le repérage d'une situation ne signifie pas automatiser la décision.
+      questions: []
+    - id: a17
+      titre: Pour la prochaine séance
+      contenu:
+          - type: paragraphe
+            texte: Nous savons maintenant surveiller séparément le coût et le temps de travail.
+          - type: paragraphe
+            texte: Mais certaines parcelles dépassent les deux objectifs, alors que d'autres n'en dépassent qu'un seul.
+          - type: paragraphe
+            texte: "Lors de la prochaine séance, nous apprendrons à croiser plusieurs conditions pour classer automatiquement les parcelles en :"
+          - type: liste
+            elements:
+                - Prioritaire ;
+                - À surveiller ;
+                - OK.
+      questions: []
+    - id: a18
+      titre: Source institutionnelle
+      contenu:
+          - type: liste
+            elements:
+                - Chlorofil – BTSA ACS'AGRI – référentiel et documents d'accompagnement.
+                - Inspection de l'enseignement agricole – Exemples d'utilisation des TIM dans des situations favorisant l'acquisition de capacités.
+          - type: lien
+            titre: BTSA ACS'AGRI – référentiel et documents d'accompagnement
+            url: https://chlorofil.fr/diplomes/secondaire/btsa/acse/acs-agri-2025
+          - type: lien
+            titre: Exemples d'utilisation des TIM dans des situations favorisant l'acquisition de capacités
+            url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf
+          - type: paragraphe
+            texte: Les données et les objectifs de 400 €/ha et 9 h/ha utilisés dans cette séance sont fictifs et servent uniquement à l'apprentissage.
+      questions: []
+bilan: Relis tes réponses et vérifie les points demandés dans le bilan du cours. Tu peux revenir sur ton travail tant que le professeur ne l’a pas clôturé.
+ressources:
+    - type: paragraphe
+      texte: Réalise les manipulations dans le logiciel demandé. Conserve tes fichiers sur ton espace habituel. Le site enregistre seulement tes réponses écrites, tes résultats, tes formules et tes démarches ; aucun fichier n’est téléversé.
+reperes_officiels:
+    - type: paragraphe
+      texte: Dans cette page du ministère, retrouve le programme ou le référentiel de ta formation. Les objectifs précis étudiés aujourd’hui sont indiqués dans le cours.
+    - type: lien
+      titre: Consulter les programmes et attendus officiels
+      url: https://chlorofil.fr/diplomes/secondaire/btsa/acse/acs-agri-2025

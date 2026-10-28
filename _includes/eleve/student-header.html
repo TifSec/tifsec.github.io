@@ -1,0 +1,12 @@
+<header class="student-header"{% if include.course %} id="course-header"{% endif %}>
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="{{ '/eleve/' | relative_url }}"><img src="{{ '/images/logo.png' | relative_url }}" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions">{% if include.course %}<a class="student-home-link" href="{{ '/eleve/' | relative_url }}">Mes séances</a><a id="course-login" href="{{ '/connexion/' | relative_url }}">Se connecter</a>{% endif %}{% include config/student-theme.html %}<button type="button" id="{{ include.logout_id }}"{% if include.course %} hidden{% endif %}>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row"{% if include.course %} id="course-welcome" hidden{% endif %}>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p>{% if include.course %}<p class="student-course-greeting">Bonjour <span id="{{ include.identity_id }}"></span></p>{% else %}<h1>Bonjour <span id="{{ include.identity_id }}"></span></h1>{% endif %}</div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>

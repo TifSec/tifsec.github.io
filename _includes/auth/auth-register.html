@@ -1,30 +1,29 @@
 <!-- ========== CRÉATION DE COMPTE ========== -->
-<section id="create-account" class="auth-panel">
-    <h2>Première connexion</h2>
-    <p class="auth-description">
-        Crée ton espace personnel.
-        Ton travail pourra ensuite être sauvegardé automatiquement.
+<form id="create-account" class="auth-panel">
+    <h2 id="register-heading">Première connexion</h2>
+    <p id="register-description" class="auth-description">
+        Crée ton compte élève et retrouve ensuite ton espace personnel.
     </p>
     <!-- ========== IDENTITÉ ========== -->
     <div class="name-grid">
         <div>
             <label for="register-prenom">Prénom</label>
-            <input type="text" id="register-prenom" autocomplete="given-name">
+            <input type="text" id="register-prenom" autocomplete="given-name" maxlength="100" required>
         </div>
         <div>
             <label for="register-nom">Nom</label>
-            <input type="text" id="register-nom" autocomplete="family-name">
+            <input type="text" id="register-nom" autocomplete="family-name" maxlength="100" required>
         </div>
     </div>
     <!-- ========== TYPE DE COMPTE ========== -->
     <label for="register-role">Type de compte</label>
-    <select id="register-role">
+    <select id="register-role" disabled>
         <option value="student">Élève</option>
     </select>
     <!-- ========== ÉTABLISSEMENT ========== -->
     <div id="register-school-wrapper">
         <label for="register-school">Établissement</label>
-        <select id="register-school">
+        <select id="register-school" required>
             <option value="">Choisis ton établissement</option>
             {% for school in site.data.classes %}
             <option value="{{ school[0] }}">{{ school[1].nom }}</option>
@@ -34,7 +33,7 @@
     <!-- ========== CLASSE ========== -->
     <div id="register-class-wrapper">
         <label for="register-classe">Classe</label>
-        <select id="register-classe" disabled>
+        <select id="register-classe" disabled required>
             <option value="">Choisis d'abord ton établissement</option>
             {% for school in site.data.classes %}
             {% for classe in school[1].classes %}
@@ -46,11 +45,14 @@
         </select>
     </div>
     <!-- ========== IDENTIFIANT ========== -->
-    <label for="register-username">Identifiant</label>
-    <input type="text" id="register-username" autocomplete="username" placeholder="ex. jean.dupont">
-    <p class="field-help">Choisis un identifiant simple que tu pourras retenir.</p>
-    <!-- ========== MOT DE PASSE ========== -->
-    <label for="register-password">Mot de passe</label>
-    <input type="password" id="register-password" autocomplete="new-password" placeholder="8 caractères minimum">
-    <button type="button" id="register-button" class="button button-secondary">Créer mon espace</button>
-</section>
+    <div id="register-credentials" class="register-credentials">
+        <label for="register-username">Identifiant</label>
+        <input type="text" id="register-username" autocomplete="username" autocapitalize="none" spellcheck="false" minlength="3" maxlength="64" placeholder="ex. jean.dupont" aria-describedby="register-username-help" required>
+        <p id="register-username-help" class="field-help">De 3 à 64 caractères, sans espace ni accent. Tu peux modifier l’identifiant proposé.</p>
+        <label for="register-password">Mot de passe</label>
+        <input type="password" id="register-password" autocomplete="new-password" minlength="8" placeholder="8 caractères minimum" required>
+        <label for="register-password-confirm">Confirmer le mot de passe</label>
+        <input type="password" id="register-password-confirm" autocomplete="new-password" minlength="8" required>
+    </div>
+    <button type="submit" id="register-button" class="button button-secondary">Créer mon compte élève</button>
+</form>

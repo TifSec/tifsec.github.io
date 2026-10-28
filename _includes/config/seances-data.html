@@ -1,0 +1,13 @@
+<script id="seances-data" type="application/json">
+[
+    {% assign first = true %}
+    {% for subject in site.data.seances %}{% for school_class in subject[1] %}{% for lesson in school_class[1] %}
+    {% unless site.exclude_course_ids contains lesson.id or site.exclude_course_urls contains lesson.url %}
+    {% unless first %},{% endunless %}{% assign first = false %}
+    {% assign subject_key = subject[0] %}{% assign class_key = school_class[0] %}
+    {% assign lesson_content = site.data.cours[subject_key][class_key][lesson.id] %}
+    {"etablissement":{{ lesson.etablissement | jsonify }},"matiere":{{ subject_key | jsonify }},"classe":{{ class_key | jsonify }},"seance":{{ lesson.id | jsonify }},"version":{{ lesson.version | default: 'v1' | jsonify }},"titre":{{ lesson_content.titre | default: lesson.id | jsonify | replace: '<', '\u003c' }},"url":{{ lesson.url | relative_url | jsonify }}}
+    {% endunless %}
+    {% endfor %}{% endfor %}{% endfor %}
+]
+</script>

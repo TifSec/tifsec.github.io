@@ -1,0 +1,383 @@
+titre: Peut-on faire confiance aux données ?
+theme: TIM — Peut-on faire confiance aux données ?
+problematique: Peut-on faire confiance aux données ?
+pourquoi: "Dans une exploitation agricole, de nombreuses données peuvent être enregistrées : surfaces, productions, coûts, temps de travail, quantités d'intrants..."
+application: Utilise les situations et les documents de la séance pour mettre les notions en pratique.
+lien_precedent: Reprends les méthodes des séances précédentes si elles te sont utiles ; les rappels du cours t’accompagnent.
+objectifs:
+    connaissances: []
+    competences: []
+activites:
+    - id: a01
+      titre: Pour commencer
+      contenu:
+          - type: paragraphe
+            texte: "Durée prévue : environ 1 heure"
+      questions: []
+    - id: a02
+      titre: Notions et compétences travaillées
+      contenu:
+          - type: liste
+            elements:
+                - qualité et fiabilité d'une donnée ;
+                - donnée manquante, donnée suspecte et donnée incohérente ;
+                - standardisation des données ;
+                - construction d'un indicateur ;
+                - formules simples dans un tableur ;
+                - comparaison de parcelles de tailles différentes.
+      questions: []
+    - id: a03
+      titre: Pourquoi allons-nous travailler cela ?
+      contenu:
+          - type: paragraphe
+            texte: "Dans une exploitation agricole, de nombreuses données peuvent être enregistrées : surfaces, productions, coûts, temps de travail, quantités d'intrants..."
+          - type: paragraphe
+            texte: Mais un ordinateur ne sait pas automatiquement si une valeur est correcte.
+          - type: paragraphe
+            texte: Si une donnée est fausse, une formule parfaitement correcte peut produire un résultat faux.
+      questions: []
+    - id: a04
+      titre: À quoi cela va-t-il vous servir ?
+      contenu:
+          - type: paragraphe
+            texte: "Dans votre futur métier, vous pourrez recevoir des données provenant :"
+          - type: liste
+            elements:
+                - d'un logiciel de gestion ;
+                - d'un salarié ;
+                - d'un capteur ;
+                - d'un conseiller ;
+                - d'un fichier transmis par un partenaire ;
+                - ou de vos propres relevés.
+          - type: paragraphe
+            texte: Avant de prendre une décision à partir de ces données, vous devrez savoir repérer les valeurs douteuses et construire des indicateurs permettant de comparer correctement les situations.
+      questions: []
+    - id: a05
+      titre: 1. Créer votre espace de travail
+      contenu:
+          - type: paragraphe
+            texte: Lors de la séance précédente, nous avons vérifié vos premières compétences avec Writer et Calc.
+          - type: paragraphe
+            texte: "Nous allons maintenant utiliser Calc pour une vraie situation professionnelle : analyser des données de parcelles."
+          - type: paragraphe
+            texte: "Ouvrez LibreOffice Calc et créez un nouveau classeur nommé :"
+          - type: paragraphe
+            texte: BTS2_ACSAGRI_S02_NOM_Prenom.ods
+          - type: paragraphe
+            texte: "Créez trois feuilles :"
+          - type: liste
+            elements:
+                - Donnees
+                - Analyse
+                - Bilan
+      questions: []
+    - id: a06
+      titre: 2. Une exploitation vous transmet ses données
+      contenu:
+          - type: paragraphe
+            texte: Un exploitant souhaite comparer plusieurs parcelles fourragères.
+          - type: paragraphe
+            texte: "Il vous transmet le tableau suivant :"
+      questions:
+          - id: q01
+            type: tableau
+            enonce: Complète le tableau ci-dessous.
+            colonnes:
+                - Parcelle
+                - Culture
+                - Surface (ha)
+                - Production (t MS)
+                - Coût intrants (€)
+                - Temps de travail (h)
+                - Azote total (kg)
+            lignes:
+                - - P01
+                  - Prairie permanente
+                  - 7,8
+                  - 42,1
+                  - "1380"
+                  - "56"
+                  - "320"
+                - - P02
+                  - Maïs ensilage
+                  - 5,4
+                  - 63,2
+                  - "3520"
+                  - "61"
+                  - "790"
+                - - P03
+                  - Prairie temporaire
+                  - 6,1
+                  - 43,8
+                  - "1740"
+                  - "48"
+                  - "410"
+                - - P04
+                  - Méteil
+                  - 4,7
+                  - 31,5
+                  - "1960"
+                  - "42"
+                  - "290"
+                - - P05
+                  - Prairie permanente
+                  - 9,2
+                  - 46,9
+                  - "1510"
+                  - "63"
+                  - "350"
+                - - P06
+                  - Maïs ensilage
+                  - 4,8
+                  - "530"
+                  - "3190"
+                  - "58"
+                  - "710"
+                - - P07
+                  - Prairie temp.
+                  - 5,9
+                  - 39,4
+                  - "1680"
+                  - "45"
+                  - "390"
+                - - P08
+                  - Méteil
+                  - 3,8
+                  - 24,7
+                  - "1580"
+                  - "34"
+                  - ""
+                - - P09
+                  - Prairie permanente
+                  - 8,6
+                  - 48,3
+                  - "1460"
+                  - "59"
+                  - "330"
+                - - P10
+                  - Maïs ensilage
+                  - 5,1
+                  - 60,1
+                  - "3380"
+                  - "60"
+                  - "760"
+            suite:
+                - type: paragraphe
+                  texte: Copiez ce tableau dans la feuille Donnees.
+                - type: paragraphe
+                  texte: Ces données sont fictives et ont été créées pour l'activité pédagogique.
+    - id: a07
+      titre: "3. Avant de calculer : peut-on faire confiance au tableau ?"
+      contenu:
+          - type: paragraphe
+            texte: Nous pourrions immédiatement demander à Calc de faire des calculs.
+          - type: paragraphe
+            texte: Mais ce serait une mauvaise méthode.
+          - type: paragraphe
+            texte: Avant de calculer, nous devons vérifier si les données semblent cohérentes.
+          - type: paragraphe
+            texte: Ajoutez à droite du tableau une colonne intitulée Observation.
+          - type: paragraphe
+            texte: Repérez au moins trois problèmes dans les données et indiquez-les dans cette colonne.
+          - type: titre
+            texte: Indice 1
+          - type: paragraphe
+            texte: Comparez les valeurs d'une même colonne entre elles. Une valeur semble-t-elle très différente des autres ?
+          - type: titre
+            texte: Indice 2
+          - type: paragraphe
+            texte: Regardez aussi les noms des cultures. Une même catégorie est-elle toujours écrite exactement de la même façon ?
+          - type: titre
+            texte: Indice 3
+          - type: paragraphe
+            texte: Regardez P06, P07 et P08.
+          - type: paragraphe
+            texte: "Important : lorsqu'une donnée semble incorrecte mais que vous ne connaissez pas la bonne valeur, vous ne devez jamais l'inventer."
+          - type: paragraphe
+            texte: Vous devez la signaler puis demander une vérification.
+      questions: []
+    - id: a08
+      titre: 4. Pourquoi préparer les données avant de les analyser ?
+      contenu:
+          - type: paragraphe
+            texte: Nous venons de repérer les problèmes.
+          - type: paragraphe
+            texte: Nous allons maintenant préparer une version utilisable dans la feuille Analyse.
+          - type: paragraphe
+            texte: Pourquoi changer de feuille ? Parce que la feuille Donnees doit conserver la trace de ce qui nous a été transmis, tandis que la feuille Analyse servira à travailler.
+          - type: paragraphe
+            texte: "Copiez les colonnes suivantes dans la feuille Analyse :"
+          - type: liste
+            elements:
+                - Parcelle ;
+                - Culture ;
+                - Surface (ha) ;
+                - Production (t MS) ;
+                - Coût intrants (€) ;
+                - Temps de travail (h).
+          - type: paragraphe
+            texte: Vous pouvez corriger Prairie temp. en Prairie temporaire, car il s'agit ici uniquement d'harmoniser l'écriture d'une catégorie déjà identifiable.
+          - type: paragraphe
+            texte: "En revanche, conservez provisoirement 530 pour P06 : nous savons que cette valeur est suspecte, mais nous ne connaissons pas encore sa valeur correcte."
+      questions: []
+    - id: a09
+      titre: "5. Une grande parcelle produit plus : est-elle forcément meilleure ?"
+      contenu:
+          - type: paragraphe
+            texte: Nous avons maintenant des données mieux organisées.
+          - type: paragraphe
+            texte: Mais comparer directement les productions totales peut être trompeur.
+          - type: paragraphe
+            texte: Par exemple, une parcelle de 10 ha peut produire davantage qu'une parcelle de 4 ha simplement parce qu'elle est plus grande.
+          - type: paragraphe
+            texte: Pour pouvoir comparer les parcelles, nous allons donc calculer des indicateurs ramenés à un hectare.
+          - type: paragraphe
+            texte: "Ajoutez trois colonnes :"
+          - type: liste
+            elements:
+                - Rendement (t MS/ha)
+                - Coût intrants (€/ha)
+                - Temps de travail (h/ha)
+          - type: paragraphe
+            texte: "Avant d'écrire les formules, complétez mentalement :"
+          - type: paragraphe
+            texte: « par hectare » signifie que je dois ........................................ par la surface.
+          - type: paragraphe
+            texte: Créez ensuite les trois formules pour la première parcelle puis recopiez-les vers le bas.
+          - type: titre
+            texte: Indice 1
+          - type: paragraphe
+            texte: Le rendement correspond à la production obtenue pour un hectare.
+          - type: titre
+            texte: Indice 2
+          - type: paragraphe
+            texte: Pour chaque indicateur, prenez la valeur totale et divisez-la par la surface de la parcelle.
+          - type: titre
+            texte: Indice 3
+          - type: paragraphe
+            texte: "Si la surface est en C2, la production en D2, le coût en E2 et le temps en F2 : rendement = =D2/C2, coût/ha = =E2/C2, travail/ha = =F2/C2."
+      questions: []
+    - id: a10
+      titre: 6. Pourquoi regarder les résultats maintenant ?
+      contenu:
+          - type: paragraphe
+            texte: Nous avons d'abord vérifié les données, puis nous les avons transformées en indicateurs comparables.
+          - type: paragraphe
+            texte: Nous pouvons maintenant regarder si ces nouveaux résultats nous apprennent quelque chose.
+          - type: paragraphe
+            texte: Dans la feuille Bilan, répondez aux questions suivantes.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q1 : Quel rendement obtenez-vous pour P06 ? Ce résultat vous paraît-il cohérent avec les autres parcelles ?"
+          - id: q02
+            type: texte
+            enonce: "Q2 : Quelle parcelle présente le coût d'intrants par hectare le plus faible ?"
+          - id: q03
+            type: texte
+            enonce: "Q3 : Quelles parcelles demandent le plus de temps de travail par hectare ?"
+          - id: q04
+            type: texte
+            enonce: "Q4 : Peut-on utiliser le rendement de P06 pour conseiller immédiatement l'exploitant ? Pourquoi ?"
+            suite:
+                - type: titre
+                  texte: Indice 1
+                - type: paragraphe
+                  texte: Revenez à la donnée utilisée pour calculer ce rendement.
+                - type: titre
+                  texte: Indice 2
+                - type: paragraphe
+                  texte: La formule peut-elle être correcte si la donnée de départ est douteuse ?
+                - type: titre
+                  texte: Indice 3
+                - type: paragraphe
+                  texte: Le résultat est mathématiquement correct avec 530, mais la valeur 530 doit être vérifiée avant que le rendement puisse être utilisé pour prendre une décision.
+    - id: a11
+      titre: 7. Ce que nous venons de construire
+      contenu:
+          - type: paragraphe
+            texte: Nous sommes partis d'un tableau de valeurs brutes.
+          - type: paragraphe
+            texte: "Nous avons suivi plusieurs étapes :"
+          - type: paragraphe
+            texte: données brutes → vérification → préparation → calcul d'indicateurs → première interprétation.
+          - type: paragraphe
+            texte: "Ces étapes sont liées : si une étape est mauvaise, les suivantes peuvent devenir inutilisables."
+      questions: []
+    - id: a12
+      titre: 8. Bilan de la séance
+      contenu:
+          - type: paragraphe
+            texte: "Dans la feuille Bilan, complétez avec vos propres mots :"
+          - type: liste
+            elements:
+                - Une donnée suspecte est ................................................................................................................
+                - Une donnée manquante est ................................................................................................................
+                - Standardiser des données signifie ................................................................................................................
+                - Un indicateur permet de ................................................................................................................
+          - type: paragraphe
+            texte: "Dernière question :"
+          - type: paragraphe
+            texte: Pourquoi faut-il vérifier les données avant de prendre une décision à partir d'un tableur ?
+      questions: []
+    - id: a13
+      titre: 9. Avant de rendre
+      contenu:
+          - type: paragraphe
+            texte: "Vérifiez que votre fichier contient :"
+          - type: liste
+            elements:
+                - la feuille Donnees avec vos observations ;
+                - la feuille Analyse avec les trois indicateurs calculés par des formules ;
+                - la feuille Bilan avec vos réponses.
+          - type: paragraphe
+            texte: "Enregistrez votre fichier sous le nom :"
+          - type: paragraphe
+            texte: BTS2_ACSAGRI_S02_NOM_Prenom.ods
+          - type: paragraphe
+            texte: Déposez-le ensuite dans l'espace indiqué par le professeur.
+      questions: []
+    - id: a14
+      titre: À retenir
+      contenu:
+          - type: liste
+            elements:
+                - "Un ordinateur calcule avec les données qu'on lui donne : il ne sait pas automatiquement si elles sont fiables."
+                - Une donnée suspecte doit être vérifiée, pas corrigée au hasard.
+                - Une donnée manquante n'est pas égale à zéro.
+                - Des catégories écrites différemment peuvent être considérées comme différentes par un logiciel.
+                - Un indicateur transforme des données en une information plus facile à comparer.
+                - Ramener une valeur à l'hectare permet de comparer plus justement des parcelles de surfaces différentes.
+      questions: []
+    - id: a15
+      titre: Pour la prochaine séance
+      contenu:
+          - type: paragraphe
+            texte: Nous savons maintenant construire des indicateurs.
+          - type: paragraphe
+            texte: Mais pour l'instant, nous devons encore les lire un par un.
+          - type: paragraphe
+            texte: Lors de la prochaine séance, l'exploitant nous confirmera certaines données et nous apprendrons à faire en sorte que le tableur repère automatiquement les situations à surveiller.
+      questions: []
+    - id: a16
+      titre: Source institutionnelle
+      contenu:
+          - type: liste
+            elements:
+                - Chlorofil – BTSA ACS'AGRI – référentiel et documents d'accompagnement.
+          - type: lien
+            titre: BTSA ACS'AGRI – référentiel et documents d'accompagnement
+            url: https://chlorofil.fr/diplomes/secondaire/btsa/acse/acs-agri-2025
+          - type: paragraphe
+            texte: Les données utilisées dans cette séance sont fictives et adaptées à des fins pédagogiques.
+      questions: []
+bilan: Relis tes réponses et vérifie les points demandés dans le bilan du cours. Tu peux revenir sur ton travail tant que le professeur ne l’a pas clôturé.
+ressources:
+    - type: paragraphe
+      texte: Réalise les manipulations dans le logiciel demandé. Conserve tes fichiers sur ton espace habituel. Le site enregistre seulement tes réponses écrites, tes résultats, tes formules et tes démarches ; aucun fichier n’est téléversé.
+reperes_officiels:
+    - type: paragraphe
+      texte: Dans cette page du ministère, retrouve le programme ou le référentiel de ta formation. Les objectifs précis étudiés aujourd’hui sont indiqués dans le cours.
+    - type: lien
+      titre: Consulter les programmes et attendus officiels
+      url: https://chlorofil.fr/diplomes/secondaire/btsa/acse/acs-agri-2025

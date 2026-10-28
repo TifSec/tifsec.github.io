@@ -3,21 +3,36 @@
 <section class="cours-activites">
     {% for activite in include.cours.activites %}
     <article class="cours-activite" id="{{ activite.id }}">
-        <h2>Activité {{ forloop.index }} — {{ activite.titre | escape }}</h2>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission {{ forloop.index }}</span>{% if activite.questions.size > 0 %}<span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span>{% endif %}</div>
+        <h2>{{ activite.titre | escape }}</h2>
+        {% if activite.facultatif or activite.obligatoire == false %}<p class="course-optional">Pour aller plus loin — activité facultative.</p>{% endif %}
+        {% if activite.pourquoi %}<p><strong>Pourquoi cette activité ?</strong> {{ activite.pourquoi | escape }}</p>{% endif %}
+        {% if activite.demarche %}<h3>Comment procéder ?</h3>{% if activite.demarche.first %}<ol>{% for etape in activite.demarche %}<li>{{ etape | escape }}</li>{% endfor %}</ol>{% else %}<p>{{ activite.demarche | escape }}</p>{% endif %}{% endif %}
 
         {% if activite.consigne %}
         <p>{{ activite.consigne | escape }}</p>
         {% endif %}
 
+        {% if activite.contenu %}<p class="course-learning-label">Lis les repères et observe ce qui est montré</p>{% endif %}
+        {% if activite.contenu %}{% include cours/cours-blocs.html blocs=activite.contenu %}{% endif %}
+        {% if activite.ressources %}{% include cours/cours-ressources.html blocs=activite.ressources %}{% endif %}
         {% for question in activite.questions %}
         <div class="cours-question" data-question="{{ question.id }}">
+            {% if forloop.first %}<p class="course-learning-label">À toi d’essayer avec les questions</p>{% endif %}
             {% if question.enonce %}
-            <h3>Question {{ forloop.index }} — {{ question.enonce | escape }}</h3>
+            <h3 id="{{ activite.id }}-{{ question.id }}-label">{% if question.libelle %}{{ question.libelle | escape }}{% else %}Question {{ question.numero | default: forloop.index }}{% endif %} — {{ question.enonce | escape }}</h3>
             {% endif %}
 
+            {% if question.contenu %}{% include cours/cours-blocs.html blocs=question.contenu %}{% endif %}
             {% case question.type %}
                 {% when "texte" %}
-                <textarea id="{{ activite.id }}-{{ question.id }}" data-answer-id="{{ activite.id }}_{{ question.id }}" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+                <textarea id="{{ activite.id }}-{{ question.id }}" data-answer-id="{{ activite.id }}_{{ question.id }}" data-required="{% if activite.facultatif or activite.obligatoire == false or question.facultatif or question.obligatoire == false %}false{% else %}true{% endif %}" {% if question.enonce %}aria-labelledby="{{ activite.id }}-{{ question.id }}-label"{% else %}aria-label="Réponse à la question {{ forloop.index }}"{% endif %} rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                {% when "nombre" %}
+                <input type="text" inputmode="decimal" id="{{ activite.id }}-{{ question.id }}" data-answer-id="{{ activite.id }}_{{ question.id }}" data-required="{% if activite.facultatif or activite.obligatoire == false or question.facultatif or question.obligatoire == false %}false{% else %}true{% endif %}" aria-labelledby="{{ activite.id }}-{{ question.id }}-label">{% if question.unite %}<p>Unité : {{ question.unite | escape }}</p>{% endif %}
+
+                {% when "qcm" %}
+                <select id="{{ activite.id }}-{{ question.id }}" data-answer-id="{{ activite.id }}_{{ question.id }}" data-required="{% if activite.facultatif or activite.obligatoire == false or question.facultatif or question.obligatoire == false %}false{% else %}true{% endif %}" aria-labelledby="{{ activite.id }}-{{ question.id }}-label"><option value="">Choisis une réponse</option>{% for choix in question.choix %}<option value="{{ choix.id | escape }}">{{ choix.texte | escape }}</option>{% endfor %}</select>
 
                 {% when "tableau" %}
                 <div class="cours-table-wrapper">
@@ -36,7 +51,7 @@
                                 {% for cellule in ligne %}
                                 <td>
                                     {% if cellule == "" %}
-                                    <input type="text" data-answer-id="{{ activite.id }}_{{ question.id }}_r{{ ligne_index }}_c{{ forloop.index0 }}" data-row="{{ ligne_index }}" data-col="{{ forloop.index0 }}" aria-label="Ligne {{ ligne_index | plus: 1 }}, colonne {{ forloop.index }}">
+                                    <input type="text" data-answer-id="{{ activite.id }}_{{ question.id }}_r{{ ligne_index }}_c{{ forloop.index0 }}" data-required="{% if activite.facultatif or activite.obligatoire == false or question.facultatif or question.obligatoire == false %}false{% else %}true{% endif %}" data-row="{{ ligne_index }}" data-col="{{ forloop.index0 }}" aria-label="{{ activite.titre | escape }} — {{ question.colonnes[forloop.index0] | escape }} — {{ ligne[0] | escape }}">
                                     {% else %}
                                     {{ cellule | escape }}
                                     {% endif %}
@@ -48,8 +63,16 @@
                     </table>
                 </div>
             {% endcase %}
+            {% if question.aide %}<details><summary>Un coup de pouce</summary><p>{{ question.aide | escape }}</p></details>{% endif %}
+            {% if question.ressources %}{% include cours/cours-ressources.html blocs=question.ressources %}{% endif %}
+            {% if question.suite %}{% include cours/cours-blocs.html blocs=question.suite %}{% endif %}
         </div>
         {% endfor %}
+        {% assign next_index = forloop.index0 | plus: 1 %}{% assign next_activite = include.cours.activites[next_index] %}
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            {% if forloop.first == false %}{% assign previous_index = forloop.index0 | minus: 1 %}{% assign previous_activite = include.cours.activites[previous_index] %}<a class="course-mission-back" href="#{{ previous_activite.id | escape }}">← Étape précédente</a>{% endif %}
+            {% if next_activite %}<a class="course-mission-next" href="#{{ next_activite.id | escape }}">Passer à l’étape suivante <span aria-hidden="true">→</span></a>{% else %}<a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>{% endif %}
+        </nav>
     </article>
     {% endfor %}
 </section>

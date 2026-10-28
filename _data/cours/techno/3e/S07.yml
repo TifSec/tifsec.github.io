@@ -1,0 +1,364 @@
+titre: Comment une machine utilise-t-elle des données ?
+theme: "Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre"
+problematique: Comment un système automatisé transforme-t-il des informations du monde réel en données qu'il peut traiter ?
+pourquoi: Un système numérique doit finalement représenter ses informations à l'aide de deux états élémentaires.
+application: Utilise les situations et les documents de la séance pour mettre les notions en pratique.
+lien_precedent: Reprends les méthodes des séances précédentes si elles te sont utiles ; les rappels du cours t’accompagnent.
+objectifs:
+    connaissances:
+        - Un système numérique utilise des données pour représenter des informations.
+        - Une donnée peut notamment être un nombre, un booléen ou du texte.
+        - Une donnée peut provenir d'un capteur, être produite par un programme ou être destinée à l'utilisateur.
+        - Un booléen représente une information possédant deux états.
+        - Dans un système numérique, l'information est représentée à l'aide de bits.
+        - Un bit peut prendre deux valeurs et huit bits constituent un octet.
+        - Les données peuvent être traitées, transmises ou stockées.
+    competences: []
+activites:
+    - id: a05
+      titre: Production attendue
+      contenu:
+          - type: liste
+            elements:
+                - Un fichier LibreOffice Writer nommé 3e_S07_nom.odt.
+                - L'identification des données utilisées par une cuve automatisée.
+                - Un classement de plusieurs données selon leur type.
+                - Quelques conversions simples entre bits et octets.
+                - L'analyse du déclenchement automatique d'une pompe.
+          - type: paragraphe
+            texte: Le fichier devra être déposé à la fin de la séance, même s'il n'est pas entièrement terminé.
+      questions: []
+    - id: a06
+      titre: 1. Préparez votre document de travail
+      contenu:
+          - type: paragraphe
+            texte: Ouvrez LibreOffice Writer.
+          - type: paragraphe
+            texte: Créez un nouveau document.
+          - type: paragraphe
+            texte: "Enregistrez-le immédiatement sous le nom : 3e_S07_nom.odt."
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Écrivez votre nom, votre prénom et le titre : Séance 7 – Comment une machine utilise-t-elle des données ?"
+            suite: []
+    - id: a07
+      titre: 2. De quoi une cuve automatisée a-t-elle besoin pour fonctionner ?
+      contenu:
+          - type: paragraphe
+            texte: On souhaite automatiser une cuve de récupération d'eau.
+          - type: paragraphe
+            texte: "Le système doit pouvoir :"
+          - type: liste
+            elements:
+                - connaître le niveau d'eau ;
+                - mettre une pompe en fonctionnement lorsque cela est nécessaire ;
+                - indiquer l'état du système à l'utilisateur ;
+                - conserver certaines mesures afin de suivre l'évolution du niveau.
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q1 : Quelles informations la machine doit-elle connaître pour pouvoir réaliser ces actions ?"
+            suite:
+                - type: paragraphe
+                  texte: Proposez au moins trois informations différentes.
+                - type: paragraphe
+                  texte: "À un instant donné, le système possède les informations suivantes :"
+                - type: tableau
+                  colonnes:
+                      - Information
+                      - Valeur utilisée par le système
+                  lignes:
+                      - - Niveau de la cuve
+                        - "72"
+                      - - Pompe en fonctionnement
+                        - Faux
+                      - - Message destiné à l'utilisateur
+                        - Niveau normal
+          - id: q02
+            type: texte
+            enonce: "Q2 : Ces trois valeurs sont-elles de même nature ? Expliquez."
+            suite:
+                - type: titre
+                  texte: "Mise en commun : une information représentée par une donnée"
+                - type: paragraphe
+                  texte: Pour être utilisée par un système numérique, une information est représentée sous la forme d'une donnée.
+                - type: paragraphe
+                  texte: "Parmi les types de données que nous utiliserons cette année, on trouve notamment :"
+                - type: liste
+                  elements:
+                      - "nombre : 72 ;"
+                      - "booléen : vrai ou faux ;"
+                      - "texte : « Niveau normal »."
+    - id: a08
+      titre: 3. Quel type de donnée choisir ?
+      contenu:
+          - type: paragraphe
+            texte: Classez les données suivantes.
+      questions:
+          - id: q01
+            type: tableau
+            enonce: Complète le tableau ci-dessous.
+            colonnes:
+                - Information
+                - Exemple de donnée
+                - "Type : nombre, booléen ou texte"
+            lignes:
+                - - Niveau d'eau
+                  - "72"
+                  - ""
+                - - Pompe activée
+                  - Faux
+                  - ""
+                - - Message
+                  - Niveau normal
+                  - ""
+                - - Température de l'eau
+                  - 18,5
+                  - ""
+                - - Alerte active
+                  - Vrai
+                  - ""
+                - - Nom de la cuve
+                  - Cuve nord
+                  - ""
+    - id: a09
+      titre: 4. D'où viennent les données et à quoi servent-elles ?
+      contenu:
+          - type: paragraphe
+            texte: "Une donnée n'existe pas seule : elle a une origine et une utilisation."
+          - type: paragraphe
+            texte: "Complétez :"
+      questions:
+          - id: q01
+            type: tableau
+            enonce: Complète le tableau ci-dessous.
+            colonnes:
+                - Donnée
+                - Origine possible
+                - Utilisation par le système
+            lignes:
+                - - "Niveau d'eau : 72 %"
+                  - ""
+                  - ""
+                - - "Pompe active : vrai / faux"
+                  - ""
+                  - ""
+                - - "Message : « Niveau faible »"
+                  - ""
+                  - ""
+            suite:
+                - type: titre
+                  texte: Mise en commun
+                - type: paragraphe
+                  texte: "Dans un système automatisé, certaines données peuvent être :"
+                - type: liste
+                  elements:
+                      - acquises par des capteurs ;
+                      - traitées par un programme ;
+                      - communiquées à l'utilisateur ;
+                      - stockées pour être utilisées plus tard.
+    - id: a10
+      titre: 5. Pourquoi seulement des 0 et des 1 ?
+      contenu:
+          - type: paragraphe
+            texte: Un système numérique doit finalement représenter ses informations à l'aide de deux états élémentaires.
+          - type: paragraphe
+            texte: Cette unité d'information est appelée un bit.
+          - type: paragraphe
+            texte: "Un bit peut prendre deux valeurs :"
+          - type: paragraphe
+            texte: 0 ou 1.
+          - type: paragraphe
+            texte: "Pour notre pompe, on choisit par exemple la convention :"
+          - type: liste
+            elements:
+                - "0 : pompe arrêtée ;"
+                - "1 : pompe en fonctionnement."
+          - type: paragraphe
+            texte: "Complétez :"
+      questions:
+          - id: q01
+            type: tableau
+            enonce: Complète le tableau ci-dessous.
+            colonnes:
+                - État
+                - Valeur selon cette convention
+            lignes:
+                - - Pompe arrêtée
+                  - ""
+                - - Pompe en fonctionnement
+                  - ""
+                - - Voyant éteint
+                  - ""
+                - - Voyant allumé
+                  - ""
+            suite:
+                - type: paragraphe
+                  texte: "Attention : pour le voyant, choisissez vous-même une convention puis indiquez-la avant de répondre."
+    - id: a11
+      titre: 6. Un seul bit suffit-il pour tout représenter ?
+      contenu:
+          - type: paragraphe
+            texte: Un bit ne possède que deux valeurs possibles.
+          - type: paragraphe
+            texte: Pour représenter davantage d'informations, les bits sont regroupés.
+          - type: paragraphe
+            texte: 8 bits = 1 octet
+          - type: paragraphe
+            texte: "Calculez :"
+          - type: etapes
+            elements:
+                - 4 octets = ............... bits ;
+                - 250 octets = ............... bits ;
+                - 2 000 octets = ............... bits.
+          - type: paragraphe
+            texte: "Pour vérifier la définition : Facem Web – Qu'est-ce qu'un bit en informatique ? Définition & principes"
+          - type: lien
+            titre: Facem Web – Qu'est-ce qu'un bit en informatique ? Définition & principes
+            url: https://facemweb.com/blog/notoriete/bit-definition/
+      questions: []
+    - id: a12
+      titre: 7. Une donnée peut-elle déclencher une action ?
+      contenu:
+          - type: paragraphe
+            texte: "Le programme de la cuve utilise la règle suivante :"
+          - type: paragraphe
+            texte: Si le niveau devient inférieur à 20 %, alors la pompe doit démarrer.
+          - type: paragraphe
+            texte: "Le capteur transmet successivement :"
+      questions:
+          - id: q01
+            type: tableau
+            enonce: Complète le tableau ci-dessous.
+            colonnes:
+                - Mesure
+                - Niveau
+                - Pompe attendue
+            lignes:
+                - - "1"
+                  - 31 %
+                  - ""
+                - - "2"
+                  - 24 %
+                  - ""
+                - - "3"
+                  - 18 %
+                  - ""
+                - - "4"
+                  - 16 %
+                  - ""
+          - id: q02
+            type: texte
+            enonce: "Q3 : À partir de quelle mesure la pompe doit-elle démarrer ?"
+          - id: q03
+            type: texte
+            enonce: "Q4 : Justifiez en utilisant la valeur mesurée et le seuil."
+    - id: a13
+      titre: 8. Attention aux données mal interprétées
+      contenu:
+          - type: paragraphe
+            texte: Un programme reçoit la valeur 18 du capteur.
+          - type: paragraphe
+            texte: "Un élève affirme immédiatement :"
+          - type: paragraphe
+            texte: « La cuve contient 18 litres d'eau. »
+      questions:
+          - id: q01
+            type: texte
+            enonce: "Q5 : Peut-on en être certain ? Pourquoi ?"
+            suite:
+                - type: paragraphe
+                  texte: "La documentation indique finalement :"
+                - type: paragraphe
+                  texte: « La valeur fournie correspond au niveau de remplissage exprimé en pourcentage. »
+          - id: q02
+            type: texte
+            enonce: "Q6 : Que signifie alors la donnée 18 ?"
+    - id: a14
+      titre: 9. Conclusion du travail
+      contenu:
+          - type: paragraphe
+            texte: "Complétez :"
+          - type: liste
+            elements:
+                - Une donnée sert à représenter ......................................................................................... .
+                - Une donnée de type nombre peut servir à ............................................................................ .
+                - Un booléen possède ............................................................................................................. .
+                - Un bit peut prendre ............................................................................................................... .
+                - Un octet contient ................................................................................................................... .
+                - Une donnée provenant d'un capteur peut être utilisée pour .................................................... .
+          - type: paragraphe
+            texte: "Répondez maintenant à la problématique en 4 à 6 lignes :"
+          - type: paragraphe
+            texte: Comment un système automatisé transforme-t-il des informations du monde réel en données qu'il peut traiter ?
+      questions: []
+    - id: a15
+      titre: Rendu attendu
+      contenu:
+          - type: paragraphe
+            texte: À la fin de la séance, déposez votre fichier 3e_S07_nom.odt.
+          - type: paragraphe
+            texte: Le fichier doit être rendu même si toutes les activités ne sont pas terminées.
+      questions: []
+    - id: a16
+      titre: À retenir
+      contenu:
+          - type: paragraphe
+            texte: Un système numérique utilise des données pour représenter les informations dont il a besoin.
+          - type: paragraphe
+            texte: Ces données peuvent notamment être des nombres, des booléens ou du texte.
+          - type: paragraphe
+            texte: Elles peuvent être acquises, traitées, transmises ou stockées.
+          - type: paragraphe
+            texte: Un bit peut prendre les valeurs 0 ou 1 et 8 bits constituent un octet.
+          - type: paragraphe
+            texte: Une donnée n'a de sens que si l'on connaît ce qu'elle représente, son unité ou la convention utilisée.
+      questions: []
+    - id: a17
+      titre: Sources générales
+      contenu:
+          - type: liste
+            elements:
+                - Ministère de l'Éducation nationale – Programme de technologie du cycle 4
+                - Éduscol – Ressources d'accompagnement du programme de technologie
+          - type: lien
+            titre: Programme de technologie du cycle 4
+            url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+          - type: lien
+            titre: Ressources d'accompagnement du programme de technologie
+            url: https://eduscol.education.fr/5745/ressources-d-accompagnement-du-programme-de-technologie-au-cycle-4
+      questions: []
+bilan: Relis tes réponses et vérifie les points demandés dans le bilan du cours. Tu peux revenir sur ton travail tant que le professeur ne l’a pas clôturé.
+introduction:
+    - type: titre
+      texte: "Compétence visée : Identifier les données utilisées par un système technique et comprendre leur rôle dans son fonctionnement"
+    - type: titre
+      texte: Objectifs d’apprentissage
+    - type: paragraphe
+      texte: "Ce que les élèves vont apprendre :"
+    - type: liste
+      elements:
+          - Un système numérique utilise des données pour représenter des informations.
+          - Une donnée peut notamment être un nombre, un booléen ou du texte.
+          - Une donnée peut provenir d'un capteur, être produite par un programme ou être destinée à l'utilisateur.
+          - Un booléen représente une information possédant deux états.
+          - Dans un système numérique, l'information est représentée à l'aide de bits.
+          - Un bit peut prendre deux valeurs et huit bits constituent un octet.
+          - Les données peuvent être traitées, transmises ou stockées.
+    - type: paragraphe
+      texte: "Ce qu'ils vont apprendre à faire :"
+    - type: liste
+      elements:
+          - Identifier les informations nécessaires au fonctionnement d'un système.
+          - Identifier le type d'une donnée.
+          - Associer une information à une donnée utilisée par un programme.
+          - Interpréter une convention utilisant 0 et 1.
+          - Exploiter une série de données pour déterminer le comportement attendu d'un système.
+          - Justifier une réponse à partir d'une valeur et d'un seuil.
+reperes_officiels:
+    - type: paragraphe
+      texte: Dans cette page du ministère, retrouve le programme ou le référentiel de ta formation. Les objectifs précis étudiés aujourd’hui sont indiqués dans le cours.
+    - type: lien
+      titre: Consulter les programmes et attendus officiels
+      url: https://eduscol.education.gouv.fr/5745/ressources-d-accompagnement-du-programme-de-technologie-au-cycle-4

@@ -1,0 +1,27 @@
+---
+layout: prof
+title: Cours professeur
+permalink: /prof/cours/
+---
+<link rel="stylesheet" href="{{ '/assets/css/cours/cours-activites.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/cours/course-layout.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/cours/course-paper-version.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/prof/private-course.css' | relative_url }}">
+<section id="teacher-course" data-enabled="{{ site.data.features.private_teacher_courses }}">
+    <p class="prof-eyebrow">Préparer et accompagner la séance</p><h1>Cours professeur</h1>
+    <p>Le cours élève et les notes réservées au professeur sont séparés. Fermez les notes privées avant de projeter votre écran.</p>
+    <p id="teacher-course-context" class="prof-description"></p>
+    <div class="teacher-course-filters">
+        <div><label for="teacher-course-subject">Matière</label><select id="teacher-course-subject" disabled></select></div>
+        <div><label for="teacher-course-class">Établissement et classe</label><select id="teacher-course-class" disabled></select></div>
+        <div><label for="teacher-course-select">Séance intégrée au nouveau site</label><select id="teacher-course-select" disabled></select></div>
+    </div>
+    <div class="session-actions"><button type="button" id="teacher-course-open" disabled>Version élève / projection</button><button type="button" id="teacher-course-private" disabled>Ouvrir le cours professeur</button><button type="button" id="teacher-course-hide">Masquer et effacer les notes privées</button></div>
+    <p><a id="teacher-course-copies" data-base-url="{{ '/prof/suivi/' | relative_url }}" hidden>Consulter les copies de cette classe</a></p>
+    <p id="teacher-course-status" role="status" aria-live="polite">Vérification de votre accès…</p>
+    {% unless site.data.features.private_teacher_courses %}<p class="private-course-setup">L’accès privé est en préparation. Il sera activé après configuration du dépôt privé et vérification complète des accès. Aucun corrigé réel n’est chargé pour le moment.</p>{% endunless %}
+    <section id="teacher-course-notes" class="private-course-notes" aria-label="Notes privées du professeur" hidden></section>
+    <div id="teacher-course-preview"></div>
+</section>
+{% include config/seances-data.html %}
+<script type="module" src="{{ '/assets/js/prof/private-course.js' | relative_url }}"></script>

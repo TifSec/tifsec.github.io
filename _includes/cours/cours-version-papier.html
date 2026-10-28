@@ -1,0 +1,12 @@
+<section id="course-paper-version" class="course-paper-version" hidden aria-labelledby="course-paper-title">
+    <article class="course-paper-sheet">
+        <header><p class="course-paper-kicker">{{ include.version.surtitre | default: 'Cours magistral puis exercices' | escape }}</p><h2 id="course-paper-title">{{ include.version.titre | escape }}</h2><p>{{ include.version.introduction | escape }}</p></header>
+        {% for section in include.version.sections %}
+        <section class="course-paper-section">
+            <h3>{{ section.titre | escape }}</h3>
+            {% include cours/cours-blocs.html blocs=section.blocs %}
+            {% if section.questions %}<ol class="course-paper-questions">{% for question in section.questions %}<li><span>{{ question | escape }}</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li>{% endfor %}</ol>{% endif %}
+        </section>
+        {% endfor %}
+    </article>
+</section>

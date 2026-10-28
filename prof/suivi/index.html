@@ -1,0 +1,52 @@
+---
+layout: prof
+title: Suivi et correction des copies
+permalink: /prof/suivi/
+---
+<link rel="stylesheet" href="{{ '/assets/css/prof/prof-tracking.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/prof/copy-correction.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/cours/cours-activites.css' | relative_url }}">
+<section id="teacher-tracking" data-enabled="{{ site.data.features.teacher_tracking }}" data-grade-validation="{{ site.data.features.grade_validation | default: false }}" data-student-submission="{{ site.data.features.student_submission }}">
+    <p class="prof-eyebrow">Observer, accompagner, corriger</p>
+    <h1>Copies et corrections</h1>
+    <p class="prof-description">Choisissez une séance pour retrouver les travaux individuels ou collectifs et transmettre vos retours.</p>
+    <p id="tracking-status" role="status" aria-live="polite">{% if site.data.features.teacher_tracking %}Chargement de vos enseignements…{% else %}Le suivi est prêt à être testé après validation des accès dans Supabase.{% endif %}</p>
+    <fieldset id="tracking-filters" class="tracking-filters" disabled>
+        <legend>Choisir les copies à consulter</legend>
+        <div class="prof-filter"><label for="tracking-subject">Matière</label><select id="tracking-subject"></select></div>
+        <div class="prof-filter"><label for="tracking-class">Classe</label><select id="tracking-class"></select></div>
+        <div class="prof-filter prof-filter-wide"><label for="tracking-lesson">Séance</label><select id="tracking-lesson"></select></div>
+        <button type="button" id="tracking-refresh">Actualiser les copies</button>
+    </fieldset>
+    <div class="tracking-workspace">
+        <section class="tracking-sidebar"><h2>Travaux des élèves</h2><label class="tracking-history-toggle"><input type="checkbox" id="tracking-history"> Consulter l’historique individuel</label><div id="tracking-copies"></div><p class="prof-hint">Sélectionnez une copie pour lire les réponses et ajouter votre commentaire.</p></section>
+        <section id="tracking-detail" hidden>
+            <h2 id="tracking-identity"></h2>
+            <p id="tracking-copy-status"></p>
+            <section id="copy-correction" class="copy-correction" hidden aria-labelledby="copy-correction-title">
+                <h3 id="copy-correction-title">Aide à la correction</h3>
+                <p>Les vérifications automatiques préparent votre lecture. Vous gardez la décision sur l’évaluation.</p>
+                <button type="button" id="copy-correction-prepare" disabled>Préparer la correction</button>
+                <p id="copy-correction-status" role="status" aria-live="polite"></p>
+                <div id="copy-correction-results"></div>
+            </section>
+            <div id="tracking-preview"></div>
+            <section id="copy-grade" class="copy-correction" data-enabled="{{ site.data.features.grade_validation | default: false }}" hidden aria-labelledby="copy-grade-title">
+                <h3 id="copy-grade-title">Note et validation de la correction</h3>
+                <p id="copy-grade-total" role="status" aria-live="polite"></p>
+                <p id="copy-grade-status" role="status" aria-live="polite"></p>
+                <button type="button" id="copy-grade-validate" disabled>Valider la correction et verrouiller la copie</button>
+            </section>
+            <fieldset id="tracking-correction" disabled>
+                <legend>Retour à l’élève ou au groupe</legend>
+                <label for="tracking-feedback">Commentaire visible par les participants de cette copie</label>
+                <textarea id="tracking-feedback" rows="5" maxlength="20000"></textarea>
+                <button type="button" id="tracking-save">Enregistrer le commentaire</button>
+                <button type="button" id="tracking-finish">Terminer la copie</button>
+                <p>Terminer la copie bloque les nouvelles réponses. Vous pouvez la rouvrir ensuite.</p>
+            </fieldset>
+        </section>
+    </div>
+</section>
+{% include config/seances-data.html %}
+<script type="module" src="{{ '/assets/js/prof/prof-tracking.js' | relative_url }}"></script>
