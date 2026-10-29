@@ -1,0 +1,163 @@
+titre: 'Séance 6 : Le tableur qui prévient : la fonction SI'
+themes:
+    - Objectif 2 — Créer, produire, traiter et exploiter des données
+problematique: Comment un tableur peut-il prendre une décision et afficher une alerte ?
+competences_bo:
+    - Objectif 2 — Créer, produire, traiter et exploiter des données
+objectifs:
+    connaissances:
+        - =SI(test ; valeur si vrai ; valeur si faux) affiche un résultat selon une condition.
+        - 'Le test compare deux valeurs : =, <, >, <=, >=, <>.'
+    competences:
+        - Écrire une fonction SI.
+        - Choisir le bon opérateur de comparaison.
+pourquoi:
+    - En 4e, tu as fait calculer le tableur. Il peut aussi décider.
+    - 'Le centre équestre veut savoir quels chevaux doivent être vermifugés : plus de 90 jours depuis le dernier vermifuge.'
+activites:
+    -   id: a01
+        titre: Le test
+        consigne: Tu vas tester la règle « plus de 90 jours » sur les chevaux du document 1. On attend VRAI ou FAUX pour chaque cheval.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Suivi des vermifuges (fictif)
+                colonnes:
+                    - ''
+                    - A
+                    - B
+                    - C
+                lignes:
+                    -   - '1'
+                        - Cheval
+                        - Jours depuis le vermifuge
+                        - À faire ?
+                    -   - '2'
+                        - Tango
+                        - '120'
+                        - ''
+                    -   - '3'
+                        - Iris
+                        - '45'
+                        - ''
+                    -   - '4'
+                        - Nuage
+                        - '90'
+                        - ''
+                    -   - '5'
+                        - Galopin
+                        - '200'
+                        - ''
+            -   type: etapes
+                elements:
+                    - 'Lis la règle : vermifuger si plus de 90 jours se sont écoulés.'
+                    - Pour chaque cheval du document 1, fais le test de tête.
+                    - Écris VRAI ou FAUX.
+            -   type: paragraphe
+                texte: 'Pourquoi un test vrai ou faux ? Le tableur décide comme toi : il compare, puis choisit.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: D’après le document 1, le test « jours > 90 » est-il VRAI ou FAUX ?
+                colonnes:
+                    - Cheval
+                    - Test
+                lignes:
+                    -   - Tango (120 jours)
+                        - ''
+                    -   - Iris (45 jours)
+                        - ''
+                    -   - Nuage (90 jours)
+                        - ''
+                aide: 'Méthode : 1) écris ce que tu fais (l’action) ; 2) écris ce qui doit se passer (résultat attendu) ; 3) compare avec ce qui se passe vraiment (résultat observé). Ne change qu’une seule chose à la fois.'
+    -   id: a02
+        titre: Écrire le SI
+        transition: Tu sais faire le test. Laisse le tableur le faire.
+        consigne: Tu vas écrire une fonction SI qui affiche « VERMIFUGER » ou « OK » pour chaque cheval. On attend le résultat pour Nuage expliqué et la formule recopiée.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre Calc, recopie le document 1, enregistre sous 3e_S06_tonprenom.ods.
+                    - En C2, écris =SI(B2>90;"VERMIFUGER";"OK").
+                    - Recopie jusqu’en C5.
+                    - Vérifie avec tes réponses de la mission 1.
+            -   type: paragraphe
+                texte: Pourquoi des guillemets ? Ils indiquent un texte à afficher ; sans eux, Calc cherche un nom de fonction.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Qu’affiche C4 pour Nuage, et pourquoi ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+            -   id: q02
+                type: qcm
+                enonce: Quelle formule écrire en C5 après recopie ?
+                choix:
+                    -   id: a
+                        texte: =SI(B5>90;"VERMIFUGER";"OK")
+                    -   id: b
+                        texte: =SI(B2>90;"VERMIFUGER";"OK")
+                    -   id: c
+                        texte: =B5>90
+                aide: Élimine d’abord les réponses impossibles.
+    -   id: a03
+        titre: Le bon opérateur
+        transition: La règle fonctionne. Que se passe-t-il à la limite ?
+        consigne: Tu vas adapter la formule SI à la nouvelle règle du vétérinaire (90 jours compris), avec le document 2. On attend la nouvelle formule et le résultat pour Nuage.
+        contenu:
+            -   type: tableau
+                titre: Document 2 — Opérateurs de comparaison
+                colonnes:
+                    - Opérateur
+                    - Signification
+                lignes:
+                    -   - '>'
+                        - strictement supérieur
+                    -   - '>='
+                        - supérieur ou égal
+                    -   - <
+                        - strictement inférieur
+                    -   - <=
+                        - inférieur ou égal
+                    -   - '='
+                        - égal
+                    -   - <>
+                        - différent
+            -   type: etapes
+                elements:
+                    - Lis le tableau des opérateurs (document 2).
+                    - 'Le vétérinaire change la règle : vermifuger à partir de 90 jours (90 compris).'
+                    - Corrige la formule et observe Nuage.
+            -   type: paragraphe
+                texte: Pourquoi l’opérateur compte ? « > » et « >= » ne donnent pas le même résultat pour la valeur limite.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris la nouvelle formule de C2 et ce qu’affiche maintenant Nuage.
+                aide: 'Méthode : 1) clique dans la cellule du résultat ; 2) tape « = » puis le nom de la fonction (SOMME, MOYENNE…) ; 3) écris la plage entre parenthèses, par exemple (B2:B10) ; 4) appuie sur Entrée et vérifie que le résultat est vraisemblable.'
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: On peut imbriquer deux SI.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris une formule qui affiche « URGENT » au-delà de 180 jours, « VERMIFUGER » au-delà de 90, « OK » sinon.
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton tableur prévient tout seul. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment un tableur peut-il prendre une décision et afficher une alerte ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - =SI(test;"si vrai";"si faux").
+    - '> strict, >= avec la limite.'
+sources:
+    -   type: lien
+        titre: ChloroFil — Document d’accompagnement TIM, 4e et 3e de l’enseignement agricole (juin 2016)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/4e3e/da/4e3e-da-TIMJuin2016.pdf

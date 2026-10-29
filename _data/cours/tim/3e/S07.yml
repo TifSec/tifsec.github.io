@@ -1,0 +1,153 @@
+titre: 'Séance 7 : La ration selon le poids : les références absolues'
+themes:
+    - Objectif 2 — Créer, produire, traiter et exploiter des données
+problematique: Comment recopier une formule qui utilise toujours la même cellule ?
+competences_bo:
+    - Objectif 2 — Créer, produire, traiter et exploiter des données
+objectifs:
+    connaissances:
+        - En recopiant, une référence relative (B2) change ; une référence absolue ($E$1) reste fixe.
+        - On utilise $ pour une valeur commune à toutes les lignes (un taux, un prix).
+    competences:
+        - Distinguer référence relative et absolue.
+        - Utiliser $ dans une formule recopiée.
+pourquoi:
+    - En S06, tu as recopié des formules SI.
+    - 'Pour calculer la ration de foin selon le poids, toutes les lignes utilisent le même pourcentage : il faut le bloquer.'
+activites:
+    -   id: a01
+        titre: Le problème de la recopie
+        consigne: Tu vas comprendre pourquoi la formule de ration de Lisa (document 1) donne une erreur quand on la recopie. On attend la formule recopiée et la cause de l’erreur.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Ration de foin selon le poids (ordre de grandeur 1,5 % du poids)
+                colonnes:
+                    - ''
+                    - A
+                    - B
+                    - C
+                    - D
+                    - E
+                lignes:
+                    -   - '1'
+                        - Cheval
+                        - Poids (kg)
+                        - Foin par jour (kg)
+                        - 'Taux :'
+                        - '0,015'
+                    -   - '2'
+                        - Tango
+                        - '520'
+                        - ''
+                        - ''
+                        - ''
+                    -   - '3'
+                        - Iris
+                        - '450'
+                        - ''
+                        - ''
+                        - ''
+                    -   - '4'
+                        - Galopin
+                        - '600'
+                        - ''
+                        - ''
+                        - ''
+            -   type: etapes
+                elements:
+                    - 'Lis le document 1 : la ration de foin vaut environ 1,5 % du poids par jour.'
+                    - 'Regarde la formule de Lisa en C2 : =B2*E1.'
+                    - Imagine-la recopiée en C3.
+            -   type: paragraphe
+                texte: Pourquoi ça casse ? En descendant d’une ligne, E1 devient E2, qui est vide.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Si on recopie =B2*E1 en C3, quelle formule obtient-on ?
+                choix:
+                    -   id: a
+                        texte: =B3*E2
+                    -   id: b
+                        texte: =B3*E1
+                    -   id: c
+                        texte: =B2*E1
+                aide: Élimine d’abord les réponses impossibles.
+            -   id: q02
+                type: texte
+                enonce: Pourquoi le résultat en C3 est-il alors 0 ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a02
+        titre: Bloquer avec $
+        transition: La recopie déplace E1. Il faut le bloquer.
+        consigne: Tu vas bloquer la cellule du taux avec $ pour que la formule de ration se recopie juste. On attend la ration de Galopin et la formule recopiée.
+        contenu:
+            -   type: citation
+                texte: 'Réflexe DNB M5 : j’écris l’unité de mes résultats.'
+            -   type: etapes
+                elements:
+                    - Recopie le document 1 dans Calc ; enregistre sous 3e_S07_tonprenom.ods.
+                    - En C2, écris =B2*$E$1 (ou appuie sur F4 après E1).
+                    - Recopie jusqu’en C4.
+                    - Vérifie les résultats.
+            -   type: paragraphe
+                texte: 'Pourquoi $ ? Il bloque la colonne et la ligne : E1 reste E1 sur toutes les lignes.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quelle ration de foin par jour Calc affiche-t-il pour Galopin ?
+                unite: kg
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Écris la formule de C3 après recopie.
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a03
+        titre: Changer le taux
+        transition: Les formules sont justes. Profite de l’avantage du $.
+        consigne: Tu vas changer le taux de ration dans la seule cellule E1 et observer toutes les rations. On attend la nouvelle ration de Tango et l’explication.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Le vétérinaire conseille 2 % pour un cheval au travail intense : tape 0,02 en E1.'
+                    - Observe toutes les rations.
+                    - Explique.
+            -   type: paragraphe
+                texte: Pourquoi une seule cellule ? Changer une valeur commune met à jour toutes les lignes d’un coup.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Avec un taux de 2 %, quelle ration pour Tango ?
+                unite: kg
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Pourquoi n’a-t-on modifié qu’une seule cellule pour changer toutes les rations ?
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: 'Une référence peut être bloquée à moitié : $E1 ou E$1.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Que bloque E$1 ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tes rations se recopient juste. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment recopier une formule qui utilise toujours la même cellule ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - 'Relative (B2) : change à la recopie ; absolue ($E$1) : fixe.'
+    - F4 ajoute les $.
+sources:
+    -   type: lien
+        titre: ChloroFil — Document d’accompagnement TIM, 4e et 3e de l’enseignement agricole (juin 2016)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/4e3e/da/4e3e-da-TIMJuin2016.pdf

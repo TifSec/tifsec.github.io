@@ -1,0 +1,133 @@
+titre: 'Séance 17 : Trop chaud dans le box : une alarme programmée'
+themes:
+    - Objectif 5 — Découvrir l’analyse et le codage
+problematique: Comment un objet programmé peut-il décider seul de déclencher une alarme ?
+competences_bo:
+    - Objectif 5 — Découvrir l’analyse et le codage
+objectifs:
+    connaissances:
+        - « si… alors… sinon » choisit une action selon une condition sur la mesure.
+        - Le seuil est la valeur limite qui déclenche l’alarme ; on peut le ranger dans une variable.
+    competences:
+        - Programmer une condition avec un seuil.
+        - Utiliser une variable pour régler le seuil.
+pourquoi:
+    - En S16, la carte affichait la température.
+    - Le gérant veut être alerté si le box dépasse 28 °C en été (risque de coup de chaleur).
+activites:
+    -   id: a01
+        titre: L’algorithme de l’alarme
+        consigne: Tu vas écrire l’algorithme de l’alarme de température du box, à partir du besoin du gérant (28 °C). On attend la condition et les deux actions.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Lis le besoin du gérant.
+                    - 'Complète l’algorithme : si la température dépasse le seuil, alors…, sinon….'
+                    - Vérifie avec deux températures.
+            -   type: paragraphe
+                texte: Pourquoi écrire l’algorithme d’abord ? On réfléchit au fonctionnement avant de chercher les blocs.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Complète l’algorithme de l’alarme.
+                colonnes:
+                    - Partie
+                    - Contenu
+                lignes:
+                    -   - Condition
+                        - ''
+                    -   - Action si vrai
+                        - ''
+                    -   - Action si faux
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne.'
+    -   id: a02
+        titre: Programmer avec un seuil
+        transition: L’algorithme est prêt. Programme-le avec un seuil réglable.
+        consigne: Tu vas programmer l’alarme avec une variable « seuil » et la tester dans le simulateur. On attend l’affichage à 25 °C et 31 °C, et comment changer le seuil.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Dans MakeCode, crée une variable « seuil » ; au démarrage, mets-la à 28.
+                    - 'Dans « toujours » : si température (°C) > seuil alors montrer l’icône « ! » et jouer un son, sinon montrer l’icône « oui ».'
+                    - Teste dans le simulateur à 25 °C puis à 31 °C.
+            -   type: paragraphe
+                texte: Pourquoi une variable seuil ? Pour changer la limite, on modifie une seule valeur au lieu de chercher dans le programme.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Qu’affiche la carte ?
+                colonnes:
+                    - Température
+                    - Affichage
+                lignes:
+                    -   - 25 °C
+                        - ''
+                    -   - 31 °C
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne.'
+            -   id: q02
+                type: qcm
+                enonce: Le gérant veut l’alarme à 30 °C. Que changes-tu ?
+                choix:
+                    -   id: a
+                        texte: La valeur de la variable seuil (30).
+                    -   id: b
+                        texte: Tout le programme.
+                    -   id: c
+                        texte: Le capteur.
+                aide: Élimine d’abord les réponses impossibles.
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit — éditeur et simulateur
+                url: https://makecode.microbit.org/
+    -   id: a03
+        titre: Régler le seuil aux boutons
+        transition: L’alarme fonctionne. Rends le seuil réglable sur place.
+        consigne: Tu vas permettre de régler le seuil avec les boutons A et B. On attend la valeur du seuil après plusieurs appuis et l’intérêt de l’afficher.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Ajoute : quand le bouton A est pressé → changer seuil de -1 et montrer seuil.'
+                    - Quand le bouton B est pressé → changer seuil de 1 et montrer seuil.
+                    - Teste.
+            -   type: paragraphe
+                texte: Pourquoi des boutons ? Le palefrenier peut régler l’alarme sans ordinateur.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Le seuil vaut 28. On appuie 3 fois sur B puis 1 fois sur A. Combien vaut-il ?
+                unite: °C
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Pourquoi afficher le seuil après chaque appui ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le gérant veut aussi une alerte « trop froid » sous 2 °C (abreuvoirs gelés).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment compléter le programme ?
+                aide: 'Bloc par bloc : quand ? quelle condition ? quelle action ?'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton alarme fonctionne. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment un objet programmé peut-il décider seul de déclencher une alarme ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - si mesure > seuil alors alerte sinon OK.
+    - Seuil dans une variable, réglable.
+sources:
+    -   type: lien
+        titre: ChloroFil — Document d’accompagnement TIM, 4e et 3e de l’enseignement agricole (juin 2016)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/4e3e/da/4e3e-da-TIMJuin2016.pdf

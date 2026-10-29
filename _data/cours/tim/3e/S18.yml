@@ -1,0 +1,123 @@
+titre: 'Séance 18 : Compter les foulées : un podomètre pour cheval'
+themes:
+    - Objectif 5 — Découvrir l’analyse et le codage
+problematique: Comment un programme peut-il compter des événements ?
+competences_bo:
+    - Objectif 5 — Découvrir l’analyse et le codage
+objectifs:
+    connaissances:
+        - Un compteur est une variable qu’on augmente de 1 à chaque événement.
+        - 'L’accéléromètre détecte un mouvement (secousse) : c’est un événement.'
+    competences:
+        - Programmer un compteur.
+        - Remettre un compteur à zéro.
+pourquoi:
+    - En S17, tu as utilisé une variable seuil.
+    - 'Un cavalier veut compter les foulées de son cheval à la longe : chaque secousse = une foulée.'
+activites:
+    -   id: a01
+        titre: Le compteur sur papier
+        consigne: Tu vas suivre la valeur d’un compteur de foulées dans un algorithme (ci-dessous). On attend la valeur après 4 secousses et le rôle de l’initialisation.
+        contenu:
+            -   type: citation
+                texte: 'Réflexe DNB M9 : je lis un programme bloc par bloc.'
+            -   type: code
+                texte: "au démarrage\n    mettre foulées à 0\nlorsque secouer\n    changer foulées de 1\n    montrer nombre foulées"
+            -   type: etapes
+                elements:
+                    - Lis l’algorithme (ci-dessous).
+                    - Suis la valeur de « foulées » pour 4 secousses.
+                    - Réponds.
+            -   type: paragraphe
+                texte: Pourquoi suivre la variable ? C’est la méthode pour comprendre un programme sans ordinateur.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Après 4 secousses, quelle est la valeur de « foulées » ?
+                unite: foulées
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: qcm
+                enonce: Que se passe-t-il si on oublie « mettre foulées à 0 » au démarrage ?
+                choix:
+                    -   id: a
+                        texte: Le compteur peut partir d’une valeur inconnue ou de l’ancienne.
+                    -   id: b
+                        texte: Rien.
+                    -   id: c
+                        texte: Il compte deux fois plus vite.
+                aide: Élimine d’abord les réponses impossibles.
+    -   id: a02
+        titre: Programmer le podomètre
+        transition: Tu comprends le compteur. Programme-le.
+        consigne: Tu vas programmer le podomètre et sa remise à zéro (A+B), puis le tester. On attend ce que montre l’écran et l’effet de A+B.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Dans MakeCode, crée la variable « foulées ».
+                    - Programme les blocs du document.
+                    - Dans le simulateur, clique sur SHAKE plusieurs fois.
+                    - 'Ajoute : bouton A+B → mettre foulées à 0.'
+            -   type: paragraphe
+                texte: Pourquoi A+B pour remettre à zéro ? Un seul bouton pourrait être appuyé par erreur.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Combien de fois as-tu secoué, que montre l’écran, et que se passe-t-il avec A+B ?
+                aide: Une phrase complète qui reprend les mots de la question.
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit — éditeur et simulateur
+                url: https://makecode.microbit.org/
+    -   id: a03
+        titre: Calculer à partir du compteur
+        transition: Le compteur marche. Utilise-le pour estimer une distance.
+        consigne: Tu vas faire calculer à la carte la distance parcourue à partir du nombre de foulées. On attend la distance pour 20 foulées et une limite de la mesure.
+        contenu:
+            -   type: citation
+                texte: 'Réflexe DNB M5 : j’écris l’unité de mes résultats.'
+            -   type: etapes
+                elements:
+                    - Une foulée de galop mesure environ 3,5 m (ordre de grandeur pour un cheval de selle).
+                    - 'Ajoute : bouton B → montrer foulées × 3,5.'
+                    - Teste avec 20 foulées.
+            -   type: paragraphe
+                texte: Pourquoi calculer ? Le programme transforme un comptage en distance, comme une montre de sport.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Pour 20 foulées de 3,5 m, quelle distance la carte affiche-t-elle ?
+                unite: m
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Pourquoi cette distance n’est-elle qu’une estimation ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: La carte peut envoyer le compteur par radio à une autre carte.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: À quoi cela servirait-il pour le moniteur ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton podomètre compte. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment un programme peut-il compter des événements ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - 'Compteur : mettre à 0, puis changer de 1 à chaque événement.'
+    - Le capteur donne une estimation.
+sources:
+    -   type: lien
+        titre: ChloroFil — Document d’accompagnement TIM, 4e et 3e de l’enseignement agricole (juin 2016)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/4e3e/da/4e3e-da-TIMJuin2016.pdf

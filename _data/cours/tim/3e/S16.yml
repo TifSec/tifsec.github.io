@@ -1,0 +1,140 @@
+titre: 'Séance 16 : Un thermomètre d’écurie avec la carte micro:bit'
+themes:
+    - Objectif 5 — Découvrir l’analyse et le codage
+problematique: Comment une carte programmable peut-elle mesurer et afficher une grandeur ?
+competences_bo:
+    - Objectif 5 — Découvrir l’analyse et le codage
+objectifs:
+    connaissances:
+        - La carte micro:bit a des capteurs intégrés (température, lumière, boutons) et un écran de 25 LED.
+        - Un programme lit le capteur et affiche la valeur, en boucle.
+    competences:
+        - Lire un capteur avec MakeCode.
+        - Afficher une valeur en boucle et tester sur le simulateur.
+pourquoi:
+    - En 4e, tu as programmé un jeu avec Scratch.
+    - 'Cette fois, le programme agit dans le monde réel : surveiller la température de l’écurie.'
+activites:
+    -   id: a01
+        titre: Les capteurs de la carte
+        consigne: Tu vas associer trois besoins de l’écurie aux éléments de la carte micro:bit (document 1). On attend un élément pour chaque besoin.
+        contenu:
+            -   type: liste
+                elements:
+                    - 'Écran de 25 LED (5 × 5) : affiche du texte, des nombres, des images.'
+                    - Boutons A et B.
+                    - Capteur de température (en °C).
+                    - Capteur de lumière (de 0 à 255).
+                    - Accéléromètre (mouvement).
+            -   type: etapes
+                elements:
+                    - Lis la description de la carte (document 1).
+                    - Repère les capteurs et l’écran.
+                    - Associe chaque besoin à un capteur.
+            -   type: paragraphe
+                texte: Pourquoi un capteur ? Il transforme une grandeur réelle (chaleur, lumière) en nombre que le programme peut utiliser.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: D’après le document 1, quel élément de la carte utiliser ?
+                colonnes:
+                    - Besoin
+                    - Élément
+                lignes:
+                    -   - Mesurer la chaleur dans l’écurie
+                        - ''
+                    -   - Savoir s’il fait jour
+                        - ''
+                    -   - Lancer une mesure à la main
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne.'
+    -   id: a02
+        titre: Afficher la température
+        transition: Tu connais les capteurs. Programme la lecture de la température.
+        consigne: Tu vas programmer la carte pour afficher en permanence la température, et tester sur le simulateur. On attend ton programme et le rôle de « toujours ».
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Ouvre MakeCode (lien ci-dessous) : Nouveau projet.'
+                    - Dans « toujours », mets « montrer nombre (température (°C)) ».
+                    - Dans le simulateur, fais varier le thermomètre.
+                    - Observe l’écran.
+            -   type: paragraphe
+                texte: 'Pourquoi « toujours » ? La température change : il faut la relire sans arrêt.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris ton programme bloc par bloc.
+                aide: 'Bloc par bloc : quand ? quelle condition ? quelle action ?'
+            -   id: q02
+                type: qcm
+                enonce: Que se passe-t-il si tu mets le bloc dans « au démarrage » au lieu de « toujours » ?
+                choix:
+                    -   id: a
+                        texte: La température est affichée une seule fois.
+                    -   id: b
+                        texte: Rien ne change.
+                    -   id: c
+                        texte: La carte s’éteint.
+                aide: Élimine d’abord les réponses impossibles.
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit — éditeur et simulateur
+                url: https://makecode.microbit.org/
+    -   id: a03
+        titre: Lire un programme (M9)
+        transition: Ton thermomètre marche. Vérifie que tu sais lire un programme de ce type.
+        consigne: Tu vas lire un programme de thermomètre (ci-dessous) et prévoir ce qu’affiche l’écran à 12 °C et à 30 °C. On attend l’affichage dans chaque cas.
+        contenu:
+            -   type: citation
+                texte: 'Réflexe DNB M9 : je lis un programme bloc par bloc.'
+            -   type: code
+                texte: "toujours\n    montrer nombre (température (°C))\n    si température (°C) > 25 alors\n        montrer texte « CHAUD »"
+            -   type: etapes
+                elements:
+                    - Lis le programme ci-dessous bloc par bloc.
+                    - Imagine la température à 12 °C, puis à 30 °C.
+                    - Écris ce que montre l’écran.
+            -   type: paragraphe
+                texte: Pourquoi lire avant de tester ? Au DNB, on te demande ce que fait un programme sans ordinateur.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Qu’affiche l’écran pour chaque température ?
+                colonnes:
+                    - Température
+                    - Affichage
+                lignes:
+                    -   - 12 °C
+                        - ''
+                    -   - 30 °C
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne.'
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le capteur mesure la température du processeur de la carte.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi la mesure peut-elle être un peu fausse ?
+                aide: Action → résultat attendu → résultat observé ; une seule chose à la fois.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton thermomètre fonctionne. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment une carte programmable peut-elle mesurer et afficher une grandeur ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - Capteur → programme → affichage.
+    - « toujours » répète ; « au démarrage » une fois.
+sources:
+    -   type: lien
+        titre: ChloroFil — Document d’accompagnement TIM, 4e et 3e de l’enseignement agricole (juin 2016)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/4e3e/da/4e3e-da-TIMJuin2016.pdf

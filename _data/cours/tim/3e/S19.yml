@@ -1,0 +1,130 @@
+titre: 'Séance 19 : Le minuteur de soins : une boucle qui décompte'
+themes:
+    - Objectif 5 — Découvrir l’analyse et le codage
+problematique: Comment programmer une action qui dure un temps précis ?
+competences_bo:
+    - Objectif 5 — Découvrir l’analyse et le codage
+objectifs:
+    connaissances:
+        - Une boucle « répéter n fois » avec une pause d’une seconde permet de compter le temps.
+        - Un compte à rebours diminue une variable jusqu’à 0, puis déclenche une action.
+    competences:
+        - Programmer un compte à rebours.
+        - Lire une boucle avec pause.
+pourquoi:
+    - En S18, tu as augmenté un compteur.
+    - Pour un soin (douche froide d’un membre, 10 minutes), il faut un minuteur qui décompte.
+activites:
+    -   id: a01
+        titre: Combien de temps dure la boucle ?
+        consigne: Tu vas calculer la durée d’un programme avec une boucle et une pause (ci-dessous). On attend la durée en secondes et l’affichage final.
+        contenu:
+            -   type: code
+                texte: "répéter 60 fois\n    pause (ms) 1000\nmontrer texte « FINI »"
+            -   type: etapes
+                elements:
+                    - Lis le programme (ci-dessous).
+                    - Compte combien de fois la boucle tourne et combien dure chaque tour.
+                    - Calcule la durée totale.
+            -   type: paragraphe
+                texte: Pourquoi calculer ? Un minuteur doit durer exactement le temps prévu.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Combien de secondes dure ce programme ?
+                unite: s
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Que montre l’écran à la fin ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a02
+        titre: Le compte à rebours
+        transition: Tu sais calculer une durée. Programme un vrai compte à rebours.
+        consigne: Tu vas programmer un compte à rebours de 10 secondes qui se termine par « FINI ». On attend les valeurs de la variable et le bogue en cas d’oubli.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Crée une variable « reste », mise à 10 au démarrage du minuteur (bouton A).
+                    - 'Tant que reste > 0 : montrer reste, pause 1000 ms, changer reste de -1.'
+                    - Puis montrer « FINI » et jouer une mélodie.
+                    - Teste dans le simulateur.
+            -   type: paragraphe
+                texte: Pourquoi « tant que » ? La boucle s’arrête toute seule quand le temps est écoulé.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Que vaut « reste » ?
+                colonnes:
+                    - Moment
+                    - reste
+                lignes:
+                    -   - Au début
+                        - ''
+                    -   - Après 3 tours
+                        - ''
+                    -   - À la fin
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne.'
+            -   id: q02
+                type: qcm
+                enonce: Si on oublie « changer reste de -1 », que se passe-t-il ?
+                choix:
+                    -   id: a
+                        texte: La boucle ne s’arrête jamais.
+                    -   id: b
+                        texte: Le minuteur est plus rapide.
+                    -   id: c
+                        texte: Rien.
+                aide: Élimine d’abord les réponses impossibles.
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit — éditeur et simulateur
+                url: https://makecode.microbit.org/
+    -   id: a03
+        titre: Adapter au soin
+        transition: Ton minuteur marche en secondes. Adapte-le au vrai soin.
+        consigne: Tu vas adapter le minuteur à un soin de 10 minutes qui décompte minute par minute. On attend les réglages et le calcul qui les justifie.
+        contenu:
+            -   type: citation
+                texte: 'Réflexe DNB M5 : j’écris l’unité et je convertis (1 min = 60 s = 60 000 ms).'
+            -   type: etapes
+                elements:
+                    - 'Le soin dure 10 minutes : la carte doit afficher les minutes restantes.'
+                    - 'Propose les réglages : valeur de départ, durée de la pause.'
+                    - Vérifie le calcul.
+            -   type: paragraphe
+                texte: 'Pourquoi changer la pause ? Afficher chaque seconde de 10 minutes serait trop long : on décompte minute par minute.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quels réglages pour un minuteur de 10 minutes qui décompte minute par minute ? Justifie le calcul.
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Ajoute une pause du minuteur avec le bouton B.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quelle variable faut-il ajouter ?
+                aide: 'Bloc par bloc : quand ? quelle condition ? quelle action ?'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton minuteur de soins fonctionne. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment programmer une action qui dure un temps précis ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - Durée = nombre de tours × pause.
+    - 'Compte à rebours : variable qui diminue jusqu’à 0.'
+sources:
+    -   type: lien
+        titre: ChloroFil — Document d’accompagnement TIM, 4e et 3e de l’enseignement agricole (juin 2016)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/4e3e/da/4e3e-da-TIMJuin2016.pdf
