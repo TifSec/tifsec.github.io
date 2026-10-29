@@ -62,19 +62,16 @@ test('S11 : les deux trajets à compléter apparaissent avant la zone de répons
     assert.ok(fragment.includes('carte de commande'));
 });
 
-test('parcours réel : S10 remise → S11 accessible → S12 accessible → S13 accessible (séance en brouillon intégrée le 29 octobre)', () => {
+test('parcours réel 3e (progression 2026) : S01 remise → S02 accessible → S03 accessible', () => {
     const progression = yaml('_data/progressions.yml');
     const profile = { etablissement: 'college', classe: '3e' };
-    const lessons = questionCatalogue().filter(techno3e).map(row => ({ ...row, state: row.seance === 'S10R' ? 'finished' : 'new',
+    const lessons = questionCatalogue().filter(techno3e).map(row => ({ ...row, state: row.seance === 'S01' ? 'finished' : 'new',
         url: '/cours/techno/3e/' + row.seance.toLowerCase() + '/' }));
     let next = nextLessons(progression, profile, lessons)[0].next;
-    assert.equal(next.id, 'S11'); assert.ok(next.lesson.url);
-    lessons.find(row => row.seance === 'S11').state = 'finished';
+    assert.equal(next.id, 'S02'); assert.ok(next.lesson.url);
+    lessons.find(row => row.seance === 'S02').state = 'finished';
     next = nextLessons(progression, profile, lessons)[0].next;
-    assert.equal(next.id, 'S12'); assert.ok(next.lesson.url);
-    lessons.find(row => row.seance === 'S12').state = 'finished';
-    next = nextLessons(progression, profile, lessons)[0].next;
-    assert.equal(next.id, 'S13'); assert.ok(next.lesson.url);
+    assert.equal(next.id, 'S03'); assert.ok(next.lesson.url);
 });
 
 test('suivi : chaque question S11/S12 est reliée à une compétence existante de la matière', () => {

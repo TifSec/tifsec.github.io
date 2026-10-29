@@ -1,93 +1,116 @@
-titre: "Quelle donnée permet de suivre le niveau d’une cuve ?"
-theme: "Mesurer et communiquer autour de l’eau"
-problematique: "Quelle donnée permet de suivre le niveau d’une cuve ?"
-pourquoi: "Une mesure doit être reliée à une unité et à une limite connue."
-application: "Suivre une réserve d’eau aide à éviter le débordement et à mieux gérer son usage."
-lien_precedent: "Après Comment préparer un essai de validation ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Comment préparer un essai de validation ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "Le niveau passe de 30 % à 70 %. Il augmente de 40 points de pourcentage ; sans capacité de cuve, je ne peux pas donner des litres."
+titre: 'Séance 46 : Calc n° 2 : que nous apprennent les mesures reçues ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Que nous apprennent les mesures de lumière reçues pendant une journée ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
 objectifs:
     connaissances:
-        - "Une mesure doit être reliée à une unité et à une limite connue."
+        - 'Dans Calc : MIN, MAX et MOYENNE sur une plage ; un graphique en courbe montre l’évolution dans le temps.'
+        - 'On interprète un graphique : quand la lumière est maximale, quand elle chute, et pourquoi.'
     competences:
-        - "Lire une série de mesures et compléter un tableau avec l’heure, la valeur et l’unité."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une mesure doit être reliée à une unité et à une limite connue."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Lire une série de mesures et compléter un tableau avec l’heure, la valeur et l’unité."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Suivre une réserve d’eau aide à éviter le débordement et à mieux gérer son usage."
+        - Utiliser MIN, MAX et MOYENNE.
+        - Tracer et interpréter un graphique en courbe avec titre et axes.
+pourquoi:
+    - En séance 45, la liaison radio a été testée. Le récepteur a enregistré les mesures toutes les heures (fichier fourni).
+    - Aujourd’hui, tu exploites ces mesures dans Calc.
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "Le niveau passe de 30 % à 70 %. Il augmente de 40 points de pourcentage ; sans capacité de cuve, je ne peux pas donner des litres."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information manque pour transformer le pourcentage en litres ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Lire une série de mesures et compléter un tableau avec l’heure, la valeur et l’unité."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "Eaufrance — portail public de l’eau"
-            url: https://www.eaufrance.fr/
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Les mesures
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Mesures reçues (exemple de journée ensoleillée)
+                colonnes:
+                    - Heure
+                    - 8 h
+                    - 9 h
+                    - 10 h
+                    - 11 h
+                    - 12 h
+                    - 13 h
+                    - 14 h
+                    - 15 h
+                    - 16 h
+                    - 17 h
+                lignes:
+                    -   - Lumière (0-510)
+                        - '60'
+                        - '150'
+                        - '280'
+                        - '390'
+                        - '460'
+                        - '470'
+                        - '430'
+                        - '300'
+                        - '170'
+                        - '70'
+            -   type: etapes
+                elements:
+                    - Ouvre Calc, enregistre sous 4e_S46_groupe.ods, recopie le tableau (heures en ligne 1, valeurs en ligne 2, à partir de B).
+                    - Calcule MIN, MAX et MOYENNE des valeurs (=MIN(B2:K2)…).
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Recopie tes résultats.
+                colonnes:
+                    - Fonction
+                    - Résultat
+                lignes:
+                    -   - MIN
+                        - ''
+                    -   - MAX
+                        - ''
+                    -   - MOYENNE
+                        - ''
+                aide: Ligne × colonne.
+    -   id: a02
+        titre: Le graphique
+        transition: Les calculs sont faits. Un graphique montre l’évolution.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Sélectionne les deux lignes, Insertion > Diagramme > Lignes.
+                    - 'Titre : « Lumière reçue par le tracker » ; axe X : « Heure » ; axe Y : « Lumière ».'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Décris l’évolution de la lumière pendant la journée et explique-la.
+                aide: Pense à « car » (réflexe n° 4).
+            -   id: q02
+                type: qcm
+                enonce: Pourquoi un graphique en courbe plutôt qu’en secteurs ?
+                choix:
+                    -   id: a
+                        texte: Pour montrer une évolution dans le temps.
+                    -   id: b
+                        texte: Pour montrer des parts d’un total.
+                    -   id: c
+                        texte: C’est pareil.
+                aide: Relis l’exemple expliqué.
+    -   id: a03
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: La fonction SI permet d’écrire « Fort » ou « Faible ».
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris une formule qui affiche « Fort » si la valeur de B2 dépasse 300, sinon « Faible ».
+                aide: « = » + fonction + plage.
+    -   id: a04
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as exploité les mesures. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : que nous apprennent les mesures reçues ?'
+                aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - "Une mesure doit être reliée à une unité et à une limite connue."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille une mesure doit être reliée à une unité et à une limite connue.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "Eaufrance — portail public de l’eau"
-      url: https://www.eaufrance.fr/
+    - MIN, MAX, MOYENNE sur une plage ; graphique en courbe pour une évolution dans le temps.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

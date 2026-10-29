@@ -1,93 +1,79 @@
-titre: "Comment lire un programme dans l’ordre ?"
-theme: "Programmes et tests"
-problematique: "Comment lire un programme dans l’ordre ?"
-pourquoi: "Un programme est une suite d’instructions ; l’ordre peut changer le résultat."
-application: "Les programmes commandent des jeux et des systèmes à partir de données."
-lien_precedent: "Après Comment expliquer un dépannage avec une preuve ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Comment expliquer un dépannage avec une preuve ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "Départ : afficher 0. Puis ajouter 1. Enfin afficher le score. L’écran montre 1, car l’ajout arrive avant l’affichage."
+titre: 'Séance 31 : Écrire les règles d’un jeu avant de le programmer'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment écrire l’algorithme d’un jeu avant de le programmer ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
 objectifs:
     connaissances:
-        - "Un programme est une suite d’instructions ; l’ordre peut changer le résultat."
+        - 'Un algorithme en langage naturel utilise des mots simples : QUAND, SI … ALORS … SINON, RÉPÉTER.'
+        - 'On écrit l’algorithme avant de programmer : on réfléchit aux règles, puis on traduit en blocs.'
     competences:
-        - "Suivre un programme ligne par ligne et noter l’état après chaque instruction."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Un programme est une suite d’instructions ; l’ordre peut changer le résultat."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Suivre un programme ligne par ligne et noter l’état après chaque instruction."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Les programmes commandent des jeux et des systèmes à partir de données."
+        - Écrire un algorithme en langage naturel (réflexe R12).
+        - Repérer les événements, les conditions et les boucles d’un jeu.
+pourquoi:
+    - En 5e, tu as modifié un jeu Arcade déjà fait. En séance 30, tu as écrit des instructions précises.
+    - En 4e, tu écris d’abord les règles de ton jeu sous forme d’algorithme.
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "Départ : afficher 0. Puis ajouter 1. Enfin afficher le score. L’écran montre 1, car l’ajout arrive avant l’affichage."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle valeur est affichée après les trois instructions de l’exemple ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Suivre un programme ligne par ligne et noter l’état après chaque instruction."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "MakeCode micro:bit — documentation"
-            url: https://makecode.microbit.org/reference
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Le jeu à concevoir
+        contenu:
+            -   type: citation
+                texte: 'Réflexe brevet n° 12 : j’écris un algorithme en langage naturel : QUAND…, SI… ALORS… SINON…'
+            -   type: paragraphe
+                texte: 'Jeu « Récolte » : un panier se déplace avec les flèches ; des fruits tombent du haut de l’écran ; si le panier attrape un fruit, le score augmente de 1 ; si un fruit touche le sol, on perd une vie ; à 0 vie, la partie est perdue.'
+            -   type: paragraphe
+                texte: 'Exemple expliqué : « QUAND le panier touche un fruit : ajouter 1 au score, détruire le fruit. » C’est un événement suivi de deux actions.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Écris l’algorithme du jeu en complétant chaque ligne.
+                colonnes:
+                    - Événement ou condition
+                    - Actions
+                lignes:
+                    -   - QUAND on appuie sur une flèche
+                        - ''
+                    -   - QUAND le panier touche un fruit
+                        - ''
+                    -   - QUAND un fruit touche le sol
+                        - ''
+                    -   - SI vies = 0
+                        - ''
+                aide: Ligne × colonne.
+    -   id: a02
+        titre: Les fruits qui tombent
+        transition: Les règles du panier sont écrites. Il faut aussi faire tomber les fruits.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris l’algorithme qui fait apparaître un fruit en haut de l’écran toutes les 2 secondes, à un endroit au hasard.
+                aide: Combien d’éléments sont demandés ?
+    -   id: a03
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le jeu devient plus difficile avec le temps.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris la règle qui accélère les fruits tous les 10 points.
+                aide: Combien d’éléments sont demandés ?
+    -   id: a04
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton algorithme est prêt. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment écrire l’algorithme d’un jeu avant de le programmer ?'
+                aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - "Un programme est une suite d’instructions ; l’ordre peut changer le résultat."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille un programme est une suite d’instructions ; l’ordre peut changer le résultat.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "MakeCode micro:bit — documentation"
-      url: https://makecode.microbit.org/reference
+    - 'Algorithme en langage naturel : QUAND, SI … ALORS … SINON, RÉPÉTER.'
+    - 'Réflexe R12 : écrire l’algorithme avant de programmer.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

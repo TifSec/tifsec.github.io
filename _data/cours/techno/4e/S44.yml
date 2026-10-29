@@ -1,93 +1,98 @@
-titre: "Le modèle respecte-t-il les dimensions et le plan ?"
-theme: "Prototyper et vérifier"
-problematique: "Le modèle respecte-t-il les dimensions et le plan ?"
-pourquoi: "Le modèle se compare au plan ; le modèle seul ne prouve pas le comportement du matériau réel."
-application: "Un modèle numérique permet de préparer une forme avant de la fabriquer."
-lien_precedent: "Après Comment modifier une forme selon une contrainte ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Comment modifier une forme selon une contrainte ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "Le plan demande 50 mm et le modèle affiche 50 mm : la cote est respectée, mais l’assemblage reste à tester."
+titre: 'Séance 44 : Programmer l’émetteur et le récepteur'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment ajouter l’envoi des mesures au programme du tracker sans casser ce qui fonctionne ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
 objectifs:
     connaissances:
-        - "Le modèle se compare au plan ; le modèle seul ne prouve pas le comportement du matériau réel."
+        - 'On part du programme existant du tracker (chercherSoleil, suivi de la lumière) et on ajoute seulement : le groupe radio au démarrage, et l’envoi de la luminosité et de l’angle dans la boucle.'
+        - 'Le récepteur a son propre programme : il reçoit les valeurs nommées et les affiche.'
     competences:
-        - "Comparer deux cotes du modèle au plan et noter conforme ou non conforme avec une preuve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Le modèle se compare au plan ; le modèle seul ne prouve pas le comportement du matériau réel."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Comparer deux cotes du modèle au plan et noter conforme ou non conforme avec une preuve."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Un modèle numérique permet de préparer une forme avant de la fabriquer."
+        - Ajouter une fonction à un programme existant.
+        - Programmer un récepteur.
+pourquoi:
+    - En séances 42 et 43, tu as découvert la radio et préparé le prototype.
+    - Aujourd’hui, tu programmes, dans le simulateur, l’émetteur (programme du tracker complété) et le récepteur.
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "Le plan demande 50 mm et le modèle affiche 50 mm : la cote est respectée, mais l’assemblage reste à tester."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel critère faut-il tester après les dimensions ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Comparer deux cotes du modèle au plan et noter conforme ou non conforme avec une preuve."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "Onshape — aide officielle, extrusion"
-            url: https://cad.onshape.com/help/Content/PartStudio/extrude.htm
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: L’émetteur
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre une copie du programme du tracker (lien du professeur).
+                    - Au démarrage, ajoute « radio définir groupe » (ton numéro).
+                    - Dans la boucle « toujours », après le réglage de l’angle, ajoute « radio envoyer valeur « lum » = gauche + droite » et « radio envoyer valeur « angle » = angle ».
+                    - Ne modifie rien d’autre.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi ne faut-il rien modifier d’autre dans le programme du tracker ?
+                aide: Bloc par bloc (réflexe n° 9).
+            -   id: q02
+                type: tableau
+                enonce: Où places-tu chaque ajout ?
+                colonnes:
+                    - Ajout
+                    - Emplacement
+                lignes:
+                    -   - radio définir groupe
+                        - ''
+                    -   - radio envoyer valeur « lum »
+                        - ''
+                aide: Ligne × colonne.
+        ressources:
+            - &id001
+                type: lien
+                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+                url: https://makecode.microbit.org/
+    -   id: a02
+        titre: Le récepteur
+        transition: L’émetteur envoie. Programme maintenant le récepteur.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Nouveau projet 4e_S44_recepteur.
+                    - 'Au démarrage : même groupe radio.'
+                    - '« quand une donnée est reçue par radio name, value » : si name = « lum » alors montrer value ; si name = « angle » alors montrer value sur la ligne… (ou afficher une flèche).'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris l’algorithme du récepteur en langage naturel.
+                aide: Combien d’éléments sont demandés ?
+            -   id: q02
+                type: texte
+                enonce: 'Teste dans le simulateur : change la lumière des capteurs de l’émetteur. Que montre le récepteur ?'
+                aide: Attendu ou observé ?
+        ressources:
+            - *id001
+    -   id: a03
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Envoyer trop souvent occupe la radio et vide les piles.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment n’envoyer les mesures que toutes les 5 secondes, sans ralentir le suivi du soleil ?
+                aide: Attendu ou observé ?
+        ressources:
+            - *id001
+    -   id: a04
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Les deux programmes sont prêts. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment as-tu ajouté l’envoi des mesures sans casser le programme du tracker ?'
+                aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - "Le modèle se compare au plan ; le modèle seul ne prouve pas le comportement du matériau réel."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille le modèle se compare au plan ; le modèle seul ne prouve pas le comportement du matériau réel.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "Onshape — aide officielle, extrusion"
-      url: https://cad.onshape.com/help/Content/PartStudio/extrude.htm
+    - 'Ajouter une fonction : on complète sans modifier ce qui marche.'
+    - 'Émetteur : groupe + envoi de valeurs nommées ; récepteur : quand reçue + conditions sur le nom.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

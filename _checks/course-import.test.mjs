@@ -32,14 +32,12 @@ test('import refusé si un champ réservé au professeur entre dans le YAML publ
     const data = fixture(); data.course.activites[0].questions[0].attendu = 'Exemple fictif';
     assert.throws(() => validateCoursePair(data.course, data.content, data.schema), /private_field/);
 });
-test('S10 : cinq champs obligatoires, deux choix vérifiables et prolongement sans réponse imposée', () => {
+test('3e S10 (progression 2026) : questions notées, défi facultatif sans note', () => {
     const course = parse(readFileSync(new URL('../_data/cours/techno/3e/S10.yml', import.meta.url), 'utf8'));
     const schema = questionCatalogue().find(row => row.matiere === 'techno' && row.classe === '3e' && row.seance === 'S10');
-    assert.equal(schema.questions.length, 5);
-    assert.equal(schema.questions.filter(row => row.type === 'qcm').length, 2);
-    assert.ok(schema.questions.every(row => !row.facultatif));
-    assert.equal(course.activites.at(-1).facultatif, true);
-    assert.equal(course.activites.at(-1).questions.length, 0);
-    assert.match(course.application, /jamais un vrai mot de passe/);
-    assert.match(course.lien_precedent, /S09/);
+    assert.ok(schema.questions.filter(row => !row.facultatif).length >= 4);
+    const defi = course.activites.find(activity => activity.defi);
+    assert.equal(defi.facultatif, true);
+    assert.ok(schema.questions.filter(row => row.facultatif).every(row => row.activite === defi.id));
+    assert.match(course.titre, /^Séance 10 : /);
 });

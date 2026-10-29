@@ -1,93 +1,102 @@
-titre: "Comment modifier une boucle ou une liste sans perdre le fil ?"
-theme: "Programmes et tests"
-problematique: "Comment modifier une boucle ou une liste sans perdre le fil ?"
-pourquoi: "Une boucle répète des instructions ; une liste conserve plusieurs valeurs dans un ordre."
-application: "Les programmes commandent des jeux et des systèmes à partir de données."
-lien_precedent: "Après Comment combiner des instructions et une condition ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Comment combiner des instructions et une condition ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "La liste contient 1,2 V ; 1,5 V ; 1,7 V. Une boucle affiche chaque valeur. Si elle s’arrête trop tôt, la dernière manque."
+titre: 'Séance 34 : Pourquoi mon jeu bugue-t-il ?'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment trouver et corriger un bug dans un programme ?
+competences_bo:
+    - Valider les solutions techniques par des simulations ou par des protocoles de tests
+    - Concevoir, écrire, tester et mettre au point un programme
 objectifs:
     connaissances:
-        - "Une boucle répète des instructions ; une liste conserve plusieurs valeurs dans un ordre."
+        - 'Un bug est une erreur de programme. Pour le trouver : reproduire le bug, isoler la partie en cause, faire une hypothèse, modifier une seule chose, retester.'
+        - Faire tester son jeu par un camarade révèle des bugs qu’on ne voit pas soi-même.
     competences:
-        - "Modifier un programme existant pour parcourir une liste et tester le premier et le dernier élément."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une boucle répète des instructions ; une liste conserve plusieurs valeurs dans un ordre."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Modifier un programme existant pour parcourir une liste et tester le premier et le dernier élément."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Les programmes commandent des jeux et des systèmes à partir de données."
+        - Suivre une méthode de débogage.
+        - Faire tester son programme et exploiter les retours.
+pourquoi:
+    - En séances 31 à 33, tu as programmé ton jeu.
+    - Aujourd’hui, tu chasses les bugs. C’est aussi le bilan de la séquence.
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "La liste contient 1,2 V ; 1,5 V ; 1,7 V. Une boucle affiche chaque valeur. Si elle s’arrête trop tôt, la dernière manque."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Que permet de conserver une liste dans cet exemple ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Modifier un programme existant pour parcourir une liste et tester le premier et le dernier élément."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "MakeCode micro:bit — documentation"
-            url: https://makecode.microbit.org/reference
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Trois bugs fréquents
+        contenu:
+            -   type: tableau
+                titre: Document 1
+                colonnes:
+                    - Bug
+                    - Cause probable
+                lignes:
+                    -   - Le score augmente de 2 à chaque fruit
+                        - Deux blocs de chevauchement identiques
+                    -   - Les fruits ne tombent pas
+                        - Vitesse vy à 0 ou bloc « à chaque » absent
+                    -   - Le panier sort de l’écran
+                        - Option « rester à l’écran » non activée
+            -   type: paragraphe
+                texte: 'Méthode : 1) reproduire le bug ; 2) chercher le bloc concerné ; 3) une hypothèse ; 4) une seule modification ; 5) retester (réflexe n° 8).'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Le score augmente de 2 par fruit. Que vérifies-tu en premier ?
+                choix:
+                    -   id: a
+                        texte: S’il y a deux blocs de chevauchement qui ajoutent 1.
+                    -   id: b
+                        texte: La couleur du panier.
+                    -   id: c
+                        texte: Le son.
+                aide: Relis l’exemple expliqué.
+            -   id: q02
+                type: texte
+                enonce: Explique pourquoi on ne modifie qu’une seule chose avant de retester.
+                aide: Attendu ou observé ?
+    -   id: a02
+        titre: Faire tester
+        transition: Tu connais la méthode. Un autre regard aide à trouver les bugs.
+        contenu:
+            -   type: paragraphe
+                texte: Échange ton poste avec un camarade pendant 5 minutes. Il joue et note les bugs. Puis vous corrigez chacun votre jeu.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Note deux bugs trouvés (par toi ou ton testeur) et leur correction.
+                colonnes:
+                    - Bug observé
+                    - Correction
+                lignes:
+                    -   - ''
+                        - ''
+                    -   - ''
+                        - ''
+                aide: Attendu ou observé ?
+        ressources:
+            -   type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a03
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Certains bugs n’arrivent que rarement.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi un bug rare est-il difficile à corriger ?
+                aide: Pense à « car » (réflexe n° 4).
+    -   id: a04
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as débogué ton jeu. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment trouver et corriger un bug dans un programme ?'
+                aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - "Une boucle répète des instructions ; une liste conserve plusieurs valeurs dans un ordre."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille une boucle répète des instructions ; une liste conserve plusieurs valeurs dans un ordre.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "MakeCode micro:bit — documentation"
-      url: https://makecode.microbit.org/reference
+    - 'Déboguer : reproduire, isoler, hypothèse, une seule modification, retester.'
+    - Faire tester par un autre.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

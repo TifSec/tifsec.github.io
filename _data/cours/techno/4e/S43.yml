@@ -1,93 +1,127 @@
-titre: "Comment modifier une forme selon une contrainte ?"
-theme: "Prototyper et vérifier"
-problematique: "Comment modifier une forme selon une contrainte ?"
-pourquoi: "Une modification respecte la dimension demandée et conserve les parties utiles."
-application: "Un modèle numérique permet de préparer une forme avant de la fabriquer."
-lien_precedent: "Après Comment repérer une cote dans une pièce Onshape ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Comment repérer une cote dans une pièce Onshape ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "Une plaque doit mesurer 50 mm. Je modifie la cote, vérifie l’aperçu puis valide l’extrusion. Je ne change pas les autres cotes sans consigne."
+titre: 'Séance 43 : Que manque-t-il au prototype ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Quels constituants faut-il ajouter au tracker pour qu’il communique ?
+competences_bo:
+    - Imaginer, concevoir et réaliser une ou des solutions en réponse à un besoin, à des exigences (de développement durable, par exemple) ou à la nécessité d’améliorations dans une démarche de créativité
 objectifs:
     connaissances:
-        - "Une modification respecte la dimension demandée et conserve les parties utiles."
+        - Le tracker a déjà une carte (émettrice possible), des capteurs et un servomoteur. Il manque une carte réceptrice (notre deuxième micro:bit), son affichage (écran à LED intégré) et son alimentation (boîtier piles ou câble USB).
+        - On vérifie que l’ajout respecte le cahier des charges (distance, autonomie).
     competences:
-        - "Modifier une cote précise sur la pièce fournie puis vérifier le résultat dans Onshape."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une modification respecte la dimension demandée et conserve les parties utiles."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Modifier une cote précise sur la pièce fournie puis vérifier le résultat dans Onshape."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Un modèle numérique permet de préparer une forme avant de la fabriquer."
+        - Identifier les constituants manquants d’un prototype.
+        - Choisir une alimentation adaptée.
+pourquoi:
+    - En séance 42, la radio a fonctionné dans le simulateur.
+    - 'Pour le vrai prototype, il faut faire l’inventaire : qu’a-t-on, que manque-t-il ?'
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "Une plaque doit mesurer 50 mm. Je modifie la cote, vérifie l’aperçu puis valide l’extrusion. Je ne change pas les autres cotes sans consigne."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Qu’as-tu vérifié avant de valider la modification ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Modifier une cote précise sur la pièce fournie puis vérifier le résultat dans Onshape."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "Onshape — aide officielle, extrusion"
-            url: https://cad.onshape.com/help/Content/PartStudio/extrude.htm
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Inventaire
+        contenu:
+            -   type: tableau
+                titre: Document 1
+                colonnes:
+                    - Constituant
+                    - Présent sur le tracker ?
+                lignes:
+                    -   - Carte micro:bit avec radio
+                        - Oui
+                    -   - Capteurs de lumière
+                        - Oui
+                    -   - Servomoteur
+                        - Oui
+                    -   - Deuxième carte (récepteur)
+                        - Non (la carte libre de la classe)
+                    -   - Alimentation du récepteur
+                        - Non
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: D’après le document 1, écris le rôle de chaque constituant manquant.
+                colonnes:
+                    - Constituant manquant
+                    - Rôle
+                lignes:
+                    -   - Deuxième carte
+                        - ''
+                    -   - Alimentation du récepteur
+                        - ''
+                aide: Ligne × colonne.
+    -   id: a02
+        titre: Choisir l’alimentation
+        transition: Tu sais ce qui manque. Choisis l’alimentation du récepteur.
+        contenu:
+            -   type: tableau
+                titre: Document 2
+                colonnes:
+                    - Solution
+                    - Autonomie
+                    - Mobilité
+                lignes:
+                    -   - Câble USB sur l’ordinateur
+                        - Illimitée
+                        - Faible (près de l’ordinateur)
+                    -   - Boîtier 2 piles AAA
+                        - Plusieurs jours
+                        - Bonne
+        questions:
+            -   id: q01
+                type: texte
+                enonce: La carte réceptrice doit pouvoir être posée n’importe où dans la salle. Quelle alimentation choisis-tu ? Justifie avec le document 2.
+                aide: Pense à « car » (réflexe n° 4).
+            -   id: q02
+                type: qcm
+                enonce: Pourquoi le récepteur n’a-t-il pas besoin de capteur de lumière ?
+                choix:
+                    -   id: a
+                        texte: 'Il reçoit la mesure par radio : il ne mesure rien lui-même.'
+                    -   id: b
+                        texte: Parce qu’il est à l’ombre.
+                    -   id: c
+                        texte: Il en a besoin.
+                aide: Relis l’exemple expliqué.
+    -   id: a03
+        titre: Le schéma du prototype
+        transition: Il reste à dessiner la nouvelle chaîne d’information.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Complète la chaîne d’information du tracker communicant.
+                colonnes:
+                    - Acquérir
+                    - Traiter et émettre
+                    - Recevoir et communiquer
+                lignes:
+                    -   - ''
+                        - ''
+                        - ''
+                aide: Ligne × colonne.
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le récepteur pourrait aussi émettre un son quand la lumière est faible.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quel constituant ajouterais-tu, et quel bloc ?
+                aide: Bloc par bloc (réflexe n° 9).
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: L’inventaire est fait. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : quels constituants faut-il ajouter au tracker pour qu’il communique ?'
+                aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - "Une modification respecte la dimension demandée et conserve les parties utiles."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille une modification respecte la dimension demandée et conserve les parties utiles.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "Onshape — aide officielle, extrusion"
-      url: https://cad.onshape.com/help/Content/PartStudio/extrude.htm
+    - 'Inventaire du prototype : ce qu’on a, ce qui manque, choix argumenté.'
+    - 'Récepteur : deuxième micro:bit + alimentation.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

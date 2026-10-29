@@ -1,93 +1,96 @@
-titre: "Comment trouver une erreur grâce au résultat attendu ?"
-theme: "Programmes et tests"
-problematique: "Comment trouver une erreur grâce au résultat attendu ?"
-pourquoi: "Déboguer consiste à comparer l’attendu et l’observé puis tester une correction."
-application: "Les programmes commandent des jeux et des systèmes à partir de données."
-lien_precedent: "Après Comment modifier une boucle ou une liste sans perdre le fil ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Comment modifier une boucle ou une liste sans perdre le fil ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "Pour une mesure de 25, le programme doit afficher « normal » mais affiche « alerte ». Je vérifie le seuil avant de changer d’autres blocs."
+titre: 'Séance 35 : Qui capte, qui décide, qui affiche ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Quels constituants du monte-charge acquièrent, traitent et communiquent l’information ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
 objectifs:
     connaissances:
-        - "Déboguer consiste à comparer l’attendu et l’observé puis tester une correction."
+        - 'Monte-charge : boutons Étage et RDC, contacts haut et bas, capteur à ultrasons (acquérir) ; carte micro:bit (traiter) ; écran OLED et voyants (communiquer).'
+        - 'Les constituants sont reliés à la carte par des broches : P0 contact haut, P1 bouton Étage, P13 contact bas, P15 bouton RDC, P2 capteur à ultrasons.'
     competences:
-        - "Comparer les cas de test et les sorties du programme, localiser une règle qui explique l’écart."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Déboguer consiste à comparer l’attendu et l’observé puis tester une correction."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Comparer les cas de test et les sorties du programme, localiser une règle qui explique l’écart."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Les programmes commandent des jeux et des systèmes à partir de données."
+        - Identifier sur l’objet réel les constituants de la chaîne d’information.
+        - Associer chaque constituant à sa broche et à sa fonction.
+pourquoi:
+    - En 5e, la chaîne d’information du monte-charge t’était fournie. En séance 5, tu as repéré ses choix de conception.
+    - Aujourd’hui, tu identifies toi-même les constituants de la chaîne d’information.
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "Pour une mesure de 25, le programme doit afficher « normal » mais affiche « alerte ». Je vérifie le seuil avant de changer d’autres blocs."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel cas de test montre une différence entre attendu et observé ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Comparer les cas de test et les sorties du programme, localiser une règle qui explique l’écart."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "MakeCode micro:bit — documentation"
-            url: https://makecode.microbit.org/reference
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Identifier (poste maquette)
+        contenu:
+            -   type: paragraphe
+                texte: Chaque groupe passe au poste maquette (moteur arrêté) et suit les fils depuis chaque constituant jusqu’à la carte.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Note chaque constituant repéré, sa broche et sa fonction.
+                colonnes:
+                    - Constituant
+                    - Broche
+                    - Fonction
+                lignes:
+                    -   - Bouton Étage
+                        - ''
+                        - ''
+                    -   - Contact haut
+                        - ''
+                        - ''
+                    -   - Capteur à ultrasons
+                        - ''
+                        - ''
+                aide: Ligne × colonne.
+    -   id: a02
+        titre: Le schéma de la chaîne
+        transition: Tu as identifié les constituants. Range-les dans la chaîne.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Complète la chaîne d’information du monte-charge.
+                colonnes:
+                    - Acquérir
+                    - Traiter
+                    - Communiquer
+                lignes:
+                    -   - ''
+                        - ''
+                        - ''
+                aide: Ligne × colonne.
+            -   id: q02
+                type: qcm
+                enonce: Le moteur fait-il partie de la chaîne d’information ?
+                choix:
+                    -   id: a
+                        texte: 'Non : il fait partie de la chaîne d’énergie (il convertit l’énergie électrique en mouvement).'
+                    -   id: b
+                        texte: 'Oui : il acquiert.'
+                    -   id: c
+                        texte: 'Oui : il communique.'
+                aide: Relis l’exemple expliqué.
+    -   id: a03
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: 'Les voyants changent de couleur : orange, vert, rouge.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Que communique chaque couleur à l’utilisateur ?
+                aide: Repère le verbe de la question.
+    -   id: a04
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as identifié toute la chaîne. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : qui capte, qui décide, qui affiche dans le monte-charge ?'
+                aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - "Déboguer consiste à comparer l’attendu et l’observé puis tester une correction."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille déboguer consiste à comparer l’attendu et l’observé puis tester une correction.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "MakeCode micro:bit — documentation"
-      url: https://makecode.microbit.org/reference
+    - 'Acquérir : boutons, contacts, ultrasons. Traiter : micro:bit. Communiquer : écran, voyants.'
+    - 'Broches : P0 contact haut, P1 Étage, P2 ultrasons, P13 contact bas, P15 RDC.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

@@ -1,93 +1,129 @@
-titre: "Comment écrire une procédure que quelqu’un peut suivre ?"
-theme: "Word et recherche technique"
-problematique: "Comment écrire une procédure que quelqu’un peut suivre ?"
-pourquoi: "Une procédure donne des actions courtes dans l’ordre réel."
-application: "Un document clair aide une autre personne à retrouver une information technique."
-lien_precedent: "Après Comment retrouver une valeur dans deux notices ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Comment retrouver une valeur dans deux notices ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "Exemple : 1. Ouvre le document. 2. Choisis le bon fichier. 3. Vérifie son nom avant de l’enregistrer."
+titre: 'Séance 14 : Pourquoi chaque appareil a-t-il une adresse ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment un message trouve-t-il le bon appareil dans un réseau ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
 objectifs:
     connaissances:
-        - "Une procédure donne des actions courtes dans l’ordre réel."
+        - 'Chaque appareil d’un réseau a une adresse IP, par exemple 192.168.1.15 : quatre nombres de 0 à 255.'
+        - Dans un petit réseau local, les appareils dont les trois premiers nombres sont identiques (ici 192.168.1) sont dans le même réseau et peuvent communiquer directement.
     competences:
-        - "Écrire quatre étapes pour retrouver et enregistrer le bon document. Faire relire la procédure par un camarade."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une procédure donne des actions courtes dans l’ordre réel."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Écrire quatre étapes pour retrouver et enregistrer le bon document. Faire relire la procédure par un camarade."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Un document clair aide une autre personne à retrouver une information technique."
+        - Expliquer le rôle d’une adresse IP.
+        - Dire si deux appareils sont dans le même réseau local.
+pourquoi:
+    - En séance 13, tu as vu les équipements du réseau.
+    - 'Mais comment le commutateur sait-il à qui envoyer un message ? Comme le facteur : grâce à une adresse.'
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "Exemple : 1. Ouvre le document. 2. Choisis le bon fichier. 3. Vérifie son nom avant de l’enregistrer."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Dans quel ordre faut-il placer les étapes d’une procédure ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Écrire quatre étapes pour retrouver et enregistrer le bon document. Faire relire la procédure par un camarade."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "Aide Microsoft Word — mise en forme"
-            url: https://support.microsoft.com/word
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Le jeu du facteur (activité débranchée)
+        contenu:
+            -   type: paragraphe
+                texte: Le professeur distribue à chaque élève une carte avec une adresse (rue, numéro). Un « facteur » doit livrer des lettres. Sans adresse, impossible ; avec deux fois la même adresse, il se trompe.
+            -   type: paragraphe
+                texte: 'Exemple expliqué : dans un réseau, c’est pareil. Un message contient l’adresse IP de l’expéditeur et celle du destinataire. Deux appareils ne doivent jamais avoir la même adresse dans un réseau.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Que se passe-t-il si deux ordinateurs ont la même adresse IP dans le même réseau ?
+                choix:
+                    -   id: a
+                        texte: 'Les messages risquent d’arriver au mauvais ordinateur : c’est un conflit d’adresse.'
+                    -   id: b
+                        texte: Ils vont deux fois plus vite.
+                    -   id: c
+                        texte: Rien.
+                aide: Élimine d’abord les réponses impossibles.
+            -   id: q02
+                type: texte
+                enonce: Pourquoi un message doit-il contenir l’adresse de l’expéditeur, en plus de celle du destinataire ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a02
+        titre: Lire une adresse IP
+        transition: Tu as compris le rôle de l’adresse. Apprends à lire une adresse IP.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Quelques adresses (exemple)
+                colonnes:
+                    - Appareil
+                    - Adresse IP
+                lignes:
+                    -   - Poste 1
+                        - '192.168.1.11'
+                    -   - Poste 2
+                        - '192.168.1.12'
+                    -   - Imprimante
+                        - '192.168.1.50'
+                    -   - Poste du CDI
+                        - '192.168.2.11'
+            -   type: paragraphe
+                texte: 'Règle de la séance : si les trois premiers nombres sont identiques, les appareils sont dans le même réseau local.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: D’après le document 1, ces appareils sont-ils dans le même réseau local ? Écris « oui » ou « non ».
+                colonnes:
+                    - Appareils
+                    - Même réseau ?
+                lignes:
+                    -   - Poste 1 et Poste 2
+                        - ''
+                    -   - Poste 1 et Imprimante
+                        - ''
+                    -   - Poste 1 et Poste du CDI
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne (réflexe n° 6).'
+            -   id: q02
+                type: qcm
+                enonce: Laquelle de ces adresses est impossible ?
+                choix:
+                    -   id: a
+                        texte: '192.168.1.300'
+                    -   id: b
+                        texte: '192.168.1.30'
+                    -   id: c
+                        texte: '10.0.0.1'
+                aide: Élimine d’abord les réponses impossibles.
+    -   id: a03
+        titre: Choisir une adresse
+        transition: Tu sais lire une adresse. Choisis-en une pour un nouvel appareil.
+        contenu:
+            -   type: paragraphe
+                texte: On ajoute un poste dans la salle (réseau 192.168.1). Les adresses 192.168.1.11 à 192.168.1.25 sont déjà prises.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Propose une adresse IP pour le nouveau poste et justifie ton choix.
+                aide: Une idée + « car » + une raison tirée de la séance.
+            -   id: q02
+                type: texte
+                enonce: Pourquoi utilise-t-on des adresses en nombres plutôt que des noms comme « poste-de-Lea » ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Les adresses IPv4 (quatre nombres) commencent à manquer ; on utilise aussi IPv6.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Combien d’adresses différentes peut-on écrire avec quatre nombres de 0 à 255 ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu sais comment les messages trouvent leur chemin. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment un message trouve-t-il le bon appareil dans un réseau ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
 retenir:
-    - "Une procédure donne des actions courtes dans l’ordre réel."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille une procédure donne des actions courtes dans l’ordre réel.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "Aide Microsoft Word — mise en forme"
-      url: https://support.microsoft.com/word
+    - 'Adresse IP : quatre nombres de 0 à 255, unique dans un réseau.'
+    - Même début (ici les trois premiers nombres) = même réseau local.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

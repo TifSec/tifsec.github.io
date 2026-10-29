@@ -1,93 +1,101 @@
-titre: "Comment combiner des instructions et une condition ?"
-theme: "Programmes et tests"
-problematique: "Comment combiner des instructions et une condition ?"
-pourquoi: "Une condition choisit une action ; ET et OU combinent des critères."
-application: "Les programmes commandent des jeux et des systèmes à partir de données."
-lien_precedent: "Après Quelles données entrent et sortent du programme ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Quelles données entrent et sortent du programme ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "Si le bouton est appuyé ET la porte fermée, le départ est autorisé. Avec OU, une seule condition suffirait : le résultat change."
+titre: 'Séance 33 : Une vague d’ennemis'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment gérer plusieurs objets du même type avec une liste et une boucle « pour chaque » ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
 objectifs:
     connaissances:
-        - "Une condition choisit une action ; ET et OU combinent des critères."
+        - 'Une liste (tableau) range plusieurs valeurs ou objets sous un seul nom : liste des fruits, liste des scores.'
+        - La boucle « pour chaque élément de la liste » applique la même action à tous les éléments.
     competences:
-        - "Compléter une séquence et une condition avec ET ou OU dans le programme fourni."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une condition choisit une action ; ET et OU combinent des critères."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Compléter une séquence et une condition avec ET ou OU dans le programme fourni."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Les programmes commandent des jeux et des systèmes à partir de données."
+        - Créer et parcourir une liste.
+        - Utiliser une boucle « pour chaque ».
+pourquoi:
+    - En séance 32, tu as fait tomber les fruits un par un.
+    - 'Aujourd’hui, tu ajoutes une vague de pièges qui doivent tous changer de vitesse en même temps : il faut une liste.'
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "Si le bouton est appuyé ET la porte fermée, le départ est autorisé. Avec OU, une seule condition suffirait : le résultat change."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Avec ET, combien de conditions doivent être vraies pour exécuter l’action ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Compléter une séquence et une condition avec ET ou OU dans le programme fourni."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "MakeCode micro:bit — documentation"
-            url: https://makecode.microbit.org/reference
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Comprendre une liste
+        contenu:
+            -   type: paragraphe
+                texte: 'Exemple expliqué : liste vitesses = [30, 50, 80]. L’élément d’indice 0 vaut 30, l’élément d’indice 1 vaut 50, l’élément d’indice 2 vaut 80. La longueur de la liste est 3.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Pour la liste couleurs = [rouge, vert, bleu, jaune], complète.
+                colonnes:
+                    - Question
+                    - Réponse
+                lignes:
+                    -   - Élément d’indice 0
+                        - ''
+                    -   - Élément d’indice 2
+                        - ''
+                    -   - Longueur de la liste
+                        - ''
+                aide: Ligne × colonne.
+            -   id: q02
+                type: qcm
+                enonce: Pourquoi l’indice du premier élément est-il 0 ?
+                choix:
+                    -   id: a
+                        texte: 'C’est une convention des langages de programmation : on compte à partir de 0.'
+                    -   id: b
+                        texte: C’est une erreur.
+                    -   id: c
+                        texte: Le premier élément est vide.
+                aide: Relis l’exemple expliqué.
+    -   id: a02
+        titre: La vague
+        transition: Tu sais ce qu’est une liste. Utilise-la pour piloter une vague de pièges.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Au démarrage, crée 5 sprites « piège » (type Enemy) et ajoute-les à une liste « pièges » (bloc « tableau de sprites de type Enemy »).
+                    - 'Toutes les 5 secondes : « pour chaque élément valeur de pièges » : mettre vy de valeur à 80.'
+                    - 'Teste : tous les pièges accélèrent en même temps.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi la boucle « pour chaque » est-elle plus pratique que 5 blocs « mettre vy » ?
+                aide: Bloc par bloc (réflexe n° 9).
+            -   id: q02
+                type: texte
+                enonce: Décris en langage naturel ce que fait ton programme toutes les 5 secondes.
+                aide: Bloc par bloc (réflexe n° 9).
+        ressources:
+            - &id001
+                type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a03
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: On peut compter les éléments d’une liste.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Affiche le nombre de pièges encore présents. Quel bloc utilises-tu ?
+                aide: Bloc par bloc (réflexe n° 9).
+        ressources:
+            - *id001
+    -   id: a04
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ta vague fonctionne. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment gérer plusieurs objets du même type ?'
+                aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - "Une condition choisit une action ; ET et OU combinent des critères."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille une condition choisit une action ; et et ou combinent des critères.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "MakeCode micro:bit — documentation"
-      url: https://makecode.microbit.org/reference
+    - 'Liste : plusieurs éléments sous un même nom ; indice à partir de 0 ; longueur.'
+    - « pour chaque » applique la même action à tous les éléments.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

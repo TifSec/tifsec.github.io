@@ -1,93 +1,115 @@
-titre: "Comment choisir parmi plusieurs idées ?"
-theme: "Concevoir une amélioration"
-problematique: "Comment choisir parmi plusieurs idées ?"
-pourquoi: "Une solution se compare aux critères du besoin, pas seulement à son apparence."
-application: "Comparer plusieurs idées aide à choisir une solution adaptée aux utilisateurs."
-lien_precedent: "Après Quel besoin faut-il résoudre et comment reconnaître une réussite ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Quel besoin faut-il résoudre et comment reconnaître une réussite ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "Pour une alerte, je compare voyant et message selon visibilité, simplicité et accessibilité. Je choisis d’après les critères fournis."
+titre: 'Séance 37 : Que disent les mesures du capteur à ultrasons ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment exploiter les mesures du capteur à ultrasons pour améliorer le programme ?
+competences_bo:
+    - Comprendre et modifier un programme associé à une fonctionnalité d’un objet ou d’un système technique
 objectifs:
     connaissances:
-        - "Une solution se compare aux critères du besoin, pas seulement à son apparence."
+        - Le capteur à ultrasons mesure la distance (en cm) entre lui et la cabine.
+        - En analysant des relevés, on peut associer une plage de distances à une position de la cabine et utiliser ces valeurs dans le programme.
     competences:
-        - "Dessiner deux idées puis remplir un tableau de comparaison selon les critères."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une solution se compare aux critères du besoin, pas seulement à son apparence."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Dessiner deux idées puis remplir un tableau de comparaison selon les critères."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Comparer plusieurs idées aide à choisir une solution adaptée aux utilisateurs."
+        - Analyser des relevés de mesures.
+        - En déduire une modification du programme.
+pourquoi:
+    - En séance 35, tu as vu que le capteur à ultrasons est relié à P2.
+    - Aujourd’hui, tu analyses ce qu’il mesure pendant un trajet de la cabine.
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "Pour une alerte, je compare voyant et message selon visibilité, simplicité et accessibilité. Je choisis d’après les critères fournis."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel critère permet de comparer les deux solutions ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Dessiner deux idées puis remplir un tableau de comparaison selon les critères."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "Éduscol — Technologie au cycle 4"
-            url: https://eduscol.education.gouv.fr/5745/ressources-d-accompagnement-du-programme-de-technologie-au-cycle-4
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Les relevés
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Distance mesurée pendant un trajet (valeurs d’exemple)
+                colonnes:
+                    - Temps (s)
+                    - '0'
+                    - '1'
+                    - '2'
+                    - '3'
+                    - '4'
+                    - '5'
+                    - '6'
+                lignes:
+                    -   - Distance (cm)
+                        - '4'
+                        - '8'
+                        - '13'
+                        - '18'
+                        - '23'
+                        - '27'
+                        - '28'
+            -   type: paragraphe
+                texte: Le capteur est fixé en haut de la cage. Plus la cabine est basse, plus la distance mesurée est grande.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: D’après le document 1, la distance augmente avec le temps. Si le capteur est en haut, la cabine…
+                choix:
+                    -   id: a
+                        texte: '… s’éloigne du capteur : elle descend.'
+                    -   id: b
+                        texte: … monte.
+                    -   id: c
+                        texte: … ne bouge pas.
+                aide: Relis l’exemple expliqué.
+            -   id: q02
+                type: nombre
+                enonce: D’après le document 1, de combien de centimètres la cabine se déplace-t-elle entre 1 s et 4 s ?
+                unite: cm
+                aide: N’oublie pas l’unité (réflexe n° 5).
+    -   id: a02
+        titre: Associer distance et position
+        contenu:
+            -   type: paragraphe
+                texte: 'Mesures complémentaires : cabine en haut → 4 cm ; cabine au milieu → 16 cm ; cabine en bas → 28 cm.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Propose une plage de distances pour chaque position.
+                colonnes:
+                    - Position
+                    - Plage de distances (cm)
+                lignes:
+                    -   - En haut
+                        - ''
+                    -   - Au milieu
+                        - ''
+                    -   - En bas
+                        - ''
+                aide: Ligne × colonne.
+    -   id: a03
+        titre: Modifier le programme
+        transition: Tu connais les plages. Utilise-les dans le programme.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris en langage naturel la partie de programme qui affiche « HAUT », « MILIEU » ou « BAS » selon la distance.
+                aide: Bloc par bloc (réflexe n° 9).
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Une mesure à ultrasons peut parfois être fausse (0 ou 400 cm).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment ton programme pourrait-il ignorer une mesure absurde ?
+                aide: Bloc par bloc (réflexe n° 9).
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as exploité des mesures. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment exploiter les mesures du capteur pour améliorer le programme ?'
+                aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - "Une solution se compare aux critères du besoin, pas seulement à son apparence."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille une solution se compare aux critères du besoin, pas seulement à son apparence.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "Éduscol — Technologie au cycle 4"
-      url: https://eduscol.education.gouv.fr/5745/ressources-d-accompagnement-du-programme-de-technologie-au-cycle-4
+    - Le capteur à ultrasons mesure une distance (cm).
+    - Plages de distances → position → conditions dans le programme .
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

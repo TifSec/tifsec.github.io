@@ -1,337 +1,99 @@
-titre: Comment une information circule-t-elle dans un réseau ?
-theme: "Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre"
-problematique: Comment une donnée sait-elle où aller lorsqu'elle circule dans un réseau informatique ?
-pourquoi: "Objectif de cette séance : Un réseau informatique permet à plusieurs équipements de communiquer et d'échanger des données."
-application: Utilise les situations et les documents de la séance pour mettre les notions en pratique.
-lien_precedent: Reprends les méthodes des séances précédentes si elles te sont utiles ; les rappels du cours t’accompagnent.
+titre: 'Séance 8 : Quel chemin suit mon message ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Par où passe un message envoyé à un ami à l’autre bout de la France ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
 objectifs:
     connaissances:
-        - Un réseau informatique permet à plusieurs équipements de communiquer et d'échanger des données.
-        - Un réseau local comporte des terminaux, des équipements de communication et des liaisons.
-        - Chaque interface réseau doit pouvoir être identifiée.
-        - Une adresse IP permet d'identifier une interface dans un réseau utilisant le protocole IP.
-        - Un commutateur relie les équipements d'un même réseau local.
-        - Un routeur permet de faire communiquer plusieurs réseaux.
-        - Internet est constitué d'un grand nombre de réseaux interconnectés.
-    competences: []
+        - 'Internet est un réseau de réseaux : un message part du téléphone, passe par le réseau local (box ou antenne), puis par des routeurs de fournisseurs d’accès, jusqu’au serveur de l’application, puis jusqu’au destinataire.'
+        - Le message est découpé en paquets qui peuvent prendre des chemins différents ; ils sont rassemblés à l’arrivée.
+    competences:
+        - Représenter la circulation d’une information sur Internet.
+        - Expliquer le découpage en paquets.
+pourquoi:
+    - En 4e, tu as étudié le réseau local du collège.
+    - 'En 3e, tu sors du collège : comment un message traverse-t-il Internet ?'
 activites:
-    - id: a05
-      titre: Production attendue
-      contenu:
-          - type: liste
-            elements:
-                - Un fichier LibreOffice Writer nommé 3e_S08_nom.odt.
-                - Un tableau présentant les principaux équipements d'un réseau.
-                - L'analyse de plusieurs adresses IP.
-                - Des trajets simplifiés de données.
-                - Une conclusion répondant à la problématique.
-          - type: paragraphe
-            texte: Le fichier devra être déposé en fin de séance, même s'il n'est pas entièrement terminé.
-      questions: []
-    - id: a06
-      titre: 1. Préparez votre document de travail
-      contenu:
-          - type: paragraphe
-            texte: Ouvrez LibreOffice Writer.
-          - type: paragraphe
-            texte: Créez un nouveau document.
-          - type: paragraphe
-            texte: "Enregistrez-le immédiatement sous le nom : 3e_S08_nom.odt."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Écrivez votre nom, votre prénom et le titre : Séance 8 – Comment une information circule-t-elle dans un réseau ?"
-            suite: []
-    - id: a07
-      titre: 2. Comment les ordinateurs du collège peuvent-ils communiquer ?
-      contenu:
-          - type: paragraphe
-            texte: "Une salle du collège possède :"
-          - type: liste
-            elements:
-                - 12 ordinateurs ;
-                - un serveur ;
-                - une borne Wi-Fi ;
-                - un commutateur ;
-                - un routeur ;
-                - une connexion vers Internet.
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q1 : Selon vous, peut-on simplement relier tous les ordinateurs directement à Internet ?"
-          - id: q02
-            type: texte
-            enonce: "Q2 : Quels équipements semblent nécessaires pour permettre aux ordinateurs de la salle :"
-            suite:
-                - type: liste
-                  elements:
-                      - de communiquer entre eux ;
-                      - d'accéder à un serveur ;
-                      - d'accéder à Internet ?
-                - type: titre
-                  texte: "Mise en commun : les équipements du réseau"
-                - type: paragraphe
-                  texte: "Complétez le tableau :"
-          - id: q03
-            type: tableau
-            enonce: Complète le tableau ci-dessous.
-            colonnes:
-                - Équipement
-                - Rôle principal
-            lignes:
-                - - Ordinateur
-                  - ""
-                - - Commutateur
-                  - ""
-                - - Routeur
-                  - ""
-                - - Serveur
-                  - ""
-                - - Borne Wi-Fi
-                  - ""
-            suite:
-                - type: paragraphe
-                  texte: "Ressource officielle : Éduscol STI – Qu'est-ce qu'un réseau informatique ?"
-                - type: lien
-                  titre: Éduscol STI – Qu'est-ce qu'un réseau informatique ?
-                  url: https://sti.eduscol.education.fr/ressources_pedagogiques/quest-ce-quun-reseau-informatique
-    - id: a08
-      titre: 3. Comment savoir à quelle machine envoyer les données ?
-      contenu:
-          - type: paragraphe
-            texte: Dans la salle, plusieurs machines sont connectées au même réseau.
-          - type: paragraphe
-            texte: "Voici leurs adresses :"
-          - type: tableau
-            colonnes:
-                - Équipement
-                - Adresse IP
-            lignes:
-                - - Ordinateur 1
-                  - 192.168.1.10
-                - - Ordinateur 2
-                  - 192.168.1.11
-                - - Serveur
-                  - 192.168.1.20
-                - - Routeur
-                  - 192.168.1.1
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q3 : Quelle est l'adresse IP de l'ordinateur 2 ?"
-          - id: q02
-            type: texte
-            enonce: "Q4 : Quelle est l'adresse IP du serveur ?"
-          - id: q03
-            type: texte
-            enonce: "Q5 : Que remarquez-vous dans les adresses des quatre équipements ?"
-          - id: q04
-            type: texte
-            enonce: "Q6 : Pourquoi chaque interface doit-elle disposer d'une adresse adaptée au réseau ?"
-            suite:
-                - type: titre
-                  texte: "Mise en commun : l'adresse IP"
-                - type: paragraphe
-                  texte: Dans un réseau utilisant le protocole IP, une adresse IP permet d'identifier une interface réseau afin de permettre les communications.
-                - type: paragraphe
-                  texte: "Ressource officielle : Éduscol – L'adresse IP"
-                - type: lien
-                  titre: Éduscol – L'adresse IP
-                  url: https://eduscol.education.fr/document/22366/download
-    - id: a09
-      titre: 4. Que se passe-t-il lorsque deux ordinateurs communiquent dans la même salle ?
-      contenu:
-          - type: paragraphe
-            texte: L'ordinateur 1 veut envoyer un fichier à l'ordinateur 2.
-          - type: paragraphe
-            texte: Ils sont connectés au même commutateur et appartiennent au même réseau local.
-          - type: paragraphe
-            texte: "Complétez :"
-          - type: paragraphe
-            texte: Ordinateur 1 → ................................ → Ordinateur 2
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q7 : Le routeur est-il nécessaire pour cet échange simplifié ? Justifiez."
-    - id: a10
-      titre: 5. Et si la destination se trouve dans un autre réseau ?
-      contenu:
-          - type: paragraphe
-            texte: L'ordinateur 1 souhaite maintenant accéder à un serveur situé sur Internet.
-          - type: paragraphe
-            texte: "Complétez le trajet simplifié :"
-          - type: paragraphe
-            texte: Ordinateur → ................................ → ................................ → Internet → serveur distant
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q8 : Pourquoi le routeur devient-il nécessaire dans cette situation ?"
-            suite:
-                - type: titre
-                  texte: "Mise en commun : réseau local et routage"
-                - type: paragraphe
-                  texte: Le commutateur permet principalement de relier les équipements d'un réseau local.
-                - type: paragraphe
-                  texte: Le routeur permet de transmettre des données entre plusieurs réseaux.
-                - type: paragraphe
-                  texte: Internet est constitué d'un très grand nombre de réseaux reliés entre eux.
-                - type: paragraphe
-                  texte: "Ressource officielle : Éduscol STI – Comprendre le fonctionnement d'un réseau informatique"
-                - type: lien
-                  titre: Éduscol STI – Comprendre le fonctionnement d'un réseau informatique
-                  url: https://sti.eduscol.education.fr/technologie_college/ressources_pedagogiques/comprendre-le-fonctionnement-dun-reseau-informatique
-    - id: a11
-      titre: 6. Deux réseaux différents
-      contenu:
-          - type: paragraphe
-            texte: "On observe maintenant :"
-          - type: tableau
-            colonnes:
-                - Réseau A
-                - Réseau B
-            lignes:
-                - - 192.168.1.10
-                  - 192.168.2.10
-                - - 192.168.1.11
-                  - 192.168.2.11
-          - type: paragraphe
-            texte: Pour cet exercice, on vous indique que 192.168.1.x et 192.168.2.x correspondent à deux réseaux différents.
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q9 : Les deux groupes d'adresses sont-ils identiques ?"
-          - id: q02
-            type: texte
-            enonce: "Q10 : Quel équipement doit relier les deux réseaux ?"
-          - id: q03
-            type: texte
-            enonce: "Q11 : Expliquez son rôle en une ou deux phrases."
-    - id: a12
-      titre: 7. Une donnée traverse-t-elle toujours un seul routeur ?
-      contenu:
-          - type: paragraphe
-            texte: Un ordinateur envoie des données à un serveur distant.
-          - type: paragraphe
-            texte: "Le trajet simplifié observé est :"
-          - type: paragraphe
-            texte: Ordinateur → commutateur → routeur A → routeur B → routeur C → serveur
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q12 : Pourquoi plusieurs routeurs peuvent-ils être traversés ?"
-    - id: a13
-      titre: 8. Attention aux représentations trop simples
-      contenu:
-          - type: paragraphe
-            texte: "Un élève dessine :"
-          - type: paragraphe
-            texte: Mon ordinateur → Internet → site web
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q13 : Cette représentation est-elle totalement fausse ?"
-          - id: q02
-            type: texte
-            enonce: "Q14 : Pourquoi est-elle cependant insuffisante pour expliquer réellement la circulation des données ?"
-    - id: a14
-      titre: 9. Mini-question type DNB
-      contenu:
-          - type: paragraphe
-            texte: Un ordinateur doit envoyer une donnée à un serveur distant.
-          - type: paragraphe
-            texte: "Le trajet est :"
-          - type: paragraphe
-            texte: Ordinateur → commutateur → routeur A → routeur B → serveur
-          - type: paragraphe
-            texte: Justifiez pourquoi le routeur A est nécessaire.
-      questions: []
-    - id: a15
-      titre: 10. Conclusion du travail
-      contenu:
-          - type: paragraphe
-            texte: "Complétez :"
-          - type: liste
-            elements:
-                - Un réseau informatique permet de .................................................................................. .
-                - Une adresse IP sert à ....................................................................................................... .
-                - Un commutateur sert à ...................................................................................................... .
-                - Un routeur sert à ............................................................................................................... .
-                - Internet est ........................................................................................................................ .
-          - type: paragraphe
-            texte: "Répondez maintenant à la problématique en 4 à 6 lignes :"
-          - type: paragraphe
-            texte: Comment une donnée sait-elle où aller lorsqu'elle circule dans un réseau informatique ?
-      questions: []
-    - id: a16
-      titre: Rendu attendu
-      contenu:
-          - type: paragraphe
-            texte: À la fin de la séance, déposez votre fichier 3e_S08_nom.odt.
-          - type: paragraphe
-            texte: Le fichier doit être rendu même si toutes les activités ne sont pas terminées.
-      questions: []
-    - id: a17
-      titre: À retenir
-      contenu:
-          - type: paragraphe
-            texte: Un réseau informatique permet à plusieurs équipements de communiquer et d'échanger des données.
-          - type: paragraphe
-            texte: Une adresse IP permet d'identifier une interface sur un réseau utilisant le protocole IP.
-          - type: paragraphe
-            texte: Le commutateur relie les équipements d'un réseau local.
-          - type: paragraphe
-            texte: Le routeur permet de transmettre les données entre plusieurs réseaux.
-          - type: paragraphe
-            texte: Internet est un ensemble de réseaux interconnectés.
-      questions: []
-    - id: a18
-      titre: Sources générales
-      contenu:
-          - type: liste
-            elements:
-                - Ministère de l'Éducation nationale – Programme de technologie du cycle 4
-                - Éduscol STI – Qu'est-ce qu'un réseau informatique ?
-                - Éduscol STI – Comprendre le fonctionnement d'un réseau informatique
-          - type: lien
-            titre: Programme de technologie du cycle 4
-            url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-          - type: lien
-            titre: Qu'est-ce qu'un réseau informatique ?
-            url: https://sti.eduscol.education.fr/ressources_pedagogiques/quest-ce-quun-reseau-informatique
-          - type: lien
-            titre: Comprendre le fonctionnement d'un réseau informatique
-            url: https://sti.eduscol.education.fr/technologie_college/ressources_pedagogiques/comprendre-le-fonctionnement-dun-reseau-informatique
-      questions: []
-bilan: Relis tes réponses et vérifie les points demandés dans le bilan du cours. Tu peux revenir sur ton travail tant que le professeur ne l’a pas clôturé.
-introduction:
-    - type: titre
-      texte: "Compétence visée : Identifier les éléments d'un réseau et expliquer simplement la circulation des données"
-    - type: titre
-      texte: Objectifs d’apprentissage
-    - type: paragraphe
-      texte: "Ce que les élèves vont apprendre :"
-    - type: liste
-      elements:
-          - Un réseau informatique permet à plusieurs équipements de communiquer et d'échanger des données.
-          - Un réseau local comporte des terminaux, des équipements de communication et des liaisons.
-          - Chaque interface réseau doit pouvoir être identifiée.
-          - Une adresse IP permet d'identifier une interface dans un réseau utilisant le protocole IP.
-          - Un commutateur relie les équipements d'un même réseau local.
-          - Un routeur permet de faire communiquer plusieurs réseaux.
-          - Internet est constitué d'un grand nombre de réseaux interconnectés.
-    - type: paragraphe
-      texte: "Ce qu'ils vont apprendre à faire :"
-    - type: liste
-      elements:
-          - Identifier les principaux équipements d'un réseau informatique.
-          - Associer un équipement à son rôle.
-          - Repérer une adresse IP dans un document technique.
-          - Reconstituer le trajet simplifié d'une donnée.
-          - Distinguer communication dans un réseau local et communication entre plusieurs réseaux.
-          - Justifier une réponse à partir d'un schéma ou d'adresses IP.
-reperes_officiels:
-    - type: paragraphe
-      texte: Dans cette page du ministère, retrouve le programme ou le référentiel de ta formation. Les objectifs précis étudiés aujourd’hui sont indiqués dans le cours.
-    - type: lien
-      titre: Consulter les programmes et attendus officiels
-      url: https://eduscol.education.gouv.fr/5745/ressources-d-accompagnement-du-programme-de-technologie-au-cycle-4
+    -   id: a01
+        titre: Le chemin
+        contenu:
+            -   type: paragraphe
+                texte: 'Exemple expliqué : Léa envoie une photo depuis son téléphone en Wi-Fi. Photo → box de Léa → réseau de son fournisseur → routeurs d’Internet → serveur de l’application de messagerie → réseau mobile de Tom → téléphone de Tom.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Remets dans l’ordre le trajet d’un message (1 à 5).
+                colonnes:
+                    - Étape
+                    - Numéro
+                lignes:
+                    -   - Serveur de l’application
+                        - ''
+                    -   - Téléphone de l’expéditeur
+                        - ''
+                    -   - Téléphone du destinataire
+                        - ''
+                    -   - Box ou antenne de l’expéditeur
+                        - ''
+                    -   - Routeurs d’Internet
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne (réflexe n° 6).'
+    -   id: a02
+        titre: Les paquets
+        transition: Tu connais le chemin. Le message voyage-t-il en un seul morceau ?
+        contenu:
+            -   type: paragraphe
+                texte: Une photo de 3 Mo est découpée en environ 2 000 paquets. Chaque paquet contient une partie de la photo, l’adresse de destination et son numéro.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi chaque paquet porte-t-il un numéro ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+            -   id: q02
+                type: qcm
+                enonce: Un paquet se perd en route. Que se passe-t-il ?
+                choix:
+                    -   id: a
+                        texte: Le destinataire le redemande, et il est renvoyé.
+                    -   id: b
+                        texte: La photo est perdue pour toujours.
+                    -   id: c
+                        texte: Tout le message est renvoyé à chaque fois.
+                aide: Élimine d’abord les réponses impossibles.
+    -   id: a03
+        titre: Un réseau de réseaux
+        transition: Tous ces réseaux sont reliés.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi dit-on qu’Internet est un « réseau de réseaux » ? Appuie-toi sur le réseau du collège vu en 4e.
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Plus de 95 % des communications entre continents passent par des câbles sous-marins.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi pas par satellite ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as suivi un message. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : par où passe un message envoyé à un ami loin ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - 'Internet : réseau de réseaux reliés par des routeurs.'
+    - Les messages sont découpés en paquets numérotés.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

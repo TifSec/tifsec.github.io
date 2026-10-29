@@ -1,93 +1,102 @@
-titre: "Quelles données entrent et sortent du programme ?"
-theme: "Programmes et tests"
-problematique: "Quelles données entrent et sortent du programme ?"
-pourquoi: "Une entrée est reçue, une sortie est produite ; une variable garde une valeur."
-application: "Les programmes commandent des jeux et des systèmes à partir de données."
-lien_precedent: "Après Comment lire un programme dans l’ordre ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Comment lire un programme dans l’ordre ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "Un capteur fournit la température. La variable la conserve. L’écran affiche « chaud » si elle dépasse le seuil."
+titre: 'Séance 32 : Traduire l’algorithme en blocs'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment traduire un algorithme en programme qui fonctionne ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
 objectifs:
     connaissances:
-        - "Une entrée est reçue, une sortie est produite ; une variable garde une valeur."
+        - 'Chaque ligne de l’algorithme devient un ou plusieurs blocs : QUAND → bloc d’événement ; SI … ALORS → bloc « si » ; RÉPÉTER → bloc « répéter » ou « toujours ».'
+        - On teste après chaque partie traduite.
     competences:
-        - "Annoter un programme fourni avec ses entrées, variables et sorties. Classer une variable : nombre, texte ou vrai/faux."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une entrée est reçue, une sortie est produite ; une variable garde une valeur."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Annoter un programme fourni avec ses entrées, variables et sorties. Classer une variable : nombre, texte ou vrai/faux."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Les programmes commandent des jeux et des systèmes à partir de données."
+        - Traduire un algorithme en blocs Arcade.
+        - Utiliser une boucle « répéter » ou « toujours ».
+pourquoi:
+    - En séance 31, tu as écrit l’algorithme du jeu « Récolte ».
+    - Aujourd’hui, tu le traduis en blocs dans MakeCode Arcade.
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "Un capteur fournit la température. La variable la conserve. L’écran affiche « chaud » si elle dépasse le seuil."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "La valeur relevée par un capteur est-elle une entrée ou une sortie ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Annoter un programme fourni avec ses entrées, variables et sorties. Classer une variable : nombre, texte ou vrai/faux."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "MakeCode micro:bit — documentation"
-            url: https://makecode.microbit.org/reference
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Le panier
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre MakeCode Arcade, nouveau projet 4e_S32_tonprenom.
+                    - Crée un sprite « panier » (type Player) en bas de l’écran.
+                    - Ajoute le bloc « déplacer panier avec les boutons » et mets la vitesse verticale à 0.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Quel bloc correspond à la ligne « QUAND on appuie sur une flèche : déplacer le panier » de ton algorithme ?'
+                aide: 'Bloc par bloc : quand ? quelle condition ? quelle action ?'
+        ressources:
+            - &id001
+                type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a02
+        titre: Les fruits
+        transition: Le panier bouge. Fais tomber les fruits.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Dans « à chaque 2000 ms », crée un sprite « fruit » (type Food) en haut, à une position x au hasard entre 10 et 150.
+                    - Donne-lui une vitesse vy = 50.
+                    - 'Ajoute « quand sprite de type Player chevauche sprite de type Food » : changer le score de 1, détruire le fruit.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Associe chaque ligne de l’algorithme à son bloc.
+                colonnes:
+                    - Algorithme
+                    - Bloc Arcade
+                lignes:
+                    -   - Toutes les 2 secondes
+                        - ''
+                    -   - Position au hasard
+                        - ''
+                    -   - QUAND le panier touche un fruit
+                        - ''
+                aide: Bloc par bloc (réflexe n° 9).
+            -   id: q02
+                type: qcm
+                enonce: Quel bloc répète des instructions sans fin ?
+                choix:
+                    -   id: a
+                        texte: « toujours »
+                    -   id: b
+                        texte: « au démarrage »
+                    -   id: c
+                        texte: « si … alors »
+                aide: Relis l’exemple expliqué.
+        ressources:
+            - *id001
+    -   id: a03
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Il reste les vies.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Programme la perte d’une vie quand un fruit sort de l’écran par le bas. Quel bloc as-tu utilisé ?
+                aide: Bloc par bloc (réflexe n° 9).
+        ressources:
+            - *id001
+    -   id: a04
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton jeu prend forme. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment as-tu traduit ton algorithme en programme ? Donne deux exemples de traduction.'
+                aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - "Une entrée est reçue, une sortie est produite ; une variable garde une valeur."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille une entrée est reçue, une sortie est produite ; une variable garde une valeur.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "MakeCode micro:bit — documentation"
-      url: https://makecode.microbit.org/reference
+    - QUAND → événement ; SI → « si … alors » ; RÉPÉTER → « répéter » / « toujours » / « à chaque … ms ».
+    - On teste après chaque partie traduite.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

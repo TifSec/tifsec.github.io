@@ -1,93 +1,150 @@
-titre: "Comment écrire une formule qui se recopie ?"
-theme: "Excel/Calc, données et IA"
-problematique: "Comment écrire une formule qui se recopie ?"
-pourquoi: "Une formule commence par = et utilise les adresses de cellules."
-application: "Un tableau organisé permet de comparer des mesures et d’expliquer un choix."
-lien_precedent: "Après Comment organiser des mesures dans un tableau ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Comment organiser des mesures dans un tableau ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "Si B2 contient 3 et C2 contient 4, la formule =B2*C2 donne 12. Si B2 devient 5, le résultat devient 20."
+titre: 'Séance 17 : Calc n° 1 : combien de temps pour envoyer une vidéo ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment calculer le temps d’envoi d’un fichier selon le débit de la connexion ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
 objectifs:
     connaissances:
-        - "Une formule commence par = et utilise les adresses de cellules."
+        - Le débit est la quantité de données transmise par seconde, en mégabits par seconde (Mbit/s). 1 octet = 8 bits, donc 1 Mo = 8 Mbit.
+        - 'Durée (s) = taille (Mbit) ÷ débit (Mbit/s). Dans Calc, une formule utilise des références de cellules : =B2*8/C2.'
     competences:
-        - "Saisir une formule de multiplication, modifier une donnée et vérifier la mise à jour du résultat."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une formule commence par = et utilise les adresses de cellules."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Saisir une formule de multiplication, modifier une donnée et vérifier la mise à jour du résultat."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Un tableau organisé permet de comparer des mesures et d’expliquer un choix."
+        - Calculer une durée de transfert.
+        - Écrire une formule avec des références de cellules.
+        - Faire un graphique avec un titre et des axes nommés.
+pourquoi:
+    - En 5e, tu as utilisé SOMME et MOYENNE dans Calc. En séance 13, tu as vu les liaisons du réseau.
+    - Aujourd’hui, tu calcules combien de temps il faut pour envoyer une vidéo selon la connexion.
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "Si B2 contient 3 et C2 contient 4, la formule =B2*C2 donne 12. Si B2 devient 5, le résultat devient 20."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Que faut-il écrire au début d’une formule dans Calc ou Excel ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Saisir une formule de multiplication, modifier une donnée et vérifier la mise à jour du résultat."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "Aide LibreOffice Calc — formules"
-            url: https://help.libreoffice.org/latest/fr/text/scalc/guide/formulas.html
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Calculer à la main
+        contenu:
+            -   type: paragraphe
+                texte: 'Exemple expliqué : vidéo de 100 Mo avec un débit de 20 Mbit/s. Taille en mégabits : 100 × 8 = 800 Mbit. Durée : 800 ÷ 20 = 40 s.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Vidéo de 250 Mo, débit 50 Mbit/s. Quelle est la durée d’envoi ?
+                unite: s
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: qcm
+                enonce: Pourquoi multiplie-t-on la taille par 8 ?
+                choix:
+                    -   id: a
+                        texte: Parce qu’un octet contient 8 bits.
+                    -   id: b
+                        texte: Parce qu’il y a 8 câbles.
+                    -   id: c
+                        texte: Au hasard.
+                aide: Élimine d’abord les réponses impossibles.
+    -   id: a02
+        titre: La feuille de calcul
+        transition: Tu sais faire le calcul. Laisse Calc le faire pour plusieurs connexions.
+        contenu:
+            -   type: tableau
+                titre: Ce que tu dois obtenir dans Calc (débits typiques arrondis)
+                colonnes:
+                    - ''
+                    - A
+                    - B
+                    - C
+                    - D
+                lignes:
+                    -   - '1'
+                        - Connexion
+                        - Taille (Mo)
+                        - Débit (Mbit/s)
+                        - Durée (s)
+                    -   - '2'
+                        - ADSL
+                        - '250'
+                        - '8'
+                        - ''
+                    -   - '3'
+                        - 4G
+                        - '250'
+                        - '40'
+                        - ''
+                    -   - '4'
+                        - Fibre
+                        - '250'
+                        - '500'
+                        - ''
+            -   type: etapes
+                elements:
+                    - Ouvre Calc, enregistre sous 4e_S17_tonprenom.ods et recopie le tableau.
+                    - En D2, écris =B2*8/C2 puis Entrée.
+                    - Recopie la formule jusqu’en D4 avec la poignée.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quelle formule as-tu écrite en D3 (après recopie) ?
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+            -   id: q02
+                type: tableau
+                enonce: Recopie les durées obtenues.
+                colonnes:
+                    - Connexion
+                    - Durée (s)
+                lignes:
+                    -   - ADSL
+                        - ''
+                    -   - 4G
+                        - ''
+                    -   - Fibre
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne (réflexe n° 6).'
+    -   id: a03
+        titre: Le graphique
+        transition: Les résultats sont calculés. Un graphique les rend plus parlants.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Sélectionne A1:A4 et D1:D4 (touche Ctrl pour la deuxième plage).
+                    - Insertion > Diagramme > Colonnes.
+                    - 'Titre : « Durée d’envoi d’une vidéo de 250 Mo » ; axe Y : « Durée (s) ».'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après ton graphique, combien de fois la fibre est-elle plus rapide que l’ADSL pour ce fichier ? Montre le calcul.
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+            -   id: q02
+                type: qcm
+                enonce: Pourquoi utiliser des références (B2, C2) plutôt que les nombres dans la formule ?
+                choix:
+                    -   id: a
+                        texte: Si on change la taille ou le débit, le résultat se recalcule tout seul.
+                    -   id: b
+                        texte: C’est plus joli.
+                    -   id: c
+                        texte: Calc refuse les nombres.
+                aide: Élimine d’abord les réponses impossibles.
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Dans la réalité, le débit varie selon l’heure et le nombre d’utilisateurs.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ajoute une colonne « Débit réel » égale à la moitié du débit. Quelle formule pour la durée réelle ?
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as calculé et comparé. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment calculer le temps d’envoi d’un fichier selon le débit ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
 retenir:
-    - "Une formule commence par = et utilise les adresses de cellules."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille une formule commence par = et utilise les adresses de cellules.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "Aide LibreOffice Calc — formules"
-      url: https://help.libreoffice.org/latest/fr/text/scalc/guide/formulas.html
+    - Durée (s) = taille (Mo) × 8 ÷ débit (Mbit/s).
+    - 'Calc : formule avec références de cellules, recopie avec la poignée, graphique avec titre et axes.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

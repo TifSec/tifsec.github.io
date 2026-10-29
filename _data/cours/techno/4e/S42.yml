@@ -1,93 +1,107 @@
-titre: "Comment repérer une cote dans une pièce Onshape ?"
-theme: "Prototyper et vérifier"
-problematique: "Comment repérer une cote dans une pièce Onshape ?"
-pourquoi: "Une cote indique une dimension ; il faut vérifier la face et l’unité."
-application: "Un modèle numérique permet de préparer une forme avant de la fabriquer."
-lien_precedent: "Après Comment répartir le travail dans un petit projet ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Comment répartir le travail dans un petit projet ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "La cote 40 mm mesure la longueur entre les deux arêtes indiquées. Je lis l’unité avant de modifier la pièce."
+titre: 'Séance 42 : Comment deux cartes se parlent-elles ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment une carte micro:bit envoie-t-elle une donnée à une autre par radio ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+    - Imaginer, concevoir et réaliser une ou des solutions en réponse à un besoin, à des exigences (de développement durable, par exemple) ou à la nécessité d’améliorations dans une démarche de créativité
 objectifs:
     connaissances:
-        - "Une cote indique une dimension ; il faut vérifier la face et l’unité."
+        - Les deux cartes doivent être sur le même groupe radio (bloc « radio définir groupe »).
+        - L’émetteur utilise « radio envoyer nombre » ou « radio envoyer valeur nom = nombre » ; le récepteur utilise « quand une donnée est reçue par radio ».
     competences:
-        - "Ouvrir la pièce Onshape, repérer la cote principale et la comparer à la valeur demandée."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une cote indique une dimension ; il faut vérifier la face et l’unité."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Ouvrir la pièce Onshape, repérer la cote principale et la comparer à la valeur demandée."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Un modèle numérique permet de préparer une forme avant de la fabriquer."
+        - Programmer un émetteur et un récepteur dans le simulateur.
+        - Identifier les blocs radio.
+pourquoi:
+    - En séance 41, ton groupe a fixé la nouvelle fonction.
+    - Aujourd’hui, tu découvres la radio dans le simulateur, qui affiche deux cartes.
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "La cote 40 mm mesure la longueur entre les deux arêtes indiquées. Je lis l’unité avant de modifier la pièce."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle cote principale est demandée dans le plan ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Ouvrir la pièce Onshape, repérer la cote principale et la comparer à la valeur demandée."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "Onshape — aide officielle, extrusion"
-            url: https://cad.onshape.com/help/Content/PartStudio/extrude.htm
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Un premier message
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre MakeCode micro:bit, nouveau projet 4e_S42_groupe.
+                    - 'Au démarrage : « radio définir groupe 12 » (ou le numéro de ton groupe).'
+                    - '« quand le bouton A est pressé » : « radio envoyer nombre 7 ».'
+                    - '« quand une donnée est reçue par radio receivedNumber » : « montrer nombre receivedNumber ».'
+                    - 'Le simulateur affiche une deuxième carte : appuie sur A sur la première.'
+            -   type: paragraphe
+                texte: 'Exemple expliqué : le même programme est sur les deux cartes. Celle où on appuie sur A envoie 7 ; l’autre reçoit 7 et l’affiche.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Que se passe-t-il si les deux cartes ne sont pas sur le même groupe radio ?
+                choix:
+                    -   id: a
+                        texte: Le message n’est pas reçu.
+                    -   id: b
+                        texte: Il est reçu deux fois.
+                    -   id: c
+                        texte: La carte s’éteint.
+                aide: Relis l’exemple expliqué.
+            -   id: q02
+                type: tableau
+                enonce: Associe chaque bloc à son rôle.
+                colonnes:
+                    - Bloc
+                    - Rôle
+                lignes:
+                    -   - radio définir groupe
+                        - ''
+                    -   - radio envoyer nombre
+                        - ''
+                    -   - quand une donnée est reçue par radio
+                        - ''
+                aide: Bloc par bloc (réflexe n° 9).
+        ressources:
+            - &id001
+                type: lien
+                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+                url: https://makecode.microbit.org/
+    -   id: a02
+        titre: Envoyer une mesure
+        transition: Un nombre fixe passe. Envoie maintenant une vraie mesure.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Remplace 7 par « niveau d’intensité lumineuse ».
+                    - Envoie la mesure toutes les 2 secondes avec « toujours » et « pause 2000 ms ».
+                    - Dans le simulateur, change la lumière de la première carte et observe la seconde.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Décris ce qui s’affiche sur la carte réceptrice quand tu changes la lumière de l’émettrice.
+                aide: Combien d’éléments sont demandés ?
+        ressources:
+            - *id001
+    -   id: a03
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: « radio envoyer valeur « lum » = … » envoie un nom et un nombre.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi envoyer un nom avec le nombre quand on transmet deux mesures (lumière et angle) ?
+                aide: Quelle énergie entre, laquelle sort ?
+        ressources:
+            - *id001
+    -   id: a04
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Les deux cartes se parlent. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment une carte envoie-t-elle une donnée à une autre par radio ?'
+                aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - "Une cote indique une dimension ; il faut vérifier la face et l’unité."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille une cote indique une dimension ; il faut vérifier la face et l’unité.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "Onshape — aide officielle, extrusion"
-      url: https://cad.onshape.com/help/Content/PartStudio/extrude.htm
+    - 'Radio micro:bit : même groupe ; envoyer (nombre, valeur) ; « quand une donnée est reçue ».'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

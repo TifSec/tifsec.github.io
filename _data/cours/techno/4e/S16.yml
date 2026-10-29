@@ -1,93 +1,151 @@
-titre: "Comment organiser des mesures dans un tableau ?"
-theme: "Excel/Calc, données et IA"
-problematique: "Comment organiser des mesures dans un tableau ?"
-pourquoi: "Une ligne correspond à un essai ; chaque colonne a un nom et une unité."
-application: "Un tableau organisé permet de comparer des mesures et d’expliquer un choix."
-lien_precedent: "Après Pix : retrouver mon parcours et mon aide, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Pix : retrouver mon parcours et mon aide) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "Pour tester deux orientations, je crée les colonnes « orientation », « essai » et « tension (V) ». La valeur 1,8 V va dans la colonne tension."
+titre: 'Séance 16 : Pourquoi ces deux ordinateurs ne se parlent-ils pas ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment trouver et corriger une panne dans un réseau ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+    - Identifier un dysfonctionnement d’un objet technique et y remédier
 objectifs:
     connaissances:
-        - "Une ligne correspond à un essai ; chaque colonne a un nom et une unité."
+        - Une panne de réseau peut venir d’une liaison (câble absent), d’une adresse IP en double, d’une adresse d’un autre réseau ou d’un mauvais masque.
+        - 'On cherche méthodiquement : liaison, puis adresse, puis masque, en testant avec ping après chaque vérification.'
     competences:
-        - "Créer dans Excel ou Calc un tableau à partir des résultats fournis, avec des titres et des unités."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une ligne correspond à un essai ; chaque colonne a un nom et une unité."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Créer dans Excel ou Calc un tableau à partir des résultats fournis, avec des titres et des unités."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Un tableau organisé permet de comparer des mesures et d’expliquer un choix."
+        - Suivre une méthode de diagnostic.
+        - Corriger une panne de paramétrage.
+pourquoi:
+    - En séance 15, tu as construit un réseau qui fonctionne.
+    - Aujourd’hui, le professeur te donne un réseau Filius en panne. À toi de trouver pourquoi.
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "Pour tester deux orientations, je crée les colonnes « orientation », « essai » et « tension (V) ». La valeur 1,8 V va dans la colonne tension."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Dans quelle colonne places-tu une valeur mesurée en volts ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Créer dans Excel ou Calc un tableau à partir des résultats fournis, avec des titres et des unités."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "Aide LibreOffice Calc — formules"
-            url: https://help.libreoffice.org/latest/fr/text/scalc/guide/formulas.html
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: La méthode
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Méthode de diagnostic
+                colonnes:
+                    - Étape
+                    - Je vérifie…
+                    - Si c’est faux…
+                lignes:
+                    -   - '1'
+                        - Chaque ordinateur est-il relié au commutateur ?
+                        - J’ajoute le câble.
+                    -   - '2'
+                        - Les adresses sont-elles uniques ?
+                        - Je change l’adresse en double.
+                    -   - '3'
+                        - Les trois premiers nombres sont-ils identiques ?
+                        - Je corrige l’adresse.
+                    -   - '4'
+                        - Le masque est-il 255.255.255.0 partout ?
+                        - Je corrige le masque.
+            -   type: paragraphe
+                texte: 'Après chaque correction, je refais un ping : c’est le réflexe n° 8, une seule chose à la fois.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Pourquoi refaire un ping après chaque correction ?
+                choix:
+                    -   id: a
+                        texte: Pour savoir quelle correction a résolu la panne.
+                    -   id: b
+                        texte: Pour aller plus vite.
+                    -   id: c
+                        texte: Parce que Filius l’exige.
+                aide: Élimine d’abord les réponses impossibles.
+    -   id: a02
+        titre: Le réseau en panne
+        transition: Tu connais la méthode. Applique-la au réseau fourni.
+        contenu:
+            -   type: tableau
+                titre: Document 2 — Le réseau fourni (fichier Filius du professeur)
+                colonnes:
+                    - Ordinateur
+                    - Adresse
+                    - Masque
+                    - Câble
+                lignes:
+                    -   - PC A
+                        - '192.168.1.1'
+                        - '255.255.255.0'
+                        - oui
+                    -   - PC B
+                        - '192.168.2.2'
+                        - '255.255.255.0'
+                        - oui
+                    -   - PC C
+                        - '192.168.1.3'
+                        - '255.255.255.0'
+                        - non
+                    -   - PC D
+                        - '192.168.1.1'
+                        - '255.255.255.0'
+                        - oui
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: D’après le document 2, écris la panne de chaque ordinateur (ou « aucune »).
+                colonnes:
+                    - Ordinateur
+                    - Panne
+                lignes:
+                    -   - PC B
+                        - ''
+                    -   - PC C
+                        - ''
+                    -   - PC D
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne (réflexe n° 6).'
+            -   id: q02
+                type: tableau
+                enonce: Propose la correction pour chaque ordinateur.
+                colonnes:
+                    - Ordinateur
+                    - Correction
+                lignes:
+                    -   - PC B
+                        - ''
+                    -   - PC C
+                        - ''
+                    -   - PC D
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne (réflexe n° 6).'
+    -   id: a03
+        titre: Vérifier et expliquer
+        transition: Les pannes sont corrigées. Prouve-le.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Après tes corrections, quels pings dois-tu faire pour prouver que tout fonctionne ?
+                aide: Une phrase complète qui reprend les mots de la question.
+            -   id: q02
+                type: texte
+                enonce: 'Un camarade dit : « Mon PC ne marche pas, je rachète un ordinateur. » Que lui conseilles-tu ?'
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Certaines pannes viennent du commutateur lui-même.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment prouver que c’est le commutateur qui est en panne, et pas un ordinateur ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as dépanné un réseau. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment trouver et corriger une panne dans un réseau ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
 retenir:
-    - "Une ligne correspond à un essai ; chaque colonne a un nom et une unité."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille une ligne correspond à un essai ; chaque colonne a un nom et une unité.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "Aide LibreOffice Calc — formules"
-      url: https://help.libreoffice.org/latest/fr/text/scalc/guide/formulas.html
+    - 'Diagnostic réseau : liaison → adresse unique → même réseau → masque.'
+    - Une correction à la fois, un ping après chacune.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

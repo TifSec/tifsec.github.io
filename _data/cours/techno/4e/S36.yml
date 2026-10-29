@@ -1,93 +1,83 @@
-titre: "Quel besoin faut-il résoudre et comment reconnaître une réussite ?"
-theme: "Concevoir une amélioration"
-problematique: "Quel besoin faut-il résoudre et comment reconnaître une réussite ?"
-pourquoi: "Un besoin décrit un service ; un critère de réussite rend le résultat vérifiable."
-application: "Comparer plusieurs idées aide à choisir une solution adaptée aux utilisateurs."
-lien_precedent: "Après Comment trouver une erreur grâce au résultat attendu ?, une nouvelle mission t’aide à réutiliser tes méthodes."
-prerequis:
-    - "Tu peux relire la séance précédente (Comment trouver une erreur grâce au résultat attendu ?) si nécessaire."
-notions:
-    - titre: "Un exemple expliqué"
-      texte: "Besoin : avertir quand la cuve est presque pleine. Critère : l’écran affiche le message au seuil fourni."
+titre: 'Séance 36 : Que fait ce programme, en français ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment traduire le programme du monte-charge en algorithme ?
+competences_bo:
+    - Comprendre et modifier un programme associé à une fonctionnalité d’un objet ou d’un système technique
 objectifs:
     connaissances:
-        - "Un besoin décrit un service ; un critère de réussite rend le résultat vérifiable."
+        - 'Traduire un programme en algorithme : écrire en langage naturel ce que fait chaque bloc, dans l’ordre, avec QUAND, TANT QUE, SI … ALORS.'
     competences:
-        - "Choisir un problème et écrire un besoin puis trois critères observables."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Un besoin décrit un service ; un critère de réussite rend le résultat vérifiable."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Choisir un problème et écrire un besoin puis trois critères observables."
-    - type: paragraphe
-      texte: "Dans la vie réelle : Comparer plusieurs idées aide à choisir une solution adaptée aux utilisateurs."
+        - Traduire un programme en algorithme en langage naturel.
+        - Expliquer le rôle d’une boucle « tant que ».
+pourquoi:
+    - En séance 35, tu as identifié la chaîne d’information. En séance 31, tu as écrit un algorithme avant de programmer.
+    - 'Aujourd’hui, tu fais l’inverse : tu pars du programme et tu écris l’algorithme.'
 activites:
-    - id: a01
-      titre: "1. Comprendre la mission"
-      pourquoi: "On commence par un exemple guidé : il montre une méthode avant que tu l’essaies."
-      demarche:
-          - Lis la situation.
-          - Suis les étapes de l’exemple.
-          - Repère la donnée qui aide à répondre.
-      contenu:
-          - type: paragraphe
-            texte: "Besoin : avertir quand la cuve est presque pleine. Critère : l’écran affiche le message au seuil fourni."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle phrase décrit un besoin plutôt qu’un composant ?"
-            aide: "Relis l’exemple et repère l’information qui répond à la question."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-            aide: "Une ou deux phrases suffisent."
-    - id: a02
-      titre: "2. À toi d’essayer"
-      pourquoi: "Tu as vu la méthode ; maintenant, applique-la dans une tâche que tu peux vérifier."
-      demarche:
-          - Réalise les étapes dans l’ordre.
-          - Note le résultat attendu.
-          - Compare-le au résultat observé.
-      consigne: "Choisir un problème et écrire un besoin puis trois critères observables."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quel résultat observes-tu ? Décris ton essai."
-          - id: q02
-            type: texte
-            enonce: "Explique ta réponse en citant une donnée ou un indice du cours."
-      ressources:
-          - type: lien
-            titre: "Éduscol — Technologie au cycle 4"
-            url: https://eduscol.education.gouv.fr/5745/ressources-d-accompagnement-du-programme-de-technologie-au-cycle-4
-    - id: a03
-      titre: "3. Réutiliser la méthode"
-      pourquoi: "Un nouvel exemple t’aide à voir où cette méthode peut encore servir."
-      contenu:
-          - type: paragraphe
-            texte: "Reprends la méthode avec une nouvelle valeur, un autre document ou une autre situation du dossier."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Quelle information permet de justifier ta conclusion ? Quelle limite reste à vérifier ?"
-    - id: a04
-      titre: "4. Ce que tu retiens"
-      pourquoi: "Tu termines en gardant une idée et une méthode pour la prochaine séance."
-      demarche:
-          - Relis les deux éléments à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Le programme
+        contenu:
+            -   type: code
+                texte: "au démarrage\n    voyants orange ; écrire « Attente » ; voyants verts\n\ntoujours\n    si (P13 = 1) ET (P1 appuyé) alors\n        écrire « Appel Etage » ; voyants rouges\n        tant que P0 = 0\n            moteur M1 en avant, vitesse 137\n        arrêter le moteur\n        écrire « Stop Etage » ; voyants verts\n    si (P0 = 1) ET (P15 appuyé) alors\n        écrire « Appel RDC » ; voyants rouges\n        tant que P13 = 0\n            moteur M1 en arrière, vitesse 137\n        arrêter le moteur\n        écrire « Stop RDC » ; voyants verts"
+            -   type: paragraphe
+                texte: 'Exemple expliqué : « si (P13 = 1) ET (P1 appuyé) » se traduit : SI la cabine est en bas ET qu’on appuie sur le bouton Étage ALORS…'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Traduis la première partie (montée) en algorithme, en langage naturel.
+                aide: Repère le verbe de la question.
+    -   id: a02
+        titre: La boucle « tant que »
+        transition: Tu as traduit la montée. Concentre-toi sur la boucle qui fait monter la cabine.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Que fait la boucle « tant que P0 = 0 » ?
+                choix:
+                    -   id: a
+                        texte: Elle fait tourner le moteur tant que le contact haut n’est pas appuyé.
+                    -   id: b
+                        texte: Elle répète 0 fois.
+                    -   id: c
+                        texte: Elle arrête le moteur.
+                aide: Relis l’exemple expliqué.
+            -   id: q02
+                type: texte
+                enonce: Quelle est la différence entre « répéter 4 fois » et « tant que » ?
+                aide: Repère le verbe de la question.
+    -   id: a03
+        titre: La descente
+        transition: La montée est traduite. À toi pour la descente.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris l’algorithme de la descente.
+                aide: Combien d’éléments sont demandés ?
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: On appuie sur Étage pendant que la cabine descend.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le programme, que se passe-t-il ? Est-ce un problème ?
+                aide: Bloc par bloc (réflexe n° 9).
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as traduit le programme. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment traduire le programme en algorithme ?'
+                aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - "Un besoin décrit un service ; un critère de réussite rend le résultat vérifiable."
-    - "Pour vérifier, je compare une réponse ou un essai à une donnée précise."
-bilan: "Je peux expliquer ce que j’ai appris et montrer une réponse ou un essai comme preuve."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie cycle 4 : cette séance travaille un besoin décrit un service ; un critère de réussite rend le résultat vérifiable.. Elle contribue progressivement aux compétences de fin de cycle."
-    - type: lien
-      titre: "Ministère — Programme de Technologie du cycle 4, BO 2024"
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: lien
-      titre: "Éduscol — Technologie au cycle 4"
-      url: https://eduscol.education.gouv.fr/5745/ressources-d-accompagnement-du-programme-de-technologie-au-cycle-4
+    - 'Programme → algorithme : chaque bloc en langage naturel, dans l’ordre.'
+    - '« tant que » : répète tant qu’une condition est vraie.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download
