@@ -7,17 +7,18 @@ competences_bo:
     - Concevoir, écrire, tester et mettre au point un programme
 objectifs:
     connaissances:
-        - 'Un bug est une erreur de programme. Pour le trouver : reproduire le bug, isoler la partie en cause, faire une hypothèse, modifier une seule chose, retester.'
-        - Faire tester son jeu par un camarade révèle des bugs qu’on ne voit pas soi-même.
+        - 'Déboguer : reproduire le bug, isoler la partie en cause, faire une hypothèse, modifier une seule chose, retester.'
+        - Faire tester par un autre révèle des bugs qu’on ne voit pas.
     competences:
         - Suivre une méthode de débogage.
-        - Faire tester son programme et exploiter les retours.
+        - Faire tester et exploiter les retours.
 pourquoi:
     - En séances 31 à 33, tu as programmé ton jeu.
-    - Aujourd’hui, tu chasses les bugs. C’est aussi le bilan de la séquence.
+    - Aujourd’hui, tu chasses les bugs. C’est le bilan de la séquence.
 activites:
     -   id: a01
-        titre: Trois bugs fréquents
+        titre: La méthode
+        consigne: Tu vas apprendre une méthode pour trouver un bug, à partir de trois bugs fréquents du jeu « Récolte » (document 1). On attend ce que tu vérifies en premier et pourquoi on ne change qu’une chose à la fois.
         contenu:
             -   type: tableau
                 titre: Document 1
@@ -25,21 +26,33 @@ activites:
                     - Bug
                     - Cause probable
                 lignes:
-                    -   - Le score augmente de 2 à chaque fruit
+                    -   - Le score augmente de 2
                         - Deux blocs de chevauchement identiques
                     -   - Les fruits ne tombent pas
-                        - Vitesse vy à 0 ou bloc « à chaque » absent
+                        - vy à 0 ou bloc « à chaque » absent
                     -   - Le panier sort de l’écran
-                        - Option « rester à l’écran » non activée
+                        - « rester à l’écran » non activé
+            -   type: liste
+                elements:
+                    - 1. Reproduire le bug.
+                    - 2. Trouver le bloc concerné.
+                    - 3. Faire une hypothèse.
+                    - 4. Modifier une seule chose.
+                    - 5. Retester.
+            -   type: etapes
+                elements:
+                    - 'Lis le document 1 : trois bugs fréquents.'
+                    - Lis la méthode en 5 étapes.
+                    - Applique-la au premier bug.
             -   type: paragraphe
-                texte: 'Méthode : 1) reproduire le bug ; 2) chercher le bloc concerné ; 3) une hypothèse ; 4) une seule modification ; 5) retester (réflexe n° 8).'
+                texte: Pourquoi une méthode ? Corriger au hasard crée souvent de nouveaux bugs.
         questions:
             -   id: q01
                 type: qcm
                 enonce: Le score augmente de 2 par fruit. Que vérifies-tu en premier ?
                 choix:
                     -   id: a
-                        texte: S’il y a deux blocs de chevauchement qui ajoutent 1.
+                        texte: S’il y a deux blocs de chevauchement identiques.
                     -   id: b
                         texte: La couleur du panier.
                     -   id: c
@@ -47,18 +60,24 @@ activites:
                 aide: Relis l’exemple expliqué.
             -   id: q02
                 type: texte
-                enonce: Explique pourquoi on ne modifie qu’une seule chose avant de retester.
+                enonce: Pourquoi ne modifier qu’une seule chose avant de retester ?
                 aide: Attendu ou observé ?
     -   id: a02
         titre: Faire tester
-        transition: Tu connais la méthode. Un autre regard aide à trouver les bugs.
+        transition: Tu connais la méthode. Un autre regard aide.
+        consigne: Tu vas faire tester ton jeu « Récolte » par un camarade, puis corriger les bugs qu’il a trouvés. On attend deux bugs réels et leur correction.
         contenu:
+            -   type: etapes
+                elements:
+                    - Échange ton poste avec un camarade pendant 5 minutes.
+                    - Il joue et note les bugs.
+                    - Reprends ton poste et corrige avec la méthode.
             -   type: paragraphe
-                texte: Échange ton poste avec un camarade pendant 5 minutes. Il joue et note les bugs. Puis vous corrigez chacun votre jeu.
+                texte: 'Pourquoi un testeur ? Le programmeur sait comment son jeu « devrait » marcher : il ne pense pas à jouer autrement.'
         questions:
             -   id: q01
                 type: tableau
-                enonce: Note deux bugs trouvés (par toi ou ton testeur) et leur correction.
+                enonce: Note deux bugs trouvés par ton testeur dans ton jeu « Récolte », et leur correction.
                 colonnes:
                     - Bug observé
                     - Correction
@@ -73,7 +92,24 @@ activites:
                 titre: MakeCode Arcade (gratuit, dans le navigateur)
                 url: https://arcade.makecode.com/
     -   id: a03
-        titre: Défi
+        titre: Vérifier la correction
+        transition: Les bugs sont corrigés. Vérifie.
+        consigne: Tu vas vérifier que tes corrections n’ont rien cassé d’autre dans ton jeu. On attend la description de ta vérification.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Rejoue la situation qui provoquait le bug.
+                    - Vérifie que le bug a disparu.
+                    - Vérifie que le reste du jeu marche encore.
+            -   type: paragraphe
+                texte: 'Pourquoi revérifier tout le jeu ? Une correction peut casser autre chose : c’est pour ça qu’on reteste.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment as-tu vérifié que ta correction n’a rien cassé d’autre ?
+                aide: Repère le verbe de la question.
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -84,18 +120,17 @@ activites:
                 type: texte
                 enonce: Pourquoi un bug rare est-il difficile à corriger ?
                 aide: Pense à « car » (réflexe n° 4).
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Tu as débogué ton jeu. Il reste à répondre au problème de départ.
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment trouver et corriger un bug dans un programme ?'
+                enonce: 'Réponds au problème du jour : comment trouver et corriger un bug ?'
                 aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - 'Déboguer : reproduire, isoler, hypothèse, une seule modification, retester.'
-    - Faire tester par un autre.
+    - 'Déboguer : reproduire, isoler, hypothèse, une modification, retester.'
 sources:
     -   type: lien
         titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)

@@ -10,23 +10,32 @@ objectifs:
         - 'Compléter un programme : trouver où ajouter les blocs, les ajouter sans casser ce qui fonctionne, tester dans le simulateur puis sur la maquette.'
         - 'On réutilise les plages de distances de la séance 37 : moins de 8 cm → étage, plus de 24 cm → RDC.'
     competences:
-        - Trouver le bloc qui manque dans un programme (réflexe R13).
+        - Trouver ce qui manque dans un programme (réflexe R13).
         - Compléter un programme et le tester.
 pourquoi:
-    - En séance 37, tu as associé des distances aux positions de la cabine.
-    - Aujourd’hui, tu complètes le programme pour afficher l’étage, puis un groupe à la fois le teste sur la maquette.
+    - En séance 37, tu as associé des distances mesurées par le capteur à ultrasons aux positions de la cabine.
+    - Aujourd’hui, tu complètes le programme pour afficher l’étage sur l’écran, puis un groupe à la fois le teste sur la maquette.
 activites:
     -   id: a01
         titre: Trouver ce qui manque
+        consigne: Tu vas compléter un programme incomplet (affiché ci-dessous) qui doit afficher sur l’écran du monte-charge la position de la cabine, à partir de la distance mesurée par le capteur à ultrasons. Tu t’appuies sur les plages de distances de la séance 37. On attend les deux trous complétés.
         contenu:
             -   type: citation
                 texte: 'Réflexe brevet n° 13 : je cherche le bloc ou la ligne qui manque en comparant ce que fait le programme et ce qu’il devrait faire.'
             -   type: code
                 texte: "toujours\n    distance = distance mesurée sur P2 (cm)\n    si distance < 8 alors\n        écrire « ETAGE »\n    sinon si ………… alors\n        écrire « RDC »\n    sinon\n        écrire « ……… »\n    pause 200 ms"
+            -   type: etapes
+                elements:
+                    - Lis le réflexe R13.
+                    - Lis le programme incomplet ligne par ligne.
+                    - 'Compare avec ce qu’il doit faire : ETAGE si moins de 8 cm, RDC si plus de 24 cm, MILIEU sinon.'
+                    - Écris ce qui manque dans chaque trou.
+            -   type: paragraphe
+                texte: Pourquoi comparer ? On trouve ce qui manque en mettant côte à côte ce que fait le programme et ce qu’il devrait faire.
         questions:
             -   id: q01
                 type: tableau
-                enonce: Complète les deux trous du programme.
+                enonce: Complète les deux trous du programme d’affichage de l’étage du monte-charge.
                 colonnes:
                     - Trou
                     - Ce qu’il faut écrire
@@ -39,17 +48,20 @@ activites:
     -   id: a02
         titre: Programmer dans le simulateur
         transition: Tu sais ce qui manque. Programme-le dans le simulateur.
+        consigne: Tu vas ajouter les blocs de la mission 1 dans une copie du programme du monte-charge, puis les tester dans le simulateur MakeCode en réglant la distance du capteur. On attend un tableau « attendu / observé » pour trois distances.
         contenu:
             -   type: etapes
                 elements:
-                    - Ouvre le programme du monte-charge fourni par le professeur (copie).
+                    - Ouvre la copie du programme du monte-charge fournie par le professeur.
                     - Ajoute les blocs de la mission 1 dans la boucle « toujours ».
-                    - Dans le simulateur, règle la distance (curseur de P2) à 5, 16 puis 26 cm.
-                    - Note ce qui s’affiche.
+                    - Dans le simulateur, règle la distance (curseur de P2) à 5, puis 16, puis 26 cm.
+                    - Note à chaque fois ce que tu attends et ce qui s’affiche.
+            -   type: paragraphe
+                texte: Pourquoi noter « attendu » et « observé » ? Si les deux sont identiques, le programme est juste ; sinon, tu sais où chercher.
         questions:
             -   id: q01
                 type: tableau
-                enonce: Résultats dans le simulateur.
+                enonce: Dans le simulateur, règle la distance du capteur et note ce que tu attends et ce qui s’affiche sur l’écran.
                 colonnes:
                     - Distance réglée
                     - Affichage attendu
@@ -67,7 +79,7 @@ activites:
                 aide: Ligne × colonne.
             -   id: q02
                 type: qcm
-                enonce: Où faut-il placer ces nouveaux blocs ?
+                enonce: Dans le programme du monte-charge, où faut-il placer ces nouveaux blocs ?
                 choix:
                     -   id: a
                         texte: Dans une boucle « toujours », pour que l’affichage se mette à jour sans arrêt.
@@ -81,7 +93,25 @@ activites:
                 titre: MakeCode micro:bit (gratuit, dans le navigateur)
                 url: https://makecode.microbit.org/
     -   id: a03
-        titre: Défi
+        titre: Tester sur la maquette
+        transition: Le simulateur fonctionne. Vérifie sur l’objet réel.
+        consigne: Tu vas observer ton programme d’affichage de l’étage sur le vrai monte-charge (le professeur le téléverse) et comparer avec le simulateur. On attend une observation précise de l’écran pendant un trajet et une explication.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Quand c’est le tour de ton groupe, le professeur téléverse ton programme sur le monte-charge.
+                    - Observe l’écran pendant une montée, puis une descente.
+                    - Compare avec le simulateur.
+                    - Le professeur remet ensuite le programme d’origine.
+            -   type: paragraphe
+                texte: 'Pourquoi tester sur la maquette ? Le simulateur ne bouge pas vraiment : sur l’objet réel, la carte est occupée par la boucle de trajet, et des surprises apparaissent.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Sur la maquette, l’écran du monte-charge affiche-t-il l’étage pendant la montée, ou seulement à l’arrêt ? Propose une explication.
+                aide: Ton idée répond-elle au besoin ?
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -90,16 +120,16 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: L’affichage se met-il à jour pendant la montée ? Que faudrait-il changer ?
-                aide: Repère le verbe de la question.
-    -   id: a04
+                enonce: Que faudrait-il changer dans le programme pour que l’étage s’affiche aussi pendant la montée ?
+                aide: Bloc par bloc (réflexe n° 9).
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Ton programme affiche l’étage. Il reste à répondre au problème de départ.
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment as-tu complété le programme, et comment l’as-tu testé ?'
+                enonce: 'Réponds au problème du jour : comment as-tu complété le programme du monte-charge, et comment l’as-tu testé ?'
                 aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
     - 'Compléter un programme : comparer ce qu’il fait à ce qu’il doit faire (R13), ajouter, tester.'

@@ -12,14 +12,15 @@ objectifs:
         - Utiliser MIN, MAX et MOYENNE.
         - Tracer et interpréter un graphique en courbe avec titre et axes.
 pourquoi:
-    - En séance 45, la liaison radio a été testée. Le récepteur a enregistré les mesures toutes les heures (fichier fourni).
+    - En séance 45, la liaison radio a été testée. La carte réceptrice a enregistré la lumière envoyée par le tracker toutes les heures.
     - Aujourd’hui, tu exploites ces mesures dans Calc.
 activites:
     -   id: a01
-        titre: Les mesures
+        titre: Les calculs
+        consigne: Tu vas calculer dans Calc la valeur la plus faible, la plus forte et la moyenne des mesures de lumière envoyées par le tracker pendant une journée (document 1). On attend un fichier enregistré et les trois résultats.
         contenu:
             -   type: tableau
-                titre: Document 1 — Mesures reçues (exemple de journée ensoleillée)
+                titre: Document 1 — Lumière reçue par la carte réceptrice, une journée ensoleillée (exemple)
                 colonnes:
                     - Heure
                     - 8 h
@@ -46,12 +47,16 @@ activites:
                         - '70'
             -   type: etapes
                 elements:
-                    - Ouvre Calc, enregistre sous 4e_S46_groupe.ods, recopie le tableau (heures en ligne 1, valeurs en ligne 2, à partir de B).
-                    - Calcule MIN, MAX et MOYENNE des valeurs (=MIN(B2:K2)…).
+                    - Ouvre Calc et enregistre sous 4e_S46_groupe.ods.
+                    - 'Recopie le document 1 : heures en ligne 1, valeurs en ligne 2, à partir de la colonne B.'
+                    - En B4, écris =MIN(B2:K2) ; en B5, =MAX(B2:K2) ; en B6, =MOYENNE(B2:K2).
+                    - Écris une étiquette en A4, A5, A6.
+            -   type: paragraphe
+                texte: 'Pourquoi des fonctions ? Si une mesure change, Calc recalcule tout seul : pas d’erreur de calcul à la main.'
         questions:
             -   id: q01
                 type: tableau
-                enonce: Recopie tes résultats.
+                enonce: Recopie les résultats calculés par Calc pour les mesures de lumière du document 1.
                 colonnes:
                     - Fonction
                     - Résultat
@@ -62,23 +67,28 @@ activites:
                         - ''
                     -   - MOYENNE
                         - ''
-                aide: Ligne × colonne.
+                aide: « = » + fonction + plage.
     -   id: a02
         titre: Le graphique
         transition: Les calculs sont faits. Un graphique montre l’évolution.
+        consigne: Tu vas tracer dans Calc la courbe de la lumière reçue au cours de la journée, avec un titre et des axes nommés. On attend une description de la courbe et son explication.
         contenu:
             -   type: etapes
                 elements:
-                    - Sélectionne les deux lignes, Insertion > Diagramme > Lignes.
+                    - Sélectionne les lignes 1 et 2 (A1:K2).
+                    - Insertion > Diagramme > Lignes.
                     - 'Titre : « Lumière reçue par le tracker » ; axe X : « Heure » ; axe Y : « Lumière ».'
+                    - Enregistre (Ctrl + S).
+            -   type: paragraphe
+                texte: 'Pourquoi une courbe ? Elle montre comment une grandeur évolue dans le temps : on voit d’un coup d’œil le matin, midi et le soir.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Décris l’évolution de la lumière pendant la journée et explique-la.
+                enonce: Décris l’évolution de la lumière reçue par le tracker pendant la journée et explique-la.
                 aide: Pense à « car » (réflexe n° 4).
             -   id: q02
                 type: qcm
-                enonce: Pourquoi un graphique en courbe plutôt qu’en secteurs ?
+                enonce: Pourquoi un graphique en courbe plutôt qu’en secteurs pour ces mesures ?
                 choix:
                     -   id: a
                         texte: Pour montrer une évolution dans le temps.
@@ -88,7 +98,25 @@ activites:
                         texte: C’est pareil.
                 aide: Relis l’exemple expliqué.
     -   id: a03
-        titre: Défi
+        titre: Interpréter
+        transition: Tu as décrit la courbe. Tire-en une information utile.
+        consigne: Tu vas utiliser les mesures de lumière pour savoir à quels moments le panneau du tracker est le plus efficace. On attend un nombre d’heures lu sur les mesures.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Repère sur ta courbe les heures où la lumière dépasse 300.
+                    - Compte ces heures.
+                    - Fais le lien avec la production d’électricité du panneau du tracker.
+            -   type: paragraphe
+                texte: 'Pourquoi relier au panneau ? Le tracker sert à produire de l’électricité : ces mesures disent quand il est le plus utile.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: D’après le document 1, pendant combien d’heures relevées la lumière dépasse-t-elle 300 ?
+                unite: h
+                aide: N’oublie pas l’unité (réflexe n° 5).
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -99,14 +127,14 @@ activites:
                 type: texte
                 enonce: Écris une formule qui affiche « Fort » si la valeur de B2 dépasse 300, sinon « Faible ».
                 aide: « = » + fonction + plage.
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Tu as exploité les mesures. Il reste à répondre au problème de départ.
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : que nous apprennent les mesures reçues ?'
+                enonce: 'Réponds au problème du jour : que nous apprennent les mesures de lumière reçues pendant une journée ?'
                 aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
     - MIN, MAX, MOYENNE sur une plage ; graphique en courbe pour une évolution dans le temps.

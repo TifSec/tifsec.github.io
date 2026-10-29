@@ -6,28 +6,72 @@ competences_bo:
     - Concevoir, écrire, tester et mettre au point un programme
 objectifs:
     connaissances:
-        - 'Un algorithme en langage naturel utilise des mots simples : QUAND, SI … ALORS … SINON, RÉPÉTER.'
-        - 'On écrit l’algorithme avant de programmer : on réfléchit aux règles, puis on traduit en blocs.'
+        - 'Un algorithme en langage naturel utilise : QUAND, SI … ALORS … SINON, RÉPÉTER.'
+        - On écrit l’algorithme avant de programmer.
     competences:
         - Écrire un algorithme en langage naturel (réflexe R12).
-        - Repérer les événements, les conditions et les boucles d’un jeu.
+        - Repérer événements, conditions et boucles.
 pourquoi:
-    - En 5e, tu as modifié un jeu Arcade déjà fait. En séance 30, tu as écrit des instructions précises.
-    - En 4e, tu écris d’abord les règles de ton jeu sous forme d’algorithme.
+    - En 5e, tu as modifié un jeu Arcade tout fait. En séance 30, tu as écrit des instructions précises.
+    - En 4e, tu écris d’abord les règles de ton jeu « Récolte ».
 activites:
     -   id: a01
-        titre: Le jeu à concevoir
+        titre: Les règles du jeu
+        consigne: Tu vas lire les règles du jeu « Récolte » (panier, fruits qui tombent, score, vies) que tu programmeras ensuite. On attend que tu reconnaisses un événement et une condition.
         contenu:
             -   type: citation
                 texte: 'Réflexe brevet n° 12 : j’écris un algorithme en langage naturel : QUAND…, SI… ALORS… SINON…'
+            -   type: citation
+                texte: 'Jeu « Récolte » : un panier se déplace avec les flèches ; des fruits tombent ; si le panier attrape un fruit, le score augmente de 1 ; si un fruit touche le sol, on perd une vie ; à 0 vie, la partie est perdue.'
             -   type: paragraphe
-                texte: 'Jeu « Récolte » : un panier se déplace avec les flèches ; des fruits tombent du haut de l’écran ; si le panier attrape un fruit, le score augmente de 1 ; si un fruit touche le sol, on perd une vie ; à 0 vie, la partie est perdue.'
+                texte: 'Exemple expliqué : « QUAND le panier touche un fruit : ajouter 1 au score, détruire le fruit. »'
+            -   type: etapes
+                elements:
+                    - Lis la description du jeu « Récolte ».
+                    - Souligne dans ta tête les événements (QUAND…).
+                    - Puis les conditions (SI…).
+                    - Lis l’exemple expliqué.
             -   type: paragraphe
-                texte: 'Exemple expliqué : « QUAND le panier touche un fruit : ajouter 1 au score, détruire le fruit. » C’est un événement suivi de deux actions.'
+                texte: Pourquoi écrire les règles avant ? On réfléchit à ce que doit faire le jeu sans se perdre dans les blocs ; programmer devient ensuite une traduction.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: « Quand le panier touche un fruit » est…
+                choix:
+                    -   id: a
+                        texte: un événement.
+                    -   id: b
+                        texte: une boucle.
+                    -   id: c
+                        texte: une variable.
+                aide: Relis l’exemple expliqué.
+            -   id: q02
+                type: qcm
+                enonce: « Si vies = 0 alors perdu » est…
+                choix:
+                    -   id: a
+                        texte: une condition.
+                    -   id: b
+                        texte: un événement.
+                    -   id: c
+                        texte: un affichage.
+                aide: Relis l’exemple expliqué.
+    -   id: a02
+        titre: Écrire l’algorithme
+        transition: Tu reconnais les éléments. Écris l’algorithme.
+        consigne: Tu vas écrire l’algorithme du jeu « Récolte » en langage naturel, ligne par ligne, à partir de ses règles. On attend les actions de chaque événement ou condition, avec des verbes simples.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Pour chaque ligne du tableau, écris les actions.
+                    - 'Utilise des verbes simples : déplacer, ajouter, retirer, détruire, afficher.'
+                    - 'Relis : chaque règle du jeu est-elle traduite ?'
+            -   type: paragraphe
+                texte: 'Pourquoi des verbes simples ? Chaque verbe deviendra un bloc : plus il est simple, plus la traduction est facile.'
         questions:
             -   id: q01
                 type: tableau
-                enonce: Écris l’algorithme du jeu en complétant chaque ligne.
+                enonce: Pour le jeu « Récolte », écris les actions à faire pour chaque événement ou condition.
                 colonnes:
                     - Événement ou condition
                     - Actions
@@ -40,17 +84,26 @@ activites:
                         - ''
                     -   - SI vies = 0
                         - ''
-                aide: Ligne × colonne.
-    -   id: a02
+                aide: 'Bloc par bloc : quand ? quelle condition ? quelle action ?'
+    -   id: a03
         titre: Les fruits qui tombent
-        transition: Les règles du panier sont écrites. Il faut aussi faire tomber les fruits.
+        transition: Les règles du panier sont écrites. Il faut faire tomber les fruits.
+        consigne: Tu vas écrire l’algorithme qui fait apparaître les fruits du jeu « Récolte ». On attend un algorithme avec RÉPÉTER, le hasard et le délai de 2 secondes.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Imagine l’apparition d’un fruit toutes les 2 secondes.
+                    - Précise où il apparaît (au hasard) et comment il bouge.
+                    - Écris l’algorithme avec RÉPÉTER.
+            -   type: paragraphe
+                texte: Pourquoi « au hasard » ? Sinon les fruits tomberaient toujours au même endroit et le jeu serait trop facile.
         questions:
             -   id: q01
                 type: texte
-                enonce: Écris l’algorithme qui fait apparaître un fruit en haut de l’écran toutes les 2 secondes, à un endroit au hasard.
+                enonce: Écris l’algorithme qui fait apparaître un fruit en haut, au hasard, toutes les 2 secondes.
                 aide: Combien d’éléments sont demandés ?
-    -   id: a03
-        titre: Défi
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -61,7 +114,7 @@ activites:
                 type: texte
                 enonce: Écris la règle qui accélère les fruits tous les 10 points.
                 aide: Combien d’éléments sont demandés ?
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Ton algorithme est prêt. Il reste à répondre au problème de départ.
@@ -71,8 +124,8 @@ activites:
                 enonce: 'Réponds au problème du jour : comment écrire l’algorithme d’un jeu avant de le programmer ?'
                 aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - 'Algorithme en langage naturel : QUAND, SI … ALORS … SINON, RÉPÉTER.'
-    - 'Réflexe R12 : écrire l’algorithme avant de programmer.'
+    - 'Algorithme : QUAND, SI … ALORS … SINON, RÉPÉTER.'
+    - Réflexe R12.
 sources:
     -   type: lien
         titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)

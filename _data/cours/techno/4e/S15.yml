@@ -7,25 +7,28 @@ competences_bo:
     - Valider les solutions techniques par des simulations ou par des protocoles de tests
 objectifs:
     connaissances:
-        - Dans Filius, on place des ordinateurs et un commutateur, on les relie par des câbles, puis on donne une adresse IP à chaque ordinateur.
-        - 'La commande ping envoie un petit message à une adresse et attend une réponse : elle vérifie que deux appareils communiquent.'
+        - Dans Filius, on place des ordinateurs et un commutateur, on les relie, puis on donne une adresse IP à chaque ordinateur.
+        - 'La commande ping envoie un petit message et attend une réponse : elle vérifie que deux appareils communiquent.'
     competences:
         - Construire un réseau dans un simulateur.
         - Paramétrer les adresses IP.
-        - Vérifier la communication avec ping.
+        - Vérifier avec ping.
 pourquoi:
     - En séances 13 et 14, tu as vu les équipements et les adresses.
-    - Aujourd’hui, tu construis toi-même un réseau, dans le simulateur Filius.
+    - Aujourd’hui, tu construis toi-même un réseau dans le simulateur Filius.
 activites:
     -   id: a01
-        titre: Construire
+        titre: Construire le réseau
+        consigne: Tu vas construire dans le logiciel Filius un petit réseau de trois ordinateurs reliés à un commutateur, en suivant les étapes. On attend le paramétrage (adresses, masque) de tes ordinateurs.
         contenu:
             -   type: etapes
                 elements:
-                    - Ouvre Filius (mode conception, icône du marteau).
+                    - Ouvre Filius en mode conception (icône du marteau).
                     - Place trois ordinateurs et un commutateur.
                     - Relie chaque ordinateur au commutateur avec un câble.
-                    - 'Double-clique sur chaque ordinateur et donne-lui une adresse : 192.168.1.1, 192.168.1.2, 192.168.1.3 (masque 255.255.255.0).'
+                    - 'Double-clique sur chaque ordinateur : adresses 192.168.1.1, 192.168.1.2, 192.168.1.3 ; masque 255.255.255.0.'
+            -   type: paragraphe
+                texte: Pourquoi un simulateur ? On peut construire, casser et réparer un réseau sans risque pour celui du collège.
         questions:
             -   id: q01
                 type: tableau
@@ -60,30 +63,39 @@ activites:
     -   id: a02
         titre: Vérifier avec ping
         transition: Ton réseau est construit. Vérifie qu’il fonctionne.
+        consigne: Tu vas vérifier avec la commande ping, dans Filius, que tes ordinateurs communiquent. On attend une ligne de réponse recopiée et l’explication du chemin suivi par les messages.
         contenu:
             -   type: etapes
                 elements:
-                    - Passe en mode simulation (icône du triangle vert).
+                    - Passe en mode simulation (triangle vert).
                     - Sur PC 1, installe le logiciel « Ligne de commande ».
                     - 'Tape : ping 192.168.1.3 puis Entrée.'
                     - Observe les réponses et les câbles qui clignotent.
+            -   type: paragraphe
+                texte: 'Pourquoi ping ? C’est le premier test des techniciens réseau : il dit tout de suite si deux appareils se parlent.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Recopie ce qu’affiche Filius après le ping (au moins une ligne), et dis si les ordinateurs communiquent.
+                enonce: Recopie une ligne affichée par le ping et dis si les ordinateurs communiquent.
                 aide: Une phrase complète qui reprend les mots de la question.
             -   id: q02
                 type: texte
-                enonce: Pendant le ping, quels câbles clignotent ? Que montre ce chemin ?
+                enonce: Quels câbles clignotent pendant le ping ? Que montre ce chemin ?
                 aide: Une phrase complète qui reprend les mots de la question.
         ressources:
             - *id001
     -   id: a03
-        titre: Ajouter un appareil
-        transition: Ton réseau marche. Que se passe-t-il si on fait une erreur d’adresse ?
+        titre: Provoquer une erreur
+        transition: Ton réseau marche. Que se passe-t-il si on se trompe d’adresse ?
+        consigne: 'Tu vas provoquer volontairement une erreur dans ton réseau Filius : un quatrième ordinateur avec une adresse déjà prise. On attend ce que tu observes, son explication et la correction.'
         contenu:
+            -   type: etapes
+                elements:
+                    - Ajoute un quatrième ordinateur avec l’adresse 192.168.1.2 (déjà prise).
+                    - Fais un ping vers 192.168.1.2.
+                    - Observe, puis corrige l’adresse.
             -   type: paragraphe
-                texte: Ajoute un quatrième ordinateur avec l’adresse 192.168.1.2 (déjà utilisée !), puis fais un ping vers 192.168.1.2.
+                texte: Pourquoi provoquer une erreur ? Voir une panne volontaire aide à la reconnaître quand elle arrive pour de vrai.
         questions:
             -   id: q01
                 type: texte
@@ -92,7 +104,7 @@ activites:
         ressources:
             - *id001
     -   id: a04
-        titre: Défi
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -101,7 +113,7 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: Installe un serveur web sur PC 3 et un navigateur sur PC 1. Que dois-tu taper dans le navigateur ?
+                enonce: Installe un serveur web sur PC 3 et un navigateur sur PC 1. Que tapes-tu dans le navigateur ?
                 aide: Une phrase complète qui reprend les mots de la question.
         ressources:
             - *id001
@@ -112,11 +124,11 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment construire, paramétrer et vérifier un petit réseau local ?'
+                enonce: 'Réponds au problème du jour : comment construire, paramétrer et vérifier un petit réseau local ? Cite les étapes dans l’ordre.'
                 aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
 retenir:
-    - 'Construire : ordinateurs + commutateur + câbles. Paramétrer : une adresse IP unique par ordinateur.'
-    - 'Vérifier : ping envoie un message et attend la réponse.'
+    - 'Construire : ordinateurs + commutateur + câbles. Paramétrer : une adresse unique par ordinateur.'
+    - 'Vérifier : ping.'
 sources:
     -   type: lien
         titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)

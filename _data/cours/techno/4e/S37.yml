@@ -6,20 +6,21 @@ competences_bo:
     - Comprendre et modifier un programme associé à une fonctionnalité d’un objet ou d’un système technique
 objectifs:
     connaissances:
-        - Le capteur à ultrasons mesure la distance (en cm) entre lui et la cabine.
-        - En analysant des relevés, on peut associer une plage de distances à une position de la cabine et utiliser ces valeurs dans le programme.
+        - Le capteur à ultrasons mesure la distance (cm) entre lui et la cabine.
+        - On associe une plage de distances à une position, puis on l’utilise dans des conditions.
     competences:
-        - Analyser des relevés de mesures.
+        - Analyser des relevés.
         - En déduire une modification du programme.
 pourquoi:
     - En séance 35, tu as vu que le capteur à ultrasons est relié à P2.
-    - Aujourd’hui, tu analyses ce qu’il mesure pendant un trajet de la cabine.
+    - Aujourd’hui, tu analyses ce qu’il mesure pendant un trajet.
 activites:
     -   id: a01
-        titre: Les relevés
+        titre: Lire les relevés
+        consigne: Tu vas lire les mesures du capteur à ultrasons du monte-charge pendant un trajet (document 1). On attend le sens du déplacement de la cabine et un calcul de distance parcourue.
         contenu:
             -   type: tableau
-                titre: Document 1 — Distance mesurée pendant un trajet (valeurs d’exemple)
+                titre: Document 1 — Distance mesurée pendant un trajet (exemple)
                 colonnes:
                     - Temps (s)
                     - '0'
@@ -38,15 +39,21 @@ activites:
                         - '23'
                         - '27'
                         - '28'
+            -   type: etapes
+                elements:
+                    - Lis le document 1.
+                    - 'Retiens : le capteur est en haut de la cage.'
+                    - Plus la distance est grande, plus la cabine est basse.
+                    - Réponds aux questions.
             -   type: paragraphe
-                texte: Le capteur est fixé en haut de la cage. Plus la cabine est basse, plus la distance mesurée est grande.
+                texte: Pourquoi la position du capteur compte-t-elle ? La même valeur ne veut pas dire la même chose selon l’endroit d’où l’on mesure.
         questions:
             -   id: q01
                 type: qcm
-                enonce: D’après le document 1, la distance augmente avec le temps. Si le capteur est en haut, la cabine…
+                enonce: La distance augmente avec le temps. La cabine…
                 choix:
                     -   id: a
-                        texte: '… s’éloigne du capteur : elle descend.'
+                        texte: … descend.
                     -   id: b
                         texte: … monte.
                     -   id: c
@@ -54,21 +61,30 @@ activites:
                 aide: Relis l’exemple expliqué.
             -   id: q02
                 type: nombre
-                enonce: D’après le document 1, de combien de centimètres la cabine se déplace-t-elle entre 1 s et 4 s ?
+                enonce: De combien la cabine se déplace-t-elle entre 1 s et 4 s ?
                 unite: cm
                 aide: N’oublie pas l’unité (réflexe n° 5).
     -   id: a02
         titre: Associer distance et position
+        transition: Tu sais lire les relevés. Associe-les à des positions.
+        consigne: Tu vas associer les distances mesurées par le capteur aux positions de la cabine (haut, milieu, bas). On attend une plage de distances pour chaque position.
         contenu:
             -   type: paragraphe
-                texte: 'Mesures complémentaires : cabine en haut → 4 cm ; cabine au milieu → 16 cm ; cabine en bas → 28 cm.'
+                texte: 'Mesures complémentaires : cabine en haut → 4 cm ; au milieu → 16 cm ; en bas → 28 cm.'
+            -   type: etapes
+                elements:
+                    - Lis les mesures complémentaires.
+                    - Choisis une limite entre « haut » et « milieu », puis entre « milieu » et « bas ».
+                    - Écris les trois plages.
+            -   type: paragraphe
+                texte: 'Pourquoi des plages ? Une mesure n’est jamais exactement la même : une plage tolère les petites variations.'
         questions:
             -   id: q01
                 type: tableau
-                enonce: Propose une plage de distances pour chaque position.
+                enonce: Propose une plage de distances mesurées par le capteur pour chaque position de la cabine.
                 colonnes:
                     - Position
-                    - Plage de distances (cm)
+                    - Plage (cm)
                 lignes:
                     -   - En haut
                         - ''
@@ -76,27 +92,36 @@ activites:
                         - ''
                     -   - En bas
                         - ''
-                aide: Ligne × colonne.
+                aide: Attendu ou observé ?
     -   id: a03
-        titre: Modifier le programme
+        titre: Écrire la modification
         transition: Tu connais les plages. Utilise-les dans le programme.
+        consigne: Tu vas écrire la partie du programme qui affiche la position de la cabine à partir de la distance mesurée. On attend une condition SI … SINON SI … SINON en langage naturel.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Reprends tes plages.
+                    - Écris une condition SI … SINON SI … SINON.
+                    - Vérifie avec 5, 16 et 26 cm.
+            -   type: paragraphe
+                texte: 'Pourquoi « sinon si » ? Il y a trois cas : une seule condition ne suffit pas.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Écris en langage naturel la partie de programme qui affiche « HAUT », « MILIEU » ou « BAS » selon la distance.
-                aide: Bloc par bloc (réflexe n° 9).
+                enonce: Écris en langage naturel la partie qui affiche « HAUT », « MILIEU » ou « BAS ».
+                aide: Combien d’éléments sont demandés ?
     -   id: a04
-        titre: Défi
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
             -   type: paragraphe
-                texte: Une mesure à ultrasons peut parfois être fausse (0 ou 400 cm).
+                texte: Une mesure à ultrasons peut être fausse (0 ou 400 cm).
         questions:
             -   id: q01
                 type: texte
-                enonce: Comment ton programme pourrait-il ignorer une mesure absurde ?
-                aide: Bloc par bloc (réflexe n° 9).
+                enonce: Comment ignorer une mesure absurde ?
+                aide: Attendu ou observé ?
     -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
@@ -108,7 +133,7 @@ activites:
                 aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
     - Le capteur à ultrasons mesure une distance (cm).
-    - Plages de distances → position → conditions dans le programme .
+    - Plages → position → conditions.
 sources:
     -   type: lien
         titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)

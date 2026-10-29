@@ -7,7 +7,7 @@ competences_bo:
 objectifs:
     connaissances:
         - 'Chaque appareil d’un réseau a une adresse IP, par exemple 192.168.1.15 : quatre nombres de 0 à 255.'
-        - Dans un petit réseau local, les appareils dont les trois premiers nombres sont identiques (ici 192.168.1) sont dans le même réseau et peuvent communiquer directement.
+        - Dans un petit réseau local, les appareils dont les trois premiers nombres sont identiques sont dans le même réseau.
     competences:
         - Expliquer le rôle d’une adresse IP.
         - Dire si deux appareils sont dans le même réseau local.
@@ -17,33 +17,38 @@ pourquoi:
 activites:
     -   id: a01
         titre: Le jeu du facteur (activité débranchée)
+        consigne: Tu vas comprendre, par un jeu en classe (le facteur et les cartes-adresses), pourquoi chaque appareil d’un réseau a une adresse. On attend ce qui se passe avec deux adresses identiques et pourquoi on indique l’expéditeur.
         contenu:
+            -   type: etapes
+                elements:
+                    - Le professeur distribue une carte-adresse à chaque élève.
+                    - Le « facteur » distribue des lettres avec une adresse de destination et une adresse d’expéditeur.
+                    - On essaie avec une lettre sans adresse, puis avec deux élèves ayant la même adresse.
             -   type: paragraphe
-                texte: Le professeur distribue à chaque élève une carte avec une adresse (rue, numéro). Un « facteur » doit livrer des lettres. Sans adresse, impossible ; avec deux fois la même adresse, il se trompe.
-            -   type: paragraphe
-                texte: 'Exemple expliqué : dans un réseau, c’est pareil. Un message contient l’adresse IP de l’expéditeur et celle du destinataire. Deux appareils ne doivent jamais avoir la même adresse dans un réseau.'
+                texte: 'Pourquoi une adresse unique ? Si deux appareils ont la même, les messages peuvent arriver au mauvais : c’est un conflit d’adresse.'
         questions:
             -   id: q01
                 type: qcm
                 enonce: Que se passe-t-il si deux ordinateurs ont la même adresse IP dans le même réseau ?
                 choix:
                     -   id: a
-                        texte: 'Les messages risquent d’arriver au mauvais ordinateur : c’est un conflit d’adresse.'
+                        texte: Les messages risquent d’arriver au mauvais ordinateur.
                     -   id: b
-                        texte: Ils vont deux fois plus vite.
+                        texte: Ils vont plus vite.
                     -   id: c
                         texte: Rien.
                 aide: Élimine d’abord les réponses impossibles.
             -   id: q02
                 type: texte
-                enonce: Pourquoi un message doit-il contenir l’adresse de l’expéditeur, en plus de celle du destinataire ?
+                enonce: Pourquoi un message contient-il aussi l’adresse de l’expéditeur ?
                 aide: Une idée + « car » + une raison tirée de la séance.
     -   id: a02
         titre: Lire une adresse IP
-        transition: Tu as compris le rôle de l’adresse. Apprends à lire une adresse IP.
+        transition: Tu as compris le rôle de l’adresse. Apprends à la lire.
+        consigne: Tu vas apprendre à lire une adresse IP à partir des exemples du document 1. On attend, pour chaque paire d’appareils, s’ils sont dans le même réseau local, et l’adresse impossible.
         contenu:
             -   type: tableau
-                titre: Document 1 — Quelques adresses (exemple)
+                titre: Document 1 — Exemple
                 colonnes:
                     - Appareil
                     - Adresse IP
@@ -56,12 +61,17 @@ activites:
                         - '192.168.1.50'
                     -   - Poste du CDI
                         - '192.168.2.11'
+            -   type: etapes
+                elements:
+                    - Lis le document 1.
+                    - Pour chaque paire d’appareils, compare les trois premiers nombres.
+                    - S’ils sont identiques, les appareils sont dans le même réseau local.
             -   type: paragraphe
-                texte: 'Règle de la séance : si les trois premiers nombres sont identiques, les appareils sont dans le même réseau local.'
+                texte: Pourquoi les trois premiers nombres ? Dans les petits réseaux, ils désignent le réseau ; le dernier désigne l’appareil, comme un nom de rue et un numéro.
         questions:
             -   id: q01
                 type: tableau
-                enonce: D’après le document 1, ces appareils sont-ils dans le même réseau local ? Écris « oui » ou « non ».
+                enonce: Ces appareils sont-ils dans le même réseau local ? Écris « oui » ou « non ».
                 colonnes:
                     - Appareils
                     - Même réseau ?
@@ -86,32 +96,65 @@ activites:
                 aide: Élimine d’abord les réponses impossibles.
     -   id: a03
         titre: Choisir une adresse
-        transition: Tu sais lire une adresse. Choisis-en une pour un nouvel appareil.
+        transition: Tu sais lire une adresse. Choisis-en une.
+        consigne: Tu vas choisir l’adresse IP d’un nouveau poste de la salle, sachant que les adresses 192.168.1.11 à 192.168.1.25 sont prises. On attend une adresse valable, justifiée.
         contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis la situation : les adresses 192.168.1.11 à 192.168.1.25 sont prises.'
+                    - Garde les trois premiers nombres (même réseau).
+                    - Choisis un dernier nombre libre, entre 0 et 255.
             -   type: paragraphe
-                texte: On ajoute un poste dans la salle (réseau 192.168.1). Les adresses 192.168.1.11 à 192.168.1.25 sont déjà prises.
+                texte: Pourquoi cette méthode ? Elle garantit que le nouveau poste est dans le bon réseau et qu’il n’entre pas en conflit avec un autre.
         questions:
             -   id: q01
                 type: texte
-                enonce: Propose une adresse IP pour le nouveau poste et justifie ton choix.
-                aide: Une idée + « car » + une raison tirée de la séance.
-            -   id: q02
-                type: texte
-                enonce: Pourquoi utilise-t-on des adresses en nombres plutôt que des noms comme « poste-de-Lea » ?
+                enonce: Propose une adresse IP pour un nouveau poste de la salle et justifie.
                 aide: Une idée + « car » + une raison tirée de la séance.
     -   id: a04
-        titre: Défi
+        titre: Je m’entraîne
+        transition: Tu as compris la méthode. Applique-la seul sur un cas nouveau.
+        consigne: 'Tu vas appliquer seul la méthode sur un cas nouveau : les adresses de la salle B, dans le tableau ci-dessous. On attend les deux erreurs trouvées et une correction pour chacune.'
+        contenu:
+            -   type: tableau
+                titre: Salle B
+                colonnes:
+                    - Poste
+                    - Adresse
+                lignes:
+                    -   - PC 1
+                        - '192.168.5.11'
+                    -   - PC 2
+                        - '192.168.5.12'
+                    -   - PC 3
+                        - '192.168.5.12'
+                    -   - PC 4
+                        - '192.168.6.14'
+            -   type: etapes
+                elements:
+                    - Lis les adresses de la salle B.
+                    - Repère l’adresse en double et l’adresse d’un autre réseau.
+                    - Propose une correction pour chacune.
+            -   type: paragraphe
+                texte: Pourquoi s’entraîner ? Repérer une erreur d’adresse est la première étape d’un dépannage réseau.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Trouve les deux erreurs dans ces adresses et propose une correction.
+                aide: Une idée réaliste + « Cela permet de… ».
+    -   id: a05
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
             -   type: paragraphe
-                texte: Les adresses IPv4 (quatre nombres) commencent à manquer ; on utilise aussi IPv6.
+                texte: Les adresses IPv4 commencent à manquer.
         questions:
             -   id: q01
                 type: texte
                 enonce: Combien d’adresses différentes peut-on écrire avec quatre nombres de 0 à 255 ?
                 aide: Une phrase complète qui reprend les mots de la question.
-    -   id: a05
+    -   id: a06
         titre: Conclusion de ton travail
         conclusion: true
         transition: Tu sais comment les messages trouvent leur chemin. Il reste à répondre au problème de départ.
@@ -122,7 +165,7 @@ activites:
                 aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
 retenir:
     - 'Adresse IP : quatre nombres de 0 à 255, unique dans un réseau.'
-    - Même début (ici les trois premiers nombres) = même réseau local.
+    - Même début = même réseau local.
 sources:
     -   type: lien
         titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)

@@ -17,21 +17,24 @@ pourquoi:
 activites:
     -   id: a01
         titre: L’émetteur
+        consigne: Tu vas ajouter l’envoi radio de la luminosité et de l’angle dans une copie du vrai programme du tracker, sans toucher au suivi du soleil. On attend les ajouts au bon endroit et l’explication de la règle « ne rien casser ».
         contenu:
             -   type: etapes
                 elements:
                     - Ouvre une copie du programme du tracker (lien du professeur).
-                    - Au démarrage, ajoute « radio définir groupe » (ton numéro).
+                    - Au démarrage, ajoute « radio définir groupe » avec ton numéro.
                     - Dans la boucle « toujours », après le réglage de l’angle, ajoute « radio envoyer valeur « lum » = gauche + droite » et « radio envoyer valeur « angle » = angle ».
                     - Ne modifie rien d’autre.
+            -   type: paragraphe
+                texte: 'Pourquoi « ne modifie rien d’autre » ? Le suivi du soleil fonctionne déjà : on ajoute la nouvelle fonction sans risquer de le casser.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Pourquoi ne faut-il rien modifier d’autre dans le programme du tracker ?
+                enonce: Pourquoi ne faut-il rien modifier d’autre dans le programme du tracker quand on ajoute l’envoi radio ?
                 aide: Bloc par bloc (réflexe n° 9).
             -   id: q02
                 type: tableau
-                enonce: Où places-tu chaque ajout ?
+                enonce: Dans le programme du tracker, où places-tu chaque ajout ?
                 colonnes:
                     - Ajout
                     - Emplacement
@@ -40,7 +43,7 @@ activites:
                         - ''
                     -   - radio envoyer valeur « lum »
                         - ''
-                aide: Ligne × colonne.
+                aide: Bloc par bloc (réflexe n° 9).
         ressources:
             - &id001
                 type: lien
@@ -49,25 +52,44 @@ activites:
     -   id: a02
         titre: Le récepteur
         transition: L’émetteur envoie. Programme maintenant le récepteur.
+        consigne: Tu vas programmer la deuxième carte, celle qui recevra et affichera dans la salle les mesures envoyées par le tracker. On attend son algorithme en langage naturel.
         contenu:
             -   type: etapes
                 elements:
-                    - Nouveau projet 4e_S44_recepteur.
-                    - 'Au démarrage : même groupe radio.'
-                    - '« quand une donnée est reçue par radio name, value » : si name = « lum » alors montrer value ; si name = « angle » alors montrer value sur la ligne… (ou afficher une flèche).'
+                    - Crée un nouveau projet 4e_S44_recepteur.
+                    - 'Au démarrage : le même groupe radio que l’émetteur.'
+                    - Ajoute « quand une donnée est reçue par radio name, value ».
+                    - 'Dedans : si name = « lum » alors montrer value ; si name = « angle » alors montrer value (ou une flèche).'
+            -   type: paragraphe
+                texte: 'Pourquoi deux conditions sur le nom ? Le tracker envoie deux mesures : le récepteur doit les distinguer, comme en séance 42.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Écris l’algorithme du récepteur en langage naturel.
+                enonce: Écris en langage naturel l’algorithme de la carte réceptrice du tracker.
                 aide: Combien d’éléments sont demandés ?
-            -   id: q02
-                type: texte
-                enonce: 'Teste dans le simulateur : change la lumière des capteurs de l’émetteur. Que montre le récepteur ?'
-                aide: Attendu ou observé ?
         ressources:
             - *id001
     -   id: a03
-        titre: Défi
+        titre: Tester les deux programmes
+        transition: Les deux programmes sont écrits. Vérifie qu’ils marchent ensemble.
+        consigne: Tu vas tester ensemble, dans le simulateur, le programme du tracker complété et celui du récepteur. On attend ce que montre le récepteur et la preuve que le suivi du soleil marche toujours.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Dans le simulateur de l’émetteur, change la lumière des capteurs gauche et droit.
+                    - Observe le récepteur (ou bascule entre les deux projets).
+                    - Vérifie que le suivi du soleil fonctionne toujours.
+            -   type: paragraphe
+                texte: Pourquoi revérifier le suivi du soleil ? C’est la preuve que l’ajout n’a rien cassé.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Dans le simulateur, change la lumière des capteurs du tracker. Que montre la carte réceptrice ? Le suivi du soleil fonctionne-t-il toujours ?
+                aide: Repère le verbe de la question.
+        ressources:
+            - *id001
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -78,9 +100,7 @@ activites:
                 type: texte
                 enonce: Comment n’envoyer les mesures que toutes les 5 secondes, sans ralentir le suivi du soleil ?
                 aide: Attendu ou observé ?
-        ressources:
-            - *id001
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Les deux programmes sont prêts. Il reste à répondre au problème de départ.

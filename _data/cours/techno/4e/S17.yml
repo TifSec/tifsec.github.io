@@ -6,21 +6,30 @@ competences_bo:
     - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
 objectifs:
     connaissances:
-        - Le débit est la quantité de données transmise par seconde, en mégabits par seconde (Mbit/s). 1 octet = 8 bits, donc 1 Mo = 8 Mbit.
-        - 'Durée (s) = taille (Mbit) ÷ débit (Mbit/s). Dans Calc, une formule utilise des références de cellules : =B2*8/C2.'
+        - Le débit est la quantité de données transmise par seconde (Mbit/s). 1 octet = 8 bits, donc 1 Mo = 8 Mbit.
+        - 'Durée (s) = taille (Mo) × 8 ÷ débit (Mbit/s). Dans Calc, une formule utilise des références de cellules : =B2*8/C2.'
     competences:
         - Calculer une durée de transfert.
         - Écrire une formule avec des références de cellules.
-        - Faire un graphique avec un titre et des axes nommés.
+        - Faire un graphique titré.
 pourquoi:
-    - En 5e, tu as utilisé SOMME et MOYENNE dans Calc. En séance 13, tu as vu les liaisons du réseau.
-    - Aujourd’hui, tu calcules combien de temps il faut pour envoyer une vidéo selon la connexion.
+    - En 5e, tu as utilisé SOMME et MOYENNE. En séance 13, tu as vu les liaisons du réseau.
+    - Aujourd’hui, tu calcules combien de temps il faut pour envoyer une vidéo. Ton fichier reste sur l’ordinateur ; sur le site, tu réponds sur ta méthode.
 activites:
     -   id: a01
         titre: Calculer à la main
+        consigne: Tu vas calculer à la main le temps d’envoi d’une vidéo, à partir de l’exemple expliqué (taille en Mo, débit en Mbit/s). On attend une durée en secondes et l’explication du « × 8 ».
         contenu:
             -   type: paragraphe
-                texte: 'Exemple expliqué : vidéo de 100 Mo avec un débit de 20 Mbit/s. Taille en mégabits : 100 × 8 = 800 Mbit. Durée : 800 ÷ 20 = 40 s.'
+                texte: 'Exemple expliqué : vidéo de 100 Mo, débit 20 Mbit/s. 100 × 8 = 800 Mbit ; 800 ÷ 20 = 40 s.'
+            -   type: etapes
+                elements:
+                    - Lis l’exemple expliqué.
+                    - Convertis la taille en mégabits (× 8).
+                    - Divise par le débit.
+                    - Écris le résultat en secondes.
+            -   type: paragraphe
+                texte: 'Pourquoi × 8 ? La taille d’un fichier est en octets, le débit en bits : il faut la même unité avant de diviser.'
         questions:
             -   id: q01
                 type: nombre
@@ -32,18 +41,19 @@ activites:
                 enonce: Pourquoi multiplie-t-on la taille par 8 ?
                 choix:
                     -   id: a
-                        texte: Parce qu’un octet contient 8 bits.
+                        texte: Un octet contient 8 bits.
                     -   id: b
-                        texte: Parce qu’il y a 8 câbles.
+                        texte: Il y a 8 câbles.
                     -   id: c
                         texte: Au hasard.
                 aide: Élimine d’abord les réponses impossibles.
     -   id: a02
         titre: La feuille de calcul
         transition: Tu sais faire le calcul. Laisse Calc le faire pour plusieurs connexions.
+        consigne: Tu vas faire faire ce calcul par le tableur Calc pour trois connexions (ADSL, 4G, fibre), en recopiant le tableau fourni. On attend la formule recopiée et les durées obtenues.
         contenu:
             -   type: tableau
-                titre: Ce que tu dois obtenir dans Calc (débits typiques arrondis)
+                titre: Ce que tu dois obtenir dans Calc
                 colonnes:
                     - ''
                     - A
@@ -75,15 +85,17 @@ activites:
                 elements:
                     - Ouvre Calc, enregistre sous 4e_S17_tonprenom.ods et recopie le tableau.
                     - En D2, écris =B2*8/C2 puis Entrée.
-                    - Recopie la formule jusqu’en D4 avec la poignée.
+                    - Recopie la formule jusqu’en D4 avec la poignée (petit carré en bas à droite).
+            -   type: paragraphe
+                texte: 'Pourquoi des références (B2, C2) ? Si on change la taille ou le débit, Calc recalcule tout seul : c’est l’intérêt d’un tableur.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Quelle formule as-tu écrite en D3 (après recopie) ?
+                enonce: Quelle formule obtiens-tu en D3 après la recopie ?
                 aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
             -   id: q02
                 type: tableau
-                enonce: Recopie les durées obtenues.
+                enonce: Recopie les durées calculées par ta feuille Calc (colonne D) pour la vidéo de 250 Mo.
                 colonnes:
                     - Connexion
                     - Durée (s)
@@ -94,39 +106,32 @@ activites:
                         - ''
                     -   - Fibre
                         - ''
-                aide: 'Une case à la fois : la ligne croise la colonne (réflexe n° 6).'
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
     -   id: a03
         titre: Le graphique
         transition: Les résultats sont calculés. Un graphique les rend plus parlants.
+        consigne: Tu vas tracer dans Calc le graphique des durées d’envoi de la mission 2. On attend un graphique titré et un calcul qui compare la fibre et l’ADSL.
         contenu:
             -   type: etapes
                 elements:
-                    - Sélectionne A1:A4 et D1:D4 (touche Ctrl pour la deuxième plage).
+                    - Sélectionne A1:A4, puis avec Ctrl, D1:D4.
                     - Insertion > Diagramme > Colonnes.
                     - 'Titre : « Durée d’envoi d’une vidéo de 250 Mo » ; axe Y : « Durée (s) ».'
+                    - Enregistre (Ctrl + S).
+            -   type: paragraphe
+                texte: Pourquoi un titre et des axes nommés ? Un graphique sans titre ni unité ne peut pas être lu par quelqu’un d’autre.
         questions:
             -   id: q01
                 type: texte
-                enonce: D’après ton graphique, combien de fois la fibre est-elle plus rapide que l’ADSL pour ce fichier ? Montre le calcul.
+                enonce: Combien de fois la fibre est-elle plus rapide que l’ADSL pour ce fichier ? Montre le calcul.
                 aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
-            -   id: q02
-                type: qcm
-                enonce: Pourquoi utiliser des références (B2, C2) plutôt que les nombres dans la formule ?
-                choix:
-                    -   id: a
-                        texte: Si on change la taille ou le débit, le résultat se recalcule tout seul.
-                    -   id: b
-                        texte: C’est plus joli.
-                    -   id: c
-                        texte: Calc refuse les nombres.
-                aide: Élimine d’abord les réponses impossibles.
     -   id: a04
-        titre: Défi
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
             -   type: paragraphe
-                texte: Dans la réalité, le débit varie selon l’heure et le nombre d’utilisateurs.
+                texte: Le débit réel est souvent plus faible que prévu.
         questions:
             -   id: q01
                 type: texte
@@ -139,11 +144,11 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment calculer le temps d’envoi d’un fichier selon le débit ?'
+                enonce: 'Réponds au problème du jour : comment calculer le temps d’envoi d’un fichier ? Explique le calcul et la formule Calc.'
                 aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
 retenir:
     - Durée (s) = taille (Mo) × 8 ÷ débit (Mbit/s).
-    - 'Calc : formule avec références de cellules, recopie avec la poignée, graphique avec titre et axes.'
+    - 'Calc : références de cellules, poignée, graphique titré.'
 sources:
     -   type: lien
         titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)

@@ -14,25 +14,26 @@ objectifs:
         - Programmer un émetteur et un récepteur dans le simulateur.
         - Identifier les blocs radio.
 pourquoi:
-    - En séance 41, ton groupe a fixé la nouvelle fonction.
-    - Aujourd’hui, tu découvres la radio dans le simulateur, qui affiche deux cartes.
+    - En séance 41, ton groupe a fixé la nouvelle fonction du tracker.
+    - Aujourd’hui, tu découvres la radio dans le simulateur MakeCode, qui affiche deux cartes.
 activites:
     -   id: a01
         titre: Un premier message
+        consigne: 'Tu vas faire communiquer deux cartes micro:bit par radio dans le simulateur MakeCode : un appui sur A envoie le nombre 7 à l’autre carte. On attend un programme qui fonctionne et le rôle de chaque bloc radio.'
         contenu:
             -   type: etapes
                 elements:
                     - Ouvre MakeCode micro:bit, nouveau projet 4e_S42_groupe.
-                    - 'Au démarrage : « radio définir groupe 12 » (ou le numéro de ton groupe).'
+                    - 'Au démarrage : « radio définir groupe » avec le numéro de ton groupe.'
                     - '« quand le bouton A est pressé » : « radio envoyer nombre 7 ».'
                     - '« quand une donnée est reçue par radio receivedNumber » : « montrer nombre receivedNumber ».'
                     - 'Le simulateur affiche une deuxième carte : appuie sur A sur la première.'
             -   type: paragraphe
-                texte: 'Exemple expliqué : le même programme est sur les deux cartes. Celle où on appuie sur A envoie 7 ; l’autre reçoit 7 et l’affiche.'
+                texte: Pourquoi le même programme sur les deux cartes ? Celle où on appuie sur A envoie 7 ; l’autre reçoit 7 et l’affiche. Chaque carte peut émettre et recevoir.
         questions:
             -   id: q01
                 type: qcm
-                enonce: Que se passe-t-il si les deux cartes ne sont pas sur le même groupe radio ?
+                enonce: Que se passe-t-il si les deux cartes micro:bit ne sont pas sur le même groupe radio ?
                 choix:
                     -   id: a
                         texte: Le message n’est pas reçu.
@@ -43,7 +44,7 @@ activites:
                 aide: Relis l’exemple expliqué.
             -   id: q02
                 type: tableau
-                enonce: Associe chaque bloc à son rôle.
+                enonce: Associe chaque bloc radio de MakeCode à son rôle.
                 colonnes:
                     - Bloc
                     - Rôle
@@ -63,44 +64,68 @@ activites:
     -   id: a02
         titre: Envoyer une mesure
         transition: Un nombre fixe passe. Envoie maintenant une vraie mesure.
+        consigne: 'Tu vas remplacer le nombre fixe par une vraie mesure : la lumière captée par la première carte, envoyée toutes les 2 secondes. C’est ce que fera le tracker. On attend la description de ce qu’affiche la carte réceptrice.'
         contenu:
             -   type: etapes
                 elements:
-                    - Remplace 7 par « niveau d’intensité lumineuse ».
-                    - Envoie la mesure toutes les 2 secondes avec « toujours » et « pause 2000 ms ».
-                    - Dans le simulateur, change la lumière de la première carte et observe la seconde.
+                    - Remplace 7 par le bloc « niveau d’intensité lumineuse ».
+                    - Mets l’envoi dans « toujours », suivi de « pause 2000 ms ».
+                    - Dans le simulateur, change la lumière de la première carte (curseur) et observe la seconde.
+            -   type: paragraphe
+                texte: Pourquoi une pause de 2 s ? Envoyer sans arrêt encombre la radio ; toutes les 2 secondes suffit pour suivre la lumière.
         questions:
             -   id: q01
                 type: texte
-                enonce: Décris ce qui s’affiche sur la carte réceptrice quand tu changes la lumière de l’émettrice.
+                enonce: Dans le simulateur, décris ce qui s’affiche sur la carte réceptrice quand tu changes la lumière de la carte émettrice.
                 aide: Combien d’éléments sont demandés ?
         ressources:
             - *id001
     -   id: a03
-        titre: Défi
+        titre: Envoyer deux mesures
+        transition: Une mesure passe. Le tracker en enverra deux.
+        consigne: 'Tu vas envoyer deux mesures différentes (lumière et température) d’une carte à l’autre, avec des valeurs nommées. Le tracker enverra lui aussi deux mesures : la lumière et l’angle. On attend l’explication du rôle du nom et l’algorithme du récepteur.'
+        contenu:
+            -   type: etapes
+                elements:
+                    - Remplace « radio envoyer nombre » par « radio envoyer valeur « lum » = niveau d’intensité lumineuse ».
+                    - Ajoute « radio envoyer valeur « temp » = température ».
+                    - Sur le récepteur, utilise « quand une donnée est reçue par radio name, value » et « si name = « lum » alors montrer value ».
+            -   type: paragraphe
+                texte: 'Pourquoi un nom ? Quand deux mesures arrivent, le récepteur doit savoir laquelle il reçoit : le nom sert d’étiquette.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi faut-il envoyer un nom avec le nombre quand la carte émettrice transmet deux mesures (lumière et température) ?
+                aide: Quelle énergie entre, laquelle sort ?
+            -   id: q02
+                type: texte
+                enonce: Écris en langage naturel ce que fait le récepteur quand il reçoit une valeur nommée.
+                aide: Combien d’éléments sont demandés ?
+        ressources:
+            - *id001
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
             -   type: paragraphe
-                texte: « radio envoyer valeur « lum » = … » envoie un nom et un nombre.
+                texte: Plusieurs groupes émettent en même temps dans la salle.
         questions:
             -   id: q01
                 type: texte
-                enonce: Pourquoi envoyer un nom avec le nombre quand on transmet deux mesures (lumière et angle) ?
-                aide: Quelle énergie entre, laquelle sort ?
-        ressources:
-            - *id001
-    -   id: a04
+                enonce: Que se passerait-il si deux groupes choisissaient le même numéro de groupe radio ?
+                aide: Ton idée répond-elle au besoin ?
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Les deux cartes se parlent. Il reste à répondre au problème de départ.
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment une carte envoie-t-elle une donnée à une autre par radio ?'
+                enonce: 'Réponds au problème du jour : comment une carte micro:bit envoie-t-elle une donnée à une autre par radio ?'
                 aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - 'Radio micro:bit : même groupe ; envoyer (nombre, valeur) ; « quand une donnée est reçue ».'
+    - 'Radio micro:bit : même groupe ; envoyer (nombre, valeur nommée) ; « quand une donnée est reçue ».'
 sources:
     -   type: lien
         titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)

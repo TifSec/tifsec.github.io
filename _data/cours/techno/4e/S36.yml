@@ -6,36 +6,54 @@ competences_bo:
     - Comprendre et modifier un programme associé à une fonctionnalité d’un objet ou d’un système technique
 objectifs:
     connaissances:
-        - 'Traduire un programme en algorithme : écrire en langage naturel ce que fait chaque bloc, dans l’ordre, avec QUAND, TANT QUE, SI … ALORS.'
+        - 'Traduire un programme en algorithme : écrire en langage naturel ce que fait chaque bloc, dans l’ordre.'
+        - « tant que » répète tant qu’une condition est vraie.
     competences:
-        - Traduire un programme en algorithme en langage naturel.
-        - Expliquer le rôle d’une boucle « tant que ».
+        - Traduire un programme en algorithme.
+        - Expliquer une boucle « tant que ».
 pourquoi:
     - En séance 35, tu as identifié la chaîne d’information. En séance 31, tu as écrit un algorithme avant de programmer.
-    - 'Aujourd’hui, tu fais l’inverse : tu pars du programme et tu écris l’algorithme.'
+    - 'Aujourd’hui, tu fais l’inverse : du programme vers l’algorithme.'
 activites:
     -   id: a01
-        titre: Le programme
+        titre: La montée
+        consigne: Tu vas traduire en français la partie du programme réel du monte-charge (affiché ci-dessous) qui fait monter la cabine. On attend un algorithme en langage naturel avec SI … ALORS et TANT QUE.
         contenu:
             -   type: code
                 texte: "au démarrage\n    voyants orange ; écrire « Attente » ; voyants verts\n\ntoujours\n    si (P13 = 1) ET (P1 appuyé) alors\n        écrire « Appel Etage » ; voyants rouges\n        tant que P0 = 0\n            moteur M1 en avant, vitesse 137\n        arrêter le moteur\n        écrire « Stop Etage » ; voyants verts\n    si (P0 = 1) ET (P15 appuyé) alors\n        écrire « Appel RDC » ; voyants rouges\n        tant que P13 = 0\n            moteur M1 en arrière, vitesse 137\n        arrêter le moteur\n        écrire « Stop RDC » ; voyants verts"
             -   type: paragraphe
-                texte: 'Exemple expliqué : « si (P13 = 1) ET (P1 appuyé) » se traduit : SI la cabine est en bas ET qu’on appuie sur le bouton Étage ALORS…'
+                texte: 'Exemple expliqué : « si (P13 = 1) ET (P1 appuyé) » se traduit : SI la cabine est en bas ET qu’on appuie sur Étage ALORS…'
+            -   type: etapes
+                elements:
+                    - Lis le programme bloc par bloc.
+                    - Remplace chaque broche par ce qu’elle signifie (P13 = 1 → cabine en bas…).
+                    - Écris la partie « montée » en français.
+            -   type: paragraphe
+                texte: Pourquoi remplacer les broches ? « P13 = 1 » ne parle qu’au programmeur ; « la cabine est en bas » parle à tout le monde.
         questions:
             -   id: q01
                 type: texte
-                enonce: Traduis la première partie (montée) en algorithme, en langage naturel.
-                aide: Repère le verbe de la question.
+                enonce: Traduis en langage naturel la partie du programme du monte-charge qui fait monter la cabine.
+                aide: Bloc par bloc (réflexe n° 9).
     -   id: a02
         titre: La boucle « tant que »
-        transition: Tu as traduit la montée. Concentre-toi sur la boucle qui fait monter la cabine.
+        transition: Tu as traduit la montée. Concentre-toi sur la boucle.
+        consigne: Tu vas comprendre la boucle « tant que P0 = 0 » du programme du monte-charge. On attend ce qu’elle fait et sa différence avec « répéter 4 fois ».
+        contenu:
+            -   type: etapes
+                elements:
+                    - Repère la boucle « tant que P0 = 0 ».
+                    - Demande-toi quand elle s’arrête.
+                    - Compare avec « répéter 4 fois » (séance 30).
+            -   type: paragraphe
+                texte: 'Pourquoi « tant que » ici ? On ne sait pas combien de temps dure la montée : on s’arrête quand la cabine touche le contact haut.'
         questions:
             -   id: q01
                 type: qcm
                 enonce: Que fait la boucle « tant que P0 = 0 » ?
                 choix:
                     -   id: a
-                        texte: Elle fait tourner le moteur tant que le contact haut n’est pas appuyé.
+                        texte: Le moteur tourne tant que le contact haut n’est pas appuyé.
                     -   id: b
                         texte: Elle répète 0 fois.
                     -   id: c
@@ -43,27 +61,36 @@ activites:
                 aide: Relis l’exemple expliqué.
             -   id: q02
                 type: texte
-                enonce: Quelle est la différence entre « répéter 4 fois » et « tant que » ?
+                enonce: Différence entre « répéter 4 fois » et « tant que » ?
                 aide: Repère le verbe de la question.
     -   id: a03
         titre: La descente
         transition: La montée est traduite. À toi pour la descente.
+        consigne: Tu vas traduire seul la partie du programme qui fait descendre la cabine, avec la même méthode. On attend l’algorithme de la descente.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Lis la deuxième partie du programme.
+                    - Utilise la même méthode qu’en mission 1.
+                    - Écris en langage naturel l’algorithme de la partie du programme qui fait descendre la cabine.
+            -   type: paragraphe
+                texte: 'Pourquoi refaire seul ? La descente est symétrique de la montée : c’est le bon moment pour vérifier que tu as compris.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Écris l’algorithme de la descente.
-                aide: Combien d’éléments sont demandés ?
+                enonce: Écris en langage naturel l’algorithme de la partie du programme qui fait descendre la cabine.
+                aide: Bloc par bloc (réflexe n° 9).
     -   id: a04
-        titre: Défi
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
             -   type: paragraphe
-                texte: On appuie sur Étage pendant que la cabine descend.
+                texte: On appuie sur Étage pendant la descente.
         questions:
             -   id: q01
                 type: texte
-                enonce: D’après le programme, que se passe-t-il ? Est-ce un problème ?
+                enonce: Que se passe-t-il d’après le programme ?
                 aide: Bloc par bloc (réflexe n° 9).
     -   id: a05
         titre: Conclusion de ton travail
@@ -72,10 +99,10 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment traduire le programme en algorithme ?'
+                enonce: 'Réponds au problème du jour : comment traduire un programme en algorithme ?'
                 aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - 'Programme → algorithme : chaque bloc en langage naturel, dans l’ordre.'
+    - 'Programme → algorithme : bloc par bloc, en langage naturel.'
     - '« tant que » : répète tant qu’une condition est vraie.'
 sources:
     -   type: lien

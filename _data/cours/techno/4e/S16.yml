@@ -7,8 +7,8 @@ competences_bo:
     - Identifier un dysfonctionnement d’un objet technique et y remédier
 objectifs:
     connaissances:
-        - Une panne de réseau peut venir d’une liaison (câble absent), d’une adresse IP en double, d’une adresse d’un autre réseau ou d’un mauvais masque.
-        - 'On cherche méthodiquement : liaison, puis adresse, puis masque, en testant avec ping après chaque vérification.'
+        - Une panne de réseau peut venir d’une liaison absente, d’une adresse en double, d’une adresse d’un autre réseau ou d’un mauvais masque.
+        - On vérifie dans l’ordre (liaison, adresse, masque), et on refait un ping après chaque correction.
     competences:
         - Suivre une méthode de diagnostic.
         - Corriger une panne de paramétrage.
@@ -18,6 +18,7 @@ pourquoi:
 activites:
     -   id: a01
         titre: La méthode
+        consigne: Tu vas apprendre la méthode de diagnostic d’une panne de réseau à partir du document 1 (liaison, adresse, réseau, masque). On attend l’ordre des vérifications et le rôle du ping.
         contenu:
             -   type: tableau
                 titre: Document 1 — Méthode de diagnostic
@@ -38,8 +39,13 @@ activites:
                     -   - '4'
                         - Le masque est-il 255.255.255.0 partout ?
                         - Je corrige le masque.
+            -   type: etapes
+                elements:
+                    - Lis la méthode du document 1.
+                    - 'Retiens l’ordre : liaison, adresse unique, même réseau, masque.'
+                    - 'Retiens la règle : un ping après chaque correction.'
             -   type: paragraphe
-                texte: 'Après chaque correction, je refais un ping : c’est le réflexe n° 8, une seule chose à la fois.'
+                texte: 'Pourquoi un ping après chaque correction ? Pour savoir laquelle a réglé la panne : une seule modification à la fois (réflexe n° 8).'
         questions:
             -   id: q01
                 type: qcm
@@ -52,12 +58,24 @@ activites:
                     -   id: c
                         texte: Parce que Filius l’exige.
                 aide: Élimine d’abord les réponses impossibles.
+            -   id: q02
+                type: qcm
+                enonce: Par quoi commence-t-on ?
+                choix:
+                    -   id: a
+                        texte: Vérifier que chaque ordinateur est relié.
+                    -   id: b
+                        texte: Changer tous les masques.
+                    -   id: c
+                        texte: Racheter un commutateur.
+                aide: Élimine d’abord les réponses impossibles.
     -   id: a02
         titre: Le réseau en panne
         transition: Tu connais la méthode. Applique-la au réseau fourni.
+        consigne: Tu vas dépanner le réseau fourni par le professeur (fichier Filius ou document 2) en appliquant la méthode. On attend la panne de chaque ordinateur et sa correction.
         contenu:
             -   type: tableau
-                titre: Document 2 — Le réseau fourni (fichier Filius du professeur)
+                titre: Document 2 — Le réseau fourni
                 colonnes:
                     - Ordinateur
                     - Adresse
@@ -80,10 +98,17 @@ activites:
                         - '192.168.1.1'
                         - '255.255.255.0'
                         - oui
+            -   type: etapes
+                elements:
+                    - Ouvre le fichier Filius du professeur (ou lis le document 2).
+                    - Applique la méthode ordinateur par ordinateur.
+                    - Note la panne de chacun.
+            -   type: paragraphe
+                texte: 'Pourquoi suivre la méthode même si on « voit » la panne ? Parce qu’il y en a souvent plusieurs : la méthode évite d’en oublier.'
         questions:
             -   id: q01
                 type: tableau
-                enonce: D’après le document 2, écris la panne de chaque ordinateur (ou « aucune »).
+                enonce: Écris la panne de chaque ordinateur (ou « aucune »).
                 colonnes:
                     - Ordinateur
                     - Panne
@@ -110,19 +135,24 @@ activites:
                         - ''
                 aide: 'Une case à la fois : la ligne croise la colonne (réflexe n° 6).'
     -   id: a03
-        titre: Vérifier et expliquer
+        titre: Prouver que c’est réparé
         transition: Les pannes sont corrigées. Prouve-le.
+        consigne: Tu vas prouver que le réseau de la mission 2 est réparé. On attend la liste des pings à faire et ce qu’ils doivent montrer.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Après tes corrections, choisis les pings à faire.
+                    - Un ping vers chaque ordinateur doit répondre.
+                    - Écris ta liste de vérifications.
+            -   type: paragraphe
+                texte: 'Pourquoi prouver ? Un technicien ne dit pas « je crois que ça marche » : il montre un test réussi.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Après tes corrections, quels pings dois-tu faire pour prouver que tout fonctionne ?
-                aide: Une phrase complète qui reprend les mots de la question.
-            -   id: q02
-                type: texte
-                enonce: 'Un camarade dit : « Mon PC ne marche pas, je rachète un ordinateur. » Que lui conseilles-tu ?'
+                enonce: Quels pings fais-tu pour prouver que tout fonctionne ?
                 aide: Une phrase complète qui reprend les mots de la question.
     -   id: a04
-        titre: Défi
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -131,7 +161,7 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: Comment prouver que c’est le commutateur qui est en panne, et pas un ordinateur ?
+                enonce: Comment prouver que c’est le commutateur, et pas un ordinateur ?
                 aide: Une phrase complète qui reprend les mots de la question.
     -   id: a05
         titre: Conclusion de ton travail
