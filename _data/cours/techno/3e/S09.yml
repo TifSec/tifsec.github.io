@@ -17,6 +17,7 @@ pourquoi:
 activites:
     -   id: a01
         titre: Lire une table de routage
+        consigne: Tu vas apprendre à lire la table de routage d’un routeur (document 1). On attend la sortie choisie par le routeur R1 pour trois paquets.
         contenu:
             -   type: tableau
                 titre: Document 1 — Table de routage du routeur R1
@@ -34,10 +35,17 @@ activites:
                         - Sortie 3 (vers Internet)
             -   type: paragraphe
                 texte: 'Exemple expliqué : un paquet arrive à R1 pour le réseau B. R1 lit la ligne « Réseau B » : il l’envoie par la sortie 2, vers R3.'
+            -   type: etapes
+                elements:
+                    - Lis l’exemple expliqué.
+                    - Pour chaque paquet, cherche la ligne de sa destination dans le document 1.
+                    - Si la destination n’est pas dans la table, utilise la ligne « Autre ».
+            -   type: paragraphe
+                texte: 'Pourquoi une ligne « Autre » ? Un routeur ne connaît pas tous les réseaux du monde : ce qu’il ne connaît pas, il l’envoie vers Internet.'
         questions:
             -   id: q01
                 type: tableau
-                enonce: D’après le document 1, par quelle sortie R1 envoie-t-il chaque paquet ?
+                enonce: D’après le document 1, par quelle sortie le routeur R1 envoie-t-il chaque paquet ?
                 colonnes:
                     - Destination du paquet
                     - Sortie
@@ -52,15 +60,34 @@ activites:
     -   id: a02
         titre: Le jeu des routeurs (débranché)
         transition: Tu sais lire une table. Joue maintenant les routeurs.
+        consigne: Tu vas jouer, avec toute la classe, le trajet de paquets entre quatre routeurs, puis gérer une panne de liaison. On attend un nouveau chemin et la modification de la table de R1.
         contenu:
+            -   type: etapes
+                elements:
+                    - Quatre élèves jouent les routeurs R1, R2, R3, R4, chacun avec sa table.
+                    - Des paquets (papiers) circulent dans la classe.
+                    - 'Le professeur coupe la liaison R1-R3 : observe ce qui bloque.'
             -   type: paragraphe
-                texte: Quatre élèves jouent R1, R2, R3, R4 avec leurs tables. Des paquets (papiers) circulent. Puis on coupe la liaison R1-R3.
+                texte: Pourquoi couper une liaison ? Pour voir comment Internet continue à fonctionner quand un câble ou un routeur tombe en panne.
         questions:
             -   id: q01
                 type: texte
-                enonce: Quand la liaison R1-R3 est coupée, comment le paquet pour le réseau B peut-il encore arriver ? Que faut-il changer dans la table de R1 ?
+                enonce: Dans le jeu, la liaison R1-R3 est coupée. Comment le paquet pour le réseau B peut-il encore arriver ? Que faut-il changer dans la table de R1 (document 1) ?
                 aide: Une phrase complète qui reprend les mots de la question.
-            -   id: q02
+    -   id: a03
+        titre: Plusieurs chemins
+        transition: La panne a été contournée. Pourquoi est-ce possible ?
+        consigne: Tu vas expliquer pourquoi Internet résiste aux pannes, à partir de ce que tu as observé dans le jeu des routeurs. On attend l’intérêt d’avoir plusieurs chemins.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Repense au jeu : combien de chemins menaient au réseau B ?'
+                    - Imagine qu’il n’y en ait qu’un seul.
+                    - Explique l’intérêt d’avoir plusieurs chemins.
+            -   type: paragraphe
+                texte: 'Pourquoi plusieurs chemins ? C’est la redondance : si un chemin tombe, un autre prend le relais.'
+        questions:
+            -   id: q01
                 type: qcm
                 enonce: Pourquoi Internet a-t-il beaucoup de chemins possibles entre deux points ?
                 choix:
@@ -71,8 +98,12 @@ activites:
                     -   id: c
                         texte: Par hasard.
                 aide: Élimine d’abord les réponses impossibles.
-    -   id: a03
-        titre: Défi
+            -   id: q02
+                type: texte
+                enonce: Dans le jeu des routeurs, que se serait-il passé s’il n’y avait eu qu’un seul chemin vers le réseau B ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -83,7 +114,7 @@ activites:
                 type: texte
                 enonce: Quel avantage par rapport à une mise à jour à la main ?
                 aide: Une phrase complète qui reprend les mots de la question.
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Tu as joué les routeurs. Il reste à répondre au problème de départ.

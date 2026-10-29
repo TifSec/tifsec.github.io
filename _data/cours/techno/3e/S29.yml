@@ -16,52 +16,83 @@ pourquoi:
     - En 3e, tu ranges ton code dans des fonctions, comme les programmeurs.
 activites:
     -   id: a01
-        titre: La fonction chercherSoleil
+        titre: La fonction chercherSoleil du tracker
+        consigne: Tu vas découvrir ce qu’est une fonction à partir d’un extrait du vrai programme du tracker (ci-dessous). On attend le nombre d’appels de la fonction chercherSoleil et l’intérêt d’en avoir fait une fonction.
         contenu:
             -   type: code
                 texte: "au démarrage\n    angle = 90\n    appeler chercherSoleil\n\ntoujours\n    …\n    si luminosité < 0,7 × meilleure luminosité alors\n        appeler chercherSoleil\n    …\n\nfonction chercherSoleil\n    balayer de 20° à 160° par pas de 5°\n    retenir l’angle le plus éclairé\n    tourner vers cet angle"
+            -   type: etapes
+                elements:
+                    - Lis l’extrait du vrai programme du tracker ci-dessous.
+                    - Repère la définition de la fonction (« fonction chercherSoleil »).
+                    - Repère chaque ligne « appeler chercherSoleil ».
+            -   type: paragraphe
+                texte: 'Pourquoi une fonction ? Le balayage est écrit une seule fois mais utilisé à deux endroits : si on le corrige, la correction vaut partout.'
         questions:
             -   id: q01
                 type: nombre
-                enonce: Combien de fois la fonction chercherSoleil est-elle appelée dans le texte du programme ?
+                enonce: Dans l’extrait du programme du tracker, combien de fois la fonction chercherSoleil est-elle appelée ?
+                unite: appels
                 aide: N’oublie pas l’unité (réflexe n° 5).
             -   id: q02
                 type: texte
-                enonce: Pourquoi avoir écrit une fonction plutôt que de recopier le balayage deux fois ?
-                aide: Pense à « car » (réflexe n° 4).
+                enonce: Pourquoi le programmeur du tracker a-t-il écrit une fonction plutôt que de recopier le balayage deux fois ?
+                aide: Bloc par bloc (réflexe n° 9).
     -   id: a02
         titre: Créer une fonction dans un jeu
         transition: Tu as vu une vraie fonction. Crée la tienne.
+        consigne: Tu vas créer ta propre fonction « nouvelleVague » dans un jeu MakeCode Arcade, puis l’appeler à deux endroits. On attend le contenu de la fonction et ses appels, décrits en français.
         contenu:
             -   type: etapes
                 elements:
-                    - Ouvre MakeCode Arcade, nouveau projet 3e_S29_tonprenom.
+                    - Ouvre MakeCode Arcade, nouveau projet 3e_S29_tonprenom, avec un joueur qui se déplace.
                     - Avancé > Fonctions > Créer une fonction « nouvelleVague ».
                     - 'Dans la fonction : créer 3 ennemis à des positions au hasard.'
-                    - Appelle « nouvelleVague » au démarrage et chaque fois que le score atteint un multiple de 10.
+                    - Appelle « nouvelleVague » au démarrage et quand le score atteint un multiple de 10.
+            -   type: paragraphe
+                texte: 'Pourquoi appeler à deux endroits ? C’est tout l’intérêt : un seul bloc de code, utilisé chaque fois qu’on en a besoin.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Écris en langage naturel le contenu de ta fonction et les endroits où tu l’appelles.
+                enonce: Écris en langage naturel le contenu de ta fonction « nouvelleVague » et les endroits où tu l’appelles.
                 aide: Combien d’éléments sont demandés ?
-            -   id: q02
-                type: qcm
-                enonce: Que se passe-t-il quand on appelle une fonction ?
-                choix:
-                    -   id: a
-                        texte: Le programme exécute ses instructions, puis reprend là où il était.
-                    -   id: b
-                        texte: Le programme s’arrête.
-                    -   id: c
-                        texte: La fonction est supprimée.
-                aide: Relis l’exemple expliqué.
         ressources:
             - &id001
                 type: lien
                 titre: MakeCode Arcade (gratuit, dans le navigateur)
                 url: https://arcade.makecode.com/
     -   id: a03
-        titre: Défi
+        titre: Appel et retour
+        transition: Ta fonction marche. Que se passe-t-il exactement lors d’un appel ?
+        consigne: Tu vas observer, dans ton jeu, ce qui se passe quand le programme appelle une fonction. On attend l’explication de l’appel et du retour.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ajoute « score + 1 » juste après l’appel de « nouvelleVague » au démarrage.
+                    - Lance le jeu et observe dans quel ordre les choses se passent.
+                    - Déduis ce que fait le programme après avoir exécuté la fonction.
+            -   type: paragraphe
+                texte: Pourquoi observer l’ordre ? Il montre que le programme « part » dans la fonction, puis revient exactement là où il était.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: D’après ton test, que se passe-t-il quand le programme appelle une fonction ?
+                choix:
+                    -   id: a
+                        texte: Il exécute ses instructions, puis reprend là où il était.
+                    -   id: b
+                        texte: Il s’arrête.
+                    -   id: c
+                        texte: La fonction est supprimée.
+                aide: Relis l’exemple expliqué.
+            -   id: q02
+                type: texte
+                enonce: Dans ton jeu, le score vaut-il 1 avant ou après l’apparition des ennemis ? Explique avec l’ordre d’exécution.
+                aide: Pense à « car » (réflexe n° 4).
+        ressources:
+            - *id001
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -74,7 +105,7 @@ activites:
                 aide: Repère le verbe de la question.
         ressources:
             - *id001
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Il reste à répondre au problème de départ.

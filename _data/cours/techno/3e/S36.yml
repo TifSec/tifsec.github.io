@@ -16,18 +16,21 @@ pourquoi:
 activites:
     -   id: a01
         titre: Programmer
+        consigne: Tu vas programmer, dans MakeCode micro:bit, la fonction de la cuve confiée à ton groupe en séance 35. On attend son contenu, avec ce qu’elle reçoit et ce qu’elle renvoie.
         contenu:
-            -   type: etapes
-                elements:
-                    - Nouveau projet 3e_S36_fonction_groupe.
-                    - Crée ta fonction (Avancé > Fonctions).
-                    - Dans « au démarrage », appelle-la avec des valeurs simulées (ex. distance = 15).
             -   type: paragraphe
                 texte: 'Exemple (mesurerNiveau) : fonction mesurerNiveau : distance = lire P2 ; hauteur = 100 − distance ; renvoyer hauteur.'
+            -   type: etapes
+                elements:
+                    - Crée un nouveau projet MakeCode micro:bit 3e_S36_fonction_groupe.
+                    - Crée ta fonction (Avancé > Fonctions) avec le nom décidé en séance 35.
+                    - Écris ses instructions en t’aidant de l’exemple de mesurerNiveau.
+            -   type: paragraphe
+                texte: 'Pourquoi respecter le nom décidé ? Les autres groupes appelleront ta fonction par ce nom : un nom différent, et l’assemblage échoue.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Écris le contenu de ta fonction (en blocs décrits ou en Python).
+                enonce: Écris le contenu de la fonction de ton groupe pour la cuve (en blocs décrits ou en Python), avec ce qu’elle reçoit et ce qu’elle renvoie.
                 aide: Bloc par bloc (réflexe n° 9).
         ressources:
             - &id001
@@ -35,49 +38,75 @@ activites:
                 titre: MakeCode micro:bit (gratuit, dans le navigateur)
                 url: https://makecode.microbit.org/
     -   id: a02
-        titre: Tester seule
-        transition: Teste ta fonction seule.
+        titre: Préparer les tests
+        transition: Ta fonction est écrite. Prépare ses tests.
+        consigne: 'Tu vas préparer trois tests pour ta fonction : un cas normal, un cas limite et un cas extrême. On attend la valeur simulée et le résultat attendu de chaque cas.'
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Choisis trois valeurs à donner à ta fonction : un cas normal, un cas limite (le seuil exact), un cas extrême.'
+                    - Pour chacune, écris ce que la fonction doit faire ou renvoyer.
+                    - Ne teste pas encore.
+            -   type: paragraphe
+                texte: Pourquoi écrire l’attendu avant de tester ? Sinon, on a tendance à trouver « normal » ce que le programme affiche.
         questions:
             -   id: q01
                 type: tableau
-                enonce: Écris trois tests de ta fonction.
+                enonce: 'Écris trois tests de la fonction de ton groupe : valeur simulée et résultat attendu.'
                 colonnes:
+                    - Cas
                     - Valeur simulée
                     - Résultat attendu
-                    - Résultat observé
                 lignes:
-                    -   - ''
+                    -   - Normal
                         - ''
                         - ''
-                    -   - ''
+                    -   - Limite
                         - ''
                         - ''
-                    -   - ''
+                    -   - Extrême
                         - ''
                         - ''
                 aide: Attendu ou observé ?
+    -   id: a03
+        titre: Tester seule
+        transition: Les tests sont prêts. Mène-les.
+        consigne: Tu vas tester ta fonction seule, dans le simulateur, avec les trois valeurs préparées. On attend les résultats observés et les corrections faites.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Dans « au démarrage », appelle ta fonction avec la première valeur simulée.
+                    - Affiche le résultat et compare à l’attendu.
+                    - Recommence avec les deux autres valeurs, puis corrige si besoin.
+            -   type: paragraphe
+                texte: 'Pourquoi tester seule ? Si ta fonction marche seule, une panne lors de l’assemblage viendra d’ailleurs : c’est plus facile à trouver.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Tes trois tests ont-ils donné le résultat attendu ? Si non, qu’as-tu corrigé dans ta fonction ?
+                aide: Attendu ou observé ?
         ressources:
             - *id001
-    -   id: a03
-        titre: Défi
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
             -   type: paragraphe
-                texte: Une valeur de distance de 0 ou de 400 est absurde.
+                texte: Une distance de 0 ou de 400 cm est absurde pour la cuve.
         questions:
             -   id: q01
                 type: texte
                 enonce: Comment ta fonction peut-elle s’en protéger ?
                 aide: Repère le verbe de la question.
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Il reste à répondre au problème de départ.
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment as-tu programmé et testé ta fonction ?'
+                enonce: 'Réponds au problème du jour : comment as-tu programmé et testé la fonction de ton groupe ?'
                 aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
     - 'Une fonction se teste seule avec des valeurs simulées : cas normal, limite, extrême.'

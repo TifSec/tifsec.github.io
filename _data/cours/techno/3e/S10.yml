@@ -16,7 +16,8 @@ pourquoi:
     - Aujourd’hui, tu découvres comment les 0 et les 1 deviennent des nombres et des lettres.
 activites:
     -   id: a01
-        titre: Le binaire
+        titre: Du binaire au décimal
+        consigne: Tu vas apprendre à lire un nombre écrit en binaire (avec des 0 et des 1), à l’aide de l’exemple expliqué. On attend deux nombres binaires convertis en décimal.
         contenu:
             -   type: tableau
                 titre: 'Exemple expliqué : 00001010 = 8 + 2 = 10'
@@ -38,22 +39,44 @@ activites:
                         - '0'
                         - '1'
                         - '0'
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple expliqué : chaque case a une valeur (128, 64, … 1).'
+                    - Pour un nombre binaire, repère les cases qui contiennent 1.
+                    - Additionne leurs valeurs.
+            -   type: paragraphe
+                texte: 'Pourquoi des 0 et des 1 ? Dans un ordinateur, un fil est soit sous tension, soit non : deux états seulement, qu’on note 1 et 0.'
         questions:
             -   id: q01
                 type: nombre
-                enonce: Que vaut 00000101 en décimal ?
+                enonce: Que vaut le nombre binaire 00000101 en décimal ?
                 aide: Écris l’opération, calcule, vérifie l’unité.
             -   id: q02
                 type: nombre
-                enonce: Que vaut 00001111 en décimal ?
+                enonce: Que vaut le nombre binaire 00001111 en décimal ?
                 aide: Écris l’opération, calcule, vérifie l’unité.
-            -   id: q03
-                type: texte
-                enonce: Écris 12 en binaire sur 8 bits et explique ta méthode.
-                aide: Une idée + « car » + une raison tirée de la séance.
     -   id: a02
+        titre: Du décimal au binaire
+        transition: Tu sais lire le binaire. Fais l’inverse.
+        consigne: Tu vas écrire un nombre décimal (12) en binaire, avec la méthode des plus grandes valeurs. On attend le nombre sur 8 bits et la méthode.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Prends le nombre 12.
+                    - 'Cherche la plus grande valeur du tableau qui tient dans 12 (8) : mets 1 dans sa case.'
+                    - Recommence avec le reste (12 − 8 = 4).
+                    - Mets 0 dans les autres cases.
+            -   type: paragraphe
+                texte: 'Pourquoi commencer par la plus grande valeur ? Comme pour rendre la monnaie : on prend d’abord les gros billets.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris le nombre 12 en binaire sur 8 bits et explique ta méthode.
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a03
         titre: Le code ASCII
         transition: Les nombres sont codés. Et les lettres ?
+        consigne: Tu vas coder et décoder des mots avec le code ASCII, à partir de l’extrait de table du document 1. On attend un mot codé et un message décodé.
         contenu:
             -   type: tableau
                 titre: Document 1 — Extrait de la table ASCII
@@ -73,10 +96,17 @@ activites:
                         - '69'
                         - '79'
                         - '84'
+            -   type: etapes
+                elements:
+                    - 'Lis le document 1 : le code de quelques lettres.'
+                    - Pour coder un mot, remplace chaque lettre par son code.
+                    - Pour décoder, fais l’inverse.
+            -   type: paragraphe
+                texte: 'Pourquoi un code commun ? Tous les ordinateurs utilisent la même table : un texte écrit sur l’un se lit sur l’autre.'
         questions:
             -   id: q01
                 type: tableau
-                enonce: Code le mot « EAU » en ASCII.
+                enonce: Code le mot « EAU » avec la table ASCII du document 1.
                 colonnes:
                     - Lettre
                     - Code
@@ -92,8 +122,8 @@ activites:
                 type: texte
                 enonce: Décode le message 84 79 84 79 avec le document 1.
                 aide: Une phrase complète qui reprend les mots de la question.
-    -   id: a03
-        titre: Défi
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -104,7 +134,7 @@ activites:
                 type: texte
                 enonce: Combien de valeurs différentes un octet peut-il représenter ?
                 aide: Une phrase complète qui reprend les mots de la question.
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Tu sais coder en binaire. Il reste à répondre au problème de départ.

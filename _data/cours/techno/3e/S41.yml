@@ -16,7 +16,8 @@ pourquoi:
     - Aujourd’hui, tu assembles le prototype numérique.
 activites:
     -   id: a01
-        titre: Choisir
+        titre: Choisir les constituants
+        consigne: Tu vas vérifier les constituants choisis par la classe pour le prototype de la cuve et leurs broches (document 1). On attend le rôle de la résistance de la LED et la raison du choix du bouton A.
         contenu:
             -   type: tableau
                 titre: Document 1 — Proposition de la classe
@@ -37,14 +38,21 @@ activites:
                     -   - Demander l’affichage
                         - Bouton A de la carte
                         - —
+            -   type: etapes
+                elements:
+                    - Lis la proposition de la classe (document 1).
+                    - Pour chaque constituant, vérifie qu’il remplit une fonction du cahier des charges.
+                    - Repère pourquoi la LED a une résistance.
+            -   type: paragraphe
+                texte: Pourquoi justifier chaque constituant ? Un constituant sans fonction coûte de l’argent et de l’énergie pour rien.
         questions:
             -   id: q01
                 type: texte
-                enonce: Pourquoi met-on une résistance en série avec la LED ?
-                aide: Pense à « car » (réflexe n° 4).
+                enonce: D’après le document 1, pourquoi met-on une résistance en série avec la LED rouge de la cuve ?
+                aide: « D’après le document… » (réflexe n° 2).
             -   id: q02
                 type: qcm
-                enonce: Pourquoi utiliser le bouton A de la carte plutôt qu’un bouton externe ?
+                enonce: Pourquoi la classe utilise-t-elle le bouton A de la carte plutôt qu’un bouton externe ?
                 choix:
                     -   id: a
                         texte: 'Il est déjà sur la carte : moins de câblage, moins de pièces.'
@@ -54,26 +62,59 @@ activites:
                         texte: Obligatoire.
                 aide: Relis l’exemple expliqué.
     -   id: a02
-        titre: Câbler et simuler
+        titre: Câbler
         transition: Les constituants sont choisis. Câble-les.
+        consigne: Tu vas câbler le prototype numérique de la cuve dans Tinkercad Circuits, en suivant le document 1. On attend la broche de chaque constituant.
         contenu:
             -   type: etapes
                 elements:
                     - Ouvre Tinkercad Circuits, nouveau circuit 3e_S41_groupe.
-                    - Place la micro:bit, le capteur à ultrasons, la LED, la résistance, le buzzer.
-                    - Relie selon le document 1 (masse commune).
-                    - Lance la simulation avec un programme simple (LED allumée si distance < 20).
+                    - Place la micro:bit, le capteur à ultrasons, la LED, la résistance et le buzzer.
+                    - Relie chaque constituant à sa broche (document 1).
+                    - Relie toutes les masses (GND) entre elles.
+            -   type: paragraphe
+                texte: 'Pourquoi une masse commune ? Une tension se mesure toujours entre deux points : sans masse commune, les constituants ne « parlent » pas la même langue.'
         questions:
             -   id: q01
-                type: texte
-                enonce: Décris ton câblage (constituant → broche) et le résultat de la simulation.
-                aide: Combien d’éléments sont demandés ?
+                type: tableau
+                enonce: Note le câblage de ton circuit Tinkercad pour la cuve.
+                colonnes:
+                    - Constituant
+                    - Broche reliée
+                lignes:
+                    -   - LED (avec sa résistance)
+                        - ''
+                    -   - Buzzer
+                        - ''
+                    -   - Capteur à ultrasons (echo)
+                        - ''
+                aide: Ligne × colonne.
         ressources:
-            -   type: lien
+            - &id001
+                type: lien
                 titre: Tinkercad Circuits — simulation de circuits avec micro:bit
                 url: https://www.tinkercad.com/learn/circuits
     -   id: a03
-        titre: Défi
+        titre: Simuler
+        transition: Le circuit est câblé. Vérifie-le en simulation.
+        consigne: Tu vas vérifier ton câblage par une simulation avec un programme simple. On attend ce que fait la LED et ta conclusion sur le câblage.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Écris un programme simple : allumer la LED si la distance est inférieure à 20 cm.'
+                    - Lance la simulation.
+                    - Déplace l’objet devant le capteur et observe la LED.
+            -   type: paragraphe
+                texte: 'Pourquoi un programme simple ? Il vérifie seulement le câblage : s’il marche, on pourra charger le vrai programme sans doute sur les fils.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Décris le résultat de la simulation de ton circuit : que fait la LED quand l’objet s’approche du capteur ? Le câblage est-il bon ?'
+                aide: Combien d’éléments sont demandés ?
+        ressources:
+            - *id001
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -84,14 +125,14 @@ activites:
                 type: texte
                 enonce: Que se passe-t-il si le capteur n’a pas la même masse que la carte ?
                 aide: Repère le verbe de la question.
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Il reste à répondre au problème de départ.
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : quels constituants et comment les relier ?'
+                enonce: 'Réponds au problème du jour : quels constituants choisir et comment les relier pour le prototype numérique de la cuve ?'
                 aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
     - Choisir des constituants selon le cahier des charges ; câbler aux bonnes broches ; simuler.

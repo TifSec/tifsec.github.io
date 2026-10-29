@@ -17,32 +17,62 @@ pourquoi:
     - Aujourd’hui, la cuve prévient l’afficheur.
 activites:
     -   id: a01
-        titre: Simuler
+        titre: L’émetteur
+        consigne: Tu vas ajouter l’envoi d’une alerte radio à la fonction declencherAlerte de la cuve, comme pour le tracker en 4e. On attend la description des blocs ajoutés.
         contenu:
             -   type: etapes
                 elements:
-                    - 'Ajoute envoyerRadio à la fonction declencherAlerte : radio envoyer chaîne « PLEINE ».'
-                    - 'Récepteur : quand une chaîne est reçue, l’afficher et jouer un son.'
-                    - Teste dans le simulateur (deux cartes).
+                    - Ouvre la fonction declencherAlerte (projet de la classe).
+                    - Au démarrage, ajoute « radio définir groupe » avec le numéro de ton groupe.
+                    - Dans declencherAlerte, ajoute « radio envoyer chaîne « PLEINE » ».
+            -   type: paragraphe
+                texte: 'Pourquoi une chaîne de caractères ? L’afficheur affiche directement le mot reçu : pas besoin de décoder un nombre.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Décris les blocs de l’émetteur et du récepteur.
+                enonce: Décris les blocs que tu as ajoutés à la carte de la cuve pour envoyer l’alerte par radio.
                 aide: Bloc par bloc (réflexe n° 9).
         ressources:
-            -   type: lien
+            - &id001
+                type: lien
                 titre: MakeCode micro:bit (gratuit, dans le navigateur)
                 url: https://makecode.microbit.org/
     -   id: a02
-        titre: Test réel (poste maquette)
-        transition: La simulation marche. Testons en vrai.
+        titre: Le récepteur
+        transition: La cuve envoie. Programme l’afficheur.
+        consigne: Tu vas programmer la carte « afficheur » qui, dans la salle, reçoit l’alerte de la cuve et la signale. On attend ses blocs et ce que tu observes dans le simulateur.
         contenu:
+            -   type: etapes
+                elements:
+                    - Crée un projet 3e_S37_afficheur.
+                    - 'Au démarrage : même groupe radio que la cuve.'
+                    - '« quand une chaîne est reçue par radio » : afficher la chaîne et jouer un son.'
+                    - Teste dans le simulateur (deux cartes).
             -   type: paragraphe
-                texte: Le professeur téléverse l’émetteur sur la carte libre et le récepteur sur la carte du tracker (programme du tracker sauvegardé).
+                texte: Pourquoi un son ? L’alerte doit être remarquée même si personne ne regarde l’écran.
         questions:
             -   id: q01
                 type: texte
-                enonce: Le test réel a-t-il fonctionné ? À quelle distance ?
+                enonce: Décris les blocs de la carte afficheur et ce que tu observes dans le simulateur quand la cuve envoie l’alerte.
+                aide: Bloc par bloc (réflexe n° 9).
+        ressources:
+            - *id001
+    -   id: a03
+        titre: Test réel (poste maquette)
+        transition: La simulation marche. Testons en vrai.
+        consigne: Tu vas tester l’alerte radio sur de vraies cartes micro:bit, au poste maquette. On attend le résultat du test et la distance maximale de réception.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Le professeur téléverse l’émetteur sur la carte libre et le récepteur sur la carte du tracker (son programme est sauvegardé).
+                    - Éloignez progressivement les deux cartes.
+                    - Notez la plus grande distance où l’alerte est reçue.
+            -   type: paragraphe
+                texte: 'Pourquoi un test réel ? Le simulateur ne connaît ni les murs ni la distance : seul l’essai réel le prouve.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Le test réel de l’alerte a-t-il fonctionné ? Jusqu’à quelle distance ?
                 aide: Attendu ou observé ?
             -   id: q02
                 type: qcm
@@ -55,19 +85,19 @@ activites:
                     -   id: c
                         texte: La garder en récepteur.
                 aide: Relis l’exemple expliqué.
-    -   id: a03
-        titre: Défi
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
             -   type: paragraphe
-                texte: Plusieurs cuves dans le collège ?
+                texte: Il pourrait y avoir plusieurs cuves dans le collège.
         questions:
             -   id: q01
                 type: texte
                 enonce: Comment l’afficheur saurait-il quelle cuve alerte ?
                 aide: Repère le verbe de la question.
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Il reste à répondre au problème de départ.

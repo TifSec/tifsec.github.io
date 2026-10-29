@@ -17,19 +17,20 @@ pourquoi:
 activites:
     -   id: a01
         titre: Entraîner
+        consigne: Tu vas entraîner une intelligence artificielle à reconnaître de l’eau claire et de l’eau trouble, dans Teachable Machine, avec les photos fournies par le professeur. On attend un modèle entraîné et l’explication du rôle des exemples.
         contenu:
             -   type: etapes
                 elements:
                     - Ouvre Teachable Machine > Projet d’image standard.
-                    - 'Classe 1 : « eau claire » ; ajoute les 20 photos fournies.'
+                    - 'Classe 1 : « eau claire » ; ajoute les 20 photos fournies par le professeur.'
                     - 'Classe 2 : « eau trouble » ; ajoute les 20 photos fournies.'
                     - Clique sur « Entraîner le modèle ».
             -   type: paragraphe
-                texte: 'Exemple expliqué : comme un enfant à qui on montre beaucoup de chats et de chiens, la machine compare les exemples ; plus il y en a, et plus ils sont variés, mieux elle classe.'
+                texte: Pourquoi des exemples ? Comme un enfant à qui on montre beaucoup de chats et de chiens, la machine compare les exemples ; plus il y en a, et plus ils sont variés, mieux elle classe.
         questions:
             -   id: q01
                 type: qcm
-                enonce: Que donne-t-on à la machine pour qu’elle apprenne ?
+                enonce: Dans Teachable Machine, que donnes-tu à la machine pour qu’elle apprenne à reconnaître l’eau claire ?
                 choix:
                     -   id: a
                         texte: Des exemples déjà classés.
@@ -40,7 +41,7 @@ activites:
                 aide: Élimine d’abord les réponses impossibles.
             -   id: q02
                 type: texte
-                enonce: Pourquoi faut-il beaucoup d’exemples variés ?
+                enonce: Pourquoi faut-il beaucoup de photos variées d’eau claire et d’eau trouble pour entraîner le modèle ?
                 aide: Une idée + « car » + une raison tirée de la séance.
         ressources:
             - &id001
@@ -50,13 +51,19 @@ activites:
     -   id: a02
         titre: Tester
         transition: Le modèle est entraîné. Est-il fiable ?
+        consigne: Tu vas tester le modèle que tu as entraîné sur des photos qu’il n’a jamais vues. On attend un tableau des réponses du modèle, avec les pourcentages de confiance.
         contenu:
+            -   type: etapes
+                elements:
+                    - Clique sur « Aperçu » et charge les 6 photos de test fournies (jamais vues pendant l’entraînement).
+                    - Pour chacune, note la réponse attendue et la réponse du modèle avec son pourcentage.
+                    - Compte les erreurs.
             -   type: paragraphe
-                texte: Teste le modèle avec les 6 photos de test fournies (jamais vues pendant l’entraînement).
+                texte: 'Pourquoi des photos jamais vues ? Une IA doit marcher sur des cas nouveaux : la tester sur ses propres exemples ne prouverait rien.'
         questions:
             -   id: q01
                 type: tableau
-                enonce: Note les résultats.
+                enonce: Teste ton modèle avec les photos de test et note les résultats.
                 colonnes:
                     - Photo de test
                     - Réponse attendue
@@ -71,11 +78,28 @@ activites:
                     -   - '3'
                         - claire
                         - ''
-                aide: 'Une case à la fois : la ligne croise la colonne (réflexe n° 6).'
+                aide: Action → résultat attendu → résultat observé ; une seule chose à la fois.
         ressources:
             - *id001
     -   id: a03
-        titre: Défi
+        titre: Expliquer une erreur
+        transition: Le modèle n’est pas parfait. Comprends pourquoi.
+        consigne: Tu vas expliquer une erreur ou une hésitation de ton modèle et proposer comment mieux l’entraîner. On attend une cause plausible et une amélioration.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Choisis une photo où le modèle hésite ou se trompe (ou imagine-la).
+                    - 'Cherche ce qui la rend différente des photos d’entraînement : éclairage, verre, fond…'
+                    - Propose une amélioration de l’entraînement.
+            -   type: paragraphe
+                texte: 'Pourquoi chercher la cause ? Une IA se trompe pour une raison : le plus souvent, ses exemples ne couvraient pas ce cas.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ton modèle a hésité ou s’est trompé sur une photo. Propose une explication et une amélioration de l’entraînement.
+                aide: Une idée réaliste + « Cela permet de… ».
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -84,11 +108,9 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: Que signifie « 60 % claire » ?
+                enonce: Que signifie « 60 % claire » pour une photo ?
                 aide: Une phrase complète qui reprend les mots de la question.
-        ressources:
-            - *id001
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Tu as entraîné une IA. Il reste à répondre au problème de départ.

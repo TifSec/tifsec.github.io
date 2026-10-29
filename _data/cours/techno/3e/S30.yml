@@ -6,7 +6,7 @@ competences_bo:
     - Concevoir, écrire, tester et mettre au point un programme
 objectifs:
     connaissances:
-        - 'MakeCode affiche le même programme en blocs, en JavaScript ou en Python : seuls l’écriture change, pas ce que fait le programme.'
+        - 'MakeCode affiche le même programme en blocs, en JavaScript ou en Python : seule l’écriture change, pas ce que fait le programme.'
         - 'En Python, l’indentation (le décalage) indique ce qui est à l’intérieur d’une boucle ou d’une condition ; un « : » termine les lignes if, for, def.'
     competences:
         - Lire un programme Python simple.
@@ -17,15 +17,23 @@ pourquoi:
 activites:
     -   id: a01
         titre: Lire du Python
+        consigne: Tu vas lire un court programme Python (ci-dessous), proche du jeu de la séance 29, et retrouver ses blocs. On attend le bloc qui correspond à chaque ligne.
         contenu:
             -   type: code
                 texte: "score = 0\n\ndef nouvelle_vague():\n    for i in range(3):\n        creer_ennemi()\n\nnouvelle_vague()\nif score > 10:\n    game.splash(\"Bravo\")"
             -   type: paragraphe
                 texte: 'Exemple expliqué : « for i in range(3): » répète 3 fois ce qui est décalé en dessous ; « def » crée une fonction.'
+            -   type: etapes
+                elements:
+                    - Lis le programme Python ci-dessous et l’exemple expliqué.
+                    - 'Pour chaque ligne qui finit par « : », cherche le bloc équivalent.'
+                    - 'Repère les lignes décalées : elles sont « à l’intérieur ».'
+            -   type: paragraphe
+                texte: Pourquoi Python ? C’est le langage étudié au lycée ; tu y retrouves exactement les mêmes idées que dans les blocs.
         questions:
             -   id: q01
                 type: tableau
-                enonce: Associe chaque ligne Python au bloc correspondant.
+                enonce: Associe chaque ligne du programme Python à son bloc MakeCode.
                 colonnes:
                     - Python
                     - Bloc
@@ -37,51 +45,72 @@ activites:
                     -   - 'if score > 10:'
                         - ''
                 aide: Bloc par bloc (réflexe n° 9).
-            -   id: q02
+    -   id: a02
+        titre: L’indentation
+        transition: Tu sais associer Python et blocs. Regarde le rôle du décalage.
+        consigne: Tu vas comprendre le rôle de l’indentation (le décalage des lignes) en Python, sur le programme ci-dessus. On attend son rôle et l’effet d’une indentation oubliée.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Regarde la ligne « creer_ennemi() » : elle est décalée de 4 espaces.'
+                    - Demande-toi ce qui arriverait si elle ne l’était pas.
+                    - Réponds.
+            -   type: paragraphe
+                texte: Pourquoi le décalage compte-t-il ? En blocs, on voit qu’un bloc est « dans » une boucle ; en Python, c’est le décalage qui le dit.
+        questions:
+            -   id: q01
                 type: qcm
-                enonce: À quoi sert le décalage des lignes en Python ?
+                enonce: Dans le programme Python ci-dessus, à quoi sert le décalage de la ligne « creer_ennemi() » ?
                 choix:
                     -   id: a
-                        texte: À indiquer ce qui fait partie de la boucle, de la condition ou de la fonction.
+                        texte: À indiquer qu’elle fait partie de la boucle for.
                     -   id: b
                         texte: À faire joli.
                     -   id: c
                         texte: Rien.
                 aide: Relis l’exemple expliqué.
-    -   id: a02
-        titre: Modifier
-        transition: Tu sais lire du Python. Modifie maintenant ton jeu.
+            -   id: q02
+                type: texte
+                enonce: Si on enlève le décalage de « creer_ennemi() », combien d’ennemis seront créés ? Pourquoi ?
+                aide: Pense à « car » (réflexe n° 4).
+    -   id: a03
+        titre: Modifier ton jeu en Python
+        transition: Tu comprends le décalage. Modifie maintenant ton propre jeu.
+        consigne: Tu vas modifier ton propre jeu de la séance 29 en Python, puis vérifier le changement dans les blocs. On attend la ligne modifiée et ce que tu observes.
         contenu:
             -   type: etapes
                 elements:
-                    - Ouvre ton jeu de la séance 29 et passe en Python (onglet en haut).
+                    - Ouvre ton jeu de la séance 29.
+                    - Clique sur l’onglet « Python » en haut.
                     - Change le nombre d’ennemis de 3 à 5 dans range().
-                    - 'Reviens en blocs : vérifie que le bloc a changé.'
+                    - Reviens en blocs et vérifie que le bloc a changé.
+            -   type: paragraphe
+                texte: Pourquoi passer d’un mode à l’autre ? Tu vérifies que c’est bien le même programme, écrit de deux façons.
         questions:
             -   id: q01
                 type: texte
-                enonce: Quelle ligne as-tu modifiée, et qu’as-tu observé en revenant aux blocs ?
+                enonce: Dans ton jeu, quelle ligne Python as-tu modifiée, et qu’as-tu observé en revenant aux blocs ?
                 aide: Bloc par bloc (réflexe n° 9).
         ressources:
             - &id001
                 type: lien
                 titre: MakeCode Arcade (gratuit, dans le navigateur)
                 url: https://arcade.makecode.com/
-    -   id: a03
-        titre: Défi
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
             -   type: paragraphe
-                texte: Une erreur d’indentation empêche le programme de fonctionner.
+                texte: Une erreur d’indentation empêche souvent le programme de fonctionner.
         questions:
             -   id: q01
                 type: texte
-                enonce: Supprime le décalage d’une ligne dans la boucle. Que se passe-t-il ?
+                enonce: Supprime le décalage d’une ligne dans la boucle de ton jeu. Que se passe-t-il ?
                 aide: Repère le verbe de la question.
         ressources:
             - *id001
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Il reste à répondre au problème de départ.

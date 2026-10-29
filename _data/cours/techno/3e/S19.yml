@@ -18,7 +18,8 @@ pourquoi:
     - Aujourd’hui, tu compares l’impact carbone des cuves A et B dans Calc.
 activites:
     -   id: a01
-        titre: Les données
+        titre: Les totaux
+        consigne: Tu vas calculer dans Calc le bilan carbone total des cuves A et B, à partir des émissions de chaque étape de leur cycle de vie (tableau ci-dessous). On attend les deux totaux.
         contenu:
             -   type: tableau
                 titre: Ce que tu dois obtenir dans Calc (valeurs inventées pour l’exercice)
@@ -54,13 +55,15 @@ activites:
                         - ''
             -   type: etapes
                 elements:
-                    - Ouvre Calc, enregistre sous 3e_S19_groupe.ods, recopie le tableau.
-                    - 'En B6 : =SOMME(B2:B5) ; recopie vers C6.'
-                    - 'En B8 : =SI(B6<C6;"Cuve A";"Cuve B").'
+                    - Ouvre Calc et enregistre sous 3e_S19_groupe.ods.
+                    - Recopie le tableau ci-dessous (lignes 1 à 6, colonnes A à C).
+                    - En B6, écris =SOMME(B2:B5), puis recopie la formule en C6.
+            -   type: paragraphe
+                texte: Pourquoi SOMME ? Si une valeur change, le total se recalcule tout seul.
         questions:
             -   id: q01
                 type: tableau
-                enonce: Recopie les totaux.
+                enonce: Recopie les totaux calculés par Calc pour le bilan carbone des cuves A et B.
                 colonnes:
                     - Cuve
                     - Total (kg CO₂e)
@@ -69,30 +72,47 @@ activites:
                         - ''
                     -   - B
                         - ''
-                aide: 'Une case à la fois : la ligne croise la colonne (réflexe n° 6).'
-            -   id: q02
-                type: texte
-                enonce: Écris la formule de B8 et ce qu’elle affiche.
                 aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
     -   id: a02
-        titre: Graphique et analyse
-        transition: Les totaux sont calculés. Un graphique aide à comparer.
+        titre: La fonction SI
+        transition: Les totaux sont calculés. Fais désigner la meilleure cuve par Calc.
+        consigne: Tu vas utiliser la fonction SI de Calc pour que la feuille désigne seule la cuve qui a le plus petit bilan carbone. On attend la formule et son résultat.
         contenu:
             -   type: etapes
                 elements:
-                    - Sélectionne A1:C5, Insertion > Diagramme > Colonnes.
-                    - Titre « Bilan carbone par étape » ; axe Y « kg CO₂e ».
+                    - 'En A8, écris « La meilleure cuve : ».'
+                    - En B8, écris =SI(B6<C6;"Cuve A";"Cuve B").
+                    - Change une valeur de la cuve B pour la rendre meilleure, observe B8, puis remets la valeur.
+            -   type: paragraphe
+                texte: 'Pourquoi SI ? La feuille décide toute seule : si les données changent, la conclusion change aussi.'
         questions:
             -   id: q01
                 type: texte
-                enonce: D’après le graphique, quelle étape pèse le plus pour chaque cuve ? Pourquoi ?
+                enonce: Écris la formule de la cellule B8 de ta feuille de bilan carbone et ce qu’elle affiche.
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a03
+        titre: Graphique et analyse
+        transition: Calc a choisi. Un graphique aide à comprendre pourquoi.
+        consigne: Tu vas tracer le graphique du bilan carbone par étape et l’analyser, puis tenir compte de la durée de vie des cuves. On attend l’étape la plus lourde, expliquée, et un calcul par année.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Sélectionne A1:C5, puis Insertion > Diagramme > Colonnes.
+                    - Titre « Bilan carbone par étape » ; axe Y « kg CO₂e ».
+                    - Repère l’étape la plus haute pour chaque cuve.
+            -   type: paragraphe
+                texte: 'Pourquoi un graphique ? Il montre d’un coup d’œil quelle étape pèse le plus : c’est là qu’il faut agir.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après ton graphique, quelle étape du cycle de vie pèse le plus pour chaque cuve ? Pourquoi ?
                 aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
             -   id: q02
                 type: texte
-                enonce: La cuve B dure 50 ans au lieu de 20. Faut-il en tenir compte ? Calcule le bilan par année.
+                enonce: La cuve B dure 50 ans au lieu de 20. Faut-il en tenir compte ? Calcule le bilan carbone par année pour chaque cuve.
                 aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
-    -   id: a03
-        titre: Défi
+    -   id: a04
+        titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
@@ -103,7 +123,7 @@ activites:
                 type: texte
                 enonce: Écris une formule qui compte combien d’étapes de la cuve B dépassent 100 kg.
                 aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Tu as comparé avec le tableur. Il reste à répondre au problème de départ.
