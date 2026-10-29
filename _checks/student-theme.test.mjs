@@ -98,3 +98,50 @@ test('le contrôleur professeur ne s’active pas pour un compte élève', async
     await controller.load(); await controller.choose('neon');
     assert.equal(state.writes.length, 0); assert.equal(state.rendered.at(-1).visible, false);
 });
+
+function xpHarness({ balance = 34, unlocked = [], saved = 'forest', unlockResult } = {}) {
+    const calls = [];
+    const h = harness({
+        loadXp: async () => ({ earned: balance, spent: 0, balance, unlocked }),
+        unlock: async theme => { calls.push(theme); return unlockResult ? unlockResult(theme) : { data: [{ earned: balance, spent: THEME_COSTS[theme], balance: balance - THEME_COSTS[theme], unlocked: [...unlocked, theme] }] }; }
+    });
+    h.state.session = user('a', saved);
+    return { ...h, calls };
+}
+const { THEME_COSTS } = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
+test('thèmes à débloquer : seul Océan est offert, un thème non acheté enregistré revient à Océan', async () => {
+    const { state, controller } = xpHarness({ saved: 'neon' }); await controller.load();
+    assert.equal(state.applied.at(-1), 'ocean');
+    assert.deepEqual(state.rendered.at(-1).owned, ['ocean']);
+    assert.equal(state.rendered.at(-1).xp.balance, 34);
+    assert.equal(THEME_COSTS.ocean, 0); assert.equal(THEME_COSTS.midnight, 60); assert.equal(THEME_COSTS.farming, 100);
+});
+test('aperçu d’un thème verrouillé : appliqué sur la page, jamais enregistré, annulable', async () => {
+    const { state, controller } = xpHarness({ saved: 'ocean' }); await controller.load();
+    await controller.choose('cyberpunk');
+    assert.equal(state.applied.at(-1), 'cyberpunk'); assert.equal(state.writes.length, 0);
+    assert.equal(state.rendered.at(-1).preview, 'cyberpunk'); assert.match(state.rendered.at(-1).message, /manque 66 XP/);
+    controller.cancelPreview(); assert.equal(state.applied.at(-1), 'ocean');
+});
+test('déblocage avec solde suffisant : achat côté serveur puis enregistrement du thème', async () => {
+    const { state, controller, calls } = xpHarness({ saved: 'ocean' }); await controller.load();
+    await controller.choose('forest'); await controller.buy();
+    assert.deepEqual(calls, ['forest']); assert.deepEqual(state.writes, ['forest']);
+    assert.equal(state.applied.at(-1), 'forest'); assert.equal(state.rendered.at(-1).xp.balance, 4);
+    assert.ok(state.rendered.at(-1).owned.includes('forest'));
+});
+test('solde insuffisant refusé par la base : aucun enregistrement, message clair', async () => {
+    const { state, controller } = xpHarness({ balance: 10, saved: 'ocean', unlockResult: () => ({ error: { message: 'insufficient_xp' } }) });
+    await controller.load(); await controller.choose('plum'); await controller.buy();
+    assert.equal(state.writes.length, 0); assert.match(state.rendered.at(-1).message, /assez d’XP/);
+});
+test('XP indisponible : le thème déjà porté reste utilisable, le travail n’est jamais bloqué', async () => {
+    const { state, controller } = harness({ loadXp: async () => { throw new Error('offline'); } });
+    await controller.load();
+    assert.equal(state.applied.at(-1), 'forest'); assert.match(state.rendered.at(-1).message, /n’a pas pu être chargée/);
+});
+test('professeur : tous les thèmes disponibles sans XP', async () => {
+    const teacher = { ...user('t', 'neon'), profile: { role: 'teacher' } };
+    const { state, controller } = harness({ role: 'teacher', checkSession: async () => teacher, loadXp: async () => { throw new Error('jamais appelé'); } });
+    await controller.load(); assert.equal(state.applied.at(-1), 'neon'); assert.equal(state.rendered.at(-1).owned.length, 12);
+});

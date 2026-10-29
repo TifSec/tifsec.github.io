@@ -39,6 +39,7 @@ Liste relevée dans la base le 28 octobre 2026, avec le fichier correspondant da
 | 20261021123304 | activate_imported_test_course_versions_without_math_term_s06 | `_supabase/13_import_cours.sql` |
 | 20261028173039 | refonte_register_techno_5e_s02_v2 | `_supabase/14_register_techno_5e_s02_v2.sql` (récupéré hors dépôt) |
 | 20261028202050 | suppression_tables_ancien_site | `_supabase/15_suppression_tables_ancien_site.sql` (testé en local et sur le projet de test, appliqué avec l'accord du professeur) |
+| — | xp_et_themes | `_supabase/16_xp_et_themes.sql` : XP des élèves et thèmes à débloquer. **Appliqué sur le projet de test uniquement (29 octobre 2026)** ; à appliquer en production à la mise en ligne. |
 
 Les fichiers `0x_verification_*.sql` sont des contrôles exécutés puis annulés (`ROLLBACK`) ; `90_` et `91_` sont des procédures de suspension d'urgence.
 
