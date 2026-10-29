@@ -11,8 +11,12 @@ const json = id => JSON.parse(html.match(new RegExp('<script id="'+id+'"[^>]*>([
 const catalogue = json('seances-data'), references = json('referentiels-data'), mappings = json('competences-evaluees-data');
 const A='00000000-0000-0000-0000-000000000001', B='00000000-0000-0000-0000-000000000002', T='00000000-0000-0000-0000-000000000003';
 async function actor(db, id) { await db.exec('reset role; set role authenticated'); await db.query("select set_config('request.jwt.claim.sub',$1,false)",[id]); }
-const marks = points => points.map((score,i) => ({ cle: 'a01_q0'+(i+1), points: score, maximum: [12,6,2][i], commentaire: '' }));
-const grade = (db,id,points,revision) => db.query('select refonte_validate_grade($1,$2,$3,$4::jsonb,$5::jsonb,null,null)',[id,'v1','a'.repeat(64),JSON.stringify([{cle:'a01_q02',revision:String(revision)}]),JSON.stringify(marks(points))]);
+// Trois questions de la vraie séance 3e S02 reliées à la première compétence du référentiel (progression 2026).
+const firstSkill = references.find(row => row.id === 'techno-cycle4-2024').themes[0].competences[0].id;
+const s02 = mappings.find(row => row.matiere === 'techno' && row.classe === '3e' && row.seance === 'S02');
+const KEYS = Object.entries(s02.questions).filter(([, skills]) => skills.includes(firstSkill)).map(([key]) => key).slice(0, 3);
+const marks = points => points.map((score,i) => ({ cle: KEYS[i], points: score, maximum: [12,6,2][i], commentaire: '' }));
+const grade = (db,id,points,revision) => db.query('select refonte_validate_grade($1,$2,$3,$4::jsonb,$5::jsonb,null,null)',[id,'v1','a'.repeat(64),JSON.stringify([{cle:KEYS[1],revision:String(revision)}]),JSON.stringify(marks(points))]);
 async function overview(db,userId) {
     const data = {};
     for (const [key,table] of [['copies','work_sessions'],['answers','work_answers'],['feedback','work_feedback'],['evaluations','work_evaluations']]) data[key]=(await db.query('select * from '+table)).rows;
@@ -26,7 +30,7 @@ test('parcours complet notes → RLS → accueil → segments et réouverture, s
         for(const file of ['./work-fixture.sql','../_supabase/01_copies_individuelles.sql','../_supabase/03_groupes_et_suivi.sql','../_supabase/05_copie_reference_et_historique.sql','../_supabase/07_validation_eleves.sql','../_supabase/09_notation.sql','../_supabase/11_remise.sql']) await db.exec(read(file));
         await actor(db,A);
         const copy=(await db.query("insert into work_sessions(etablissement,matiere,classe,seance,created_by) values('college','techno','3e','S02',$1) returning id",[A])).rows[0].id;
-        await db.query("insert into work_answers(work_session_id,question_key,reponse) values($1,'a01_q02','Réponse fictive')",[copy]);
+        await db.query("insert into work_answers(work_session_id,question_key,reponse) values($1,$2,'Réponse fictive')",[copy,KEYS[1]]);
         await t.test('pas de résultat avant validation professeur',async()=>{assert.equal((await overview(db,A)).individual.percent,null);});
         await actor(db,T);await grade(db,copy,[6,3,1],1);await actor(db,A);
         await t.test('note de 10/20 retrouvée à 50 % dans le référentiel réel S02',async()=>{
