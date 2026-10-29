@@ -35,21 +35,27 @@
     {% if include.cours.lien_precedent %}<section class="course-info-card course-info-previous"><h2>Pour commencer</h2><p>{{ include.cours.lien_precedent | escape }}</p></section>{% endif %}
     {% if include.cours.prerequis %}<section class="course-info-card course-info-prerequisites"><h2>Ce qui va nous servir</h2><ul>{% for notion in include.cours.prerequis %}<li>{{ notion | escape }}</li>{% endfor %}</ul></section>{% endif %}
     {% if include.cours.notions %}<section class="course-info-card cours-notions"><h2>Les repères pour comprendre</h2>{% for notion in include.cours.notions %}<h3>{{ notion.titre | escape }}</h3><p>{{ notion.texte | escape }}</p>{% endfor %}</section>{% endif %}
+    {% assign objectifs_savoirs = include.cours.objectifs.connaissances %}{% assign objectifs_savoir_faire = include.cours.objectifs.competences %}
+    {% if objectifs_savoirs.size > 0 or objectifs_savoir_faire.size > 0 %}
     <section class="course-info-card cours-objectifs">
+        {% if objectifs_savoirs.size > 0 %}
         <h2>Ce que vous allez apprendre</h2>
         <ul>
-            {% for objectif in include.cours.objectifs.connaissances %}
+            {% for objectif in objectifs_savoirs %}
             <li>{{ objectif | escape }}</li>
             {% endfor %}
         </ul>
-
+        {% endif %}
+        {% if objectifs_savoir_faire.size > 0 %}
         <h2>Ce que vous allez apprendre à faire</h2>
         <ul>
-            {% for competence in include.cours.objectifs.competences %}
+            {% for competence in objectifs_savoir_faire %}
             <li>{{ competence | escape }}</li>
             {% endfor %}
         </ul>
+        {% endif %}
     </section>
+    {% endif %}
     {% if include.cours.introduction %}{% include cours/cours-blocs.html blocs=include.cours.introduction %}{% endif %}
     {% if include.cours.ressources %}<section><h2>Ressources du cours</h2>{% include cours/cours-blocs.html blocs=include.cours.ressources %}</section>{% endif %}
     {% if include.cours.reperes_officiels %}{% include cours/cours-ressources.html titre="Les attendus officiels" blocs=include.cours.reperes_officiels %}{% endif %}
