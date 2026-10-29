@@ -34,10 +34,29 @@ export function initTeacherTracking() {
     } });
     let generation = 0, selection = 0, userId = null, lessons = [], selected = null, savedComment = '', busy = false;
     let displayedLesson = '', reading = 0;
+    // Bonus d'XP du petit défi : section présente seulement si le site l'active (bac à sable pour l'instant).
+    const challenge = document.getElementById('tracking-challenge');
+    const challengeBox = document.getElementById('tracking-challenge-award');
+    const challengeStatus = document.getElementById('tracking-challenge-status');
+    const CHALLENGE_GRANTED = 'Bonus accordé : +5 XP pour chaque participant de cette copie.';
+    function clearChallenge() {
+        if (!challenge) return;
+        challenge.hidden = true; challengeBox.checked = false; challengeBox.disabled = true; challengeStatus.textContent = '';
+    }
+    async function showChallenge(row, available, chosen) {
+        if (!challenge) return;
+        if (!available || row.is_history) { clearChallenge(); return; }
+        challenge.hidden = false; challengeBox.disabled = true; challengeStatus.textContent = 'Lecture du bonus du défi…';
+        const { data, error } = await db.from('challenge_awards').select('awarded_at').eq('work_session_id', row.copy_id).maybeSingle();
+        if (chosen !== selection) return;
+        if (error) { challengeStatus.textContent = 'Bonus du défi indisponible pour le moment.'; return; }
+        challengeBox.checked = Boolean(data); challengeBox.disabled = false;
+        challengeStatus.textContent = data ? CHALLENGE_GRANTED : 'Bonus non accordé pour cette copie.';
+    }
     let requestedCopy = null;
 
     function clearCopy() {
-        assisted.clear();
+        assisted.clear(); clearChallenge();
         ++selection; selected = null; savedComment = ''; feedback.value = '';
         correction.disabled = true; detail.hidden = true; preview.replaceChildren();
         element('identity').textContent = ''; element('copy-status').textContent = '';
@@ -113,6 +132,9 @@ export function initTeacherTracking() {
             correction.disabled = Boolean(row.is_history); correction.hidden = Boolean(row.is_history); detail.hidden = false;
             copies.querySelectorAll('button').forEach(button => { button.setAttribute('aria-pressed', String(button.dataset.copy === String(row.copy_id))); });
             status.textContent = 'Copie chargée. Les réponses sont consultables dans le cours.';
+            showChallenge(row, Boolean(documentCourse.querySelector('.course-challenge')), chosen).catch(() => {
+                if (chosen === selection && challengeStatus) challengeStatus.textContent = 'Bonus du défi indisponible pour le moment.';
+            });
         } catch {
             if (current === generation && chosen === selection) status.textContent = 'Impossible de charger cette copie. Actualisez la liste avant de réessayer.';
         }
@@ -208,6 +230,17 @@ export function initTeacherTracking() {
         } catch { if (current === generation && chosen === selection) status.textContent = 'Action non confirmée. Votre commentaire est conservé ici ; réessayez.'; }
         finally { busy = false; if (current === generation && chosen === selection) correction.disabled = false; }
     }
+    challengeBox?.addEventListener('change', async () => {
+        const row = selected, chosen = selection, wanted = challengeBox.checked;
+        if (!row || row.is_history) return;
+        challengeBox.disabled = true; challengeStatus.textContent = 'Enregistrement du bonus…';
+        try {
+            await collaborationRpc('refonte_set_challenge_award', { p_copy: row.copy_id, p_awarded: wanted });
+            if (chosen === selection) challengeStatus.textContent = wanted ? CHALLENGE_GRANTED : 'Bonus retiré pour cette copie.';
+        } catch {
+            if (chosen === selection) { challengeBox.checked = !wanted; challengeStatus.textContent = 'Action non confirmée : réessayez.'; }
+        } finally { if (chosen === selection) challengeBox.disabled = false; }
+    });
     element('save').addEventListener('click', () => mutate('save'));
     element('finish').addEventListener('click', () => mutate('finish'));
     window.addEventListener('beforeunload', event => {

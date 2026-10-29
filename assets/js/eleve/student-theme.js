@@ -55,7 +55,8 @@ if (picker && select && status && retry && db) {
             if (balance && state.xp) {
                 balance.textContent = state.xp.balance + ' XP';
                 const note = balance.parentElement?.querySelector('p span');
-                if (note) note.textContent = state.xp.earned + ' XP gagnés : 10 par séance remise, plus ta note sur 20 quand le professeur corrige.';
+                if (note) note.textContent = state.xp.earned + ' XP gagnés : 10 par séance remise, plus ta note sur 20 quand le professeur corrige' +
+                    (document.querySelector('meta[name="tifsec-bonus-defi"]') ? ', et 5 de plus pour chaque petit défi réussi.' : '.');
             }
         }
     });
