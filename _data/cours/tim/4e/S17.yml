@@ -1,0 +1,174 @@
+titre: 'Séance 17 : Un tableau de soins clair et sans erreur'
+themes:
+    - Objectif 2 — Créer, produire, traiter et exploiter des données
+problematique: Comment présenter des nombres dans un tableur pour qu’ils soient justes et lisibles ?
+competences_bo:
+    - Objectif 2 — Créer, produire, traiter et exploiter des données
+objectifs:
+    connaissances:
+        - 'Le format d’une cellule dit comment afficher un nombre : euros, pourcentage, date, nombre de décimales.'
+        - 'La recopie d’une formule adapte les références : =B2*C2 devient =B3*C3 sur la ligne du dessous.'
+    competences:
+        - Appliquer un format de nombre.
+        - Recopier une formule et vérifier le résultat.
+pourquoi:
+    - En S16, tu as écrit tes premières formules.
+    - 'Le gérant veut le coût mensuel des soins de quatre chevaux : les montants doivent être en euros et sans erreur.'
+activites:
+    -   id: a01
+        titre: Calculer le coût de chaque soin
+        consigne: Tu vas calculer dans Calc le coût de chaque soin du mois, à partir du document 1. On attend un résultat contrôlé et une formule recopiée.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Soins du mois (données fictives)
+                colonnes:
+                    - ''
+                    - A
+                    - B
+                    - C
+                    - D
+                lignes:
+                    -   - '1'
+                        - Soin
+                        - Nombre
+                        - Prix unitaire (€)
+                        - Coût (€)
+                    -   - '2'
+                        - Parage
+                        - '4'
+                        - '35'
+                        - ''
+                    -   - '3'
+                        - Vermifuge
+                        - '4'
+                        - '9'
+                        - ''
+                    -   - '4'
+                        - Rinçage des yeux
+                        - '2'
+                        - '3,5'
+                        - ''
+                    -   - '5'
+                        - Pommade
+                        - '1'
+                        - '12,8'
+                        - ''
+            -   type: etapes
+                elements:
+                    - Ouvre Calc et enregistre sous 4e_S17_tonprenom.ods.
+                    - Recopie le document 1.
+                    - En D2, écris =B2*C2, puis recopie jusqu’en D5.
+                    - Contrôle un résultat de tête.
+            -   type: paragraphe
+                texte: Pourquoi contrôler de tête ? Une erreur de formule se voit tout de suite si on connaît l’ordre de grandeur du résultat.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: D’après le document 1, quel coût Calc affiche-t-il en D3 (vermifuge) ?
+                unite: €
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Écris la formule de la cellule D5 après la recopie.
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a02
+        titre: Le format monétaire
+        transition: Les calculs sont justes. Rends-les lisibles pour le client.
+        consigne: Tu vas afficher les prix en euros et calculer le total des soins. On attend le total en euros et l’affichage d’un prix.
+        contenu:
+            -   type: citation
+                texte: 'Réflexe DNB M5 : j’écris toujours l’unité de mes résultats (kg, €, km…).'
+            -   type: etapes
+                elements:
+                    - Sélectionne C2:D5.
+                    - Clique sur le bouton « Format monétaire » (ou Format > Cellules > Monnaie).
+                    - Ajoute en D6 le total avec =SOMME(D2:D5).
+                    - Vérifie que le total s’affiche en euros avec deux décimales.
+            -   type: paragraphe
+                texte: 'Pourquoi le format monétaire ? « 12,8 » n’est pas clair pour un client : « 12,80 € » l’est.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quel total Calc affiche-t-il en D6 ?
+                unite: €
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: qcm
+                enonce: Comment s’affiche 12,8 avec le format monétaire ?
+                choix:
+                    -   id: a
+                        texte: 12,80 €
+                    -   id: b
+                        texte: '12,8'
+                    -   id: c
+                        texte: 13 €
+                aide: Élimine d’abord les réponses impossibles.
+    -   id: a03
+        titre: Trouver l’erreur
+        transition: Ton tableau est propre. Vérifie maintenant celui d’un camarade.
+        consigne: Tu vas retrouver l’erreur dans le tableau de soins de Lucas (document 2). On attend la ligne fausse et la cause de l’erreur.
+        contenu:
+            -   type: tableau
+                titre: Document 2 — Le tableau de Lucas
+                colonnes:
+                    - Soin
+                    - Nombre
+                    - Prix
+                    - Coût affiché
+                lignes:
+                    -   - Parage
+                        - '4'
+                        - 35,00 €
+                        - 140,00 €
+                    -   - Vermifuge
+                        - '4'
+                        - 9,00 €
+                        - 36,00 €
+                    -   - Rinçage
+                        - '2'
+                        - 3,50 €
+                        - 7,00 €
+                    -   - Pommade
+                        - '1'
+                        - 12,80 €
+                        - 128,00 €
+            -   type: etapes
+                elements:
+                    - Lis le tableau de Lucas (document 2).
+                    - Refais le calcul de chaque ligne de tête.
+                    - Repère la ligne fausse et sa cause.
+            -   type: paragraphe
+                texte: Pourquoi chercher l’erreur ? Au travail, une facture fausse fait perdre de l’argent ou la confiance d’un client.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le document 2, quelle ligne est fausse et pourquoi ?
+                aide: Retrouve la phrase ou la ligne utile du document, puis commence par « D’après le document… ».
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le maréchal augmente son prix de 10 %.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quelle formule calcule le nouveau prix du parage en C2 ?
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton tableau de soins est juste et lisible. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment présenter des nombres dans un tableur pour qu’ils soient justes et lisibles ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - 'Format monétaire : 12,80 €.'
+    - La recopie adapte les références ; on contrôle de tête.
+sources:
+    -   type: lien
+        titre: ChloroFil — Document d’accompagnement TIM, 4e et 3e de l’enseignement agricole (juin 2016)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/4e3e/da/4e3e-da-TIMJuin2016.pdf

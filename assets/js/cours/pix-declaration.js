@@ -14,7 +14,7 @@ export function initPixDeclaration(doc = document) {
     const status = doc.getElementById('course-pix-status');
     const course = { p_school: root.dataset.etablissement, p_subject: root.dataset.matiere, p_class: root.dataset.classe, p_lesson: root.dataset.seance };
     let busy = false;
-    const done = date => { button.disabled = true; button.textContent = 'Séance Pix signalée'; status.textContent = 'Séance Pix enregistrée le ' + pixDateLabel(date) + '. Ta progression en technologie n’a pas bougé.'; };
+    const done = date => { button.disabled = true; button.textContent = 'Séance Pix signalée'; status.textContent = 'Séance Pix enregistrée le ' + pixDateLabel(date) + '. Ta progression dans les séances n’a pas bougé.'; };
     async function load() {
         const session = await checkSession();
         if (session.status !== 'authenticated' || session.profile.role !== 'student') { status.textContent = 'Connecte-toi avec ton compte élève pour signaler une séance Pix.'; return; }
