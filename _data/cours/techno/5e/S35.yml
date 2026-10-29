@@ -17,6 +17,7 @@ pourquoi:
 activites:
     -   id: a01
         titre: Retrouver les blocs du jeu
+        consigne: Tu vas lire le programme du monte-charge (version simplifiée projetée) et retrouver les blocs de ton jeu Arcade. On attend des associations et ce que fait la carte au repos.
         contenu:
             -   type: paragraphe
                 texte: Le professeur projette le programme dans MakeCode micro:bit. Voici une version simplifiée, en français, de ses parties principales (la fonction Descendre ressemble à Monter, vers le bas).
@@ -24,6 +25,13 @@ activites:
                 texte: "au démarrage\n    voyants Étage et RDC en orange\n    Etat = 0\n\ntoujours\n    écran : effacer\n    si (contact bas appuyé) ET (bouton Étage appuyé) alors\n        appeler Monter\n    si (contact haut appuyé) ET (bouton RDC appuyé) alors\n        appeler Descendre\n    écran : écrire « Attente »\n    voyants Étage et RDC en vert\n\nfonction Monter\n    Etat = 1\n    voyant Étage en rouge\n    écran : écrire « Appel Etage »\n    tant que (contact haut pas appuyé)\n        faire tourner le moteur vers l’avant à la vitesse 137\n        écran : écrire la distance mesurée par le capteur à ultrasons (cm)\n    freiner le moteur\n    écran : écrire « Stop Etage »\n    Etat = 0"
             -   type: paragraphe
                 texte: 'Rappel du réflexe n° 9 : lis bloc par bloc, de haut en bas.'
+            -   type: etapes
+                elements:
+                    - Lis le programme bloc par bloc (réflexe n° 9).
+                    - Pour chaque élément, cherche un bloc semblable dans ton jeu Arcade.
+                    - Repère ce que fait la boucle « toujours » quand rien n’est appuyé.
+            -   type: paragraphe
+                texte: Pourquoi comparer avec Arcade ? Les mêmes idées (événement, condition, boucle) servent dans un jeu et dans un vrai objet.
         questions:
             -   id: q01
                 type: tableau
@@ -41,7 +49,7 @@ activites:
                 aide: Bloc par bloc (réflexe n° 9).
             -   id: q02
                 type: qcm
-                enonce: Que fait la carte quand rien n’est appuyé ?
+                enonce: D’après le programme du monte-charge, que fait la carte quand rien n’est appuyé ?
                 choix:
                     -   id: a
                         texte: Elle affiche « Attente » et met les voyants en vert.
@@ -60,13 +68,21 @@ activites:
     -   id: a02
         titre: Entrées et sorties du programme
         transition: Tu as reconnu la structure du programme. Repère maintenant les données qu’il lit et celles qu’il produit.
+        consigne: Tu vas ranger les éléments du programme du monte-charge en entrées et sorties. On attend le bon classement de chaque élément.
         contenu:
             -   type: paragraphe
                 texte: Une entrée est une donnée lue par le programme ; une sortie est une donnée produite pour commander un constituant.
+            -   type: etapes
+                elements:
+                    - 'Relis : une entrée est lue, une sortie commande un constituant.'
+                    - 'Pour chaque élément, demande-toi : le programme le lit-il ou le commande-t-il ?'
+                    - Écris « entrée » ou « sortie ».
+            -   type: paragraphe
+                texte: 'Pourquoi entrées et sorties ? Elles relient le programme aux constituants : les entrées viennent des capteurs, les sorties vont au moteur et à l’écran.'
         questions:
             -   id: q01
                 type: tableau
-                enonce: 'Range chaque élément : entrée ou sortie du programme.'
+                enonce: 'Range chaque élément du programme du monte-charge : entrée ou sortie.'
                 colonnes:
                     - Élément
                     - Entrée ou sortie ?
@@ -87,9 +103,17 @@ activites:
     -   id: a03
         titre: Prévoir le comportement
         transition: Tu sais ce qui entre et ce qui sort. Tu peux maintenant prévoir ce que fera le monte-charge.
+        consigne: Tu vas dérouler le programme du monte-charge dans ta tête pour prévoir ce qu’il fait. On attend le déroulé de la montée et ce qui se passe si la cabine est déjà en haut.
         contenu:
             -   type: paragraphe
                 texte: Prévoir, c’est dérouler le programme dans sa tête avant de tester.
+            -   type: etapes
+                elements:
+                    - 'Pars de l’état de départ : cabine en bas.'
+                    - Suis les blocs dans l’ordre quand on appuie sur Étage.
+                    - Recommence avec la cabine déjà en haut.
+            -   type: paragraphe
+                texte: Pourquoi prévoir ? Savoir ce qu’un programme va faire avant de tester, c’est la preuve qu’on le comprend.
         questions:
             -   id: q01
                 type: texte

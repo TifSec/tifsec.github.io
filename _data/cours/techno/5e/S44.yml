@@ -19,6 +19,7 @@ pourquoi:
 activites:
     -   id: a01
         titre: Les constituants (poste maquette)
+        consigne: Tu vas observer le tracker (au poste maquette ou avec le document 1) et trouver la fonction de chacun de ses constituants. On attend une fonction par constituant.
         contenu:
             -   type: paragraphe
                 texte: Chaque groupe passe au poste maquette pour observer le tracker (sans rien débrancher). Les autres travaillent avec le document 1.
@@ -40,10 +41,17 @@ activites:
                         - Produit de l’électricité à partir de la lumière.
                     -   - Socle et tête imprimés en 3D
                         - Supportent et protègent les constituants.
+            -   type: etapes
+                elements:
+                    - Observe le tracker sans rien débrancher (ou lis le document 1).
+                    - 'Pour chaque constituant, demande-toi : capte-t-il, décide-t-il, agit-il, ou convertit-il l’énergie ?'
+                    - Écris sa fonction.
+            -   type: paragraphe
+                texte: Pourquoi les fonctions ? Pour modifier le programme, il faut savoir quel constituant fait quoi.
         questions:
             -   id: q01
                 type: tableau
-                enonce: 'Pour chaque constituant, écris sa fonction : acquérir, traiter, communiquer (agir) ou convertir l’énergie.'
+                enonce: 'Pour chaque constituant du tracker (document 1), écris sa fonction : acquérir, traiter, communiquer (agir) ou convertir l’énergie.'
                 colonnes:
                     - Constituant
                     - Fonction
@@ -60,6 +68,7 @@ activites:
     -   id: a02
         titre: Lire le programme
         transition: Tu connais les constituants. Regarde maintenant comment le programme les utilise.
+        consigne: Tu vas lire le programme du tracker (version simplifiée) et prévoir ce qu’il fait dans deux situations. On attend deux prévisions précises.
         contenu:
             -   type: paragraphe
                 texte: Voici le programme du tracker, en version simplifiée en français (le vrai programme est en blocs, dans MakeCode).
@@ -67,6 +76,13 @@ activites:
                 texte: "au démarrage\n    angle = 90 ; tourner le servomoteur à 90°\n    appeler chercherSoleil\n\ntoujours\n    gauche = lumière lue par le capteur de gauche\n    droite = lumière lue par le capteur de droite\n    luminosité = gauche + droite\n    si luminosité < 0,7 × meilleure luminosité alors\n        appeler chercherSoleil          (la lumière a beaucoup baissé : on recherche)\n    sinon\n        si gauche > droite + 30 alors angle = angle − 1\n        sinon si droite > gauche + 30 alors angle = angle + 1\n        garder angle entre 20° et 160°\n        tourner le servomoteur à angle\n    pause 100 ms\n\nfonction chercherSoleil\n    balayer de 20° à 160° par pas de 5° et retenir l’angle le plus éclairé\n    tourner le servomoteur vers cet angle"
             -   type: paragraphe
                 texte: 'Rappel du réflexe n° 9 : bloc par bloc. Rappel de la séance 32 : une condition « si … alors ».'
+            -   type: etapes
+                elements:
+                    - Lis le programme bloc par bloc (réflexe n° 9).
+                    - Repère la condition sur l’écart de 30.
+                    - Applique-la aux valeurs des questions.
+            -   type: paragraphe
+                texte: Pourquoi un écart de 30 ? Sans lui, le tracker bougerait sans arrêt pour de toutes petites différences de lumière.
         questions:
             -   id: q01
                 type: qcm
@@ -90,19 +106,32 @@ activites:
                     -   id: c
                         texte: Il cherche le soleil.
                 aide: Relis l’exemple expliqué.
-            -   id: q03
-                type: texte
-                enonce: À quoi sert la fonction chercherSoleil, et quand est-elle appelée ?
-                aide: Repère le verbe de la question.
-            -   id: q04
-                type: texte
-                enonce: Repère, dans le programme, l’endroit que ton groupe devra modifier pour son amélioration (A, B ou C). Explique.
-                aide: Bloc par bloc (réflexe n° 9).
         ressources:
             -   type: lien
                 titre: MakeCode micro:bit (gratuit, dans le navigateur)
                 url: https://makecode.microbit.org/
     -   id: a03
+        titre: Fonction et amélioration
+        transition: Tu sais comment le tracker suit la lumière. Prépare maintenant ton amélioration.
+        consigne: Tu vas repérer dans le programme du tracker la fonction chercherSoleil et l’endroit que ton groupe modifiera pour son amélioration. On attend le rôle de la fonction et l’endroit précis à modifier.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Repère la ligne « appeler chercherSoleil » et la définition de la fonction.
+                    - Relis l’amélioration choisie par ton groupe (séance 43).
+                    - Cherche le bloc du programme qui concerne ton amélioration.
+            -   type: paragraphe
+                texte: Pourquoi repérer avant de modifier ? Dans un programme qui marche, on ne touche qu’à l’endroit nécessaire, pour ne rien casser.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: À quoi sert la fonction chercherSoleil, et quand est-elle appelée ?
+                aide: Repère le verbe de la question.
+            -   id: q02
+                type: texte
+                enonce: Repère, dans le programme, l’endroit que ton groupe devra modifier pour son amélioration (A, B ou C). Explique.
+                aide: Bloc par bloc (réflexe n° 9).
+    -   id: a04
         titre: Défi
         defi: true
         facultatif: true
@@ -114,7 +143,7 @@ activites:
                 type: texte
                 enonce: Pour le mode nuit (amélioration A), quelle valeur de luminosité (gauche + droite) choisirais-tu comme seuil « il fait nuit » ? Comment le vérifier ?
                 aide: Repère le verbe de la question.
-    -   id: a04
+    -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
         transition: Tu as compris le tracker. Il reste à répondre au problème de départ.
