@@ -1,0 +1,138 @@
+titre: 'Séance 7 : Le tableur peut-il prévenir qu’un vaccin est à faire ?'
+themes:
+    - 2.2.2 — Utiliser des outils et des logiciels dans des projets
+problematique: Comment faire afficher une alerte par le tableur ?
+competences_bo:
+    - 2.2.2 — Utiliser des outils et des logiciels dans des projets
+objectifs:
+    connaissances:
+        - =SI(condition;"si oui";"si non") affiche un texte selon une condition.
+        - 'Exemple : =SI(B2>365;"À FAIRE";"OK").'
+    competences:
+        - Écrire une fonction SI simple.
+pourquoi:
+    - En S06, tu as trié et filtré.
+    - 'Le vaccin contre la grippe se refait au moins chaque année : le tableur peut prévenir.'
+activites:
+    -   id: a01
+        titre: La règle
+        consigne: Tu vas appliquer de tête la règle des 365 jours à trois chevaux (document 1). On attend « À FAIRE » ou « OK » pour chacun.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Suivi des vaccins (fictif)
+                colonnes:
+                    - ''
+                    - A
+                    - B
+                    - C
+                lignes:
+                    -   - '1'
+                        - Cheval
+                        - Jours depuis le vaccin
+                        - Alerte
+                    -   - '2'
+                        - Tango
+                        - '400'
+                        - ''
+                    -   - '3'
+                        - Iris
+                        - '120'
+                        - ''
+                    -   - '4'
+                        - Nuage
+                        - '365'
+                        - ''
+            -   type: etapes
+                elements:
+                    - 'Règle : plus de 365 jours depuis le vaccin → À FAIRE.'
+                    - Applique-la de tête au document 1.
+            -   type: paragraphe
+                texte: Pourquoi de tête d’abord ? Tu comprends ce que le tableur fera.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Écris À FAIRE ou OK.
+                colonnes:
+                    - Cheval (jours depuis le vaccin)
+                    - Résultat
+                lignes:
+                    -   - Tango (400)
+                        - ''
+                    -   - Iris (120)
+                        - ''
+                    -   - Nuage (365)
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne.'
+    -   id: a02
+        titre: La fonction SI
+        transition: Tu connais la règle. Le tableur peut l’appliquer.
+        consigne: Tu vas écrire la fonction SI qui affiche l’alerte de vaccin et la recopier. On attend le résultat pour Nuage et le rôle des guillemets.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre Calc ; recopie le document 1 ; enregistre vaccins.ods.
+                    - 'En C2 : =SI(B2>365;"À FAIRE";"OK").'
+                    - Tire jusqu’en C4 ; compare avec ta mission 1.
+            -   type: paragraphe
+                texte: Pourquoi les guillemets ? Ils entourent le texte à afficher.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Qu’affiche C4 pour Nuage, et pourquoi ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+            -   id: q02
+                type: qcm
+                enonce: Que mettre autour de À FAIRE dans la formule ?
+                choix:
+                    -   id: a
+                        texte: Des guillemets " "
+                    -   id: b
+                        texte: Des parenthèses
+                    -   id: c
+                        texte: Rien
+                aide: Élimine d’abord les réponses impossibles.
+    -   id: a03
+        titre: En couleur
+        transition: L’alerte s’écrit. Fais-la ressortir.
+        consigne: Tu vas colorer l’alerte en rouge avec la mise en forme conditionnelle et tester avec Iris. On attend ce qui se passe.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Sélectionne C2:C4.
+                    - 'Format > Conditionnel > Condition : la cellule est égale à "À FAIRE" → style rouge.'
+                    - 'Change Iris à 380 jours : regarde.'
+            -   type: paragraphe
+                texte: Pourquoi la couleur ? L’alerte se voit encore plus vite.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Que se passe-t-il quand Iris passe à 380 jours ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le vétérinaire veut une alerte dès 330 jours, pour prévoir.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris la formule.
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Le tableur prévient tout seul. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment faire afficher une alerte par le tableur ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - =SI(B2>365;"À FAIRE";"OK").
+    - Format > Conditionnel.
+sources:
+    -   type: lien
+        titre: ChloroFil — CAPa, document d’accompagnement du module MG1 (TIC)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/capa/capa-da-MG1-012015.pdf
