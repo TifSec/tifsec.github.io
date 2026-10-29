@@ -4,8 +4,10 @@
     {% assign matiere_label = page.matiere | default: 'Cours' %}
     {% case page.matiere %}{% when 'techno' %}{% assign matiere_label = 'Technologie' %}{% when 'tim' %}{% assign matiere_label = 'TIM' %}{% when 'maths' %}{% assign matiere_label = 'Mathématiques' %}{% endcase %}
     {% assign classe_label = page.classe %}{% assign classes_etablissement = site.data.classes[page.etablissement].classes %}{% for classe_item in classes_etablissement %}{% if classe_item.id == page.classe %}{% assign classe_label = classe_item.nom %}{% endif %}{% endfor %}
-    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">{{ matiere_label | escape }} · {{ classe_label | escape }} · {{ page.seance | upcase | escape }}</span></div>
+    {% assign mission_propre = false %}{% for bloc in include.cours.introduction %}{% if bloc.texte and bloc.texte contains 'Ta mission' %}{% assign mission_propre = true %}{% endif %}{% endfor %}
+    {% unless mission_propre %}<div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">{{ matiere_label | escape }} · {{ classe_label | escape }} · {{ page.seance | upcase | escape }}</span></div>{% endunless %}
     <h1>{{ include.cours.titre | escape }}</h1>
+    {% if page.seance == 'S01' or page.seance == 'S02' or page.seance == 'S03' %}
     <aside class="course-learning-sequence" aria-label="Comment avancer dans le cours">
         <strong>Pour avancer</strong>
         <ol>
@@ -16,6 +18,7 @@
         </ol>
         <p>Tu peux garder le cours ouvert et utiliser les aides si tu bloques.</p>
     </aside>
+    {% endif %}
 
     {% if include.cours.theme %}
     <p class="cours-theme">
@@ -39,7 +42,7 @@
     {% if objectifs_savoirs.size > 0 or objectifs_savoir_faire.size > 0 %}
     <section class="course-info-card cours-objectifs">
         {% if objectifs_savoirs.size > 0 %}
-        <h2>Ce que vous allez apprendre</h2>
+        <h2>Ce que tu vas apprendre</h2>
         <ul>
             {% for objectif in objectifs_savoirs %}
             <li>{{ objectif | escape }}</li>
@@ -47,7 +50,7 @@
         </ul>
         {% endif %}
         {% if objectifs_savoir_faire.size > 0 %}
-        <h2>Ce que vous allez apprendre à faire</h2>
+        <h2>Ce que tu vas apprendre à faire</h2>
         <ul>
             {% for competence in objectifs_savoir_faire %}
             <li>{{ competence | escape }}</li>
