@@ -71,7 +71,7 @@
         {% endfor %}
         {% assign next_index = forloop.index0 | plus: 1 %}{% assign next_activite = include.cours.activites[next_index] %}
         <nav class="course-mission-controls" aria-label="Continuer dans la séance">
-            {% if forloop.first == false %}{% assign previous_index = forloop.index0 | minus: 1 %}{% assign previous_activite = include.cours.activites[previous_index] %}<a class="course-mission-back" href="#{{ previous_activite.id | escape }}">← Étape précédente</a>{% endif %}
+            {% if forloop.first == false %}{% assign previous_index = forloop.index0 | minus: 1 %}{% assign previous_activite = include.cours.activites[previous_index] %}<a class="course-mission-back" href="#{{ previous_activite.id | escape }}">← Étape précédente</a>{% else %}<a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>{% endif %}
             {% if next_activite %}<a class="course-mission-next" href="#{{ next_activite.id | escape }}">Passer à l’étape suivante <span aria-hidden="true">→</span></a>{% else %}<a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>{% endif %}
         </nav>
     </article>

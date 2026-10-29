@@ -16,7 +16,7 @@ class Node {
     contains(node) { for (let n = node; n; n = n.parent) if (n === this) return true; return false; }
     all() { return this.children.flatMap(n => [n, ...n.all()]); }
     matches(sel) {
-        if (sel === 'h2') return this.tagName === 'H2';
+        if (sel === 'h1' || sel === 'h2') return this.tagName === sel.toUpperCase();
         if (sel === '[data-course-step]') return 'data-course-step' in this.attrs;
         if (sel === '[data-course-step-counter]') return 'data-course-step-counter' in this.attrs;
         if (sel === '.course-reading') return this.classes.has('course-reading');
@@ -42,7 +42,8 @@ async function harness({ hash = '', stored = null } = {}) {
     const work = new Node('div', { id: 'course-work' }); Object.assign(work.dataset, { matiere: 'techno', classe: '5e', seance: 'S01' });
     const nav = new Node('nav', { id: 'course-step-list' });
     const reading = new Node('div'); reading.classList.add('course-reading');
-    const intro = new Node('header', { id: 'course-intro' });
+    const intro = new Node('header', { id: 'course-intro', attrs: { 'data-course-step': '' } }).append(Object.assign(new Node('h1'), { textContent: 'Séance' }), new Node('h2'));
+    const start = new Node('a', { attrs: { href: '#a01' } }); intro.append(start);
     const step = (id, title) => new Node('article', { id, attrs: { 'data-course-step': '' } })
         .append(new Node('span', { attrs: { 'data-course-step-counter': '' } }), Object.assign(new Node('h2'), { textContent: title }));
     const a01 = step('a01', 'Mission 1'), a02 = step('a02', 'Mission 2'), final = step('course-final', 'Fin');
@@ -63,9 +64,9 @@ async function harness({ hash = '', stored = null } = {}) {
     const context = createContext({ document, window });
     const module = new SourceTextModule(read('assets/js/cours/course-steps.js'), { context });
     await module.link(() => {}); await module.evaluate();
-    const visible = () => [a01, a02, final].filter(s => !s.classList.contains('course-step-hidden')).map(s => s.id);
+    const visible = () => [intro, a01, a02, final].filter(s => !s.classList.contains('course-step-hidden')).map(s => s.id);
     const click = link => { let prevented = false; document.handlers.click({ target: link, preventDefault: () => { prevented = true; } }); return prevented; };
-    return { module, body, reading, intro, a01, a02, final, summary, field, next, nav, store, window, windowHandlers, visible, click, byId };
+    return { module, body, reading, intro, start, a01, a02, final, summary, field, next, nav, store, window, windowHandlers, visible, click, byId };
 }
 
 test('calculs purs : étape d’une ancre, étape de départ et libellé', async () => {
@@ -81,22 +82,24 @@ test('calculs purs : étape d’une ancre, étape de départ et libellé', async
     assert.equal(stepLabel(1, 3), 'Étape 2 sur 3');
 });
 
-test('une seule étape visible, la carte « Ta mission du jour » toujours affichée', async () => {
+test('« Ta mission du jour » s’affiche en premier, puis est remplacée par la première mission', async () => {
     const h = await harness();
     assert.equal(h.body.dataset.courseSteps, 'on');
     assert.ok(h.reading.classList.contains('course-steps-enabled'));
+    assert.deepEqual(h.visible(), ['course-intro']);
+    assert.equal(h.a01.querySelector('[data-course-step-counter]').textContent, 'Étape 2 sur 4');
+    assert.equal(h.click(h.start), true);
     assert.deepEqual(h.visible(), ['a01']);
-    assert.equal(h.intro.classList.contains('course-step-hidden'), false);
-    assert.equal(h.a01.querySelector('[data-course-step-counter]').textContent, 'Étape 1 sur 3');
+    assert.equal(h.a01.querySelector('h2').focused, true);
 });
 
 test('« Passer à l’étape suivante » remplace l’étape, et on peut toujours revenir en arrière', async () => {
-    const h = await harness();
+    const h = await harness({ stored: 1 });
     assert.equal(h.click(h.next), true);
     assert.deepEqual(h.visible(), ['a02']);
     assert.equal(h.a02.querySelector('h2').focused, true);
     assert.equal(h.window.location.hash, '#a02');
-    assert.equal(h.store.get('tifsec-etape:techno/5e/S01'), '1');
+    assert.equal(h.store.get('tifsec-etape:techno/5e/S01'), '2');
     const back = h.nav.children.find(link => link.attrs.href === '#a01');
     assert.equal(h.click(back), true);
     assert.deepEqual(h.visible(), ['a01']);
@@ -106,14 +109,16 @@ test('« Passer à l’étape suivante » remplace l’étape, et on peut toujou
     assert.deepEqual(h.visible(), ['course-final']);
     assert.ok('data-step-done' in h.nav.children.find(link => link.attrs.href === '#a02').attrs);
     const intro = h.nav.children.find(link => link.attrs.href === '#course-intro');
-    assert.equal(h.click(intro), false, 'le lien vers l’objectif garde son comportement normal');
-    assert.deepEqual(h.visible(), ['course-final']);
+    assert.equal(h.click(intro), true, 'on peut toujours revenir à « Ta mission du jour »');
+    assert.deepEqual(h.visible(), ['course-intro']);
+    assert.equal(h.intro.querySelector('h1').focused, true);
 });
 
 test('reprise : ancre de l’adresse, étape mémorisée et focus clavier dans une étape cachée', async () => {
     assert.deepEqual((await harness({ hash: '#course-summary' })).visible(), ['course-final']);
-    assert.deepEqual((await harness({ stored: 1 })).visible(), ['a02']);
+    assert.deepEqual((await harness({ stored: 2 })).visible(), ['a02']);
     const h = await harness();
+    assert.deepEqual(h.visible(), ['course-intro']);
     h.reading.handlers.focusin({ target: h.field });
     assert.deepEqual(h.visible(), ['a02']);
     h.window.location.hash = '#a01'; h.windowHandlers.hashchange();
@@ -126,6 +131,10 @@ test('gabarits : étapes balisées, bilan final avec retour, styles et script ch
     const styles = read('assets/css/cours/course-quest-ui.css');
     assert.match(activities, /class="cours-activite" id="\{\{ activite\.id \}\}" data-course-step/);
     assert.match(activities, /data-course-step-counter/);
+    assert.match(activities, /href="#course-intro">← Revoir l’objectif/);
+    const intro = read('_includes/cours/cours-intro.html');
+    assert.match(intro, /id="course-intro" data-course-step/);
+    assert.match(intro, /course-intro-controls[\s\S]*premiere_activite\.id/);
     assert.match(layout, /id="course-final" data-course-step/);
     assert.match(layout, /course-final-controls[\s\S]*derniere_activite\.id/);
     assert.match(layout, /course-steps\.js[\s\S]*course-progress\.js/);

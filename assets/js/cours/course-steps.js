@@ -1,5 +1,6 @@
-// Parcours pas à pas : la carte « Ta mission du jour » reste visible, une seule étape
-// (mission, défi, conclusion ou bilan final) est affichée à la fois.
+// Parcours pas à pas : une seule étape est affichée à la fois. La carte « Ta mission du jour »
+// s'affiche en premier ; elle est ensuite remplacée par chaque mission, le défi, la conclusion
+// puis le bilan final. On peut toujours revenir aux étapes précédentes.
 // Sans JavaScript, toutes les étapes restent visibles : rien n'est masqué dans le HTML.
 
 const STORAGE_PREFIX = 'tifsec-etape:';
@@ -30,6 +31,10 @@ function writeStored(key, value) {
     try { window.sessionStorage.setItem(key, String(value)); } catch { /* stockage indisponible : on garde seulement l'état de la page */ }
 }
 
+function headingOf(step) {
+    return step.querySelector('h1') || step.querySelector('h2');
+}
+
 export function initCourseSteps(doc = document) {
     const reading = doc.querySelector('.course-reading');
     const work = doc.getElementById('course-work');
@@ -44,7 +49,7 @@ export function initCourseSteps(doc = document) {
     doc.body.dataset.courseSteps = 'on';
     reading.classList.add('course-steps-enabled');
     steps.forEach((step, index) => {
-        const heading = step.querySelector('h2');
+        const heading = headingOf(step);
         if (heading && !heading.hasAttribute('tabindex')) heading.setAttribute('tabindex', '-1');
         const counter = step.querySelector('[data-course-step-counter]');
         if (counter) counter.textContent = stepLabel(index, steps.length);
@@ -74,7 +79,7 @@ export function initCourseSteps(doc = document) {
         markLinks();
         const step = steps[index];
         if (scroll) step.scrollIntoView?.({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
-        if (focus) step.querySelector('h2')?.focus({ preventScroll: true });
+        if (focus) headingOf(step)?.focus({ preventScroll: true });
     }
 
     function revealTarget(target, options) {
@@ -89,7 +94,7 @@ export function initCourseSteps(doc = document) {
         if (!link || !reading.contains(link) && !link.closest('#course-step-list')) return;
         const target = doc.getElementById(decodeURIComponent(link.hash.slice(1)));
         const index = stepIndexFor(steps, target);
-        if (index < 0) return; // ancre hors des étapes (ex. : « Comprendre l'objectif ») : comportement normal
+        if (index < 0) return; // ancre hors des étapes : comportement normal
         event.preventDefault();
         show(index, { focus: true, scroll: true });
         try { window.history.replaceState(null, '', '#' + steps[index].id); } catch { /* adresse inchangée */ }

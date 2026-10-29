@@ -1,6 +1,6 @@
 <!-- ========== INTRODUCTION DU COURS ========== -->
 
-<header class="cours-intro" id="course-intro">
+<header class="cours-intro" id="course-intro" data-course-step>
     {% assign matiere_label = page.matiere | default: 'Cours' %}
     {% case page.matiere %}{% when 'techno' %}{% assign matiere_label = 'Technologie' %}{% when 'tim' %}{% assign matiere_label = 'TIM' %}{% when 'maths' %}{% assign matiere_label = 'Mathématiques' %}{% endcase %}
     {% assign classe_label = page.classe %}{% assign classes_etablissement = site.data.classes[page.etablissement].classes %}{% for classe_item in classes_etablissement %}{% if classe_item.id == page.classe %}{% assign classe_label = classe_item.nom %}{% endif %}{% endfor %}
@@ -73,4 +73,6 @@
     {% if include.cours.introduction %}{% include cours/cours-blocs.html blocs=include.cours.introduction %}{% endif %}
     {% if include.cours.ressources %}<section><h2>Ressources du cours</h2>{% include cours/cours-blocs.html blocs=include.cours.ressources %}</section>{% endif %}
     {% if include.cours.reperes_officiels %}{% include cours/cours-ressources.html titre="Les attendus officiels" blocs=include.cours.reperes_officiels %}{% endif %}
+    {% assign premiere_activite = include.cours.activites | first %}
+    {% if premiere_activite %}<nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#{{ premiere_activite.id | escape }}">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>{% endif %}
 </header>
