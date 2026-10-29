@@ -10,7 +10,8 @@ const source = read('assets/js/eleve/course-progression.js');
 const techno3e = row => row.matiere === 'techno' && row.classe === '3e';
 const { nextLessons } = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
 
-test('S11/S12 : clés uniques du contenu jusqu’au rendu et au catalogue serveur', () => {
+// Progression 2026 (29/10/2026) : S11 et S12 de 3e sont régénérées ; on vérifie la structure commune.
+test('3e S11/S12 : clés uniques du contenu jusqu’au rendu et au catalogue serveur', () => {
     const schemas = questionCatalogue();
     const deployed = JSON.parse(read('assets/data/questions-seances.json'));
     assert.deepEqual(deployed, schemas);
@@ -19,47 +20,40 @@ test('S11/S12 : clés uniques du contenu jusqu’au rendu et au catalogue serveu
         const schema = schemas.find(row => techno3e(row) && row.seance === id);
         const html = read('_site/cours/techno/3e/' + id.toLowerCase() + '/index.html');
         const keys = [...html.matchAll(/data-answer-id="([^"]+)"/g)].map(row => row[1]);
-        // S11 suit la structure de séance du 29 octobre (défi + conclusion) ; S12 garde l’ancienne.
-        assert.equal(schema.questions.length, id === 'S11' ? 8 : 6);
+        assert.ok(schema.questions.length >= 4);
         assert.equal(new Set(keys).size, keys.length);
         assert.deepEqual(keys, schema.questions.flatMap(row => row.champs));
         assert.equal(privatePath(schema), 'techno/3e/' + id + '.' + schema.version + '.yml');
-        if (id === 'S11') {
-            assert.ok(course.activites.some(row => row.defi && row.facultatif));
-            assert.ok(course.activites.at(-1).conclusion);
-            assert.ok(html.includes('Pourquoi on change d’exercice ?'));
-            assert.ok(html.includes('Sources et ressources officielles'));
-        } else {
-            assert.ok(course.activites.at(-1).facultatif);
-            assert.equal(course.activites.at(-1).questions.length, 0);
-        }
+        assert.ok(course.activites.some(row => row.defi && row.facultatif));
+        assert.ok(course.activites.at(-1).conclusion);
+        assert.ok(html.includes('Pourquoi on change d’exercice ?'));
+        assert.ok(html.includes('Sources et ressources officielles'));
         assert.ok(html.includes('course-submit'));
-        assert.doesNotMatch(JSON.stringify(course), /"(correction|attendu|points|choix_attendus|repartition|criteres)"\s*:/);
+        assert.doesNotMatch(JSON.stringify(course), /"(correction|attendu|points|choix_attendus|repartition|criteres|mots_cles|reponses_acceptees)"\s*:/);
         assert.ok(html.includes('course-progress'));
         assert.ok(html.includes('cours-question'));
-        assert.equal(schema.questions.filter(row => row.type === 'qcm').length, 1);
     }
 });
 
-test('S12 : documents tabulaires et algorithmes échappés rendus sans créer de réponses fantômes', () => {
-    const html = read('_site/cours/techno/3e/s12/index.html');
-    assert.ok(html.includes('<caption>Dossier — Entrées du modèle</caption>'));
-    assert.ok(html.includes('<pre class="cours-code"><code>RÉPÉTER INDÉFINIMENT'));
-    assert.ok(html.includes('CONDITION_DE_MONTEE'));
+test('documents en code et tableaux échappés, sans réponses fantômes (4e S36)', () => {
+    const html = read('_site/cours/techno/4e/s36/index.html');
+    assert.ok(html.includes('<pre class="cours-code"><code>au démarrage'));
     const blocks = read('_includes/cours/cours-blocs.html');
     assert.match(blocks, /when 'code'[\s\S]*?bloc\.texte \| escape/);
     assert.match(blocks, /when 'tableau'[\s\S]*?cellule \| escape/);
-    assert.equal(questionCatalogue().find(row => techno3e(row) && row.seance === 'S12').questions.flatMap(row => row.champs).length, 9);
+    const schema = questionCatalogue().find(row => row.matiere === 'techno' && row.classe === '4e' && row.seance === 'S36');
+    const keys = [...html.matchAll(/data-answer-id="([^"]+)"/g)].map(row => row[1]);
+    assert.deepEqual(keys, schema.questions.flatMap(row => row.champs));
 });
 
-test('S11 : les deux trajets à compléter apparaissent avant la zone de réponse', () => {
-    const html = read('_site/cours/techno/3e/s11/index.html');
-    const start = html.indexOf('id="a02-q02-label"');
-    const fragment = html.slice(start, html.indexOf('</textarea>', start));
-    assert.ok(fragment.indexOf('Tu appuies sur Monter') < fragment.indexOf('<textarea'));
-    assert.ok(fragment.indexOf('La plateforme arrive en haut') < fragment.indexOf('<textarea'));
-    assert.ok(fragment.includes('interface de puissance'));
-    assert.ok(fragment.includes('carte de commande'));
+test('chaque question des séances 2026 a un coup de pouce rendu juste après sa zone de réponse', () => {
+    for (const [classe, id] of [['5e', 'S04'], ['4e', 'S20'], ['3e', 'S11']]) {
+        const course = yaml('_data/cours/techno/' + classe + '/' + id + '.yml');
+        assert.ok(course.activites.every(activity => (activity.questions || []).every(question => typeof question.aide === 'string' && question.aide.length > 5)));
+        const html = read('_site/cours/techno/' + classe + '/' + id.toLowerCase() + '/index.html');
+        const questions = (html.match(/class="cours-question"/g) || []).length;
+        assert.equal((html.match(/<summary>Un coup de pouce<\/summary>/g) || []).length, questions);
+    }
 });
 
 test('parcours réel 3e (progression 2026) : S01 remise → S02 accessible → S03 accessible', () => {

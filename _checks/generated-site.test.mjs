@@ -23,27 +23,26 @@ test('nouvel espace élève : bandeau protégé, statistiques, catalogue, invita
     assert.match(html, /student-dashboard.css/);
 });
 
-test('progression élève : point de départ S10 et bouton activé, protégé avant restauration', () => {
+test('progression élève 2026 : 3e repart de S01, bouton activé, remise protégée avant restauration', () => {
     const html = read('eleve/index.html');
     assert.match(html, /id="student-next-panel"[^>]*data-enabled="true"/);
     const sequence = JSON.parse(html.match(/id="progressions-data"[^>]*>([\s\S]*?)<\/script>/)[1]);
     const progression = sequence.find(row => row.etablissement === 'college' && row.matiere === 'techno' && row.classe === '3e');
-    assert.equal(progression.derniere_seance_en_classe, 'S09');
-    const last = progression.seances.findIndex(lesson => lesson.id === progression.derniere_seance_en_classe);
-    assert.ok(last >= 0);
-    assert.equal(progression.seances[last + 1].id, 'S10R');
-    const course = read('cours/techno/3e/s10-original/index.html');
+    assert.equal(progression.seances.length, 48);
+    assert.equal(progression.seances[0].id, 'S01');
+    const course = read('cours/techno/3e/s01/index.html');
     assert.match(course, /id="course-submit"[^>]*data-enabled="true"[^>]*hidden disabled/);
     assert.ok(course.indexOf('id="course-submit"') > course.indexOf('id="course-answers"'));
 });
-test('pilote : sept identifiants préservés et un QCM ajouté, navigation et synthèse communes', () => {
+test('séance 2026 : identifiants identiques au catalogue, navigation et synthèse communes (3e S02)', () => {
     const html = read('cours/techno/3e/s02/index.html');
     const keys = [...html.matchAll(/data-answer-id="([^"]+)"/g)].map(match => match[1]);
-    assert.deepEqual(keys, ['a01_q01_r0_c1', 'a01_q01_r0_c2', 'a01_q01_r1_c1', 'a01_q01_r1_c2', 'a01_q01_r2_c1', 'a01_q01_r2_c2', 'a01_q02', 'a01_q03']);
-    assert.match(html, /<select[^>]*data-answer-id="a01_q03"/);
+    const catalogue = JSON.parse(readFileSync(new URL('../assets/data/questions-seances.json', import.meta.url), 'utf8'));
+    const schema = catalogue.find(row => row.matiere === 'techno' && row.classe === '3e' && row.seance === 'S02');
+    assert.deepEqual(keys, schema.questions.flatMap(row => row.champs));
+    assert.match(html, /<select[^>]*data-answer-id="a0\d_q0\d"/);
     assert.match(html, /course-progress.js/);
     assert.match(html, /id="course-summary"/);
-    assert.match(html, /Pourquoi cette activité/);
     assert.match(html, /id="course-evaluation"[^>]*data-enabled="true"[^>]*hidden/);
     assert.match(html, /student-evaluation.css/);
 });
@@ -57,12 +56,14 @@ test('aucun backend, test ou document de préparation publié', () => {
     for (const path of ['_supabase', '_checks', '_documentation', '_archives', '.env']) assert.equal(existsSync(new URL('../_site/' + path, import.meta.url)), false, path);
 });
 
-test('S10 utilise le moteur commun sans corrigé embarqué', () => {
+test('3e S10 utilise le moteur commun sans corrigé embarqué', () => {
     const html = read('cours/techno/3e/s10/index.html');
-    assert.deepEqual([...html.matchAll(/data-answer-id="([^"]+)"/g)].map(match => match[1]), ['a01_q01','a01_q02','a02_q01','a02_q02','a03_q01']);
+    const catalogue = JSON.parse(readFileSync(new URL('../assets/data/questions-seances.json', import.meta.url), 'utf8'));
+    const schema = catalogue.find(row => row.matiere === 'techno' && row.classe === '3e' && row.seance === 'S10');
+    assert.deepEqual([...html.matchAll(/data-answer-id="([^"]+)"/g)].map(match => match[1]), schema.questions.flatMap(row => row.champs));
     for (const resource of ['course-progress.js', 'course-work.js', 'course-layout.css']) assert.ok(html.includes(resource));
-    assert.match(html, /activité facultative/);
-    assert.doesNotMatch(html, /choix_attendus|bareme_detaille|pistes_appreciation/);
+    assert.match(html, /facultatif/);
+    assert.doesNotMatch(html, /choix_attendus|bareme_detaille|pistes_appreciation|mots_cles|reponses_acceptees/);
     assert.match(read('eleve/index.html'), /"seance":"S10"/);
 });
 
