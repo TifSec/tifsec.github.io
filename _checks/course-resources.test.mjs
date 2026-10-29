@@ -9,10 +9,18 @@ test('ressources : aides proches des trois activités, attendus officiels et vol
         const course = parse(read('_data/cours/techno/3e/' + id + '.yml'));
         const html = read('_site/cours/techno/3e/' + id.toLowerCase() + '/index.html');
         const panels = [...html.matchAll(/<details class="cours-ressources"([^>]*)>([\s\S]*?)<\/details>/g)];
-        assert.equal(panels.length, 4);
         assert.ok(panels.every(panel => !/\bopen\b/.test(panel[1])));
-        assert.match(panels[0][2], /Les attendus officiels/);
-        assert.match(panels[0][2], /education\.gouv\.fr/);
+        if (id === 'S11') {
+            // Nouvelle structure : les références officielles sont en fin de séance.
+            assert.equal(panels.length, 3);
+            const sources = html.slice(html.indexOf('class="cours-sources'));
+            assert.match(sources, /Sources et ressources officielles/);
+            assert.match(sources, /education\.gouv\.fr/);
+        } else {
+            assert.equal(panels.length, 4);
+            assert.match(panels[0][2], /Les attendus officiels/);
+            assert.match(panels[0][2], /education\.gouv\.fr/);
+        }
         for (let i = 0; i < 3; i++) {
             const activity = course.activites[i];
             assert.ok(activity.ressources.some(block => block.type === 'paragraphe'));

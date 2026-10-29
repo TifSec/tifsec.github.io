@@ -1,4 +1,7 @@
+{% if include.cours.retenir.size > 0 or include.cours.bilan %}
 <section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
-    <h2 id="course-summary-title">À retenir</h2><ul>{% for notion in include.cours.retenir %}<li>{{ notion | escape }}</li>{% endfor %}</ul>
-    {% if include.cours.bilan %}<h3>Faire le point</h3>{% if include.cours.bilan.first %}<ul>{% for question in include.cours.bilan %}<li>{{ question | escape }}</li>{% endfor %}</ul>{% else %}<p>{{ include.cours.bilan | escape }}</p>{% endif %}{% endif %}
+    {% if include.cours.retenir.size > 0 %}<h2 id="course-summary-title">À retenir</h2><ul>{% for notion in include.cours.retenir %}<li>{{ notion | escape }}</li>{% endfor %}</ul>{% else %}<h2 id="course-summary-title">Faire le point</h2>{% endif %}
+    {% if include.cours.bilan %}{% if include.cours.retenir.size > 0 %}<h3>Faire le point</h3>{% endif %}{% if include.cours.bilan.first %}<ul>{% for question in include.cours.bilan %}<li>{{ question | escape }}</li>{% endfor %}</ul>{% else %}<p>{{ include.cours.bilan | escape }}</p>{% endif %}{% endif %}
 </section>
+{% else %}<span id="course-summary"></span>{% endif %}
+{% if include.cours.sources %}<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>{% include cours/cours-blocs.html blocs=include.cours.sources %}</section>{% endif %}

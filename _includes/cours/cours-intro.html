@@ -20,24 +20,28 @@
     </aside>
     {% endif %}
 
-    {% if include.cours.theme %}
-    <p class="cours-theme">
-        <strong>Thème :</strong> {{ include.cours.theme | escape }}
-    </p>
+    {% assign themes_bo = include.cours.themes %}{% if themes_bo == nil and include.cours.theme %}{% assign themes_bo = include.cours.theme | split: '|||' %}{% endif %}
+    {% if themes_bo.size > 0 %}
+    <section class="course-info-card cours-theme">
+        <h2>{% if themes_bo.size > 1 %}Thèmes du programme{% else %}Thème du programme{% endif %}</h2>
+        {% if themes_bo.size > 1 %}<ul>{% for theme in themes_bo %}<li>{{ theme | escape }}</li>{% endfor %}</ul>{% else %}<p>{{ themes_bo.first | escape }}</p>{% endif %}
+    </section>
     {% endif %}
 
     {% if include.cours.problematique %}
-    <p class="cours-problematique">
-        <strong>Problématique :</strong> {{ include.cours.problematique | escape }}
-    </p>
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>{{ include.cours.problematique | escape }}</p>
+    </section>
     {% endif %}
 
-    {% if include.cours.pourquoi %}<section class="course-info-card course-info-why"><h2>Pourquoi étudier ce sujet ?</h2><p>{{ include.cours.pourquoi | escape }}</p></section>{% endif %}
-    {% assign application = include.cours.application_quotidienne | default: include.cours.application %}
-    {% if application %}<section class="course-info-card course-info-everyday"><h2>Dans la vie quotidienne</h2><p>{{ application | escape }}</p></section>{% endif %}
-    {% if include.cours.lien_precedent %}<section class="course-info-card course-info-previous"><h2>Pour commencer</h2><p>{{ include.cours.lien_precedent | escape }}</p></section>{% endif %}
-    {% if include.cours.prerequis %}<section class="course-info-card course-info-prerequisites"><h2>Ce qui va nous servir</h2><ul>{% for notion in include.cours.prerequis %}<li>{{ notion | escape }}</li>{% endfor %}</ul></section>{% endif %}
-    {% if include.cours.notions %}<section class="course-info-card cours-notions"><h2>Les repères pour comprendre</h2>{% for notion in include.cours.notions %}<h3>{{ notion.titre | escape }}</h3><p>{{ notion.texte | escape }}</p>{% endfor %}</section>{% endif %}
+    {% if include.cours.competences_bo.size > 0 %}
+    <section class="course-info-card cours-competences-bo">
+        <h2>{% if include.cours.competences_bo.size > 1 %}Compétences travaillées{% else %}Compétence travaillée{% endif %}</h2>
+        <ul>{% for competence in include.cours.competences_bo %}<li>{{ competence | escape }}</li>{% endfor %}</ul>
+    </section>
+    {% endif %}
+
     {% assign objectifs_savoirs = include.cours.objectifs.connaissances %}{% assign objectifs_savoir_faire = include.cours.objectifs.competences %}
     {% if objectifs_savoirs.size > 0 or objectifs_savoir_faire.size > 0 %}
     <section class="course-info-card cours-objectifs">
@@ -59,6 +63,13 @@
         {% endif %}
     </section>
     {% endif %}
+
+    {% if include.cours.pourquoi %}<section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2>{% if include.cours.pourquoi.first %}{% for phrase in include.cours.pourquoi %}<p>{{ phrase | escape }}</p>{% endfor %}{% else %}<p>{{ include.cours.pourquoi | escape }}</p>{% endif %}</section>{% endif %}
+    {% assign application = include.cours.application_quotidienne | default: include.cours.application %}
+    {% if application %}<section class="course-info-card course-info-everyday"><h2>Dans la vie quotidienne</h2><p>{{ application | escape }}</p></section>{% endif %}
+    {% if include.cours.lien_precedent %}<section class="course-info-card course-info-previous"><h2>Pour commencer</h2><p>{{ include.cours.lien_precedent | escape }}</p></section>{% endif %}
+    {% if include.cours.prerequis %}<section class="course-info-card course-info-prerequisites"><h2>Ce qui va nous servir</h2><ul>{% for notion in include.cours.prerequis %}<li>{{ notion | escape }}</li>{% endfor %}</ul></section>{% endif %}
+    {% if include.cours.notions %}<section class="course-info-card cours-notions"><h2>Les repères pour comprendre</h2>{% for notion in include.cours.notions %}<h3>{{ notion.titre | escape }}</h3><p>{{ notion.texte | escape }}</p>{% endfor %}</section>{% endif %}
     {% if include.cours.introduction %}{% include cours/cours-blocs.html blocs=include.cours.introduction %}{% endif %}
     {% if include.cours.ressources %}<section><h2>Ressources du cours</h2>{% include cours/cours-blocs.html blocs=include.cours.ressources %}</section>{% endif %}
     {% if include.cours.reperes_officiels %}{% include cours/cours-ressources.html titre="Les attendus officiels" blocs=include.cours.reperes_officiels %}{% endif %}

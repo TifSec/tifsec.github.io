@@ -19,12 +19,20 @@ test('S11/S12 : clés uniques du contenu jusqu’au rendu et au catalogue serveu
         const schema = schemas.find(row => techno3e(row) && row.seance === id);
         const html = read('_site/cours/techno/3e/' + id.toLowerCase() + '/index.html');
         const keys = [...html.matchAll(/data-answer-id="([^"]+)"/g)].map(row => row[1]);
-        assert.equal(schema.questions.length, 6);
+        // S11 suit la structure de séance du 29 octobre (défi + conclusion) ; S12 garde l’ancienne.
+        assert.equal(schema.questions.length, id === 'S11' ? 8 : 6);
         assert.equal(new Set(keys).size, keys.length);
         assert.deepEqual(keys, schema.questions.flatMap(row => row.champs));
         assert.equal(privatePath(schema), 'techno/3e/' + id + '.' + schema.version + '.yml');
-        assert.ok(course.activites.at(-1).facultatif);
-        assert.equal(course.activites.at(-1).questions.length, 0);
+        if (id === 'S11') {
+            assert.ok(course.activites.some(row => row.defi && row.facultatif));
+            assert.ok(course.activites.at(-1).conclusion);
+            assert.ok(html.includes('Pourquoi on change d’exercice ?'));
+            assert.ok(html.includes('Sources et ressources officielles'));
+        } else {
+            assert.ok(course.activites.at(-1).facultatif);
+            assert.equal(course.activites.at(-1).questions.length, 0);
+        }
         assert.ok(html.includes('course-submit'));
         assert.doesNotMatch(JSON.stringify(course), /"(correction|attendu|points|choix_attendus|repartition|criteres)"\s*:/);
         assert.ok(html.includes('course-progress'));
