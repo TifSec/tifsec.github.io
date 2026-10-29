@@ -54,7 +54,7 @@ test('S11 : les deux trajets à compléter apparaissent avant la zone de répons
     assert.ok(fragment.includes('carte de commande'));
 });
 
-test('parcours réel : S10 remise → S11 accessible → S12 accessible → S13 annoncée sans faux lien', () => {
+test('parcours réel : S10 remise → S11 accessible → S12 accessible → S13 accessible (séance en brouillon intégrée le 29 octobre)', () => {
     const progression = yaml('_data/progressions.yml');
     const profile = { etablissement: 'college', classe: '3e' };
     const lessons = questionCatalogue().filter(techno3e).map(row => ({ ...row, state: row.seance === 'S10R' ? 'finished' : 'new',
@@ -66,7 +66,7 @@ test('parcours réel : S10 remise → S11 accessible → S12 accessible → S13 
     assert.equal(next.id, 'S12'); assert.ok(next.lesson.url);
     lessons.find(row => row.seance === 'S12').state = 'finished';
     next = nextLessons(progression, profile, lessons)[0].next;
-    assert.equal(next.id, 'S13'); assert.equal(next.lesson, undefined);
+    assert.equal(next.id, 'S13'); assert.ok(next.lesson.url);
 });
 
 test('suivi : chaque question S11/S12 est reliée à une compétence existante de la matière', () => {
