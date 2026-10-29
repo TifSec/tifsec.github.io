@@ -30,15 +30,17 @@ export function privatePath(lesson) {
 export function siteCatalogue({ env, fetch: fetcher = fetch, ttl = 300000, now = Date.now }) {
     return async () => {
         const base = (env('COURSES_SITE_URL') || '').replace(/\/+$/, '');
-        if (!/^https:\/\/[a-z0-9.-]+(\/[A-Za-z0-9_-]+)*$/.test(base)) throw new AccessError(503, 'not_configured');
+        if (!/^https:\/\/[a-z0-9.-]+(\/[A-Za-z0-9_-]+)*$/.test(base)) throw new AccessError(503, 'not_configured', 'adresse du site refusée (' + base.length + ' caractères)');
         const url = base + CATALOGUE_PATH;
         const hit = cache.get(url);
         if (hit && now() - hit.at < ttl) return hit.value;
-        const response = await fetcher(url, { redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(10000) });
-        if (!response.ok) throw new AccessError(503, 'unavailable');
+        let response;
+        try { response = await fetcher(url, { redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(10000) }); }
+        catch (error) { throw new AccessError(503, 'unavailable', url + ' : ' + (error?.name || 'erreur réseau')); }
+        if (!response.ok) throw new AccessError(503, 'unavailable', url + ' : HTTP ' + response.status);
         let value;
         try { value = validateCatalogue(JSON.parse(await boundedText(response, 4194304))); }
-        catch (error) { throw error instanceof AccessError ? error : new AccessError(503, 'unavailable'); }
+        catch (error) { throw error instanceof AccessError ? new AccessError(error.status, error.code, url + ' : liste invalide') : new AccessError(503, 'unavailable', url + ' : JSON illisible'); }
         cache.set(url, { at: now(), value });
         return value;
     };

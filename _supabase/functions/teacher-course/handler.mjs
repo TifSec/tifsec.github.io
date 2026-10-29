@@ -72,7 +72,7 @@ export function createPrivateCourseHandler({ env, fetch: fetcher = fetch, parseD
             // Seul le code d'erreur est journalisé (aucun contenu, jeton ni réponse distante).
             const status = error instanceof AccessError ? error.status : error instanceof SyntaxError ? 400 : 503;
             const code = error instanceof AccessError ? error.code : error instanceof SyntaxError ? 'invalid_request' : 'unavailable';
-            console.warn('teacher-course', step, status, code, error instanceof AccessError || error instanceof SyntaxError ? '' : ['invalid_yaml', 'version_mismatch'].includes(error?.message) ? error.message : error?.name || 'Error');
+            console.warn('teacher-course', step, status, code, error instanceof AccessError ? error.detail || '' : error instanceof SyntaxError ? '' : ['invalid_yaml', 'version_mismatch'].includes(error?.message) ? error.message : error?.name || 'Error');
             return reply(status, { error: code });
         }
     };

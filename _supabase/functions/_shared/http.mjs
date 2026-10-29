@@ -1,6 +1,6 @@
 // Outils HTTP communs aux fonctions professeur.
 export class AccessError extends Error {
-    constructor(status, code) { super(code); this.status = status; this.code = code; }
+    constructor(status, code, detail = '') { super(code); this.status = status; this.code = code; this.detail = detail; }
 }
 export async function boundedText(response, maximum) {
     if (Number(response.headers.get('content-length')) > maximum) throw new AccessError(503, 'unavailable');
