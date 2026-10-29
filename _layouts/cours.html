@@ -46,12 +46,17 @@
         <legend>Réponses aux activités</legend>
         {% include cours/cours-activites.html cours=cours %}
     </fieldset>
+    {% assign derniere_activite = cours.activites | last %}
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
     {% include cours/cours-synthese.html cours=cours %}
     <div class="course-submit-panel"{% unless site.data.features.student_submission %} hidden{% endunless %}>
         <button type="button" id="course-submit" data-enabled="{{ site.data.features.student_submission }}" hidden disabled>J’ai terminé — remettre ma copie</button>
         <p id="course-submit-status" role="status" aria-live="polite"></p>
         <p><a href="{{ '/eleve/' | relative_url }}">Retour à mon espace et à la séance suivante</a></p>
     </div>
+    {% if derniere_activite %}<nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#{{ derniere_activite.id | escape }}">← Étape précédente</a></nav>{% endif %}
+    </section>
 </div></div>
 </div>
 <noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
@@ -61,6 +66,7 @@
 <script type="module" src="{{ '/assets/js/cours/course-shell.js' | relative_url }}"></script>
 <script type="module" src="{{ '/assets/js/cours/course-work.js' | relative_url }}"></script>
 
+<script type="module" src="{{ '/assets/js/cours/course-steps.js' | relative_url }}?v=20261029-steps-1"></script>
 <script type="module" src="{{ '/assets/js/cours/course-progress.js' | relative_url }}"></script>
 {% if cours.version_papier %}<script type="module" src="{{ '/assets/js/cours/course-paper-version.js' | relative_url }}?v=20261022-paper-tab-1"></script>{% endif %}
 {% if page.graphique_interactif %}<script type="module" src="{{ '/assets/js/cours/course-graph-init.js' | relative_url }}"></script>{% endif %}

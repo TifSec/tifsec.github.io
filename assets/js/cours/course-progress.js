@@ -44,7 +44,9 @@ export function initProgress() {
     observer.observe(fieldset, { attributes: true, attributeFilter: ['disabled'] });
     const stepLinks = [...(document.querySelectorAll?.('#course-step-list a[href^="#"]') || [])];
     const sections = stepLinks.map(link => document.getElementById(decodeURIComponent(link.hash.slice(1)))).filter(Boolean);
-    if (typeof window !== 'undefined' && 'IntersectionObserver' in window && stepLinks.length) {
+    // En parcours pas à pas, course-steps.js indique lui-même l'étape affichée.
+    const stepByStep = document.body?.dataset?.courseSteps === 'on';
+    if (!stepByStep && typeof window !== 'undefined' && 'IntersectionObserver' in window && stepLinks.length) {
         const navigationObserver = new IntersectionObserver(entries => {
             const active = entries.filter(entry => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top).at(0);
             if (!active) return;

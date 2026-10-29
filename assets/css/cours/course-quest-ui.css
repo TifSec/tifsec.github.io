@@ -156,3 +156,21 @@
     .student-course-shell .course-info-card:hover, .student-course-shell .course-mission-controls a:hover { transform: none; }
     .student-course-shell .cours-activite[data-mission-state="complete"] { animation: none; }
 }
+
+/* Parcours pas à pas (course-steps.js) : une seule étape visible, « Ta mission du jour » reste affichée. */
+.student-course-shell .course-steps-enabled .course-step-hidden { display: none !important; }
+.student-course-shell .course-step-counter { margin-left: auto; color: var(--student-muted, #50606a); font-size: .74rem; font-weight: 700; }
+.student-course-shell .course-step-counter:empty { display: none; }
+.student-course-shell .course-step-counter + .course-mission-status { margin-left: 0; }
+.student-course-shell .course-steps-enabled [data-step-current] { animation: course-step-in 220ms ease-out; scroll-margin-top: 14px; }
+.student-course-shell .course-final-step { display: grid; gap: 14px; margin-top: 18px; }
+.student-course-shell .course-final-step > .course-mission-heading { display: flex; align-items: center; gap: 10px; }
+.student-course-shell .course-final-controls { margin-top: 4px; }
+.student-course-shell .course-step-list a[data-step-done]::before { content: '✓'; background: var(--student-accent, #b9ecd8); color: var(--student-hero, #1c4256); }
+@keyframes course-step-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+    .student-course-shell .course-steps-enabled [data-step-current] { animation: none; }
+}
+@media print {
+    .student-course-shell .course-steps-enabled .course-step-hidden { display: block !important; }
+}
