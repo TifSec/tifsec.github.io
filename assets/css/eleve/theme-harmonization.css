@@ -193,6 +193,23 @@
 :root[data-student-theme] .prof-main :is(#tracking-save, .student-approve),
 :root[data-student-theme] .prof-shell #prof-logout { background: var(--student-hero); color: #ffffff; }
 
+/* Corrections de lisibilité (29 octobre 2026) : la règle générale des panneaux
+   (:is avec « .prof-shortcuts a », plus spécifique) repeignait en blanc des zones à texte blanc. */
+:root[data-student-theme] .student-panel.student-next-panel { background-color: var(--student-hero); color: #ffffff; }
+:root[data-student-theme] .student-panel.student-next-panel :is(h2, h3, p, span) { color: #ffffff; }
+:root[data-student-theme] .student-panel.student-next-panel > .student-section-kicker { color: var(--student-accent); }
+:root[data-student-theme] #student-next-panel :is(.student-lesson-meta, .student-next-lesson p) { color: #ffffff; }
+:root[data-student-theme] .student-panel.student-next-panel .student-next-lesson a,
+:root[data-student-theme] .student-panel.student-next-panel .student-next-lesson a:visited { background: var(--student-accent); color: var(--student-ink); }
+:root[data-student-theme] .student-panel.student-next-panel .student-next-lesson a:hover { color: var(--student-ink); filter: brightness(1.06); }
+/* Le menu « Apparence » est un panneau clair posé dans le bandeau : ses textes ne prennent pas le blanc du bandeau. */
+:root[data-student-theme] .student-theme-picker .student-theme-options :is(p, label, span, strong) { color: var(--student-text); }
+/* Pastilles d'état des séances et numéros de mission : couleurs de la palette, lisibles sur fond clair comme sombre. */
+:root[data-student-theme] .student-lesson:not([data-state="started"]):not([data-state="finished"]) .student-lesson-state { background: var(--student-soft); color: var(--student-text); }
+:root[data-student-theme] .student-course-shell .course-mission-number { background: var(--student-soft); color: var(--student-text); }
+/* Liens d'évitement (visibles au clavier) : fond et texte de la palette. */
+:root[data-student-theme] :is(.student-skip, .prof-skip), :root[data-student-theme] :is(.student-skip, .prof-skip):visited { background: var(--student-surface); color: var(--student-text); }
+
 @media (prefers-contrast: more) {
     :root[data-student-theme] { --student-border: currentColor; }
     :root[data-student-theme] :is(button, input, select, textarea, .student-panel, .cours-activite, .cours-question) { border-width: 2px; }
