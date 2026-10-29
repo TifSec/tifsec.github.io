@@ -2,7 +2,7 @@
 import { db } from '../bdd/bdd-connect.js';
 import { checkSession } from '../auth/auth-session.js';
 import { lessonCatalogue, collaborationRpc } from '../cours/collaboration.js';
-import { initCopyCorrection } from './copy-correction.js';
+import { initCopyCorrection } from './copy-correction.js?v=20261029-prof-2';
 
 const LABELS = { techno: 'Technologie', tim: 'TIM', maths: 'Mathématiques' };
 const same = (a, b) => ['etablissement', 'matiere', 'classe'].every(key => a[key] === b[key]);

@@ -27,7 +27,7 @@ async function harness() {
     const module = new SourceTextModule(readFileSync(new URL('../assets/js/prof/copy-correction.js', import.meta.url), 'utf8'), { context });
     const grading = new SourceTextModule(readFileSync(new URL('../assets/js/prof/grade-editor.js', import.meta.url), 'utf8'), { context });
     await grading.link(() => { throw new Error('unexpected_import'); });
-    await module.link(spec => { if (spec === './grade-editor.js') return grading; throw new Error('unexpected_import'); }); await module.evaluate();
+    await module.link(spec => { if (spec.split('?')[0] === './grade-editor.js') return grading; throw new Error('unexpected_import'); }); await module.evaluate();
     const component = module.namespace.initCopyCorrection({ document: page, checkSession: async () => control.session, db: {
         auth: { onAuthStateChange(fn) { control.auth = fn; } }, functions: { async invoke(name, config) { control.calls.push({ name, config }); return await control.response; } }
     } });

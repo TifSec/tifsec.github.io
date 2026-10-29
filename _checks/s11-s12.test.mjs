@@ -78,3 +78,13 @@ test('suivi : chaque question S11/S12 est reliée à une compétence existante d
         for (const skills of Object.values(map.questions)) assert.ok(skills.length && skills.every(id => valid.has(id)));
     }
 });
+
+test('séances 2026 : aucune page ne désactive la saisie ni ne garde un ancien titre', () => {
+    const lessons = yaml('_data/seances.yml').techno;
+    for (const [classe, rows] of Object.entries(lessons)) for (const row of rows.filter(item => item.programme === 2026)) {
+        const page = read('cours/techno/' + classe + '/' + row.id.toLowerCase() + '/index.html');
+        assert.doesNotMatch(page, /saving_enabled:\s*false/, classe + ' ' + row.id);
+        assert.doesNotMatch(page, /^title:/m, classe + ' ' + row.id);
+        assert.match(page, new RegExp('seance: ' + row.id + '\\n'));
+    }
+});

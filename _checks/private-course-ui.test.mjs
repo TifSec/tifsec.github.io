@@ -18,7 +18,8 @@ async function harness({ enabled = true, session = { status: 'authenticated', us
         '../cours/course-steps.js': { initCourseSteps() { controls.steps = (controls.steps || 0) + 1; return { dispose() { controls.stepsDisposed = (controls.stepsDisposed || 0) + 1; } }; } }
     };
     const module = new SourceTextModule(readFileSync(new URL('../assets/js/prof/private-course.js', import.meta.url), 'utf8'), { context });
-    await module.link(name => {
+    await module.link(spec => {
+        const name = spec.split('?')[0];
         if (['./teacher-notes.js', './course-selection.js'].includes(name)) return new SourceTextModule(readFileSync(new URL('../assets/js/prof/' + name.slice(2), import.meta.url), 'utf8'), { context });
         return new SyntheticModule(Object.keys(dependencies[name]), function () { for (const [key, value] of Object.entries(dependencies[name])) this.setExport(key, value); }, { context });
     });

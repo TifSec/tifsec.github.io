@@ -1,5 +1,5 @@
 /* Proposition temporaire : aucune note ni réponse enregistrée ici. */
-import { initGradeEditor } from './grade-editor.js';
+import { initGradeEditor } from './grade-editor.js?v=20261029-prof-2';
 export function initCopyCorrection({ db, checkSession, document: page = document, onValidated }) {
     const root = page.getElementById('copy-correction');
     if (!root) return { clear() {}, select() {}, hasDraft: () => false, isBusy: () => false };

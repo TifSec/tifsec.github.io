@@ -1,9 +1,9 @@
 import { db } from '../bdd/bdd-connect.js';
 import { checkSession } from '../auth/auth-session.js';
 
-import { loadCoursePreview } from './course-preview.js';
-import { initCourseSteps } from '../cours/course-steps.js';
-import { clearTeacherNotes, renderTeacherNotes } from './teacher-notes.js';
+import { loadCoursePreview } from './course-preview.js?v=20261029-prof-2';
+import { initCourseSteps } from '../cours/course-steps.js?v=20261029-prof-2';
+import { clearTeacherNotes, renderTeacherNotes } from './teacher-notes.js?v=20261029-prof-2';
 import { initialCourseScope, lessonsInScope } from './course-selection.js';
 
 export function initPrivateCourse() {

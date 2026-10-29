@@ -63,7 +63,7 @@ async function harness({ mode='teacher', enabled=true, session=teacher, rpc={}, 
         const assisted = new SourceTextModule(readFileSync(new URL('../assets/js/prof/copy-correction.js',import.meta.url),'utf8'),{context});
         const grading = new SourceTextModule(readFileSync(new URL('../assets/js/prof/grade-editor.js',import.meta.url),'utf8'),{context});
         await grading.link(() => { throw new Error('unexpected_import'); });
-        await assisted.link(spec => { if (spec === './grade-editor.js') return grading; throw new Error('unexpected_import'); });
+        await assisted.link(spec => { if (spec.split('?')[0] === './grade-editor.js') return grading; throw new Error('unexpected_import'); });
         await module.link(spec=>spec.includes('bdd-connect')?dbModule:spec.includes('auth-session')?sessionModule:spec.includes('copy-correction')?assisted:collaboration);
         await module.evaluate();
     } else if(mode==='student') collaboration.namespace.initInvitations();
