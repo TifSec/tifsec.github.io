@@ -134,7 +134,8 @@ export function proposeCorrection(entries) {
 }
 
 export function summarizeCorrection(resultats) {
-    const automatic = resultats.filter(row => row.points_proposes !== null);
+    // Les propositions par mots-clés restent « à examiner » : elles ne comptent pas dans la part vérifiée.
+    const automatic = resultats.filter(row => row.points_proposes !== null && row.raison !== 'mots_cles');
     const pending = resultats.filter(row => !['correcte', 'incorrecte'].includes(row.etat) || row.points_proposes === null);
     const baremeComplet = resultats.length > 0 && resultats.every(row => row.maximum !== null);
     return {

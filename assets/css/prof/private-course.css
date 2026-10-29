@@ -76,3 +76,17 @@
         padding: 14px;
     }
 }
+
+/* Cours professeur en cartes, comme l'élève : une étape visible à la fois. */
+#teacher-course-preview .course-steps-enabled .course-step-hidden { display: none !important; }
+#teacher-course-preview .course-step-counter { margin-left: auto; font-size: .8rem; font-weight: 700; color: #50606a; }
+#teacher-course-preview .course-mission-heading { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+#teacher-course-preview .course-mission-controls { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; padding-top: 12px; border-top: 1px solid #cedce3; }
+#teacher-course-preview .course-mission-controls a { display: inline-flex; align-items: center; min-height: 42px; padding: 8px 14px; border: 2px solid #1c4256; border-radius: 10px; color: #1c4256; font-weight: 700; text-decoration: none; }
+#teacher-course-preview .course-mission-controls .course-mission-next { margin-left: auto; background: #1c4256; color: #fff; }
+#teacher-course-preview #course-step-list a[aria-current="step"] { font-weight: 800; text-decoration: underline; }
+#teacher-course-preview #course-step-list a[data-step-done]::after { content: ' ✓'; }
+/* Réponse attendue écrite dans le champ élève (lecture seule). */
+#teacher-course-preview [data-teacher-filled] { border: 2px solid #2f7d4f !important; background: #eaf7ef !important; color: #14532d !important; font-weight: 700; opacity: 1; -webkit-text-fill-color: #14532d; }
+#teacher-course-preview .teacher-annotation:not([open]) { padding-top: 10px; padding-bottom: 10px; }
+@media print { #teacher-course-preview [data-teacher-filled] { color: transparent !important; -webkit-text-fill-color: transparent; } }

@@ -14,7 +14,8 @@ async function harness({ enabled = true, session = { status: 'authenticated', us
     const dependencies = {
         '../bdd/bdd-connect.js': { db: { auth: { onAuthStateChange(fn) { controls.auth = fn; } }, functions: { async invoke() { controls.invocations++; return invoke ? invoke() : { data: { content: { seance: 'S02', version_cours: 'v1', preparation: { duree: '<script>exemple</script>' }, correction: [{ activite: 'a01', question: 'q01', attendu: '<script>corrige</script>' }] } } }; } }, from() { controls.reads++; return { select() { return this; }, async eq() { return { data: assignments }; } }; } } },
         './course-preview.js': { async loadCoursePreview(root, lesson, signal, isCurrent) { controls.previews++; if (preview) await preview(); if (!isCurrent()) return false; root.replaceChildren(...courseFixture().preview.children); return true; } },
-        '../auth/auth-session.js': { async checkSession() { return controls.session; } }
+        '../auth/auth-session.js': { async checkSession() { return controls.session; } },
+        '../cours/course-steps.js': { initCourseSteps() { controls.steps = (controls.steps || 0) + 1; return { dispose() { controls.stepsDisposed = (controls.stepsDisposed || 0) + 1; } }; } }
     };
     const module = new SourceTextModule(readFileSync(new URL('../assets/js/prof/private-course.js', import.meta.url), 'utf8'), { context });
     await module.link(name => {

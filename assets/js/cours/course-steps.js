@@ -35,14 +35,18 @@ function headingOf(step) {
     return step.querySelector('h1') || step.querySelector('h2');
 }
 
-export function initCourseSteps(doc = document) {
-    const reading = doc.querySelector('.course-reading');
+// Options (cours professeur) : `reading` = zone de lecture, `stepList` = liste des étapes, `storageKey`,
+// `updateHash` = false pour ne pas modifier l'adresse de la page hôte.
+export function initCourseSteps(doc = document, options = {}) {
+    const reading = options.reading || doc.querySelector('.course-reading');
     const work = doc.getElementById('course-work');
     if (!reading) return null;
     const steps = [...reading.querySelectorAll('[data-course-step]')];
     if (steps.length < 2) return null;
-    const storageKey = STORAGE_PREFIX + [work?.dataset.matiere, work?.dataset.classe, work?.dataset.seance].join('/');
-    const stepLinks = [...doc.querySelectorAll('#course-step-list a[href^="#"]')];
+    const storageKey = options.storageKey || STORAGE_PREFIX + [work?.dataset.matiere, work?.dataset.classe, work?.dataset.seance].join('/');
+    const stepList = options.stepList || doc.getElementById('course-step-list');
+    const updateHash = options.updateHash !== false;
+    const stepLinks = stepList ? [...stepList.querySelectorAll('a[href^="#"]')] : [];
     const reduceMotion = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     let current = -1;
 
@@ -55,10 +59,11 @@ export function initCourseSteps(doc = document) {
         if (counter) counter.textContent = stepLabel(index, steps.length);
     });
 
+    const byId = id => doc.getElementById(id);
     function markLinks() {
         const activeId = steps[current]?.id;
         stepLinks.forEach(link => {
-            const target = doc.getElementById(decodeURIComponent(link.hash.slice(1)));
+            const target = byId(decodeURIComponent(link.hash.slice(1)));
             const index = stepIndexFor(steps, target);
             link.toggleAttribute('data-step-done', index >= 0 && index < current);
             if (index === current && activeId) link.setAttribute('aria-current', 'step');
@@ -89,32 +94,40 @@ export function initCourseSteps(doc = document) {
     }
 
     // Boutons « Passer à l'étape suivante », « Étape précédente » et liens de la colonne « Étapes de la séance ».
-    doc.addEventListener('click', event => {
+    const onClick = event => {
         const link = event.target.closest?.('a[href^="#"]');
-        if (!link || !reading.contains(link) && !link.closest('#course-step-list')) return;
-        const target = doc.getElementById(decodeURIComponent(link.hash.slice(1)));
+        if (!link || !reading.contains(link) && !(stepList && stepList.contains(link))) return;
+        const target = byId(decodeURIComponent(link.hash.slice(1)));
         const index = stepIndexFor(steps, target);
         if (index < 0) return; // ancre hors des étapes : comportement normal
         event.preventDefault();
         show(index, { focus: true, scroll: true });
-        try { window.history.replaceState(null, '', '#' + steps[index].id); } catch { /* adresse inchangée */ }
-    });
+        if (updateHash) { try { window.history.replaceState(null, '', '#' + steps[index].id); } catch { /* adresse inchangée */ } }
+    };
+    doc.addEventListener('click', onClick);
 
     // Une ancre ouverte autrement (retour de correction, lien direct) affiche l'étape qui la contient.
-    window.addEventListener('hashchange', () => {
-        const target = doc.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+    const onHash = () => {
+        const target = byId(decodeURIComponent(window.location.hash.slice(1)));
         if (revealTarget(target, { scroll: true }) >= 0) target.scrollIntoView?.({ block: 'start' });
-    });
+    };
+    if (updateHash) window.addEventListener('hashchange', onHash);
 
     // Un champ qui reçoit le focus (tabulation, message d'erreur) ne doit jamais rester dans une étape cachée.
-    reading.addEventListener('focusin', event => {
+    const onFocus = event => {
         const index = stepIndexFor(steps, event.target);
         if (index >= 0 && index !== current) show(index);
-    });
+    };
+    reading.addEventListener('focusin', onFocus);
 
-    const hashTarget = window.location.hash ? doc.getElementById(decodeURIComponent(window.location.hash.slice(1))) : null;
+    const hashTarget = updateHash && window.location.hash ? byId(decodeURIComponent(window.location.hash.slice(1))) : null;
     show(initialStepIndex(steps.length, { hashIndex: stepIndexFor(steps, hashTarget), storedIndex: readStored(storageKey) }));
-    return { steps, show, current: () => current };
+    function dispose() {
+        doc.removeEventListener('click', onClick);
+        window.removeEventListener('hashchange', onHash);
+        reading.removeEventListener('focusin', onFocus);
+    }
+    return { steps, show, current: () => current, dispose };
 }
 
-if (typeof document !== 'undefined' && typeof window !== 'undefined') initCourseSteps();
+if (typeof document !== 'undefined' && typeof window !== 'undefined' && document.getElementById('course-work')) initCourseSteps();

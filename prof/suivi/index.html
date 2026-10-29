@@ -18,6 +18,13 @@ permalink: /prof/suivi/
         <div class="prof-filter prof-filter-wide"><label for="tracking-lesson">Séance</label><select id="tracking-lesson"></select></div>
         <button type="button" id="tracking-refresh">Actualiser les copies</button>
     </fieldset>
+    {% if site.seances_pix %}<details id="tracking-pix" class="copy-correction">
+        <summary>Séances Pix déclarées par les élèves (hors note)</summary>
+        <p>Les élèves signalent leur séance Pix en bas de la séance où ils en sont : leur progression ne change pas. Choisissez la matière et la classe ci-dessus.</p>
+        <button type="button" id="tracking-pix-load">Afficher les séances Pix de cette classe</button>
+        <p id="tracking-pix-status" role="status" aria-live="polite"></p>
+        <table id="tracking-pix-table" hidden><thead><tr><th>Date</th><th>Élève</th><th>Séance ouverte</th></tr></thead><tbody></tbody></table>
+    </details>{% endif %}
     <div class="tracking-workspace">
         <section class="tracking-sidebar"><h2>Travaux des élèves</h2><label class="tracking-history-toggle"><input type="checkbox" id="tracking-history"> Consulter l’historique individuel</label><div id="tracking-copies"></div><p class="prof-hint">Sélectionnez une copie pour lire les réponses et ajouter votre commentaire.</p></section>
         <section id="tracking-detail" hidden>
@@ -56,3 +63,4 @@ permalink: /prof/suivi/
 </section>
 {% include config/seances-data.html %}
 <script type="module" src="{{ '/assets/js/prof/prof-tracking.js' | relative_url }}"></script>
+{% if site.seances_pix %}<script type="module" src="{{ '/assets/js/prof/prof-pix.js' | relative_url }}"></script>{% endif %}

@@ -13,8 +13,8 @@ test('normalisation limitée à la casse, aux accents et aux espaces', () => {
     assert.equal(normalizeAnswer('  RÉPONSE\u00a0  FICTIVE '), 'reponse fictive');
     assert.equal(check({ cell1: '  REPONSE FICTIVE ', cell2: 'autre exemple' }).points_proposes, 4);
 });
-test('réponse entière seulement : négation, phrase englobante et ponctuation non devinées', () => {
-    for (const value of ['pas une réponse fictive', 'réponse fictive et autre chose', 'réponse fictive.', 'réponse']) {
+test('réponse entière seulement : négation et phrase englobante non devinées', () => {
+    for (const value of ['pas une réponse fictive', 'réponse fictive et autre chose', 'réponse']) {
         const result = check({ cell1: value }); assert.equal(result.resultats_cellules[0].etat, 'a_examiner'); assert.equal(result.points_proposes, null);
     }
 });
@@ -49,4 +49,31 @@ test('points décimaux : reliquat exact et sans double comptage', () => {
     const result = prepareCopyProposal({ seance: 'S', version: 'v1', questions: [question] }, { seance: 'S', version_cours: 'v1', correction: [small] },
         [{ question_key: 'cell1', reponse: 'réponse fictive', revision: 1 }]);
     assert.equal(result.maximum_a_examiner, 0.2); assert.equal(result.points_automatiques, 0.1);
+});
+
+test('forme tolérante : ponctuation finale, article, apostrophe et pluriel simple reconnus', () => {
+    for (const value of ['réponse fictive.', 'La réponse fictive', 'RÉPONSES FICTIVES !', '  réponse   fictive ']) {
+        const result = check({ cell1: value }); assert.equal(result.resultats_cellules[0].etat, 'reconnue', value);
+    }
+});
+
+import { checkKeywords } from '../_supabase/functions/_shared/answer-dictionary.mjs';
+test('rédaction : critères repérés par mots-clés, proposition sans zéro automatique', () => {
+    const q = { type: 'texte', champs: ['a01_q01'], cle: 'a01_q01' };
+    const r = { points: 3, mots_cles: [{ critere: 'démontage', points: 2, variantes: ['démonter', 'démontage', 'ouvrir'] }, { critere: 'document cité', points: 1, variantes: ['document 1'] }] };
+    const full = checkKeywords(q, r, 'D’après le document 1, on peut démonter facilement.');
+    assert.equal(full.points_proposes, 3); assert.equal(full.etat, 'a_examiner');
+    const part = checkKeywords(q, r, 'On peut l’ouvrir.');
+    assert.equal(part.points_proposes, 2); assert.deepEqual(part.resultats_criteres.map(c => c.trouve), [true, false]);
+    const none = checkKeywords(q, r, 'Je ne sais pas.');
+    assert.equal(none.points_proposes, null);
+    assert.equal(checkKeywords(q, r, '  ').etat, 'sans_reponse');
+    assert.throws(() => checkKeywords(q, { points: 1, mots_cles: r.mots_cles }, 'x'));
+});
+test('mots-clés : préfixe « démont* » et expression de plusieurs mots', () => {
+    const q = { type: 'texte', champs: ['k'], cle: 'k' };
+    const r = { points: 2, mots_cles: [{ critere: 'démontage', points: 1, variantes: ['démont*'] }, { critere: 'hors tension', points: 1, variantes: ['hors tension', 'débranch*'] }] };
+    assert.equal(checkKeywords(q, r, 'Il faut le démonter après avoir débranché.').points_proposes, 2);
+    assert.equal(checkKeywords(q, r, 'Le démontage est simple.').points_proposes, 1);
+    assert.equal(checkKeywords(q, r, 'Rien à voir.').points_proposes, null);
 });

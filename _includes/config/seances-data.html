@@ -2,7 +2,8 @@
 [
     {% assign first = true %}
     {% for subject in site.data.seances %}{% for school_class in subject[1] %}{% for lesson in school_class[1] %}
-    {% unless lesson.statut == 'brouillon' and site.afficher_brouillons != true %}
+    {% assign masquee = false %}{% if site.seances_2026_seulement and subject[0] == 'techno' and lesson.programme != 2026 %}{% assign masquee = true %}{% endif %}{% if lesson.statut == 'brouillon' and site.afficher_brouillons != true %}{% assign masquee = true %}{% endif %}
+    {% unless masquee %}
     {% unless first %},{% endunless %}{% assign first = false %}
     {% assign subject_key = subject[0] %}{% assign class_key = school_class[0] %}
     {% assign lesson_content = site.data.cours[subject_key][class_key][lesson.id] %}

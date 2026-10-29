@@ -51,7 +51,7 @@ export function initGradeEditor({ db, checkSession, page = document, onValidated
         const answers = [...parent.querySelectorAll('[data-answer-id]')];
         const cells = row.resultats_cellules;
         const entries = cells || [{ champ: row.cle, maximum: row.maximum,
-            points_proposes: ['correcte', 'incorrecte'].includes(row.etat) ? row.points_proposes : null }];
+            points_proposes: ['correcte', 'incorrecte'].includes(row.etat) || row.raison === 'mots_cles' ? row.points_proposes : null }];
         const controls = [];
         for (const entry of entries) {
             const answer = cells ? answers.find(answer => answer.dataset.answerId === entry.champ) : answers[0];

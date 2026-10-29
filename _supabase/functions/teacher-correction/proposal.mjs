@@ -1,5 +1,5 @@
 import { proposeCorrection, summarizeCorrection } from '../_shared/deterministic-checker.mjs';
-import { checkTableDictionary, checkShortAnswer, checkManualTable } from '../_shared/answer-dictionary.mjs';
+import { checkTableDictionary, checkShortAnswer, checkManualTable, checkKeywords } from '../_shared/answer-dictionary.mjs';
 
 function teacherGuidance(rule, result) {
     // Ces champs privés ne sont restitués que par l'opération professeur protégée.
@@ -15,7 +15,7 @@ function teacherGuidance(rule, result) {
         'Si le raisonnement ne répond pas encore à la question : « Reprendre la démarche à partir des critères ci-dessus. »'
     ];
     return { elements, pistes_appreciation: pistes,
-        attribution: result.raison === 'bareme_par_cellule' ? 'Attribuer les points par case selon les critères. Aucun point automatique pour les justifications.' : result.resultats_cellules ? 'Points proposés uniquement pour les cases reconnues. Les autres réponses restent à examiner, sans zéro automatique.' : result.points_proposes !== null ? 'Points proposés par la vérification déterministe, à valider par le professeur.' :
+        attribution: result.raison === 'mots_cles' ? 'Points pré-remplis d’après les mots-clés repérés : relire la réponse, vérifier le sens et ajuster.' : result.raison === 'bareme_par_cellule' ? 'Attribuer les points par case selon les critères. Aucun point automatique pour les justifications.' : result.resultats_cellules ? 'Points proposés uniquement pour les cases reconnues. Les autres réponses restent à examiner, sans zéro automatique.' : result.points_proposes !== null ? 'Points proposés par la vérification déterministe, à valider par le professeur.' :
             result.maximum !== null ? 'Attribuer de 0 à ' + result.maximum + ' points selon les critères, sans note automatique pour cette réponse.' : 'Barème non renseigné : ne pas proposer de points arbitraires.',
         decision_professeur: true };
 }
@@ -50,6 +50,7 @@ export function prepareCopyProposal(schema, content, rows) {
         const question = questions[index], rule = rules.get(question.cle);
         if (rule?.dictionnaire !== undefined) return { cle: row.cle, ...checkTableDictionary(question, rule, answers) };
         if (rule?.reponses_acceptees !== undefined) return { cle: row.cle, ...checkShortAnswer(question, rule, answers.get(question.cle) || '') };
+        if (rule?.mots_cles !== undefined) return { cle: row.cle, ...checkKeywords(question, rule, answers.get(question.cle) || '') };
         if (rule?.repartition !== undefined) return { cle: row.cle, ...checkManualTable(question, rule, answers) };
         return row;
     });

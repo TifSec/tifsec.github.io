@@ -30,12 +30,20 @@ export async function loadCoursePreview(root, lesson, signal, isCurrent) {
     const heading = document.createElement('h2'); heading.textContent = 'Étapes de la séance';
     const nav = document.createElement('nav'); nav.setAttribute('aria-label', 'Étapes du cours professeur');
     const list = document.createElement('ol'); nav.append(list); navigation.append(heading, nav);
+    list.id = 'course-step-list';
     const reading = document.createElement('div'); reading.className = 'course-reading';
-    reading.append(...[...sections].map(node => document.importNode(node, true)));
-    for (const section of reading.querySelectorAll('#course-intro, .cours-activite, #course-summary')) {
+    for (const node of sections) {
+        const copy = document.importNode(node, true);
+        if (!String(copy.className || '').split(/\s+/).includes('cours-synthese')) { reading.append(copy); continue; }
+        // Comme pour l'élève : le bilan est la dernière carte du parcours.
+        const final = document.createElement('section');
+        final.className = 'course-final-step'; final.id = 'course-final'; final.setAttribute('data-course-step', '');
+        final.setAttribute('aria-label', 'Fin de la séance'); final.append(copy); reading.append(final);
+    }
+    for (const section of reading.querySelectorAll('#course-intro, .cours-activite, #course-final')) {
         const li = document.createElement('li'), link = document.createElement('a');
         link.href = '#' + encodeURIComponent(section.id);
-        link.textContent = section.querySelector('h1, h2')?.textContent || 'Étape';
+        link.textContent = section.id === 'course-final' ? 'Faire le point' : section.querySelector('h1, h2')?.textContent || 'Étape';
         li.append(link); list.append(li);
     }
     columns.append(navigation, reading);

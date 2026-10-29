@@ -2,6 +2,7 @@ import { db } from '../bdd/bdd-connect.js';
 import { checkSession } from '../auth/auth-session.js';
 
 import { loadCoursePreview } from './course-preview.js';
+import { initCourseSteps } from '../cours/course-steps.js';
 import { clearTeacherNotes, renderTeacherNotes } from './teacher-notes.js';
 import { initialCourseScope, lessonsInScope } from './course-selection.js';
 
@@ -19,7 +20,7 @@ export function initPrivateCourse() {
     const schoolClass = document.getElementById('teacher-course-class');
     const context = document.getElementById('teacher-course-context');
     const copiesLink = document.getElementById('teacher-course-copies');
-    let generation = 0, userId = null, controller, timer;
+    let generation = 0, userId = null, controller, timer, steps = null;
     let lessons = [];
     let scopes = [], catalogue = [];
     const labels = { techno: 'Technologie', tim: 'TIM', maths: 'Mathématiques' };
@@ -32,7 +33,7 @@ export function initPrivateCourse() {
         return scopes.find(scope => scope.matiere === subject.value && classKey(scope) === schoolClass.value);
     }
     function updateLessons() {
-        clearNotes(); preview.replaceChildren();
+        clearNotes(); clearSteps(); preview.replaceChildren();
         const scope = selectedScope();
         lessons = lessonsInScope(catalogue, scope);
         options(select, lessons.map((lesson, index) => [String(index), lesson.seance + ' — ' + lesson.titre]));
@@ -51,13 +52,19 @@ export function initPrivateCourse() {
         schoolClass.disabled = !available.length;
         updateLessons();
     }
+    function clearSteps() { steps?.dispose(); steps = null; }
+    function startSteps(lesson) {
+        clearSteps();
+        steps = initCourseSteps(document, { reading: preview.querySelector('.course-reading'), stepList: preview.querySelector('#course-step-list'),
+            storageKey: 'tifsec-etape-prof:' + [lesson.matiere, lesson.classe, lesson.seance].join('/'), updateHash: false });
+    }
     function clearNotes() {
         ++generation; controller?.abort();
         clearTeacherNotes(preview, notes);
         root.dataset.mode = 'student';
     }
     function reset() {
-        clearNotes(); preview.replaceChildren(); select.replaceChildren();
+        clearNotes(); clearSteps(); preview.replaceChildren(); select.replaceChildren();
         select.disabled = true; open.disabled = true; loadPrivate.disabled = true; userId = null;
         subject.replaceChildren(); schoolClass.replaceChildren();
         subject.disabled = true; schoolClass.disabled = true; context.textContent = ''; copiesLink.hidden = true;
@@ -100,6 +107,7 @@ export function initPrivateCourse() {
             const shown = await loadCoursePreview(preview, lesson, controller.signal, () => current === generation);
             if (current !== generation || !shown) return;
             courseLoaded = true;
+            startSteps(lesson);
             if (privateMode) {
                 status.textContent = 'Cours chargé. Vérification et chargement des corrections privées…';
                 const response = await db.functions.invoke('teacher-course', { body, signal: controller.signal });
@@ -116,7 +124,7 @@ export function initPrivateCourse() {
         finally { if (current === generation) { open.disabled = false; loadPrivate.disabled = root.dataset.enabled !== 'true'; } }
     }
     select.addEventListener('change', () => {
-        clearNotes(); preview.replaceChildren(); open.disabled = false; loadPrivate.disabled = root.dataset.enabled !== 'true';
+        clearNotes(); clearSteps(); preview.replaceChildren(); open.disabled = false; loadPrivate.disabled = root.dataset.enabled !== 'true';
         status.textContent = 'Séance changée. Ouvrez le cours ou ses notes privées.';
     });
     subject.addEventListener('change', () => updateClasses());

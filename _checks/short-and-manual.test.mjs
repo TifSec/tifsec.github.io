@@ -8,7 +8,9 @@ const table={activite:'a',id:'q2',cle:'a_q2',type:'tableau',champs:['x','y']};
 const tableRule={activite:'a',question:'q2',mode:'professeur',points:0.3,repartition:[{champ:'x',points:0.1},{champ:'y',points:0.2}]};
 test('réponse courte : reconnaissance entière seulement, inconnue laissée au professeur',()=>{
     assert.equal(checkShortAnswer(short,shortRule,' ÉCHANTILLON B ').points_proposes,1);
-    for(const value of ['pas échantillon B','échantillon B ou autre','échantillon','échantillon B.']) {
+    // Ponctuation finale tolérée (29/10/2026) : « échantillon B. » est reconnu.
+    assert.equal(checkShortAnswer(short,shortRule,'échantillon B.').points_proposes,1);
+    for(const value of ['pas échantillon B','échantillon B ou autre','échantillon']) {
         const result=checkShortAnswer(short,shortRule,value);assert.equal(result.etat,'a_examiner');assert.equal(result.points_proposes,null);
     }
     assert.equal(checkShortAnswer(short,shortRule,'').etat,'sans_reponse');

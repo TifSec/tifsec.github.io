@@ -103,7 +103,19 @@ export function initCopyCorrection({ db, checkSession, document: page = document
             detail.textContent = (labels[row.etat] || 'À examiner') +
                 (row.points_proposes !== null ? ' — ' + row.points_proposes + ' / ' + row.maximum + ' points proposés' +
                     (row.resultats_cellules && row.maximum_verifie < row.maximum ? ' pour les cases reconnues ; le reste est à examiner' : '') : '');
-            annotation.append(title, detail); guidance(annotation, row.aide_professeur);
+            if (row.raison === 'mots_cles') detail.textContent = (row.etat === 'sans_reponse' ? 'Aucune réponse' : 'Proposition d’après les mots-clés — à relire et valider') +
+                (row.points_proposes !== null ? ' — ' + row.points_proposes + ' / ' + row.maximum + ' points pré-remplis' : '');
+            annotation.append(title, detail);
+            if (Array.isArray(row.resultats_criteres) && row.resultats_criteres.length && row.etat !== 'sans_reponse') {
+                const list = page.createElement('ul'); list.className = 'copy-keyword-criteria';
+                for (const item of row.resultats_criteres.slice(0, 20)) {
+                    const li = page.createElement('li'); li.dataset.state = item.trouve ? 'reconnue' : 'a_examiner';
+                    li.textContent = (item.trouve ? '✓ Repéré : ' : '… Non repéré : ') + String(item.critere) + ' (' + item.maximum + ' pt)';
+                    list.append(li);
+                }
+                annotation.append(list);
+            }
+            guidance(annotation, row.aide_professeur);
             grading.attach(target, row);
             target.append(annotation); annotations.push(annotation);
             for (const cell of row.resultats_cellules || []) {

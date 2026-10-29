@@ -8,7 +8,13 @@
     <main class="student-course-main" id="student-course-main">
 {% assign cours = site.data.cours[page.matiere][page.classe][page.seance] %}
 {% assign entree_seance = site.data.seances[page.matiere][page.classe] | where: 'id', page.seance | first %}
-{% if entree_seance.statut == 'brouillon' and site.afficher_brouillons != true %}
+{% if site.seances_2026_seulement and page.matiere == 'techno' and entree_seance.programme != 2026 %}
+<section class="course-draft-notice" id="course-intro">
+    <h1>Ancienne séance</h1>
+    <p>Cette séance a été remplacée par la nouvelle progression. Retrouve les séances de ta classe dans ton espace.</p>
+    <p><a href="{{ '/eleve/' | relative_url }}">Retour à mon espace</a></p>
+</section>
+{% elsif entree_seance.statut == 'brouillon' and site.afficher_brouillons != true %}
 <section class="course-draft-notice" id="course-intro">
     <h1>Séance en préparation</h1>
     <p>Cette séance n’est pas encore ouverte. Elle apparaîtra dans ton espace quand ton professeur l’aura publiée.</p>
@@ -55,6 +61,7 @@
         <p id="course-submit-status" role="status" aria-live="polite"></p>
         <p><a href="{{ '/eleve/' | relative_url }}">Retour à mon espace et à la séance suivante</a></p>
     </div>
+    {% if site.seances_pix and page.matiere == 'techno' and page.etablissement == 'college' %}{% include cours/cours-pix.html %}{% endif %}
     {% if derniere_activite %}<nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#{{ derniere_activite.id | escape }}">← Étape précédente</a></nav>{% endif %}
     </section>
 </div></div>
@@ -72,6 +79,7 @@
 {% if page.graphique_interactif %}<script type="module" src="{{ '/assets/js/cours/course-graph-init.js' | relative_url }}"></script>{% endif %}
 
 <script type="module" src="{{ '/assets/js/eleve/student-theme.js' | relative_url }}"></script>
+{% if site.seances_pix and page.matiere == 'techno' and page.etablissement == 'college' %}<script type="module" src="{{ '/assets/js/cours/pix-declaration.js' | relative_url }}"></script>{% endif %}
 {% endif %}
 
     </main>
