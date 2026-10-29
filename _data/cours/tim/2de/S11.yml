@@ -1,0 +1,152 @@
+titre: 'Séance 11 : Combien de foin par mois pour l’écurie ?'
+themes:
+    - EG4, objectif 3-1 — Utiliser de manière pertinente les outils bureautiques et les outils de communication
+problematique: Comment résumer un ensemble de données avec les fonctions du tableur ?
+competences_bo:
+    - EG4, objectif 3-1 — Utiliser de manière pertinente les outils bureautiques et les outils de communication
+objectifs:
+    connaissances:
+        - Une formule commence par = ; on recopie avec la poignée.
+        - SOMME, MOYENNE, MIN, MAX, NB résument une plage de cellules.
+    competences:
+        - Écrire des formules et les recopier.
+        - Utiliser SOMME, MOYENNE, MIN, MAX, NB.
+pourquoi:
+    - En S10, tu as saisi un inventaire.
+    - Le gérant veut connaître la consommation de foin du mois de ses 8 chevaux.
+activites:
+    -   id: a01
+        titre: Calculer par cheval
+        consigne: Tu vas calculer dans Calc la consommation de foin du mois de chaque cheval (document 1). On attend le résultat pour Tango et une formule recopiée.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Contenu de foin.ods (fictif)
+                colonnes:
+                    - Cheval
+                    - Poids (kg)
+                    - Foin par jour (kg)
+                lignes:
+                    -   - Tango
+                        - '550'
+                        - '9'
+                    -   - Iris
+                        - '480'
+                        - '8'
+                    -   - Nuage
+                        - '300'
+                        - '5'
+                    -   - Galopin
+                        - '600'
+                        - '10'
+                    -   - Pacha
+                        - '520'
+                        - '8,5'
+                    -   - Réglisse
+                        - '250'
+                        - '4'
+                    -   - Belle
+                        - '500'
+                        - '8'
+                    -   - Éclair
+                        - '420'
+                        - '7'
+            -   type: etapes
+                elements:
+                    - Ouvre le fichier fourni foin.ods ; enregistre sous 2de_TIM_foin.ods.
+                    - 'En D2 : =C2*30 (consommation du mois).'
+                    - Recopie jusqu’à la ligne 9.
+                    - Contrôle une valeur de tête.
+            -   type: paragraphe
+                texte: Pourquoi contrôler de tête ? Une formule fausse recopiée donne 8 résultats faux.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quelle consommation mensuelle Calc affiche-t-il pour Tango (9 kg par jour) ?
+                unite: kg
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Écris la formule de D5 après recopie.
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a02
+        titre: Résumer l’écurie
+        transition: Chaque cheval a son calcul. Résume pour toute l’écurie.
+        consigne: Tu vas résumer la consommation de l’écurie avec SOMME, MOYENNE, MIN, MAX et NB. On attend le total du mois et trois résultats.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'En D11 : =SOMME(D2:D9).'
+                    - 'En C12 : =MOYENNE(C2:C9) ; en C13 : =MIN(C2:C9) ; en C14 : =MAX(C2:C9) ; en C15 : =NB(C2:C9).'
+                    - Écris un titre en colonne B pour chaque résultat.
+            -   type: paragraphe
+                texte: Pourquoi des fonctions ? Elles résument 8 lignes (ou 800) en un seul nombre utile.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quel total de foin par mois Calc affiche-t-il en D11 ?
+                unite: kg
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: tableau
+                enonce: Écris les résultats de Calc.
+                colonnes:
+                    - Fonction
+                    - Résultat
+                lignes:
+                    -   - MOYENNE (kg/jour)
+                        - ''
+                    -   - MIN
+                        - ''
+                    -   - MAX
+                        - ''
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a03
+        titre: Combien de bottes ?
+        transition: Tu connais la consommation totale. Transforme-la en commande.
+        consigne: Tu vas calculer le nombre de bottes de foin à commander pour le mois, en arrondissant au supérieur. On attend le nombre de bottes et la raison de l’arrondi.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Une botte de foin pèse 250 kg (botte ronde, ordre de grandeur).
+                    - 'En D16 : =D11/250.'
+                    - Arrondis au supérieur avec =ARRONDI.SUP(D11/250;0).
+            -   type: paragraphe
+                texte: 'Pourquoi arrondir au supérieur ? On n’achète pas 7,14 bottes : il en faut 8 pour ne pas manquer.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Combien de bottes de 250 kg faut-il commander pour le mois ?
+                unite: bottes
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Pourquoi arrondir au supérieur et pas au plus proche ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: La consommation varie selon la saison et le travail.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment faire varier le « 30 jours » sans réécrire les formules ?
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu connais les besoins en foin. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment résumer un ensemble de données avec les fonctions du tableur ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - =SOMME, =MOYENNE, =MIN, =MAX, =NB sur une plage.
+    - ARRONDI.SUP pour une commande.
+sources:
+    -   type: lien
+        titre: ChloroFil — Seconde professionnelle, document d’accompagnement du module EG4
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/2nde-pro/2nde-pro-da-EG4.pdf
