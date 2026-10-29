@@ -1,558 +1,142 @@
-titre: Comment assembler nos petites solutions pour créer un jeu ?
-theme: "Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre"
-problematique: Comment construire progressivement un programme en assemblant plusieurs petites solutions ?
-pourquoi: "Objectif de cette séance : Comprendre qu'un programme complexe peut être construit progressivement."
-application: "Un test consiste à provoquer volontairement une situation précise puis à comparer :"
-lien_precedent: Reprends les méthodes des séances précédentes si elles te sont utiles ; les rappels du cours t’accompagnent.
+titre: 'Séance 10 : Comment la lampe a-t-elle évolué ?'
+themes:
+    - 'Les objets et les systèmes techniques : leurs usages et leurs interactions à découvrir et analyser'
+problematique: Pourquoi la façon de s’éclairer a-t-elle changé au cours de l’histoire ?
+competences_bo:
+    - Décrire les liens entre usages et évolutions technologiques des objets et des systèmes techniques
 objectifs:
     connaissances:
-        - Comprendre qu'un programme complexe peut être construit progressivement.
-        - Comprendre qu'un événement déclenche des instructions lorsqu'une situation particulière se produit.
-        - Comprendre qu'une variable permet au programme de conserver une information.
-        - Comprendre qu'une condition permet au programme de choisir entre plusieurs actions.
-        - Comprendre qu'il est utile de tester chaque petite fonctionnalité avant d'en ajouter une nouvelle.
-        - Comprendre qu'une erreur observée fournit des informations utiles pour rechercher ce qui doit être corrigé.
-    competences: []
+        - Un objet évolue pour répondre à de nouveaux besoins, grâce à des inventions et à des innovations.
+        - Une frise chronologique range les objets dans l’ordre du temps.
+        - Des données sont des informations qu’on peut trier et comparer (date, énergie utilisée, avantage).
+    competences:
+        - Collecter des informations dans des documents.
+        - Trier des données dans l’ordre chronologique.
+        - Expliquer une évolution par un besoin ou une invention.
+pourquoi:
+    - En séance 9, tu as comparé plusieurs solutions pour éclairer.
+    - Ces solutions ne sont pas apparues en même temps. Aujourd’hui, tu vas les ranger dans le temps et comprendre ce qui a poussé les humains à changer de lampe.
 activites:
-    - id: a04
-      titre: "1. Avant de programmer : retrouvons notre méthode"
-      contenu:
-          - type: paragraphe
-            texte: "Lors de la séance précédente, nous avons préparé le fonctionnement d'un petit jeu :"
-          - type: paragraphe
-            texte: Le joueur doit récupérer un objet puis rejoindre la sortie.
-          - type: paragraphe
-            texte: Nous avions décomposé le problème « créer un jeu » en plusieurs sous-problèmes.
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q1 : Sans regarder votre travail précédent, retrouvez au moins cinq sous-problèmes nécessaires pour réaliser ce jeu."
-            suite:
-                - type: paragraphe
-                  texte: Comparez ensuite votre réponse avec votre document de la séance 9.
-    - id: a05
-      titre: 2. Créer notre premier personnage
-      contenu:
-          - type: paragraphe
-            texte: "Ouvrez MakeCode Arcade puis créez un nouveau projet nommé :"
-          - type: paragraphe
-            texte: 5e_S10_nom1_nom2
-          - type: paragraphe
-            texte: "Important :"
-          - type: liste
-            elements:
-                - les blocs servant à créer, positionner ou initialiser les éléments du jeu seront placés dans au démarrage, sauf indication contraire ;
-                - "les blocs commençant par « lorsque... » sont des événements : ils restent dans leurs propres blocs."
-          - type: paragraphe
-            texte: "Notre premier sous-problème est :"
-          - type: paragraphe
-            texte: Créer le personnage du joueur.
-          - type: paragraphe
-            texte: Dans MakeCode Arcade, les personnages et de nombreux objets présents à l'écran sont appelés des sprites.
-          - type: paragraphe
-            texte: "Documentation : Microsoft MakeCode Arcade – Sprites"
-          - type: lien
-            titre: Microsoft MakeCode Arcade – Sprites
-            url: https://arcade.makecode.com/reference/sprites
-          - type: paragraphe
-            texte: "Étape 1 : ouvrez la catégorie Sprites."
-          - type: paragraphe
-            texte: "Étape 2 : recherchez le bloc qui permet de créer un sprite et de lui attribuer une image et un type."
-          - type: paragraphe
-            texte: Placez ce bloc dans au démarrage.
-          - type: paragraphe
-            texte: "Choisissez une apparence simple pour votre personnage et conservez le type :"
-          - type: paragraphe
-            texte: Player
-          - type: paragraphe
-            texte: "Renommez la variable créée automatiquement en :"
-          - type: paragraphe
-            texte: joueur
-          - type: paragraphe
-            texte: Ajoutez ensuite, dans au démarrage, le bloc permettant de définir la position du sprite.
-          - type: paragraphe
-            texte: "Vous pouvez placer votre joueur où vous le souhaitez. Pour commencer simplement, vous pouvez utiliser :"
-          - type: paragraphe
-            texte: x = 10 y = 60
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q2 : Pourquoi faut-il créer le sprite joueur avant de pouvoir le positionner ou le déplacer ?"
-    - id: a06
-      titre: 3. Permettre au joueur de déplacer le personnage
-      contenu:
-          - type: paragraphe
-            texte: Le sprite apparaît, mais le joueur ne peut pas encore le contrôler.
-          - type: paragraphe
-            texte: "Nous devons maintenant résoudre :"
-          - type: paragraphe
-            texte: Comment relier les boutons directionnels au personnage ?
-          - type: paragraphe
-            texte: "Étape 1 : ouvrez la catégorie Controller."
-          - type: paragraphe
-            texte: "Étape 2 : recherchez le bloc permettant de :"
-          - type: paragraphe
-            texte: déplacer joueur avec les boutons
-          - type: paragraphe
-            texte: "Ce bloc possède deux valeurs de vitesse :"
-          - type: liste
-            elements:
-                - "vx : vitesse sur l'axe horizontal ;"
-                - "vy : vitesse sur l'axe vertical."
-          - type: paragraphe
-            texte: "Documentation : Microsoft MakeCode Arcade – Déplacement d'un sprite avec les boutons"
-          - type: lien
-            titre: Microsoft MakeCode Arcade – Déplacement d'un sprite avec les boutons
-            url: https://arcade.makecode.com/reference/controller/move-sprite
-          - type: paragraphe
-            texte: Pour commencer, faites en sorte que le joueur puisse se déplacer uniquement horizontalement.
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q3 : Quelle valeur devez-vous mettre à 0 pour empêcher les déplacements verticaux ?"
-            suite:
-                - type: paragraphe
-                  texte: Testez avec le simulateur.
-          - id: q02
-            type: texte
-            enonce: "Q4 : Que se passerait-il si nous supprimions complètement le bloc de déplacement ?"
-    - id: a07
-      titre: 4. Une valeur peut modifier le comportement
-      contenu:
-          - type: paragraphe
-            texte: La vitesse du joueur dépend des valeurs indiquées dans le bloc de déplacement.
-          - type: paragraphe
-            texte: "Avant de modifier les valeurs :"
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q5 : Que pensez-vous qu'il se passera si vous doublez la valeur de vx ?"
-            suite:
-                - type: paragraphe
-                  texte: Notez votre hypothèse dans Writer.
-                - type: paragraphe
-                  texte: Doublez ensuite la valeur et testez le programme.
-          - id: q02
-            type: texte
-            enonce: "Q6 : Qu'avez-vous observé ? Votre hypothèse était-elle correcte ?"
-            suite:
-                - type: paragraphe
-                  texte: Choisissez ensuite une vitesse qui vous semble adaptée au jeu.
-    - id: a08
-      titre: 5. Ajouter l'objet à récupérer
-      contenu:
-          - type: paragraphe
-            texte: Le joueur existe et peut se déplacer.
-          - type: paragraphe
-            texte: "Résolvons maintenant :"
-          - type: paragraphe
-            texte: Créer l'objet que le joueur devra récupérer.
-          - type: paragraphe
-            texte: Vous avez déjà créé un sprite une fois.
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q7 : Dans quelle catégorie devez-vous rechercher le bloc nécessaire ?"
-            suite:
-                - type: paragraphe
-                  texte: Créez un nouveau sprite dans au démarrage.
-                - type: paragraphe
-                  texte: "Renommez sa variable :"
-                - type: paragraphe
-                  texte: objet
-                - type: paragraphe
-                  texte: Choisissez son apparence.
-                - type: paragraphe
-                  texte: "Cette fois, utilisez le type :"
-                - type: paragraphe
-                  texte: Food
-                - type: paragraphe
-                  texte: Placez l'objet sur la même ligne horizontale que le joueur afin de pouvoir le tester facilement.
-                - type: paragraphe
-                  texte: "Par exemple :"
-                - type: paragraphe
-                  texte: x = 80 y = 60
-          - id: q02
-            type: texte
-            enonce: "Q8 : Pourquoi est-il utile que le joueur soit de type Player et l'objet de type Food ?"
-    - id: a09
-      titre: 6. Que se passe-t-il lorsque le joueur touche l'objet ?
-      contenu:
-          - type: paragraphe
-            texte: Lancez le jeu puis déplacez le joueur jusqu'à l'objet.
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q9 : Que se passe-t-il actuellement lorsque les deux sprites se touchent ?"
-            suite:
-                - type: paragraphe
-                  texte: Rien de particulier n'a encore été programmé pour cette situation.
-                - type: paragraphe
-                  texte: Nous allons utiliser un événement.
-                - type: paragraphe
-                  texte: "Documentation : Microsoft MakeCode Arcade – Événement de chevauchement entre sprites"
-                - type: lien
-                  titre: Microsoft MakeCode Arcade – Événement de chevauchement entre sprites
-                  url: https://arcade.makecode.com/reference/sprites/on-overlap
-                - type: paragraphe
-                  texte: "Dans la catégorie Sprites, recherchez le bloc qui commence par :"
-                - type: paragraphe
-                  texte: lorsque sprite de type ... chevauche sprite de type ...
-                - type: paragraphe
-                  texte: "Réglez les types pour détecter :"
-                - type: paragraphe
-                  texte: Player + Food
-                - type: paragraphe
-                  texte: "Attention : ce bloc est un événement. Il ne se place pas dans au démarrage."
-                - type: paragraphe
-                  texte: Les instructions situées à l'intérieur seront exécutées lorsque les deux types de sprites se chevaucheront.
-                - type: paragraphe
-                  texte: Dans cet événement, ajoutez un bloc de la catégorie Sprites permettant de détruire l'objet récupéré.
-                - type: paragraphe
-                  texte: Testez.
-          - id: q02
-            type: texte
-            enonce: "Q10 : Quelle situation déclenche maintenant la disparition de l'objet ?"
-          - id: q03
-            type: texte
-            enonce: "Q11 : Pourquoi le bloc de chevauchement est-il appelé un événement ?"
-    - id: a10
-      titre: 7. Le programme doit se souvenir
-      contenu:
-          - type: paragraphe
-            texte: L'objet disparaît maintenant lorsque le joueur le récupère.
-          - type: paragraphe
-            texte: "Mais une difficulté apparaît :"
-          - type: paragraphe
-            texte: Comment le programme saura-t-il plus tard que l'objet a déjà été récupéré ?
-          - type: paragraphe
-            texte: Nous allons conserver cette information dans une variable.
-          - type: paragraphe
-            texte: "Ouvrez la catégorie Variables et créez :"
-          - type: paragraphe
-            texte: objetRecupere
-          - type: paragraphe
-            texte: "Documentation : Microsoft MakeCode Arcade – Variables"
-          - type: lien
-            titre: Microsoft MakeCode Arcade – Variables
-            url: https://arcade.makecode.com/blocks/variables
-          - type: paragraphe
-            texte: "Cette variable utilisera deux valeurs simples :"
-          - type: liste
-            elements:
-                - "0 : l'objet n'a pas encore été récupéré ;"
-                - "1 : l'objet a été récupéré."
-          - type: paragraphe
-            texte: "Dans au démarrage, ajoutez :"
-          - type: paragraphe
-            texte: définir objetRecupere à 0
-          - type: paragraphe
-            texte: "Puis, dans l'événement Player + Food, juste avant ou après la disparition de l'objet, ajoutez :"
-          - type: paragraphe
-            texte: définir objetRecupere à 1
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q12 : Pourquoi la variable vaut-elle 0 au démarrage ?"
-          - id: q02
-            type: texte
-            enonce: "Q13 : Quel événement fait passer sa valeur à 1 ?"
-          - id: q03
-            type: texte
-            enonce: "Q14 : Pourquoi devons-nous mémoriser cette information alors que l'objet a disparu de l'écran ?"
-    - id: a11
-      titre: 8. Créer la sortie
-      contenu:
-          - type: paragraphe
-            texte: "Nous allons maintenant créer un troisième sprite : la sortie."
-          - type: paragraphe
-            texte: Vous connaissez déjà la méthode générale.
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q15 : Créez un nouveau sprite représentant la sortie."
-            suite:
-                - type: paragraphe
-                  texte: "Renommez sa variable :"
-                - type: paragraphe
-                  texte: sortie
-                - type: paragraphe
-                  texte: Donnez-lui un type différent de Player et Food.
-                - type: paragraphe
-                  texte: "Vous pouvez créer un nouveau type nommé :"
-                - type: paragraphe
-                  texte: Exit
-                - type: paragraphe
-                  texte: Placez ensuite la sortie à un autre endroit de l'écran.
-                - type: paragraphe
-                  texte: Nous devons détecter lorsque le joueur l'atteint.
-          - id: q02
-            type: texte
-            enonce: "Q16 : Quel type de bloc déjà utilisé pourrait permettre de détecter cette rencontre ?"
-            suite:
-                - type: paragraphe
-                  texte: "Créez l'événement correspondant au chevauchement :"
-                - type: paragraphe
-                  texte: Player + Exit
-    - id: a12
-      titre: 9. La sortie ne doit pas toujours provoquer la victoire
-      contenu:
-          - type: paragraphe
-            texte: "Avant de poursuivre : rendez de nouveau le déplacement possible sur les axes x ET y."
-          - type: paragraphe
-            texte: Retournez au bloc de déplacement du joueur et remettez une valeur différente de 0 pour vy.
-          - type: paragraphe
-            texte: Le joueur peut maintenant rejoindre la sortie.
-          - type: paragraphe
-            texte: "Mais nous voulons respecter la règle :"
-          - type: paragraphe
-            texte: Le joueur doit avoir récupéré l'objet avant de pouvoir gagner.
-          - type: paragraphe
-            texte: "Complétez :"
-      questions:
-          - id: q01
-            type: tableau
-            enonce: Complète le tableau ci-dessous.
-            colonnes:
-                - Situation
-                - Valeur de objetRecupere
-                - Résultat attendu
-            lignes:
-                - - Le joueur n'a pas récupéré l'objet
-                  - ""
-                  - ""
-                - - Le joueur a récupéré l'objet
-                  - ""
-                  - ""
-          - id: q02
-            type: texte
-            enonce: "Q17 : Complétez le tableau avant de programmer la suite."
-            suite:
-                - type: paragraphe
-                  texte: Le programme doit maintenant prendre une décision.
-                - type: paragraphe
-                  texte: "Ouvrez la catégorie Logique et recherchez un bloc :"
-                - type: paragraphe
-                  texte: SI ... ALORS ... SINON ...
-                - type: paragraphe
-                  texte: "Documentation : Microsoft MakeCode Arcade – Conditions If / Else"
-                - type: lien
-                  titre: Microsoft MakeCode Arcade – Conditions If / Else
-                  url: https://arcade.makecode.com/blocks/logic/if
-                - type: paragraphe
-                  texte: Placez ce bloc à l'intérieur de l'événement Player + Exit.
-                - type: paragraphe
-                  texte: "Nous voulons obtenir :"
-                - type: paragraphe
-                  texte: SI objetRecupere = 1 ALORS déclencher la victoire SINON continuer la partie
-                - type: paragraphe
-                  texte: Pour déclencher la victoire, recherchez dans la catégorie Jeu le bloc permettant de terminer la partie en gagnant.
-          - id: q03
-            type: texte
-            enonce: "Q18 : Pourquoi cette condition doit-elle être vérifiée lorsque le joueur atteint la sortie et non uniquement au démarrage ?"
-          - id: q04
-            type: texte
-            enonce: "Q19 : Quelle donnée permet au programme de choisir entre victoire et poursuite de la partie ?"
-    - id: a13
-      titre: 10. Tester plusieurs situations
-      contenu:
-          - type: paragraphe
-            texte: Le programme semble maintenant fonctionner.
-          - type: paragraphe
-            texte: Mais jouer une fois ne suffit pas pour vérifier un programme.
-          - type: paragraphe
-            texte: "Un test consiste à provoquer volontairement une situation précise puis à comparer :"
-          - type: paragraphe
-            texte: résultat attendu ↔ résultat obtenu
-          - type: paragraphe
-            texte: "Complétez dans Writer :"
-      questions:
-          - id: q01
-            type: tableau
-            enonce: Complète le tableau ci-dessous.
-            colonnes:
-                - Test
-                - Résultat attendu
-                - Résultat obtenu
-                - Correct ?
-            lignes:
-                - - Déplacer le joueur dans les quatre directions
-                  - Le joueur répond correctement aux commandes
-                  - ""
-                  - Oui / Non
-                - - Toucher l'objet
-                  - L'objet disparaît
-                  - ""
-                  - Oui / Non
-                - - Atteindre la sortie sans prendre l'objet
-                  - La partie continue
-                  - ""
-                  - Oui / Non
-                - - Prendre l'objet puis atteindre la sortie
-                  - Victoire
-                  - ""
-                  - Oui / Non
-          - id: q02
-            type: texte
-            enonce: "Q20 : Pourquoi faut-il tester la sortie avec et sans l'objet ?"
-    - id: a14
-      titre: 11. Quand un test échoue
-      contenu:
-          - type: paragraphe
-            texte: Si un test échoue, ne recommencez pas immédiatement tout le programme.
-          - type: paragraphe
-            texte: Ne modifiez pas non plus plusieurs parties au hasard.
-          - type: paragraphe
-            texte: "Utilisez la méthode :"
-          - type: paragraphe
-            texte: Observer → proposer une cause → vérifier → modifier une chose → tester à nouveau
-          - type: paragraphe
-            texte: "Exemples :"
-          - type: liste
-            elements:
-                - l'objet ne disparaît pas → vérifier d'abord l'événement Player + Food ;
-                - l'objet disparaît mais la victoire reste impossible → vérifier la valeur de objetRecupere ;
-                - le joueur gagne même sans récupérer l'objet → vérifier la condition placée dans l'événement de sortie.
-          - type: paragraphe
-            texte: "Si vous rencontrez une erreur, complétez une ligne :"
-      questions:
-          - id: q01
-            type: tableau
-            enonce: Complète le tableau ci-dessous.
-            colonnes:
-                - Problème observé
-                - Cause possible
-                - Modification réalisée
-                - Nouveau résultat
-            lignes:
-                - - ""
-                  - ""
-                  - ""
-                  - ""
-          - id: q02
-            type: texte
-            enonce: "Q21 : Pourquoi vaut-il mieux modifier une seule chose avant de tester à nouveau ?"
-    - id: a15
-      titre: "12. Petit défi : maintenant, avec moins d'aide"
-      contenu:
-          - type: paragraphe
-            texte: Cette partie est facultative. Ne la commencez que si le programme principal fonctionne et si les tests précédents sont terminés.
-          - type: paragraphe
-            texte: "Choisissez une seule amélioration :"
-          - type: liste
-            elements:
-                - afficher un message lorsque la sortie est atteinte sans l'objet ;
-                - ajouter un deuxième objet à récupérer ;
-                - ajouter un compteur de points ;
-                - ajouter trois vies ;
-                - ajouter un ennemi qui fait perdre une vie.
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q22 : Quelle amélioration choisissez-vous ?"
-          - id: q02
-            type: texte
-            enonce: "Q23 : Avant de programmer, décomposez-la en plusieurs petits problèmes."
-          - id: q03
-            type: texte
-            enonce: "Q24 : Pour chaque petit problème, indiquez ce dont vous pensez avoir besoin :"
-            suite:
-                - type: liste
-                  elements:
-                      - un sprite ;
-                      - un événement ;
-                      - une variable ;
-                      - une condition ;
-                      - ou une solution déjà utilisée dans le programme.
-                - type: paragraphe
-                  texte: Expliquez vos choix avant de rechercher les blocs.
-                - type: paragraphe
-                  texte: Vous pouvez ensuite essayer de programmer votre amélioration.
-    - id: a16
-      titre: 13. Conclusion
-      contenu:
-          - type: paragraphe
-            texte: Répondez avec vos propres mots.
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Q25 : Qu'est-ce qu'un événement ? Donnez un exemple provenant de votre jeu."
-          - id: q02
-            type: texte
-            enonce: "Q26 : À quoi sert la variable objetRecupere ?"
-          - id: q03
-            type: texte
-            enonce: "Q27 : Pourquoi avons-nous besoin d'une condition au niveau de la sortie ?"
-          - id: q04
-            type: texte
-            enonce: "Q28 : Pourquoi avons-nous construit et testé le jeu fonctionnalité par fonctionnalité plutôt que de tout programmer en une seule fois ?"
-          - id: q05
-            type: texte
-            enonce: "Q29 : Un autre élève souhaite créer un jeu mais ne sait pas par où commencer. Expliquez-lui en trois ou quatre phrases la méthode que vous lui conseilleriez."
-            suite:
-                - type: paragraphe
-                  texte: "Votre réponse devra faire apparaître les idées :"
-                - type: paragraphe
-                  texte: décomposer → réaliser une petite partie → tester → corriger → continuer → assembler
-                - type: paragraphe
-                  texte: Enregistrez votre fichier Writer.
-                - type: paragraphe
-                  texte: "Vérifiez également que votre projet MakeCode Arcade porte le nom :"
-                - type: paragraphe
-                  texte: 5e_S10_nom1_nom2
-                - type: paragraphe
-                  texte: Déposez les fichiers demandés dans l'espace d'échange.
-    - id: a17
-      titre: Sources et ressources
-      contenu:
-          - type: liste
-            elements:
-                - "Ministère de l'Éducation nationale – Programme de technologie du cycle 4 : Programme officiel de technologie"
-          - type: lien
-            titre: Programme officiel de technologie
-            url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-          - type: paragraphe
-            texte: Cette séance utilise MakeCode Arcade de manière volontairement guidée. Les élèves commencent par identifier le rôle de chaque bloc, le tester et observer son effet. L'aide diminue progressivement lorsque des solutions déjà rencontrées doivent être réutilisées.
-      questions: []
-bilan: Relis tes réponses et vérifie les points demandés dans le bilan du cours. Tu peux revenir sur ton travail tant que le professeur ne l’a pas clôturé.
-introduction:
-    - type: titre
-      texte: "Compétence visée : Compléter et modifier un programme graphique, tester son fonctionnement et corriger progressivement les erreurs observées"
-    - type: paragraphe
-      texte: "Objectifs d’apprentissage :"
-    - type: liste
-      elements:
-          - Comprendre qu'un programme complexe peut être construit progressivement.
-          - Comprendre qu'un événement déclenche des instructions lorsqu'une situation particulière se produit.
-          - Comprendre qu'une variable permet au programme de conserver une information.
-          - Comprendre qu'une condition permet au programme de choisir entre plusieurs actions.
-          - Comprendre qu'il est utile de tester chaque petite fonctionnalité avant d'en ajouter une nouvelle.
-          - Comprendre qu'une erreur observée fournit des informations utiles pour rechercher ce qui doit être corrigé.
-    - type: liste
-      elements:
-          - Créer un programme simple avec MakeCode Arcade.
-          - Créer et contrôler un personnage.
-          - Créer plusieurs sprites ayant des rôles différents.
-          - Détecter le contact entre deux types de sprites.
-          - Mémoriser une information avec une variable.
-          - Utiliser une condition simple.
-          - Tester plusieurs situations prévues.
-          - Modifier une petite partie du programme puis tester à nouveau.
-    - type: liste
-      elements:
-          - Un document LibreOffice Writer nommé 5e_S10_nom1_nom2.odt.
-          - Les noms et prénoms des élèves du groupe.
-          - Le titre de la séance.
-          - Les réponses aux différentes questions.
-          - Un tableau présentant les tests réalisés.
-          - Un projet MakeCode Arcade nommé 5e_S10_nom1_nom2.
-    - type: paragraphe
-      texte: Le document Writer devra être rendu en fin de séance, même si le programme n'est pas entièrement terminé.
-    - type: paragraphe
-      texte: "Important : ne cherchez pas à terminer tout le jeu immédiatement. Nous allons construire et tester une fonctionnalité à la fois."
-reperes_officiels:
-    - type: paragraphe
-      texte: Dans cette page du ministère, retrouve le programme ou le référentiel de ta formation. Les objectifs précis étudiés aujourd’hui sont indiqués dans le cours.
-    - type: lien
-      titre: Consulter les programmes et attendus officiels
-      url: https://eduscol.education.gouv.fr/5745/ressources-d-accompagnement-du-programme-de-technologie-au-cycle-4
+    -   id: a01
+        titre: Collecter les informations
+        contenu:
+            -   type: titre
+                texte: Document 1 — Quelques étapes de l’éclairage (dates arrondies)
+            -   type: tableau
+                colonnes:
+                    - Solution
+                    - Date d’apparition
+                    - Énergie utilisée
+                    - Ce qu’elle a apporté
+                lignes:
+                    -   - Lampe à huile
+                        - vers -15 000 (Préhistoire)
+                        - Graisse ou huile qui brûle
+                        - Une lumière qu’on peut transporter dans une grotte
+                    -   - Bougie
+                        - Antiquité
+                        - Cire qui brûle
+                        - Plus pratique et plus propre que la graisse
+                    -   - Ampoule à filament
+                        - '1879'
+                        - Électricité
+                        - Pas de flamme, donc moins de risque d’incendie
+                    -   - LED d’éclairage
+                        - années 2000
+                        - Électricité
+                        - Beaucoup moins de consommation, très longue durée
+                    -   - Lampe solaire de jardin
+                        - années 2000
+                        - Lumière du soleil stockée dans une batterie
+                        - Pas de fil ni de prise
+            -   type: paragraphe
+                texte: Dans ce tableau, chaque ligne est un objet ; chaque colonne est un type de donnée (date, énergie, avantage).
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: D’après le document 1, quelle est la plus ancienne solution ?
+                choix:
+                    -   id: a
+                        texte: La bougie.
+                    -   id: b
+                        texte: La lampe à huile.
+                    -   id: c
+                        texte: L’ampoule à filament.
+            -   id: q02
+                type: nombre
+                enonce: D’après le document 1, combien d’années séparent l’ampoule à filament (1879) de l’an 2000 ?
+                unite: ans
+    -   id: a02
+        titre: Ranger sur une frise
+        transition: Tu as collecté les informations. Pour voir l’évolution, il faut maintenant trier ces données dans l’ordre du temps.
+        contenu:
+            -   type: paragraphe
+                texte: Une frise chronologique se lit de gauche (le plus ancien) à droite (le plus récent).
+            -   type: paragraphe
+                texte: 'Exemple expliqué : la lampe à huile vient en premier car c’est la plus ancienne (vers -15 000).'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Range les solutions de la plus ancienne à la plus récente (écris le nom de la solution dans chaque case).
+                colonnes:
+                    - Rang
+                    - Solution
+                lignes:
+                    -   - 1 (la plus ancienne)
+                        - Lampe à huile
+                    -   - '2'
+                        - ''
+                    -   - '3'
+                        - ''
+                    -   - 4 (les plus récentes, à égalité)
+                        - ''
+            -   id: q02
+                type: qcm
+                enonce: Quelle grande invention sépare la bougie de l’ampoule à filament ?
+                choix:
+                    -   id: a
+                        texte: L’utilisation de l’électricité.
+                    -   id: b
+                        texte: La découverte du feu.
+                    -   id: c
+                        texte: Le panneau solaire.
+    -   id: a03
+        titre: Expliquer les évolutions
+        transition: Tu vois l’ordre des inventions. Il reste à comprendre pourquoi on est passé de l’une à l’autre.
+        contenu:
+            -   type: paragraphe
+                texte: Une évolution s’explique souvent par un besoin nouveau (moins de danger, moins de dépenses) ou par une invention (l’électricité, la LED).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le document 1, explique pourquoi on est passé de la bougie à l’ampoule à filament. Utilise « car » et un fait du document (réflexe n° 4).
+            -   id: q02
+                type: texte
+                enonce: Explique pourquoi on remplace aujourd’hui les ampoules à filament par des LED. Pense à ce que tu as appris en séance 9.
+    -   id: a04
+        titre: Et demain ?
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: L’éclairage continue d’évoluer.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Imagine la lampe de demain : à quel nouveau besoin répondrait-elle ?'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as collecté, trié et expliqué. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : pourquoi la façon de s’éclairer a-t-elle changé au cours de l’histoire ? Donne deux exemples.'
+retenir:
+    - Un objet évolue grâce aux inventions et pour répondre à de nouveaux besoins.
+    - Une frise chronologique se lit du plus ancien au plus récent.
+    - Collecter, trier et analyser des données permet de comprendre une évolution.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

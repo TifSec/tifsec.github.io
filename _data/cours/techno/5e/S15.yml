@@ -1,99 +1,126 @@
-titre: Comment arrêter une montée au bon moment ?
-theme: Comprendre et commander un monte-charge
-problematique: Comment arrêter une montée au bon moment ?
-pourquoi: Lire et tester une condition simple.
-application: "Les ascenseurs, jeux et appareils utilisent des conditions pour décider quand agir ou s’arrêter."
-lien_precedent: "Après S14 — Comment mémoriser une position ?, nous poursuivons avec un seul objectif : lire et tester une condition simple."
+titre: 'Séance 15 : Comment décrire une cuve d’eau avec des données ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Quelles données faut-il pour décrire une cuve de récupération d’eau de pluie et suivre son remplissage ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+objectifs:
+    connaissances:
+        - Un objet se décrit avec des descripteurs (hauteur d’eau, capacité, matériau…) qui prennent des valeurs.
+        - 'Une donnée a un type : nombre, texte, ou booléen (vrai/faux, qu’on peut écrire 1/0).'
+    competences:
+        - Choisir des descripteurs pour décrire un objet.
+        - Donner le type de chaque donnée.
+        - Lire une fiche de données.
+pourquoi:
+    - 'Notre classe prépare un projet de cuve d’eau intelligente : une cuve qui récupère l’eau de pluie et surveille son niveau. Elle n’est pas encore construite : on l’étudie sur documents.'
+    - Pour qu’une cuve « intelligente » puisse prévenir quand elle est pleine, elle doit utiliser des données. Aujourd’hui, tu apprends à décrire un objet avec des données.
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: paragraphe
-            texte: "Un ordre doit dépendre de la situation observée. Notre modèle utilise haut : 0 signifie « pas arrivé », 1 signifie « arrivé ». Bouton A simule une arrivée en haut ; bouton B remet haut à 0."
-          - type: code
-            texte: |-
-                Au démarrage : haut ← 0
-                Toujours :
-                    si haut = 1 : afficher une croix (arrêt)
-                    sinon : afficher une flèche (montée simulée)
-          - type: paragraphe
-            texte: "Exemple guidé dans un jeu : si le personnage touche la porte, le niveau s’ouvre ; sinon, il reste fermé. C’est une comparaison pour comprendre la condition. Revenons au monte-charge : la carte lit la position et choisit l’affichage adapté."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Quelle condition déclenche l’affichage d’arrêt ?
-            aide: Repère ce qui suit le mot si.
-          - id: q02
-            type: texte
-            enonce: Que doit afficher le programme pour haut = 0 ?
-            aide: Lis la branche sinon.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Créer haut et le programme fourni dans MakeCode.
-          - "Ajouter A : haut ← 1 et B : haut ← 0."
-          - "Tester les deux états puis expliquer la limite du modèle : aucune motorisation réelle."
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Décrire le changement observé lorsque tu appuies sur A, puis B.
-            aide: Donne la valeur et l’affichage correspondant.
-      ressources:
-          - type: paragraphe
-            texte: Dans la documentation, retrouver les blocs d’événement, variable et condition utilisés aujourd’hui.
-          - type: lien
-            titre: MakeCode micro:bit — Référence
-            url: https://makecode.microbit.org/reference
-          - type: lien
-            titre: Ouvrir le simulateur MakeCode micro:bit
-            url: https://makecode.microbit.org/
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Le signal d’arrivée vaut 1, mais le programme continue d’afficher la montée. Quel résultat attendu permet de conclure à une erreur ?
-            aide: Cite la condition et l’action attendue.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Descripteurs et valeurs
+        contenu:
+            -   type: paragraphe
+                texte: Un descripteur, c’est une caractéristique qu’on peut mesurer ou noter. Sa valeur, c’est ce qu’on mesure ou note.
+            -   type: tableau
+                titre: 'Exemple expliqué : la cuve du document'
+                colonnes:
+                    - Descripteur
+                    - Valeur
+                    - Type de donnée
+                lignes:
+                    -   - Capacité
+                        - 1 000
+                        - Nombre (en litres)
+                    -   - Matériau
+                        - Plastique
+                        - Texte
+                    -   - Couvercle fermé
+                        - Vrai
+                        - Booléen (vrai ou faux)
+            -   type: paragraphe
+                texte: 'Un booléen n’a que deux valeurs : vrai ou faux. L’ordinateur l’écrit avec un seul bit : 1 pour vrai, 0 pour faux (séance 14).'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Donne le type de chaque donnée : nombre, texte ou booléen.'
+                colonnes:
+                    - Descripteur
+                    - Valeur
+                    - Type
+                lignes:
+                    -   - Hauteur d’eau
+                        - 42 cm
+                        - ''
+                    -   - Couleur
+                        - Vert
+                        - ''
+                    -   - Cuve pleine
+                        - Faux
+                        - ''
+                    -   - Nombre de litres récupérés hier
+                        - '120'
+                        - ''
+    -   id: a02
+        titre: Une fiche de données pour la cuve
+        transition: 'Tu sais ce qu’est un descripteur et un type de donnée. Applique cela à notre projet : la cuve intelligente.'
+        contenu:
+            -   type: titre
+                texte: Document 1 — Ce que la cuve intelligente pourrait mesurer
+            -   type: citation
+                texte: Un capteur placé dans le couvercle mesure la distance jusqu’à la surface de l’eau. La carte électronique en déduit la hauteur d’eau. Quand la hauteur dépasse 90 cm, la cuve est considérée comme pleine et un voyant s’allume. Chaque soir, la hauteur est enregistrée avec la date.
+            -   type: paragraphe
+                texte: 'Rappel du réflexe brevet n° 5 (séance 14) : écris toujours l’unité.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: D’après le document 1, quelle donnée la cuve calcule-t-elle à partir de la distance mesurée ?
+                choix:
+                    -   id: a
+                        texte: La hauteur d’eau.
+                    -   id: b
+                        texte: La couleur de l’eau.
+                    -   id: c
+                        texte: La température.
+            -   id: q02
+                type: texte
+                enonce: D’après le document 1, la donnée « cuve pleine » est-elle un nombre, un texte ou un booléen ? Explique quand elle vaut vrai.
+            -   id: q03
+                type: nombre
+                enonce: Ce soir, la hauteur d’eau est de 95 cm. Écris la valeur du booléen « cuve pleine » avec un bit (1 pour vrai, 0 pour faux).
+    -   id: a03
+        titre: Choisir ses descripteurs
+        transition: Les données du document ont été choisies par le concepteur. À toi de proposer les tiennes.
+        contenu:
+            -   type: paragraphe
+                texte: 'Un descripteur utile aide à répondre à une question. Exemple : pour savoir s’il faut arroser avec l’eau de la cuve, la hauteur d’eau est utile ; la couleur de la cuve ne l’est pas.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Propose deux autres descripteurs utiles pour suivre la cuve, avec leur type et leur unité si c’est un nombre. Explique à quoi sert chacun.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Une cuve de 1 000 L mesure 1 m de haut.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Si la hauteur d’eau est de 40 cm, combien de litres environ contient-elle ? Explique ton calcul.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as décrit la cuve avec des données. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : quelles données faut-il pour décrire la cuve et suivre son remplissage ? Donne au moins trois données avec leur type.'
 retenir:
-    - "Une condition choisit une action selon une information observée."
-    - "Lire et tester une condition simple."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une condition choisit une action selon une information observée."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Lire et tester une condition simple."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Les ascenseurs, jeux et appareils utilisent des conditions pour décider quand agir ou s’arrêter."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - Un descripteur est une caractéristique ; il prend une valeur.
+    - 'Types de données : nombre, texte, booléen (vrai/faux, 1/0).'
+    - 'Les données permettent à un objet « intelligent » de décider (ex. : cuve pleine).'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

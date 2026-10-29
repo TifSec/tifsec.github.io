@@ -1,98 +1,126 @@
-titre: Comment donner priorité à une alerte ?
-theme: Concevoir une cuve intelligente simulée
-problematique: Comment donner priorité à une alerte ?
-pourquoi: Lire l’ordre de décisions d’un programme.
-application: "Dans une alarme ou un système de sécurité, les alertes importantes doivent être traitées en priorité."
-lien_precedent: "Après S36 — Une eau claire est-elle forcément utilisable ?, nous poursuivons avec un seul objectif : lire l’ordre de décisions d’un programme."
+titre: 'Séance 37 : Le programme fait-il ce qu’on attend ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment vérifier, test après test, que le monte-charge et son jumeau numérique se comportent comme prévu ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
+    - Valider les solutions techniques par des simulations ou par des protocoles de tests
+objectifs:
+    connaissances:
+        - Une liste de vérifications décrit, pour chaque test, l’action et le résultat attendu.
+        - 'Un jumeau numérique est une copie virtuelle d’un objet réel : il reproduit à l’écran ce que fait la maquette.'
+    competences:
+        - Prévoir le résultat attendu de chaque test à partir du programme.
+        - Comparer le résultat observé au résultat attendu.
+        - Comparer la maquette et son jumeau numérique.
+pourquoi:
+    - En séance 32, tu as testé ton jeu avec une liste de vérifications. En séance 35, tu as lu le programme du monte-charge.
+    - 'Aujourd’hui, tu vérifies le vrai monte-charge de la même façon. Le professeur montre aussi son jumeau numérique : une copie en 3D qui bouge comme la maquette.'
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: paragraphe
-            texte: "Pour notre affichage simulé, la priorité est : alerte active → ISOLEMENT ; sinon niveau ≥ 80 → PLEIN ; sinon → COLLECTE. Les états peuvent être représentés par 2, 1 et 0."
-          - type: code
-            texte: |-
-                si alerte = 1 : état ← 2
-                sinon si niveau ≥ 80 : état ← 1
-                sinon : état ← 0
-          - type: paragraphe
-            texte: "Exemple guidé : si le niveau est trop haut, le programme doit d’abord afficher l’alerte et arrêter la collecte ; sinon, il affiche le niveau normal. L’ordre des décisions évite qu’un message ordinaire cache une alerte importante."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Quel état doit-on obtenir pour niveau 20 et alerte 1 ?
-            aide: La première règle est prioritaire.
-          - id: q02
-            type: texte
-            enonce: Quel état doit-on obtenir pour niveau 90 et alerte 0 ?
-            aide: La première condition est fausse ; examiner la suivante.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Créer alerte et état dans une copie du projet.
-          - Faire varier alerte avec A et B ; régler niveau dans le démarrage pour les essais.
-          - Tester (niveau 20, alerte 1), (90, 0) puis (90, 1).
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Décrire le résultat pour niveau 90 et alerte 1, et expliquer quelle règle a priorité.
-            aide: Lire les règles dans leur ordre.
-      ressources:
-          - type: paragraphe
-            texte: Dans la documentation, retrouver les blocs d’événement, variable et condition utilisés aujourd’hui.
-          - type: lien
-            titre: MakeCode micro:bit — Référence
-            url: https://makecode.microbit.org/reference
-          - type: lien
-            titre: Ouvrir le simulateur MakeCode micro:bit
-            url: https://makecode.microbit.org/
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Pourquoi deux règles indépendantes qui écrivent chacune l’état peuvent-elles poser problème ?
-            aide: Cherche si une seconde écriture peut effacer la première.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Préparer la liste de vérifications
+        contenu:
+            -   type: paragraphe
+                texte: 'Rappel du programme (séance 35) : au démarrage, voyants orange ; en attente, voyants verts et « Attente » ; si la cabine est en bas et qu’on appuie sur Étage, elle monte jusqu’au contact haut ; si elle est en haut et qu’on appuie sur RDC, elle descend jusqu’au contact bas.'
+            -   type: paragraphe
+                texte: 'Exemple expliqué : test « on allume la maquette » → résultat attendu : les voyants s’allument en orange, car c’est la couleur choisie dans « au démarrage ».'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Écris le résultat attendu de chaque test, d’après le programme.
+                colonnes:
+                    - Test
+                    - Résultat attendu
+                lignes:
+                    -   - Rien n’est appuyé (attente)
+                        - ''
+                    -   - Cabine en bas, appui sur Étage
+                        - ''
+                    -   - Cabine en haut, appui sur Étage
+                        - ''
+                    -   - Cabine en haut, appui sur RDC
+                        - ''
+                aide: Pour chaque test, cherche dans le programme la condition qui devient vraie, ou constate qu’aucune ne l’est.
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+                url: https://makecode.microbit.org/
+    -   id: a02
+        titre: Tester la maquette (poste maquette)
+        transition: Tu sais ce qui doit se passer. Vérifions maintenant ce qui se passe vraiment.
+        contenu:
+            -   type: paragraphe
+                texte: 'Les groupes passent à tour de rôle : un élève fait l’action, un autre lit le résultat attendu, un troisième note le résultat observé. Les résultats de toute la classe sont mis en commun.'
+            -   type: paragraphe
+                texte: 'Rappel du réflexe n° 8 : un test à la fois. Si un résultat est différent de l’attendu, on le note sans rien modifier.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Écris le résultat observé pour chaque test (OK si conforme, sinon décris ce qui s’est passé).
+                colonnes:
+                    - Test
+                    - Résultat observé
+                lignes:
+                    -   - Attente
+                        - ''
+                    -   - En bas + Étage
+                        - ''
+                    -   - En haut + Étage
+                        - ''
+                    -   - En haut + RDC
+                        - ''
+            -   id: q02
+                type: qcm
+                enonce: Pendant le test « En haut + Étage », la cabine ne bouge pas. Est-ce une panne ?
+                choix:
+                    -   id: a
+                        texte: 'Non : c’est le comportement attendu, la condition est fausse.'
+                    -   id: b
+                        texte: 'Oui : il faut changer le moteur.'
+                    -   id: c
+                        texte: 'Oui : le bouton est cassé.'
+    -   id: a03
+        titre: La maquette et son jumeau numérique
+        transition: La maquette fonctionne comme prévu. Le professeur montre maintenant sa copie virtuelle.
+        contenu:
+            -   type: paragraphe
+                texte: 'Démonstration : le professeur relie la maquette à l’ordinateur et lance le jumeau numérique (logiciel OpenSpace3D). Quand la vraie cabine monte, la cabine virtuelle monte aussi à l’écran, dans un bâtiment en 3D.'
+            -   type: paragraphe
+                texte: Le jumeau utilise un autre programme sur la carte, prévu pour communiquer avec l’ordinateur. Les ingénieurs utilisent des jumeaux numériques pour tester et surveiller de vrais équipements à distance.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Décris un point commun et une différence entre la maquette et son jumeau numérique, d’après la démonstration.
+            -   id: q02
+                type: texte
+                enonce: Donne un intérêt d’un jumeau numérique pour un vrai ascenseur d’immeuble.
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: 'Un test oublié : on appuie sur les deux boutons en même temps.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le programme, que va-t-il se passer si la cabine est en bas et qu’on appuie sur Étage et RDC en même temps ? Explique.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as préparé, réalisé et comparé des tests. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment vérifier, test après test, que le monte-charge se comporte comme prévu ?'
 retenir:
-    - "L’ordre des conditions peut donner la priorité à une alerte."
-    - "Lire l’ordre de décisions d’un programme."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : L’ordre des conditions peut donner la priorité à une alerte."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Lire l’ordre de décisions d’un programme."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Dans une alarme ou un système de sécurité, les alertes importantes doivent être traitées en priorité."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - 'Tester : pour chaque action, comparer le résultat observé au résultat attendu.'
+    - Un jumeau numérique est une copie virtuelle qui reproduit le comportement de l’objet réel.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download
+    -   type: lien
+        titre: 'Éduscol — Édubase : le projet de monte-charge'
+        url: https://edubase.eduscol.education.fr/fiche/24732

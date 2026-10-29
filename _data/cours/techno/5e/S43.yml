@@ -1,118 +1,163 @@
-titre: "Cuve intelligente : peut-on valider notre modèle ?"
-theme: Concevoir une cuve intelligente simulée
-problematique: "Cuve intelligente : peut-on valider notre modèle ?"
-pourquoi: Confronter des essais à trois exigences.
-application: "Tester plusieurs exigences permet de savoir précisément ce qu’un prototype sait faire."
-lien_precedent: "Après S42 — Une notice claire pour une cuve non potable, nous poursuivons avec un seul objectif : confronter des essais à trois exigences."
+titre: 'Séance 43 : Un panneau qui suit la lumière, à quoi bon ?'
+themes:
+    - 'Les objets et les systèmes techniques : leurs usages et leurs interactions à découvrir et analyser'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Pourquoi faire suivre la lumière à un panneau solaire, et quelle amélioration allons-nous apporter à notre tracker ?
+competences_bo:
+    - Imaginer, concevoir et réaliser une ou des solutions en réponse à un besoin, à des exigences (de développement durable, par exemple) ou à la nécessité d’améliorations dans une démarche de créativité
+objectifs:
+    connaissances:
+        - Un tracker solaire oriente un panneau vers la lumière pour capter plus d’énergie qu’un panneau fixe.
+        - Un projet se mène avec un planning (des tâches, dans un ordre, avec une durée) et se termine par une revue de projet, où l’on présente ce qu’on a fait et prouvé.
+    competences:
+        - Expliquer l’intérêt d’un tracker.
+        - Choisir une amélioration à apporter à un objet existant.
+        - Suivre un planning fourni.
+pourquoi:
+    - En séance 9, tu as vu que la lampe solaire de jardin charge moins bien si son panneau est mal orienté. En séance 28, tu as choisi un panneau solaire pour la cuve.
+    - 'Notre tracker solaire règle ce problème : il tourne vers la lumière. Pendant 6 séances, ton groupe va le rendre encore plus malin, en modifiant son programme. Le tracker est déjà monté : on améliore son comportement.'
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: tableau
-            colonnes:
-                - Essai fourni
-                - État attendu
-                - État observé
-            lignes:
-                - - niveau 70, alerte 0
-                  - COLLECTE
-                  - COLLECTE
-                - - niveau 80, alerte 0
-                  - PLEIN
-                  - COLLECTE
-                - - niveau 20, alerte 1
-                  - ISOLEMENT
-                  - ISOLEMENT
-                - - donnée inconnue
-                  - À VÉRIFIER
-                  - À VÉRIFIER
-          - type: paragraphe
-            texte: Ce mini-dossier est indépendant de ton programme personnel. Les quatre lignes décrivent un autre prototype ; on ne prétend pas qu’elles sont tes observations.
-          - type: paragraphe
-            texte: "Exemple guidé : exigence « afficher une alerte au niveau haut ». Je provoque un niveau bas puis un niveau haut, je note l’affichage obtenu et je compare chaque résultat à l’exigence."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Quel essai échoue ? Citer l’écart entre attendu et observé.
-            aide: Compare les états de chaque ligne.
-          - id: q02
-            type: texte
-            enonce: Quelle erreur de comparaison pourrait expliquer cet écart ?
-            aide: Distingue une hypothèse et une preuve.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Répondre seul aux deux premières questions.
-          - Proposer une correction en binôme et choisir un essai supplémentaire.
-          - Rédiger la conclusion puis reprendre un point de la séquence qui reste fragile.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Proposer un essai qui permet de vérifier cette hypothèse de seuil.
-            aide: Garde l’autre donnée identique pour isoler l’effet.
-      ressources:
-          - type: paragraphe
-            texte: Dans la documentation, retrouver les blocs d’événement, variable et condition utilisés aujourd’hui.
-          - type: lien
-            titre: MakeCode micro:bit — Référence
-            url: https://makecode.microbit.org/reference
-          - type: lien
-            titre: Ouvrir le simulateur MakeCode micro:bit
-            url: https://makecode.microbit.org/
-    - id: a03
-      titre: Entraînement DNB — justifier avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu:
-          - type: paragraphe
-            texte: "Habitudes du DNB, adaptées à la 5e : dossier court, réponse rédigée et démarche explicite. Ce travail n’est pas un sujet officiel et n’exige pas les connaissances de troisième."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Rédiger un avis de validation, avec une limite et une action suivante.
-            aide: Cite une preuve, une limite et la prochaine action.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Pourquoi suivre la lumière ?
+        contenu:
+            -   type: paragraphe
+                texte: 'Démonstration : le professeur éclaire le tracker avec une lampe de poche et la déplace lentement. La tête du tracker tourne pour faire face à la lampe.'
+            -   type: paragraphe
+                texte: 'Un panneau reçoit le plus de lumière quand il est face à elle. S’il est de biais, la même lumière est étalée sur sa surface : il en reçoit moins.'
+            -   type: tableau
+                titre: Document 1 — Comparaison simplifiée
+                colonnes:
+                    - Position du soleil
+                    - Panneau fixe (face au sud)
+                    - Panneau sur tracker
+                lignes:
+                    -   - Matin (à l’est)
+                        - Reçoit peu
+                        - Reçoit beaucoup
+                    -   - Midi (au sud)
+                        - Reçoit beaucoup
+                        - Reçoit beaucoup
+                    -   - Soir (à l’ouest)
+                        - Reçoit peu
+                        - Reçoit beaucoup
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: D’après le document 1, quand le tracker apporte-t-il le plus par rapport à un panneau fixe ?
+                choix:
+                    -   id: a
+                        texte: Le matin et le soir.
+                    -   id: b
+                        texte: À midi seulement.
+                    -   id: c
+                        texte: La nuit.
+            -   id: q02
+                type: texte
+                enonce: Explique pourquoi un panneau orienté vers la lumière produit plus qu’un panneau de biais.
+    -   id: a02
+        titre: Choisir notre amélioration
+        transition: Tu as compris l’intérêt du tracker. Il fonctionne déjà, mais on peut le rendre plus malin.
+        contenu:
+            -   type: paragraphe
+                texte: 'Le tracker fonctionne déjà : au démarrage, il cherche l’endroit le plus lumineux ; ensuite, il tourne vers le capteur le plus éclairé. Chaque groupe choisit une amélioration de son comportement :'
+            -   type: tableau
+                titre: Document 2 — Trois améliorations possibles
+                colonnes:
+                    - Amélioration
+                    - Ce que le tracker fera de plus
+                    - Pourquoi c’est utile
+                lignes:
+                    -   - A — Mode nuit
+                        - Quand il fait très sombre, il se remet face à l’est (angle 20°).
+                        - Au lever du soleil, il est déjà bien orienté.
+                    -   - B — Afficher la direction
+                        - Il affiche une flèche sur les LED de la carte selon qu’il regarde à gauche ou à droite.
+                        - L’utilisateur voit tout de suite où il regarde.
+                    -   - C — Réagir moins souvent
+                        - Il ne bouge que si l’écart de lumière est plus grand, ou il attend plus longtemps entre deux mouvements.
+                        - Le moteur s’use moins et consomme moins.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quelle amélioration ton groupe choisit-il ? Explique pourquoi elle est utile, avec « car ».
+            -   id: q02
+                type: qcm
+                enonce: Pour l’amélioration C, pourquoi faire bouger le tracker moins souvent économise-t-il de l’énergie ?
+                choix:
+                    -   id: a
+                        texte: Le servomoteur consomme de l’électricité à chaque mouvement.
+                    -   id: b
+                        texte: Le panneau produit plus quand il bouge.
+                    -   id: c
+                        texte: La carte s’éteint.
+    -   id: a03
+        titre: Le planning du projet
+        transition: 'Ton choix est fait. Un projet se mène avec un planning : le voici.'
+        contenu:
+            -   type: tableau
+                titre: Document 3 — Planning fourni
+                colonnes:
+                    - Séance
+                    - Tâche
+                    - Production
+                lignes:
+                    -   - '43'
+                        - Comprendre le besoin, choisir l’amélioration
+                        - Choix justifié
+                    -   - '44'
+                        - Comprendre comment est fait le tracker
+                        - Description des constituants et du programme
+                    -   - '45'
+                        - Programmer l’amélioration dans le simulateur
+                        - Programme modifié
+                    -   - '46'
+                        - Tester sur le vrai tracker
+                        - Résultats de tests
+                    -   - '47'
+                        - Préparer la revue de projet
+                        - Diaporama (Impress)
+                    -   - '48'
+                        - Revue de projet
+                        - Présentation orale
+            -   type: paragraphe
+                texte: La revue de projet est une présentation où l’on explique ce qu’on a voulu faire, ce qu’on a fait et ce qu’on a prouvé par des tests.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: D’après le planning, que fait-on avant de tester sur le vrai tracker ?
+                choix:
+                    -   id: a
+                        texte: On programme l’amélioration dans le simulateur.
+                    -   id: b
+                        texte: On présente la revue de projet.
+                    -   id: c
+                        texte: On démonte le tracker.
+            -   id: q02
+                type: texte
+                enonce: Pourquoi teste-t-on d’abord dans le simulateur avant d’envoyer le programme sur le vrai tracker ?
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Les grandes centrales solaires utilisent parfois des trackers.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Donne un inconvénient d’un tracker par rapport à un panneau fixe dans une grande centrale.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Le projet est lancé. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : pourquoi faire suivre la lumière à un panneau, et quelle amélioration allons-nous apporter à notre tracker ?'
 retenir:
-    - "La validation compare chaque exigence à des résultats d’essais."
-    - "Confronter des essais à trois exigences."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : La validation compare chaque exigence à des résultats d’essais."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Confronter des essais à trois exigences."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Tester plusieurs exigences permet de savoir précisément ce qu’un prototype sait faire."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: paragraphe
-      texte: Les habitudes de rédaction et de justification prennent appui sur le cadre publié pour le DNB à compter de 2027. Le format devra être revérifié avant votre propre session.
-    - type: lien
-      titre: Éduscol — Épreuves et sujets de référence du DNB
-      url: https://eduscol.education.gouv.fr/5607/les-epreuves-du-dnb
+    - 'Un tracker oriente le panneau vers la lumière : il capte plus d’énergie le matin et le soir.'
+    - 'Un projet : un besoin, un planning, des tests, une revue de projet.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

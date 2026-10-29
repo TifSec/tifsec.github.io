@@ -1,119 +1,121 @@
-titre: Que décider si une information manque ?
-theme: Concevoir une cuve intelligente simulée
-problematique: Que décider si une information manque ?
-pourquoi: Tester une situation inhabituelle avec une règle fournie.
-application: "Un système fiable prévoit quoi faire quand une mesure manque ou paraît incohérente."
-lien_precedent: "Après S38 — Décanter et filtrer : que peut-on attendre ?, nous poursuivons avec un seul objectif : tester une situation inhabituelle avec une règle fournie."
+titre: 'Séance 39 : Pourquoi les objets tombent-ils en panne ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Pourquoi les objets tombent-ils en panne, et comment savoir s’ils seront faciles à réparer ?
+competences_bo:
+    - Identifier un dysfonctionnement d’un objet technique et y remédier
+objectifs:
+    connaissances:
+        - Une panne peut venir de l’usure, d’un choc, d’une mauvaise utilisation, d’un défaut de fabrication ou d’une pièce qui n’est plus fabriquée.
+        - La fiabilité, c’est la capacité d’un objet à fonctionner sans panne ; la durabilité, c’est sa capacité à durer longtemps, en étant entretenu et réparé.
+        - L’indice de réparabilité (sur 10) tient compte de la notice, de la facilité de démontage, de la disponibilité et du prix des pièces.
+    competences:
+        - Classer les causes de pannes.
+        - Expliquer ce qui rend un objet réparable.
+        - Proposer des gestes pour faire durer un objet.
+pourquoi:
+    - En séance 21, tu as lu l’indice de réparabilité d’un aspirateur. En séance 20, tu as vu qu’un objet qui dure longtemps a moins d’impact sur l’environnement.
+    - Aujourd’hui, tu cherches pourquoi les objets tombent en panne. C’est le début de la séquence « Je dépanne ».
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: paragraphe
-            texte: "Le cahier des charges pédagogique ajoute une règle : si une information nécessaire est absente ou invalide, afficher À VÉRIFIER et ne pas autoriser la collecte simulée. Un champ vide ne signifie pas « aucune alerte »."
-          - type: tableau
-            colonnes:
-                - Cas
-                - Niveau
-                - Alerte
-                - Validité
-            lignes:
-                - - A
-                  - "40"
-                  - "0"
-                  - Connue
-                - - B
-                  - "40"
-                  - Vide
-                  - Manquante
-                - - C
-                  - "150"
-                  - "0"
-                  - Niveau hors 0–100
-          - type: paragraphe
-            texte: "Exemple guidé : si le capteur ne donne aucune mesure, le programme ne peut pas savoir si la cuve est vide ou pleine. Je choisis alors un message « mesure à vérifier » et je n’autorise pas une action risquée."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Quel cas permet d’appliquer directement les règles usuelles ?
-            aide: Vérifie présence et domaine.
-          - id: q02
-            type: texte
-            enonce: Pourquoi B ne doit-il pas être traité comme alerte = 0 ?
-            aide: Inconnu n’est pas égal à faux.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Traiter les trois cas avant de programmer.
-          - Ajouter une variable valide qui vaut 1 seulement si les données sont utilisables.
-          - Dans le simulateur, tester valide = 0 puis 1 et noter l’état affiché.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Décrire ta règle d’affichage pour une donnée invalide et un essai qui la vérifie.
-            aide: Teste volontairement l’absence d’information.
-      ressources:
-          - type: paragraphe
-            texte: Dans la documentation, retrouver les blocs d’événement, variable et condition utilisés aujourd’hui.
-          - type: lien
-            titre: MakeCode micro:bit — Référence
-            url: https://makecode.microbit.org/reference
-          - type: lien
-            titre: Ouvrir le simulateur MakeCode micro:bit
-            url: https://makecode.microbit.org/
-    - id: a03
-      titre: Entraînement DNB — justifier avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu:
-          - type: paragraphe
-            texte: "Habitudes du DNB, adaptées à la 5e : dossier court, réponse rédigée et démarche explicite. Ce travail n’est pas un sujet officiel et n’exige pas les connaissances de troisième."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Un compte rendu affirme « tous les cas marchent » après le seul essai A. Quelle conclusion plus rigoureuse proposer ?
-            aide: Précise le périmètre réellement testé.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Les causes des pannes
+        contenu:
+            -   type: tableau
+                titre: 'Exemple expliqué : cinq causes de pannes'
+                colonnes:
+                    - Cause
+                    - Exemple
+                lignes:
+                    -   - Usure
+                        - Les patins de frein d’un vélo s’usent à force de freiner.
+                    -   - Choc
+                        - Un téléphone tombe et son écran se fissure.
+                    -   - Mauvaise utilisation
+                        - On force sur une fermeture éclair coincée.
+                    -   - Défaut de fabrication
+                        - Une soudure mal faite dans un appareil neuf.
+                    -   - Pièce plus fabriquée
+                        - Une imprimante dont la cartouche n’existe plus.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Pour chaque panne, écris sa cause probable.
+                colonnes:
+                    - Panne
+                    - Cause probable
+                lignes:
+                    -   - Les poils d’une brosse à dents sont écrasés après 6 mois.
+                        - ''
+                    -   - Une manette ne marche plus après être tombée dans les escaliers.
+                        - ''
+                    -   - 'Un ventilateur de 15 ans ne peut pas être réparé : son moteur n’est plus vendu.'
+                        - ''
+    -   id: a02
+        titre: Réparable ou pas ?
+        transition: 'Tu connais les causes de pannes. Certains objets se réparent facilement, d’autres non : qu’est-ce qui fait la différence ?'
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Ce que mesure l’indice de réparabilité
+                colonnes:
+                    - Critère de l’indice
+                    - Question
+                lignes:
+                    -   - Documentation
+                        - Existe-t-il une notice de réparation ?
+                    -   - Démontage
+                        - Peut-on ouvrir l’objet avec des outils simples (pas de colle) ?
+                    -   - Pièces détachées
+                        - Peut-on acheter les pièces, et pendant combien d’années ?
+                    -   - Prix des pièces
+                        - Une pièce coûte-t-elle beaucoup moins cher qu’un objet neuf ?
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le document 1, explique pourquoi un téléphone dont l’écran est collé est moins réparable qu’un téléphone dont l’écran est vissé.
+            -   id: q02
+                type: qcm
+                enonce: Quelle maquette du collège est facile à réparer parce que ses pièces sont imprimées en 3D au collège ?
+                choix:
+                    -   id: a
+                        texte: L’éolienne (et le tracker).
+                    -   id: b
+                        texte: Aucune.
+                    -   id: c
+                        texte: Le téléphone du professeur.
+    -   id: a03
+        titre: Faire durer
+        transition: Un objet réparable peut durer plus longtemps. Toi aussi, tu peux agir pour faire durer tes objets.
+        contenu:
+            -   type: paragraphe
+                texte: 'Rappel de la séance 20 : faire durer un objet évite d’extraire des matières et de fabriquer un objet neuf.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Propose trois gestes pour faire durer un objet que tu utilises (téléphone, vélo, ordinateur…), et explique chacun.
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: On parle d’« obsolescence » quand un objet devient inutilisable trop tôt.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Cherche un exemple d’objet qui devient inutilisable alors qu’il fonctionne encore (mise à jour impossible, pièce introuvable…). Que pourrait-on faire ?
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as étudié les causes et la réparabilité. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : pourquoi les objets tombent-ils en panne, et comment savoir s’ils seront faciles à réparer ?'
 retenir:
-    - "Quand une donnée manque, le programme doit appliquer une règle de sécurité prévue."
-    - "Tester une situation inhabituelle avec une règle fournie."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Quand une donnée manque, le programme doit appliquer une règle de sécurité prévue."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Tester une situation inhabituelle avec une règle fournie."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Un système fiable prévoit quoi faire quand une mesure manque ou paraît incohérente."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: paragraphe
-      texte: Les habitudes de rédaction et de justification prennent appui sur le cadre publié pour le DNB à compter de 2027. Le format devra être revérifié avant votre propre session.
-    - type: lien
-      titre: Éduscol — Épreuves et sujets de référence du DNB
-      url: https://eduscol.education.gouv.fr/5607/les-epreuves-du-dnb
+    - 'Causes de pannes : usure, choc, mauvaise utilisation, défaut, pièce introuvable.'
+    - 'Un objet réparable : notice, démontage simple, pièces disponibles et peu chères.'
+    - Faire durer un objet réduit son impact sur l’environnement.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

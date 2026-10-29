@@ -1,98 +1,132 @@
-titre: "Arcade : gagner seulement si les conditions sont réunies"
-theme: Créer un jeu de collecte et expliquer ses règles
-problematique: "Arcade : gagner seulement si les conditions sont réunies"
-pourquoi: Lire et modifier une condition dans un programme existant.
-application: "Les conditions permettent aux jeux et aux applications de réagir différemment selon la situation."
-lien_precedent: "Après S29 — Arcade : à quoi sert un compteur ?, nous poursuivons avec un seul objectif : lire et modifier une condition dans un programme existant."
+titre: 'Séance 30 : Arcade : comment faire bouger un personnage avec les boutons ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment un programme fait-il réagir un personnage quand le joueur appuie sur les boutons ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
+    - Comprendre et modifier un programme associé à une fonctionnalité d’un objet ou d’un système technique
+objectifs:
+    connaissances:
+        - Un programme est une suite d’instructions que l’ordinateur exécute. Avec MakeCode Arcade, on l’écrit avec des blocs.
+        - Les entrées sont ce qui donne une information au programme (les boutons) ; les sorties sont ce que le programme produit (l’écran, le son).
+        - Une variable garde une information, par exemple le personnage du joueur ou sa vitesse.
+    competences:
+        - Lire un programme bloc par bloc (réflexe brevet n° 9).
+        - Créer un personnage qui se déplace avec les boutons.
+        - Changer un nombre et prévoir son effet.
+pourquoi:
+    - Les maquettes du collège (monte-charge, tracker) sont commandées par des programmes écrits avec des blocs, dans MakeCode.
+    - Avant de les étudier, tu apprends à programmer en créant un jeu avec MakeCode Arcade, qui utilise les mêmes blocs. Ton jeu reste dans MakeCode ; sur le site, tu expliques ce que tu as fait.
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: paragraphe
-            texte: "Nouvelle règle du jeu : la sortie termine la partie seulement lorsque le score est au moins égal à 3. Si le score vaut 0, 1 ou 2, le joueur doit continuer la collecte."
-          - type: code
-            texte: |-
-                Quand joueur touche sortie :
-                    si score ≥ 3 : terminer la partie avec victoire
-                    sinon : afficher « collecte encore »
-          - type: paragraphe
-            texte: "Exemple guidé dans Arcade : si le score atteint 5, alors le jeu affiche « gagné » ; sinon, la partie continue. Je teste 4 puis 5 pour vérifier les deux branches de la condition."
-      questions:
-          - id: q01
-            type: texte
-            enonce: La sortie doit-elle permettre de gagner avec un score de 2 ? Justifier.
-            aide: Comparer la valeur à la règle.
-          - id: q02
-            type: texte
-            enonce: Pourquoi la valeur 3 doit-elle permettre de gagner ?
-            aide: Distingue supérieur de supérieur ou égal.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Ajouter cette condition au contact avec la sortie.
-          - Tester volontairement avec un score de 2 puis de 3.
-          - Rendre le message d’aide lisible et enregistrer une copie du projet.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Décrire tes deux essais à la limite du seuil et ce qu’ils montrent.
-            aide: Un test proche du seuil repère les erreurs de comparaison.
-      ressources:
-          - type: paragraphe
-            texte: Retrouver un bloc pour le sprite, les commandes, le score ou les contacts ; comparer avec ton programme.
-          - type: lien
-            titre: MakeCode Arcade — Référence
-            url: https://arcade.makecode.com/reference
-          - type: lien
-            titre: Ouvrir MakeCode Arcade
-            url: https://arcade.makecode.com/
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Un programme utilise score > 3. Quelle différence concrète observera-t-on ?
-            aide: Cherche la première valeur qui change de résultat.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Créer le personnage
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Ouvre arcade.makecode.com et clique sur « Nouveau projet ». Nomme-le : 5e_S30_tonprenom.'
+                    - Dans la catégorie « Sprites », fais glisser le bloc « définir mySprite à sprite … de type Player » dans « au démarrage ».
+                    - Clique sur le carré gris du bloc et dessine (ou choisis dans la galerie) ton personnage. Ne passe pas plus de 3 minutes sur le dessin !
+                    - Dans « Contrôleur », ajoute « déplacer mySprite avec les boutons » sous le bloc précédent.
+                    - Teste dans le simulateur à gauche avec les flèches du clavier.
+            -   type: citation
+                texte: 'Réflexe brevet n° 9 : je lis un programme bloc par bloc, de haut en bas, comme une recette : je dis ce que fait chaque bloc.'
+            -   type: code
+                texte: "au démarrage\n    définir mySprite à sprite [ton dessin] de type Player\n    déplacer mySprite avec les boutons"
+            -   type: paragraphe
+                texte: 'Exemple expliqué : bloc 1, au démarrage du jeu, on crée un personnage (un sprite) rangé dans la variable mySprite. Bloc 2, on indique que ce personnage se déplace quand le joueur appuie sur les flèches.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Dans ce programme, quelles sont les entrées ?
+                choix:
+                    -   id: a
+                        texte: Les flèches (boutons) du joueur.
+                    -   id: b
+                        texte: L’écran du jeu.
+                    -   id: c
+                        texte: Le dessin du personnage.
+            -   id: q02
+                type: qcm
+                enonce: Quelle est la sortie ?
+                choix:
+                    -   id: a
+                        texte: L’écran, où le personnage bouge.
+                    -   id: b
+                        texte: Le clavier.
+                    -   id: c
+                        texte: La souris.
+            -   id: q03
+                type: texte
+                enonce: Explique avec tes mots ce que fait le bloc « déplacer mySprite avec les boutons ».
+        ressources:
+            - &id001
+                type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a02
+        titre: Changer un nombre
+        transition: 'Ton personnage bouge. Un programme se règle avec des nombres : change-les et observe l’effet.'
+        contenu:
+            -   type: paragraphe
+                texte: 'Clique sur le petit « + » du bloc « déplacer mySprite avec les boutons » : deux nombres apparaissent, vx et vy (vitesse horizontale et verticale), réglés sur 100.'
+            -   type: paragraphe
+                texte: 'Rappel de la séance 6 : je prévois, je change un seul réglage, j’observe, je compare.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Avant de tester, prévois : que va-t-il se passer si on remplace 100 par 30 pour vx et vy ?'
+            -   id: q02
+                type: texte
+                enonce: Teste avec 30, puis avec 200. Décris ce que tu observes et dis si ta prévision était juste.
+            -   id: q03
+                type: qcm
+                enonce: Tu mets vx à 100 et vy à 0. Que se passe-t-il ?
+                choix:
+                    -   id: a
+                        texte: Le personnage se déplace seulement de gauche à droite.
+                    -   id: b
+                        texte: Le personnage ne bouge plus du tout.
+                    -   id: c
+                        texte: Le personnage se déplace seulement de haut en bas.
+    -   id: a03
+        titre: Rester dans l’écran
+        transition: 'Tu sais régler la vitesse. Il reste un problème à corriger : le personnage peut sortir de l’écran.'
+        contenu:
+            -   type: paragraphe
+                texte: Ton personnage peut sortir de l’écran. Dans « Sprites », le bloc « définir mySprite rester à l’écran à vrai » l’en empêche.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ajoute ce bloc et teste. Écris dans l’ordre les trois blocs de ton programme « au démarrage », comme dans l’exemple.
+            -   id: q02
+                type: texte
+                enonce: Copie le lien de partage de ton jeu (bouton « Partager ») si ton professeur le demande. Sinon, écris « enregistré dans MakeCode ».
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: 'Tu peux ajouter un décor : « Scène » > « définir l’image d’arrière-plan ».'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ajoute un arrière-plan, puis explique dans quel bloc tu l’as mis et pourquoi.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as créé un personnage, réglé sa vitesse et corrigé un problème. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment un programme fait-il réagir un personnage quand le joueur appuie sur les boutons ?'
 retenir:
-    - "Une condition permet de tester une règle de victoire ou de poursuite."
-    - "Lire et modifier une condition dans un programme existant."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une condition permet de tester une règle de victoire ou de poursuite."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Lire et modifier une condition dans un programme existant."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Les conditions permettent aux jeux et aux applications de réagir différemment selon la situation."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - Un programme est une suite d’instructions ; ici, des blocs.
+    - 'Entrées : les boutons. Sorties : l’écran, le son.'
+    - 'Réflexe brevet n° 9 : je lis un programme bloc par bloc, comme une recette.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download
+    - *id001

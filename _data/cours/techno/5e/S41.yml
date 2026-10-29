@@ -1,105 +1,129 @@
-titre: Réparer la cuve plutôt que tout remplacer ?
-theme: Concevoir une cuve intelligente simulée
-problematique: Réparer la cuve plutôt que tout remplacer ?
-pourquoi: Comparer des solutions sur leur cycle de vie.
-application: "Réparer et remplacer une pièce peut prolonger la durée d’usage d’un objet."
-lien_precedent: "Après S40 — Comment suivre les volumes de la cuve ?, nous poursuivons avec un seul objectif : comparer des solutions sur leur cycle de vie."
+titre: 'Séance 41 : Trouver la panne du monte-charge'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment trouver et réparer la panne du monte-charge en suivant un protocole ?
+competences_bo:
+    - Identifier un dysfonctionnement d’un objet technique et y remédier
+    - Valider les solutions techniques par des simulations ou par des protocoles de tests
+objectifs:
+    connaissances:
+        - Un protocole de dépannage est une suite de vérifications, de la plus simple à la plus compliquée.
+        - 'Une réparation se valide par un test : l’objet doit refonctionner comme attendu.'
+    competences:
+        - Suivre un protocole de dépannage.
+        - Valider une réparation par un test.
+        - Retrouver l’ordre des étapes d’une notice.
+pourquoi:
+    - En séance 40, tu as repéré des pièces abîmées sur des photos.
+    - Aujourd’hui, le professeur a préparé une vraie panne sur le monte-charge, sans rien casser. Ton groupe la cherche avec un protocole ; un groupe la répare devant la classe.
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: tableau
-            colonnes:
-                - Solution fictive
-                - Prix initial
-                - Pièce usée remplaçable
-                - Accès au filtre
-            lignes:
-                - - A
-                  - 18 €
-                  - Non
-                  - Collé
-                - - B
-                  - 24 €
-                  - Oui
-                  - Trappe vissée
-          - type: paragraphe
-            texte: Le prix initial n’est pas la seule information. Durée d’usage, entretien, démontage et remplacement influencent les ressources consommées. Les données ne permettent pas de calculer un bilan environnemental complet.
-          - type: paragraphe
-            texte: "Exemple guidé : une cuve avec un filtre vissé permet de remplacer le filtre seul ; une cuve collée peut obliger à jeter davantage de pièces. Pour comparer leur durée de vie, je regarde les réparations possibles, pas seulement le prix d’achat."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Quelle solution facilite l’accès au filtre ? Quel élément du document le montre ?
-            aide: Cite une caractéristique, pas seulement une préférence.
-          - id: q02
-            type: texte
-            enonce: Pourquoi la solution la moins chère à l’achat peut-elle devenir moins intéressante à l’usage ?
-            aide: Pense aux interventions répétées.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Repérer les pièces qui devront être entretenues dans ton schéma.
-          - Dessiner une amélioration d’accès sans changer la fonction.
-          - Comparer les deux solutions et préciser l’information qui manque pour estimer le coût sur plusieurs années.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Décrire ton amélioration et expliquer comment elle facilite une opération précise.
-            aide: Relie un détail de conception à un geste d’entretien.
-      ressources:
-          - type: paragraphe
-            texte: Rechercher dans le guide la source, le convertisseur et une limite d’une énergie renouvelable.
-          - type: lien
-            titre: ADEME — Les clés de l’énergie
-            url: https://mtaterre.fr/wp-content/uploads/2024/01/2024-01-cles-energie-guide-version-nationale.pdf
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Peut-on déclarer B meilleure pour l’environnement en toute situation avec ce seul tableau ?
-            aide: Une caractéristique ne décrit pas tout le cycle de vie.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Le protocole de dépannage
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Protocole fourni
+                colonnes:
+                    - Étape
+                    - Vérification
+                    - Si NON, la panne est…
+                lignes:
+                    -   - '1'
+                        - Au démarrage, les voyants s’allument-ils en orange, et l’écran fonctionne-t-il ?
+                        - … dans l’alimentation ou la carte (appeler le professeur).
+                    -   - '2'
+                        - 'Cabine en bas, appui sur Étage : l’écran affiche-t-il « Appel Etage » ?'
+                        - … dans le bouton Étage ou le contact bas, ou leurs connecteurs.
+                    -   - '3'
+                        - Le moteur tourne-t-il et la cabine monte-t-elle ?
+                        - … dans le connecteur du moteur, le moteur, ou le câble de levage.
+                    -   - '4'
+                        - La cabine s’arrête-t-elle en haut avec « Stop Etage » ?
+                        - … dans le contact haut ou son connecteur.
+            -   type: paragraphe
+                texte: 'On s’arrête à la première vérification qui échoue : c’est là que se trouve la panne. Toutes les vérifications se font hors tension quand on touche un fil.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Pourquoi commence-t-on par vérifier les voyants et l’écran au démarrage ?
+                choix:
+                    -   id: a
+                        texte: Parce que si la carte n’est pas alimentée, rien d’autre ne peut fonctionner.
+                    -   id: b
+                        texte: Parce que c’est la plus jolie partie.
+                    -   id: c
+                        texte: Au hasard.
+            -   id: q02
+                type: texte
+                enonce: 'Un groupe observe : voyants orange au démarrage, puis en appuyant sur Étage (cabine en bas), rien ne s’affiche et rien ne bouge. D’après le document 1, où est la panne ?'
+    -   id: a02
+        titre: La panne du jour (poste maquette)
+        transition: Tu connais le protocole. Le moment est venu de l’appliquer à la vraie panne du jour.
+        contenu:
+            -   type: paragraphe
+                texte: Chaque groupe passe 5 minutes au poste maquette pour suivre le protocole. Les autres groupes travaillent sur la mission 3. Le professeur valide le diagnostic, puis un groupe répare (hors tension) devant la classe.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris le résultat de chaque étape du protocole pour la panne du jour (oui/non), puis la pièce en cause.
+            -   id: q02
+                type: texte
+                enonce: Après la réparation, quel test permet de dire que la panne est réparée ?
+    -   id: a03
+        titre: La notice d’assemblage
+        transition: 'Pour réparer certaines pièces, il faut démonter dans le bon ordre : la notice d’assemblage le montre.'
+        contenu:
+            -   type: paragraphe
+                texte: La notice d’assemblage du monte-charge montre l’ordre de construction. Pour remplacer une pièce, il faut savoir ce qu’on démonte avant elle.
+            -   type: tableau
+                colonnes:
+                    - Étape de la notice (dans le désordre)
+                lignes:
+                    -   - Mise en place du câble de levage reliant la cabine au contrepoids
+                    -   - Assemblage du bâti
+                    -   - Fixation des composants électroniques
+                    -   - Assemblage et mise en place du capot de protection
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Remets ces étapes dans l’ordre de la notice (écris le numéro de 1 à 4).
+                colonnes:
+                    - Étape
+                    - Numéro
+                lignes:
+                    -   - Câble de levage
+                        - ''
+                    -   - Bâti
+                        - ''
+                    -   - Composants électroniques
+                        - ''
+                    -   - Capot de protection
+                        - ''
+            -   id: q02
+                type: texte
+                enonce: Pour changer le câble de levage, quelle pièce faut-il sans doute enlever d’abord ? Explique.
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Un vrai ascenseur est vérifié régulièrement par un technicien.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Propose une vérification que le technicien devrait faire à chaque visite, et explique pourquoi.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as cherché une vraie panne, vu une réparation et compris la notice. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment trouver et réparer la panne du monte-charge en suivant un protocole ?'
 retenir:
-    - "Le cycle de vie comprend l’usage, l’entretien, la réparation et la fin de vie."
-    - "Comparer des solutions sur leur cycle de vie."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Le cycle de vie comprend l’usage, l’entretien, la réparation et la fin de vie."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Comparer des solutions sur leur cycle de vie."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Réparer et remplacer une pièce peut prolonger la durée d’usage d’un objet."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - 'Protocole de dépannage : du plus simple au plus compliqué, on s’arrête à la première vérification qui échoue.'
+    - On répare hors tension, puis on valide par un test.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

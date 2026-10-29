@@ -1,98 +1,132 @@
-titre: "Arcade : créer une mission de collecte"
-theme: Créer un jeu de collecte et expliquer ses règles
-problematique: "Arcade : créer une mission de collecte"
-pourquoi: Réutiliser sprites et événements pour un objectif technique.
-application: "Créer un jeu permet d’apprendre à programmer des événements et à tester une règle."
-lien_precedent: "Après S27 — Comment partager sans exposer les autres ?, nous poursuivons avec un seul objectif : réutiliser sprites et événements pour un objectif technique."
+titre: 'Séance 28 : Éolienne, panneau solaire ou pile ?'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Quelle source d’énergie choisir pour alimenter un petit capteur de la cuve, au fond du jardin du collège ?
+competences_bo:
+    - Imaginer, concevoir et réaliser une ou des solutions en réponse à un besoin, à des exigences (de développement durable, par exemple) ou à la nécessité d’améliorations dans une démarche de créativité
+    - Caractériser et choisir un objet ou un système technique selon différents critères
+objectifs:
+    connaissances:
+        - 'Une source d’énergie fournit l’énergie à un objet : réseau électrique (prise), pile, batterie rechargée par un panneau solaire ou une éolienne…'
+        - 'On choisit une source selon le besoin : quantité d’énergie, lieu, entretien, coût, impact sur l’environnement.'
+    competences:
+        - Comparer plusieurs sources d’énergie proposées.
+        - Choisir une source et justifier ce choix.
+pourquoi:
+    - Notre future cuve intelligente aura un petit capteur de niveau d’eau et un voyant. Elle sera au fond du jardin, loin de toute prise.
+    - 'Quelle source d’énergie choisir ? Tu connais maintenant l’éolienne et la lampe solaire de jardin : à toi de décider.'
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: paragraphe
-            texte: "Pause créative utile : on réutilise le jeu de S10 pour représenter une mission de collecte. Un personnage récupère un objet puis atteint une sortie. Une version simple qui fonctionne est préférable à beaucoup de décor."
-          - type: code
-            texte: |-
-                Au démarrage : créer joueur, objet et sortie
-                Déplacement : utiliser les boutons
-                Au contact de l’objet : l’objet disparaît
-          - type: paragraphe
-            texte: "Exemple guidé dans Arcade : quand le joueur touche une clé, la clé disparaît. Je teste d’abord le déplacement, puis le contact. Le jeu est réussi seulement si l’événement déclenche bien l’action attendue."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Quelles sont les trois petites fonctions à mettre en place avant le décor ?
-            aide: Découpe la mission en actions testables.
-          - id: q02
-            type: texte
-            enonce: Quel événement peut signaler que le joueur touche l’objet ?
-            aide: Dans la documentation, chercher overlap.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Créer une copie du projet de S10, ou reconstruire trois sprites simples.
-          - Relier le joueur aux commandes et programmer le contact avec l’objet.
-          - Tester le déplacement, la collecte et le redémarrage séparément.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Décrire un test de collecte : action effectuée, résultat attendu et observation."
-            aide: Un test doit pouvoir être refait.
-      ressources:
-          - type: paragraphe
-            texte: Retrouver un bloc pour le sprite, les commandes, le score ou les contacts ; comparer avec ton programme.
-          - type: lien
-            titre: MakeCode Arcade — Référence
-            url: https://arcade.makecode.com/reference
-          - type: lien
-            titre: Ouvrir MakeCode Arcade
-            url: https://arcade.makecode.com/
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Pourquoi faut-il tester un redémarrage après la collecte ?
-            aide: Un programme ne se teste pas seulement une fois.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Le besoin
+        contenu:
+            -   type: citation
+                texte: Besoin — Le capteur et le voyant de la cuve consomment très peu d’énergie. Ils doivent fonctionner jour et nuit, toute l’année, à 50 m de la prise la plus proche, sans qu’on ait à intervenir chaque semaine.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Pourquoi brancher la cuve sur une prise du collège n’est-il pas pratique ?
+                choix:
+                    -   id: a
+                        texte: Il faudrait tirer un câble de 50 m dans le jardin.
+                    -   id: b
+                        texte: La prise donnerait trop peu d’énergie.
+                    -   id: c
+                        texte: Le capteur ne fonctionne qu’avec de l’eau.
+    -   id: a02
+        titre: Comparer les sources
+        transition: Tu connais le besoin. Compare maintenant trois sources possibles.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Trois sources possibles (comparaison simplifiée)
+                colonnes:
+                    - Critère
+                    - Pile
+                    - Petite éolienne + batterie
+                    - Petit panneau solaire + batterie
+                lignes:
+                    -   - Fonctionne la nuit ?
+                        - Oui
+                        - Oui (batterie)
+                        - Oui (batterie)
+                    -   - Dépend de la météo ?
+                        - Non
+                        - Oui, du vent
+                        - Oui, du soleil
+                    -   - Entretien
+                        - Changer la pile tous les quelques mois
+                        - 'Pièces qui tournent : usure, bruit'
+                        - Nettoyer le panneau de temps en temps
+                    -   - Déchets
+                        - Piles usagées à recycler
+                        - Peu
+                        - Peu
+                    -   - Coût de départ
+                        - Très faible
+                        - Moyen
+                        - Faible
+            -   type: paragraphe
+                texte: 'Rappel du réflexe brevet n° 6 : croise ligne et colonne.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: D’après le document 1, écris un avantage et un inconvénient de chaque source.
+                colonnes:
+                    - Source
+                    - Un avantage
+                    - Un inconvénient
+                lignes:
+                    -   - Pile
+                        - ''
+                        - ''
+                    -   - Panneau solaire + batterie
+                        - ''
+                        - ''
+            -   id: q02
+                type: qcm
+                enonce: Quelle source demande le plus d’interventions pendant l’année ?
+                choix:
+                    -   id: a
+                        texte: La pile.
+                    -   id: b
+                        texte: Le panneau solaire.
+                    -   id: c
+                        texte: L’éolienne.
+    -   id: a03
+        titre: Choisir et justifier
+        transition: Tu as les données. Un concepteur doit maintenant choisir et argumenter.
+        contenu:
+            -   type: paragraphe
+                texte: 'Un bon choix répond au besoin. Exemple de raisonnement : « Le besoin dit ‘sans intervenir chaque semaine’ ; donc la pile, qu’il faut changer souvent, convient mal. »'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quelle source choisis-tu pour la cuve ? Justifie avec au moins trois éléments du besoin et du document 1.
+            -   id: q02
+                type: texte
+                enonce: Ton choix a une limite. Laquelle, et comment la réduire ?
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Notre tracker solaire oriente son panneau vers la lumière.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Serait-il utile de mettre un tracker sur la cuve ? Donne un avantage et un inconvénient.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as comparé et choisi. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : quelle source d’énergie choisir pour le capteur de la cuve, et pourquoi ?'
 retenir:
-    - "Un événement de contact peut déclencher une action dans Arcade."
-    - "Réutiliser sprites et événements pour un objectif technique."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Un événement de contact peut déclencher une action dans Arcade."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Réutiliser sprites et événements pour un objectif technique."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Créer un jeu permet d’apprendre à programmer des événements et à tester une règle."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - 'Une source d’énergie se choisit selon le besoin : énergie nécessaire, lieu, entretien, coût, déchets.'
+    - 'Le soleil et le vent sont gratuits mais dépendent de la météo : une batterie stocke l’énergie.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

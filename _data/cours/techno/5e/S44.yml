@@ -1,104 +1,125 @@
-titre: Quel problème allons-nous améliorer ?
-theme: Améliorer, réaliser et valider une solution numérique
-problematique: Quel problème allons-nous améliorer ?
-pourquoi: Choisir une amélioration réaliste et un critère de réussite.
-application: "Améliorer un outil commence par un problème observé par une personne qui l’utilise."
-lien_precedent: "Après S43 — Cuve intelligente : peut-on valider notre modèle ?, nous poursuivons avec un seul objectif : choisir une amélioration réaliste et un critère de réussite."
+titre: 'Séance 44 : Comment est fait le tracker ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Quels constituants permettent au tracker de suivre la lumière, et comment son programme les utilise-t-il ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+    - Imaginer, concevoir et réaliser une ou des solutions en réponse à un besoin, à des exigences (de développement durable, par exemple) ou à la nécessité d’améliorations dans une démarche de créativité
+objectifs:
+    connaissances:
+        - Le tracker utilise deux capteurs de lumière (un à gauche, un à droite), une carte micro:bit, un servomoteur qui fait tourner la tête, et un petit panneau solaire.
+        - Son programme compare la lumière à gauche et à droite et tourne la tête vers le côté le plus éclairé ; une fonction cherche l’angle le plus lumineux.
+    competences:
+        - Identifier les constituants du tracker et leur fonction.
+        - Repérer dans le programme ce que lit chaque capteur et ce que commande le servomoteur.
+pourquoi:
+    - En séance 43, ton groupe a choisi une amélioration.
+    - 'Pour modifier le tracker, il faut d’abord comprendre comment il est fait et comment son programme fonctionne : c’est le travail du jour.'
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: paragraphe
-            texte: "Choisir un seul support déjà étudié : monte-charge simulé, affichage de la cuve ou jeu de collecte. L’amélioration doit corriger un problème observé, pas ajouter beaucoup de fonctionnalités sans les tester."
-          - type: tableau
-            colonnes:
-                - Support
-                - Exemple de problème
-            lignes:
-                - - Monte-charge simulé
-                  - État mal compris au redémarrage
-                - - Cuve simulée
-                  - Message d’alerte peu clair
-                - - Jeu
-                  - Victoire impossible à comprendre
-          - type: paragraphe
-            texte: "Exemple guidé : si un message « erreur » ne dit pas quoi faire, je peux proposer d’ajouter une action précise. Mon critère de réussite est vérifiable : une personne qui lit le message sait quelle première vérification réaliser."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Quel support choisis-tu et quelle observation justifie ce choix ?
-            aide: Reprends une trace de travail antérieure.
-          - id: q02
-            type: texte
-            enonce: Qui bénéficiera de l’amélioration ?
-            aide: Décris la personne et la difficulté rencontrée.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Reprendre une trace d’essai de la séquence choisie.
-          - Formuler le problème et dessiner une amélioration.
-          - Fixer un critère observable et faire valider le périmètre numérique par le professeur.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Présenter ton amélioration et un critère qui permettra de dire si elle fonctionne.
-            aide: Le critère doit pouvoir être testé.
-      ressources:
-          - type: paragraphe
-            texte: Dans la documentation, retrouver les blocs d’événement, variable et condition utilisés aujourd’hui.
-          - type: lien
-            titre: MakeCode micro:bit — Référence
-            url: https://makecode.microbit.org/reference
-          - type: lien
-            titre: Ouvrir le simulateur MakeCode micro:bit
-            url: https://makecode.microbit.org/
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Pourquoi faut-il limiter le projet à une amélioration principale ?
-            aide: Relie le périmètre aux moyens.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Les constituants (poste maquette)
+        contenu:
+            -   type: paragraphe
+                texte: Chaque groupe passe au poste maquette pour observer le tracker (sans rien débrancher). Les autres travaillent avec le document 1.
+            -   type: tableau
+                titre: Document 1 — Les constituants du tracker
+                colonnes:
+                    - Constituant
+                    - Rôle
+                lignes:
+                    -   - Capteur de lumière gauche (Grove)
+                        - Mesure la lumière à gauche.
+                    -   - Capteur de lumière droit (Grove)
+                        - Mesure la lumière à droite.
+                    -   - Carte micro:bit V1 et son shield Grove
+                        - Lit les capteurs, exécute le programme et commande le servomoteur.
+                    -   - Servomoteur (Grove)
+                        - Fait tourner la tête à un angle précis (de 20° à 160°).
+                    -   - Petit panneau solaire (de lampe de jardin)
+                        - Produit de l’électricité à partir de la lumière.
+                    -   - Socle et tête imprimés en 3D
+                        - Supportent et protègent les constituants.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Pour chaque constituant, écris sa fonction : acquérir, traiter, communiquer (agir) ou convertir l’énergie.'
+                colonnes:
+                    - Constituant
+                    - Fonction
+                lignes:
+                    -   - Capteurs de lumière
+                        - ''
+                    -   - Carte micro:bit
+                        - ''
+                    -   - Servomoteur
+                        - ''
+                    -   - Panneau solaire
+                        - ''
+    -   id: a02
+        titre: Lire le programme
+        transition: Tu connais les constituants. Regarde maintenant comment le programme les utilise.
+        contenu:
+            -   type: paragraphe
+                texte: Voici le programme du tracker, en version simplifiée en français (le vrai programme est en blocs, dans MakeCode).
+            -   type: code
+                texte: "au démarrage\n    angle = 90 ; tourner le servomoteur à 90°\n    appeler chercherSoleil\n\ntoujours\n    gauche = lumière lue par le capteur de gauche\n    droite = lumière lue par le capteur de droite\n    luminosité = gauche + droite\n    si luminosité < 0,7 × meilleure luminosité alors\n        appeler chercherSoleil          (la lumière a beaucoup baissé : on recherche)\n    sinon\n        si gauche > droite + 30 alors angle = angle − 1\n        sinon si droite > gauche + 30 alors angle = angle + 1\n        garder angle entre 20° et 160°\n        tourner le servomoteur à angle\n    pause 100 ms\n\nfonction chercherSoleil\n    balayer de 20° à 160° par pas de 5° et retenir l’angle le plus éclairé\n    tourner le servomoteur vers cet angle"
+            -   type: paragraphe
+                texte: 'Rappel du réflexe n° 9 : bloc par bloc. Rappel de la séance 32 : une condition « si … alors ».'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Que fait le tracker si le capteur de gauche reçoit beaucoup plus de lumière que celui de droite (écart supérieur à 30) ?
+                choix:
+                    -   id: a
+                        texte: 'Il diminue l’angle : la tête tourne vers la gauche.'
+                    -   id: b
+                        texte: Il ne bouge pas.
+                    -   id: c
+                        texte: Il s’éteint.
+            -   id: q02
+                type: qcm
+                enonce: Le capteur gauche lit 500 et le capteur droit lit 510. Que fait le tracker ?
+                choix:
+                    -   id: a
+                        texte: 'Rien : l’écart (10) est plus petit que 30.'
+                    -   id: b
+                        texte: Il tourne à droite.
+                    -   id: c
+                        texte: Il cherche le soleil.
+            -   id: q03
+                type: texte
+                enonce: À quoi sert la fonction chercherSoleil, et quand est-elle appelée ?
+            -   id: q04
+                type: texte
+                enonce: Repère, dans le programme, l’endroit que ton groupe devra modifier pour son amélioration (A, B ou C). Explique.
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+                url: https://makecode.microbit.org/
+    -   id: a03
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le capteur de lumière donne une valeur de 0 (noir) à 1023 (très lumineux).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pour le mode nuit (amélioration A), quelle valeur de luminosité (gauche + droite) choisirais-tu comme seuil « il fait nuit » ? Comment le vérifier ?
+    -   id: a04
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as compris le tracker. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : quels constituants permettent au tracker de suivre la lumière, et comment son programme les utilise-t-il ?'
 retenir:
-    - "Un critère de réussite doit être observable ou mesurable."
-    - "Choisir une amélioration réaliste et un critère de réussite."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Un critère de réussite doit être observable ou mesurable."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Choisir une amélioration réaliste et un critère de réussite."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Améliorer un outil commence par un problème observé par une personne qui l’utilise."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - Capteurs de lumière (acquérir) → carte micro:bit (traiter) → servomoteur (agir).
+    - Le programme compare gauche et droite ; une fonction cherche l’angle le plus lumineux.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

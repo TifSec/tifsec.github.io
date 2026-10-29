@@ -1,105 +1,138 @@
-titre: "Arcade : expliquer son programme et ses tests"
-theme: Créer un jeu de collecte et expliquer ses règles
-problematique: "Arcade : expliquer son programme et ses tests"
-pourquoi: Rendre compte d’un programme avec une preuve.
-application: "Décrire un test permet à une autre personne de vérifier le fonctionnement d’un programme."
-lien_precedent: "Après S31 — Arcade : un jeu compréhensible pour quelqu’un d’autre, nous poursuivons avec un seul objectif : rendre compte d’un programme avec une preuve."
+titre: 'Séance 32 : Arcade : quand a-t-on gagné ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment un programme décide-t-il que la partie est gagnée, et comment vérifier qu’il fonctionne ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
+    - Valider les solutions techniques par des simulations ou par des protocoles de tests
+objectifs:
+    connaissances:
+        - 'Une condition « si … alors … » permet au programme de décider : si le score atteint 10, alors on a gagné.'
+        - Tester un programme, c’est vérifier avec une liste de cas qu’il fait bien ce qu’on attend.
+    competences:
+        - Écrire une condition « si … alors … ».
+        - Tester un programme avec une liste de vérifications.
+        - Faire tester son jeu par un camarade.
+pourquoi:
+    - En séance 31, ton jeu compte les objets ramassés.
+    - Un jeu doit pouvoir se terminer. Aujourd’hui, tu ajoutes une condition de victoire, puis tu testes ton jeu comme un vrai testeur. Ce sont exactement les blocs que tu retrouveras dans le programme du monte-charge.
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: code
-            texte: |-
-                Règle attendue : victoire à la sortie si score ≥ 3
-                Essai A : score 2, contact sortie → pas de victoire
-                Essai B : score 3, contact sortie → victoire
-          - type: paragraphe
-            texte: "Ce document décrit deux essais conformes. Ton propre programme peut avoir un autre résultat : le but est de le repérer et de l’expliquer, pas de recopier « tout fonctionne »."
-          - type: paragraphe
-            texte: "Exemple guidé : pour tester une collecte, je note l’action (toucher la pièce), le résultat attendu (elle disparaît et le score augmente) et le résultat observé. Cela permet à quelqu’un d’autre de refaire le même test."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Pourquoi les essais A et B ne sont-ils pas redondants ?
-            aide: Comparer les valeurs plutôt que le nombre d’essais.
-          - id: q02
-            type: texte
-            enonce: Quel bloc logique traduit « au moins trois » ?
-            aide: Le cas score = 3 doit être accepté.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Terminer la version minimale et conserver une copie du projet.
-          - Présenter en une minute la règle principale et un test.
-          - Comparer ton résultat à celui d’un camarade et écrire une limite du test.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Présenter ton programme : entrée de l’utilisateur, information mémorisée et action produite."
-            aide: Appuie ton explication sur trois blocs repérables.
-      ressources:
-          - type: paragraphe
-            texte: Retrouver un bloc pour le sprite, les commandes, le score ou les contacts ; comparer avec ton programme.
-          - type: lien
-            titre: MakeCode Arcade — Référence
-            url: https://arcade.makecode.com/reference
-          - type: lien
-            titre: Ouvrir MakeCode Arcade
-            url: https://arcade.makecode.com/
-    - id: a03
-      titre: Entraînement DNB — justifier avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu:
-          - type: paragraphe
-            texte: "Habitudes du DNB, adaptées à la 5e : dossier court, réponse rédigée et démarche explicite. Ce travail n’est pas un sujet officiel et n’exige pas les connaissances de troisième."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Ces deux essais suffisent-ils à prouver que tout le jeu fonctionne ? Justifier et proposer un essai complémentaire.
-            aide: Une conclusion doit indiquer ce que les tests couvrent.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: La condition de victoire
+        contenu:
+            -   type: etapes
+                elements:
+                    - Dans l’événement « lorsque Player chevauche Food », après « modifier le score de 1 », ajoute « Logique » > « si … alors ».
+                    - Dans le « si », mets la comparaison « score = 10 » (« Logique » > comparaison, et « Info » > « score »).
+                    - Dans le « alors », ajoute « Jeu » > « fin du jeu » et choisis « gagné ».
+            -   type: code
+                texte: "lorsque sprite de type Player chevauche otherSprite de type Food\n    modifier le score de 1\n    définir otherSprite position x (au hasard) y (au hasard)\n    si score = 10 alors\n        fin du jeu (gagné)"
+            -   type: paragraphe
+                texte: 'Exemple expliqué : à chaque objet ramassé, le programme vérifie la condition. Tant que le score vaut moins de 10, la condition est fausse et le jeu continue. Quand il vaut 10, elle devient vraie : la partie est gagnée.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Le score vaut 6. Le joueur ramasse un objet. La partie est-elle gagnée ?
+                choix:
+                    -   id: a
+                        texte: Non, le score vaut 7, la condition est fausse.
+                    -   id: b
+                        texte: Oui, dès qu’on ramasse un objet.
+                    -   id: c
+                        texte: Oui, car 6 est plus que 5.
+            -   id: q02
+                type: texte
+                enonce: Pourquoi la condition est-elle placée dans l’événement « lorsque Player chevauche Food » et pas dans « au démarrage » ?
+        ressources:
+            - &id001
+                type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a02
+        titre: Tester comme un professionnel
+        transition: Ton jeu peut être gagné. Mais fonctionne-t-il vraiment ? On le vérifie avec une liste de tests.
+        contenu:
+            -   type: tableau
+                titre: Liste de vérifications
+                colonnes:
+                    - Test
+                    - Ce que je fais
+                    - Ce qui doit se passer
+                    - Résultat (OK ou pas OK)
+                lignes:
+                    -   - '1'
+                        - Je ramasse un objet
+                        - Le score passe de 0 à 1 et l’objet change de place
+                        - …
+                    -   - '2'
+                        - Je touche un ennemi
+                        - Je perds une vie
+                        - …
+                    -   - '3'
+                        - Je ramasse 10 objets
+                        - La partie est gagnée
+                        - …
+                    -   - '4'
+                        - Je perds toutes mes vies
+                        - La partie est perdue
+                        - …
+            -   type: paragraphe
+                texte: 'Rappel du réflexe n° 8 : on teste une chose à la fois. Si un test échoue, on cherche le bloc responsable avant de tout changer.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Écris le résultat de chaque test de ton jeu : OK ou pas OK.'
+                colonnes:
+                    - Test
+                    - Résultat
+                lignes:
+                    -   - 1 (objet ramassé)
+                        - ''
+                    -   - 2 (ennemi)
+                        - ''
+                    -   - 3 (10 objets)
+                        - ''
+                    -   - 4 (plus de vies)
+                        - ''
+            -   id: q02
+                type: texte
+                enonce: Si un test était « pas OK », quel bloc as-tu corrigé et comment ? Si tout était OK, explique à quoi sert de tester quand même.
+    -   id: a03
+        titre: Faire tester par un camarade
+        transition: Tu as testé ton jeu. Un autre joueur verra peut-être des choses que tu n’as pas vues.
+        contenu:
+            -   type: paragraphe
+                texte: Échange ton poste avec un camarade pendant 3 minutes. Il joue à ton jeu et te dit ce qui est facile ou difficile, comme en séance 5.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Qu’a dit ton camarade de ton jeu ? Quelle amélioration vas-tu faire ?
+    -   id: a04
+        titre: 'Défi : le chrono'
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: « Info » > « démarrer le compte à rebours » permet de limiter le temps.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ajoute un compte à rebours de 30 secondes. Que se passe-t-il quand il arrive à 0 ? Le jeu est-il plus intéressant ?
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton jeu est terminé et testé. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment le programme décide-t-il que la partie est gagnée, et comment vérifier qu’il fonctionne ?'
 retenir:
-    - "Un test décrit une action, un résultat attendu et un résultat observé."
-    - "Rendre compte d’un programme avec une preuve."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Un test décrit une action, un résultat attendu et un résultat observé."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Rendre compte d’un programme avec une preuve."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Décrire un test permet à une autre personne de vérifier le fonctionnement d’un programme."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
-    - type: paragraphe
-      texte: Les habitudes de rédaction et de justification prennent appui sur le cadre publié pour le DNB à compter de 2027. Le format devra être revérifié avant votre propre session.
-    - type: lien
-      titre: Éduscol — Épreuves et sujets de référence du DNB
-      url: https://eduscol.education.gouv.fr/5607/les-epreuves-du-dnb
+    - Une condition « si … alors … » permet au programme de décider.
+    - On place une condition là où la valeur change (dans l’événement).
+    - 'Tester : une liste de cas, un à la fois, puis faire tester par quelqu’un d’autre.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download
+    - *id001

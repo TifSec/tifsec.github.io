@@ -1,97 +1,159 @@
-titre: Comment un bouton déclenche-t-il une action ?
-theme: Comprendre et commander un monte-charge
-problematique: Comment un bouton déclenche-t-il une action ?
-pourquoi: Modifier un programme événementiel simple dans le simulateur.
-application: "Les boutons, écrans et commandes déclenchent des actions dans les jeux et les objets du quotidien."
-lien_precedent: "Après S12 — Qu’est-ce qui agit, qu’est-ce qui informe ?, nous poursuivons avec un seul objectif : modifier un programme événementiel simple dans le simulateur."
+titre: 'Séance 13 : Où sont rangés mes fichiers, et qui peut les voir ?'
+themes:
+    - 'Les objets et les systèmes techniques : leurs usages et leurs interactions à découvrir et analyser'
+problematique: Comment ranger ses fichiers pour les retrouver, et qui a le droit de les lire ou de les modifier ?
+competences_bo:
+    - Décrire les liens entre usages et évolutions technologiques des objets et des systèmes techniques
+objectifs:
+    connaissances:
+        - Un fichier contient une information (texte, image, son…) ; un dossier range des fichiers. L’ensemble forme une arborescence.
+        - L’extension (.odt, .png, .mp3…) indique le type de fichier.
+        - Les droits de lecture et d’écriture disent qui peut lire ou modifier un fichier. Un système d’information organise le partage des informations.
+    competences:
+        - Lire et écrire le chemin d’un fichier dans une arborescence.
+        - Reconnaître le type d’un fichier par son extension.
+        - Dire qui peut lire ou modifier une information sur notre site de cours.
+pourquoi:
+    - En séance 11, tu as enregistré ta fiche dans ton dossier personnel sous le nom 5e_S11_tonprenom.odt.
+    - Bien ranger ses fichiers, c’est pouvoir les retrouver. Savoir qui peut les lire, c’est protéger ses informations. Aujourd’hui, tu apprends les deux.
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: paragraphe
-            texte: "Dans le jeu de S10, un événement déclenchait une action. Ici nous utilisons le simulateur micro:bit : le bouton A représente une demande. Les LED représentent un état ; elles ne pilotent aucun moteur réel."
-          - type: code
-            texte: |-
-                Au démarrage : afficher une croix
-                Quand le bouton A est pressé : afficher une flèche vers le haut
-          - type: paragraphe
-            texte: "Exemple guidé : au démarrage, le simulateur affiche une croix. Quand on appuie sur A, il affiche une flèche. Le programme attend un événement (l’appui), puis lance une action (l’affichage). Sur notre monte-charge simulé, A représente une demande de montée."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Quel événement représente la demande de montée ?
-            aide: Un événement décrit ce qui déclenche une action.
-          - id: q02
-            type: texte
-            enonce: Quelle image doit apparaître avant la demande ? Pourquoi ?
-            aide: Relis le bloc au démarrage.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Ouvrir MakeCode micro:bit et créer un projet nommé 5e_S13.
-          - Dans Base et Entrée, reconstituer les deux événements du document.
-          - Tester avant A, après A, puis après le redémarrage ; enregistrer le fichier du projet.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Décrire tes trois essais : avant A, après A et après un redémarrage."
-            aide: Pour chaque essai, distingue résultat attendu et résultat observé.
-      ressources:
-          - type: paragraphe
-            texte: Dans la documentation, retrouver les blocs d’événement, variable et condition utilisés aujourd’hui.
-          - type: lien
-            titre: MakeCode micro:bit — Référence
-            url: https://makecode.microbit.org/reference
-          - type: lien
-            titre: Ouvrir le simulateur MakeCode micro:bit
-            url: https://makecode.microbit.org/
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Une flèche s’affiche immédiatement sans appui sur A. Où chercher l’erreur dans le programme ?
-            aide: Comparer l’événement qui contient chaque bloc.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: 'L’arborescence : un arbre de dossiers'
+        contenu:
+            -   type: paragraphe
+                texte: 'Un dossier peut contenir des fichiers et d’autres dossiers. Cet ensemble ressemble à un arbre à l’envers : c’est l’arborescence.'
+            -   type: code
+                texte: "Documents\n└── Technologie\n    ├── Séquence 1\n    │   └── 5e_S11_lea.odt\n    └── Photos\n        └── lampe_led.png"
+            -   type: paragraphe
+                texte: 'Exemple expliqué : le chemin du fichier de Léa est Documents > Technologie > Séquence 1 > 5e_S11_lea.odt. On part du dossier le plus grand et on descend jusqu’au fichier.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris le chemin complet du fichier lampe_led.png, comme dans l’exemple.
+                aide: Pars de Documents et descends jusqu’au fichier.
+            -   id: q02
+                type: qcm
+                enonce: Pourquoi ranger ses fichiers dans des dossiers bien nommés ?
+                choix:
+                    -   id: a
+                        texte: Pour les retrouver facilement.
+                    -   id: b
+                        texte: Pour qu’ils prennent moins de place.
+                    -   id: c
+                        texte: Pour qu’ils s’ouvrent plus vite.
+    -   id: a02
+        titre: L’extension dit le type de fichier
+        transition: 'Tu sais où sont rangés les fichiers. Leur nom donne aussi un indice sur leur contenu : l’extension.'
+        contenu:
+            -   type: paragraphe
+                texte: La fin du nom d’un fichier, après le point, s’appelle l’extension. Elle indique le type de fichier et le logiciel qui l’ouvre.
+            -   type: tableau
+                colonnes:
+                    - Extension
+                    - Type de fichier
+                    - Exemple de logiciel
+                lignes:
+                    -   - .odt ou .docx
+                        - Texte
+                        - Writer, Word
+                    -   - .ods ou .xlsx
+                        - Tableur
+                        - Calc, Excel
+                    -   - .png ou .jpg
+                        - Image
+                        - Visionneuse de photos
+                    -   - .mp3
+                        - Son
+                        - Lecteur de musique
+                    -   - .mp4
+                        - Vidéo
+                        - Lecteur vidéo
+                    -   - .csv
+                        - Données en tableau (texte simple)
+                        - Calc, Excel
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Écris le type de chaque fichier : texte, tableur, image, son ou vidéo.'
+                colonnes:
+                    - Fichier
+                    - Type
+                lignes:
+                    -   - vacances.jpg
+                        - ''
+                    -   - releves_pluie.ods
+                        - ''
+                    -   - expose.odt
+                        - ''
+                    -   - chanson.mp3
+                        - ''
+    -   id: a03
+        titre: Qui peut lire, qui peut modifier ?
+        transition: 'Tu sais où sont les fichiers. Mais une information ne doit pas être lue ou modifiée par n’importe qui : il existe des droits.'
+        contenu:
+            -   type: paragraphe
+                texte: Lire un fichier, c’est le voir. Écrire (modifier), c’est le changer. On donne ces droits seulement aux personnes qui en ont besoin.
+            -   type: paragraphe
+                texte: 'Notre site de cours est un système d’information : il range et partage des informations entre élèves et professeur.'
+            -   type: tableau
+                titre: Document 1 — Qui fait quoi sur notre site de cours
+                colonnes:
+                    - Information sur le site
+                    - Qui peut la lire ?
+                    - Qui peut la modifier ?
+                lignes:
+                    -   - Le cours d’une séance
+                        - Les élèves de la classe et le professeur
+                        - Le professeur (il écrit le cours)
+                    -   - Ta copie (tes réponses)
+                        - Toi, les membres de ton groupe et ton professeur
+                        - Toi et ton groupe, tant que la copie n’est pas terminée
+                    -   - Le corrigé de la séance
+                        - Seulement le professeur
+                        - Le professeur
+            -   type: paragraphe
+                texte: 'Rappel du réflexe brevet n° 2 : commence par « D’après le document 1… ».'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: D’après le document 1, qui peut lire le corrigé d’une séance ?
+                choix:
+                    -   id: a
+                        texte: Seulement le professeur.
+                    -   id: b
+                        texte: Tous les élèves.
+                    -   id: c
+                        texte: Tout le monde sur Internet.
+            -   id: q02
+                type: texte
+                enonce: D’après le document 1, explique pourquoi un élève ne peut pas modifier la copie d’un autre élève.
+            -   id: q03
+                type: texte
+                enonce: Ton voisin te demande ton mot de passe pour « juste vérifier une réponse ». Que réponds-tu ? Explique pourquoi.
+    -   id: a04
+        titre: Range ton dossier
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le professeur peut te laisser ranger ton dossier personnel.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Propose une arborescence pour ranger tes fichiers de technologie de l’année (au moins trois dossiers). Écris-la avec des « > ».
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as appris à ranger, à reconnaître les types de fichiers et à connaître les droits. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment ranger ses fichiers pour les retrouver, et qui a le droit de les lire ou de les modifier ?'
 retenir:
-    - "Un événement déclenche une action dans le programme."
-    - "Modifier un programme événementiel simple dans le simulateur."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Un événement déclenche une action dans le programme."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Modifier un programme événementiel simple dans le simulateur."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Les boutons, écrans et commandes déclenchent des actions dans les jeux et les objets du quotidien."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - 'Arborescence : des dossiers qui contiennent des fichiers et d’autres dossiers ; un chemin part du plus grand dossier.'
+    - L’extension indique le type de fichier.
+    - 'Droits de lecture (voir) et d’écriture (modifier) : seulement pour ceux qui en ont besoin. Un mot de passe ne se prête pas.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

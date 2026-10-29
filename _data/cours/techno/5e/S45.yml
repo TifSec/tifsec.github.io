@@ -1,104 +1,127 @@
-titre: Comment préparer un prototype testable ?
-theme: Améliorer, réaliser et valider une solution numérique
-problematique: Comment préparer un prototype testable ?
-pourquoi: Organiser les tâches et prévoir un test avant de modifier.
-application: "Préparer un test avant de modifier un objet aide à comprendre l’effet de chaque changement."
-lien_precedent: "Après S44 — Quel problème allons-nous améliorer ?, nous poursuivons avec un seul objectif : organiser les tâches et prévoir un test avant de modifier."
+titre: 'Séance 45 : Programmer notre amélioration'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment modifier le programme du tracker pour réaliser notre amélioration, et la tester dans le simulateur ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
+    - Comprendre et modifier un programme associé à une fonctionnalité d’un objet ou d’un système technique
+objectifs:
+    connaissances:
+        - 'Modifier un programme existant : on garde ce qui fonctionne et on ajoute ou change seulement ce qui est nécessaire.'
+        - Dans le simulateur MakeCode, on peut régler la valeur lue sur une broche pour imiter un capteur.
+    competences:
+        - Ouvrir le programme fourni et le modifier.
+        - Tester une modification dans le simulateur.
+        - Expliquer sa modification.
+pourquoi:
+    - En séance 44, tu as repéré l’endroit du programme à modifier.
+    - 'Aujourd’hui, tu programmes ton amélioration dans le simulateur. Tous les groupes travaillent en même temps ; le vrai tracker attendra la séance 46. Le guidage est plus léger : à toi de proposer ta démarche, une aide est disponible pour chaque amélioration.'
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: paragraphe
-            texte: Avant de modifier, conserver une copie de la version qui fonctionne. Un petit plan indique ce qui change, ce qui reste identique et comment comparer les deux versions.
-          - type: tableau
-            colonnes:
-                - Trace à préparer
-                - Contenu attendu
-            lignes:
-                - - Croquis ou blocs
-                  - Partie modifiée repérable
-                - - Liste de tâches
-                  - Trois tâches courtes et ordonnées
-                - - Test
-                  - Même situation pour les deux versions
-          - type: paragraphe
-            texte: "Exemple guidé : avant de changer un programme, je note le résultat actuel. Je modifie une seule règle, puis je refais le même essai. Cette comparaison permet de voir si mon changement a aidé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Pourquoi conserver la version précédente avant la modification ?
-            aide: Une correction peut aussi introduire une erreur.
-          - id: q02
-            type: texte
-            enonce: Donner les noms des deux versions, sans nom complet ni donnée personnelle.
-            aide: Par exemple support_v1 et support_v2.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Dupliquer le projet numérique et nommer clairement les deux versions.
-          - Dessiner les blocs ou écrans concernés avant de les modifier.
-          - Écrire le test de comparaison et répartir les rôles, puis les faire tourner.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Présenter tes trois tâches et le test prévu avant de commencer.
-            aide: Le test doit viser le critère défini en S44.
-      ressources:
-          - type: paragraphe
-            texte: Dans la documentation, retrouver les blocs d’événement, variable et condition utilisés aujourd’hui.
-          - type: lien
-            titre: MakeCode micro:bit — Référence
-            url: https://makecode.microbit.org/reference
-          - type: lien
-            titre: Ouvrir le simulateur MakeCode micro:bit
-            url: https://makecode.microbit.org/
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Si l’on change en même temps les commandes, les messages et les seuils, pourquoi devient-il difficile d’expliquer une amélioration ?
-            aide: Commence par une seule modification principale.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Ouvrir le programme
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre le lien du programme du tracker donné par le professeur (ou importe le fichier tracker_solaire.js dans MakeCode, onglet JavaScript, puis reviens sur Blocs).
+                    - 'Renomme le projet : 5e_S45_groupe.'
+                    - Repère les blocs « au démarrage », « toujours » et la fonction chercherSoleil.
+            -   type: paragraphe
+                texte: 'Dans le simulateur, clique sur les broches P1 et P2 pour régler la lumière simulée des capteurs gauche et droit. Le servomoteur est sur P0 : son angle s’affiche.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Pourquoi travailler sur une copie du programme et pas sur l’original ?
+                choix:
+                    -   id: a
+                        texte: Pour pouvoir revenir au programme qui fonctionne en cas d’erreur.
+                    -   id: b
+                        texte: Parce que l’original est trop long.
+                    -   id: c
+                        texte: Pour aller plus vite.
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+                url: https://makecode.microbit.org/
+    -   id: a02
+        titre: Programmer
+        transition: Le programme est ouvert. À toi de faire ta modification, avec l’aide si besoin.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Aide pour chaque amélioration
+                colonnes:
+                    - Amélioration
+                    - 'Aide : ce qu’il faut ajouter ou changer'
+                lignes:
+                    -   - A — Mode nuit
+                        - 'Dans « toujours », au début du « sinon » : si luminosité < 100 alors angle = 20 (et tourner le servomoteur à angle).'
+                    -   - B — Afficher la direction
+                        - 'Après « tourner le servomoteur à angle » : si angle < 90 alors afficher une flèche vers la gauche, sinon une flèche vers la droite.'
+                    -   - C — Réagir moins souvent
+                        - Remplacer 30 par 80 dans les deux comparaisons, ou remplacer la pause de 100 ms par 1 000 ms.
+            -   type: paragraphe
+                texte: 'Rappel du réflexe n° 8 : fais une modification, teste, puis passe à la suivante.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Décris précisément la modification que ton groupe a faite (quels blocs ajoutés ou changés, et où).
+            -   id: q02
+                type: texte
+                enonce: Explique en une phrase, avec « si … alors … » ou avec les nombres, ce que fait ta modification.
+    -   id: a03
+        titre: Tester dans le simulateur
+        transition: Ta modification est faite. Il faut maintenant prouver qu’elle fonctionne.
+        contenu:
+            -   type: paragraphe
+                texte: 'Prépare deux tests : un où l’amélioration doit agir, un où elle ne doit pas agir. Exemple pour A : P1 et P2 à 20 (nuit) → angle 20 ; P1 et P2 à 600 (jour) → le tracker suit la lumière normalement.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Écris tes deux tests et leurs résultats dans le simulateur.
+                colonnes:
+                    - Test (valeurs de P1 et P2)
+                    - Résultat attendu
+                    - Résultat observé
+                lignes:
+                    -   - ''
+                        - ''
+                        - ''
+                    -   - ''
+                        - ''
+                        - ''
+            -   id: q02
+                type: qcm
+                enonce: Le simulateur montre que ton programme fonctionne. Est-ce suffisant pour être sûr qu’il marchera sur le vrai tracker ?
+                choix:
+                    -   id: a
+                        texte: 'Non : il faudra tester sur le vrai tracker, avec de vrais capteurs.'
+                    -   id: b
+                        texte: Oui, c’est certain.
+                    -   id: c
+                        texte: Non, le simulateur ne sert à rien.
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: On peut combiner deux améliorations.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ajoute une deuxième amélioration et explique comment tu as vérifié qu’elle ne gêne pas la première.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton amélioration est programmée et testée dans le simulateur. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment avez-vous modifié le programme du tracker, et comment l’avez-vous testé ?'
 retenir:
-    - "Un test contrôlé change une seule chose et garde une trace du résultat."
-    - "Organiser les tâches et prévoir un test avant de modifier."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Un test contrôlé change une seule chose et garde une trace du résultat."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Organiser les tâches et prévoir un test avant de modifier."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Préparer un test avant de modifier un objet aide à comprendre l’effet de chaque changement."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - On modifie une copie du programme et on garde l’original.
+    - 'On teste chaque modification : un cas où elle agit, un cas où elle n’agit pas.'
+    - 'Une entrée simulée n’est pas une mesure réelle : il faudra tester sur le vrai tracker.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

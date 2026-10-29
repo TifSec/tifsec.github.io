@@ -1,99 +1,129 @@
-titre: Comment mémoriser une position ?
-theme: Comprendre et commander un monte-charge
-problematique: Comment mémoriser une position ?
-pourquoi: Utiliser une variable pour représenter un état.
-application: "Les compteurs de points, les réglages et les états d’un appareil reposent sur des informations mémorisées."
-lien_precedent: "Après S13 — Comment un bouton déclenche-t-il une action ?, nous poursuivons avec un seul objectif : utiliser une variable pour représenter un état."
+titre: 'Séance 14 : Combien pèse un fichier ?'
+themes:
+    - 'Les objets et les systèmes techniques : leurs usages et leurs interactions à découvrir et analyser'
+problematique: Comment mesurer la quantité d’information d’un fichier, et pourquoi une vidéo prend-elle plus de place qu’un texte ?
+competences_bo:
+    - Décrire les liens entre usages et évolutions technologiques des objets et des systèmes techniques
+objectifs:
+    connaissances:
+        - 'Le bit est la plus petite information possible : 0 ou 1. Un octet est un groupe de 8 bits.'
+        - 'Multiples : 1 kilooctet (Ko) = 1 000 octets ; 1 mégaoctet (Mo) = 1 000 Ko ; 1 gigaoctet (Go) = 1 000 Mo.'
+        - 'Ordres de grandeur : un texte de quelques pages pèse quelques Ko, une photo quelques Mo, une minute de vidéo des dizaines de Mo.'
+    competences:
+        - Convertir entre Ko, Mo et Go.
+        - Comparer la taille de fichiers différents.
+        - Toujours écrire l’unité (réflexe brevet n° 5).
+pourquoi:
+    - En séance 13, tu as vu que chaque fichier a un type.
+    - 'Les fichiers n’ont pas tous la même taille : une vidéo remplit vite une clé USB, un texte presque pas. Aujourd’hui, tu apprends à mesurer cette quantité d’information.'
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: paragraphe
-            texte: Une variable est une information conservée par le programme. Comme la case d’un tableau, elle a un nom et une valeur. Ici position vaut 0 en BAS et 1 en HAUT.
-          - type: code
-            texte: |-
-                Au démarrage : position ← 0
-                Bouton A : position ← 1
-                Bouton B : position ← 0
-                Toujours : afficher position
-          - type: paragraphe
-            texte: "Exemple guidé dans un jeu : la variable score vaut 0 au départ ; après une pièce, elle vaut 1. Cette comparaison montre qu’une variable garde une valeur. Revenons au monte-charge : position garde l’état BAS ou HAUT."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Quelle valeur représente la position haute dans ce modèle ?
-            aide: Lis la convention de codage.
-          - id: q02
-            type: texte
-            enonce: Pourquoi faut-il donner une valeur à position au démarrage ?
-            aide: Imagine deux essais qui commencent avec des valeurs différentes.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Modifier une copie du projet de S13.
-          - Créer position dans Variables, puis reconstituer le programme fourni.
-          - Tester A, B, A et redémarrage ; noter la valeur à chaque fois.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Donner les valeurs observées après A, B, A puis redémarrage.
-            aide: Affiche la variable, pas un nombre écrit à la main.
-      ressources:
-          - type: paragraphe
-            texte: Dans la documentation, retrouver les blocs d’événement, variable et condition utilisés aujourd’hui.
-          - type: lien
-            titre: MakeCode micro:bit — Référence
-            url: https://makecode.microbit.org/reference
-          - type: lien
-            titre: Ouvrir le simulateur MakeCode micro:bit
-            url: https://makecode.microbit.org/
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Un programme affiche toujours 0 même après A. Proposer une vérification précise.
-            aide: Il peut s’agir du changement de valeur ou de ce qui est affiché.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Bits et octets
+        contenu:
+            -   type: paragraphe
+                texte: 'Dans un ordinateur, toute information est écrite avec seulement deux symboles : 0 et 1. Un 0 ou un 1 s’appelle un bit.'
+            -   type: paragraphe
+                texte: 8 bits forment un octet. Un octet suffit pour écrire une lettre, par exemple la lettre A.
+            -   type: tableau
+                colonnes:
+                    - Unité
+                    - Valeur
+                lignes:
+                    -   - 1 octet
+                        - 8 bits
+                    -   - 1 kilooctet (Ko)
+                        - 1 000 octets
+                    -   - 1 mégaoctet (Mo)
+                        - 1 000 Ko
+                    -   - 1 gigaoctet (Go)
+                        - 1 000 Mo
+            -   type: paragraphe
+                texte: 'Exemple expliqué : combien de Ko dans 3 Mo ? 1 Mo = 1 000 Ko, donc 3 Mo = 3 × 1 000 = 3 000 Ko.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Combien de bits y a-t-il dans 4 octets ?
+                unite: bits
+                aide: Un octet = 8 bits.
+            -   id: q02
+                type: nombre
+                enonce: Combien de Mo y a-t-il dans 2 Go ?
+                unite: Mo
+    -   id: a02
+        titre: Quel fichier est le plus lourd ?
+        transition: Tu sais convertir les unités. Maintenant, compare la taille de fichiers différents et vois ce qui les rend lourds.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Tailles habituelles (ordres de grandeur)
+                colonnes:
+                    - Fichier
+                    - Taille
+                lignes:
+                    -   - Fiche Writer de 2 pages (texte)
+                        - 20 Ko
+                    -   - Photo prise avec un téléphone
+                        - 4 Mo
+                    -   - Chanson de 3 minutes (MP3)
+                        - 5 Mo
+                    -   - Vidéo de 1 minute en haute définition
+                        - 100 Mo
+            -   type: citation
+                texte: 'Réflexe brevet n° 5 : j’écris toujours l’unité de mes résultats (Ko, Mo, Go, km, W…). Un nombre sans unité ne veut rien dire.'
+            -   type: paragraphe
+                texte: 'Exemple : « 4 » ne dit rien ; « 4 Mo » dit qu’il s’agit d’une photo d’environ 4 mégaoctets.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: D’après le document 1, quel fichier est le plus lourd ?
+                choix:
+                    -   id: a
+                        texte: La fiche Writer.
+                    -   id: b
+                        texte: La photo.
+                    -   id: c
+                        texte: La vidéo d’une minute.
+            -   id: q02
+                type: nombre
+                enonce: D’après le document 1, combien de photos de 4 Mo peut-on mettre sur une clé USB de 1 Go ?
+                unite: photos
+                aide: Convertis d’abord 1 Go en Mo, puis divise par la taille d’une photo.
+            -   id: q03
+                type: texte
+                enonce: Pourquoi une vidéo est-elle beaucoup plus lourde qu’un texte ? Explique avec « car ».
+    -   id: a03
+        titre: Envoyer et stocker
+        transition: Tu sais quels fichiers sont lourds. Cela a des conséquences quand on les envoie ou qu’on les garde.
+        contenu:
+            -   type: paragraphe
+                texte: Plus un fichier est lourd, plus il met de temps à être envoyé et plus il remplit la mémoire d’un téléphone ou d’un serveur. Les serveurs qui stockent nos fichiers consomment de l’électricité.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Donne un conseil pour envoyer moins de données quand on partage des photos, et explique pourquoi c’est utile.
+    -   id: a04
+        titre: Défi calcul
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Une minute de vidéo pèse environ 100 Mo.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Combien pèse environ un film de 2 heures ? Donne le résultat en Go, avec le calcul.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as appris les unités, comparé des fichiers et réfléchi à leur envoi. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment mesurer la quantité d’information d’un fichier, et pourquoi une vidéo prend-elle plus de place qu’un texte ?'
 retenir:
-    - "Une variable conserve une information qui peut changer pendant le programme."
-    - "Utiliser une variable pour représenter un état."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une variable conserve une information qui peut changer pendant le programme."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Utiliser une variable pour représenter un état."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Les compteurs de points, les réglages et les états d’un appareil reposent sur des informations mémorisées."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - 'Bit : 0 ou 1. Octet : 8 bits. Ko, Mo, Go : on multiplie par 1 000 à chaque fois.'
+    - Une vidéo est bien plus lourde qu’une photo, elle-même plus lourde qu’un texte.
+    - 'Réflexe brevet n° 5 : j’écris toujours l’unité.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

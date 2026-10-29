@@ -1,101 +1,159 @@
-titre: "Une cuve intelligente : pour quel besoin ?"
-theme: Concevoir une cuve intelligente simulée
-problematique: "Une cuve intelligente : pour quel besoin ?"
-pourquoi: Exprimer le besoin et les limites d’un projet.
-application: "Une cuve de récupération d’eau peut aider à suivre une réserve destinée à des usages non potables."
-lien_precedent: "Après S32 — Arcade : expliquer son programme et ses tests, nous poursuivons avec un seul objectif : exprimer le besoin et les limites d’un projet."
+titre: 'Séance 33 : Comment le monte-charge sait-il où est la cabine ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Quels constituants donnent des informations au monte-charge, lesquels décident et lesquels préviennent l’utilisateur ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+objectifs:
+    connaissances:
+        - 'Une chaîne d’information montre le chemin de l’information : acquérir (capteurs, boutons), traiter (carte programmable), communiquer (écran, voyants).'
+        - Un capteur de fin de course (contact) signale qu’une pièce est arrivée à une position. Le capteur à ultrasons mesure une distance.
+    competences:
+        - Identifier les constituants de la chaîne d’information du monte-charge (organisation fournie).
+        - 'Associer chaque constituant à sa fonction : acquérir, traiter, communiquer.'
+pourquoi:
+    - En séance 1, tu as découvert le monte-charge du collège. Depuis, tu as appris ce qu’est une chaîne d’énergie, puis à programmer avec des blocs.
+    - Aujourd’hui, le professeur fait fonctionner la maquette. Tu cherches comment elle « sait » où est la cabine et quand elle doit s’arrêter.
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: paragraphe
-            texte: "Projet numérique : imaginer une cuve qui collecte une eau destinée à un usage non potable, surveille un niveau et isole une arrivée signalée comme suspecte. Aucune eau n’est manipulée pendant cette préparation. Le modèle ne certifie jamais la potabilité."
-          - type: tableau
-            colonnes:
-                - Exigence proposée
-                - Sens
-            lignes:
-                - - Ne pas déborder
-                  - Repérer un niveau haut
-                - - Isoler une arrivée suspecte
-                  - Suivre un signal d’alerte
-                - - Informer l’utilisateur
-                  - Afficher un état compréhensible
-          - type: paragraphe
-            texte: "Exemple guidé : une famille veut savoir si sa cuve de récupération d’eau de pluie est presque pleine. Le besoin est d’être avertie avant le débordement ; le capteur et l’écran sont des solutions possibles, pas le besoin lui-même."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Formuler le besoin sans commencer par une liste de composants.
-            aide: Commence par ce que le système rend possible.
-          - id: q02
-            type: texte
-            enonce: Pourquoi « rendre l’eau buvable » n’est-il pas une exigence de ce projet ?
-            aide: Relis la limite annoncée du modèle.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Dessiner la cuve, une arrivée, une sortie autorisée et une voie de collecte isolée.
-          - Nommer les utilisateurs et le milieu extérieur.
-          - Rédiger le besoin et deux exigences vérifiables avant de choisir des composants.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Donner deux exigences et préciser ce qui permettrait de vérifier chacune.
-            aide: Une exigence doit pouvoir être confrontée à une observation.
-      ressources:
-          - type: paragraphe
-            texte: Sur le portail public, chercher qualité de l’eau et usages ; relever une information qui distingue observation et contrôle.
-          - type: lien
-            titre: Eaufrance — Portail public de l’eau
-            url: https://www.eaufrance.fr/
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Un groupe propose une sortie unique pour toute l’eau. Quelle difficulté cela pose-t-il à l’exigence d’isolement ?
-            aide: Relie une solution à l’exigence qu’elle doit satisfaire.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: La démonstration
+        contenu:
+            -   type: paragraphe
+                texte: 'Le professeur met le monte-charge en marche. Observe : la cabine est en bas. Le professeur appuie sur le bouton d’appel de l’étage : la cabine monte, puis s’arrête toute seule en haut. L’écran affiche des messages et des voyants changent de couleur.'
+            -   type: tableau
+                titre: Document 1 — Les constituants d’information du monte-charge
+                colonnes:
+                    - Constituant
+                    - Où il est
+                    - Ce qu’il fait
+                lignes:
+                    -   - Bouton d’appel « Étage »
+                        - En haut de la maquette
+                        - Demande que la cabine monte.
+                    -   - Bouton d’appel « RDC » (rez-de-chaussée)
+                        - En bas de la maquette
+                        - Demande que la cabine descende.
+                    -   - Contact haut (capteur de fin de course)
+                        - En haut du guidage
+                        - Signale que la cabine est arrivée en haut.
+                    -   - Contact bas (capteur de fin de course)
+                        - En bas du guidage
+                        - Signale que la cabine est arrivée en bas.
+                    -   - Capteur à ultrasons
+                        - Au-dessus de la cabine
+                        - Mesure une distance (en cm) ; elle s’affiche pendant le trajet.
+                    -   - Carte micro:bit et sa carte d’extension
+                        - Sur le côté
+                        - Lit les informations et décide quoi faire grâce à son programme.
+                    -   - Écran OLED
+                        - Sur la façade
+                        - 'Affiche des messages : « Attente », « Appel Etage », « Stop Etage »…'
+                    -   - Voyants de couleur
+                        - Près des boutons
+                        - Verts en attente, rouges pendant le trajet.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: D’après le document 1, comment le monte-charge sait-il que la cabine est arrivée en haut ?
+                choix:
+                    -   id: a
+                        texte: Le contact haut le signale.
+                    -   id: b
+                        texte: L’écran le devine.
+                    -   id: c
+                        texte: Le voyant vert le mesure.
+            -   id: q02
+                type: qcm
+                enonce: Quel constituant décide de faire monter ou descendre la cabine ?
+                choix:
+                    -   id: a
+                        texte: La carte micro:bit, grâce à son programme.
+                    -   id: b
+                        texte: Le bouton d’appel.
+                    -   id: c
+                        texte: Le capteur à ultrasons.
+        ressources:
+            -   type: lien
+                titre: 'Éduscol — Édubase : le projet de monte-charge'
+                url: https://edubase.eduscol.education.fr/fiche/24732
+    -   id: a02
+        titre: La chaîne d’information
+        transition: 'Tu connais les constituants. Range-les maintenant selon leur fonction : c’est la chaîne d’information.'
+        contenu:
+            -   type: tableau
+                titre: Exemple expliqué
+                colonnes:
+                    - Fonction
+                    - Ce que cela veut dire
+                    - Exemple pour la lampe de poche
+                lignes:
+                    -   - Acquérir
+                        - Recevoir une information
+                        - L’interrupteur reçoit l’ordre de l’utilisateur
+                    -   - Traiter
+                        - Décider quoi faire
+                        - '(pas de carte : l’interrupteur ferme directement le circuit)'
+                    -   - Communiquer
+                        - Donner une information à l’utilisateur
+                        - La lumière montre que la lampe est allumée
+            -   type: paragraphe
+                texte: 'Pour le monte-charge, l’organisation est fournie : à toi de placer chaque constituant dans la bonne fonction.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Pour chaque constituant du document 1, écris sa fonction : acquérir, traiter ou communiquer.'
+                colonnes:
+                    - Constituant
+                    - Fonction
+                lignes:
+                    -   - Bouton d’appel « Étage »
+                        - ''
+                    -   - Contact bas
+                        - ''
+                    -   - Carte micro:bit
+                        - ''
+                    -   - Écran OLED
+                        - ''
+                    -   - Voyants de couleur
+                        - ''
+                    -   - Capteur à ultrasons
+                        - ''
+    -   id: a03
+        titre: Lire l’écran et les voyants
+        transition: 'La chaîne d’information se termine par « communiquer » : regardons ce que l’utilisateur voit.'
+        contenu:
+            -   type: paragraphe
+                texte: 'Rappel de la séance 4 : l’utilisateur est un élément extérieur. L’écran et les voyants communiquent avec lui.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: La cabine monte. D’après le document 1 et la démonstration, que voit l’utilisateur sur les voyants et sur l’écran ?
+            -   id: q02
+                type: texte
+                enonce: Pourquoi est-il utile que l’utilisateur voie un voyant rouge pendant le trajet ? Explique avec « car ».
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le capteur à ultrasons mesure la distance au-dessus de la cabine.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quand la cabine monte, la distance mesurée augmente-t-elle ou diminue-t-elle ? Explique.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as identifié la chaîne d’information du monte-charge. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : quels constituants informent le monte-charge, lesquels décident et lesquels préviennent l’utilisateur ?'
 retenir:
-    - "Le besoin décrit le service attendu avant de choisir les composants."
-    - "Exprimer le besoin et les limites d’un projet."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Le besoin décrit le service attendu avant de choisir les composants."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Exprimer le besoin et les limites d’un projet."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Une cuve de récupération d’eau peut aider à suivre une réserve destinée à des usages non potables."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - 'Chaîne d’information : acquérir (boutons, capteurs), traiter (carte programmable), communiquer (écran, voyants).'
+    - Un contact de fin de course signale qu’une position est atteinte.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

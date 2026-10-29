@@ -1,93 +1,118 @@
-titre: "Arcade : un jeu compréhensible pour quelqu’un d’autre"
-theme: Créer un jeu de collecte et expliquer ses règles
-problematique: "Arcade : un jeu compréhensible pour quelqu’un d’autre"
-pourquoi: Tester l’usage et améliorer une consigne.
-application: "Une consigne claire aide une autre personne à utiliser un jeu ou un outil sans être guidée en permanence."
-lien_precedent: "Après S30 — Arcade : gagner seulement si les conditions sont réunies, nous poursuivons avec un seul objectif : tester l’usage et améliorer une consigne."
+titre: 'Séance 31 : Arcade : à quoi sert un score ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment un programme peut-il compter les objets ramassés par le joueur ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
+    - Comprendre et modifier un programme associé à une fonctionnalité d’un objet ou d’un système technique
+objectifs:
+    connaissances:
+        - 'Une variable garde une valeur qui peut changer pendant le programme : ici, le score.'
+        - 'Un événement déclenche des instructions quand quelque chose se produit : ici, quand le joueur touche un objet.'
+    competences:
+        - Créer un objet à ramasser.
+        - Utiliser un événement « lorsque … chevauche … ».
+        - Modifier une variable (le score) et prévoir son effet.
+pourquoi:
+    - En séance 30, ton personnage se déplace avec les boutons.
+    - 'Un jeu devient intéressant quand on compte des points. Aujourd’hui, tu ajoutes un objet à ramasser et un score : c’est une variable qui change à chaque événement.'
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: paragraphe
-            texte: "Un jeu fonctionnel doit aussi être compréhensible. Un testeur découvre une copie du projet sans explication orale. Il dispose d’une consigne courte : but, commandes et règle de victoire. Ne pas utiliser uniquement une couleur pour transmettre une information."
-          - type: paragraphe
-            texte: "Exemple guidé : une consigne dit « Va à droite, ramasse la clé, puis rejoins la porte ». Je la fais tester par une personne qui ne connaît pas le jeu. Si elle hésite, je précise une étape."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Quelles informations la notice doit-elle donner avant de jouer ?
-            aide: Distingue une consigne d’utilisation du code interne.
-          - id: q02
-            type: texte
-            enonce: Pourquoi ne faut-il pas expliquer oralement pendant le premier essai ?
-            aide: Le test porte sur l’autonomie d’usage.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Écrire une notice de trois lignes.
-          - Faire essayer le jeu à un camarade pendant trois minutes sans intervenir.
-          - Noter une difficulté observée, modifier un seul élément et refaire le même test.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Décrire la difficulté observée, la modification faite et le résultat du second essai.
-            aide: Sépare le fait observé de ton interprétation.
-      ressources:
-          - type: paragraphe
-            texte: Retrouver un bloc pour le sprite, les commandes, le score ou les contacts ; comparer avec ton programme.
-          - type: lien
-            titre: MakeCode Arcade — Référence
-            url: https://arcade.makecode.com/reference
-          - type: lien
-            titre: Ouvrir MakeCode Arcade
-            url: https://arcade.makecode.com/
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Un objet dangereux n’est signalé que par la couleur rouge. Proposer une amélioration utile à davantage de joueurs.
-            aide: Imagine une personne qui distingue mal cette couleur.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Ajouter un objet à ramasser
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre ton projet de la séance 30 (Mes projets dans MakeCode Arcade).
+                    - Dans « au démarrage », ajoute un nouveau bloc « définir mySprite2 à sprite … de type Food » et dessine un petit objet (une pièce, un fruit).
+                    - 'Teste : l’objet apparaît au milieu de l’écran, mais rien ne se passe quand tu le touches.'
+            -   type: paragraphe
+                texte: 'Pourquoi rien ne se passe ? Parce que le programme ne sait pas encore quoi faire quand le joueur touche l’objet : il manque un événement.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Pourquoi l’objet ne réagit-il pas quand le joueur le touche ?
+                choix:
+                    -   id: a
+                        texte: Aucun bloc ne dit quoi faire à ce moment-là.
+                    -   id: b
+                        texte: L’objet est trop petit.
+                    -   id: c
+                        texte: Le simulateur est en panne.
+        ressources:
+            - &id001
+                type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a02
+        titre: L’événement et le score
+        transition: 'Pour que le jeu réagisse, il faut un événement : « lorsque le joueur touche l’objet ».'
+        contenu:
+            -   type: etapes
+                elements:
+                    - Dans « Sprites », fais glisser le bloc « lorsque sprite de type Player chevauche otherSprite de type Food » (il se place tout seul dans la zone de travail).
+                    - Dans ce bloc, ajoute « Info » > « modifier le score de 1 ».
+                    - Ajoute aussi « Sprites » > « définir otherSprite position x … y … » avec des nombres au hasard (« Maths » > « choisir au hasard de 10 à 150 »).
+                    - 'Teste : à chaque fois que ton personnage touche l’objet, le score augmente et l’objet change de place.'
+            -   type: code
+                texte: "lorsque sprite de type Player chevauche otherSprite de type Food\n    modifier le score de 1\n    définir otherSprite position x (au hasard 10 à 150) y (au hasard 10 à 110)"
+            -   type: paragraphe
+                texte: 'Rappel du réflexe n° 9 : lis le programme bloc par bloc. Le score est une variable : il garde le nombre d’objets ramassés.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Lis ce programme bloc par bloc (réflexe n° 9) : écris ce que fait chaque ligne.'
+            -   id: q02
+                type: nombre
+                enonce: Ton personnage a touché l’objet 7 fois depuis le début. Quelle est la valeur du score ?
+                unite: points
+            -   id: q03
+                type: texte
+                enonce: 'Prévois : que se passe-t-il si on remplace « modifier le score de 1 » par « modifier le score de 5 » ? Teste et compare.'
+    -   id: a03
+        titre: Ajouter un ennemi
+        transition: Ton jeu compte les points. Pour le rendre plus intéressant, ajoute un ennemi qui fait perdre des vies.
+        contenu:
+            -   type: paragraphe
+                texte: Un ennemi rend le jeu plus difficile. Il se crée comme l’objet, avec le type Enemy, et un événement « lorsque Player chevauche Enemy » peut faire perdre une vie (« Info » > « modifier les vies de -1 »).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ajoute un ennemi qui fait perdre une vie. Écris l’événement et l’instruction que tu as utilisés.
+            -   id: q02
+                type: qcm
+                enonce: Dans ton jeu, combien de variables différentes comptent quelque chose ?
+                choix:
+                    -   id: a
+                        texte: 'Deux : le score et les vies.'
+                    -   id: b
+                        texte: 'Une seule : le score.'
+                    -   id: c
+                        texte: Aucune.
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Dans « Sprites », le bloc « définir mySprite vitesse vx … vy … » fait bouger un sprite tout seul.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Fais bouger l’ennemi tout seul et explique quels nombres tu as choisis.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as utilisé un événement et des variables. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment un programme peut-il compter les objets ramassés par le joueur ?'
 retenir:
-    - "Une consigne se vérifie en faisant essayer le jeu à une autre personne."
-    - "Tester l’usage et améliorer une consigne."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une consigne se vérifie en faisant essayer le jeu à une autre personne."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Tester l’usage et améliorer une consigne."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Une consigne claire aide une autre personne à utiliser un jeu ou un outil sans être guidée en permanence."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - Un événement déclenche des instructions quand quelque chose se produit.
+    - Une variable (score, vies) garde une valeur qui change pendant le jeu.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download
+    - *id001

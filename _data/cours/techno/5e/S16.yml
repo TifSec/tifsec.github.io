@@ -1,105 +1,158 @@
-titre: Une simulation suffit-elle à valider la maquette ?
-theme: Comprendre et commander un monte-charge
-problematique: Une simulation suffit-elle à valider la maquette ?
-pourquoi: Distinguer modèle et observation réelle.
-application: "Une simulation aide à préparer un essai, mais ne remplace pas toutes les vérifications du réel."
-lien_precedent: "Après S15 — Comment arrêter une montée au bon moment ?, nous poursuivons avec un seul objectif : distinguer modèle et observation réelle."
+titre: 'Séance 16 : Calc n° 1 : dix jours de pluie dans la cuve'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment un tableur aide-t-il à analyser les relevés de pluie de la cuve ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+objectifs:
+    connaissances:
+        - 'Un tableur (Calc ou Excel) range des données dans des cellules repérées par une colonne (lettre) et une ligne (numéro) : A1, B2…'
+        - Une formule commence par = ; la fonction SOMME additionne une plage de cellules.
+        - Trier range les lignes dans un ordre ; filtrer n’affiche que certaines lignes.
+    competences:
+        - Saisir des données dans un tableur.
+        - Écrire une formule avec SOMME.
+        - Trier et filtrer des données.
+        - 'Lire un tableau : une ligne croise une colonne (réflexe brevet n° 6).'
+pourquoi:
+    - En séance 15, tu as décrit la cuve avec des données.
+    - Avec des relevés sur plusieurs jours, il devient difficile de tout calculer à la main. Le tableur le fait pour toi. Ton fichier reste sur l’ordinateur ; sur le site, tu écris tes formules et tes résultats.
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: paragraphe
-            texte: Une simulation représente certains aspects d’un système. Elle peut montrer les décisions du programme sans représenter tous les frottements, défauts ou charges. Un résultat simulé n’est pas automatiquement un résultat réel.
-          - type: tableau
-            colonnes:
-                - Essai
-                - Simulation
-                - Observation fournie de la maquette
-            lignes:
-                - - Demande de montée
-                  - Montée puis arrêt
-                  - Montée puis arrêt
-                - - Charge ajoutée
-                  - Même durée
-                  - Durée plus longue
-                - - Obstacle
-                  - Non représenté
-                  - Mouvement bloqué
-          - type: paragraphe
-            texte: "Exemple guidé avec une voiture simulée : le modèle peut représenter un freinage sans représenter l’usure des pneus. La voiture est seulement un exemple. Revenons à notre maquette : le simulateur ne vérifie pas tout ce qui se passe dans le monte-charge réel."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Quel essai donne un résultat différent entre simulation et observation ?
-            aide: Compare les deux colonnes ligne par ligne.
-          - id: q02
-            type: texte
-            enonce: La simulation représente-t-elle l’effet de la charge sur la durée ? Justifier.
-            aide: Appuie-toi sur une ligne précise.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Comparer les trois lignes sans faire fonctionner la maquette toi-même.
-          - "Dessiner deux colonnes : ce que le modèle représente et ce qu’il ne représente pas."
-          - Proposer un essai complémentaire à réaliser par le professeur, avec sa notice.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: "Proposer un essai complémentaire : ce que l’on change, ce que l’on observe et la précaution à respecter."
-            aide: Ne propose pas une charge illimitée ni une personne.
-      ressources:
-          - type: paragraphe
-            texte: "Observer la présentation du support : identifier la maquette et son modèle numérique, sans suivre les missions avancées de 4e–3e."
-          - type: lien
-            titre: Édubase — Présentation du monte-charge
-            url: https://edubase.eduscol.education.fr/fiche/24732
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Un groupe écrit « le programme marche dans le simulateur, donc la maquette est sûre ». Corriger cette conclusion.
-            aide: Une validation doit préciser son périmètre.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Saisir les données
+        contenu:
+            -   type: paragraphe
+                texte: Voici les relevés de pluie de dix jours (données inventées pour l’exercice). Un toit de 20 m² envoie 20 litres d’eau dans la cuve pour chaque millimètre de pluie.
+            -   type: tableau
+                titre: Document 1 — Relevés de pluie
+                colonnes:
+                    - Jour
+                    - Pluie (mm)
+                lignes:
+                    -   - '1'
+                        - '0'
+                    -   - '2'
+                        - '5'
+                    -   - '3'
+                        - '12'
+                    -   - '4'
+                        - '0'
+                    -   - '5'
+                        - '0'
+                    -   - '6'
+                        - '8'
+                    -   - '7'
+                        - '3'
+                    -   - '8'
+                        - '0'
+                    -   - '9'
+                        - '15'
+                    -   - '10'
+                        - '2'
+            -   type: etapes
+                elements:
+                    - Ouvre LibreOffice Calc (ou Excel) et enregistre le fichier sous 5e_S16_tonprenom.ods.
+                    - En A1, écris Jour ; en B1, écris Pluie (mm) ; en C1, écris Eau récupérée (L).
+                    - Recopie les jours dans la colonne A (A2 à A11) et la pluie dans la colonne B (B2 à B11).
+            -   type: citation
+                texte: 'Réflexe brevet n° 6 : pour lire un tableau, je croise une ligne et une colonne. Exemple : dans le document 1, la ligne du jour 3 croise la colonne Pluie : 12 mm.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: D’après le document 1, combien de millimètres de pluie sont tombés le jour 6 ?
+                unite: mm
+            -   id: q02
+                type: qcm
+                enonce: Dans ton tableur, dans quelle cellule se trouve la pluie du jour 1 ?
+                choix:
+                    -   id: a
+                        texte: B2
+                    -   id: b
+                        texte: A1
+                    -   id: c
+                        texte: B1
+    -   id: a02
+        titre: Calculer avec des formules
+        transition: Tes données sont saisies. Le tableur peut maintenant calculer à ta place, à condition d’écrire la bonne formule.
+        contenu:
+            -   type: paragraphe
+                texte: 'Exemple expliqué : pour l’eau récupérée le jour 1, on multiplie la pluie par 20. En C2, on écrit =B2*20. Le tableur affiche le résultat.'
+            -   type: etapes
+                elements:
+                    - En C2, écris =B2*20 puis appuie sur Entrée.
+                    - 'Sélectionne C2, attrape le petit carré en bas à droite et tire jusqu’à C11 : la formule se recopie pour chaque jour.'
+                    - En A12, écris Total. En B12, écris =SOMME(B2:B11). En C12, écris =SOMME(C2:C11).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris exactement la formule que tu as mise en B12.
+            -   id: q02
+                type: nombre
+                enonce: Quel total de pluie (en mm) le tableur affiche-t-il en B12 ?
+                unite: mm
+            -   id: q03
+                type: nombre
+                enonce: Combien de litres d’eau la cuve a-t-elle récupérés en 10 jours (C12) ?
+                unite: L
+            -   id: q04
+                type: nombre
+                enonce: Le jour 3, quelle formule est en C4 et quelle valeur affiche-t-elle ? Écris seulement la valeur.
+                unite: L
+    -   id: a03
+        titre: Trier et filtrer
+        transition: Les totaux sont calculés. Pour répondre à d’autres questions (le jour le plus pluvieux, les jours secs), on trie et on filtre.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Sélectionne les cellules A1 à C11.
+                    - 'Menu Données > Trier : trie selon la colonne Pluie (mm), ordre décroissant.'
+                    - Annule le tri (Ctrl + Z), puis Données > AutoFiltre.
+                    - 'Clique sur la flèche de la colonne Pluie et coche seulement 0 : tu vois les jours sans pluie.'
+            -   type: paragraphe
+                texte: Trier change l’ordre des lignes ; filtrer cache les lignes qui ne t’intéressent pas, sans les effacer.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Après le tri décroissant, quel jour apparaît en premier ?
+                choix:
+                    -   id: a
+                        texte: Le jour 9.
+                    -   id: b
+                        texte: Le jour 3.
+                    -   id: c
+                        texte: Le jour 1.
+            -   id: q02
+                type: nombre
+                enonce: Avec le filtre, combien de jours sans pluie vois-tu ?
+                unite: jours
+            -   id: q03
+                type: texte
+                enonce: Quelle est la différence entre trier et filtrer ?
+    -   id: a04
+        titre: 'Défi : la moyenne'
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: La fonction MOYENNE calcule la moyenne d’une plage.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris la formule qui calcule la pluie moyenne par jour, et donne le résultat.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as saisi, calculé, trié et filtré. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment un tableur aide-t-il à analyser les relevés de pluie de la cuve ? Donne deux exemples de ce que tu as fait.'
 retenir:
-    - "Une simulation ne représente qu’une partie du fonctionnement réel."
-    - "Distinguer modèle et observation réelle."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Une simulation ne représente qu’une partie du fonctionnement réel."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Distinguer modèle et observation réelle."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : Une simulation aide à préparer un essai, mais ne remplace pas toutes les vérifications du réel."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - Une cellule se repère par sa colonne et sa ligne (B2). Une formule commence par =.
+    - =SOMME(B2:B11) additionne la plage ; une formule se recopie en tirant la poignée.
+    - Trier change l’ordre ; filtrer cache des lignes sans les effacer.
+    - 'Réflexe brevet n° 6 : je lis un tableau en croisant une ligne et une colonne.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

@@ -1,106 +1,125 @@
-titre: Quelles informations faut-il à la cuve ?
-theme: Concevoir une cuve intelligente simulée
-problematique: Quelles informations faut-il à la cuve ?
-pourquoi: Distinguer une entrée, un traitement et une sortie.
-application: "De nombreux systèmes mesurent une information, la traitent puis l’affichent ou déclenchent une action."
-lien_precedent: "Après S33 — Une cuve intelligente : pour quel besoin ?, nous poursuivons avec un seul objectif : distinguer une entrée, un traitement et une sortie."
+titre: 'Séance 34 : Pourquoi un contrepoids ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment le mouvement passe-t-il du moteur à la cabine, et à quoi sert le contrepoids ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+objectifs:
+    connaissances:
+        - Une poulie et un câble transmettent le mouvement du moteur jusqu’à la cabine.
+        - 'Le contrepoids équilibre en partie la masse de la cabine : le moteur a moins d’effort à fournir et consomme moins.'
+    competences:
+        - Décrire la transmission du mouvement du moteur à la cabine.
+        - Expliquer le rôle du contrepoids.
+pourquoi:
+    - En séance 33, tu as vu comment le monte-charge reçoit et traite les informations.
+    - 'Mais qui fait vraiment monter la cabine ? Aujourd’hui, tu suis le mouvement, du moteur jusqu’à la cabine, et tu découvres une pièce astucieuse : le contrepoids.'
 activites:
-    - id: a01
-      titre: 1. Repère les indices
-      pourquoi: "Observe la situation et l’exemple guidé : ils montrent ce qu’il faut comprendre avant de commencer."
-      demarche:
-          - Lis la situation et repère les informations utiles.
-          - Suis l’exemple guidé et repère la méthode utilisée.
-          - Réponds aux questions en t’appuyant sur le cours.
-      contenu:
-          - type: tableau
-            colonnes:
-                - Information ou action
-                - Rôle dans notre modèle
-            lignes:
-                - - Niveau haut
-                  - Information d’entrée
-                - - Signal alerte
-                  - Information d’entrée donnée au simulateur
-                - - Décider COLLECTE ou ISOLEMENT
-                  - Traitement
-                - - Afficher l’état
-                  - Action de sortie
-          - type: paragraphe
-            texte: L’alerte est ici une valeur fournie dans un scénario. Ce n’est pas la preuve qu’un capteur unique reconnaît toutes les pollutions.
-          - type: paragraphe
-            texte: "Exemple guidé : dans une serre, un capteur relève la température (entrée), la carte compare cette valeur à une règle (traitement), puis l’écran affiche un message (sortie). Pour la cuve, on remplace la température par le niveau d’eau."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Citer les deux informations d’entrée du modèle.
-            aide: Une entrée renseigne le programme.
-          - id: q02
-            type: texte
-            enonce: L’afficheur peut-il, à lui seul, détecter un niveau haut ? Pourquoi ?
-            aide: Distingue recevoir une information et l’afficher.
-    - id: a02
-      titre: 2. À toi de tester
-      pourquoi: Tu viens de voir la méthode ; maintenant, applique-la dans un essai que tu peux vérifier.
-      demarche:
-          - Tracer le schéma entrées → décision → sorties.
-          - Relier chaque élément du tableau au bon emplacement.
-          - Comparer avec le schéma d’information du monte-charge en S12.
-      contenu:
-          - type: paragraphe
-            texte: "Note une trace courte : ce que tu as fait, ce que tu attendais et ce que tu as observé."
-      questions:
-          - id: q01
-            type: texte
-            enonce: Décrire le trajet d’une alerte depuis son entrée dans le programme jusqu’à l’utilisateur.
-            aide: Nomme l’information et l’action finale.
-      ressources:
-          - type: paragraphe
-            texte: Dans la documentation, retrouver les blocs d’événement, variable et condition utilisés aujourd’hui.
-          - type: lien
-            titre: MakeCode micro:bit — Référence
-            url: https://makecode.microbit.org/reference
-          - type: lien
-            titre: Ouvrir le simulateur MakeCode micro:bit
-            url: https://makecode.microbit.org/
-    - id: a03
-      titre: 3. Explique avec une preuve
-      pourquoi: Avant de conclure, relie ta réponse à une observation ou à une information précise.
-      demarche:
-          - Répondre en une à trois phrases.
-          - Citer une observation, une règle ou une valeur du document.
-      contenu: []
-      questions:
-          - id: q01
-            type: texte
-            enonce: Quel point commun ce trajet a-t-il avec l’arrivée en haut du monte-charge ?
-            aide: Compare les rôles, pas la forme des objets.
-    - id: a04
-      titre: 4. Garde le mémo
-      pourquoi: Garde une trace courte pour pouvoir réutiliser cette méthode dans une prochaine séance.
-      demarche:
-          - Relis les deux idées à retenir.
-          - Note une méthode que tu pourras réutiliser.
-      contenu: []
-      questions: []
+    -   id: a01
+        titre: Du moteur à la cabine
+        contenu:
+            -   type: paragraphe
+                texte: 'Démonstration, moteur arrêté : le professeur montre le moteur, la poulie, le câble de levage, la cabine et le contrepoids (avec son tiroir amovible). Les groupes passent ensuite au poste maquette pour observer de près, sans rien démonter.'
+            -   type: tableau
+                titre: Document 1 — La transmission du mouvement
+                colonnes:
+                    - Constituant
+                    - Rôle
+                lignes:
+                    -   - Moteur électrique
+                        - Convertit l’énergie électrique en énergie cinétique (rotation).
+                    -   - Poulie
+                        - Tourne avec l’axe du moteur et enroule ou déroule le câble.
+                    -   - Câble de levage
+                        - Relie la cabine et le contrepoids en passant par la poulie.
+                    -   - Cabine guidée par des rails
+                        - Monte et descend sans se balancer.
+                    -   - Contrepoids
+                        - Descend quand la cabine monte, et inversement.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Range dans l’ordre le chemin du mouvement, du moteur à la cabine.
+                colonnes:
+                    - Ordre
+                    - Constituant
+                lignes:
+                    -   - '1'
+                        - Moteur
+                    -   - '2'
+                        - ''
+                    -   - '3'
+                        - ''
+                    -   - '4'
+                        - Cabine
+            -   id: q02
+                type: qcm
+                enonce: Quand la cabine monte, que fait le contrepoids ?
+                choix:
+                    -   id: a
+                        texte: Il descend.
+                    -   id: b
+                        texte: Il monte aussi.
+                    -   id: c
+                        texte: Il reste immobile.
+    -   id: a02
+        titre: Le rôle du contrepoids
+        transition: Tu as suivi le mouvement. Mais pourquoi ajouter une pièce qui descend quand la cabine monte ?
+        contenu:
+            -   type: paragraphe
+                texte: 'Expérience de pensée : soulève ton cartable à la main. Maintenant, imagine qu’un sac de masse presque égale, attaché de l’autre côté d’une poulie, descend pendant que ton cartable monte. Il t’aide : tu as beaucoup moins d’effort à faire.'
+            -   type: paragraphe
+                texte: 'La comparaison avec le cartable est terminée. Revenons au monte-charge : le contrepoids joue le rôle du sac qui aide le moteur.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Explique à quoi sert le contrepoids du monte-charge. Utilise « car ».
+            -   id: q02
+                type: qcm
+                enonce: Le contrepoids a un tiroir amovible. À quoi peut-il servir ?
+                choix:
+                    -   id: a
+                        texte: À ajuster la masse du contrepoids selon la charge transportée.
+                    -   id: b
+                        texte: À ranger les outils.
+                    -   id: c
+                        texte: À décorer la maquette.
+    -   id: a03
+        titre: Énergie et position
+        transition: Le contrepoids aide le moteur. Avec les formes d’énergie, on peut l’expliquer encore mieux.
+        contenu:
+            -   type: paragraphe
+                texte: 'Rappel de la séance 25 : un objet en hauteur possède de l’énergie potentielle.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quand la cabine arrive en haut, sous quelle forme a-t-elle gagné de l’énergie ? Et le contrepoids, a-t-il gagné ou perdu de l’énergie potentielle ?
+            -   id: q02
+                type: texte
+                enonce: Dans les vrais ascenseurs, il y a aussi un contrepoids. Donne une raison pour laquelle c’est important pour un immeuble.
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Sans contrepoids, la cabine pourrait aussi redescendre trop vite si le moteur s’arrête brutalement.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Explique pourquoi le contrepoids rend aussi le monte-charge plus sûr.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as suivi le mouvement et compris le contrepoids. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment le mouvement passe-t-il du moteur à la cabine, et à quoi sert le contrepoids ?'
 retenir:
-    - "Un système peut recevoir une entrée, la traiter puis produire une sortie."
-    - "Distinguer une entrée, un traitement et une sortie."
-bilan: "Je peux expliquer avec mes mots ce que j’ai appris aujourd’hui et montrer une réponse ou un essai qui le prouve."
-introduction:
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre : Un système peut recevoir une entrée, la traiter puis produire une sortie."
-    - type: paragraphe
-      texte: "Ce que tu vas apprendre à faire : Distinguer une entrée, un traitement et une sortie."
-    - type: paragraphe
-      texte: "Tu vas observer une situation, suivre un exemple guidé, puis faire un essai et vérifier ce qu’il montre."
-    - type: paragraphe
-      texte: "À quoi cela sert dans la vie réelle : De nombreux systèmes mesurent une information, la traitent puis l’affichent ou déclenchent une action."
-    - type: paragraphe
-      texte: "Tu as environ 50 minutes : 10 minutes pour comprendre, 25 minutes pour faire, 10 minutes pour vérifier et 5 minutes pour le bilan."
-reperes_officiels:
-    - type: paragraphe
-      texte: "Programme de Technologie du cycle 4, repères de 5e : cette séance contribue progressivement aux compétences ci-dessous ; elle ne prétend pas valider seule une compétence de fin de cycle."
-    - type: lien
-      titre: Ministère — Programme de Technologie 2024
-      url: https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A
+    - 'Moteur → poulie → câble → cabine : c’est la transmission du mouvement.'
+    - 'Le contrepoids équilibre la cabine : le moteur fournit moins d’effort et consomme moins.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download
