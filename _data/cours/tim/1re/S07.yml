@@ -1,0 +1,108 @@
+titre: 'Séance 7 : Compter et additionner selon des critères'
+themes:
+    - MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre
+problematique: Comment faire calculer le tableur selon une condition ?
+competences_bo:
+    - MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre
+objectifs:
+    connaissances:
+        - =SI(test;si vrai;si faux) ; =NB.SI(plage;critère) compte ; =SOMME.SI(plage;critère;plage à additionner) additionne.
+        - 'Les critères numériques s’écrivent entre guillemets : ">2000".'
+    competences:
+        - Utiliser SI, NB.SI et SOMME.SI.
+pourquoi:
+    - Le fichier est propre (S06).
+    - 'On peut maintenant le faire parler : combien de communes sans centre équestre ? combien de prairies dans ces communes ?'
+activites:
+    -   id: a01
+        titre: Une alerte avec SI
+        consigne: Tu vas classer chaque commune selon la présence de centres équestres avec la fonction SI. On attend une formule et le nombre de communes sans centre.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ajoute une colonne « Concurrence ».
+                    - Écris =SI(C2=0;"aucune";"présente") et recopie.
+                    - Filtre sur « aucune ».
+            -   type: paragraphe
+                texte: Pourquoi SI ? Le tableur classe chaque commune automatiquement.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris la formule de la ligne 5 après recopie.
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+            -   id: q02
+                type: nombre
+                enonce: Combien de communes n’ont aucun centre équestre ?
+                unite: communes
+                aide: Écris l’opération, calcule, vérifie l’unité.
+    -   id: a02
+        titre: Compter avec NB.SI
+        transition: Le SI marche ligne par ligne. NB.SI résume tout le fichier.
+        consigne: Tu vas compter avec NB.SI les communes sans centre et celles de plus de 3 000 ha de prairies. On attend un résultat et le rôle des guillemets.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Dans une feuille « Analyse », écris =NB.SI(Données.C2:C38;0).
+                    - Compare avec ton filtre.
+                    - 'Compte les communes de plus de 3 000 ha de prairies : =NB.SI(Données.D2:D38;">3000").'
+            -   type: paragraphe
+                texte: Pourquoi NB.SI ? Le résultat se met à jour si les données changent ; le filtre, non.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Combien de communes ont plus de 3 000 ha de prairies ?
+                unite: communes
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Pourquoi écrit-on ">3000" entre guillemets ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a03
+        titre: Additionner avec SOMME.SI
+        transition: Tu sais compter. Additionne maintenant selon un critère.
+        consigne: Tu vas calculer avec SOMME.SI la surface de prairies des communes sans centre équestre. On attend la surface et ce qu’elle signifie.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Calcule la surface totale de prairies des communes sans concurrence : =SOMME.SI(Données.E2:E38;"aucune";Données.D2:D38).'
+                    - Compare avec le total du département.
+            -   type: paragraphe
+                texte: Pourquoi SOMME.SI ? On additionne seulement les lignes qui nous intéressent.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quelle surface de prairies se trouve dans les communes sans centre ?
+                unite: ha
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Que représente ce chiffre pour le porteur de projet ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le porteur veut une commune sans centre ET avec plus de 3 000 ha.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quelle fonction faut-il ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Le tableur calcule selon des critères. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment faire calculer le tableur selon une condition ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - SI, NB.SI, SOMME.SI.
+    - 'Critère : ">3000".'
+sources:
+    -   type: lien
+        titre: ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf
