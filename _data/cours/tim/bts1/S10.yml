@@ -1,0 +1,113 @@
+titre: 'Séance 10 : Classer automatiquement : SI imbriqués, ET, OU'
+themes:
+    - C4.1 — Évaluer la performance globale d’un système biotechnique
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+problematique: Comment traduire une règle de gestion à plusieurs conditions dans le tableur ?
+competences_bo:
+    - C4.1 — Évaluer la performance globale d’un système biotechnique
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+objectifs:
+    connaissances:
+        - ET(c1;c2) est vrai si toutes les conditions le sont ; OU(c1;c2) si au moins une l’est.
+        - Les SI imbriqués traitent plus de deux cas ; on écrit d’abord la règle en langage naturel.
+    competences:
+        - Traduire une règle en formule logique.
+        - Tester une formule sur des cas limites.
+pourquoi:
+    - En S07, tu as calculé le coût alimentaire par cheval.
+    - 'Le vétérinaire propose une règle de suivi : certains chevaux doivent être surveillés de plus près.'
+activites:
+    -   id: a01
+        titre: La règle en mots
+        consigne: Tu vas appliquer de tête la règle de suivi du vétérinaire (document 1) à trois chevaux. On attend le statut de chacun.
+        contenu:
+            -   type: paragraphe
+                texte: 'Document 1 — Règle (exemple) : « ALERTE » si la note d’état corporel est inférieure à 2,5 ; « SURVEILLER » si le cheval a plus de 20 ans ; sinon « OK ». L’alerte est prioritaire.'
+            -   type: lien
+                titre: IFCE — Équipédia (fiches techniques sur le cheval)
+                url: https://equipedia.ifce.fr/
+            -   type: etapes
+                elements:
+                    - Lis la règle (document 1).
+                    - Applique-la de tête aux trois chevaux.
+            -   type: paragraphe
+                texte: Pourquoi de tête ? Tu prépares les cas tests de ta formule.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Applique la règle.
+                colonnes:
+                    - Cheval
+                    - Statut
+                lignes:
+                    -   - Âge 22, note d’état 2
+                        - ''
+                    -   - Âge 12, note d’état 4
+                        - ''
+                    -   - Âge 8, note d’état 1,5
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne.'
+    -   id: a02
+        titre: La formule
+        transition: Les cas tests sont prêts. Écris la formule.
+        consigne: Tu vas écrire la formule de statut avec des SI imbriqués et une formule avec ET. On attend l’explication d’un cas et ta formule avec ET.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Traduis : =SI(D2<2,5;"ALERTE";SI(C2>20;"SURVEILLER";"OK")).'
+                    - Recopie ; compare avec tes réponses.
+            -   type: paragraphe
+                texte: 'Pourquoi cet ordre ? Le premier SI vérifié l’emporte : on teste d’abord le cas prioritaire.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi le cheval de 22 ans avec une note de 2 est-il en ALERTE et non SURVEILLER ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+            -   id: q02
+                type: texte
+                enonce: Écris une formule avec ET qui affiche « ÂGÉ ET MAIGRE » si âge > 20 et note < 2,5.
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a03
+        titre: Les cas limites
+        transition: La formule marche sur les cas simples. Et aux limites ?
+        consigne: Tu vas tester ta formule sur des cas limites (2,5 exactement, cellule vide). On attend le résultat de chaque cas et s’il est conforme.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Teste : note 2,5 exactement ; âge 20 exactement ; cellule vide.'
+                    - Compare au résultat attendu par le vétérinaire.
+            -   type: paragraphe
+                texte: Pourquoi les limites ? C’est là que « < » et « <= » changent tout.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Que renvoie ta formule pour une note de 2,5 et une cellule de note vide ? Est-ce conforme ?
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: La note d’état corporel se mesure sur une échelle officielle.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Où trouver la grille de notation ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: La règle de gestion est automatisée. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment traduire une règle de gestion à plusieurs conditions dans le tableur ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - 'SI imbriqués : priorité d’abord.'
+    - ET / OU ; tester les cas limites.
+sources:
+    -   type: lien
+        titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf

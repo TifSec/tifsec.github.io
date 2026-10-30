@@ -1,0 +1,124 @@
+titre: 'Séance 9 : Fiabiliser la saisie : validation des données'
+themes:
+    - C4.1 — Évaluer la performance globale d’un système biotechnique
+problematique: Comment empêcher les erreurs de saisie dans un classeur partagé ?
+competences_bo:
+    - C4.1 — Évaluer la performance globale d’un système biotechnique
+objectifs:
+    connaissances:
+        - 'La validité des données (Données > Validité) limite les saisies : liste, nombres entre deux bornes, dates.'
+        - Un message d’aide et un message d’erreur guident l’utilisateur.
+    competences:
+        - Créer des règles de validité.
+        - Rédiger des messages d’aide.
+pourquoi:
+    - En S08, une faute de frappe a cassé la recherche de tarif.
+    - 'Les salariés saisissent dans le classeur : il faut l’empêcher de recevoir des valeurs impossibles.'
+activites:
+    -   id: a01
+        titre: Les erreurs possibles
+        consigne: Tu vas associer à trois erreurs de saisie relevées (document 1) une règle de validité. On attend une règle par erreur.
+        contenu:
+            -   type: liste
+                elements:
+                    - Formule saisie « boxe ».
+                    - 'Jours facturés : 45.'
+                    - 'Foin distribué : -20 kg.'
+            -   type: etapes
+                elements:
+                    - Lis les saisies erronées relevées (document 1).
+                    - Pour chacune, choisis une règle de validité.
+            -   type: paragraphe
+                texte: Pourquoi prévenir ? Corriger après coup prend plus de temps et laisse passer des erreurs.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Associe une règle de validité.
+                colonnes:
+                    - Erreur relevée
+                    - Règle
+                lignes:
+                    -   - Formule « boxe »
+                        - ''
+                    -   - 'Jours : 45'
+                        - ''
+                    -   - 'Foin : -20'
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne.'
+    -   id: a02
+        titre: Créer les règles
+        transition: Les règles sont choisies. Programme-les.
+        consigne: Tu vas créer les règles de validité et leurs messages pour les colonnes Formule et Jours. On attend tes messages et le comportement en cas d’erreur.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Sélectionne la colonne Formule : Données > Validité > Liste > source : la plage de la grille.'
+                    - 'Colonne Jours : nombre entier entre 0 et 31.'
+                    - Ajoute un message d’aide et un message d’erreur.
+            -   type: paragraphe
+                texte: Pourquoi une liste liée à la grille ? Une nouvelle formule ajoutée à la grille apparaît dans la liste.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris le message d’aide et le message d’erreur de la colonne Jours.
+                aide: Compte les éléments demandés, puis cherche-les dans les documents de la mission.
+            -   id: q02
+                type: qcm
+                enonce: Que se passe-t-il si on tape 45 ?
+                choix:
+                    -   id: a
+                        texte: La saisie est refusée avec le message d’erreur.
+                    -   id: b
+                        texte: Elle est acceptée.
+                    -   id: c
+                        texte: Le fichier se ferme.
+                aide: Élimine d’abord les réponses impossibles.
+    -   id: a03
+        titre: Vérifier les données déjà saisies
+        transition: Les nouvelles saisies sont protégées. Et les anciennes ?
+        consigne: Tu vas repérer les données déjà incorrectes avec le Détective et les traiter. On attend leur nombre et la conduite à tenir.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Outils > Détective > Marquer les données incorrectes.
+                    - Compte les cellules entourées ; corrige-les.
+            -   type: paragraphe
+                texte: Pourquoi ? Les règles ne contrôlent que les nouvelles saisies.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Combien de cellules incorrectes le détective a-t-il marquées ?
+                unite: cellules
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Que fais-tu pour une valeur impossible dont tu ne connais pas la bonne valeur ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: On peut protéger les feuilles (Outils > Protéger la feuille).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Que protèges-tu, que laisses-tu modifiable ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: La saisie est fiabilisée. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment empêcher les erreurs de saisie dans un classeur partagé ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - 'Données > Validité : listes, bornes, messages.'
+    - Détective ; protection des feuilles.
+sources:
+    -   type: lien
+        titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf

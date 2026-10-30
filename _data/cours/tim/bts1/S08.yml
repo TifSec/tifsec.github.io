@@ -1,0 +1,127 @@
+titre: 'Séance 8 : Appliquer automatiquement le bon tarif : RECHERCHEV'
+themes:
+    - C4.1 — Évaluer la performance globale d’un système biotechnique
+problematique: Comment le tableur peut-il aller chercher une valeur dans une grille tarifaire ?
+competences_bo:
+    - C4.1 — Évaluer la performance globale d’un système biotechnique
+objectifs:
+    connaissances:
+        - =RECHERCHEV(valeur;table;n° de colonne;0) cherche une valeur dans la première colonne d’une table et renvoie la valeur d’une autre colonne.
+        - Le dernier argument 0 (FAUX) impose une correspondance exacte.
+    competences:
+        - Utiliser RECHERCHEV en correspondance exacte.
+        - Construire une facturation automatique.
+pourquoi:
+    - La pension propose plusieurs formules (box, box + paddock, pré, retraite).
+    - La facture doit appliquer automatiquement le bon tarif.
+activites:
+    -   id: a01
+        titre: La grille tarifaire
+        consigne: Tu vas saisir et lire la grille tarifaire de la pension (document 1). On attend un prix et le numéro de colonne du prix mensuel.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Grille tarifaire (fictive)
+                colonnes:
+                    - Formule
+                    - Prix mensuel (€)
+                    - Journée supplémentaire (€)
+                lignes:
+                    -   - Box
+                        - '380'
+                        - '15'
+                    -   - Box paddock
+                        - '420'
+                        - '17'
+                    -   - Pré
+                        - '260'
+                        - '10'
+                    -   - Retraite
+                        - '220'
+                        - '9'
+            -   type: etapes
+                elements:
+                    - Dans Paramètres, crée la grille (document 1) en A10:C13.
+                    - 'Lis la grille : formule, prix mensuel, prix de la journée supplémentaire.'
+            -   type: paragraphe
+                texte: Pourquoi une grille séparée ? Changer un tarif se fait à un seul endroit.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le document 1, quel est le prix mensuel de la formule « Pré » ?
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+            -   id: q02
+                type: qcm
+                enonce: Dans quelle colonne de la table est le prix mensuel ?
+                choix:
+                    -   id: a
+                        texte: '2'
+                    -   id: b
+                        texte: '1'
+                    -   id: c
+                        texte: '3'
+                aide: Élimine d’abord les réponses impossibles.
+    -   id: a02
+        titre: La recherche
+        transition: La grille est prête. Fais chercher le tarif.
+        consigne: Tu vas écrire la formule RECHERCHEV qui applique le tarif de chaque cheval. On attend un résultat et la raison des références absolues.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Dans Données, colonne Tarif : =RECHERCHEV(C2;Paramètres.$A$10:$C$13;2;0).'
+                    - Recopie ; teste en changeant une formule de pension.
+            -   type: paragraphe
+                texte: Pourquoi 0 ? Sans correspondance exacte, le tableur peut renvoyer le tarif d’une autre formule.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Que renvoie la formule pour un cheval en « Box paddock » ?
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+            -   id: q02
+                type: texte
+                enonce: Pourquoi la table est-elle en références absolues ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a03
+        titre: Les erreurs
+        transition: La formule marche. Que se passe-t-il en cas d’erreur de saisie ?
+        consigne: 'Tu vas provoquer une erreur #N/D, en trouver la cause et proposer une solution. On attend la cause et la solution.'
+        contenu:
+            -   type: etapes
+                elements:
+                    - Tape « box » (minuscule, espace en trop) pour un cheval.
+                    - 'Observe #N/D.'
+                    - Propose une solution.
+            -   type: paragraphe
+                texte: 'Pourquoi #N/D ? La valeur cherchée n’existe pas exactement dans la grille.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Pourquoi obtient-on #N/D, et comment l’éviter à la saisie ?'
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: SIERREUR() affiche un message à la place d’une erreur.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris une formule qui affiche « formule inconnue ».
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: La facturation applique le bon tarif. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment le tableur peut-il aller chercher une valeur dans une grille tarifaire ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - =RECHERCHEV(valeur;table;col;0).
+    - '#N/D = valeur absente ; liste de choix.'
+sources:
+    -   type: lien
+        titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf
