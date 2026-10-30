@@ -1,0 +1,131 @@
+titre: 'Séance 3 : Analyser une base de données existante'
+themes:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+problematique: Comment est organisée une base de données relationnelle ?
+competences_bo:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+objectifs:
+    connaissances:
+        - 'Une base relationnelle : des tables (une par sujet), des champs typés, une clé primaire par table, des relations par clés étrangères.'
+        - Elle évite la redondance des tableurs (un nom de jument écrit 30 fois).
+    competences:
+        - Identifier tables, champs, clés.
+        - Lire un schéma relationnel.
+pourquoi:
+    - Le tableur atteint ses limites avec des données liées (juments, saillies, poulains).
+    - Avant de construire une base, tu en analyses une.
+activites:
+    -   id: a01
+        titre: Les limites du tableur
+        consigne: Tu vas repérer dans l’extrait du tableur de l’élevage (document 1) les problèmes de redondance. On attend les problèmes et leur conséquence.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Extrait du tableur de l’élevage (fictif)
+                colonnes:
+                    - Jument
+                    - UELN
+                    - Étalon
+                    - Date saillie
+                    - Résultat
+                lignes:
+                    -   - Belle de Mai
+                        - 250001X…01
+                        - Quatar
+                        - 02/04/2026
+                        - pleine
+                    -   - Bele de Mai
+                        - 250001X…01
+                        - Quatar
+                        - 20/04/2025
+                        - vide
+                    -   - Belle de Mai
+                        - 250001X…01
+                        - Ugo
+                        - 15/05/2024
+                        - pleine
+            -   type: etapes
+                elements:
+                    - Lis l’extrait du tableur de l’élevage (document 1).
+                    - Repère les répétitions et les risques.
+            -   type: paragraphe
+                texte: Pourquoi la redondance pose problème ? Si on corrige un nom à un endroit, il reste faux ailleurs.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le document 1, quels problèmes pose ce tableau ?
+                aide: Retrouve la phrase ou la ligne utile du document, puis commence par « D’après le document… ».
+    -   id: a02
+        titre: Lire le schéma
+        transition: Le tableur montre ses limites. Regarde une vraie base.
+        consigne: Tu vas lire le schéma relationnel de la base elevage_demo.odb. On attend la clé primaire et les clés étrangères de trois tables.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre la base fournie elevage_demo.odb dans LibreOffice Base.
+                    - 'Outils > Relations : observe les tables et les liens.'
+                    - Remplis le tableau.
+            -   type: paragraphe
+                texte: Pourquoi un schéma ? Il montre toute l’organisation des données d’un coup d’œil.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: D’après le schéma, complète.
+                colonnes:
+                    - Table
+                    - Clé primaire / clé étrangère
+                lignes:
+                    -   - Jument
+                        - ''
+                    -   - Saillie
+                        - ''
+                    -   - Poulain
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne.'
+        ressources:
+            -   type: lien
+                titre: LibreOffice Base — aide en ligne
+                url: https://help.libreoffice.org/latest/fr/text/sdatabase/main.html
+    -   id: a03
+        titre: Les cardinalités
+        transition: Tu connais les tables. Comment sont-elles liées ?
+        consigne: Tu vas analyser la cardinalité de la relation entre jument et saillie. On attend la relation et la place de la clé étrangère.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Pour chaque relation, demande-toi : combien de… pour un… ?'
+                    - Écris la cardinalité.
+            -   type: paragraphe
+                texte: Pourquoi les cardinalités ? Elles disent où placer la clé étrangère.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Une jument peut-elle avoir plusieurs saillies ? Une saillie concerne-t-elle plusieurs juments ? Conclus sur la relation.
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Une saillie peut donner deux poulains (rare, gémellité).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Le schéma le permet-il ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu sais lire une base relationnelle. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment est organisée une base de données relationnelle ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - Table, champ, clé primaire, clé étrangère.
+    - 'Relation 1-n : clé étrangère côté n.'
+sources:
+    -   type: lien
+        titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf

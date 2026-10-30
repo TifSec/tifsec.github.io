@@ -1,0 +1,100 @@
+titre: 'Séance 6 : Relier les tables sans incohérence'
+themes:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+problematique: Comment la base empêche-t-elle d’enregistrer des données incohérentes ?
+competences_bo:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+objectifs:
+    connaissances:
+        - Une relation relie la clé étrangère à la clé primaire.
+        - L’intégrité référentielle interdit une saillie pour une jument inexistante, ou la suppression d’une jument qui a des saillies (sauf cascade).
+    competences:
+        - Créer des relations avec intégrité référentielle.
+        - Tester les règles de mise à jour et de suppression.
+pourquoi:
+    - En S05, les tables existent mais ne sont pas liées.
+    - Rien n’empêche encore une saillie pour une jument qui n’existe pas.
+activites:
+    -   id: a01
+        titre: Créer les relations
+        consigne: Tu vas créer les relations entre les tables de l’élevage avec l’intégrité référentielle. On attend la liste des relations.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Outils > Relations : ajoute les tables.'
+                    - Glisse id_jument (Jument) sur id_jument (Saillie) ; idem pour les autres liens.
+                    - 'Options : mise à jour en cascade, suppression : aucune action.'
+            -   type: paragraphe
+                texte: Pourquoi « aucune action » à la suppression ? On ne veut pas effacer par erreur tout l’historique d’une jument.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Liste les relations créées.
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a02
+        titre: Tester l’intégrité
+        transition: Les relations sont créées. Teste-les.
+        consigne: Tu vas tester l’intégrité référentielle avec deux saisies interdites. On attend la réaction de la base.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Saisis une saillie avec id_jument = 99 (inexistant).
+                    - Essaie de supprimer Belle de Mai (qui a des saillies).
+            -   type: paragraphe
+                texte: Pourquoi ces tests ? Ce sont les deux erreurs les plus fréquentes.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Que fait la base ?
+                colonnes:
+                    - Test
+                    - Réaction
+                lignes:
+                    -   - Saillie pour la jument 99
+                        - ''
+                    -   - Supprimer Belle de Mai
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne.'
+    -   id: a03
+        titre: Et dans un tableur ?
+        transition: La base se protège. Le tableur le faisait-il ?
+        consigne: Tu vas expliquer pourquoi la base est plus fiable que le tableur pour l’historique de reproduction. On attend une explication argumentée.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Compare avec le tableur du document 1 de S03.
+            -   type: paragraphe
+                texte: Pourquoi comparer ? Pour justifier le choix de l’outil devant un employeur.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Explique pourquoi la base est plus fiable que le tableur pour l’historique de reproduction.
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Une jument vendue quitte l’élevage.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment la garder dans l’historique sans la compter dans l’effectif ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Les données sont cohérentes. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment la base empêche-t-elle d’enregistrer des données incohérentes ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - Intégrité référentielle.
+    - Pas de saillie orpheline, pas de suppression d’historique.
+sources:
+    -   type: lien
+        titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf

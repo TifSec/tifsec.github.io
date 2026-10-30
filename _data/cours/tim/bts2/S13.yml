@@ -1,0 +1,110 @@
+titre: 'Séance 13 : Simuler des scénarios : prix de vente des poulains'
+themes:
+    - C4.1 — Évaluer la performance globale d’un système biotechnique
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+problematique: Comment tester plusieurs hypothèses avant de décider ?
+competences_bo:
+    - C4.1 — Évaluer la performance globale d’un système biotechnique
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+objectifs:
+    connaissances:
+        - Un modèle de calcul avec des paramètres permet de simuler des scénarios (optimiste, moyen, pessimiste).
+        - 'Outils : gestionnaire de scénarios, recherche de valeur cible (Outils > Recherche de valeur cible).'
+    competences:
+        - Construire des scénarios.
+        - Utiliser la recherche de valeur cible.
+pourquoi:
+    - L’éleveur hésite à faire saillir plus de juments.
+    - 'Le résultat dépend du prix de vente des poulains et du taux de gestation : incertains.'
+activites:
+    -   id: a01
+        titre: Le modèle
+        consigne: Tu vas construire le modèle de résultat de l’activité d’élevage avec des paramètres. On attend le résultat du cas moyen.
+        contenu:
+            -   type: paragraphe
+                texte: Données fictives créées pour l’exercice (ordres de grandeur réalistes pour un élevage équin).
+            -   type: etapes
+                elements:
+                    - 'Paramètres : nombre de juments saillies, taux de gestation, prix moyen d’un poulain, coût par jument (saillie + entretien).'
+                    - Résultat = juments × taux × prix − juments × coût.
+            -   type: paragraphe
+                texte: Pourquoi un modèle ? On change une hypothèse et tout se recalcule.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: 'Avec 15 juments, 70 % de gestation, 3 500 € par poulain, 1 900 € de coût par jument : quel résultat ?'
+                unite: €
+                aide: Écris l’opération, calcule, vérifie l’unité.
+    -   id: a02
+        titre: Trois scénarios
+        transition: Le modèle marche. Teste plusieurs hypothèses.
+        consigne: Tu vas calculer le résultat de l’élevage dans un scénario pessimiste et un optimiste. On attend les deux résultats.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Crée trois scénarios : pessimiste (60 % ; 2 800 €), moyen (70 % ; 3 500 €), optimiste (80 % ; 4 200 €).'
+                    - Outils > Scénarios (ou trois colonnes).
+            -   type: paragraphe
+                texte: Pourquoi trois scénarios ? L’éleveur voit le risque, pas seulement la moyenne.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Calcule le résultat de chaque scénario (15 juments, coût 1 900 €).
+                colonnes:
+                    - Scénario
+                    - Résultat (€)
+                lignes:
+                    -   - Pessimiste
+                        - ''
+                    -   - Optimiste
+                        - ''
+                aide: Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).
+    -   id: a03
+        titre: Le seuil de rentabilité
+        transition: Les scénarios montrent un risque. Où est la limite ?
+        consigne: Tu vas trouver avec la recherche de valeur cible le prix de vente qui annule le résultat. On attend ce prix et un conseil.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Outils > Recherche de valeur cible : cellule résultat = 0, en faisant varier le prix du poulain (taux 70 %).'
+                    - Interprète.
+            -   type: paragraphe
+                texte: Pourquoi un seuil ? L’éleveur sait à partir de quel prix il gagne de l’argent.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quel prix de vente annule le résultat (taux 70 %) ?
+                unite: €
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Que conseilles-tu à l’éleveur ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le taux de gestation peut aussi varier.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quel taux minimal (prix 3 500 €) pour ne pas perdre d’argent ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu sais simuler avant de décider. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment tester plusieurs hypothèses avant de décider ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - Modèle paramétré → scénarios.
+    - Valeur cible → seuil de rentabilité.
+sources:
+    -   type: lien
+        titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf

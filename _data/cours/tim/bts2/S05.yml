@@ -1,0 +1,144 @@
+titre: 'Séance 5 : Créer les tables et choisir les types de champs'
+themes:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+problematique: Comment créer des tables fiables dans un logiciel de base de données ?
+competences_bo:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+objectifs:
+    connaissances:
+        - Chaque champ a un type (entier, texte, date, décimal, booléen) et éventuellement une taille et une valeur obligatoire.
+        - La clé primaire est souvent un entier auto-incrémenté.
+    competences:
+        - Créer des tables avec types et clés.
+        - Saisir des enregistrements de test.
+pourquoi:
+    - En S04, tu as conçu le modèle.
+    - Tu le crées maintenant dans LibreOffice Base.
+activites:
+    -   id: a01
+        titre: La table Jument
+        consigne: Tu vas créer la table Jument dans LibreOffice Base avec ses types et sa clé primaire. On attend le type de trois champs et la raison du champ obligatoire.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Nouvelle base elevage_moulin.odb (HSQLDB intégré).
+                    - Tables > Créer une table en mode Ébauche.
+                    - 'Champs : id_jument (Entier, clé, valeur automatique), ueln (Texte 15, obligatoire), nom, date_naissance (Date), race.'
+            -   type: paragraphe
+                texte: Pourquoi un id automatique ? Deux juments peuvent porter le même nom ; l’id est unique.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Indique le type de chaque champ.
+                colonnes:
+                    - Champ
+                    - Type
+                lignes:
+                    -   - id_jument
+                        - ''
+                    -   - date_naissance
+                        - ''
+                    -   - ueln
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne.'
+            -   id: q02
+                type: qcm
+                enonce: Pourquoi rendre « ueln » obligatoire ?
+                choix:
+                    -   id: a
+                        texte: Un équidé ne peut pas être enregistré sans identification.
+                    -   id: b
+                        texte: Pour aller plus vite.
+                    -   id: c
+                        texte: Ce n’est pas utile.
+                aide: Élimine d’abord les réponses impossibles.
+        ressources:
+            -   type: lien
+                titre: LibreOffice Base — aide en ligne
+                url: https://help.libreoffice.org/latest/fr/text/sdatabase/main.html
+    -   id: a02
+        titre: Les autres tables
+        transition: La première table est faite. Crée les autres.
+        consigne: Tu vas créer les tables Étalon, Saillie, Poulain et Soin. On attend la structure de la table Saillie.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Crée Étalon, Saillie (id_saillie, id_jument, id_etalon, date_saillie, resultat), Poulain, Soin.
+                    - Les clés étrangères ont le même type que la clé référencée (Entier).
+            -   type: paragraphe
+                texte: Pourquoi le même type ? Sinon la relation est impossible.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris la structure de la table Saillie (champs et types).
+                aide: Compte les éléments demandés, puis cherche-les dans les documents de la mission.
+    -   id: a03
+        titre: Saisir un jeu d’essai
+        transition: Les tables existent. Teste-les.
+        consigne: Tu vas saisir un jeu d’essai (document 1) et tester la contrainte du champ obligatoire. On attend le comportement de la base.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Saillies 2026 (fictives)
+                colonnes:
+                    - Jument
+                    - Étalon
+                    - Date
+                    - Résultat
+                lignes:
+                    -   - Belle de Mai
+                        - Quatar
+                        - 02/04/2026
+                        - pleine
+                    -   - Iris
+                        - Ugo
+                        - 10/04/2026
+                        - vide
+                    -   - Opale
+                        - Quatar
+                        - 25/04/2026
+                        - pleine
+                    -   - Iris
+                        - Quatar
+                        - 05/05/2026
+                        - pleine
+            -   type: paragraphe
+                texte: Données fictives créées pour l’exercice (ordres de grandeur réalistes pour un élevage équin).
+            -   type: etapes
+                elements:
+                    - Saisis 3 juments, 2 étalons, 4 saillies (données fictives du document 1).
+                    - 'Essaie de saisir une jument sans UELN : que se passe-t-il ?'
+            -   type: paragraphe
+                texte: Pourquoi un jeu d’essai ? On vérifie que les contraintes marchent.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Que se passe-t-il quand tu enregistres une jument sans UELN ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le champ « resultat » n’accepte que pleine / vide / avortée.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment l’imposer ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Les tables sont créées. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment créer des tables fiables dans un logiciel de base de données ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - Types, clé auto, obligatoire.
+    - Jeu d’essai pour tester.
+sources:
+    -   type: lien
+        titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf

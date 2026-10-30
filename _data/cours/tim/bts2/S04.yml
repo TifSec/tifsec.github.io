@@ -1,0 +1,109 @@
+titre: 'Séance 4 : Modéliser les données de l’élevage'
+themes:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+problematique: Comment concevoir le modèle de données d’un élevage avant de créer la base ?
+competences_bo:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+objectifs:
+    connaissances:
+        - 'Modéliser : lister les entités (jument, étalon, saillie, poulain, soin), leurs attributs, leurs relations.'
+        - 'Règles : un attribut dépend de la clé de sa table ; pas de calcul stocké (l’âge se calcule).'
+    competences:
+        - Construire un modèle entité-relation simplifié.
+        - Choisir les attributs et les clés.
+pourquoi:
+    - En S03, tu as lu une base existante.
+    - Tu conçois maintenant celle de l’élevage du Moulin, avec ses soins vétérinaires.
+activites:
+    -   id: a01
+        titre: Les entités
+        consigne: Tu vas lister les entités et attributs de l’élevage à partir du cahier des charges (document 1). On attend les attributs de trois entités.
+        contenu:
+            -   type: paragraphe
+                texte: 'Document 1 — L’éleveur veut : la liste de ses juments et étalons utilisés, chaque saillie (date, résultat d’échographie), les poulains nés, et les soins (vermifuges, vaccins, traitements) de chaque jument avec les délais d’attente.'
+            -   type: etapes
+                elements:
+                    - Lis le cahier des charges (document 1).
+                    - Liste les entités et leurs attributs.
+            -   type: paragraphe
+                texte: Pourquoi partir du cahier des charges ? La base doit répondre aux questions de l’éleveur.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Complète pour trois entités.
+                colonnes:
+                    - Entité
+                    - Attributs (clé soulignée par *)
+                lignes:
+                    -   - Jument
+                        - ''
+                    -   - Étalon
+                        - ''
+                    -   - Soin
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne.'
+    -   id: a02
+        titre: Les relations
+        transition: Les entités sont prêtes. Relie-les.
+        consigne: Tu vas décrire les relations et cardinalités de ton modèle de l’élevage. On attend les relations et la place des clés étrangères.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Dessine le schéma : entités reliées, cardinalités.'
+                    - Place les clés étrangères.
+            -   type: paragraphe
+                texte: Pourquoi placer la clé côté n ? Chaque saillie connaît sa jument ; une jument ne peut pas stocker toutes ses saillies dans un champ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Décris les relations de ton modèle et la place des clés étrangères.
+                aide: Compte les éléments demandés, puis cherche-les dans les documents de la mission.
+    -   id: a03
+        titre: Les pièges
+        transition: Le modèle est dessiné. Vérifie-le.
+        consigne: Tu vas repérer, parmi trois attributs proposés (document 2), ceux à éviter. On attend les attributs et la raison.
+        contenu:
+            -   type: liste
+                elements:
+                    - 'Jument : âge.'
+                    - 'Jument : nombre de poulains.'
+                    - 'Jument : date de naissance.'
+            -   type: etapes
+                elements:
+                    - Lis les trois propositions d’attributs (document 2).
+                    - Dis lesquelles sont à éviter.
+            -   type: paragraphe
+                texte: Pourquoi éviter ? Un âge stocké est faux l’année suivante ; un champ « poulains » rempli à la main contredit la table Poulain.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le document 2, quels attributs faut-il éviter, et pourquoi ?
+                aide: Retrouve la phrase ou la ligne utile du document, puis commence par « D’après le document… ».
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Un étalon peut être utilisé en insémination (paillettes).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Faut-il une nouvelle entité ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Le modèle de données est prêt. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment concevoir le modèle de données d’un élevage avant de créer la base ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - Entités, attributs, clés ; relations 1-n.
+    - Ne pas stocker ce qui se calcule.
+sources:
+    -   type: lien
+        titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf

@@ -1,0 +1,98 @@
+titre: 'Séance 8 : Calculer des indicateurs de reproduction'
+themes:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+problematique: Comment calculer des indicateurs de reproduction par étalon avec une requête ?
+competences_bo:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+objectifs:
+    connaissances:
+        - Une requête de regroupement (GROUP BY) calcule des totaux et comptages par catégorie.
+        - Taux de gestation = juments pleines / juments saillies ; utile pour comparer des étalons ou des saisons.
+    competences:
+        - Créer une requête de regroupement.
+        - Interpréter un indicateur de reproduction.
+pourquoi:
+    - En S07, tu as listé des juments.
+    - 'L’éleveur veut comparer les étalons utilisés : lequel donne les meilleurs résultats ?'
+activites:
+    -   id: a01
+        titre: Compter par étalon
+        consigne: Tu vas compter le nombre de saillies par étalon en 2026 avec une requête de regroupement. On attend les effectifs.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Requête : Étalon + Saillie ; regroupement par nom d’étalon.'
+                    - 'Fonctions : Nombre(id_saillie).'
+                    - Ajoute un critère d’année 2026.
+            -   type: paragraphe
+                texte: Pourquoi regrouper ? On obtient une ligne par étalon au lieu d’une ligne par saillie.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Combien de saillies chaque étalon a-t-il réalisées en 2026 ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a02
+        titre: Le taux de gestation
+        transition: Tu as les effectifs. Calcule la réussite.
+        consigne: Tu vas calculer le taux de gestation de chaque étalon. On attend le taux de Quatar et le SQL de la requête.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Ajoute un champ : SUM(CASE WHEN resultat = ''pleine'' THEN 1 ELSE 0 END).'
+                    - Calcule le taux = pleines / saillies (dans la requête ou dans Calc après export).
+            -   type: paragraphe
+                texte: Pourquoi un taux ? Un étalon avec 12 saillies et 10 juments pleines fait mieux qu’un autre avec 8 et 4.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: 'Quatar : 12 saillies, 9 juments pleines. Quel est son taux de gestation ?'
+                unite: '%'
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Écris le SQL de la requête (grandes lignes).
+                aide: Compte les éléments demandés, puis cherche-les dans les documents de la mission.
+    -   id: a03
+        titre: Interpréter avec prudence
+        transition: Les taux sont calculés. Que disent-ils vraiment ?
+        consigne: Tu vas discuter un taux de 100 % calculé sur deux saillies. On attend une interprétation prudente.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Ugo : 2 saillies, 2 pleines (100 %).'
+                    - 'Discute : Ugo est-il le meilleur étalon ?'
+            -   type: paragraphe
+                texte: Pourquoi la prudence ? Un taux calculé sur très peu de cas n’est pas fiable.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ugo est-il meilleur que Quatar ? Justifie.
+                aide: Une idée + « car » + une raison tirée de la séance.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: L’âge des juments influence la fertilité.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quelle requête permettrait de le vérifier ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Les indicateurs de reproduction sont calculés. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment calculer des indicateurs de reproduction par étalon avec une requête ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - GROUP BY ; COUNT ; SUM(CASE…).
+    - Taux de gestation ; prudence sur les petits effectifs.
+sources:
+    -   type: lien
+        titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf

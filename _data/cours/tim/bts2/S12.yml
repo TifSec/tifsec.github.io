@@ -1,0 +1,113 @@
+titre: 'Séance 12 : Un outil d’aide à la décision pour le rationnement'
+themes:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+problematique: Que vaut un outil d’aide à la décision, et comment le vérifier ?
+competences_bo:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+objectifs:
+    connaissances:
+        - Un OAD (outil d’aide à la décision) calcule une recommandation à partir de données et d’un modèle (besoins, apports).
+        - 'On vérifie ses hypothèses, ses données d’entrée et on garde l’esprit critique : il aide, l’éleveur décide.'
+    competences:
+        - Reproduire un calcul d’OAD dans le tableur.
+        - Critiquer les hypothèses d’un OAD.
+pourquoi:
+    - Pour ajuster la ration des poulinières (C4.3), des logiciels de rationnement existent.
+    - Tu construis un mini-OAD et tu le compares à un outil réel.
+activites:
+    -   id: a01
+        titre: Le modèle besoins-apports
+        consigne: Tu vas calculer le déficit énergétique d’une poulinière et la quantité de concentré à ajouter (document 1). On attend les deux résultats.
+        contenu:
+            -   type: liste
+                elements:
+                    - 'Poulinière en fin de gestation, 550 kg : besoin ≈ 7,8 UFC par jour (ordre de grandeur).'
+                    - 'Foin : 12 kg brut par jour, 0,5 UFC/kg.'
+                    - 'Concentré : 0,9 UFC/kg.'
+            -   type: paragraphe
+                texte: Données fictives créées pour l’exercice (ordres de grandeur réalistes pour un élevage équin).
+            -   type: etapes
+                elements:
+                    - Lis les besoins et apports (document 1).
+                    - Calcule le déficit en énergie.
+            -   type: paragraphe
+                texte: Pourquoi besoins − apports ? C’est le cœur de tout rationnement.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: D’après le document 1, quel est le déficit en énergie (UFC par jour) ?
+                unite: UFC
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: nombre
+                enonce: Combien de kg de concentré (0,9 UFC/kg) pour combler ce déficit ?
+                unite: kg
+                aide: Écris l’opération, calcule, vérifie l’unité.
+    -   id: a02
+        titre: Le mini-OAD au tableur
+        transition: Tu as fait le calcul à la main. Automatise-le.
+        consigne: Tu vas construire un mini-OAD de rationnement dans le tableur et le tester avec un foin de moindre qualité. On attend le résultat et ce qu’il montre.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Feuille Paramètres : besoin, valeur du foin, valeur du concentré.'
+                    - 'Feuille Calcul : apport du foin, déficit, kg de concentré = MAX(0;déficit / valeur).'
+                    - Teste avec un foin de mauvaise qualité (0,4 UFC/kg).
+            -   type: paragraphe
+                texte: Pourquoi MAX(0;…) ? Si le foin suffit, on ne propose pas une quantité négative.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Avec un foin à 0,4 UFC/kg, combien de kg de concentré ?
+                unite: kg
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Que montre ce test sur l’importance de l’analyse du fourrage ?
+                aide: Action → résultat attendu → résultat observé ; une seule chose à la fois.
+    -   id: a03
+        titre: Critiquer un OAD
+        transition: Ton mini-OAD marche. Et les outils du commerce ?
+        consigne: Tu vas analyser la présentation d’un OAD commercial fictif (document 2) et dire ce qu’il faut vérifier. On attend trois points.
+        contenu:
+            -   type: paragraphe
+                texte: 'Document 2 — « RationPro (fictif) : l’application gratuite du fabricant d’aliments X. Indiquez le poids de votre cheval, l’application calcule la ration idéale avec nos produits. Valeurs de fourrage par défaut. Vos données sont stockées sur nos serveurs. »'
+            -   type: etapes
+                elements:
+                    - Lis la présentation d’un OAD commercial (document 2).
+                    - Liste ce qu’il faut vérifier avant de suivre sa recommandation.
+            -   type: paragraphe
+                texte: 'Pourquoi critiquer ? Un OAD est un modèle : ses hypothèses peuvent ne pas correspondre à ton élevage.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le document 2, cite trois points à vérifier avant d’utiliser cet OAD.
+                aide: Retrouve la phrase ou la ligne utile du document, puis commence par « D’après le document… ».
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Les références de besoins des chevaux sont publiées.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Par quel organisme ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu sais utiliser un OAD avec esprit critique. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : que vaut un outil d’aide à la décision, et comment le vérifier ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - OAD = données + modèle → recommandation.
+    - Vérifier hypothèses, sources, intérêts.
+sources:
+    -   type: lien
+        titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf

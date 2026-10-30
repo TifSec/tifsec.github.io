@@ -1,0 +1,99 @@
+titre: 'Séance 7 : Interroger la base : quelles juments surveiller ?'
+themes:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+problematique: Comment extraire de la base les informations utiles à une décision ?
+competences_bo:
+    - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
+objectifs:
+    connaissances:
+        - Une requête de sélection choisit des champs, dans une ou plusieurs tables liées, avec des critères et un tri.
+        - 'Le mode Ébauche génère du SQL : SELECT … FROM … WHERE … ORDER BY …'
+    competences:
+        - Créer une requête multi-tables avec critères.
+        - Lire le SQL produit.
+pourquoi:
+    - La base contient maintenant le fichier fourni elevage_complet.odb (25 juments, 3 saisons).
+    - 'L’éleveur demande : quelles juments pleines doivent pouliner avant le 15 avril ?'
+activites:
+    -   id: a01
+        titre: Une requête simple
+        consigne: Tu vas créer une requête qui liste les juments Selle Français de la base. On attend le nombre de juments et le SQL.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Requêtes > Ébauche : table Jument ; champs nom, race, date_naissance.'
+                    - 'Critère : race = ''Selle Français'' ; tri par nom.'
+                    - Exécute (F5).
+            -   type: paragraphe
+                texte: Pourquoi un critère ? On ne garde que les lignes utiles.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Combien de juments Selle Français la requête renvoie-t-elle ?
+                unite: juments
+                aide: Écris l’opération, calcule, vérifie l’unité.
+            -   id: q02
+                type: texte
+                enonce: Recopie le SQL de ta requête (Affichage > Mode SQL).
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a02
+        titre: Une requête multi-tables
+        transition: Une table, c’est simple. Croise maintenant deux tables.
+        consigne: Tu vas créer une requête sur Jument et Saillie qui calcule la date de terme des juments pleines. On attend les juments à surveiller avant le 15 avril.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ajoute Jument et Saillie (la relation apparaît).
+                    - 'Champs : nom, date_saillie, resultat ; critères : resultat = ''pleine'' et année 2026.'
+                    - 'Ajoute un champ calculé : date de terme ≈ date_saillie + 340 jours.'
+            -   type: paragraphe
+                texte: 'Pourquoi + 340 ? La gestation d’une jument dure environ 11 mois (≈ 340 jours) : on prévoit la surveillance.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quelles juments ont un terme prévu avant le 15/04/2027 ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a03
+        titre: Paramétrer
+        transition: La requête marche pour une date. Rends-la réutilisable.
+        consigne: Tu vas transformer le critère de date en paramètre pour réutiliser la requête. On attend le critère et ce qui se passe à l’exécution.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Remplace la date du critère par un paramètre :date_limite.
+                    - Exécute avec deux dates différentes.
+            -   type: paragraphe
+                texte: Pourquoi un paramètre ? La même requête sert toute la saison.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris le critère avec paramètre et ce qui se passe à l’exécution.
+                aide: Compte les éléments demandés, puis cherche-les dans les documents de la mission.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: La surveillance commence souvent quelques semaines avant le terme.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quelle requête prépare la mise en place de la caméra de poulinage ?
+                aide: Une phrase complète qui reprend les mots de la question.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: La base répond aux questions de l’éleveur. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment extraire de la base les informations utiles à une décision ?'
+                aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
+retenir:
+    - SELECT … FROM … WHERE … ORDER BY.
+    - Champ calculé ; paramètre.
+sources:
+    -   type: lien
+        titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf
