@@ -1,0 +1,3111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-graph.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        Cours professeur | BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/prof/prof-header.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/prof/prof-layout.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/prof/prof-dashboard.css">
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/prof/prof-theme.css?v=20261021-contrast-notes">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261029-contrast-1">
+    
+</head>
+
+
+<body class="prof-shell">
+    <a class="prof-skip" href="#prof-main">Aller au contenu</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <div id="prof-loading" class="session-panel" role="status">Vérification de votre accès...</div>
+
+    <div id="prof-access-denied" class="session-panel" hidden>
+        <h1>Accès non autorisé</h1>
+        <p id="prof-access-message">Vous devez être connecté avec un compte professeur.</p>
+        <a href="/tifsec-test-eleves/connexion/">Se connecter</a>
+        <div class="session-actions">
+            <button type="button" id="prof-retry">Réessayer</button>
+            <button type="button" id="prof-denied-logout">Se déconnecter</button>
+        </div>
+    </div>
+
+    <div id="prof-content" hidden>
+        <!-- ========== EN-TÊTE PROFESSEUR ========== -->
+
+<header class="prof-header">
+    <div class="prof-header-content">
+        <a href="/tifsec-test-eleves/prof/" class="prof-logo">
+            <img src="/tifsec-test-eleves/images/logo.png" alt="Logo du portail">
+        </a>
+        <div class="prof-header-title">
+            <p class="prof-brand">Espace professeur</p>
+            <p>Technologie • TIM • Mathématiques</p>
+        </div>
+    </div>
+    <div class="prof-header-actions">
+        <span id="prof-identity">Professeur</span>
+        <details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+
+        <button type="button" id="prof-logout">Se déconnecter</button>
+    </div>
+</header>
+<nav class="prof-nav" aria-label="Espace professeur">
+    <div class="prof-nav-content">
+        <a href="/tifsec-test-eleves/prof/" >Enseignements</a>
+        <a href="/tifsec-test-eleves/prof/cours/" aria-current="page">Cours professeur</a>
+        <a href="/tifsec-test-eleves/prof/eleves/" >Élèves et inscriptions</a>
+        <a href="/tifsec-test-eleves/prof/suivi/" >Copies et corrections</a>
+        <a href="/tifsec-test-eleves/prof/notes/" >Notes</a>
+    </div>
+</nav>
+
+        <main class="prof-main" id="prof-main" tabindex="-1">
+            <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css">
+<link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css">
+<link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-paper-version.css">
+<link rel="stylesheet" href="/tifsec-test-eleves/assets/css/prof/private-course.css?v=20261029-prof-2">
+<section id="teacher-course" data-enabled="true">
+    <p class="prof-eyebrow">Préparer et accompagner la séance</p><h1>Cours professeur</h1>
+    <p>Le cours élève et les notes réservées au professeur sont séparés. Fermez les notes privées avant de projeter votre écran.</p>
+    <p id="teacher-course-context" class="prof-description"></p>
+    <div class="teacher-course-filters">
+        <div><label for="teacher-course-subject">Matière</label><select id="teacher-course-subject" disabled></select></div>
+        <div><label for="teacher-course-class">Établissement et classe</label><select id="teacher-course-class" disabled></select></div>
+        <div><label for="teacher-course-select">Séance intégrée au nouveau site</label><select id="teacher-course-select" disabled></select></div>
+    </div>
+    <div class="session-actions"><button type="button" id="teacher-course-open" disabled>Version élève / projection</button><button type="button" id="teacher-course-private" disabled>Ouvrir le cours professeur</button><button type="button" id="teacher-course-hide">Masquer et effacer les notes privées</button></div>
+    <p><a id="teacher-course-copies" data-base-url="/tifsec-test-eleves/prof/suivi/" hidden>Consulter les copies de cette classe</a></p>
+    <p id="teacher-course-status" role="status" aria-live="polite">Vérification de votre accès…</p>
+    
+    <section id="teacher-course-notes" class="private-course-notes" aria-label="Notes privées du professeur" hidden></section>
+    <div id="teacher-course-preview"></div>
+</section>
+<script id="seances-data" type="application/json">
+[
+    
+    
+    
+    
+    
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S01","version":"v1","titre":"Séance 1 : Comment va-t-on travailler en technologie cette année ?","url":"/tifsec-test-eleves/cours/techno/5e/s01/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S02","version":"v1","titre":"Séance 2 : Objet technique ou objet naturel ?","url":"/tifsec-test-eleves/cours/techno/5e/s02/"}
+    
+    
+    
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S03","version":"v1","titre":"Séance 3 : À quoi sert cet objet, et pour qui ?","url":"/tifsec-test-eleves/cours/techno/5e/s03/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S04","version":"v1","titre":"Séance 4 : Qu’est-ce qui agit autour d’un objet ?","url":"/tifsec-test-eleves/cours/techno/5e/s04/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S05","version":"v1","titre":"Séance 5 : Facile ou difficile à utiliser ?","url":"/tifsec-test-eleves/cours/techno/5e/s05/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S06","version":"v1","titre":"Séance 6 : Que change un réglage ?","url":"/tifsec-test-eleves/cours/techno/5e/s06/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S07","version":"v1","titre":"Séance 7 : Bilan : présenter un objet du quotidien","url":"/tifsec-test-eleves/cours/techno/5e/s07/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S08","version":"v1","titre":"Séance 8 : Monter une lampe de poche… dans un simulateur","url":"/tifsec-test-eleves/cours/techno/5e/s08/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S09","version":"v1","titre":"Séance 9 : Une même fonction, plusieurs solutions ?","url":"/tifsec-test-eleves/cours/techno/5e/s09/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S10","version":"v1","titre":"Séance 10 : Comment la lampe a-t-elle évolué ?","url":"/tifsec-test-eleves/cours/techno/5e/s10/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S11","version":"v1","titre":"Séance 11 : Writer n° 1 : présenter un objet dans un document propre","url":"/tifsec-test-eleves/cours/techno/5e/s11/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S12","version":"v1","titre":"Séance 12 : Bilan et entraînement au brevet n° 1","url":"/tifsec-test-eleves/cours/techno/5e/s12/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S13","version":"v1","titre":"Séance 13 : Où sont rangés mes fichiers, et qui peut les voir ?","url":"/tifsec-test-eleves/cours/techno/5e/s13/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S14","version":"v1","titre":"Séance 14 : Combien pèse un fichier ?","url":"/tifsec-test-eleves/cours/techno/5e/s14/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S15","version":"v1","titre":"Séance 15 : Comment décrire une cuve d’eau avec des données ?","url":"/tifsec-test-eleves/cours/techno/5e/s15/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S16","version":"v1","titre":"Séance 16 : Calc n° 1 : dix jours de pluie dans la cuve","url":"/tifsec-test-eleves/cours/techno/5e/s16/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S17","version":"v1","titre":"Séance 17 : En quoi sont faites nos maquettes ?","url":"/tifsec-test-eleves/cours/techno/5e/s17/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S18","version":"v1","titre":"Séance 18 : Quelle propriété pour quel usage ? La pale va-t-elle tenir ?","url":"/tifsec-test-eleves/cours/techno/5e/s18/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S19","version":"v1","titre":"Séance 19 : Quel matériau choisir pour notre future cuve ?","url":"/tifsec-test-eleves/cours/techno/5e/s19/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S20","version":"v1","titre":"Séance 20 : Une seconde vie pour un vieux lecteur CD ?","url":"/tifsec-test-eleves/cours/techno/5e/s20/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S21","version":"v1","titre":"Séance 21 : Lequel choisir en lisant sa fiche ?","url":"/tifsec-test-eleves/cours/techno/5e/s21/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S22","version":"v1","titre":"Séance 22 : Bilan et entraînement au brevet n° 2 : la gourde","url":"/tifsec-test-eleves/cours/techno/5e/s22/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S23","version":"v1","titre":"Séance 23 : Comment protéger mes données et mes comptes ?","url":"/tifsec-test-eleves/cours/techno/5e/s23/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S24","version":"v1","titre":"Séance 24 : Comment notre éolienne produit-elle de l’électricité ?","url":"/tifsec-test-eleves/cours/techno/5e/s24/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S25","version":"v1","titre":"Séance 25 : Quelle énergie entre, quelle énergie sort ?","url":"/tifsec-test-eleves/cours/techno/5e/s25/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S26","version":"v1","titre":"Séance 26 : Comment mesurer ce que produit l’éolienne ?","url":"/tifsec-test-eleves/cours/techno/5e/s26/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S27","version":"v1","titre":"Séance 27 : Calc n° 2 : 3, 4 ou 5 pales ?","url":"/tifsec-test-eleves/cours/techno/5e/s27/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S28","version":"v1","titre":"Séance 28 : Éolienne, panneau solaire ou pile ?","url":"/tifsec-test-eleves/cours/techno/5e/s28/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S29","version":"v1","titre":"Séance 29 : Bilan et entraînement au brevet n° 3 : le vélo à assistance électrique","url":"/tifsec-test-eleves/cours/techno/5e/s29/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S30","version":"v1","titre":"Séance 30 : Arcade : comment faire bouger un personnage avec les boutons ?","url":"/tifsec-test-eleves/cours/techno/5e/s30/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S31","version":"v1","titre":"Séance 31 : Arcade : à quoi sert un score ?","url":"/tifsec-test-eleves/cours/techno/5e/s31/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S32","version":"v1","titre":"Séance 32 : Arcade : quand a-t-on gagné ?","url":"/tifsec-test-eleves/cours/techno/5e/s32/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S33","version":"v1","titre":"Séance 33 : Comment le monte-charge sait-il où est la cabine ?","url":"/tifsec-test-eleves/cours/techno/5e/s33/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S34","version":"v1","titre":"Séance 34 : Pourquoi un contrepoids ?","url":"/tifsec-test-eleves/cours/techno/5e/s34/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S35","version":"v1","titre":"Séance 35 : Que fait le programme du monte-charge ?","url":"/tifsec-test-eleves/cours/techno/5e/s35/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S36","version":"v1","titre":"Séance 36 : Que se passe-t-il si je change un nombre du programme ?","url":"/tifsec-test-eleves/cours/techno/5e/s36/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S37","version":"v1","titre":"Séance 37 : Le programme fait-il ce qu’on attend ?","url":"/tifsec-test-eleves/cours/techno/5e/s37/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S38","version":"v1","titre":"Séance 38 : Bilan : expliquer le monte-charge","url":"/tifsec-test-eleves/cours/techno/5e/s38/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S39","version":"v1","titre":"Séance 39 : Pourquoi les objets tombent-ils en panne ?","url":"/tifsec-test-eleves/cours/techno/5e/s39/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S40","version":"v1","titre":"Séance 40 : Quelle pièce est abîmée ?","url":"/tifsec-test-eleves/cours/techno/5e/s40/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S41","version":"v1","titre":"Séance 41 : Trouver la panne du monte-charge","url":"/tifsec-test-eleves/cours/techno/5e/s41/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S42","version":"v1","titre":"Séance 42 : Writer n° 2 : écrire une notice de dépannage","url":"/tifsec-test-eleves/cours/techno/5e/s42/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S43","version":"v1","titre":"Séance 43 : Un panneau qui suit la lumière, à quoi bon ?","url":"/tifsec-test-eleves/cours/techno/5e/s43/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S44","version":"v1","titre":"Séance 44 : Comment est fait le tracker ?","url":"/tifsec-test-eleves/cours/techno/5e/s44/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S45","version":"v1","titre":"Séance 45 : Programmer notre amélioration","url":"/tifsec-test-eleves/cours/techno/5e/s45/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S46","version":"v1","titre":"Séance 46 : Notre amélioration fonctionne-t-elle ?","url":"/tifsec-test-eleves/cours/techno/5e/s46/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S47","version":"v1","titre":"Séance 47 : Impress n° 1 : préparer la revue de projet","url":"/tifsec-test-eleves/cours/techno/5e/s47/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S48","version":"v1","titre":"Séance 48 : Revue de projet : présenter notre amélioration","url":"/tifsec-test-eleves/cours/techno/5e/s48/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S49","version":"v1","titre":"Séance 49 : Entraînement au brevet n° 4 : la cuve d’eau intelligente","url":"/tifsec-test-eleves/cours/techno/5e/s49/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"5e","seance":"S50","version":"v1","titre":"Séance 50 : Mon bilan de l’année","url":"/tifsec-test-eleves/cours/techno/5e/s50/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S01","version":"v1","titre":"Séance 1 : Que retenons-nous de la 5e ?","url":"/tifsec-test-eleves/cours/techno/4e/s01/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S02","version":"v1","titre":"Séance 2 : De l’idée à l’objet : comment conçoit-on un objet ?","url":"/tifsec-test-eleves/cours/techno/4e/s02/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S03","version":"v1","titre":"Séance 3 : Du téléphone fixe au smartphone : qu’a-t-on gagné, qu’a-t-on perdu ?","url":"/tifsec-test-eleves/cours/techno/4e/s03/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S04","version":"v1","titre":"Séance 4 : Pourquoi a-t-on changé cet objet ?","url":"/tifsec-test-eleves/cours/techno/4e/s04/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S05","version":"v1","titre":"Séance 5 : Pourquoi le monte-charge a-t-il un capot et un contrepoids ?","url":"/tifsec-test-eleves/cours/techno/4e/s05/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S06","version":"v1","titre":"Séance 6 : Writer n° 1 : un compte rendu bien organisé","url":"/tifsec-test-eleves/cours/techno/4e/s06/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S07","version":"v1","titre":"Séance 7 : Bilan et entraînement au brevet n° 1 : le vélo électrique","url":"/tifsec-test-eleves/cours/techno/4e/s07/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S08","version":"v1","titre":"Séance 8 : Comment protéger un compte ?","url":"/tifsec-test-eleves/cours/techno/4e/s08/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S09","version":"v1","titre":"Séance 9 : Quelles traces je laisse sans le savoir ?","url":"/tifsec-test-eleves/cours/techno/4e/s09/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S10","version":"v1","titre":"Séance 10 : Ai-je le droit d’utiliser cette image ?","url":"/tifsec-test-eleves/cours/techno/4e/s10/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S11","version":"v1","titre":"Séance 11 : Vrai ou faux ? Vérifier une information en ligne","url":"/tifsec-test-eleves/cours/techno/4e/s11/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S12","version":"v1","titre":"Séance 12 : Qui est responsable quand ça dérape ?","url":"/tifsec-test-eleves/cours/techno/4e/s12/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S13","version":"v1","titre":"Séance 13 : De quoi est fait le réseau du collège ?","url":"/tifsec-test-eleves/cours/techno/4e/s13/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S14","version":"v1","titre":"Séance 14 : Pourquoi chaque appareil a-t-il une adresse ?","url":"/tifsec-test-eleves/cours/techno/4e/s14/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S15","version":"v1","titre":"Séance 15 : Construire un petit réseau en simulation","url":"/tifsec-test-eleves/cours/techno/4e/s15/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S16","version":"v1","titre":"Séance 16 : Pourquoi ces deux ordinateurs ne se parlent-ils pas ?","url":"/tifsec-test-eleves/cours/techno/4e/s16/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S17","version":"v1","titre":"Séance 17 : Calc n° 1 : combien de temps pour envoyer une vidéo ?","url":"/tifsec-test-eleves/cours/techno/4e/s17/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S18","version":"v1","titre":"Séance 18 : Bilan et entraînement au brevet n° 2 : le réseau d’une médiathèque","url":"/tifsec-test-eleves/cours/techno/4e/s18/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S19","version":"v1","titre":"Séance 19 : Que fait chaque constituant de l’éolienne ?","url":"/tifsec-test-eleves/cours/techno/4e/s19/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S20","version":"v1","titre":"Séance 20 : Avec quel appareil mesurer ?","url":"/tifsec-test-eleves/cours/techno/4e/s20/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S21","version":"v1","titre":"Séance 21 : L’éolienne produit-elle encore avec un vent faible ?","url":"/tifsec-test-eleves/cours/techno/4e/s21/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S22","version":"v1","titre":"Séance 22 : Éolienne ou panneau solaire du tracker ?","url":"/tifsec-test-eleves/cours/techno/4e/s22/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S23","version":"v1","titre":"Séance 23 : Quel matériau pour une pale ?","url":"/tifsec-test-eleves/cours/techno/4e/s23/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S24","version":"v1","titre":"Séance 24 : Bilan et entraînement au brevet n° 3 : l’éolienne d’un voilier","url":"/tifsec-test-eleves/cours/techno/4e/s24/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S25","version":"v1","titre":"Séance 25 : Pourquoi cette pièce a-t-elle cette forme ?","url":"/tifsec-test-eleves/cours/techno/4e/s25/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S26","version":"v1","titre":"Séance 26 : Prendre en main la CAO","url":"/tifsec-test-eleves/cours/techno/4e/s26/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S27","version":"v1","titre":"Séance 27 : Modifier le rotor","url":"/tifsec-test-eleves/cours/techno/4e/s27/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S28","version":"v1","titre":"Séance 28 : La pale va-t-elle plier ?","url":"/tifsec-test-eleves/cours/techno/4e/s28/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S29","version":"v1","titre":"Séance 29 : Bilan : présenter sa pale","url":"/tifsec-test-eleves/cours/techno/4e/s29/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S30","version":"v1","titre":"Séance 30 : Penser comme un ordinateur","url":"/tifsec-test-eleves/cours/techno/4e/s30/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S31","version":"v1","titre":"Séance 31 : Écrire les règles d’un jeu avant de le programmer","url":"/tifsec-test-eleves/cours/techno/4e/s31/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S32","version":"v1","titre":"Séance 32 : Traduire l’algorithme en blocs","url":"/tifsec-test-eleves/cours/techno/4e/s32/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S33","version":"v1","titre":"Séance 33 : Une vague d’ennemis","url":"/tifsec-test-eleves/cours/techno/4e/s33/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S34","version":"v1","titre":"Séance 34 : Pourquoi mon jeu bugue-t-il ?","url":"/tifsec-test-eleves/cours/techno/4e/s34/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S35","version":"v1","titre":"Séance 35 : Qui capte, qui décide, qui affiche ?","url":"/tifsec-test-eleves/cours/techno/4e/s35/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S36","version":"v1","titre":"Séance 36 : Que fait ce programme, en français ?","url":"/tifsec-test-eleves/cours/techno/4e/s36/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S37","version":"v1","titre":"Séance 37 : Que disent les mesures du capteur à ultrasons ?","url":"/tifsec-test-eleves/cours/techno/4e/s37/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S38","version":"v1","titre":"Séance 38 : Afficher l’étage sur l’écran","url":"/tifsec-test-eleves/cours/techno/4e/s38/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S39","version":"v1","titre":"Séance 39 : D’où vient la panne ?","url":"/tifsec-test-eleves/cours/techno/4e/s39/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S40","version":"v1","titre":"Séance 40 : Bilan et entraînement au brevet n° 4 : une barrière de parking","url":"/tifsec-test-eleves/cours/techno/4e/s40/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S41","version":"v1","titre":"Séance 41 : Quelle nouvelle fonction pour le tracker ?","url":"/tifsec-test-eleves/cours/techno/4e/s41/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S42","version":"v1","titre":"Séance 42 : Comment deux cartes se parlent-elles ?","url":"/tifsec-test-eleves/cours/techno/4e/s42/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S43","version":"v1","titre":"Séance 43 : Que manque-t-il au prototype ?","url":"/tifsec-test-eleves/cours/techno/4e/s43/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S44","version":"v1","titre":"Séance 44 : Programmer l’émetteur et le récepteur","url":"/tifsec-test-eleves/cours/techno/4e/s44/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S45","version":"v1","titre":"Séance 45 : La liaison radio est-elle fiable ?","url":"/tifsec-test-eleves/cours/techno/4e/s45/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S46","version":"v1","titre":"Séance 46 : Calc n° 2 : que nous apprennent les mesures reçues ?","url":"/tifsec-test-eleves/cours/techno/4e/s46/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S47","version":"v1","titre":"Séance 47 : Impress n° 1 : préparer la revue de projet","url":"/tifsec-test-eleves/cours/techno/4e/s47/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S48","version":"v1","titre":"Séance 48 : Revue de projet : le tracker communique","url":"/tifsec-test-eleves/cours/techno/4e/s48/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S49","version":"v1","titre":"Séance 49 : Entraînement au brevet n° 5 : un dossier complet","url":"/tifsec-test-eleves/cours/techno/4e/s49/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"4e","seance":"S50","version":"v1","titre":"Séance 50 : Mon bilan de 4e","url":"/tifsec-test-eleves/cours/techno/4e/s50/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S01","version":"v1","titre":"Séance 1 : La 3e en technologie : ce qui nous attend","url":"/tifsec-test-eleves/cours/techno/3e/s01/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S02","version":"v1","titre":"Séance 2 : Quels métiers derrière nos objets ?","url":"/tifsec-test-eleves/cours/techno/3e/s02/"}
+    
+    
+    
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S03","version":"v1","titre":"Séance 3 : Quelle invention a tout changé ?","url":"/tifsec-test-eleves/cours/techno/3e/s03/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S04","version":"v1","titre":"Séance 4 : De la découverte scientifique à notre tracker","url":"/tifsec-test-eleves/cours/techno/3e/s04/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S05","version":"v1","titre":"Séance 5 : Comment une machine apprend-elle ?","url":"/tifsec-test-eleves/cours/techno/3e/s05/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S06","version":"v1","titre":"Séance 6 : L’IA peut-elle se tromper ?","url":"/tifsec-test-eleves/cours/techno/3e/s06/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S07","version":"v1","titre":"Séance 7 : Bilan et entraînement au brevet n° 1 : argumenter","url":"/tifsec-test-eleves/cours/techno/3e/s07/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S08","version":"v1","titre":"Séance 8 : Quel chemin suit mon message ?","url":"/tifsec-test-eleves/cours/techno/3e/s08/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S09","version":"v1","titre":"Séance 9 : Pourquoi des routeurs ?","url":"/tifsec-test-eleves/cours/techno/3e/s09/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S10","version":"v1","titre":"Séance 10 : Comment l’ordinateur écrit-il un mot ?","url":"/tifsec-test-eleves/cours/techno/3e/s10/"}
+    
+    
+    
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S11","version":"v1","titre":"Séance 11 : Combien pèsent une photo et un son ?","url":"/tifsec-test-eleves/cours/techno/3e/s11/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S12","version":"v1","titre":"Séance 12 : Mon identité numérique : quelles règles ?","url":"/tifsec-test-eleves/cours/techno/3e/s12/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S13","version":"v1","titre":"Séance 13 : Bilan et entraînement au brevet n° 2 : le réseau et les données","url":"/tifsec-test-eleves/cours/techno/3e/s13/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S14","version":"v1","titre":"Séance 14 : Brevet blanc n° 1 : la station météo du collège","url":"/tifsec-test-eleves/cours/techno/3e/s14/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S15","version":"v1","titre":"Séance 15 : Brevet blanc n° 1 : correction et reprise","url":"/tifsec-test-eleves/cours/techno/3e/s15/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S16","version":"v1","titre":"Séance 16 : Pourquoi récupérer l’eau de pluie ?","url":"/tifsec-test-eleves/cours/techno/3e/s16/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S17","version":"v1","titre":"Séance 17 : Writer n° 1 : le cahier des charges de la cuve","url":"/tifsec-test-eleves/cours/techno/3e/s17/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S18","version":"v1","titre":"Séance 18 : Quelles cuves existent déjà ?","url":"/tifsec-test-eleves/cours/techno/3e/s18/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S19","version":"v1","titre":"Séance 19 : Calc n° 1 : quelle cuve a le plus petit bilan carbone ?","url":"/tifsec-test-eleves/cours/techno/3e/s19/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S20","version":"v1","titre":"Séance 20 : Choisir et argumenter","url":"/tifsec-test-eleves/cours/techno/3e/s20/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S21","version":"v1","titre":"Séance 21 : Organiser notre projet","url":"/tifsec-test-eleves/cours/techno/3e/s21/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S22","version":"v1","titre":"Séance 22 : Qu’est-ce qu’un objet connecté ?","url":"/tifsec-test-eleves/cours/techno/3e/s22/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S23","version":"v1","titre":"Séance 23 : Comment l’énergie circulera-t-elle dans la cuve ?","url":"/tifsec-test-eleves/cours/techno/3e/s23/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S24","version":"v1","titre":"Séance 24 : Secteur, panneau solaire ou éolienne ?","url":"/tifsec-test-eleves/cours/techno/3e/s24/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S25","version":"v1","titre":"Séance 25 : Quels capteurs pour notre cuve ?","url":"/tifsec-test-eleves/cours/techno/3e/s25/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S26","version":"v1","titre":"Séance 26 : Comment une distance devient-elle une hauteur d’eau ?","url":"/tifsec-test-eleves/cours/techno/3e/s26/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S27","version":"v1","titre":"Séance 27 : Quel matériau et quel procédé pour le couvercle-filtre ?","url":"/tifsec-test-eleves/cours/techno/3e/s27/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S28","version":"v1","titre":"Séance 28 : Bilan et entraînement au brevet n° 3 : schéma bloc","url":"/tifsec-test-eleves/cours/techno/3e/s28/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S29","version":"v1","titre":"Séance 29 : Ranger son code dans des fonctions","url":"/tifsec-test-eleves/cours/techno/3e/s29/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S30","version":"v1","titre":"Séance 30 : Des blocs au Python","url":"/tifsec-test-eleves/cours/techno/3e/s30/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S31","version":"v1","titre":"Séance 31 : Un mini-jeu sur l’eau","url":"/tifsec-test-eleves/cours/techno/3e/s31/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S32","version":"v1","titre":"Séance 32 : Brevet blanc n° 2 : la cuve d’un gymnase","url":"/tifsec-test-eleves/cours/techno/3e/s32/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S33","version":"v1","titre":"Séance 33 : Brevet blanc n° 2 : correction et reprise","url":"/tifsec-test-eleves/cours/techno/3e/s33/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S34","version":"v1","titre":"Séance 34 : Le numérique a-t-il un impact sur l’environnement ?","url":"/tifsec-test-eleves/cours/techno/3e/s34/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S35","version":"v1","titre":"Séance 35 : Que doit décider la cuve ?","url":"/tifsec-test-eleves/cours/techno/3e/s35/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S36","version":"v1","titre":"Séance 36 : Programmer notre fonction","url":"/tifsec-test-eleves/cours/techno/3e/s36/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S37","version":"v1","titre":"Séance 37 : La cuve prévient l’afficheur","url":"/tifsec-test-eleves/cours/techno/3e/s37/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S38","version":"v1","titre":"Séance 38 : Comment prouver que notre programme marche ?","url":"/tifsec-test-eleves/cours/techno/3e/s38/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S39","version":"v1","titre":"Séance 39 : Une pièce cassée : la refaire sur mesure","url":"/tifsec-test-eleves/cours/techno/3e/s39/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S40","version":"v1","titre":"Séance 40 : Bilan et entraînement au brevet n° 4 : algorithme et programme","url":"/tifsec-test-eleves/cours/techno/3e/s40/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S41","version":"v1","titre":"Séance 41 : Choisir les constituants et câbler la cuve en simulation","url":"/tifsec-test-eleves/cours/techno/3e/s41/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S42","version":"v1","titre":"Séance 42 : Rassembler et tester le prototype numérique","url":"/tifsec-test-eleves/cours/techno/3e/s42/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S43","version":"v1","titre":"Séance 43 : Writer n° 2 : finaliser le dossier de projet","url":"/tifsec-test-eleves/cours/techno/3e/s43/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S44","version":"v1","titre":"Séance 44 : Impress n° 1 : préparer la soutenance","url":"/tifsec-test-eleves/cours/techno/3e/s44/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S45","version":"v1","titre":"Séance 45 : Soutenance du projet","url":"/tifsec-test-eleves/cours/techno/3e/s45/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S46","version":"v1","titre":"Séance 46 : Brevet blanc n° 3 : la borne de recharge","url":"/tifsec-test-eleves/cours/techno/3e/s46/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S47","version":"v1","titre":"Séance 47 : Brevet blanc n° 3 : correction et reprise","url":"/tifsec-test-eleves/cours/techno/3e/s47/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S48","version":"v1","titre":"Séance 48 : Prêt pour le brevet","url":"/tifsec-test-eleves/cours/techno/3e/s48/"}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S01","version":"v1","titre":"Séance 1 : Comment va-t-on travailler en TIM cette année ?","url":"/tifsec-test-eleves/cours/tim/4e/s01/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S02","version":"v1","titre":"Séance 2 : Comment ranger ses fichiers pour ne plus les perdre ?","url":"/tifsec-test-eleves/cours/tim/4e/s02/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S03","version":"v1","titre":"Séance 3 : Une invitation pour la journée portes ouvertes","url":"/tifsec-test-eleves/cours/tim/4e/s03/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S04","version":"v1","titre":"Séance 4 : Un document clair : la fiche d’un cheval","url":"/tifsec-test-eleves/cours/tim/4e/s04/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S05","version":"v1","titre":"Séance 5 : Quel format choisir pour envoyer un document ?","url":"/tifsec-test-eleves/cours/tim/4e/s05/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S06","version":"v1","titre":"Séance 6 : Comment protéger mon compte et mon mot de passe ?","url":"/tifsec-test-eleves/cours/tim/4e/s06/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S07","version":"v1","titre":"Séance 7 : Quelles traces je laisse sur internet ?","url":"/tifsec-test-eleves/cours/tim/4e/s07/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S08","version":"v1","titre":"Séance 8 : Ai-je le droit de publier cette photo de cheval ?","url":"/tifsec-test-eleves/cours/tim/4e/s08/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S09","version":"v1","titre":"Séance 9 : Vrai ou faux : cette info sur les chevaux est-elle fiable ?","url":"/tifsec-test-eleves/cours/tim/4e/s09/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S10","version":"v1","titre":"Séance 10 : Bilan : mes règles du numérique","url":"/tifsec-test-eleves/cours/tim/4e/s10/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S11","version":"v1","titre":"Séance 11 : Que dois-je savoir sur une race de chevaux ?","url":"/tifsec-test-eleves/cours/tim/4e/s11/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S12","version":"v1","titre":"Séance 12 : Trouver vite la bonne réponse avec un moteur de recherche","url":"/tifsec-test-eleves/cours/tim/4e/s12/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S13","version":"v1","titre":"Séance 13 : Ce site est-il fiable ?","url":"/tifsec-test-eleves/cours/tim/4e/s13/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S14","version":"v1","titre":"Séance 14 : Présenter une race et citer ses sources","url":"/tifsec-test-eleves/cours/tim/4e/s14/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S15","version":"v1","titre":"Séance 15 : À quoi sert un tableur dans une écurie ?","url":"/tifsec-test-eleves/cours/tim/4e/s15/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S16","version":"v1","titre":"Séance 16 : Combien de foin pour la semaine ?","url":"/tifsec-test-eleves/cours/tim/4e/s16/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S17","version":"v1","titre":"Séance 17 : Un tableau de soins clair et sans erreur","url":"/tifsec-test-eleves/cours/tim/4e/s17/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S18","version":"v1","titre":"Séance 18 : Un graphique pour comparer les rations","url":"/tifsec-test-eleves/cours/tim/4e/s18/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S19","version":"v1","titre":"Séance 19 : Pourquoi ma photo de poney est-elle si lourde ?","url":"/tifsec-test-eleves/cours/tim/4e/s19/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S20","version":"v1","titre":"Séance 20 : Recadrer et améliorer une photo pour le site du club","url":"/tifsec-test-eleves/cours/tim/4e/s20/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S21","version":"v1","titre":"Séance 21 : Un diaporama pour présenter l’écurie","url":"/tifsec-test-eleves/cours/tim/4e/s21/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S22","version":"v1","titre":"Séance 22 : Présenter l’écurie à l’oral","url":"/tifsec-test-eleves/cours/tim/4e/s22/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S23","version":"v1","titre":"Séance 23 : La routine du matin à l’écurie : un algorithme","url":"/tifsec-test-eleves/cours/tim/4e/s23/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S24","version":"v1","titre":"Séance 24 : Faire avancer un cavalier dans Scratch","url":"/tifsec-test-eleves/cours/tim/4e/s24/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S25","version":"v1","titre":"Séance 25 : Sauter l’obstacle : les conditions dans Scratch","url":"/tifsec-test-eleves/cours/tim/4e/s25/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S26","version":"v1","titre":"Séance 26 : Le score et le chrono : les variables","url":"/tifsec-test-eleves/cours/tim/4e/s26/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S27","version":"v1","titre":"Séance 27 : Mon jeu ne marche pas : chercher le bogue","url":"/tifsec-test-eleves/cours/tim/4e/s27/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S28","version":"v1","titre":"Séance 28 : Bilan : mon parcours d’obstacles","url":"/tifsec-test-eleves/cours/tim/4e/s28/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S29","version":"v1","titre":"Séance 29 : Que devient mon vieux téléphone ?","url":"/tifsec-test-eleves/cours/tim/4e/s29/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S30","version":"v1","titre":"Séance 30 : Une frise de l’histoire du numérique","url":"/tifsec-test-eleves/cours/tim/4e/s30/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S31","version":"v1","titre":"Séance 31 : L’affiche de la journée portes ouvertes","url":"/tifsec-test-eleves/cours/tim/4e/s31/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"4e","seance":"S32","version":"v1","titre":"Séance 32 : Mon bilan de TIM en 4e","url":"/tifsec-test-eleves/cours/tim/4e/s32/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S01","version":"v1","titre":"Séance 1 : Ma 3e en TIM : où j’en suis, où je vais","url":"/tifsec-test-eleves/cours/tim/3e/s01/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S02","version":"v1","titre":"Séance 2 : Un rapport de stage avec un sommaire automatique","url":"/tifsec-test-eleves/cours/tim/3e/s02/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S03","version":"v1","titre":"Séance 3 : En-tête, pied de page et numéros de page","url":"/tifsec-test-eleves/cours/tim/3e/s03/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S04","version":"v1","titre":"Séance 4 : Un tableau dans le rapport : le planning des soins","url":"/tifsec-test-eleves/cours/tim/3e/s04/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S05","version":"v1","titre":"Séance 5 : Une lettre pour chaque propriétaire : le publipostage","url":"/tifsec-test-eleves/cours/tim/3e/s05/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S06","version":"v1","titre":"Séance 6 : Le tableur qui prévient : la fonction SI","url":"/tifsec-test-eleves/cours/tim/3e/s06/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S07","version":"v1","titre":"Séance 7 : La ration selon le poids : les références absolues","url":"/tifsec-test-eleves/cours/tim/3e/s07/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S08","version":"v1","titre":"Séance 8 : Retrouver un cheval dans le registre : trier et filtrer","url":"/tifsec-test-eleves/cours/tim/3e/s08/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S09","version":"v1","titre":"Séance 9 : Voir les alertes en couleur : la mise en forme conditionnelle","url":"/tifsec-test-eleves/cours/tim/3e/s09/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S10","version":"v1","titre":"Séance 10 : La croissance d’un poulain : un graphique d’évolution","url":"/tifsec-test-eleves/cours/tim/3e/s10/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S11","version":"v1","titre":"Séance 11 : Le fichier clients du centre équestre : mes données personnelles","url":"/tifsec-test-eleves/cours/tim/3e/s11/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S12","version":"v1","titre":"Séance 12 : Un faux mail de la fédération : l’hameçonnage","url":"/tifsec-test-eleves/cours/tim/3e/s12/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S13","version":"v1","titre":"Séance 13 : Comment un message voyage sur internet ?","url":"/tifsec-test-eleves/cours/tim/3e/s13/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S14","version":"v1","titre":"Séance 14 : La page du club sur les réseaux sociaux","url":"/tifsec-test-eleves/cours/tim/3e/s14/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S15","version":"v1","titre":"Séance 15 : L’intelligence artificielle : une aide ou un piège ?","url":"/tifsec-test-eleves/cours/tim/3e/s15/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S16","version":"v1","titre":"Séance 16 : Un thermomètre d’écurie avec la carte micro:bit","url":"/tifsec-test-eleves/cours/tim/3e/s16/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S17","version":"v1","titre":"Séance 17 : Trop chaud dans le box : une alarme programmée","url":"/tifsec-test-eleves/cours/tim/3e/s17/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S18","version":"v1","titre":"Séance 18 : Compter les foulées : un podomètre pour cheval","url":"/tifsec-test-eleves/cours/tim/3e/s18/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S19","version":"v1","titre":"Séance 19 : Le minuteur de soins : une boucle qui décompte","url":"/tifsec-test-eleves/cours/tim/3e/s19/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S20","version":"v1","titre":"Séance 20 : Exercice type DNB : lire et compléter un programme","url":"/tifsec-test-eleves/cours/tim/3e/s20/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S21","version":"v1","titre":"Séance 21 : Préparer une vidéo métier : le storyboard","url":"/tifsec-test-eleves/cours/tim/3e/s21/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S22","version":"v1","titre":"Séance 22 : Monter la vidéo métier","url":"/tifsec-test-eleves/cours/tim/3e/s22/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S23","version":"v1","titre":"Séance 23 : Une musique pour ma vidéo : ai-je le droit ?","url":"/tifsec-test-eleves/cours/tim/3e/s23/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S24","version":"v1","titre":"Séance 24 : Comment est faite une page web ?","url":"/tifsec-test-eleves/cours/tim/3e/s24/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S25","version":"v1","titre":"Séance 25 : Mon projet d’orientation dans la filière cheval","url":"/tifsec-test-eleves/cours/tim/3e/s25/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S26","version":"v1","titre":"Séance 26 : Mon CV pour un stage en écurie","url":"/tifsec-test-eleves/cours/tim/3e/s26/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S27","version":"v1","titre":"Séance 27 : Une lettre de motivation pour mon stage","url":"/tifsec-test-eleves/cours/tim/3e/s27/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S28","version":"v1","titre":"Séance 28 : Le diaporama de mon oral du DNB","url":"/tifsec-test-eleves/cours/tim/3e/s28/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S29","version":"v1","titre":"Séance 29 : S’entraîner pour l’entretien du DNB","url":"/tifsec-test-eleves/cours/tim/3e/s29/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S30","version":"v1","titre":"Séance 30 : Oral blanc du DNB n° 1","url":"/tifsec-test-eleves/cours/tim/3e/s30/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S31","version":"v1","titre":"Séance 31 : Oral blanc du DNB n° 2","url":"/tifsec-test-eleves/cours/tim/3e/s31/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"3e","seance":"S32","version":"v1","titre":"Séance 32 : Mon bilan de TIM au collège","url":"/tifsec-test-eleves/cours/tim/3e/s32/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S01","version":"v1","titre":"Séance 1 : Faire connaissance et prendre ses repères","url":"/tifsec-test-eleves/cours/tim/cap1/s01/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S02","version":"v1","titre":"Séance 2 : Ranger et retrouver ses fichiers","url":"/tifsec-test-eleves/cours/tim/cap1/s02/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S03","version":"v1","titre":"Séance 3 : Se connecter et protéger son mot de passe","url":"/tifsec-test-eleves/cours/tim/cap1/s03/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S04","version":"v1","titre":"Séance 4 : Numériser un document en PDF","url":"/tifsec-test-eleves/cours/tim/cap1/s04/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S05","version":"v1","titre":"Séance 5 : QR code, puce, Bluetooth : à quoi ça sert à l’écurie ?","url":"/tifsec-test-eleves/cours/tim/cap1/s05/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S06","version":"v1","titre":"Séance 6 : La fiche d’un cheval","url":"/tifsec-test-eleves/cours/tim/cap1/s06/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S07","version":"v1","titre":"Séance 7 : Le planning des soins de la semaine","url":"/tifsec-test-eleves/cours/tim/cap1/s07/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S08","version":"v1","titre":"Séance 8 : Une affiche des règles de sécurité à l’écurie","url":"/tifsec-test-eleves/cours/tim/cap1/s08/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S09","version":"v1","titre":"Séance 9 : Bilan : une fiche de pansage pas à pas","url":"/tifsec-test-eleves/cours/tim/cap1/s09/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S10","version":"v1","titre":"Séance 10 : La liste du matériel de pansage dans un tableur","url":"/tifsec-test-eleves/cours/tim/cap1/s10/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S11","version":"v1","titre":"Séance 11 : Combien de granulés par jour pour l’écurie ?","url":"/tifsec-test-eleves/cours/tim/cap1/s11/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S12","version":"v1","titre":"Séance 12 : Le planning de paillage du mois","url":"/tifsec-test-eleves/cours/tim/cap1/s12/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S13","version":"v1","titre":"Séance 13 : Un graphique pour voir la consommation","url":"/tifsec-test-eleves/cours/tim/cap1/s13/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S14","version":"v1","titre":"Séance 14 : Bilan Calc : le foin de la semaine","url":"/tifsec-test-eleves/cours/tim/cap1/s14/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S15","version":"v1","titre":"Séance 15 : Trouver une fiche fiable sur les soins du cheval","url":"/tifsec-test-eleves/cours/tim/cap1/s15/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S16","version":"v1","titre":"Séance 16 : Écrire un courriel à son maître de stage","url":"/tifsec-test-eleves/cours/tim/cap1/s16/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S17","version":"v1","titre":"Séance 17 : Ce que je publie sur les réseaux sociaux","url":"/tifsec-test-eleves/cours/tim/cap1/s17/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S18","version":"v1","titre":"Séance 18 : Remplir un formulaire en ligne sans erreur","url":"/tifsec-test-eleves/cours/tim/cap1/s18/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S19","version":"v1","titre":"Séance 19 : Une rumeur circule : je vérifie avant de partager","url":"/tifsec-test-eleves/cours/tim/cap1/s19/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S20","version":"v1","titre":"Séance 20 : Ai-je le droit de photographier les chevaux et les clients ?","url":"/tifsec-test-eleves/cours/tim/cap1/s20/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S21","version":"v1","titre":"Séance 21 : Mon identité numérique et la CNIL","url":"/tifsec-test-eleves/cours/tim/cap1/s21/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S22","version":"v1","titre":"Séance 22 : Lire facilement à l’écran","url":"/tifsec-test-eleves/cours/tim/cap1/s22/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S23","version":"v1","titre":"Séance 23 : Préparer ses photos de stage","url":"/tifsec-test-eleves/cours/tim/cap1/s23/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S24","version":"v1","titre":"Séance 24 : Mon diaporama de stage (Impress n° 1)","url":"/tifsec-test-eleves/cours/tim/cap1/s24/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S25","version":"v1","titre":"Séance 25 : Les règles d’un bon diaporama","url":"/tifsec-test-eleves/cours/tim/cap1/s25/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S26","version":"v1","titre":"Séance 26 : Présenter son stage à l’oral","url":"/tifsec-test-eleves/cours/tim/cap1/s26/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S27","version":"v1","titre":"Séance 27 : Repérer les prés d’une écurie sur Géoportail","url":"/tifsec-test-eleves/cours/tim/cap1/s27/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S28","version":"v1","titre":"Séance 28 : Caméra de poulinage, abreuvoir automatique : utiles ou gadgets ?","url":"/tifsec-test-eleves/cours/tim/cap1/s28/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap1","seance":"S29","version":"v1","titre":"Séance 29 : Mon bilan de l’année","url":"/tifsec-test-eleves/cours/tim/cap1/s29/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S01","version":"v1","titre":"Séance 1 : Reprendre le TIM en CAPa 2 : où j’en suis","url":"/tifsec-test-eleves/cours/tim/cap2/s01/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S02","version":"v1","titre":"Séance 2 : Prévoir le stock de foin de l’écurie","url":"/tifsec-test-eleves/cours/tim/cap2/s02/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S03","version":"v1","titre":"Séance 3 : Organiser le suivi du maréchal-ferrant","url":"/tifsec-test-eleves/cours/tim/cap2/s03/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S04","version":"v1","titre":"Séance 4 : Accueillir un nouvel équidé : organiser les informations","url":"/tifsec-test-eleves/cours/tim/cap2/s04/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S05","version":"v1","titre":"Séance 5 : Envoyer une photo et un message au vétérinaire","url":"/tifsec-test-eleves/cours/tim/cap2/s05/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S06","version":"v1","titre":"Séance 6 : Retrouver vite un cheval dans le registre","url":"/tifsec-test-eleves/cours/tim/cap2/s06/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S07","version":"v1","titre":"Séance 7 : Le tableur peut-il prévenir qu’un vaccin est à faire ?","url":"/tifsec-test-eleves/cours/tim/cap2/s07/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S08","version":"v1","titre":"Séance 8 : Voir la consommation d’aliments mois par mois","url":"/tifsec-test-eleves/cours/tim/cap2/s08/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S09","version":"v1","titre":"Séance 9 : Le budget alimentation du mois","url":"/tifsec-test-eleves/cours/tim/cap2/s09/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S10","version":"v1","titre":"Séance 10 : Bilan Calc : le registre des soins","url":"/tifsec-test-eleves/cours/tim/cap2/s10/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S11","version":"v1","titre":"Séance 11 : Un compte rendu de stage bien organisé","url":"/tifsec-test-eleves/cours/tim/cap2/s11/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S12","version":"v1","titre":"Séance 12 : La fiche technique d’un soin avec photos","url":"/tifsec-test-eleves/cours/tim/cap2/s12/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S13","version":"v1","titre":"Séance 13 : Une lettre type qu’on réutilise","url":"/tifsec-test-eleves/cours/tim/cap2/s13/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S14","version":"v1","titre":"Séance 14 : Envoyer un document que tout le monde peut ouvrir","url":"/tifsec-test-eleves/cours/tim/cap2/s14/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S15","version":"v1","titre":"Séance 15 : Présenter un soin pas à pas (Impress n° 2)","url":"/tifsec-test-eleves/cours/tim/cap2/s15/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S16","version":"v1","titre":"Séance 16 : Filmer et monter une démonstration de pansage","url":"/tifsec-test-eleves/cours/tim/cap2/s16/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S17","version":"v1","titre":"Séance 17 : Une publication pour la page d’un centre équestre","url":"/tifsec-test-eleves/cours/tim/cap2/s17/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S18","version":"v1","titre":"Séance 18 : Organiser une journée portes ouvertes à plusieurs","url":"/tifsec-test-eleves/cours/tim/cap2/s18/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S19","version":"v1","titre":"Séance 19 : Les démarches en ligne pour un équidé","url":"/tifsec-test-eleves/cours/tim/cap2/s19/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"cap2","seance":"S20","version":"v1","titre":"Séance 20 : Forum ou fiche officielle : à qui faire confiance ?","url":"/tifsec-test-eleves/cours/tim/cap2/s20/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S01","version":"v1","titre":"Séance 1 : Faire connaissance : mon positionnement en TIM","url":"/tifsec-test-eleves/cours/tim/2de/s01/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S02","version":"v1","titre":"Séance 2 : Organiser ses fichiers de cours et de stage","url":"/tifsec-test-eleves/cours/tim/2de/s02/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S03","version":"v1","titre":"Séance 3 : Protéger ses données et son poste de travail","url":"/tifsec-test-eleves/cours/tim/2de/s03/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S04","version":"v1","titre":"Séance 4 : Un document professionnel clair et lisible","url":"/tifsec-test-eleves/cours/tim/2de/s04/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S05","version":"v1","titre":"Séance 5 : La fiche d’identité d’un cheval dans un tableau","url":"/tifsec-test-eleves/cours/tim/2de/s05/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S06","version":"v1","titre":"Séance 6 : Demander un stage par courrier","url":"/tifsec-test-eleves/cours/tim/2de/s06/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S07","version":"v1","titre":"Séance 7 : Une fiche de soins qui a toujours la même présentation","url":"/tifsec-test-eleves/cours/tim/2de/s07/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S08","version":"v1","titre":"Séance 8 : Que dit une adresse internet ?","url":"/tifsec-test-eleves/cours/tim/2de/s08/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S09","version":"v1","titre":"Séance 9 : Envoyer un courriel à son maître de stage","url":"/tifsec-test-eleves/cours/tim/2de/s09/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S10","version":"v1","titre":"Séance 10 : L’inventaire de la sellerie dans un tableur","url":"/tifsec-test-eleves/cours/tim/2de/s10/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S11","version":"v1","titre":"Séance 11 : Combien de foin par mois pour l’écurie ?","url":"/tifsec-test-eleves/cours/tim/2de/s11/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S12","version":"v1","titre":"Séance 12 : Le calendrier des vermifuges","url":"/tifsec-test-eleves/cours/tim/2de/s12/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S13","version":"v1","titre":"Séance 13 : Un prix au kilo pour toutes les lignes","url":"/tifsec-test-eleves/cours/tim/2de/s13/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S14","version":"v1","titre":"Séance 14 : Bilan : combien coûte un cheval par mois ?","url":"/tifsec-test-eleves/cours/tim/2de/s14/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S15","version":"v1","titre":"Séance 15 : Quel graphique pour les races de l’écurie ?","url":"/tifsec-test-eleves/cours/tim/2de/s15/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S16","version":"v1","titre":"Séance 16 : Suivre la croissance d’un poulain","url":"/tifsec-test-eleves/cours/tim/2de/s16/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S17","version":"v1","titre":"Séance 17 : Ce graphique dit-il la vérité ?","url":"/tifsec-test-eleves/cours/tim/2de/s17/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S18","version":"v1","titre":"Séance 18 : Que sait un site sur moi quand je me connecte ?","url":"/tifsec-test-eleves/cours/tim/2de/s18/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S19","version":"v1","titre":"Séance 19 : Un faux courriel au nom de la fédération","url":"/tifsec-test-eleves/cours/tim/2de/s19/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S20","version":"v1","titre":"Séance 20 : Mon e-réputation de futur professionnel du cheval","url":"/tifsec-test-eleves/cours/tim/2de/s20/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S21","version":"v1","titre":"Séance 21 : Photos de concours : qui a le droit de les publier ?","url":"/tifsec-test-eleves/cours/tim/2de/s21/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S22","version":"v1","titre":"Séance 22 : Préparer ses photos de stage","url":"/tifsec-test-eleves/cours/tim/2de/s22/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S23","version":"v1","titre":"Séance 23 : Présenter son lieu de stage (Impress n° 1)","url":"/tifsec-test-eleves/cours/tim/2de/s23/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S24","version":"v1","titre":"Séance 24 : Un diaporama lisible","url":"/tifsec-test-eleves/cours/tim/2de/s24/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S25","version":"v1","titre":"Séance 25 : Restitution de stage à l’oral","url":"/tifsec-test-eleves/cours/tim/2de/s25/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S26","version":"v1","titre":"Séance 26 : Où trouver des chiffres fiables sur la filière cheval ?","url":"/tifsec-test-eleves/cours/tim/2de/s26/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S27","version":"v1","titre":"Séance 27 : Ouvrir un fichier CSV dans Calc","url":"/tifsec-test-eleves/cours/tim/2de/s27/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S28","version":"v1","titre":"Séance 28 : Combien d’équidés dans notre région ?","url":"/tifsec-test-eleves/cours/tim/2de/s28/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S29","version":"v1","titre":"Séance 29 : Une synthèse d’une page avec un graphique","url":"/tifsec-test-eleves/cours/tim/2de/s29/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"2de","seance":"S30","version":"v1","titre":"Séance 30 : Mon bilan de 2de en TIM","url":"/tifsec-test-eleves/cours/tim/2de/s30/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S01","version":"v1","titre":"Séance 1 : Le projet de l’année : où implanter une pension pour chevaux ?","url":"/tifsec-test-eleves/cours/tim/1re/s01/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S02","version":"v1","titre":"Séance 2 : Comprendre ce que racontent les données","url":"/tifsec-test-eleves/cours/tim/1re/s02/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S03","version":"v1","titre":"Séance 3 : Peut-on faire confiance à toutes les données ?","url":"/tifsec-test-eleves/cours/tim/1re/s03/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S04","version":"v1","titre":"Séance 4 : Où trouver des données ouvertes sur notre département ?","url":"/tifsec-test-eleves/cours/tim/1re/s04/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S05","version":"v1","titre":"Séance 5 : Le dictionnaire de données et l’import d’un fichier CSV","url":"/tifsec-test-eleves/cours/tim/1re/s05/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S06","version":"v1","titre":"Séance 6 : Nettoyer les données avant de calculer","url":"/tifsec-test-eleves/cours/tim/1re/s06/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S07","version":"v1","titre":"Séance 7 : Compter et additionner selon des critères","url":"/tifsec-test-eleves/cours/tim/1re/s07/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S08","version":"v1","titre":"Séance 8 : Plusieurs critères et des couleurs qui alertent","url":"/tifsec-test-eleves/cours/tim/1re/s08/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S09","version":"v1","titre":"Séance 9 : Résumer un grand tableau en un clic","url":"/tifsec-test-eleves/cours/tim/1re/s09/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S10","version":"v1","titre":"Séance 10 : Le bon graphique pour convaincre","url":"/tifsec-test-eleves/cours/tim/1re/s10/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S11","version":"v1","titre":"Séance 11 : Mettre les données sur une carte","url":"/tifsec-test-eleves/cours/tim/1re/s11/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S12","version":"v1","titre":"Séance 12 : Construire un tableau de bord pour décider","url":"/tifsec-test-eleves/cours/tim/1re/s12/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S13","version":"v1","titre":"Séance 13 : Le dossier du projet","url":"/tifsec-test-eleves/cours/tim/1re/s13/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"1re","seance":"S14","version":"v1","titre":"Séance 14 : Restitution : où implanter la pension ?","url":"/tifsec-test-eleves/cours/tim/1re/s14/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S01","version":"v1","titre":"Séance 1 : Positionnement : mes compétences numériques pour piloter une exploitation","url":"/tifsec-test-eleves/cours/tim/bts1/s01/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S02","version":"v1","titre":"Séance 2 : Le système d’information d’une pension équine","url":"/tifsec-test-eleves/cours/tim/bts1/s02/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S03","version":"v1","titre":"Séance 3 : Ne jamais perdre les données de l’entreprise","url":"/tifsec-test-eleves/cours/tim/bts1/s03/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S04","version":"v1","titre":"Séance 4 : Organiser sa veille sur la filière équine","url":"/tifsec-test-eleves/cours/tim/bts1/s04/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S05","version":"v1","titre":"Séance 5 : Organiser les données technico-économiques d’un atelier pension","url":"/tifsec-test-eleves/cours/tim/bts1/s05/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S06","version":"v1","titre":"Séance 6 : Calculer la marge d’un atelier pension","url":"/tifsec-test-eleves/cours/tim/bts1/s06/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S07","version":"v1","titre":"Séance 7 : Le coût alimentaire par cheval et par jour","url":"/tifsec-test-eleves/cours/tim/bts1/s07/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S08","version":"v1","titre":"Séance 8 : Appliquer automatiquement le bon tarif : RECHERCHEV","url":"/tifsec-test-eleves/cours/tim/bts1/s08/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S09","version":"v1","titre":"Séance 9 : Fiabiliser la saisie : validation des données","url":"/tifsec-test-eleves/cours/tim/bts1/s09/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S10","version":"v1","titre":"Séance 10 : Classer automatiquement : SI imbriqués, ET, OU","url":"/tifsec-test-eleves/cours/tim/bts1/s10/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S11","version":"v1","titre":"Séance 11 : Un graphique combiné pour suivre produit et charges","url":"/tifsec-test-eleves/cours/tim/bts1/s11/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S12","version":"v1","titre":"Séance 12 : Évaluation : un outil de suivi pour l’atelier pension","url":"/tifsec-test-eleves/cours/tim/bts1/s12/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S13","version":"v1","titre":"Séance 13 : Évaluer la performance environnementale : chargement et intrants","url":"/tifsec-test-eleves/cours/tim/bts1/s13/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S14","version":"v1","titre":"Séance 14 : Évaluer la dimension sociale : le temps de travail","url":"/tifsec-test-eleves/cours/tim/bts1/s14/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S15","version":"v1","titre":"Séance 15 : Un tableau de bord multicritère de la performance globale","url":"/tifsec-test-eleves/cours/tim/bts1/s15/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S16","version":"v1","titre":"Séance 16 : Évaluation : diagnostic de performance d’une écurie","url":"/tifsec-test-eleves/cours/tim/bts1/s16/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S17","version":"v1","titre":"Séance 17 : Le rapport d’analyse : document long structuré","url":"/tifsec-test-eleves/cours/tim/bts1/s17/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S18","version":"v1","titre":"Séance 18 : Intégrer données et graphiques au rapport","url":"/tifsec-test-eleves/cours/tim/bts1/s18/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S19","version":"v1","titre":"Séance 19 : Présenter un diagnostic à un décideur","url":"/tifsec-test-eleves/cours/tim/bts1/s19/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts1","seance":"S20","version":"v1","titre":"Séance 20 : Travailler à plusieurs sur les mêmes fichiers","url":"/tifsec-test-eleves/cours/tim/bts1/s20/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S01","version":"v1","titre":"Séance 1 : Piloter un élevage équin avec des données : les enjeux de l’année","url":"/tifsec-test-eleves/cours/tim/bts2/s01/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S02","version":"v1","titre":"Séance 2 : Traçabilité : les données obligatoires d’un élevage équin","url":"/tifsec-test-eleves/cours/tim/bts2/s02/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S03","version":"v1","titre":"Séance 3 : Analyser une base de données existante","url":"/tifsec-test-eleves/cours/tim/bts2/s03/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S04","version":"v1","titre":"Séance 4 : Modéliser les données de l’élevage","url":"/tifsec-test-eleves/cours/tim/bts2/s04/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S05","version":"v1","titre":"Séance 5 : Créer les tables et choisir les types de champs","url":"/tifsec-test-eleves/cours/tim/bts2/s05/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S06","version":"v1","titre":"Séance 6 : Relier les tables sans incohérence","url":"/tifsec-test-eleves/cours/tim/bts2/s06/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S07","version":"v1","titre":"Séance 7 : Interroger la base : quelles juments surveiller ?","url":"/tifsec-test-eleves/cours/tim/bts2/s07/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S08","version":"v1","titre":"Séance 8 : Calculer des indicateurs de reproduction","url":"/tifsec-test-eleves/cours/tim/bts2/s08/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S09","version":"v1","titre":"Séance 9 : Un formulaire de saisie pour l’équipe","url":"/tifsec-test-eleves/cours/tim/bts2/s09/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S10","version":"v1","titre":"Séance 10 : Un état imprimable pour le vétérinaire","url":"/tifsec-test-eleves/cours/tim/bts2/s10/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S11","version":"v1","titre":"Séance 11 : Évaluation : une base pour le suivi sanitaire","url":"/tifsec-test-eleves/cours/tim/bts2/s11/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S12","version":"v1","titre":"Séance 12 : Un outil d’aide à la décision pour le rationnement","url":"/tifsec-test-eleves/cours/tim/bts2/s12/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S13","version":"v1","titre":"Séance 13 : Simuler des scénarios : prix de vente des poulains","url":"/tifsec-test-eleves/cours/tim/bts2/s13/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S14","version":"v1","titre":"Séance 14 : Analyser trois saisons de reproduction","url":"/tifsec-test-eleves/cours/tim/bts2/s14/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S15","version":"v1","titre":"Séance 15 : Capteurs et objets connectés en élevage équin","url":"/tifsec-test-eleves/cours/tim/bts2/s15/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S16","version":"v1","titre":"Séance 16 : À qui appartiennent les données de l’élevage ?","url":"/tifsec-test-eleves/cours/tim/bts2/s16/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S17","version":"v1","titre":"Séance 17 : L’intelligence artificielle en élevage : regard critique","url":"/tifsec-test-eleves/cours/tim/bts2/s17/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S18","version":"v1","titre":"Séance 18 : Un tableau de bord pour ajuster la conduite d’élevage","url":"/tifsec-test-eleves/cours/tim/bts2/s18/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S19","version":"v1","titre":"Séance 19 : Évaluation : proposer un ajustement argumenté","url":"/tifsec-test-eleves/cours/tim/bts2/s19/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"tim","classe":"bts2","seance":"S20","version":"v1","titre":"Séance 20 : Présenter l’ajustement à l’éleveur","url":"/tifsec-test-eleves/cours/tim/bts2/s20/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S01","version":"v1","titre":"Séance 1 : Diagnostic : où en suis-je en calcul ?","url":"/tifsec-test-eleves/cours/maths/2de/s01/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S02","version":"v1","titre":"Séance 2 : Bien utiliser sa calculatrice","url":"/tifsec-test-eleves/cours/maths/2de/s02/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S03","version":"v1","titre":"Séance 3 : La ration est-elle proportionnelle au poids du cheval ?","url":"/tifsec-test-eleves/cours/maths/2de/s03/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S04","version":"v1","titre":"Séance 4 : Quelle dose de vermifuge pour un cheval de 520 kg ?","url":"/tifsec-test-eleves/cours/maths/2de/s04/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S05","version":"v1","titre":"Séance 5 : Le prix de la pension augmente de 5 %","url":"/tifsec-test-eleves/cours/maths/2de/s05/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S06","version":"v1","titre":"Séance 6 : La facture du maréchal-ferrant : HT, TVA, TTC","url":"/tifsec-test-eleves/cours/maths/2de/s06/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S07","version":"v1","titre":"Séance 7 : Lire le plan de l’écurie","url":"/tifsec-test-eleves/cours/maths/2de/s07/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S08","version":"v1","titre":"Séance 8 : À quelle vitesse trotte mon cheval ?","url":"/tifsec-test-eleves/cours/maths/2de/s08/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S09","version":"v1","titre":"Séance 9 : km/h ou m/min ? Convertir des vitesses et des durées","url":"/tifsec-test-eleves/cours/maths/2de/s09/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S10","version":"v1","titre":"Séance 10 : Évaluation 1 : proportionnalité à l’écurie","url":"/tifsec-test-eleves/cours/maths/2de/s10/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S11","version":"v1","titre":"Séance 11 : Les tailles au garrot des poneys du club","url":"/tifsec-test-eleves/cours/maths/2de/s11/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S12","version":"v1","titre":"Séance 12 : Regrouper en classes et tracer un histogramme","url":"/tifsec-test-eleves/cours/maths/2de/s12/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S13","version":"v1","titre":"Séance 13 : Moyenne, médiane, mode : lequel choisir ?","url":"/tifsec-test-eleves/cours/maths/2de/s13/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S14","version":"v1","titre":"Séance 14 : Les données sont-elles regroupées ou dispersées ?","url":"/tifsec-test-eleves/cours/maths/2de/s14/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S15","version":"v1","titre":"Séance 15 : Quel lot de poulains a la croissance la plus régulière ?","url":"/tifsec-test-eleves/cours/maths/2de/s15/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S16","version":"v1","titre":"Séance 16 : Laisser le tableur calculer les indicateurs","url":"/tifsec-test-eleves/cours/maths/2de/s16/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S17","version":"v1","titre":"Séance 17 : Des données réelles de la filière cheval","url":"/tifsec-test-eleves/cours/maths/2de/s17/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S18","version":"v1","titre":"Séance 18 : Évaluation 2 : statistiques","url":"/tifsec-test-eleves/cours/maths/2de/s18/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S19","version":"v1","titre":"Séance 19 : Le poids d’un poulain au fil des mois","url":"/tifsec-test-eleves/cours/maths/2de/s19/"}
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"mfr","matiere":"maths","classe":"2de","seance":"S20","version":"v1","titre":"Séance 20 : Lire un graphique : image et antécédent","url":"/tifsec-test-eleves/cours/maths/2de/s20/"}
+    
+    
+]
+</script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/prof/private-course.js?v=20261029-prof-2"></script>
+
+        </main>
+        <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+    </div>
+
+    <noscript><p>Activez JavaScript pour vous connecter et charger votre profil.</p></noscript>
+    <script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+    <script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+    <script type="module" src="/tifsec-test-eleves/assets/js/auth/prof-guard.js"></script>
+    <script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261029-contrast-1">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="mfr" data-matiere="tim" data-classe="3e" data-seance="S07" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">Le problème de la recopie</a></li><li><a href="#a02">Bloquer avec $</a></li><li><a href="#a03">Changer le taux</a></li><li><a href="#a04">Pour aller plus loin — facultatif</a></li><li><a href="#a05">Conclusion de ton travail</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">TIM · 3e MFR · S07</span></div>
+    <h1>Séance 7 : La ration selon le poids : les références absolues</h1>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thème du programme</h2>
+        <p>Objectif 2 — Créer, produire, traiter et exploiter des données</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>Comment recopier une formule qui utilise toujours la même cellule ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétence travaillée</h2>
+        <ul><li>Objectif 2 — Créer, produire, traiter et exploiter des données</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>En recopiant, une référence relative (B2) change ; une référence absolue ($E$1) reste fixe.</li>
+            
+            <li>On utilise $ pour une valeur commune à toutes les lignes (un taux, un prix).</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Distinguer référence relative et absolue.</li>
+            
+            <li>Utiliser $ dans une formule recopiée.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>En S06, tu as recopié des formules SI.</p><p>Pour calculer la ration de foin selon le poids, toutes les lignes utilisent le même pourcentage : il faut le bloquer.</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Le problème de la recopie</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas comprendre pourquoi la formule de ration de Lisa (document 1) donne une erreur quand on la recopie. On attend la formule recopiée et la cause de l’erreur.</p></div>
+        
+        
+
+        
+<div class="cours-table-wrapper"><table class="cours-table"><caption>Document 1 — Ration de foin selon le poids (ordre de grandeur 1,5 % du poids)</caption><thead><tr><th scope="col"></th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th><th scope="col">E</th></tr></thead><tbody><tr><td>1</td><td>Cheval</td><td>Poids (kg)</td><td>Foin par jour (kg)</td><td>Taux :</td><td>0,015</td></tr><tr><td>2</td><td>Tango</td><td>520</td><td></td><td></td><td></td></tr><tr><td>3</td><td>Iris</td><td>450</td><td></td><td></td><td></td></tr><tr><td>4</td><td>Galopin</td><td>600</td><td></td><td></td><td></td></tr></tbody></table></div>
+    
+
+<ol><li>Lis le document 1 : la ration de foin vaut environ 1,5 % du poids par jour.</li><li>Regarde la formule de Lisa en C2 : =B2*E1.</li><li>Imagine-la recopiée en C3.</li></ol>
+    
+
+<p>Pourquoi ça casse ? En descendant d’une ligne, E1 devient E2, qui est vide.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — Si on recopie =B2*E1 en C3, quelle formule obtient-on ?</h3>
+            
+
+            
+            
+                <select id="a01-q01" data-answer-id="a01_q01" data-required="true" aria-labelledby="a01-q01-label"><option value="">Choisis une réponse</option><option value="a">=B3*E2</option><option value="b">=B3*E1</option><option value="c">=B2*E1</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Élimine d’abord les réponses impossibles.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a01-q02-label">Question 2 — Pourquoi le résultat en C3 est-il alors 0 ?</h3>
+            
+
+            
+            
+                <textarea id="a01-q02" data-answer-id="a01_q02" data-required="true" aria-labelledby="a01-q02-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Une idée + « car » + une raison tirée de la séance.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Bloquer avec $</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> La recopie déplace E1. Il faut le bloquer.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas bloquer la cellule du taux avec $ pour que la formule de ration se recopie juste. On attend la ration de Galopin et la formule recopiée.</p></div>
+        
+        
+
+        
+<blockquote>Réflexe DNB M5 : j’écris l’unité de mes résultats.</blockquote>
+    
+
+<ol><li>Recopie le document 1 dans Calc ; enregistre sous 3e_S07_tonprenom.ods.</li><li>En C2, écris =B2*$E$1 (ou appuie sur F4 après E1).</li><li>Recopie jusqu’en C4.</li><li>Vérifie les résultats.</li></ol>
+    
+
+<p>Pourquoi $ ? Il bloque la colonne et la ligne : E1 reste E1 sur toutes les lignes.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — Quelle ration de foin par jour Calc affiche-t-il pour Galopin ?</h3>
+            
+
+            
+            
+                <input type="text" inputmode="decimal" id="a02-q01" data-answer-id="a02_q01" data-required="true" aria-labelledby="a02-q01-label"><p>Unité : kg</p>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Écris l’opération, calcule, vérifie l’unité.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a02-q02-label">Question 2 — Écris la formule de C3 après recopie.</h3>
+            
+
+            
+            
+                <textarea id="a02-q02" data-answer-id="a02_q02" data-required="true" aria-labelledby="a02-q02-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Changer le taux</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Les formules sont justes. Profite de l’avantage du $.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas changer le taux de ration dans la seule cellule E1 et observer toutes les rations. On attend la nouvelle ration de Tango et l’explication.</p></div>
+        
+        
+
+        
+<ol><li>Le vétérinaire conseille 2 % pour un cheval au travail intense : tape 0,02 en E1.</li><li>Observe toutes les rations.</li><li>Explique.</li></ol>
+    
+
+<p>Pourquoi une seule cellule ? Changer une valeur commune met à jour toutes les lignes d’un coup.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — Avec un taux de 2 %, quelle ration pour Tango ?</h3>
+            
+
+            
+            
+                <input type="text" inputmode="decimal" id="a03-q01" data-answer-id="a03_q01" data-required="true" aria-labelledby="a03-q01-label"><p>Unité : kg</p>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Écris l’opération, calcule, vérifie l’unité.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a03-q02-label">Question 2 — Pourquoi n’a-t-on modifié qu’une seule cellule pour changer toutes les rations ?</h3>
+            
+
+            
+            
+                <textarea id="a03-q02" data-answer-id="a03_q02" data-required="true" aria-labelledby="a03-q02-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Une formule commence par « = », puis la fonction et la plage (ex. =MOYENNE(B2:B10)).</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Pour aller plus loin</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<p>Une référence peut être bloquée à moitié : $E1 ou E$1.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — Que bloque E$1 ?</h3>
+            
+
+            
+            
+                <textarea id="a04-q01" data-answer-id="a04_q01" data-required="false" aria-labelledby="a04-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Une phrase complète qui reprend les mots de la question.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#a05">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a05" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Conclusion</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Conclusion de ton travail</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tes rations se recopient juste. Il reste à répondre au problème de départ.</p>
+        
+        
+        
+
+        
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a05-q01-label">Question 1 — Réponds au problème du jour : comment recopier une formule qui utilise toujours la même cellule ?</h3>
+            
+
+            
+            
+                <textarea id="a05-q01" data-answer-id="a05_q01" data-required="true" aria-labelledby="a05-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a04">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>Relative (B2) : change à la recopie ; absolue ($E$1) : fixe.</li><li>F4 ajoute les $.</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/4e3e/da/4e3e-da-TIMJuin2016.pdf" target="_blank" rel="noopener noreferrer">ChloroFil — Document d’accompagnement TIM, 4e et 3e de l’enseignement agricole (juin 2016)</a></p>
+
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+<section class="course-pix" id="course-pix" aria-labelledby="course-pix-title" data-etablissement="mfr" data-matiere="tim" data-classe="3e" data-seance="S07">
+    <h2 id="course-pix-title">Aujourd’hui, c’était une séance Pix ?</h2>
+    <p>Si ton professeur t’a fait travailler sur Pix à la place du cours, ta séance de technologie t’attend ici : tu la reprendras la prochaine fois, rien n’est perdu. Quand tu as fini sur Pix, clique sur le bouton pour le signaler.</p>
+    <details><summary>Que faire pendant une séance Pix ?</summary>
+        <ol>
+            <li>Ouvre Pix depuis l’ENT (ou sur pix.fr, « Se connecter »).</li>
+            <li>Saisis le code de campagne donné par ton professeur et vérifie ton prénom et ton nom.</li>
+            <li>Travaille seul et sérieusement : Pix sert à savoir où tu en es.</li>
+            <li>Ne recopie jamais ton mot de passe ni les réponses de Pix sur ce site.</li>
+        </ol>
+        <p><a href="https://pix.fr/" target="_blank" rel="noopener noreferrer">Ouvrir Pix</a></p>
+    </details>
+    <button type="button" id="course-pix-declare" disabled>J’ai fait ma séance Pix</button>
+    <p id="course-pix-status" role="status" aria-live="polite"></p>
+</section>
+
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a05">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/pix-declaration.js"></script>
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>

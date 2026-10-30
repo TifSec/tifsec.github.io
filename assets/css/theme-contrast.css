@@ -1,0 +1,26 @@
+/* Harmonisation et contraste des thèmes (29/10/2026).
+   Règle commune : les couleurs « accent » (pastel) servent de fond ou de décor, jamais de texte sur fond clair.
+   Les encadrés de cours utilisent la surface douce du thème, son texte et la couleur des liens. */
+
+/* Encadrés du déroulé : « Ta mission », « Pourquoi on change d'exercice ? ». */
+.course-mission-goal { background: var(--student-soft, #eef5f2); color: var(--student-text, #243047); border-color: var(--student-link, #2f7d6b); }
+.course-mission-goal > strong { color: var(--student-heading, #1d5a4a); }
+.course-transition { background: var(--student-soft, #f1f4f6); color: var(--student-text, #243047); border-left-color: var(--student-link, #2f7d6b); }
+.course-transition strong { color: var(--student-heading, #1d5a4a); }
+
+/* Liens de navigation entre les étapes (« Revoir l'objectif », « Étape précédente »). */
+:root[data-student-theme] body #course-work .course-mission-controls a:not(.course-mission-next), :root[data-student-theme] body #course-work .course-mission-controls a:not(.course-mission-next):visited { color: var(--student-link); border-color: var(--student-link); background: transparent; }
+
+/* Séance Pix : même palette que les autres encadrés. */
+:root[data-student-theme] .student-course-shell .course-pix { background: var(--student-soft); color: var(--student-text); border-color: var(--student-link); }
+:root[data-student-theme] .student-course-shell .course-pix :is(h2, strong) { color: var(--student-heading); }
+:root[data-student-theme] .student-course-shell .course-pix a { color: var(--student-link); }
+:root[data-student-theme] .student-course-shell .course-pix button { background: var(--student-hero); color: #fff; border: 1px solid var(--student-link); }
+
+/* Boutique : la carte « brillante » garde un fond clair sous son texte sombre, quel que soit le thème. */
+.shop-effect-card--holo { background: linear-gradient(110deg, #edf3f7 0%, #8fe5dd 22%, #efb4ee 42%, #f9df9b 60%, #edf3f7 78%); background-size: 240% 100%; color: #182536; }
+
+/* Graphiques et notes professeur : fond clair fixe, donc texte sombre fixe. */
+.course-graph, .course-graph * { color: #243047; }
+.private-course-notes, .private-course-setup, #teacher-course[data-mode="private"] #teacher-course-status { color: #43351e; }
+.private-course-notes :is(h2, h3, h4, a), .teacher-annotation :is(h4, summary, a) { color: #5a3d12; }

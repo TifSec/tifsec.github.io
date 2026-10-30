@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261029-contrast-1">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="college" data-matiere="techno" data-classe="5e" data-seance="S35" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">Retrouver les blocs du jeu</a></li><li><a href="#a02">Entrées et sorties du programme</a></li><li><a href="#a03">Prévoir le comportement</a></li><li><a href="#a04">Défi — facultatif</a></li><li><a href="#a05">Conclusion de ton travail</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">Technologie · 5e · S35</span></div>
+    <h1>Séance 35 : Que fait le programme du monte-charge ?</h1>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thème du programme</h2>
+        <p>Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>Que fait le programme du monte-charge quand on appuie sur le bouton d’appel de l’étage ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétence travaillée</h2>
+        <ul><li>Comprendre et modifier un programme associé à une fonctionnalité d’un objet ou d’un système technique</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>Le programme du monte-charge utilise les mêmes types de blocs que ton jeu : un bloc « toujours », des conditions « si … alors », une fonction et une variable.</li>
+            
+            <li>Les données d’entrée viennent des boutons et des capteurs ; les données de sortie commandent le moteur, l’écran et les voyants.</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Lire un programme réel bloc par bloc (réflexe n° 9).</li>
+            
+            <li>Repérer les données utilisées (entrées) et produites (sorties) par le programme.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>En séance 32, tu as écrit une condition « si … alors » dans ton jeu. En séance 33, tu as vu les constituants d’information du monte-charge.</p><p>Aujourd’hui, tu ouvres le vrai programme du monte-charge et tu retrouves les blocs de ton jeu. Le guidage est un peu plus léger : appuie-toi sur la méthode du réflexe n° 9.</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Retrouver les blocs du jeu</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas lire le programme du monte-charge (version simplifiée projetée) et retrouver les blocs de ton jeu Arcade. On attend des associations et ce que fait la carte au repos.</p></div>
+        
+        
+
+        
+<p>Le professeur projette le programme dans MakeCode micro:bit. Voici une version simplifiée, en français, de ses parties principales (la fonction Descendre ressemble à Monter, vers le bas).</p>
+    
+
+<pre class="cours-code"><code>au démarrage
+    voyants Étage et RDC en orange
+    Etat = 0
+
+toujours
+    écran : effacer
+    si (contact bas appuyé) ET (bouton Étage appuyé) alors
+        appeler Monter
+    si (contact haut appuyé) ET (bouton RDC appuyé) alors
+        appeler Descendre
+    écran : écrire « Attente »
+    voyants Étage et RDC en vert
+
+fonction Monter
+    Etat = 1
+    voyant Étage en rouge
+    écran : écrire « Appel Etage »
+    tant que (contact haut pas appuyé)
+        faire tourner le moteur vers l’avant à la vitesse 137
+        écran : écrire la distance mesurée par le capteur à ultrasons (cm)
+    freiner le moteur
+    écran : écrire « Stop Etage »
+    Etat = 0</code></pre>
+    
+
+<p>Rappel du réflexe n° 9 : lis bloc par bloc, de haut en bas.</p>
+    
+
+<ol><li>Lis le programme bloc par bloc (réflexe n° 9).</li><li>Pour chaque élément, cherche un bloc semblable dans ton jeu Arcade.</li><li>Repère ce que fait la boucle « toujours » quand rien n’est appuyé.</li></ol>
+    
+
+<p>Pourquoi comparer avec Arcade ? Les mêmes idées (événement, condition, boucle) servent dans un jeu et dans un vrai objet.</p>
+    
+
+
+        <details class="cours-ressources"><summary>Des ressources pour chercher</summary><div>
+<p><a href="https://makecode.microbit.org/" target="_blank" rel="noopener noreferrer">MakeCode micro:bit (gratuit, dans le navigateur)</a></p>
+
+
+<p><a href="https://edubase.eduscol.education.fr/fiche/24732" target="_blank" rel="noopener noreferrer">Éduscol — Édubase : le projet de monte-charge</a></p>
+
+
+</div></details>
+
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — Associe chaque élément du programme du monte-charge à ce qu’il ressemble dans ton jeu Arcade.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Dans le monte-charge</th>
+                                
+                                <th>Dans mon jeu Arcade (séances 30 à 32)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Le bloc « toujours »
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Retrouver les blocs du jeu — Dans mon jeu Arcade (séances 30 à 32) — Le bloc « toujours »">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    si … alors …
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Retrouver les blocs du jeu — Dans mon jeu Arcade (séances 30 à 32) — si … alors …">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    La variable Etat
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r2_c1" data-required="true" data-row="2" data-col="1" aria-label="Retrouver les blocs du jeu — Dans mon jeu Arcade (séances 30 à 32) — La variable Etat">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Bloc par bloc (réflexe n° 9).</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a01-q02-label">Question 2 — D’après le programme du monte-charge, que fait la carte quand rien n’est appuyé ?</h3>
+            
+
+            
+            
+                <select id="a01-q02" data-answer-id="a01_q02" data-required="true" aria-labelledby="a01-q02-label"><option value="">Choisis une réponse</option><option value="a">Elle affiche « Attente » et met les voyants en vert.</option><option value="b">Elle fait monter la cabine.</option><option value="c">Elle éteint l’écran pour toujours.</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Relis l’exemple expliqué.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Entrées et sorties du programme</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu as reconnu la structure du programme. Repère maintenant les données qu’il lit et celles qu’il produit.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas ranger les éléments du programme du monte-charge en entrées et sorties. On attend le bon classement de chaque élément.</p></div>
+        
+        
+
+        
+<p>Une entrée est une donnée lue par le programme ; une sortie est une donnée produite pour commander un constituant.</p>
+    
+
+<ol><li>Relis : une entrée est lue, une sortie commande un constituant.</li><li>Pour chaque élément, demande-toi : le programme le lit-il ou le commande-t-il ?</li><li>Écris « entrée » ou « sortie ».</li></ol>
+    
+
+<p>Pourquoi entrées et sorties ? Elles relient le programme aux constituants : les entrées viennent des capteurs, les sorties vont au moteur et à l’écran.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — Range chaque élément du programme du monte-charge : entrée ou sortie.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Élément</th>
+                                
+                                <th>Entrée ou sortie ?</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Contact bas
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Entrées et sorties du programme — Entrée ou sortie ? — Contact bas">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Bouton Étage
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Entrées et sorties du programme — Entrée ou sortie ? — Bouton Étage">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Moteur
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r2_c1" data-required="true" data-row="2" data-col="1" aria-label="Entrées et sorties du programme — Entrée ou sortie ? — Moteur">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Écran OLED
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r3_c1" data-required="true" data-row="3" data-col="1" aria-label="Entrées et sorties du programme — Entrée ou sortie ? — Écran OLED">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Capteur à ultrasons
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r4_c1" data-required="true" data-row="4" data-col="1" aria-label="Entrées et sorties du programme — Entrée ou sortie ? — Capteur à ultrasons">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Voyants
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r5_c1" data-required="true" data-row="5" data-col="1" aria-label="Entrées et sorties du programme — Entrée ou sortie ? — Voyants">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Bloc par bloc (réflexe n° 9).</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Prévoir le comportement</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais ce qui entre et ce qui sort. Tu peux maintenant prévoir ce que fera le monte-charge.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas dérouler le programme du monte-charge dans ta tête pour prévoir ce qu’il fait. On attend le déroulé de la montée et ce qui se passe si la cabine est déjà en haut.</p></div>
+        
+        
+
+        
+<p>Prévoir, c’est dérouler le programme dans sa tête avant de tester.</p>
+    
+
+<ol><li>Pars de l’état de départ : cabine en bas.</li><li>Suis les blocs dans l’ordre quand on appuie sur Étage.</li><li>Recommence avec la cabine déjà en haut.</li></ol>
+    
+
+<p>Pourquoi prévoir ? Savoir ce qu’un programme va faire avant de tester, c’est la preuve qu’on le comprend.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — La cabine est en bas. Un élève appuie sur le bouton Étage. Raconte ce que fait le programme, dans l’ordre, jusqu’à l’arrêt.</h3>
+            
+
+            
+            
+                <textarea id="a03-q01" data-answer-id="a03_q01" data-required="true" aria-labelledby="a03-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Bloc par bloc (réflexe n° 9).</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a03-q02-label">Question 2 — La cabine est déjà en haut. On appuie sur le bouton Étage. Que se passe-t-il ?</h3>
+            
+
+            
+            
+                <select id="a03-q02" data-answer-id="a03_q02" data-required="true" aria-labelledby="a03-q02-label"><option value="">Choisis une réponse</option><option value="a">Rien : la condition demande que le contact bas soit appuyé.</option><option value="b">La cabine monte encore et casse la maquette.</option><option value="c">La cabine descend.</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Relis l’exemple expliqué.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Défi</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<p>La variable Etat vaut 1 pendant la montée, -1 pendant la descente et 0 à l’arrêt.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — À quoi pourrait servir cette variable si on voulait ajouter une nouvelle fonction ?</h3>
+            
+
+            
+            
+                <textarea id="a04-q01" data-answer-id="a04_q01" data-required="false" aria-labelledby="a04-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Bloc par bloc (réflexe n° 9).</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#a05">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a05" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Conclusion</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Conclusion de ton travail</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu as lu, analysé et prévu. Il reste à répondre au problème de départ.</p>
+        
+        
+        
+
+        
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a05-q01-label">Question 1 — Réponds au problème du jour : que fait le programme quand on appuie sur le bouton d’appel de l’étage ?</h3>
+            
+
+            
+            
+                <textarea id="a05-q01" data-answer-id="a05_q01" data-required="true" aria-labelledby="a05-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Reprends les mots du problème (réflexe n° 3).</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a04">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>Le programme lit des entrées (boutons, contacts, capteur) et commande des sorties (moteur, écran, voyants).</li><li>Mêmes blocs que dans le jeu : boucle « toujours », condition « si … alors », variable, fonction.</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://www.education.gouv.fr/media/160767/download" target="_blank" rel="noopener noreferrer">Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)</a></p>
+
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+<section class="course-pix" id="course-pix" aria-labelledby="course-pix-title" data-etablissement="college" data-matiere="techno" data-classe="5e" data-seance="S35">
+    <h2 id="course-pix-title">Aujourd’hui, c’était une séance Pix ?</h2>
+    <p>Si ton professeur t’a fait travailler sur Pix à la place du cours, ta séance de technologie t’attend ici : tu la reprendras la prochaine fois, rien n’est perdu. Quand tu as fini sur Pix, clique sur le bouton pour le signaler.</p>
+    <details><summary>Que faire pendant une séance Pix ?</summary>
+        <ol>
+            <li>Ouvre Pix depuis l’ENT (ou sur pix.fr, « Se connecter »).</li>
+            <li>Saisis le code de campagne donné par ton professeur et vérifie ton prénom et ton nom.</li>
+            <li>Travaille seul et sérieusement : Pix sert à savoir où tu en es.</li>
+            <li>Ne recopie jamais ton mot de passe ni les réponses de Pix sur ce site.</li>
+        </ol>
+        <p><a href="https://pix.fr/" target="_blank" rel="noopener noreferrer">Ouvrir Pix</a></p>
+    </details>
+    <button type="button" id="course-pix-declare" disabled>J’ai fait ma séance Pix</button>
+    <p id="course-pix-status" role="status" aria-live="polite"></p>
+</section>
+
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a05">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/pix-declaration.js"></script>
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>

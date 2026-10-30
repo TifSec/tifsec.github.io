@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261029-contrast-1">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="college" data-matiere="techno" data-classe="5e" data-seance="S39" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">Les causes des pannes</a></li><li><a href="#a02">Réparable ou pas ?</a></li><li><a href="#a03">Faire durer</a></li><li><a href="#a04">Défi — facultatif</a></li><li><a href="#a05">Conclusion de ton travail</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">Technologie · 5e · S39</span></div>
+    <h1>Séance 39 : Pourquoi les objets tombent-ils en panne ?</h1>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thème du programme</h2>
+        <p>Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>Pourquoi les objets tombent-ils en panne, et comment savoir s’ils seront faciles à réparer ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétence travaillée</h2>
+        <ul><li>Identifier un dysfonctionnement d’un objet technique et y remédier</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>Une panne peut venir de l’usure, d’un choc, d’une mauvaise utilisation, d’un défaut de fabrication ou d’une pièce qui n’est plus fabriquée.</li>
+            
+            <li>La fiabilité, c’est la capacité d’un objet à fonctionner sans panne ; la durabilité, c’est sa capacité à durer longtemps, en étant entretenu et réparé.</li>
+            
+            <li>L’indice de réparabilité (sur 10) tient compte de la notice, de la facilité de démontage, de la disponibilité et du prix des pièces.</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Classer les causes de pannes.</li>
+            
+            <li>Expliquer ce qui rend un objet réparable.</li>
+            
+            <li>Proposer des gestes pour faire durer un objet.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>En séance 21, tu as lu l’indice de réparabilité d’un aspirateur. En séance 20, tu as vu qu’un objet qui dure longtemps a moins d’impact sur l’environnement.</p><p>Aujourd’hui, tu cherches pourquoi les objets tombent en panne. C’est le début de la séquence « Je dépanne ».</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Les causes des pannes</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas découvrir les causes fréquentes des pannes, avec l’exemple expliqué. On attend la cause probable de chaque panne.</p></div>
+        
+        
+
+        
+<div class="cours-table-wrapper"><table class="cours-table"><caption>Exemple expliqué : cinq causes de pannes</caption><thead><tr><th scope="col">Cause</th><th scope="col">Exemple</th></tr></thead><tbody><tr><td>Usure</td><td>Les patins de frein d’un vélo s’usent à force de freiner.</td></tr><tr><td>Choc</td><td>Un téléphone tombe et son écran se fissure.</td></tr><tr><td>Mauvaise utilisation</td><td>On force sur une fermeture éclair coincée.</td></tr><tr><td>Défaut de fabrication</td><td>Une soudure mal faite dans un appareil neuf.</td></tr><tr><td>Pièce plus fabriquée</td><td>Une imprimante dont la cartouche n’existe plus.</td></tr></tbody></table></div>
+    
+
+<ol><li>Lis les cinq causes de pannes.</li><li>Pour chaque panne, cherche la cause qui l’explique.</li><li>Écris-la.</li></ol>
+    
+
+<p>Pourquoi connaître les causes ? Savoir pourquoi un objet tombe en panne aide à l’éviter et à le réparer.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — Pour chaque panne, écris sa cause probable.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Panne</th>
+                                
+                                <th>Cause probable</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Les poils d’une brosse à dents sont écrasés après 6 mois.
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Les causes des pannes — Cause probable — Les poils d’une brosse à dents sont écrasés après 6 mois.">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Une manette ne marche plus après être tombée dans les escaliers.
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Les causes des pannes — Cause probable — Une manette ne marche plus après être tombée dans les escaliers.">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Un ventilateur de 15 ans ne peut pas être réparé : son moteur n’est plus vendu.
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r2_c1" data-required="true" data-row="2" data-col="1" aria-label="Les causes des pannes — Cause probable — Un ventilateur de 15 ans ne peut pas être réparé : son moteur n’est plus vendu.">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Ligne × colonne.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Réparable ou pas ?</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu connais les causes de pannes. Certains objets se réparent facilement, d’autres non : qu’est-ce qui fait la différence ?</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas apprendre ce que mesure l’indice de réparabilité, avec le document 1. On attend une explication tirée du document et la maquette facile à réparer.</p></div>
+        
+        
+
+        
+<div class="cours-table-wrapper"><table class="cours-table"><caption>Document 1 — Ce que mesure l’indice de réparabilité</caption><thead><tr><th scope="col">Critère de l’indice</th><th scope="col">Question</th></tr></thead><tbody><tr><td>Documentation</td><td>Existe-t-il une notice de réparation ?</td></tr><tr><td>Démontage</td><td>Peut-on ouvrir l’objet avec des outils simples (pas de colle) ?</td></tr><tr><td>Pièces détachées</td><td>Peut-on acheter les pièces, et pendant combien d’années ?</td></tr><tr><td>Prix des pièces</td><td>Une pièce coûte-t-elle beaucoup moins cher qu’un objet neuf ?</td></tr></tbody></table></div>
+    
+
+<ol><li>Lis le document 1.</li><li>Compare un écran collé et un écran vissé.</li><li>Pense aux pièces que le collège peut refaire lui-même.</li></ol>
+    
+
+<p>Pourquoi un indice ? Il permet de savoir, avant d’acheter, si l’objet pourra être réparé.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — D’après le document 1, explique pourquoi un téléphone dont l’écran est collé est moins réparable qu’un téléphone dont l’écran est vissé.</h3>
+            
+
+            
+            
+                <textarea id="a02-q01" data-answer-id="a02_q01" data-required="true" aria-labelledby="a02-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>« D’après le document… » (réflexe n° 2).</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a02-q02-label">Question 2 — Quelle maquette du collège est facile à réparer parce que ses pièces sont imprimées en 3D au collège ?</h3>
+            
+
+            
+            
+                <select id="a02-q02" data-answer-id="a02_q02" data-required="true" aria-labelledby="a02-q02-label"><option value="">Choisis une réponse</option><option value="a">L’éolienne (et le tracker).</option><option value="b">Aucune.</option><option value="c">Le téléphone du professeur.</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Relis l’exemple expliqué.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Faire durer</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Un objet réparable peut durer plus longtemps. Toi aussi, tu peux agir pour faire durer tes objets.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas proposer des gestes pour faire durer un objet que tu utilises. On attend trois gestes expliqués.</p></div>
+        
+        
+
+        
+<p>Rappel de la séance 20 : faire durer un objet évite d’extraire des matières et de fabriquer un objet neuf.</p>
+    
+
+<ol><li>Choisis un objet de tous les jours.</li><li>Pour chaque geste, demande-toi quelle panne il évite.</li><li>Explique chaque geste.</li></ol>
+    
+
+<p>Pourquoi faire durer ? Chaque objet qui dure évite d’en fabriquer un neuf (séance 20).</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — Propose trois gestes pour faire durer un objet que tu utilises (téléphone, vélo, ordinateur…), et explique chacun.</h3>
+            
+
+            
+            
+                <textarea id="a03-q01" data-answer-id="a03_q01" data-required="true" aria-labelledby="a03-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Pense à « car » (réflexe n° 4).</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Défi</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<p>On parle d’« obsolescence » quand un objet devient inutilisable trop tôt.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — Cherche un exemple d’objet qui devient inutilisable alors qu’il fonctionne encore (mise à jour impossible, pièce introuvable…). Que pourrait-on faire ?</h3>
+            
+
+            
+            
+                <textarea id="a04-q01" data-answer-id="a04_q01" data-required="false" aria-labelledby="a04-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Repère le verbe de la question.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#a05">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a05" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Conclusion</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Conclusion de ton travail</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu as étudié les causes et la réparabilité. Il reste à répondre au problème de départ.</p>
+        
+        
+        
+
+        
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a05-q01-label">Question 1 — Réponds au problème du jour : pourquoi les objets tombent-ils en panne, et comment savoir s’ils seront faciles à réparer ?</h3>
+            
+
+            
+            
+                <textarea id="a05-q01" data-answer-id="a05_q01" data-required="true" aria-labelledby="a05-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Reprends les mots du problème (réflexe n° 3).</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a04">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>Causes de pannes : usure, choc, mauvaise utilisation, défaut, pièce introuvable.</li><li>Un objet réparable : notice, démontage simple, pièces disponibles et peu chères.</li><li>Faire durer un objet réduit son impact sur l’environnement.</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://www.education.gouv.fr/media/160767/download" target="_blank" rel="noopener noreferrer">Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)</a></p>
+
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+<section class="course-pix" id="course-pix" aria-labelledby="course-pix-title" data-etablissement="college" data-matiere="techno" data-classe="5e" data-seance="S39">
+    <h2 id="course-pix-title">Aujourd’hui, c’était une séance Pix ?</h2>
+    <p>Si ton professeur t’a fait travailler sur Pix à la place du cours, ta séance de technologie t’attend ici : tu la reprendras la prochaine fois, rien n’est perdu. Quand tu as fini sur Pix, clique sur le bouton pour le signaler.</p>
+    <details><summary>Que faire pendant une séance Pix ?</summary>
+        <ol>
+            <li>Ouvre Pix depuis l’ENT (ou sur pix.fr, « Se connecter »).</li>
+            <li>Saisis le code de campagne donné par ton professeur et vérifie ton prénom et ton nom.</li>
+            <li>Travaille seul et sérieusement : Pix sert à savoir où tu en es.</li>
+            <li>Ne recopie jamais ton mot de passe ni les réponses de Pix sur ce site.</li>
+        </ol>
+        <p><a href="https://pix.fr/" target="_blank" rel="noopener noreferrer">Ouvrir Pix</a></p>
+    </details>
+    <button type="button" id="course-pix-declare" disabled>J’ai fait ma séance Pix</button>
+    <p id="course-pix-status" role="status" aria-live="polite"></p>
+</section>
+
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a05">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/pix-declaration.js"></script>
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>

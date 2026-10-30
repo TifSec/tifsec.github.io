@@ -1,0 +1,29 @@
+.course-paper-version { margin: 20px 0; }
+.course-paper-version[hidden] { display: none; }
+.course-paper-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; padding: 12px 16px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-surface, #fff); }
+.course-paper-actions p { margin: 0; }
+.course-paper-sheet { max-width: 850px; margin: 0 auto; padding: 28px; border: 1px solid var(--color-border); border-radius: 14px; background: #fff; color: #172b3d; box-shadow: 0 8px 24px rgb(20 45 70 / 10%); }
+.course-paper-sheet header { padding-bottom: 16px; border-bottom: 2px solid #204c68; }
+.course-paper-kicker { margin-bottom: 6px; color: #255c75; font-size: .82rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.course-paper-section { margin-top: 18px; break-inside: avoid; }
+.course-paper-section h3 { margin: 0 0 8px; color: #173b53; font-size: 1.05rem; }
+.course-paper-section p { margin: 6px 0; }
+.course-paper-questions { padding-left: 24px; }
+.course-paper-questions li { margin: 12px 0; padding-left: 4px; }
+.course-paper-answer-lines { display: block; min-height: 32px; margin-top: 5px; border-bottom: 1px solid #8795a1; }
+@media print {
+    @page { size: A4; margin: 14mm; }
+    body * { visibility: hidden !important; }
+    #course-paper-version:not([hidden]), #course-paper-version:not([hidden]) * { visibility: visible !important; }
+    #course-paper-version:not([hidden]) { position: absolute; inset: 0; width: 100%; margin: 0; }
+    .course-paper-actions { display: none !important; }
+    .course-paper-sheet { max-width: none; padding: 0; border: 0; border-radius: 0; box-shadow: none; color: #111; font-size: 10pt; }
+    .course-paper-sheet header { border-color: #111; }
+    .course-paper-kicker, .course-paper-section h3 { color: #111; }
+    .course-paper-section { margin-top: 10px; }
+    .course-paper-answer-lines { min-height: 24px; }
+}
+@media (max-width: 700px) {
+    .course-paper-actions { align-items: flex-start; flex-direction: column; }
+    .course-paper-sheet { padding: 18px; }
+}

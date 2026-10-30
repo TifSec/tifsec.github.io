@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        Connexion | BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-layout.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-header.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-form.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-columns.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-register.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-footer.css">
+    
+
+    
+    
+    
+
+    
+
+
+    
+    
+    
+    
+</head>
+
+
+<body>
+    <main class="auth-page" id="auth-main">
+        <section class="auth-card">
+    <!-- ========== EN-TÊTE AUTHENTIFICATION ========== -->
+<header class="auth-header">
+    <div class="auth-logo">
+        <img src="/tifsec-test-eleves/images/logo.png" alt="Logo du portail pédagogique">
+    </div>
+    <div class="auth-header-text">
+        <h1>Espace personnel</h1>
+        <p>
+            Retrouve tes cours, ta progression
+            et ton travail sauvegardé.
+        </p>
+    </div>
+</header>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <button type="button" id="auth-session-logout" hidden>Se déconnecter pour utiliser un autre compte</button>
+    <div class="auth-columns">
+        <!-- ========== FORMULAIRE DE CONNEXION ========== -->
+<form id="login" class="auth-panel">
+    <h2>Connexion</h2>
+    <p class="auth-description">
+        Tu as déjà un compte ?
+        Connecte-toi pour reprendre ton travail.
+    </p>
+    <label for="login-username">Identifiant ou adresse e-mail</label>
+    <input type="text" id="login-username" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="ex. jean.dupont" required>
+    <label for="login-password">Mot de passe</label>
+    <input type="password" id="login-password" autocomplete="current-password" placeholder="Ton mot de passe" required>
+    <button type="submit" id="login-button" class="button button-primary">Se connecter</button>
+</form>
+
+        <div class="auth-separator">
+            <span>ou</span>
+        </div>
+        <!-- ========== CRÉATION DE COMPTE ========== -->
+<form id="create-account" class="auth-panel">
+    <h2 id="register-heading">Première connexion</h2>
+    <p id="register-description" class="auth-description">
+        Crée ton compte élève et retrouve ensuite ton espace personnel.
+    </p>
+    <!-- ========== IDENTITÉ ========== -->
+    <div class="name-grid">
+        <div>
+            <label for="register-prenom">Prénom</label>
+            <input type="text" id="register-prenom" autocomplete="given-name" maxlength="100" required>
+        </div>
+        <div>
+            <label for="register-nom">Nom</label>
+            <input type="text" id="register-nom" autocomplete="family-name" maxlength="100" required>
+        </div>
+    </div>
+    <!-- ========== TYPE DE COMPTE ========== -->
+    <label for="register-role">Type de compte</label>
+    <select id="register-role" disabled>
+        <option value="student">Élève</option>
+    </select>
+    <!-- ========== ÉTABLISSEMENT ========== -->
+    <div id="register-school-wrapper">
+        <label for="register-school">Établissement</label>
+        <select id="register-school" required>
+            <option value="">Choisis ton établissement</option>
+            
+            <option value="college">Collège</option>
+            
+            <option value="mfr">MFR</option>
+            
+        </select>
+    </div>
+    <!-- ========== CLASSE ========== -->
+    <div id="register-class-wrapper">
+        <label for="register-classe">Classe</label>
+        <select id="register-classe" disabled required>
+            <option value="">Choisis d'abord ton établissement</option>
+            
+            
+            <option value="5e" data-school="college" hidden>
+                5e
+            </option>
+            
+            <option value="4e" data-school="college" hidden>
+                4e
+            </option>
+            
+            <option value="3e" data-school="college" hidden>
+                3e
+            </option>
+            
+            
+            
+            <option value="4e" data-school="mfr" hidden>
+                4e MFR
+            </option>
+            
+            <option value="3e" data-school="mfr" hidden>
+                3e MFR
+            </option>
+            
+            <option value="cap1" data-school="mfr" hidden>
+                CAPa 1
+            </option>
+            
+            <option value="cap2" data-school="mfr" hidden>
+                CAPa 2
+            </option>
+            
+            <option value="2de" data-school="mfr" hidden>
+                2de Pro
+            </option>
+            
+            <option value="1re" data-school="mfr" hidden>
+                Bac Pro 1
+            </option>
+            
+            <option value="bts1" data-school="mfr" hidden>
+                BTSA ACS'AGRI 1
+            </option>
+            
+            <option value="bts2" data-school="mfr" hidden>
+                BTSA ACS'AGRI 2
+            </option>
+            
+            
+        </select>
+    </div>
+    <!-- ========== IDENTIFIANT ========== -->
+    <div id="register-credentials" class="register-credentials">
+        <label for="register-username">Identifiant</label>
+        <input type="text" id="register-username" autocomplete="username" autocapitalize="none" spellcheck="false" minlength="3" maxlength="64" placeholder="ex. jean.dupont" aria-describedby="register-username-help" required>
+        <p id="register-username-help" class="field-help">De 3 à 64 caractères, sans espace ni accent. Tu peux modifier l’identifiant proposé.</p>
+        <label for="register-password">Mot de passe</label>
+        <input type="password" id="register-password" autocomplete="new-password" minlength="8" placeholder="8 caractères minimum" required>
+        <label for="register-password-confirm">Confirmer le mot de passe</label>
+        <input type="password" id="register-password-confirm" autocomplete="new-password" minlength="8" required>
+    </div>
+    <button type="submit" id="register-button" class="button button-secondary">Créer mon compte élève</button>
+</form>
+
+    </div>
+    <!-- ========== PIED DE PAGE AUTHENTIFICATION ========== -->
+<footer class="auth-footer">
+    <span>☁ Sauvegarde automatique</span>
+    <span>🔒 Espace personnel</span>
+    <span>↻ Reprise du travail</span>
+</footer>
+</section>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<noscript><p>Active JavaScript pour te connecter à ton espace.</p></noscript>
+
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/auth/auth-init.js"></script>
+
+    </main>
+</body>
+
+</html>

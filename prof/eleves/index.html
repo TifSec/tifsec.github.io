@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-graph.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        Élèves et inscriptions | BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/prof/prof-header.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/prof/prof-layout.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/prof/prof-dashboard.css">
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/prof/prof-theme.css?v=20261021-contrast-notes">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261029-contrast-1">
+    
+</head>
+
+
+<body class="prof-shell">
+    <a class="prof-skip" href="#prof-main">Aller au contenu</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <div id="prof-loading" class="session-panel" role="status">Vérification de votre accès...</div>
+
+    <div id="prof-access-denied" class="session-panel" hidden>
+        <h1>Accès non autorisé</h1>
+        <p id="prof-access-message">Vous devez être connecté avec un compte professeur.</p>
+        <a href="/tifsec-test-eleves/connexion/">Se connecter</a>
+        <div class="session-actions">
+            <button type="button" id="prof-retry">Réessayer</button>
+            <button type="button" id="prof-denied-logout">Se déconnecter</button>
+        </div>
+    </div>
+
+    <div id="prof-content" hidden>
+        <!-- ========== EN-TÊTE PROFESSEUR ========== -->
+
+<header class="prof-header">
+    <div class="prof-header-content">
+        <a href="/tifsec-test-eleves/prof/" class="prof-logo">
+            <img src="/tifsec-test-eleves/images/logo.png" alt="Logo du portail">
+        </a>
+        <div class="prof-header-title">
+            <p class="prof-brand">Espace professeur</p>
+            <p>Technologie • TIM • Mathématiques</p>
+        </div>
+    </div>
+    <div class="prof-header-actions">
+        <span id="prof-identity">Professeur</span>
+        <details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+
+        <button type="button" id="prof-logout">Se déconnecter</button>
+    </div>
+</header>
+<nav class="prof-nav" aria-label="Espace professeur">
+    <div class="prof-nav-content">
+        <a href="/tifsec-test-eleves/prof/" >Enseignements</a>
+        <a href="/tifsec-test-eleves/prof/cours/" >Cours professeur</a>
+        <a href="/tifsec-test-eleves/prof/eleves/" aria-current="page">Élèves et inscriptions</a>
+        <a href="/tifsec-test-eleves/prof/suivi/" >Copies et corrections</a>
+        <a href="/tifsec-test-eleves/prof/notes/" >Notes</a>
+    </div>
+</nav>
+
+        <main class="prof-main" id="prof-main" tabindex="-1">
+            <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/prof/prof-students.css">
+<section id="teacher-students">
+    <p class="prof-eyebrow">Vos classes, au même endroit</p>
+    <h1>Élèves et inscriptions</h1>
+    <p class="prof-description">Validez les nouveaux comptes et ajustez les affectations. Les copies et les anciens groupes restent conservés.</p>
+    <div class="student-legend"><span class="student-state" data-state="pending">En attente</span><span class="student-state" data-state="legacy">À vérifier</span><span class="student-state" data-state="approved">Validée</span></div>
+    <p id="students-status" role="status" aria-live="polite">Chargement de vos classes…</p>
+    <fieldset id="students-controls" disabled>
+        <legend>Choisir une classe</legend>
+        <div class="prof-filter"><label for="students-class">Établissement et classe</label><select id="students-class"></select></div>
+        <button type="button" id="students-refresh">Actualiser</button>
+    </fieldset>
+    <div id="students-list"></div>
+</section>
+<script type="module" src="/tifsec-test-eleves/assets/js/prof/prof-students.js"></script>
+
+        </main>
+        <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+    </div>
+
+    <noscript><p>Activez JavaScript pour vous connecter et charger votre profil.</p></noscript>
+    <script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+    <script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+    <script type="module" src="/tifsec-test-eleves/assets/js/auth/prof-guard.js"></script>
+    <script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+</body>
+
+</html>
