@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://aqbjykgppbyrzqxlzxuf.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable_QurNizkqNqwICBWfRgfPPA_VZ71c6WM">
+    
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://aqbjykgppbyrzqxlzxuf.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        Espace élève | Portail pédagogique Technologie | TIM | Mathématiques
+        
+    </title>
+
+    <link rel="icon" href="/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/assets/css/base.css">
+
+    <link rel="stylesheet" href="/assets/css/body.css">
+
+    <link rel="stylesheet" href="/assets/css/header.css">
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    
+    <link rel="stylesheet" href="/assets/css/eleve/student-dashboard.css">
+    <link rel="stylesheet" href="/assets/css/eleve/student-cards.css">
+    <link rel="stylesheet" href="/assets/css/eleve/student-competencies.css">
+    <link rel="stylesheet" href="/assets/css/eleve/student-shop.css?v=20261022-shop-preview-3">
+    <link rel="stylesheet" href="/assets/css/cours/collaboration.css">
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    
+    
+    
+    <link rel="stylesheet" href="/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/assets/css/theme-contrast.css?v=20261029-contrast-1">
+    
+</head>
+
+<body class="student-shell">
+    <a class="student-skip" href="#student-main">Aller à mes séances</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <p id="eleve-loading" class="session-panel" role="status">Chargement de ton profil…</p>
+    <section id="eleve-access-denied" class="session-panel" hidden>
+        <h1>Accès à ton espace</h1><p id="eleve-access-message"></p><a href="/connexion/">Se connecter</a>
+        <div class="session-actions"><button type="button" id="eleve-retry">Réessayer</button><button type="button" id="eleve-denied-logout">Se déconnecter</button></div>
+    </section>
+    <div id="eleve-content" hidden>
+        <header class="student-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/eleve/"><img src="/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="eleve-logout">Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row">
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><h1>Bonjour <span id="eleve-identity"></span></h1></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+        <main id="student-main" class="student-main" tabindex="-1"><div class="student-grid">
+    <div class="student-sidebar">
+        <aside class="student-panel student-statistics" aria-labelledby="student-stats-title">
+            <p class="student-section-kicker">Mon parcours</p><h2 id="student-stats-title">Mes repères</h2><p class="student-muted">Un aperçu de mon travail.</p><dl id="student-stats"></dl>
+            <details id="student-help" class="student-help"><summary>Comment ça marche ?</summary>
+                <p>Tes réponses s’enregistrent automatiquement. Tu les retrouves à ta prochaine connexion.</p>
+                <p>« J’ai terminé » permet de passer à la suite. Tu peux encore compléter ta copie jusqu’à sa clôture par ton professeur. La note peut arriver plus tard.</p>
+                <p>Ces repères montrent ton avancement, pas ce que tu maîtrises. Une note de groupe est commune aux participants.</p>
+            </details>
+        </aside>
+
+    </div>
+    <div class="student-content student-card-board" aria-label="Mon espace élève">
+        <details class="student-expand-card" id="student-card-next">
+            <summary><span class="student-card-icon" aria-hidden="true">→</span><span class="student-card-title">Le prochain pas</span><span class="student-card-preview">Retrouver la prochaine séance.</span><span class="student-card-hint">Ouvrir <span class="student-card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></span></summary>
+            <div class="student-card-body"><div class="student-card-toolbar"><strong>Le prochain pas</strong><button type="button" data-card-close aria-label="Refermer la carte" title="Refermer la carte"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button></div><p class="student-card-placeholder">Les informations s’afficheront après leur chargement.</p>
+        <section id="student-next-panel" class="student-panel student-next-panel" data-enabled="true" hidden aria-labelledby="student-next-title">
+            <p class="student-section-kicker">Le prochain pas</p><h2 id="student-next-title">Ma prochaine séance</h2>
+            <svg class="student-next-art" viewBox="0 0 200 190" aria-hidden="true" focusable="false"><circle cx="105" cy="95" r="76" fill="none" stroke="currentColor" stroke-dasharray="4 9"/><circle cx="164" cy="39" r="10" fill="#b9ecd8"/><circle cx="31" cy="129" r="6" fill="#f2cdb2"/><path d="M42 65Q70 52 98 69V139Q70 122 42 133Z" fill="#d7e7f8"/><path d="M98 69Q127 52 155 65V133Q127 122 98 139Z" fill="#b9ecd8"/><path d="M98 72V139M54 79Q72 72 86 81M54 94Q72 87 86 96M111 81Q127 73 143 79M111 96Q127 88 143 94" fill="none" stroke="#244b68" stroke-width="3" stroke-linecap="round"/><path d="M130 131L160 101L171 112L141 142L127 146Z" fill="#f2cdb2"/></svg>
+            <div id="student-next"></div>
+        </section>
+            </div>
+        </details>
+        <details class="student-expand-card" id="student-card-work">
+            <summary><span class="student-card-icon" aria-hidden="true">▤</span><span class="student-card-title">Mon espace de travail</span><span class="student-card-preview">Ouvrir ou reprendre mes séances.</span><span class="student-card-hint">Ouvrir <span class="student-card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></span></summary>
+            <div class="student-card-body"><div class="student-card-toolbar"><strong>Mon espace de travail</strong><button type="button" data-card-close aria-label="Refermer la carte" title="Refermer la carte"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button></div><p class="student-card-placeholder">Les informations s’afficheront après leur chargement.</p>
+        <section class="student-panel student-lessons-panel" aria-labelledby="student-lessons-title">
+            <div class="student-section-heading"><div><p class="student-section-kicker">Mon espace de travail</p><h2 id="student-lessons-title" tabindex="-1">Mes séances</h2><p>Reprendre, relire, comprendre mes retours.</p></div><button type="button" id="student-refresh" class="student-refresh">Actualiser</button></div>
+            <div id="student-filters" class="student-filters" role="group" aria-label="Afficher mes séances">
+                <button type="button" data-view="all" aria-pressed="true" disabled>Toutes</button><button type="button" data-view="started" aria-pressed="false" disabled>En cours</button><button type="button" data-view="finished" aria-pressed="false" disabled>Terminées</button><button type="button" data-view="feedback" aria-pressed="false" disabled>Retours et notes</button>
+            </div>
+            <p id="student-dashboard-status" role="status" aria-live="polite">Chargement de tes séances…</p>
+            <div id="student-lessons" class="student-lessons" data-grades="true" data-submission="true"></div>
+            <details id="student-history-panel" class="student-history" hidden><summary>Autres séances et anciens travaux <span id="student-history-count"></span></summary><div id="student-history" class="student-lessons"></div></details>
+        </section>
+            </div>
+        </details>
+        <details class="student-expand-card" id="student-card-followup">
+            <summary><span class="student-card-icon" aria-hidden="true">✓</span><span class="student-card-title">Comprendre et progresser</span><span class="student-card-preview">Relire mes retours et corrections.</span><span class="student-card-hint">Ouvrir <span class="student-card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></span></summary>
+            <div class="student-card-body"><div class="student-card-toolbar"><strong>Comprendre et progresser</strong><button type="button" data-card-close aria-label="Refermer la carte" title="Refermer la carte"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button></div><p class="student-card-placeholder">Les informations s’afficheront après leur chargement.</p>
+        <section id="student-followup-panel" class="student-panel student-followup-panel" hidden aria-labelledby="student-followup-title">
+            <p class="student-section-kicker">Comprendre et progresser</p><h2 id="student-followup-title">Mes retours</h2>
+            <div id="student-followup"></div>
+        </section>
+            </div>
+        </details>
+        <details class="student-expand-card student-shop-card" id="student-card-shop" hidden>
+    <summary><span class="student-card-icon" aria-hidden="true">✦</span><span class="student-card-title">Boutique de récompenses</span><span class="student-card-preview">Personnaliser ton espace et découvrir les coups de pouce.</span><span class="student-card-hint">Découvrir <span class="student-card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></span></summary>
+    <div class="student-card-body"><div class="student-card-toolbar"><strong>Boutique de récompenses</strong><button type="button" data-card-close aria-label="Refermer la carte" title="Refermer la carte"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button></div>
+        <section class="student-panel student-shop" aria-labelledby="student-shop-title">
+            <p class="student-section-kicker">Maquette — aucune récompense n’est encore activée</p><h2 id="student-shop-title">Choisis tes récompenses</h2>
+            <p class="student-shop-intro">Tes XP montreront ta progression. Cette boutique te présente les idées de récompenses ; les prix et les achats seront définis plus tard.</p>
+            <div class="student-shop-balance" role="status"><span aria-hidden="true">✦</span><p><strong>Ton expérience</strong><br><span>Le compteur apparaîtra ici quand les XP seront activés.</span></p><span class="student-shop-balance-value">— XP</span></div>
+
+            <h3 class="student-shop-category">Personnaliser mon espace</h3>
+            <div class="student-shop-grid">
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Palier à définir</span></div>
+                    <h4>Couleurs des encadrés</h4><p>Choisis la couleur des bordures qui entourent tes cours.</p>
+                    <div class="shop-border-preview" aria-label="Aperçu de trois couleurs de bordure"><span></span><span></span><span></span></div>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel"><strong>À toi de choisir</strong><p>Une bordure bleue, verte ou violette : le texte reste contrasté et facile à lire.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Palier à définir</span></div>
+                    <h4>Bordures animées</h4><p>Ajoute un contour lumineux ou coloré à tes cartes.</p>
+                    <div class="shop-border-preview shop-border-preview--animated" role="group" aria-label="Trois aperçus de bordures animées"><span role="img" aria-label="Aurore verte pulsante"></span><span role="img" aria-label="Vague bleue"></span><span role="img" aria-label="Arc-en-ciel animé"></span></div>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel shop-preview-panel--glow"><strong>Un contour qui bouge</strong><p>Effet lumineux autour de la carte ; le fond et le texte ne clignotent pas.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Palier à définir</span></div>
+                    <h4>Liens et boutons personnalisés</h4><p>Choisis leurs couleurs et leur réaction au survol.</p>
+                    <div class="shop-hover-demo"><a href="#shop-preview-note">Lien à essayer</a><button type="button" class="shop-demo-button shop-demo-button--lift">Survole-moi</button><button type="button" class="shop-demo-button shop-demo-button--glow">Halo</button><button type="button" class="shop-demo-button shop-demo-button--press">Pression</button></div>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel"><strong>Survole ou sélectionne au clavier</strong><p>Le lien change de couleur ; les boutons peuvent se soulever, s’illuminer ou s’enfoncer.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Palier à définir</span></div>
+                    <h4>Effets de validation</h4><p>Une petite animation quand tu termines une séance.</p>
+                    <details class="student-reward-preview student-reward-preview--celebrate"><summary>Voir l’aperçu</summary><div class="shop-preview-panel shop-validation-demo"><span aria-hidden="true">✓</span><strong>Séance terminée !</strong><p>Bien joué, tu peux être fier de ton travail.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Palier à définir</span></div>
+                    <h4>Fond galaxie</h4><p>Transforme doucement le fond de ton espace en ciel étoilé.</p>
+                    <div class="shop-galaxy-preview" role="img" aria-label="Aperçu d’un ciel spatial animé"><span class="shop-galaxy-nebula"></span><span class="shop-galaxy-star shop-galaxy-star--one">✦</span><span class="shop-galaxy-star shop-galaxy-star--two">✧</span><strong>Cap sur tes missions</strong></div>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel"><strong>Une galaxie en arrière-plan</strong><p>Des étoiles discrètes et un nuage coloré bougent lentement derrière les cartes.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Palier à définir</span></div>
+                    <h4>Cartes en relief</h4><p>Au survol, une carte s’incline légèrement comme un objet en 3D.</p>
+                    <div class="shop-effect-stage"><button type="button" class="shop-effect-card shop-effect-card--tilt"><strong>Ma prochaine mission</strong><span>Survole ou sélectionne-moi</span></button></div>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel"><strong>Un petit effet de profondeur</strong><p>La carte penche doucement à la souris ou au clavier, sans gêner la lecture.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Palier à définir</span></div>
+                    <h4>Projecteur lumineux</h4><p>Un halo apparaît sur la carte que tu explores.</p>
+                    <div class="shop-effect-stage"><button type="button" class="shop-effect-card shop-effect-card--spotlight"><strong>Zone éclairée</strong><span>Un halo doux au survol</span></button></div>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel"><strong>Une lumière qui guide le regard</strong><p>Le halo reste léger : il ne cache ni le texte ni les boutons.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Palier à définir</span></div>
+                    <h4>Carte holographique</h4><p>Un reflet arc-en-ciel glisse sur les cartes importantes.</p>
+                    <div class="shop-effect-stage"><button type="button" class="shop-effect-card shop-effect-card--holo"><strong>Carte brillante</strong><span>Un reflet coloré au survol</span></button></div>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel"><strong>Un effet holographique</strong><p>Le reflet reste sur le fond de la carte ; le texte garde un contraste fort.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Palier à définir</span></div>
+                    <h4>Aurore animée</h4><p>Choisis un ciel coloré qui ondule doucement derrière ton espace.</p>
+                    <div class="shop-aurora-preview" role="img" aria-label="Aperçu d’une aurore colorée en mouvement"><span>Une nouvelle journée commence</span></div>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel"><strong>Un ciel différent de la galaxie</strong><p>Des rubans de lumière se déplacent lentement, sans passer derrière les textes.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Palier à définir</span></div>
+                    <h4>Relief en couches</h4><p>Les éléments d’une carte bougent un peu à des vitesses différentes.</p>
+                    <div class="shop-effect-stage"><button type="button" class="shop-effect-card shop-effect-card--layers"><span class="shop-layer shop-layer--back" aria-hidden="true">✦</span><strong>Mission découverte</strong><span>Comme un décor de jeu</span></button></div>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel"><strong>Une carte avec de la profondeur</strong><p>Le fond, l’icône et le titre se décalent légèrement au survol ou au clavier.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Palier à définir</span></div>
+                    <h4>Barre d’XP vivante</h4><p>Ta progression devient plus visible avec un éclat discret.</p>
+                    <div class="shop-xp-demo" role="img" aria-label="Aperçu d’une barre d’expérience lumineuse"><span><i></i></span><strong>60 / 100 XP</strong></div>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel"><strong>Voir le chemin parcouru</strong><p>La barre s’illumine quand elle progresse ; elle reste fixe si les animations sont réduites.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Palier à définir</span></div>
+                    <h4>Cadre d’avatar</h4><p>Ajoute un contour spécial autour de l’image de ton personnage.</p>
+                    <div class="shop-avatar-demo" role="img" aria-label="Aperçu d’un avatar avec cadre brillant"><span aria-hidden="true">🧑‍🚀</span><strong>Explorateur niveau 3</strong></div>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel"><strong>Ton personnage à ton image</strong><p>Un cadre de couleur ou lumineux entoure l’avatar généré par le site ; aucune image n’est à téléverser.</p></div></details>
+                </article>
+            </div>
+
+            <section class="avatar-workshop" aria-labelledby="avatar-workshop-title">
+                <div><p class="student-section-kicker">Atelier — aperçu local</p><h3 id="avatar-workshop-title">Crée ton personnage</h3><p>Choisis un style, une tenue et un accessoire. Ton avatar est dessiné par le site : aucune image n’est envoyée.</p></div>
+                <div class="avatar-builder">
+                    <div id="student-avatar-preview" class="avatar-stage" data-avatar-style="explorateur" data-avatar-palette="lagon" data-avatar-accessory="false" role="img" aria-label="Avatar explorateur, tenue lagon">
+                        <span class="avatar-character" aria-hidden="true"><span class="avatar-backpack"></span><span class="avatar-antenna"></span><span class="avatar-cap"></span><span class="avatar-face"><span class="avatar-eyes"></span><span class="avatar-mouth"></span><span class="avatar-glasses"></span><span class="avatar-visor"></span></span><span class="avatar-body"></span><span class="avatar-badge" aria-hidden="true">✦</span></span>
+                    </div>
+                    <div class="avatar-controls">
+                        <fieldset><legend>Choisis un personnage</legend><div class="avatar-choice-grid"><button type="button" data-avatar-style="explorateur" aria-pressed="true">Explorateur</button><button type="button" data-avatar-style="astronaute" aria-pressed="false">Astronaute</button><button type="button" data-avatar-style="inventeur" aria-pressed="false">Inventeur</button><button type="button" data-avatar-style="robot" aria-pressed="false">Robot</button></div></fieldset>
+                        <fieldset><legend>Choisis ses couleurs</legend><div class="avatar-palette-grid"><button type="button" class="avatar-palette-swatch" data-avatar-palette="lagon" aria-label="Tenue lagon" aria-pressed="true"></button><button type="button" class="avatar-palette-swatch" data-avatar-palette="soleil" aria-label="Tenue soleil" aria-pressed="false"></button><button type="button" class="avatar-palette-swatch" data-avatar-palette="foret" aria-label="Tenue forêt" aria-pressed="false"></button><button type="button" class="avatar-palette-swatch" data-avatar-palette="nebuleuse" aria-label="Tenue nébuleuse" aria-pressed="false"></button></div></fieldset>
+                        <div class="avatar-actions"><button type="button" data-avatar-accessory aria-pressed="false">Ajouter un badge ✦</button><button type="button" data-avatar-random>Surprise-moi !</button></div>
+                        <p id="avatar-preview-status" class="avatar-preview-status" role="status" aria-live="polite">Explorateur — tenue lagon. Cet aperçu ne sera pas sauvegardé.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="shop-xp-challenge" aria-labelledby="shop-xp-challenge-title">
+                <div><p class="student-section-kicker">Mini défi — points fictifs</p><h3 id="shop-xp-challenge-title">À quoi servent les XP ?</h3><p>Simule cinq missions pour voir une récompense apparaître. Ces points de démonstration ne sont pas enregistrés.</p></div>
+                <div id="shop-demo-progress" class="shop-demo-progress" role="progressbar" aria-label="Progression fictive vers une récompense" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span data-xp-demo-fill></span></div>
+                <div class="shop-demo-actions"><strong id="shop-demo-xp-count">0 / 100 XP fictifs</strong><button type="button" data-xp-demo-add>Simuler une mission (+20)</button><button type="button" data-xp-demo-reset>Recommencer</button></div>
+                <p id="shop-demo-xp-status" role="status" aria-live="polite">Encore 100 XP fictifs avant le cadre d’avatar.</p>
+            </section>
+
+            <h3 class="student-shop-category">M’aider quand je bloque</h3>
+            <p class="student-shop-note">Ces aides concernent uniquement les questions déterministes. Elles ne donnent pas directement la réponse.</p>
+            <div class="student-shop-grid">
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Aide à débloquer</span><span class="student-reward-cost">Coût à définir</span></div>
+                    <h4>Un indice de plus</h4><p>Débloque des indices supplémentaires pour t’aider à trouver la méthode.</p>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel shop-hint-demo"><strong>Indice supplémentaire</strong><p>Commence par repérer l’opération à faire. Ensuite, avance une étape à la fois.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">Déblocage permanent</span><span class="student-reward-cost">Coût à définir</span></div>
+                    <h4>Éliminer une mauvaise réponse</h4><p>Débloque cette aide une fois et utilise-la autant que tu veux.</p>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel shop-answer-demo"><strong>Quelle réponse est correcte ?</strong><span>◯ 12</span><span class="shop-answer-removed">◯ 15 <small>éliminée</small></span><span>◯ 18</span><p>Une proposition incorrecte est barrée ; tu choisis parmi les autres.</p></div></details>
+                </article>
+                <article class="student-reward-card">
+                    <div class="student-reward-heading"><span class="student-reward-type">À chaque utilisation</span><span class="student-reward-cost">Coût à définir</span></div>
+                    <h4>Éliminer deux mauvaises réponses</h4><p>Cette aide sert une seule fois. Pour la réutiliser, il faudra la débloquer à nouveau.</p>
+                    <details class="student-reward-preview"><summary>Voir l’aperçu</summary><div class="shop-preview-panel shop-answer-demo"><strong>Quelle réponse est correcte ?</strong><span class="shop-answer-removed">◯ 12 <small>éliminée</small></span><span>◯ 15</span><span class="shop-answer-removed">◯ 18 <small>éliminée</small></span><p>Deux propositions incorrectes sont barrées pour cette question.</p></div></details>
+                </article>
+            </div>
+            <p id="shop-preview-note" class="student-shop-footnote">Les prix, les XP et les jetons d’aide restent à définir. Cet aperçu ne modifie pas ton compte et ne dépense aucun point.</p>
+        </section>
+    </div>
+</details>
+
+        <details class="student-expand-card" id="student-card-invitations">
+            <summary><span class="student-card-icon" aria-hidden="true">＋</span><span class="student-card-title">Invitations à collaborer</span><span class="student-card-preview">Voir les demandes de mes camarades.</span><span class="student-card-hint">Ouvrir <span class="student-card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></span></summary>
+            <div class="student-card-body"><div class="student-card-toolbar"><strong>Invitations à collaborer</strong><button type="button" data-card-close aria-label="Refermer la carte" title="Refermer la carte"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button></div><p class="student-card-placeholder">Les informations s’afficheront après leur chargement.</p>
+        <section id="student-invitations" class="collaboration-panel" data-enabled="true" hidden></section>
+            </div>
+        </details>
+    </div>
+</div>
+</main>
+        <footer class="site-footer">
+    <p>
+        &copy; 2026
+        Portail pédagogique Technologie | TIM | Mathématiques
+    </p>
+</footer>
+    </div>
+    <noscript><p>Active JavaScript pour te connecter et retrouver ton travail.</p></noscript>
+    <script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+    <script id="seances-data" type="application/json">
+[
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S02R","version":"v1","titre":"Pourquoi les objets techniques évoluent-ils ?","url":"/cours/techno/3e/s02r/"}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ,
+    
+    
+    {"etablissement":"college","matiere":"techno","classe":"3e","seance":"S10R","version":"v1","titre":"Comment protéger ses données et ses comptes ?","url":"/cours/techno/3e/s10-original/"}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+]
+</script>
+
+    <script id="progressions-data" type="application/json">[{"etablissement":"college","matiere":"techno","classe":"3e","seances":[{"id":"S01","numero":"S01","titre":"La 3e en technologie : ce qui nous attend"},{"id":"S02","numero":"S02","titre":"Quels métiers derrière nos objets ?"},{"id":"S03","numero":"S03","titre":"Quelle invention a tout changé ?"},{"id":"S04","numero":"S04","titre":"De la découverte scientifique à notre tracker"},{"id":"S05","numero":"S05","titre":"Comment une machine apprend-elle ?"},{"id":"S06","numero":"S06","titre":"L’IA peut-elle se tromper ?"},{"id":"S07","numero":"S07","titre":"Bilan et entraînement au brevet n° 1 : argumenter"},{"id":"S08","numero":"S08","titre":"Quel chemin suit mon message ?"},{"id":"S09","numero":"S09","titre":"Pourquoi des routeurs ?"},{"id":"S10","numero":"S10","titre":"Comment l’ordinateur écrit-il un mot ?"},{"id":"S11","numero":"S11","titre":"Combien pèsent une photo et un son ?"},{"id":"S12","numero":"S12","titre":"Mon identité numérique : quelles règles ?"},{"id":"S13","numero":"S13","titre":"Bilan et entraînement au brevet n° 2 : le réseau et les données"},{"id":"S14","numero":"S14","titre":"Brevet blanc n° 1 : la station météo du collège"},{"id":"S15","numero":"S15","titre":"Brevet blanc n° 1 : correction et reprise"},{"id":"S16","numero":"S16","titre":"Pourquoi récupérer l’eau de pluie ?"},{"id":"S17","numero":"S17","titre":"Writer n° 1 : le cahier des charges de la cuve"},{"id":"S18","numero":"S18","titre":"Quelles cuves existent déjà ?"},{"id":"S19","numero":"S19","titre":"Calc n° 1 : quelle cuve a le plus petit bilan carbone ?"},{"id":"S20","numero":"S20","titre":"Choisir et argumenter"},{"id":"S21","numero":"S21","titre":"Organiser notre projet"},{"id":"S22","numero":"S22","titre":"Qu’est-ce qu’un objet connecté ?"},{"id":"S23","numero":"S23","titre":"Comment l’énergie circulera-t-elle dans la cuve ?"},{"id":"S24","numero":"S24","titre":"Secteur, panneau solaire ou éolienne ?"},{"id":"S25","numero":"S25","titre":"Quels capteurs pour notre cuve ?"},{"id":"S26","numero":"S26","titre":"Comment une distance devient-elle une hauteur d’eau ?"},{"id":"S27","numero":"S27","titre":"Quel matériau et quel procédé pour le couvercle-filtre ?"},{"id":"S28","numero":"S28","titre":"Bilan et entraînement au brevet n° 3 : schéma bloc"},{"id":"S29","numero":"S29","titre":"Ranger son code dans des fonctions"},{"id":"S30","numero":"S30","titre":"Des blocs au Python"},{"id":"S31","numero":"S31","titre":"Un mini-jeu sur l’eau"},{"id":"S32","numero":"S32","titre":"Brevet blanc n° 2 : la cuve d’un gymnase"},{"id":"S33","numero":"S33","titre":"Brevet blanc n° 2 : correction et reprise"},{"id":"S34","numero":"S34","titre":"Le numérique a-t-il un impact sur l’environnement ?"},{"id":"S35","numero":"S35","titre":"Que doit décider la cuve ?"},{"id":"S36","numero":"S36","titre":"Programmer notre fonction"},{"id":"S37","numero":"S37","titre":"La cuve prévient l’afficheur"},{"id":"S38","numero":"S38","titre":"Comment prouver que notre programme marche ?"},{"id":"S39","numero":"S39","titre":"Une pièce cassée : la refaire sur mesure"},{"id":"S40","numero":"S40","titre":"Bilan et entraînement au brevet n° 4 : algorithme et programme"},{"id":"S41","numero":"S41","titre":"Choisir les constituants et câbler la cuve en simulation"},{"id":"S42","numero":"S42","titre":"Rassembler et tester le prototype numérique"},{"id":"S43","numero":"S43","titre":"Writer n° 2 : finaliser le dossier de projet"},{"id":"S44","numero":"S44","titre":"Impress n° 1 : préparer la soutenance"},{"id":"S45","numero":"S45","titre":"Soutenance du projet"},{"id":"S46","numero":"S46","titre":"Brevet blanc n° 3 : la borne de recharge"},{"id":"S47","numero":"S47","titre":"Brevet blanc n° 3 : correction et reprise"},{"id":"S48","numero":"S48","titre":"Prêt pour le brevet"}]},{"etablissement":"college","matiere":"techno","classe":"5e","seances":[{"id":"S01","numero":"S01","titre":"Comment va-t-on travailler en technologie cette année ?"},{"id":"S02","numero":"S02","titre":"Objet technique ou objet naturel ?"},{"id":"S03","numero":"S03","titre":"À quoi sert cet objet, et pour qui ?"},{"id":"S04","numero":"S04","titre":"Qu’est-ce qui agit autour d’un objet ?"},{"id":"S05","numero":"S05","titre":"Facile ou difficile à utiliser ?"},{"id":"S06","numero":"S06","titre":"Que change un réglage ?"},{"id":"S07","numero":"S07","titre":"Bilan : présenter un objet du quotidien"},{"id":"S08","numero":"S08","titre":"Monter une lampe de poche… dans un simulateur"},{"id":"S09","numero":"S09","titre":"Une même fonction, plusieurs solutions ?"},{"id":"S10","numero":"S10","titre":"Comment la lampe a-t-elle évolué ?"},{"id":"S11","numero":"S11","titre":"Writer n° 1 : présenter un objet dans un document propre"},{"id":"S12","numero":"S12","titre":"Bilan et entraînement au brevet n° 1"},{"id":"S13","numero":"S13","titre":"Où sont rangés mes fichiers, et qui peut les voir ?"},{"id":"S14","numero":"S14","titre":"Combien pèse un fichier ?"},{"id":"S15","numero":"S15","titre":"Comment décrire une cuve d’eau avec des données ?"},{"id":"S16","numero":"S16","titre":"Calc n° 1 : dix jours de pluie dans la cuve"},{"id":"S17","numero":"S17","titre":"En quoi sont faites nos maquettes ?"},{"id":"S18","numero":"S18","titre":"Quelle propriété pour quel usage ? La pale va-t-elle tenir ?"},{"id":"S19","numero":"S19","titre":"Quel matériau choisir pour notre future cuve ?"},{"id":"S20","numero":"S20","titre":"Une seconde vie pour un vieux lecteur CD ?"},{"id":"S21","numero":"S21","titre":"Lequel choisir en lisant sa fiche ?"},{"id":"S22","numero":"S22","titre":"Bilan et entraînement au brevet n° 2 : la gourde"},{"id":"S23","numero":"S23","titre":"Comment protéger mes données et mes comptes ?"},{"id":"S24","numero":"S24","titre":"Comment notre éolienne produit-elle de l’électricité ?"},{"id":"S25","numero":"S25","titre":"Quelle énergie entre, quelle énergie sort ?"},{"id":"S26","numero":"S26","titre":"Comment mesurer ce que produit l’éolienne ?"},{"id":"S27","numero":"S27","titre":"Calc n° 2 : 3, 4 ou 5 pales ?"},{"id":"S28","numero":"S28","titre":"Éolienne, panneau solaire ou pile ?"},{"id":"S29","numero":"S29","titre":"Bilan et entraînement au brevet n° 3 : le vélo à assistance électrique"},{"id":"S30","numero":"S30","titre":"Arcade : comment faire bouger un personnage avec les boutons ?"},{"id":"S31","numero":"S31","titre":"Arcade : à quoi sert un score ?"},{"id":"S32","numero":"S32","titre":"Arcade : quand a-t-on gagné ?"},{"id":"S33","numero":"S33","titre":"Comment le monte-charge sait-il où est la cabine ?"},{"id":"S34","numero":"S34","titre":"Pourquoi un contrepoids ?"},{"id":"S35","numero":"S35","titre":"Que fait le programme du monte-charge ?"},{"id":"S36","numero":"S36","titre":"Que se passe-t-il si je change un nombre du programme ?"},{"id":"S37","numero":"S37","titre":"Le programme fait-il ce qu’on attend ?"},{"id":"S38","numero":"S38","titre":"Bilan : expliquer le monte-charge"},{"id":"S39","numero":"S39","titre":"Pourquoi les objets tombent-ils en panne ?"},{"id":"S40","numero":"S40","titre":"Quelle pièce est abîmée ?"},{"id":"S41","numero":"S41","titre":"Trouver la panne du monte-charge"},{"id":"S42","numero":"S42","titre":"Writer n° 2 : écrire une notice de dépannage"},{"id":"S43","numero":"S43","titre":"Un panneau qui suit la lumière, à quoi bon ?"},{"id":"S44","numero":"S44","titre":"Comment est fait le tracker ?"},{"id":"S45","numero":"S45","titre":"Programmer notre amélioration"},{"id":"S46","numero":"S46","titre":"Notre amélioration fonctionne-t-elle ?"},{"id":"S47","numero":"S47","titre":"Impress n° 1 : préparer la revue de projet"},{"id":"S48","numero":"S48","titre":"Revue de projet : présenter notre amélioration"},{"id":"S49","numero":"S49","titre":"Entraînement au brevet n° 4 : la cuve d’eau intelligente"},{"id":"S50","numero":"S50","titre":"Mon bilan de l’année"}]},{"etablissement":"college","matiere":"techno","classe":"4e","seances":[{"id":"S01","numero":"S01","titre":"Que retenons-nous de la 5e ?"},{"id":"S02","numero":"S02","titre":"De l’idée à l’objet : comment conçoit-on un objet ?"},{"id":"S03","numero":"S03","titre":"Du téléphone fixe au smartphone : qu’a-t-on gagné, qu’a-t-on perdu ?"},{"id":"S04","numero":"S04","titre":"Pourquoi a-t-on changé cet objet ?"},{"id":"S05","numero":"S05","titre":"Pourquoi le monte-charge a-t-il un capot et un contrepoids ?"},{"id":"S06","numero":"S06","titre":"Writer n° 1 : un compte rendu bien organisé"},{"id":"S07","numero":"S07","titre":"Bilan et entraînement au brevet n° 1"},{"id":"S08","numero":"S08","titre":"Comment protéger un compte ?"},{"id":"S09","numero":"S09","titre":"Quelles traces je laisse sans le savoir ?"},{"id":"S10","numero":"S10","titre":"Ai-je le droit d’utiliser cette image ?"},{"id":"S11","numero":"S11","titre":"Vrai ou faux ? Vérifier une information en ligne"},{"id":"S12","numero":"S12","titre":"Qui est responsable quand ça dérape ?"},{"id":"S13","numero":"S13","titre":"De quoi est fait le réseau du collège ?"},{"id":"S14","numero":"S14","titre":"Pourquoi chaque appareil a-t-il une adresse ?"},{"id":"S15","numero":"S15","titre":"Construire un petit réseau en simulation"},{"id":"S16","numero":"S16","titre":"Pourquoi ces deux ordinateurs ne se parlent-ils pas ?"},{"id":"S17","numero":"S17","titre":"Calc n° 1 : combien de temps pour envoyer une vidéo ?"},{"id":"S18","numero":"S18","titre":"Bilan et entraînement au brevet n° 2 : le réseau d’une médiathèque"},{"id":"S19","numero":"S19","titre":"Que fait chaque constituant de l’éolienne ?"},{"id":"S20","numero":"S20","titre":"Avec quel appareil mesurer ?"},{"id":"S21","numero":"S21","titre":"L’éolienne produit-elle encore avec un vent faible ?"},{"id":"S22","numero":"S22","titre":"Éolienne ou panneau solaire du tracker ?"},{"id":"S23","numero":"S23","titre":"Quel matériau pour une pale ?"},{"id":"S24","numero":"S24","titre":"Bilan et entraînement au brevet n° 3 : une éolienne de bateau"},{"id":"S25","numero":"S25","titre":"Pourquoi cette pièce a-t-elle cette forme ?"},{"id":"S26","numero":"S26","titre":"Prendre en main la CAO"},{"id":"S27","numero":"S27","titre":"Modifier le rotor"},{"id":"S28","numero":"S28","titre":"La pale va-t-elle plier ?"},{"id":"S29","numero":"S29","titre":"Bilan : présenter sa pale"},{"id":"S30","numero":"S30","titre":"Penser comme un ordinateur"},{"id":"S31","numero":"S31","titre":"Écrire les règles d’un jeu avant de le programmer"},{"id":"S32","numero":"S32","titre":"Traduire l’algorithme en blocs"},{"id":"S33","numero":"S33","titre":"Une vague d’ennemis"},{"id":"S34","numero":"S34","titre":"Pourquoi mon jeu bugue-t-il ?"},{"id":"S35","numero":"S35","titre":"Qui capte, qui décide, qui affiche ?"},{"id":"S36","numero":"S36","titre":"Que fait ce programme, en français ?"},{"id":"S37","numero":"S37","titre":"Que disent les mesures du capteur à ultrasons ?"},{"id":"S38","numero":"S38","titre":"Afficher l’étage sur l’écran"},{"id":"S39","numero":"S39","titre":"D’où vient la panne ?"},{"id":"S40","numero":"S40","titre":"Bilan et entraînement au brevet n° 4 : une barrière de parking"},{"id":"S41","numero":"S41","titre":"Quelle nouvelle fonction pour le tracker ?"},{"id":"S42","numero":"S42","titre":"Comment deux cartes se parlent-elles ?"},{"id":"S43","numero":"S43","titre":"Que manque-t-il au prototype ?"},{"id":"S44","numero":"S44","titre":"Programmer l’émetteur et le récepteur"},{"id":"S45","numero":"S45","titre":"La liaison radio est-elle fiable ?"},{"id":"S46","numero":"S46","titre":"Calc n° 2 : que nous apprennent les mesures reçues ?"},{"id":"S47","numero":"S47","titre":"Impress n° 1 : préparer la revue de projet"},{"id":"S48","numero":"S48","titre":"Revue de projet : le tracker communique"},{"id":"S49","numero":"S49","titre":"Entraînement au brevet n° 5 : un dossier complet"},{"id":"S50","numero":"S50","titre":"Mon bilan de 4e"}]},{"etablissement":"mfr","matiere":"tim","classe":"4e","seances":[{"id":"S01","numero":"S01","titre":"Comment va-t-on travailler en TIM cette année ?"},{"id":"S02","numero":"S02","titre":"Comment ranger ses fichiers pour ne plus les perdre ?"},{"id":"S03","numero":"S03","titre":"Une invitation pour la journée portes ouvertes"},{"id":"S04","numero":"S04","titre":"Un document clair : la fiche d’un cheval"},{"id":"S05","numero":"S05","titre":"Quel format choisir pour envoyer un document ?"},{"id":"S06","numero":"S06","titre":"Comment protéger mon compte et mon mot de passe ?"},{"id":"S07","numero":"S07","titre":"Quelles traces je laisse sur internet ?"},{"id":"S08","numero":"S08","titre":"Ai-je le droit de publier cette photo de cheval ?"},{"id":"S09","numero":"S09","titre":"Vrai ou faux : cette info sur les chevaux est-elle fiable ?"},{"id":"S10","numero":"S10","titre":"Bilan : mes règles du numérique"},{"id":"S11","numero":"S11","titre":"Que dois-je savoir sur une race de chevaux ?"},{"id":"S12","numero":"S12","titre":"Trouver vite la bonne réponse avec un moteur de recherche"},{"id":"S13","numero":"S13","titre":"Ce site est-il fiable ?"},{"id":"S14","numero":"S14","titre":"Présenter une race et citer ses sources"},{"id":"S15","numero":"S15","titre":"À quoi sert un tableur dans une écurie ?"},{"id":"S16","numero":"S16","titre":"Combien de foin pour la semaine ?"},{"id":"S17","numero":"S17","titre":"Un tableau de soins clair et sans erreur"},{"id":"S18","numero":"S18","titre":"Un graphique pour comparer les rations"},{"id":"S19","numero":"S19","titre":"Pourquoi ma photo de poney est-elle si lourde ?"},{"id":"S20","numero":"S20","titre":"Recadrer et améliorer une photo pour le site du club"},{"id":"S21","numero":"S21","titre":"Un diaporama pour présenter l’écurie"},{"id":"S22","numero":"S22","titre":"Présenter l’écurie à l’oral"},{"id":"S23","numero":"S23","titre":"La routine du matin à l’écurie : un algorithme"},{"id":"S24","numero":"S24","titre":"Faire avancer un cavalier dans Scratch"},{"id":"S25","numero":"S25","titre":"Sauter l’obstacle : les conditions dans Scratch"},{"id":"S26","numero":"S26","titre":"Le score et le chrono : les variables"},{"id":"S27","numero":"S27","titre":"Mon jeu ne marche pas : chercher le bogue"},{"id":"S28","numero":"S28","titre":"Bilan : mon parcours d’obstacles"},{"id":"S29","numero":"S29","titre":"Que devient mon vieux téléphone ?"},{"id":"S30","numero":"S30","titre":"Une frise de l’histoire du numérique"},{"id":"S31","numero":"S31","titre":"L’affiche de la journée portes ouvertes"},{"id":"S32","numero":"S32","titre":"Mon bilan de TIM en 4e"}]},{"etablissement":"mfr","matiere":"tim","classe":"3e","seances":[{"id":"S01","numero":"S01","titre":"Ma 3e en TIM : où j’en suis, où je vais"},{"id":"S02","numero":"S02","titre":"Un rapport de stage avec un sommaire automatique"},{"id":"S03","numero":"S03","titre":"En-tête, pied de page et numéros de page"},{"id":"S04","numero":"S04","titre":"Un tableau dans le rapport : le planning des soins"},{"id":"S05","numero":"S05","titre":"Une lettre pour chaque propriétaire : le publipostage"},{"id":"S06","numero":"S06","titre":"Le tableur qui prévient : la fonction SI"},{"id":"S07","numero":"S07","titre":"La ration selon le poids : les références absolues"},{"id":"S08","numero":"S08","titre":"Retrouver un cheval dans le registre : trier et filtrer"},{"id":"S09","numero":"S09","titre":"Voir les alertes en couleur : la mise en forme conditionnelle"},{"id":"S10","numero":"S10","titre":"La croissance d’un poulain : un graphique d’évolution"},{"id":"S11","numero":"S11","titre":"Le fichier clients du centre équestre : mes données personnelles"},{"id":"S12","numero":"S12","titre":"Un faux mail de la fédération : l’hameçonnage"},{"id":"S13","numero":"S13","titre":"Comment un message voyage sur internet ?"},{"id":"S14","numero":"S14","titre":"La page du club sur les réseaux sociaux"},{"id":"S15","numero":"S15","titre":"L’intelligence artificielle : une aide ou un piège ?"},{"id":"S16","numero":"S16","titre":"Un thermomètre d’écurie avec la carte micro:bit"},{"id":"S17","numero":"S17","titre":"Trop chaud dans le box : une alarme programmée"},{"id":"S18","numero":"S18","titre":"Compter les foulées : un podomètre pour cheval"},{"id":"S19","numero":"S19","titre":"Le minuteur de soins : une boucle qui décompte"},{"id":"S20","numero":"S20","titre":"Exercice type DNB : lire et compléter un programme"},{"id":"S21","numero":"S21","titre":"Préparer une vidéo métier : le storyboard"},{"id":"S22","numero":"S22","titre":"Monter la vidéo métier"},{"id":"S23","numero":"S23","titre":"Une musique pour ma vidéo : ai-je le droit ?"},{"id":"S24","numero":"S24","titre":"Comment est faite une page web ?"},{"id":"S25","numero":"S25","titre":"Mon projet d’orientation dans la filière cheval"},{"id":"S26","numero":"S26","titre":"Mon CV pour un stage en écurie"},{"id":"S27","numero":"S27","titre":"Une lettre de motivation pour mon stage"},{"id":"S28","numero":"S28","titre":"Le diaporama de mon oral du DNB"},{"id":"S29","numero":"S29","titre":"S’entraîner pour l’entretien du DNB"},{"id":"S30","numero":"S30","titre":"Oral blanc du DNB n° 1"},{"id":"S31","numero":"S31","titre":"Oral blanc du DNB n° 2"},{"id":"S32","numero":"S32","titre":"Mon bilan de TIM au collège"}]},{"etablissement":"mfr","matiere":"tim","classe":"cap1","seances":[{"id":"S01","numero":"S01","titre":"Faire connaissance et prendre ses repères"},{"id":"S02","numero":"S02","titre":"Ranger et retrouver ses fichiers"},{"id":"S03","numero":"S03","titre":"Se connecter et protéger son mot de passe"},{"id":"S04","numero":"S04","titre":"Numériser un document en PDF"},{"id":"S05","numero":"S05","titre":"QR code, puce, Bluetooth : à quoi ça sert à l’écurie ?"},{"id":"S06","numero":"S06","titre":"La fiche d’un cheval"},{"id":"S07","numero":"S07","titre":"Le planning des soins de la semaine"},{"id":"S08","numero":"S08","titre":"Une affiche des règles de sécurité à l’écurie"},{"id":"S09","numero":"S09","titre":"Bilan : une fiche de pansage pas à pas"},{"id":"S10","numero":"S10","titre":"La liste du matériel de pansage dans un tableur"},{"id":"S11","numero":"S11","titre":"Combien de granulés par jour pour l’écurie ?"},{"id":"S12","numero":"S12","titre":"Le planning de paillage du mois"},{"id":"S13","numero":"S13","titre":"Un graphique pour voir la consommation"},{"id":"S14","numero":"S14","titre":"Bilan Calc : le foin de la semaine"},{"id":"S15","numero":"S15","titre":"Trouver une fiche fiable sur les soins du cheval"},{"id":"S16","numero":"S16","titre":"Écrire un courriel à son maître de stage"},{"id":"S17","numero":"S17","titre":"Ce que je publie sur les réseaux sociaux"},{"id":"S18","numero":"S18","titre":"Remplir un formulaire en ligne sans erreur"},{"id":"S19","numero":"S19","titre":"Une rumeur circule : je vérifie avant de partager"},{"id":"S20","numero":"S20","titre":"Ai-je le droit de photographier les chevaux et les clients ?"},{"id":"S21","numero":"S21","titre":"Mon identité numérique et la CNIL"},{"id":"S22","numero":"S22","titre":"Lire facilement à l’écran"},{"id":"S23","numero":"S23","titre":"Préparer ses photos de stage"},{"id":"S24","numero":"S24","titre":"Mon diaporama de stage (Impress n° 1)"},{"id":"S25","numero":"S25","titre":"Les règles d’un bon diaporama"},{"id":"S26","numero":"S26","titre":"Présenter son stage à l’oral"},{"id":"S27","numero":"S27","titre":"Repérer les prés d’une écurie sur Géoportail"},{"id":"S28","numero":"S28","titre":"Caméra de poulinage, abreuvoir automatique : utiles ou gadgets ?"},{"id":"S29","numero":"S29","titre":"Mon bilan de l’année"}]},{"etablissement":"mfr","matiere":"tim","classe":"cap2","seances":[{"id":"S01","numero":"S01","titre":"Reprendre le TIM en CAPa 2 : où j’en suis"},{"id":"S02","numero":"S02","titre":"Prévoir le stock de foin de l’écurie"},{"id":"S03","numero":"S03","titre":"Organiser le suivi du maréchal-ferrant"},{"id":"S04","numero":"S04","titre":"Accueillir un nouvel équidé : organiser les informations"},{"id":"S05","numero":"S05","titre":"Envoyer une photo et un message au vétérinaire"},{"id":"S06","numero":"S06","titre":"Retrouver vite un cheval dans le registre"},{"id":"S07","numero":"S07","titre":"Le tableur peut-il prévenir qu’un vaccin est à faire ?"},{"id":"S08","numero":"S08","titre":"Voir la consommation d’aliments mois par mois"},{"id":"S09","numero":"S09","titre":"Le budget alimentation du mois"},{"id":"S10","numero":"S10","titre":"Bilan Calc : le registre des soins"},{"id":"S11","numero":"S11","titre":"Un compte rendu de stage bien organisé"},{"id":"S12","numero":"S12","titre":"La fiche technique d’un soin avec photos"},{"id":"S13","numero":"S13","titre":"Une lettre type qu’on réutilise"},{"id":"S14","numero":"S14","titre":"Envoyer un document que tout le monde peut ouvrir"},{"id":"S15","numero":"S15","titre":"Présenter un soin pas à pas (Impress n° 2)"},{"id":"S16","numero":"S16","titre":"Filmer et monter une démonstration de pansage"},{"id":"S17","numero":"S17","titre":"Une publication pour la page d’un centre équestre"},{"id":"S18","numero":"S18","titre":"Organiser une journée portes ouvertes à plusieurs"},{"id":"S19","numero":"S19","titre":"Les démarches en ligne pour un équidé"},{"id":"S20","numero":"S20","titre":"Forum ou fiche officielle : à qui faire confiance ?"}]},{"etablissement":"mfr","matiere":"tim","classe":"2de","seances":[{"id":"S01","numero":"S01","titre":"Faire connaissance : mon positionnement en TIM"},{"id":"S02","numero":"S02","titre":"Organiser ses fichiers de cours et de stage"},{"id":"S03","numero":"S03","titre":"Protéger ses données et son poste de travail"},{"id":"S04","numero":"S04","titre":"Un document professionnel clair et lisible"},{"id":"S05","numero":"S05","titre":"La fiche d’identité d’un cheval dans un tableau"},{"id":"S06","numero":"S06","titre":"Demander un stage par courrier"},{"id":"S07","numero":"S07","titre":"Une fiche de soins qui a toujours la même présentation"},{"id":"S08","numero":"S08","titre":"Que dit une adresse internet ?"},{"id":"S09","numero":"S09","titre":"Envoyer un courriel à son maître de stage"},{"id":"S10","numero":"S10","titre":"L’inventaire de la sellerie dans un tableur"},{"id":"S11","numero":"S11","titre":"Combien de foin par mois pour l’écurie ?"},{"id":"S12","numero":"S12","titre":"Le calendrier des vermifuges"},{"id":"S13","numero":"S13","titre":"Un prix au kilo pour toutes les lignes"},{"id":"S14","numero":"S14","titre":"Bilan : combien coûte un cheval par mois ?"},{"id":"S15","numero":"S15","titre":"Quel graphique pour les races de l’écurie ?"},{"id":"S16","numero":"S16","titre":"Suivre la croissance d’un poulain"},{"id":"S17","numero":"S17","titre":"Ce graphique dit-il la vérité ?"},{"id":"S18","numero":"S18","titre":"Que sait un site sur moi quand je me connecte ?"},{"id":"S19","numero":"S19","titre":"Un faux courriel au nom de la fédération"},{"id":"S20","numero":"S20","titre":"Mon e-réputation de futur professionnel du cheval"},{"id":"S21","numero":"S21","titre":"Photos de concours : qui a le droit de les publier ?"},{"id":"S22","numero":"S22","titre":"Préparer ses photos de stage"},{"id":"S23","numero":"S23","titre":"Présenter son lieu de stage (Impress n° 1)"},{"id":"S24","numero":"S24","titre":"Un diaporama lisible"},{"id":"S25","numero":"S25","titre":"Restitution de stage à l’oral"},{"id":"S26","numero":"S26","titre":"Où trouver des chiffres fiables sur la filière cheval ?"},{"id":"S27","numero":"S27","titre":"Ouvrir un fichier CSV dans Calc"},{"id":"S28","numero":"S28","titre":"Combien d’équidés dans notre région ?"},{"id":"S29","numero":"S29","titre":"Une synthèse d’une page avec un graphique"},{"id":"S30","numero":"S30","titre":"Mon bilan de 2de en TIM"}]},{"etablissement":"mfr","matiere":"tim","classe":"1re","seances":[{"id":"S01","numero":"S01","titre":"Le projet de l’année : où implanter une pension pour chevaux ?"},{"id":"S02","numero":"S02","titre":"Comprendre ce que racontent les données"},{"id":"S03","numero":"S03","titre":"Peut-on faire confiance à toutes les données ?"},{"id":"S04","numero":"S04","titre":"Où trouver des données ouvertes sur notre département ?"},{"id":"S05","numero":"S05","titre":"Le dictionnaire de données et l’import d’un fichier CSV"},{"id":"S06","numero":"S06","titre":"Nettoyer les données avant de calculer"},{"id":"S07","numero":"S07","titre":"Compter et additionner selon des critères"},{"id":"S08","numero":"S08","titre":"Plusieurs critères et des couleurs qui alertent"},{"id":"S09","numero":"S09","titre":"Résumer un grand tableau en un clic"},{"id":"S10","numero":"S10","titre":"Le bon graphique pour convaincre"},{"id":"S11","numero":"S11","titre":"Mettre les données sur une carte"},{"id":"S12","numero":"S12","titre":"Construire un tableau de bord pour décider"},{"id":"S13","numero":"S13","titre":"Le dossier du projet"},{"id":"S14","numero":"S14","titre":"Restitution : où implanter la pension ?"}]},{"etablissement":"mfr","matiere":"tim","classe":"bts1","seances":[{"id":"S01","numero":"S01","titre":"Positionnement : mes compétences numériques pour piloter une exploitation"},{"id":"S02","numero":"S02","titre":"Le système d’information d’une pension équine"},{"id":"S03","numero":"S03","titre":"Ne jamais perdre les données de l’entreprise"},{"id":"S04","numero":"S04","titre":"Organiser sa veille sur la filière équine"},{"id":"S05","numero":"S05","titre":"Organiser les données technico-économiques d’un atelier pension"},{"id":"S06","numero":"S06","titre":"Calculer la marge d’un atelier pension"},{"id":"S07","numero":"S07","titre":"Le coût alimentaire par cheval et par jour"},{"id":"S08","numero":"S08","titre":"Appliquer automatiquement le bon tarif : RECHERCHEV"},{"id":"S09","numero":"S09","titre":"Fiabiliser la saisie : validation des données"},{"id":"S10","numero":"S10","titre":"Classer automatiquement : SI imbriqués, ET, OU"},{"id":"S11","numero":"S11","titre":"Un graphique combiné pour suivre produit et charges"},{"id":"S12","numero":"S12","titre":"Évaluation : un outil de suivi pour l’atelier pension"},{"id":"S13","numero":"S13","titre":"Évaluer la performance environnementale : chargement et intrants"},{"id":"S14","numero":"S14","titre":"Évaluer la dimension sociale : le temps de travail"},{"id":"S15","numero":"S15","titre":"Un tableau de bord multicritère de la performance globale"},{"id":"S16","numero":"S16","titre":"Évaluation : diagnostic de performance d’une écurie"},{"id":"S17","numero":"S17","titre":"Le rapport d’analyse : document long structuré"},{"id":"S18","numero":"S18","titre":"Intégrer données et graphiques au rapport"},{"id":"S19","numero":"S19","titre":"Présenter un diagnostic à un décideur"},{"id":"S20","numero":"S20","titre":"Travailler à plusieurs sur les mêmes fichiers"}]},{"etablissement":"mfr","matiere":"tim","classe":"bts2","seances":[{"id":"S01","numero":"S01","titre":"Piloter un élevage équin avec des données : les enjeux de l’année"},{"id":"S02","numero":"S02","titre":"Traçabilité : les données obligatoires d’un élevage équin"},{"id":"S03","numero":"S03","titre":"Analyser une base de données existante"},{"id":"S04","numero":"S04","titre":"Modéliser les données de l’élevage"},{"id":"S05","numero":"S05","titre":"Créer les tables et choisir les types de champs"},{"id":"S06","numero":"S06","titre":"Relier les tables sans incohérence"},{"id":"S07","numero":"S07","titre":"Interroger la base : quelles juments surveiller ?"},{"id":"S08","numero":"S08","titre":"Calculer des indicateurs de reproduction"},{"id":"S09","numero":"S09","titre":"Un formulaire de saisie pour l’équipe"},{"id":"S10","numero":"S10","titre":"Un état imprimable pour le vétérinaire"},{"id":"S11","numero":"S11","titre":"Évaluation : une base pour le suivi sanitaire"},{"id":"S12","numero":"S12","titre":"Un outil d’aide à la décision pour le rationnement"},{"id":"S13","numero":"S13","titre":"Simuler des scénarios : prix de vente des poulains"},{"id":"S14","numero":"S14","titre":"Analyser trois saisons de reproduction"},{"id":"S15","numero":"S15","titre":"Capteurs et objets connectés en élevage équin"},{"id":"S16","numero":"S16","titre":"À qui appartiennent les données de l’élevage ?"},{"id":"S17","numero":"S17","titre":"L’intelligence artificielle en élevage : regard critique"},{"id":"S18","numero":"S18","titre":"Un tableau de bord pour ajuster la conduite d’élevage"},{"id":"S19","numero":"S19","titre":"Évaluation : proposer un ajustement argumenté"},{"id":"S20","numero":"S20","titre":"Présenter l’ajustement à l’éleveur"}]},{"etablissement":"mfr","matiere":"maths","classe":"2de","seances":[{"id":"S01","numero":"S01","titre":"Diagnostic : où en suis-je en calcul ?"},{"id":"S02","numero":"S02","titre":"Bien utiliser sa calculatrice"},{"id":"S03","numero":"S03","titre":"La ration est-elle proportionnelle au poids du cheval ?"},{"id":"S04","numero":"S04","titre":"Quelle dose de vermifuge pour un cheval de 520 kg ?"},{"id":"S05","numero":"S05","titre":"Le prix de la pension augmente de 5 %"},{"id":"S06","numero":"S06","titre":"La facture du maréchal-ferrant : HT, TVA, TTC"},{"id":"S07","numero":"S07","titre":"Lire le plan de l’écurie"},{"id":"S08","numero":"S08","titre":"À quelle vitesse trotte mon cheval ?"},{"id":"S09","numero":"S09","titre":"km/h ou m/min ? Convertir des vitesses et des durées"},{"id":"S10","numero":"S10","titre":"Évaluation 1 : proportionnalité à l’écurie"},{"id":"S11","numero":"S11","titre":"Les tailles au garrot des poneys du club"},{"id":"S12","numero":"S12","titre":"Regrouper en classes et tracer un histogramme"},{"id":"S13","numero":"S13","titre":"Moyenne, médiane, mode : lequel choisir ?"},{"id":"S14","numero":"S14","titre":"Les données sont-elles regroupées ou dispersées ?"},{"id":"S15","numero":"S15","titre":"Quel lot de poulains a la croissance la plus régulière ?"},{"id":"S16","numero":"S16","titre":"Laisser le tableur calculer les indicateurs"},{"id":"S17","numero":"S17","titre":"Des données réelles de la filière cheval"},{"id":"S18","numero":"S18","titre":"Évaluation 2 : statistiques"},{"id":"S19","numero":"S19","titre":"Le poids d’un poulain au fil des mois"},{"id":"S20","numero":"S20","titre":"Lire un graphique : image et antécédent"}]}]</script>
+
+    <script id="referentiels-data" type="application/json">[{"id":"techno-cycle4-2024","etablissement":"college","classes":["5e","4e","3e"],"matiere":"techno","titre":"Technologie · cycle 4","source":"https://www.education.gouv.fr/bo/2024/Hebdo9/MENE2402802A","source_annexe":"https://www.education.gouv.fr/media/160782/download","synthese":true,"description":"Les neuf compétences de fin de cycle sont reformulées pour faciliter la lecture. Les attendus évoluent de la 5e à la 3e.","themes":[{"titre":"Usages, société et choix","competences":[{"id":"usages-evolution","titre":"Relier besoins, usages et changements techniques"},{"id":"interactions","titre":"Expliquer les relations entre objet, utilisateur et environnement"},{"id":"choix","titre":"Comparer des objets et justifier un choix"}]},{"titre":"Comprendre le fonctionnement","competences":[{"id":"fonctionnement","titre":"Expliquer composants, énergie et circulation des données"},{"id":"depannage","titre":"Trouver une panne et vérifier sa réparation"},{"id":"modifier-programme","titre":"Lire un programme et adapter son comportement"}]},{"titre":"Imaginer, réaliser et vérifier","competences":[{"id":"concevoir","titre":"Proposer puis fabriquer une solution adaptée"},{"id":"tester","titre":"Vérifier une solution par essais ou simulation"},{"id":"programmer","titre":"Construire un programme et le mettre au point"}]}],"seances":{"S02":["usages-evolution"],"S10":["usages-evolution"],"S10R":["usages-evolution"],"S11":["fonctionnement"],"S12":["fonctionnement","modifier-programme"]}},{"id":"maths-ea-cycle4-2025","etablissement":"mfr","classes":["4e","3e"],"matiere":"maths","titre":"Mathématiques · 4e et 3e agricoles","source":"https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/4e3e/4e3e-EA-ref-2025.pdf","synthese":true,"description":"Les objectifs du référentiel agricole sont reformulés pour faciliter la lecture. Les attendus détaillés dépendent de la classe.","themes":[{"titre":"Objectifs de la formation","competences":[{"id":"calcul","titre":"Calculer avec nombres et lettres"},{"id":"donnees","titre":"Lire des données, statistiques et relations de proportionnalité"},{"id":"mesures","titre":"Calculer des mesures avec les bonnes unités"},{"id":"geometrie","titre":"Justifier une démarche géométrique"},{"id":"algorithmes","titre":"Construire et vérifier un petit programme"}]}],"seances":{}},{"id":"tim-ea-cycle4-2025","etablissement":"mfr","classes":["4e","3e"],"matiere":"tim","titre":"TIM · 4e et 3e agricoles","source":"https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/4e3e/4e3e-EA-ref-2025.pdf","synthese":true,"description":"Les objectifs du référentiel agricole sont reformulés pour faciliter la lecture. Les attendus détaillés dépendent de la classe.","themes":[{"titre":"Objectifs de la formation","competences":[{"id":"outils","titre":"Organiser ses fichiers et choisir ses outils"},{"id":"produire","titre":"Créer et transformer des documents numériques"},{"id":"information","titre":"Chercher, vérifier et partager une information"},{"id":"responsabilite","titre":"Agir en ligne en respectant les personnes et les droits"},{"id":"coder","titre":"Analyser une tâche puis la programmer"},{"id":"evolutions","titre":"Comprendre comment les outils numériques changent"}]}],"seances":{}}]</script>
+
+    <script id="competences-evaluees-data" type="application/json">[{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S10R","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Usages responsables du numérique et cybersécurité","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a02_q03":["usages-evolution"],"a03_q01":["usages-evolution"],"a03_q02":["usages-evolution"],"a04_q01":["usages-evolution"],"a04_q02":["usages-evolution"],"a05_q01":["usages-evolution"],"a06_q01":["usages-evolution"],"a06_q02":["usages-evolution"],"a07_q01":["usages-evolution"],"a08_q01":["usages-evolution"],"a09_q01":["usages-evolution"],"a09_q02":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S01","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Site de cours, règles du laboratoire, maquettes de l’année et réflexe brevet n° 1","questions":{"a02_q01":["interactions"],"a02_q02":["interactions"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a03_q03":["fonctionnement"],"a03_q04":["interactions"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S02","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Objet naturel ou technique, besoin auquel répond un objet","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a03_q03":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S03","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Utilisateur, ce sur quoi l’objet agit, fonction d’usage ; réflexe brevet n° 2","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["interactions"],"a03_q02":["usages-evolution"],"a03_q03":["interactions"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S01","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Que retenons-nous de la 5e ?","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S02","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"De l’idée à l’objet : comment conçoit-on un objet ?","questions":{"a01_q01":["concevoir"],"a02_q01":["concevoir"],"a02_q02":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"],"a06_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S03","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Du téléphone fixe au smartphone : qu’a-t-on gagné, qu’a-t-on perdu ?","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"],"a06_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S04","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Pourquoi a-t-on changé cet objet ?","questions":{"a01_q01":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"],"a06_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S05","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Pourquoi le monte-charge a-t-il un capot et un contrepoids ?","questions":{"a01_q01":["interactions"],"a02_q01":["interactions"],"a03_q01":["interactions"],"a03_q02":["interactions"],"a04_q01":["interactions"],"a05_q01":["interactions"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S06","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Writer n° 1 : un compte rendu bien organisé","questions":{"a01_q01":["interactions"],"a01_q02":["interactions"],"a02_q01":["interactions"],"a02_q02":["interactions"],"a03_q01":["interactions"],"a04_q01":["interactions"],"a05_q01":["interactions"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S07","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan et entraînement au brevet n° 1 : le vélo électrique","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a03_q02":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S08","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment protéger un compte ?","questions":{"a01_q01":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a03_q02":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"],"a06_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S09","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quelles traces je laisse sans le savoir ?","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a04_q02":["usages-evolution"],"a05_q01":["usages-evolution"],"a06_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S10","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Ai-je le droit d’utiliser cette image ?","questions":{"a01_q01":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a04_q02":["usages-evolution"],"a05_q01":["usages-evolution"],"a06_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S11","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Vrai ou faux ? Vérifier une information en ligne","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"],"a06_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S12","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Qui est responsable quand ça dérape ?","questions":{"a01_q01":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"],"a06_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S13","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"De quoi est fait le réseau du collège ?","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a04_q02":["fonctionnement"],"a05_q01":["fonctionnement"],"a06_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S14","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Pourquoi chaque appareil a-t-il une adresse ?","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"],"a06_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S15","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Construire un petit réseau en simulation","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S16","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Pourquoi ces deux ordinateurs ne se parlent-ils pas ?","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S17","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Calc n° 1 : combien de temps pour envoyer une vidéo ?","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S18","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan et entraînement au brevet n° 2 : le réseau d’une médiathèque","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S19","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Que fait chaque constituant de l’éolienne ?","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S20","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Avec quel appareil mesurer ?","questions":{"a01_q01":["choix"],"a02_q01":["choix"],"a02_q02":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S21","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"L’éolienne produit-elle encore avec un vent faible ?","questions":{"a01_q01":["tester"],"a02_q01":["tester"],"a03_q01":["tester"],"a03_q02":["tester"],"a04_q01":["tester"],"a05_q01":["tester"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S22","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Éolienne ou panneau solaire du tracker ?","questions":{"a01_q01":["choix"],"a02_q01":["choix"],"a02_q02":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"],"a06_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S23","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quel matériau pour une pale ?","questions":{"a01_q01":["choix"],"a01_q02":["choix"],"a02_q01":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"],"a06_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S24","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan et entraînement au brevet n° 3 : l’éolienne d’un voilier","questions":{"a01_q01":["choix"],"a01_q02":["choix"],"a02_q01":["choix"],"a02_q02":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S25","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Pourquoi cette pièce a-t-elle cette forme ?","questions":{"a01_q01":["choix"],"a01_q02":["choix"],"a02_q01":["choix"],"a02_q02":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S26","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Prendre en main la CAO","questions":{"a01_q01":["concevoir"],"a01_q02":["concevoir"],"a02_q01":["concevoir"],"a02_q02":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S27","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Modifier le rotor","questions":{"a01_q01":["concevoir"],"a01_q02":["concevoir"],"a02_q01":["concevoir"],"a02_q02":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S28","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"La pale va-t-elle plier ?","questions":{"a01_q01":["tester"],"a02_q01":["tester"],"a02_q02":["tester"],"a03_q01":["tester"],"a03_q02":["tester"],"a04_q01":["tester"],"a05_q01":["tester"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S29","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan : présenter sa pale","questions":{"a01_q01":["concevoir"],"a02_q01":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S30","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Penser comme un ordinateur","questions":{"a01_q01":["programmer"],"a02_q01":["programmer"],"a02_q02":["programmer"],"a03_q01":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S31","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Écrire les règles d’un jeu avant de le programmer","questions":{"a01_q01":["programmer"],"a01_q02":["programmer"],"a02_q01":["programmer"],"a03_q01":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S32","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Traduire l’algorithme en blocs","questions":{"a01_q01":["programmer"],"a01_q02":["programmer"],"a02_q01":["programmer"],"a03_q01":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S33","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Une vague d’ennemis","questions":{"a01_q01":["programmer"],"a01_q02":["programmer"],"a02_q01":["programmer"],"a02_q02":["programmer"],"a03_q01":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S34","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Pourquoi mon jeu bugue-t-il ?","questions":{"a01_q01":["tester"],"a01_q02":["tester"],"a02_q01":["tester"],"a03_q01":["tester"],"a04_q01":["tester"],"a05_q01":["tester"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S35","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Qui capte, qui décide, qui affiche ?","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S36","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Que fait ce programme, en français ?","questions":{"a01_q01":["modifier-programme"],"a02_q01":["modifier-programme"],"a02_q02":["modifier-programme"],"a03_q01":["modifier-programme"],"a04_q01":["modifier-programme"],"a05_q01":["modifier-programme"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S37","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Que disent les mesures du capteur à ultrasons ?","questions":{"a01_q01":["modifier-programme"],"a01_q02":["modifier-programme"],"a02_q01":["modifier-programme"],"a03_q01":["modifier-programme"],"a04_q01":["modifier-programme"],"a05_q01":["modifier-programme"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S38","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Afficher l’étage sur l’écran","questions":{"a01_q01":["modifier-programme"],"a02_q01":["modifier-programme"],"a02_q02":["modifier-programme"],"a03_q01":["modifier-programme"],"a04_q01":["modifier-programme"],"a05_q01":["modifier-programme"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S39","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"D’où vient la panne ?","questions":{"a01_q01":["depannage"],"a02_q01":["depannage"],"a03_q01":["depannage"],"a04_q01":["depannage"],"a05_q01":["depannage"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S40","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan et entraînement au brevet n° 4 : une barrière de parking","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S41","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quelle nouvelle fonction pour le tracker ?","questions":{"a01_q01":["concevoir"],"a02_q01":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S42","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment deux cartes se parlent-elles ?","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S43","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Que manque-t-il au prototype ?","questions":{"a01_q01":["concevoir"],"a02_q01":["concevoir"],"a02_q02":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S44","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Programmer l’émetteur et le récepteur","questions":{"a01_q01":["programmer"],"a01_q02":["programmer"],"a02_q01":["programmer"],"a03_q01":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S45","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"La liaison radio est-elle fiable ?","questions":{"a01_q01":["tester"],"a02_q01":["tester"],"a02_q02":["tester"],"a03_q01":["tester"],"a03_q02":["tester"],"a04_q01":["tester"],"a05_q01":["tester"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S46","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Calc n° 2 : que nous apprennent les mesures reçues ?","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S47","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Impress n° 1 : préparer la revue de projet","questions":{"a01_q01":["concevoir"],"a01_q02":["concevoir"],"a02_q01":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S48","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Revue de projet : le tracker communique","questions":{"a01_q01":["concevoir"],"a02_q01":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S49","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Entraînement au brevet n° 5 : un dossier complet","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"4e","seance":"S50","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Mon bilan de 4e","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S01","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"La 3e en technologie : ce qui nous attend","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S02","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quels métiers derrière nos objets ?","questions":{"a01_q01":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a03_q02":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S03","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quelle invention a tout changé ?","questions":{"a01_q01":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S04","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"De la découverte scientifique à notre tracker","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S05","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment une machine apprend-elle ?","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S06","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"L’IA peut-elle se tromper ?","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S07","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan et entraînement au brevet n° 1 : argumenter","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S08","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quel chemin suit mon message ?","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S09","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Pourquoi des routeurs ?","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S10","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment l’ordinateur écrit-il un mot ?","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S11","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Combien pèsent une photo et un son ?","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S12","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Mon identité numérique : quelles règles ?","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S13","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan et entraînement au brevet n° 2 : le réseau et les données","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S14","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Brevet blanc n° 1 : la station météo du collège","questions":{"a01_q01":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a03_q02":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"],"a06_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S15","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Brevet blanc n° 1 : correction et reprise","questions":{"a01_q01":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a03_q02":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S16","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Pourquoi récupérer l’eau de pluie ?","questions":{"a01_q01":["interactions"],"a01_q02":["interactions"],"a02_q01":["interactions"],"a03_q01":["interactions"],"a04_q01":["interactions"],"a05_q01":["interactions"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S17","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Writer n° 1 : le cahier des charges de la cuve","questions":{"a01_q01":["interactions"],"a01_q02":["interactions"],"a02_q01":["interactions"],"a03_q01":["interactions"],"a04_q01":["interactions"],"a05_q01":["interactions"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S18","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quelles cuves existent déjà ?","questions":{"a01_q01":["choix"],"a01_q02":["choix"],"a02_q01":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S19","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Calc n° 1 : quelle cuve a le plus petit bilan carbone ?","questions":{"a01_q01":["choix"],"a02_q01":["choix"],"a03_q01":["choix"],"a03_q02":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S20","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Choisir et argumenter","questions":{"a01_q01":["choix"],"a01_q02":["choix"],"a02_q01":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S21","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Organiser notre projet","questions":{"a01_q01":["concevoir"],"a01_q02":["concevoir"],"a02_q01":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S22","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Qu’est-ce qu’un objet connecté ?","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S23","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment l’énergie circulera-t-elle dans la cuve ?","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S24","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Secteur, panneau solaire ou éolienne ?","questions":{"a01_q01":["choix"],"a01_q02":["choix"],"a02_q01":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S25","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quels capteurs pour notre cuve ?","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S26","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment une distance devient-elle une hauteur d’eau ?","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S27","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quel matériau et quel procédé pour le couvercle-filtre ?","questions":{"a01_q01":["choix"],"a02_q01":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S28","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan et entraînement au brevet n° 3 : schéma bloc","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S29","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Ranger son code dans des fonctions","questions":{"a01_q01":["programmer"],"a01_q02":["programmer"],"a02_q01":["programmer"],"a03_q01":["programmer"],"a03_q02":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S30","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Des blocs au Python","questions":{"a01_q01":["programmer"],"a02_q01":["programmer"],"a02_q02":["programmer"],"a03_q01":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S31","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Un mini-jeu sur l’eau","questions":{"a01_q01":["programmer"],"a02_q01":["programmer"],"a03_q01":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S32","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Brevet blanc n° 2 : la cuve d’un gymnase","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"],"a06_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S33","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Brevet blanc n° 2 : correction et reprise","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S34","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Le numérique a-t-il un impact sur l’environnement ?","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S35","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Que doit décider la cuve ?","questions":{"a01_q01":["programmer"],"a02_q01":["programmer"],"a03_q01":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S36","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Programmer notre fonction","questions":{"a01_q01":["programmer"],"a02_q01":["programmer"],"a03_q01":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S37","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"La cuve prévient l’afficheur","questions":{"a01_q01":["programmer"],"a02_q01":["programmer"],"a03_q01":["programmer"],"a03_q02":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S38","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment prouver que notre programme marche ?","questions":{"a01_q01":["tester"],"a02_q01":["tester"],"a03_q01":["tester"],"a04_q01":["tester"],"a05_q01":["tester"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S39","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Une pièce cassée : la refaire sur mesure","questions":{"a01_q01":["depannage"],"a02_q01":["depannage"],"a03_q01":["depannage"],"a04_q01":["depannage"],"a05_q01":["depannage"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S40","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan et entraînement au brevet n° 4 : algorithme et programme","questions":{"a01_q01":["modifier-programme"],"a02_q01":["modifier-programme"],"a02_q02":["modifier-programme"],"a03_q01":["modifier-programme"],"a03_q02":["modifier-programme"],"a04_q01":["modifier-programme"],"a05_q01":["modifier-programme"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S41","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Choisir les constituants et câbler la cuve en simulation","questions":{"a01_q01":["concevoir"],"a01_q02":["concevoir"],"a02_q01":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S42","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Rassembler et tester le prototype numérique","questions":{"a01_q01":["concevoir"],"a02_q01":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S43","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Writer n° 2 : finaliser le dossier de projet","questions":{"a01_q01":["concevoir"],"a02_q01":["concevoir"],"a03_q01":["concevoir"],"a03_q02":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S44","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Impress n° 1 : préparer la soutenance","questions":{"a01_q01":["concevoir"],"a02_q01":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S45","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Soutenance du projet","questions":{"a01_q01":["concevoir"],"a02_q01":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S46","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Brevet blanc n° 3 : la borne de recharge","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"],"a06_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S47","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Brevet blanc n° 3 : correction et reprise","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"3e","seance":"S48","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Prêt pour le brevet","questions":{"a01_q01":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S04","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Qu’est-ce qui agit autour d’un objet ?","questions":{"a01_q01":["interactions"],"a02_q01":["interactions"],"a02_q02":["interactions"],"a03_q01":["interactions"],"a03_q02":["interactions"],"a04_q01":["interactions"],"a05_q01":["interactions"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S05","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Facile ou difficile à utiliser ?","questions":{"a01_q01":["interactions"],"a01_q02":["interactions"],"a02_q01":["interactions"],"a02_q02":["interactions"],"a03_q01":["interactions"],"a04_q01":["interactions"],"a05_q01":["interactions"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S06","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Que change un réglage ?","questions":{"a01_q01":["interactions"],"a02_q01":["interactions"],"a02_q02":["interactions"],"a02_q03":["interactions"],"a03_q01":["interactions"],"a03_q02":["interactions"],"a04_q01":["interactions"],"a05_q01":["interactions"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S07","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan : présenter un objet du quotidien","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S08","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Monter une lampe de poche… dans un simulateur","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S09","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Une même fonction, plusieurs solutions ?","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a02_q03":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S10","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment la lampe a-t-elle évolué ?","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a03_q02":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S11","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Writer n° 1 : présenter un objet dans un document propre","questions":{"a01_q01":["interactions"],"a01_q02":["interactions"],"a02_q01":["interactions"],"a02_q02":["interactions"],"a03_q01":["interactions"],"a03_q02":["interactions"],"a03_q03":["interactions"],"a04_q01":["interactions"],"a05_q01":["interactions"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S12","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan et entraînement au brevet n° 1","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a01_q03":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a03_q02":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S13","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Où sont rangés mes fichiers, et qui peut les voir ?","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a03_q02":["usages-evolution"],"a03_q03":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S14","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Combien pèse un fichier ?","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a02_q03":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S15","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment décrire une cuve d’eau avec des données ?","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a02_q03":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S16","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Calc n° 1 : dix jours de pluie dans la cuve","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a04_q02":["fonctionnement"],"a04_q03":["fonctionnement"],"a05_q01":["fonctionnement"],"a06_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S17","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"En quoi sont faites nos maquettes ?","questions":{"a01_q01":["choix"],"a02_q01":["choix"],"a02_q02":["choix"],"a02_q03":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S18","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quelle propriété pour quel usage ? La pale va-t-elle tenir ?","questions":{"a01_q01":["choix"],"a01_q02":["choix"],"a02_q01":["choix"],"a03_q01":["choix"],"a03_q02":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S19","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quel matériau choisir pour notre future cuve ?","questions":{"a01_q01":["concevoir"],"a01_q02":["concevoir"],"a02_q01":["concevoir"],"a02_q02":["concevoir"],"a03_q01":["concevoir"],"a03_q02":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S20","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Une seconde vie pour un vieux lecteur CD ?","questions":{"a01_q01":["choix"],"a02_q01":["choix"],"a02_q02":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S21","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Lequel choisir en lisant sa fiche ?","questions":{"a01_q01":["choix"],"a01_q02":["choix"],"a02_q01":["choix"],"a02_q02":["choix"],"a02_q03":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S22","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan et entraînement au brevet n° 2 : la gourde","questions":{"a01_q01":["choix"],"a01_q02":["choix"],"a02_q01":["choix"],"a02_q02":["choix"],"a03_q01":["choix"],"a03_q02":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S23","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment protéger mes données et mes comptes ?","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a02_q02":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S24","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment notre éolienne produit-elle de l’électricité ?","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S25","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quelle énergie entre, quelle énergie sort ?","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S26","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment mesurer ce que produit l’éolienne ?","questions":{"a01_q01":["choix"],"a01_q02":["choix"],"a02_q01":["choix"],"a02_q02":["choix"],"a02_q03":["choix"],"a03_q01":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S27","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Calc n° 2 : 3, 4 ou 5 pales ?","questions":{"a01_q01":["choix"],"a01_q02":["choix"],"a02_q01":["choix"],"a02_q02":["choix"],"a03_q01":["choix"],"a03_q02":["choix"],"a03_q03":["choix"],"a04_q01":["choix"],"a05_q01":["choix"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S28","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Éolienne, panneau solaire ou pile ?","questions":{"a01_q01":["concevoir"],"a02_q01":["concevoir"],"a02_q02":["concevoir"],"a03_q01":["concevoir"],"a03_q02":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S29","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan et entraînement au brevet n° 3 : le vélo à assistance électrique","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a01_q03":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S30","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Arcade : comment faire bouger un personnage avec les boutons ?","questions":{"a01_q01":["programmer"],"a01_q02":["programmer"],"a01_q03":["programmer"],"a02_q01":["programmer"],"a02_q02":["programmer"],"a02_q03":["programmer"],"a03_q01":["programmer"],"a03_q02":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S31","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Arcade : à quoi sert un score ?","questions":{"a01_q01":["programmer"],"a02_q01":["programmer"],"a02_q02":["programmer"],"a02_q03":["programmer"],"a03_q01":["programmer"],"a03_q02":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S32","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Arcade : quand a-t-on gagné ?","questions":{"a01_q01":["programmer"],"a01_q02":["programmer"],"a02_q01":["programmer"],"a02_q02":["programmer"],"a03_q01":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S33","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment le monte-charge sait-il où est la cabine ?","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S34","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Pourquoi un contrepoids ?","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S35","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Que fait le programme du monte-charge ?","questions":{"a01_q01":["modifier-programme"],"a01_q02":["modifier-programme"],"a02_q01":["modifier-programme"],"a03_q01":["modifier-programme"],"a03_q02":["modifier-programme"],"a04_q01":["modifier-programme"],"a05_q01":["modifier-programme"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S36","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Que se passe-t-il si je change un nombre du programme ?","questions":{"a01_q01":["modifier-programme"],"a01_q02":["modifier-programme"],"a02_q01":["modifier-programme"],"a02_q02":["modifier-programme"],"a02_q03":["modifier-programme"],"a03_q01":["modifier-programme"],"a03_q02":["modifier-programme"],"a04_q01":["modifier-programme"],"a05_q01":["modifier-programme"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S37","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Le programme fait-il ce qu’on attend ?","questions":{"a01_q01":["programmer"],"a02_q01":["programmer"],"a02_q02":["programmer"],"a03_q01":["programmer"],"a03_q02":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S38","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Bilan : expliquer le monte-charge","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a01_q03":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S39","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Pourquoi les objets tombent-ils en panne ?","questions":{"a01_q01":["depannage"],"a02_q01":["depannage"],"a02_q02":["depannage"],"a03_q01":["depannage"],"a04_q01":["depannage"],"a05_q01":["depannage"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S40","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Quelle pièce est abîmée ?","questions":{"a01_q01":["depannage"],"a02_q01":["depannage"],"a02_q02":["depannage"],"a03_q01":["depannage"],"a03_q02":["depannage"],"a04_q01":["depannage"],"a05_q01":["depannage"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S41","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Trouver la panne du monte-charge","questions":{"a01_q01":["depannage"],"a01_q02":["depannage"],"a02_q01":["depannage"],"a02_q02":["depannage"],"a03_q01":["depannage"],"a03_q02":["depannage"],"a04_q01":["depannage"],"a05_q01":["depannage"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S42","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Writer n° 2 : écrire une notice de dépannage","questions":{"a01_q01":["depannage"],"a01_q02":["depannage"],"a02_q01":["depannage"],"a02_q02":["depannage"],"a03_q01":["depannage"],"a03_q02":["depannage"],"a04_q01":["depannage"],"a05_q01":["depannage"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S43","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Un panneau qui suit la lumière, à quoi bon ?","questions":{"a01_q01":["concevoir"],"a01_q02":["concevoir"],"a02_q01":["concevoir"],"a02_q02":["concevoir"],"a03_q01":["concevoir"],"a03_q02":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S44","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Comment est fait le tracker ?","questions":{"a01_q01":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a03_q01":["fonctionnement"],"a03_q02":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S45","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Programmer notre amélioration","questions":{"a01_q01":["programmer"],"a02_q01":["programmer"],"a02_q02":["programmer"],"a03_q01":["programmer"],"a03_q02":["programmer"],"a04_q01":["programmer"],"a05_q01":["programmer"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S46","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Notre amélioration fonctionne-t-elle ?","questions":{"a01_q01":["tester"],"a01_q02":["tester"],"a02_q01":["tester"],"a02_q02":["tester"],"a03_q01":["tester"],"a04_q01":["tester"],"a05_q01":["tester"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S47","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Impress n° 1 : préparer la revue de projet","questions":{"a01_q01":["concevoir"],"a01_q02":["concevoir"],"a02_q01":["concevoir"],"a02_q02":["concevoir"],"a03_q01":["concevoir"],"a03_q02":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S48","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Revue de projet : présenter notre amélioration","questions":{"a01_q01":["concevoir"],"a01_q02":["concevoir"],"a02_q01":["concevoir"],"a03_q01":["concevoir"],"a04_q01":["concevoir"],"a05_q01":["concevoir"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S49","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Entraînement au brevet n° 4 : la cuve d’eau intelligente","questions":{"a01_q01":["fonctionnement"],"a01_q02":["fonctionnement"],"a01_q03":["fonctionnement"],"a02_q01":["fonctionnement"],"a02_q02":["fonctionnement"],"a02_q03":["fonctionnement"],"a03_q01":["fonctionnement"],"a04_q01":["fonctionnement"],"a05_q01":["fonctionnement"]}},{"etablissement":"college","matiere":"techno","classe":"5e","seance":"S50","version":"v1","referentiel":"techno-cycle4-2024","perimetre":"Mon bilan de l’année","questions":{"a01_q01":["usages-evolution"],"a01_q02":["usages-evolution"],"a02_q01":["usages-evolution"],"a03_q01":["usages-evolution"],"a04_q01":["usages-evolution"],"a05_q01":["usages-evolution"]}}]</script>
+
+    <script src="/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+    <script type="module" src="/assets/js/auth/eleve-guard.js"></script>
+    <script type="module" src="/assets/js/cours/student-collaboration.js"></script>
+    <script type="module" src="/assets/js/eleve/student-dashboard.js"></script>
+    <script type="module" src="/assets/js/eleve/student-theme.js"></script>
+    <script type="module" src="/assets/js/eleve/student-cards.js"></script>
+    <script type="module" src="/assets/js/eleve/student-shop-preview.js"></script>
+</body>
+</html>
