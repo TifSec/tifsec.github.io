@@ -1,6 +1,7 @@
 import { db } from '../bdd/bdd-connect.js';
 import { checkSession } from '../auth/auth-session.js';
 import { collaborationRpc } from '../cours/collaboration.js';
+import { catalogueScopes } from './course-selection.js?v=20261104-classes-1';
 
 export const ENROLLMENT_LABELS = { pending: 'Inscription en attente', legacy: 'Compte existant — à vérifier', approved: 'Inscription validée' };
 export function initStudents() {
@@ -79,7 +80,7 @@ export function initStudents() {
         const result = await db.from('teacher_class_assignments').select('etablissement, classe').eq('teacher_id', userId);
         if (current !== generation) return;
         if (result.error) throw result.error;
-        classes = [...new Map((result.data || []).map(row => [key(row), row])).values()].sort((a, b) => label(a).localeCompare(label(b), 'fr'));
+        classes = [...new Map(catalogueScopes(result.data || []).map(row => [key(row), row])).values()].sort((a, b) => label(a).localeCompare(label(b), 'fr'));
         for (const row of classes) select.add(new Option(label(row), key(row)));
         controls.disabled = !classes.length;
         if (!classes.length) { status.textContent = 'Aucune classe affectée à votre compte.'; return; }

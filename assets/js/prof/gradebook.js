@@ -1,7 +1,7 @@
 import { db } from '../bdd/bdd-connect.js';
 import { checkSession } from '../auth/auth-session.js';
 import { lessonCatalogue } from '../cours/collaboration.js';
-import { initialCourseScope } from './course-selection.js';
+import { catalogueScopes, initialCourseScope } from './course-selection.js?v=20261104-classes-1';
 import { gradebookModel, readGradebook, copyTrackingUrl } from './gradebook-model.js';
 
 export function initGradebook() {
@@ -114,7 +114,7 @@ export function initGradebook() {
             if(session.status!=='authenticated'||session.profile.role!=='teacher'){status.textContent='Connectez-vous avec votre compte professeur.';return;}
             const result=await db.from('teacher_class_assignments').select('etablissement,matiere,classe').eq('teacher_id',session.user.id);
             if(current!==generation)return;if(result.error||!Array.isArray(result.data))throw new Error('scopes_unavailable');
-            assignments=result.data;actor=session.user.id;catalogue=lessonCatalogue();
+            assignments=catalogueScopes(result.data);actor=session.user.id;catalogue=lessonCatalogue();
             options(subject,[...new Set(assignments.map(row=>row.matiere))].map(value=>[value,labels[value] || value]));
             const selected=initialCourseScope(assignments,catalogue,new URL(window.location.href).searchParams);
             if(selected)subject.value=selected.matiere;classOptions(selected?classKey(selected):'');filters.disabled=false;await loadScope();

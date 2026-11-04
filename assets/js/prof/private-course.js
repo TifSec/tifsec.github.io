@@ -4,7 +4,7 @@ import { checkSession } from '../auth/auth-session.js';
 import { loadCoursePreview } from './course-preview.js?v=20261029-prof-2';
 import { initCourseSteps } from '../cours/course-steps.js?v=20261029-prof-2';
 import { clearTeacherNotes, renderTeacherNotes } from './teacher-notes.js?v=20261029-prof-2';
-import { initialCourseScope, lessonsInScope } from './course-selection.js';
+import { catalogueScopes, classLabel, initialCourseScope, lessonsInScope } from './course-selection.js?v=20261104-classes-1';
 
 export function initPrivateCourse() {
     const root = document.getElementById('teacher-course');
@@ -40,14 +40,14 @@ export function initPrivateCourse() {
         if (lessons.length) select.value = '0';
         select.disabled = !lessons.length; open.disabled = !lessons.length;
         loadPrivate.disabled = root.dataset.enabled !== 'true' || !lessons.length;
-        context.textContent = scope ? (labels[scope.matiere] || scope.matiere) + ' · ' + (scope.etablissement === 'college' ? 'Collège' : 'MFR') + ' · ' + scope.classe : '';
+        context.textContent = scope ? (labels[scope.matiere] || scope.matiere) + ' · ' + classLabel(scope) : '';
         copiesLink.hidden = !lessons.length;
         if (scope) copiesLink.href = (copiesLink.dataset.baseUrl || '/prof/suivi/') + '?' + new URLSearchParams({ matiere: scope.matiere, etablissement: scope.etablissement, classe: scope.classe });
         status.textContent = lessons.length ? 'Choisissez une séance, puis le cours professeur, la version élève ou les copies à consulter.' : scope ? 'Aucune séance n’est encore intégrée pour cette classe dans le nouveau site. Les cours apparaîtront ici après leur adaptation.' : 'Cette matière ou cette classe ne correspond pas à vos affectations. Choisissez parmi les classes autorisées.';
     }
     function updateClasses(preferred) {
         const available = scopes.filter(scope => scope.matiere === subject.value);
-        options(schoolClass, available.map(scope => [classKey(scope), (scope.etablissement === 'college' ? 'Collège' : 'MFR') + ' · ' + scope.classe]));
+        options(schoolClass, available.map(scope => [classKey(scope), classLabel(scope)]));
         schoolClass.value = preferred || (available[0] ? classKey(available[0]) : '');
         schoolClass.disabled = !available.length;
         updateLessons();
@@ -82,7 +82,7 @@ export function initPrivateCourse() {
             if (assignments.error || !Array.isArray(assignments.data)) throw new Error('scope_unavailable');
             userId = session.user.id;
             catalogue = JSON.parse(document.getElementById('seances-data')?.textContent || '[]');
-            scopes = assignments.data;
+            scopes = catalogueScopes(assignments.data);
             const subjects = [...new Set(scopes.map(scope => scope.matiere))];
             options(subject, subjects.map(value => [value, labels[value] || value]));
             subject.disabled = !subjects.length;

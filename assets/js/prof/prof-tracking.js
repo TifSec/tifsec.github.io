@@ -3,6 +3,7 @@ import { db } from '../bdd/bdd-connect.js';
 import { checkSession } from '../auth/auth-session.js';
 import { lessonCatalogue, collaborationRpc } from '../cours/collaboration.js';
 import { initCopyCorrection } from './copy-correction.js?v=20261029-prof-2';
+import { catalogueScopes } from './course-selection.js?v=20261104-classes-1';
 
 const LABELS = { techno: 'Technologie', tim: 'TIM', maths: 'Mathématiques' };
 const same = (a, b) => ['etablissement', 'matiere', 'classe'].every(key => a[key] === b[key]);
@@ -184,7 +185,7 @@ export function initTeacherTracking() {
         const result = await db.from('teacher_class_assignments').select('etablissement, matiere, classe').eq('teacher_id', userId);
         if (current !== generation) return;
         if (result.error) { status.textContent = 'Impossible de charger vos affectations. Réessayez après reconnexion.'; return; }
-        lessons = allowedLessons(result.data || [], lessonCatalogue());
+        lessons = allowedLessons(catalogueScopes(result.data || []), lessonCatalogue());
         if (!lessons.length) { status.textContent = 'Aucune séance intégrée dans vos classes affectées pour le moment.'; return; }
         const subjects = new Map(lessons.map(row => [row.matiere, LABELS[row.matiere] || row.matiere]));
         options(subject, subjects);
