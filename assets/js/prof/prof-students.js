@@ -1,7 +1,6 @@
 import { db } from '../bdd/bdd-connect.js';
 import { checkSession } from '../auth/auth-session.js';
-import { collaborationRpc } from '../cours/collaboration.js';
-import { catalogueScopes } from './course-selection.js?v=20261104-classes-1';
+import { collaborationRpc, catalogueScopes } from '../cours/collaboration.js';
 
 export const ENROLLMENT_LABELS = { pending: 'Inscription en attente', legacy: 'Compte existant — à vérifier', approved: 'Inscription validée' };
 export function initStudents() {

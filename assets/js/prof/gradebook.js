@@ -1,7 +1,7 @@
 import { db } from '../bdd/bdd-connect.js';
 import { checkSession } from '../auth/auth-session.js';
 import { lessonCatalogue } from '../cours/collaboration.js';
-import { catalogueScopes, initialCourseScope } from './course-selection.js?v=20261104-classes-1';
+import { catalogueScopes, initialCourseScope } from './course-selection.js';
 import { gradebookModel, readGradebook, copyTrackingUrl } from './gradebook-model.js';
 
 export function initGradebook() {

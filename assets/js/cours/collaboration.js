@@ -202,3 +202,19 @@ export function initInvitations() {
     setInterval(()=>{if(document.visibilityState==='visible')refresh();},10000);
     refresh();
 }
+
+// Classes déclarées dans _data/classes.yml : chaque classe n'apparaît que pour ses matières
+// (ex. maths : 2de et Bac Pro 1 ; TIM : toutes les classes MFR sauf la terminale).
+function classCatalogue() {
+    try { return JSON.parse(globalThis.document?.getElementById?.('classes-data')?.textContent || '{}'); } catch { return {}; }
+}
+export function catalogueScopes(rows) {
+    const allowed = new Set();
+    for (const [school, data] of Object.entries(classCatalogue())) for (const entry of data?.classes || []) {
+        allowed.add(school + '|*|' + entry.id);
+        if (!Array.isArray(entry.matieres)) allowed.add(school + '|any|' + entry.id);
+        for (const subject of entry.matieres || []) allowed.add(school + '|' + subject + '|' + entry.id);
+    }
+    if (!allowed.size) return rows;
+    return (rows || []).filter(row => allowed.has(row.etablissement + '|any|' + row.classe) || allowed.has(row.etablissement + '|' + (row.matiere ?? '*') + '|' + row.classe));
+}
