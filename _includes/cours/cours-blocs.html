@@ -9,6 +9,7 @@
     {% when 'image' %}{% assign protocole = bloc.url | slice: 0, 8 %}{% assign dossier = bloc.url | slice: 0, 8 %}{% assign image_url = '' %}{% if protocole == 'https://' %}{% assign image_url = bloc.url %}{% elsif dossier == '/assets/' %}{% assign image_url = bloc.url | relative_url %}{% endif %}{% if image_url != '' %}<figure class="cours-document"><img src="{{ image_url | escape }}" alt="{{ bloc.alternative | escape }}" loading="lazy" decoding="async">{% if bloc.legende %}<figcaption>{{ bloc.legende | escape }}</figcaption>{% endif %}</figure>{% endif %}
     {% when 'liste' %}<ul>{% for element in bloc.elements %}<li>{{ element | escape }}</li>{% endfor %}</ul>
     {% when 'etapes' %}<ol>{% for element in bloc.elements %}<li>{{ element | escape }}</li>{% endfor %}</ol>
+    {% when 'fichier' %}{% assign dossier = bloc.url | slice: 0, 17 %}{% if dossier == '/assets/fichiers/' %}<p class="cours-fichier"><a href="{{ bloc.url | relative_url | escape }}" download>Télécharger le fichier : {{ bloc.titre | escape }}</a> <span>({{ bloc.url | split: '/' | last | escape }})</span></p>{% endif %}
     {% when 'lien' %}{% assign protocole = bloc.url | slice: 0, 8 %}{% if protocole == 'https://' %}<p><a href="{{ bloc.url | escape }}" target="_blank" rel="noopener noreferrer">{{ bloc.titre | escape }}</a></p>{% endif %}
 {% endcase %}
 {% endfor %}
