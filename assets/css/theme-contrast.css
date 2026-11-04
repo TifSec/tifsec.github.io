@@ -30,3 +30,20 @@
 .course-graph, .course-graph * { color: #243047; }
 .private-course-notes, .private-course-setup, #teacher-course[data-mode="private"] #teacher-course-status { color: #43351e; }
 .private-course-notes :is(h2, h3, h4, a), .teacher-annotation :is(h4, summary, a) { color: #5a3d12; }
+
+/* Espace professeur : l'aperçu du cours est posé sur des cartes blanches, quel que soit le thème choisi.
+   On y redonne donc une palette claire complète (texte foncé, titres et liens foncés, surfaces claires). */
+:root #teacher-course-preview .course-reading {
+    --student-surface: #ffffff; --student-text: #243047; --student-muted: #4a5a6e; --student-border: #c3d1da;
+    --student-heading: #173b53; --student-link: #1c4f6b; --student-hero: #1c4256; --student-banner: #1c4256;
+    --student-accent: #2f7d6b; --student-soft: #eef4f7; --student-ink: #193d4e; --color-primary: #1c4256; --color-text: #243047;
+    color: #243047;
+}
+:root #teacher-course-preview .course-reading :is(h1, h2, h3, h4, h5) { color: #173b53; }
+:root #teacher-course-preview .course-reading :is(p, li, label, td, th, caption, summary, span, strong, blockquote) { color: inherit; }
+:root .course-mission-goal > strong, :root .course-transition strong { color: #1d5a4a; }
+:root[data-student-theme] .student-course-shell .course-mission-goal > strong, :root[data-student-theme] .student-course-shell .course-transition strong { color: var(--student-heading); }
+/* Filtres de l'espace professeur : étiquettes lisibles sur leur fond, dans tous les thèmes. */
+:root[data-student-theme] .prof-main .prof-filter { background: var(--student-surface); color: var(--student-text); }
+:root[data-student-theme] .prof-main .prof-filter label { color: var(--student-text); }
+:root[data-student-theme] .prof-main .tracking-filters legend { color: var(--student-text); }
