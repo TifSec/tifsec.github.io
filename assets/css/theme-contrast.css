@@ -3,10 +3,16 @@
    Les encadrés de cours utilisent la surface douce du thème, son texte et la couleur des liens. */
 
 /* Encadrés du déroulé : « Ta mission », « Pourquoi on change d'exercice ? ». */
-.course-mission-goal { background: var(--student-soft, #eef5f2); color: var(--student-text, #243047); border-color: var(--student-link, #2f7d6b); }
-.course-mission-goal > strong { color: var(--student-heading, #1d5a4a); }
-.course-transition { background: var(--student-soft, #f1f4f6); color: var(--student-text, #243047); border-left-color: var(--student-link, #2f7d6b); }
-.course-transition strong { color: var(--student-heading, #1d5a4a); }
+.course-mission-goal { background: #eef5f2; color: #243047; border-color: #2f7d6b; }
+.course-mission-goal > strong { color: #1d5a4a; }
+.course-transition { background: #f1f4f6; color: #243047; border-left-color: #2f7d6b; }
+.course-transition strong { color: #1d5a4a; }
+/* Dans l'espace élève, les encadrés prennent la palette du thème (surface et texte vont toujours ensemble). */
+:root[data-student-theme] .student-course-shell .course-mission-goal { background: var(--student-soft); color: var(--student-text); border-color: var(--student-link); }
+:root[data-student-theme] .student-course-shell .course-mission-goal > strong { color: var(--student-heading); }
+:root[data-student-theme] .student-course-shell .course-transition { background: var(--student-soft); color: var(--student-text); border-left-color: var(--student-link); }
+:root[data-student-theme] .student-course-shell .course-transition strong { color: var(--student-heading); }
+.course-mission-goal p, .course-transition p { color: inherit; }
 
 /* Liens de navigation entre les étapes (« Revoir l'objectif », « Étape précédente »). */
 :root[data-student-theme] body #course-work .course-mission-controls a:not(.course-mission-next), :root[data-student-theme] body #course-work .course-mission-controls a:not(.course-mission-next):visited { color: var(--student-link); border-color: var(--student-link); background: transparent; }
