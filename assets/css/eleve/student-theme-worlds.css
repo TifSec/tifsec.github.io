@@ -1,0 +1,151 @@
+/* Décors originaux en CSS : aucune ressource ou police distante. */
+:root[data-student-theme="cyberpunk"] {
+    --student-bg: #0b1020;
+    --student-surface: #151e32;
+    --student-text: #f1f5fc;
+    --student-muted: #becce0;
+    --student-border: #657696;
+    --student-hero: #1b2340;
+    --student-accent: #ffe85b;
+    --student-ink: #252311;
+    --student-soft: #222e48;
+    --student-link: #7ce9f4;
+    --student-heading: #ffe85b;
+    --student-banner: #101829;
+    --color-primary: #7ce9f4;
+}
+:root[data-student-theme="minecraft"] {
+    --student-bg: #eaf0db;
+    --student-surface: #fffcf3;
+    --student-text: #343a28;
+    --student-muted: #5c624c;
+    --student-border: #8d9970;
+    --student-hero: #354c29;
+    --student-accent: #cce99e;
+    --student-ink: #2e4220;
+    --student-soft: #e8edd7;
+    --student-heading: #354c29;
+    --student-banner: #354c29;
+    --color-primary: #354c29;
+}
+:root[data-student-theme="farming"] {
+    --student-bg: #f4f0df;
+    --student-surface: #fffdf5;
+    --student-text: #2e3b2e;
+    --student-muted: #59634e;
+    --student-border: #bbc49e;
+    --student-hero: #2d5138;
+    --student-accent: #f4dc83;
+    --student-ink: #443719;
+    --student-soft: #edf0dc;
+    --student-heading: #2d5138;
+    --student-banner: #2d5138;
+    --color-primary: #2d5138;
+}
+
+/* Cyberpunk : grille technique, jaune signal et doubles accents cyan/rose. */
+:root[data-student-theme="cyberpunk"] body {
+    background-image: linear-gradient(#7ce9f408 1px, transparent 1px), linear-gradient(90deg, #7ce9f408 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+:root[data-student-theme="cyberpunk"] :is(.student-header, .site-header) {
+    background: linear-gradient(115deg, #101829 60%, #223257);
+    border-bottom: 3px solid #ffe85b;
+    box-shadow: 0 5px 24px #7ce9f41c;
+}
+:root[data-student-theme="cyberpunk"] :is(.student-panel, .student-lesson, .cours-activite, .course-navigation) {
+    border-radius: 3px 18px 3px 18px;
+    border-left: 3px solid #7ce9f4;
+    box-shadow: 4px 4px 0 #e96bab22;
+}
+:root[data-student-theme="cyberpunk"] .student-next-panel {
+    background: repeating-linear-gradient(135deg, #ffffff04 0 1px, transparent 1px 12px), linear-gradient(110deg, #1b2340, #253254);
+    border-top: 3px solid #ffe85b;
+}
+:root[data-student-theme="cyberpunk"] :is(:where(.student-shell) button:not(.shop-effect-card):not(.avatar-palette-swatch), :where(#course-work) button, .student-theme-picker > summary, .student-next-lesson a) {
+    border-radius: 2px 10px 2px 10px;
+    border-color: #7ce9f4;
+    box-shadow: 3px 3px 0 #e96bab55;
+}
+:root[data-student-theme="cyberpunk"] :is(.student-section-kicker, .student-brand > span) { letter-spacing: .08em; }
+:root[data-student-theme="cyberpunk"] .student-next-art { color: #7ce9f4; opacity: .55; }
+
+/* Minecraft : relief de blocs, damier discret et liseré herbe/terre. */
+:root[data-student-theme="minecraft"] body {
+    background-image: conic-gradient(#6d8f4510 25%, transparent 0 50%, #6d8f4510 0 75%, transparent 0);
+    background-size: 32px 32px;
+}
+:root[data-student-theme="minecraft"] :is(.student-header, .site-header) {
+    background: linear-gradient(90deg, #ffffff05 50%, transparent 50%), #354c29;
+    background-size: 32px 32px;
+    border-bottom: 10px solid #77563b;
+    box-shadow: 0 4px 0 #493c29;
+}
+:root[data-student-theme="minecraft"] :is(.student-panel, .student-lesson, .cours-activite, .course-navigation, .cours-question, .student-statistics dl div) {
+    border-radius: 0;
+    border-width: 2px;
+    box-shadow: 4px 4px 0 #354c2926;
+}
+:root[data-student-theme="minecraft"] .student-next-panel {
+    background: linear-gradient(#69a349 0 8px, transparent 8px), repeating-linear-gradient(90deg, #ffffff04 0 24px, transparent 24px 48px), #354c29;
+    border-bottom: 8px solid #77563b;
+}
+:root[data-student-theme="minecraft"] :is(:where(.student-shell) button:not(.shop-effect-card):not(.avatar-palette-swatch), :where(#course-work) button, .student-theme-picker > summary, .student-next-lesson a) {
+    border-radius: 0;
+    border: 2px solid #172510;
+    box-shadow: inset 2px 2px 0 #ffffff40, inset -2px -2px 0 #00000035, 2px 2px 0 #354c2940;
+}
+:root[data-student-theme="minecraft"] :is(.student-brand > span, .student-section-kicker) { font-family: ui-monospace, Consolas, monospace; }
+:root[data-student-theme="minecraft"] .student-next-art { display: none; }
+:root[data-student-theme="minecraft"] .student-next-panel::after {
+    content: '';
+    position: absolute;
+    right: 35px;
+    bottom: 40px;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(#86bb55 0 22%, #876144 22% 100%);
+    box-shadow: 16px 16px 0 #233a20, -24px -32px 0 -8px #638b3a;
+    opacity: .5;
+    pointer-events: none;
+}
+
+/* Farming : sillons, lumière chaude et bandes de carrosserie vert/or. */
+:root[data-student-theme="farming"] body {
+    background-image: repeating-linear-gradient(110deg, transparent 0 28px, #69844a09 28px 30px);
+}
+:root[data-student-theme="farming"] :is(.student-header, .site-header) {
+    background: linear-gradient(110deg, #2d5138, #3f6541);
+    border-bottom: 5px solid #f4dc83;
+}
+:root[data-student-theme="farming"] :is(.student-panel, .cours-activite, .course-navigation) {
+    border-top: 4px solid #6b803d;
+    border-radius: 14px;
+}
+:root[data-student-theme="farming"] .student-next-panel {
+    background: repeating-linear-gradient(115deg, transparent 0 45px, #ffffff05 45px 48px), linear-gradient(105deg, #2d5138, #3f6541);
+    border-top: 4px solid #f4dc83;
+}
+:root[data-student-theme="farming"] :is(:where(.student-shell) button:not(.shop-effect-card):not(.avatar-palette-swatch), :where(#course-work) button, .student-theme-picker > summary, .student-next-lesson a) {
+    border-radius: 8px;
+    border-bottom: 3px solid #c3a85a;
+    box-shadow: 0 3px 0 #213a2420;
+}
+:root[data-student-theme="farming"] .student-next-art { display: none; }
+:root[data-student-theme="farming"] .student-next-panel::after {
+    content: '';
+    position: absolute;
+    right: -35px;
+    bottom: -50px;
+    width: 225px;
+    height: 140px;
+    border-radius: 50% 50% 0 0;
+    background: repeating-linear-gradient(105deg, #c4d89935 0 15px, #53764d55 15px 30px);
+    transform: rotate(-12deg);
+    opacity: .7;
+    pointer-events: none;
+}
+@media (max-width: 700px) {
+    :root[data-student-theme="minecraft"] .student-next-panel::after,
+    :root[data-student-theme="farming"] .student-next-panel::after { display: none; }
+}

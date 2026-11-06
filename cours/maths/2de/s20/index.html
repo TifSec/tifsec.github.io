@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-paper-version.css?v=20261104-maths-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261104-contrast-4">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="mfr" data-matiere="maths" data-classe="2de" data-seance="S20" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-paper-toggle">Version papier</button><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">Lire une image</a></li><li><a href="#a02">Les antécédents</a></li><li><a href="#a03">Maximum et sens de variation</a></li><li><a href="#a04">Pour aller plus loin — facultatif</a></li><li><a href="#a05">Conclusion de ton travail</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">Mathématiques · 2de Pro · S20</span></div>
+    <h1>Séance 20 : Lire un graphique : image et antécédent</h1>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thème du programme</h2>
+        <p>EG4, 1-3 — S’approprier des notions de base sur les fonctions</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>Comment lire une image et un antécédent sur la courbe d’une fonction ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétence travaillée</h2>
+        <ul><li>EG4, 1-3 — S’approprier des notions de base sur les fonctions</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>L’image de a par f est f(a) : on part de l’axe des abscisses, on monte à la courbe, on lit l’ordonnée.</li>
+            
+            <li>Un antécédent de b : on part de b sur l’axe des ordonnées, on va à la courbe, on lit l’abscisse ; il peut y en avoir plusieurs.</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Lire une image et des antécédents.</li>
+            
+            <li>Utiliser le vocabulaire des fonctions.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>En S19, tu as tracé une courbe croissante.</p><p>Aujourd’hui : la température d’un tas de fumier qui composte, qui monte puis redescend.</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+<section id="course-paper-version" class="course-paper-version" hidden aria-labelledby="course-paper-title">
+    <article class="course-paper-sheet">
+        <header><p class="course-paper-kicker">Cours et exercices — version papier</p><h2 id="course-paper-title">Lire un graphique : image et antécédent</h2><p>Comment lire une image et un antécédent sur la courbe d’une fonction ?</p></header>
+        
+        <section class="course-paper-section">
+            <h3>Le cours en bref</h3>
+            
+<p>Le problème à résoudre : Comment lire une image et un antécédent sur la courbe d’une fonction ?</p>
+    
+
+<h4>Ce que tu vas apprendre</h4>
+    
+
+<ul><li>L’image de a par f est f(a) : on part de l’axe des abscisses, on monte à la courbe, on lit l’ordonnée.</li><li>Un antécédent de b : on part de b sur l’axe des ordonnées, on va à la courbe, on lit l’abscisse ; il peut y en avoir plusieurs.</li></ul>
+    
+
+<h4>Ce que tu vas savoir faire</h4>
+    
+
+<ul><li>Lire une image et des antécédents.</li><li>Utiliser le vocabulaire des fonctions.</li></ul>
+    
+
+<h4>Pourquoi cette séance ?</h4>
+    
+
+<p>En S19, tu as tracé une courbe croissante. Aujourd’hui : la température d’un tas de fumier qui composte, qui monte puis redescend.</p>
+    
+
+<p>Comment utiliser cette fiche : pour chaque partie, lis la méthode et l’exemple, complète les points clés, puis fais l’exercice. Réponds sur les lignes.</p>
+    
+
+
+            
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>I. Lire une image</h3>
+            
+<ul><li>Automatisme : lis f(20) dans le tableau.</li></ul>
+    
+
+<h4>Ce que tu vas faire</h4>
+    
+
+<p>Tu vas lire des images dans le tableau de la température d’un tas de fumier (document 1). On attend deux images.</p>
+    
+
+<h4>Méthode</h4>
+    
+
+<ol><li>Lis l’exemple : dans le document 1, l’image de 5.</li><li>On cherche 5 dans la ligne « Jours x ».</li><li>Juste en dessous, on lit 50 : f(5) = 50.</li><li>« L’image de 5 par f est 50 » : au jour 5, le tas est à 50 °C.</li><li>À toi : trouve l’image de 10 et l’image de 30.</li><li>Pourquoi « image » ? f transforme 10 jours en une température.</li></ol>
+    
+
+<h4>Exemple et documents</h4>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><caption>Document 1 — Température d’un tas de fumier en compostage (fictive)</caption><thead><tr><th scope="col">Jours x</th><th scope="col">0</th><th scope="col">5</th><th scope="col">10</th><th scope="col">15</th><th scope="col">20</th><th scope="col">30</th><th scope="col">40</th></tr></thead><tbody><tr><td>Température f(x) (°C)</td><td>15</td><td>50</td><td>65</td><td>60</td><td>52</td><td>40</td><td>30</td></tr></tbody></table></div>
+    
+
+<h4>Points clés à compléter</h4>
+    
+
+<ul><li>f(a) est l’…… de a par f.</li><li>Pour lire une image, on part de l’axe des …… .</li></ul>
+    
+
+<h4>Exercice 1 — Lire une image</h4>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Quelle est l’image de 10 par f ? (en °C)</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li><li><span>Quelle est l’image de 30 ? (en °C)</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>II. Les antécédents</h3>
+            
+<h4>Ce que tu vas faire</h4>
+    
+
+<p>Tu vas chercher sur la courbe les antécédents de 50 °C et de 70 °C. On attend les antécédents trouvés.</p>
+    
+
+<h4>Méthode</h4>
+    
+
+<ol><li>Lis l’exemple : quels sont les antécédents de 60 °C ?</li><li>Sur la courbe, trace la droite horizontale y = 60.</li><li>Elle coupe la courbe en deux points : on lit leurs abscisses, environ 8 jours et 15 jours.</li><li>60 a donc deux antécédents. Une valeur peut avoir 0, 1 ou plusieurs antécédents.</li><li>À toi : trace la courbe sur papier, puis cherche les jours où la température vaut 50 °C et ceux où elle vaut 70 °C.</li><li>Pourquoi deux antécédents ? La température passe par 50 °C en montant, puis en redescendant.</li></ol>
+    
+
+<h4>Le graphique : le faire, le lire, le comprendre</h4>
+    
+
+<figure class="cours-document"><img src="/tifsec-test-eleves/assets/images/graphiques/maths-2de-s20-compost.svg" alt="Courbe de la température du tas de fumier ; la droite orange marque 50 °C." loading="lazy" decoding="async"><figcaption>Courbe de la température du tas de fumier ; la droite orange marque 50 °C.</figcaption></figure>
+    
+
+<h4>Comment faire ce graphique</h4>
+    
+
+<ol><li>Sur une feuille (papier millimétré si possible), trace un repère orthogonal : deux axes qui se croisent à angle droit (90°). L’unité peut être différente d’un axe à l’autre.</li><li>Sur l’axe des abscisses (axe horizontal, x, qui se lit de gauche à droite), gradue régulièrement les jours x, de 0 à 40 (par exemple 1 cm pour 5 jours).</li><li>Sur l’axe des ordonnées (axe vertical, y, qui se lit de bas en haut), gradue régulièrement la température f(x), de 0 à 70 °C (par exemple 1 cm pour 10 °C).</li><li>Place chaque point (x ; f(x)) du document 1, en respectant les écarts entre les jours (de 20 à 30, il y a 10 jours).</li><li>Relie les points par une courbe régulière.</li><li>Écris le titre : « Température du tas de fumier ».</li></ol>
+    
+
+<h4>Comment le lire</h4>
+    
+
+<ul><li>Image de a : pars de a sur l’axe horizontal, monte à la courbe, lis l’ordonnée.</li><li>Antécédents de b : pars de b sur l’axe vertical, trace l’horizontale, repère tous les points où elle coupe la courbe, lis leurs abscisses.</li></ul>
+    
+
+<h4>Comment le comprendre</h4>
+    
+
+<ul><li>La droite y = 50 coupe la courbe deux fois : 50 °C a deux antécédents (en montant, puis en redescendant).</li><li>Le sommet de la courbe est le maximum de la fonction.</li></ul>
+    
+
+<h4>Points clés à compléter</h4>
+    
+
+<ul><li>x tel que f(x) = b est un …… de b.</li><li>Un nombre peut avoir plusieurs …… ou aucun.</li></ul>
+    
+
+<h4>Exercice 2 — Les antécédents</h4>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Quels sont les antécédents de 50 par f ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li><li><span>Combien d’antécédents a 70 °C ? (a) Aucun : la température ne dépasse pas 65 °C. ; (b) Un. ; (c) Deux.</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>III. Maximum et sens de variation</h3>
+            
+<h4>Ce que tu vas faire</h4>
+    
+
+<p>Tu vas décrire les variations de la température et donner son maximum. On attend les variations et le maximum.</p>
+    
+
+<h4>Méthode</h4>
+    
+
+<ol><li>Lis l’exemple : une température qui passe de 20 à 40 °C, puis redescend à 25 °C.</li><li>Elle est croissante tant qu’elle monte, décroissante quand elle descend.</li><li>Le maximum est la plus grande valeur, atteinte au sommet de la courbe.</li><li>À toi : repère le maximum de f et quand il est atteint, puis décris les variations.</li><li>Pourquoi ? Le compostage hygiénise le fumier quand la température reste haute : on suit la courbe pour décider quand retourner le tas.</li></ol>
+    
+
+<h4>Points clés à compléter</h4>
+    
+
+<ul><li>Une fonction qui monte est …… .</li><li>La plus grande valeur atteinte est le …… .</li></ul>
+    
+
+<h4>Exercice 3 — Maximum et sens de variation</h4>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Décris les variations de f et donne son maximum.</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Conclusion</h3>
+            
+<p>Avec ce que tu as fait dans les parties précédentes, réponds en quelques phrases complètes.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Réponds au problème du jour : comment lire une image et un antécédent sur la courbe d’une fonction ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Pour aller plus loin (facultatif)</h3>
+            
+<p>On retourne le tas quand la température descend sous 55 °C.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Vers quel jour ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>À retenir</h3>
+            
+<ul><li>Image : x → f(x).</li><li>Antécédent : y → x (0, 1 ou plusieurs).</li></ul>
+    
+
+
+            
+        </section>
+        
+        <section class="course-paper-section course-paper-break">
+            <h2 class="course-paper-part">Fiche d’exercices</h2><h3>Exercice 1 — Images</h3>
+            
+<div class="cours-table-wrapper"><table class="cours-table"><thead><tr><th scope="col">Jours</th><th scope="col">0</th><th scope="col">5</th><th scope="col">10</th><th scope="col">20</th><th scope="col">30</th></tr></thead><tbody><tr><td>T (°C)</td><td>15</td><td>45</td><td>60</td><td>50</td><td>35</td></tr></tbody></table></div>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Image de 10 ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li><li><span>Image de 30 ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Exercice 2 — Antécédents</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>Antécédents de 50 ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Exercice 3 — Variations</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>Décris les variations et donne le maximum.</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+    </article>
+</section>
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Lire une image</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas lire des images dans le tableau de la température d’un tas de fumier (document 1). On attend deux images.</p></div>
+        
+        
+
+        
+<ul><li>Automatisme : lis f(20) dans le tableau.</li></ul>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><caption>Document 1 — Température d’un tas de fumier en compostage (fictive)</caption><thead><tr><th scope="col">Jours x</th><th scope="col">0</th><th scope="col">5</th><th scope="col">10</th><th scope="col">15</th><th scope="col">20</th><th scope="col">30</th><th scope="col">40</th></tr></thead><tbody><tr><td>Température f(x) (°C)</td><td>15</td><td>50</td><td>65</td><td>60</td><td>52</td><td>40</td><td>30</td></tr></tbody></table></div>
+    
+
+<ol><li>Lis l’exemple : dans le document 1, l’image de 5.</li><li>On cherche 5 dans la ligne « Jours x ».</li><li>Juste en dessous, on lit 50 : f(5) = 50.</li><li>« L’image de 5 par f est 50 » : au jour 5, le tas est à 50 °C.</li><li>À toi : trouve l’image de 10 et l’image de 30.</li><li>Pourquoi « image » ? f transforme 10 jours en une température.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Point clé</th>
+                                
+                                <th>Mot(s) manquant(s)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    f(a) est l’…… de a par f.
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Lire une image — Mot(s) manquant(s) — f(a) est l’…… de a par f.">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Pour lire une image, on part de l’axe des …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Lire une image — Mot(s) manquant(s) — Pour lire une image, on part de l’axe des …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>f(a) : comment appelle-t-on ce nombre ? Pour le lire, part-on de l’axe horizontal ou vertical ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a01-q02-label">Question 2 — Quelle est l’image de 10 par f ?</h3>
+            
+
+            
+            
+                <input type="text" inputmode="decimal" id="a01-q02" data-answer-id="a01_q02" data-required="true" aria-labelledby="a01-q02-label"><p>Unité : °C</p>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Pars de 10 sur l’axe horizontal, monte jusqu’à la courbe, lis la valeur sur l’axe vertical.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a01-q03-label">Question 3 — Quelle est l’image de 30 ?</h3>
+            
+
+            
+            
+                <input type="text" inputmode="decimal" id="a01-q03" data-answer-id="a01_q03" data-required="true" aria-labelledby="a01-q03-label"><p>Unité : °C</p>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Même méthode en partant de 30 sur l’axe horizontal.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Les antécédents</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais lire une image. Fais le chemin inverse.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas chercher sur la courbe les antécédents de 50 °C et de 70 °C. On attend les antécédents trouvés.</p></div>
+        
+        
+
+        
+<figure class="cours-document"><img src="/tifsec-test-eleves/assets/images/graphiques/maths-2de-s20-compost.svg" alt="Courbe de la température du tas de fumier ; la droite orange marque 50 °C." loading="lazy" decoding="async"><figcaption>Courbe de la température du tas de fumier ; la droite orange marque 50 °C.</figcaption></figure>
+    
+
+<h4>Comment faire ce graphique</h4>
+    
+
+<ol><li>Sur une feuille (papier millimétré si possible), trace un repère orthogonal : deux axes qui se croisent à angle droit (90°). L’unité peut être différente d’un axe à l’autre.</li><li>Sur l’axe des abscisses (axe horizontal, x, qui se lit de gauche à droite), gradue régulièrement les jours x, de 0 à 40 (par exemple 1 cm pour 5 jours).</li><li>Sur l’axe des ordonnées (axe vertical, y, qui se lit de bas en haut), gradue régulièrement la température f(x), de 0 à 70 °C (par exemple 1 cm pour 10 °C).</li><li>Place chaque point (x ; f(x)) du document 1, en respectant les écarts entre les jours (de 20 à 30, il y a 10 jours).</li><li>Relie les points par une courbe régulière.</li><li>Écris le titre : « Température du tas de fumier ».</li></ol>
+    
+
+<h4>Comment le lire</h4>
+    
+
+<ul><li>Image de a : pars de a sur l’axe horizontal, monte à la courbe, lis l’ordonnée.</li><li>Antécédents de b : pars de b sur l’axe vertical, trace l’horizontale, repère tous les points où elle coupe la courbe, lis leurs abscisses.</li></ul>
+    
+
+<h4>Comment le comprendre</h4>
+    
+
+<ul><li>La droite y = 50 coupe la courbe deux fois : 50 °C a deux antécédents (en montant, puis en redescendant).</li><li>Le sommet de la courbe est le maximum de la fonction.</li></ul>
+    
+
+<ol><li>Lis l’exemple : quels sont les antécédents de 60 °C ?</li><li>Sur la courbe, trace la droite horizontale y = 60.</li><li>Elle coupe la courbe en deux points : on lit leurs abscisses, environ 8 jours et 15 jours.</li><li>60 a donc deux antécédents. Une valeur peut avoir 0, 1 ou plusieurs antécédents.</li><li>À toi : trace la courbe sur papier, puis cherche les jours où la température vaut 50 °C et ceux où elle vaut 70 °C.</li><li>Pourquoi deux antécédents ? La température passe par 50 °C en montant, puis en redescendant.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Point clé</th>
+                                
+                                <th>Mot(s) manquant(s)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    x tel que f(x) = b est un …… de b.
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Les antécédents — Mot(s) manquant(s) — x tel que f(x) = b est un …… de b.">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Un nombre peut avoir plusieurs …… ou aucun.
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Les antécédents — Mot(s) manquant(s) — Un nombre peut avoir plusieurs …… ou aucun.">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>On cherche les x qui donnent la valeur b : comment les appelle-t-on ? Une ligne horizontale peut-elle couper la courbe plusieurs fois ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a02-q02-label">Question 2 — Quels sont les antécédents de 50 par f ?</h3>
+            
+
+            
+            
+                <textarea id="a02-q02" data-answer-id="a02_q02" data-required="true" aria-labelledby="a02-q02-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Trace une ligne horizontale à 50 sur l’axe vertical. Pour chaque point où elle coupe la courbe, descends lire x.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a02-q03-label">Question 3 — Combien d’antécédents a 70 °C ?</h3>
+            
+
+            
+            
+                <select id="a02-q03" data-answer-id="a02_q03" data-required="true" aria-labelledby="a02-q03-label"><option value="">Choisis une réponse</option><option value="a">Aucun : la température ne dépasse pas 65 °C.</option><option value="b">Un.</option><option value="c">Deux.</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Trace la ligne horizontale à 70 °C : combien de fois coupe-t-elle la courbe ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Maximum et sens de variation</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais lire dans les deux sens. Résume la courbe.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas décrire les variations de la température et donner son maximum. On attend les variations et le maximum.</p></div>
+        
+        
+
+        
+<ol><li>Lis l’exemple : une température qui passe de 20 à 40 °C, puis redescend à 25 °C.</li><li>Elle est croissante tant qu’elle monte, décroissante quand elle descend.</li><li>Le maximum est la plus grande valeur, atteinte au sommet de la courbe.</li><li>À toi : repère le maximum de f et quand il est atteint, puis décris les variations.</li><li>Pourquoi ? Le compostage hygiénise le fumier quand la température reste haute : on suit la courbe pour décider quand retourner le tas.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Point clé</th>
+                                
+                                <th>Mot(s) manquant(s)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Une fonction qui monte est …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Maximum et sens de variation — Mot(s) manquant(s) — Une fonction qui monte est …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    La plus grande valeur atteinte est le …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Maximum et sens de variation — Mot(s) manquant(s) — La plus grande valeur atteinte est le …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Quand la courbe monte, comment dit-on que la fonction est ? Et la plus haute valeur s’appelle… ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a03-q02-label">Question 2 — Décris les variations de f et donne son maximum.</h3>
+            
+
+            
+            
+                <textarea id="a03-q02" data-answer-id="a03_q02" data-required="true" aria-labelledby="a03-q02-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Repère le point le plus haut : jusqu’où la courbe monte-t-elle, à partir de quand descend-elle ? Donne le maximum avec son unité.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Pour aller plus loin</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<p>On retourne le tas quand la température descend sous 55 °C.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — Vers quel jour ?</h3>
+            
+
+            
+            
+                <textarea id="a04-q01" data-answer-id="a04_q01" data-required="false" aria-labelledby="a04-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Trace la ligne horizontale à 55 °C et regarde où elle coupe la partie qui descend de la courbe.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#a05">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a05" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Conclusion</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Conclusion de ton travail</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais lire une courbe. Il reste à répondre au problème de départ.</p>
+        
+        
+        
+
+        
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a05-q01-label">Question 1 — Réponds au problème du jour : comment lire une image et un antécédent sur la courbe d’une fonction ?</h3>
+            
+
+            
+            
+                <textarea id="a05-q01" data-answer-id="a05_q01" data-required="true" aria-labelledby="a05-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Dis comment lire une image, un antécédent, les variations et le maximum.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a04">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>Image : x → f(x).</li><li>Antécédent : y → x (0, 1 ou plusieurs).</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/2nde-pro/2nde-pro-da-EG4.pdf" target="_blank" rel="noopener noreferrer">ChloroFil — Seconde professionnelle, document d’accompagnement du module EG4</a></p>
+
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a05">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-paper-version.js?v=20261022-paper-tab-1"></script>
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>

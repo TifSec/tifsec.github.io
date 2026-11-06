@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261104-contrast-4">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="college" data-matiere="techno" data-classe="5e" data-seance="S23" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">Transmettre une rotation</a></li><li><a href="#a02">Plus vite ou plus fort ?</a></li><li><a href="#a03">Transformer un mouvement</a></li><li><a href="#a04">Pour aller plus loin — facultatif</a></li><li><a href="#a05">Conclusion de ton travail</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">Technologie · 5e · S23</span></div>
+    <h1>Séance 23 : Comment le mouvement passe-t-il du moteur à la pièce qui bouge ?</h1>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thème du programme</h2>
+        <p>Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>Comment le lecteur CD transmet-il et transforme-t-il le mouvement de ses moteurs ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétence travaillée</h2>
+        <ul><li>Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>Un mécanisme transmet un mouvement (poulies et courroie, engrenage, pignons et chaîne) ou le transforme (pignon et crémaillère, vis et écrou, treuil).</li>
+            
+            <li>Quand une petite poulie entraîne une grande poulie, la grande tourne moins vite mais avec plus de force : avec 10 mm et 30 mm de diamètre, la grande fait 1 tour quand la petite en fait 3.</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Associer une solution technique (un mécanisme) à une fonction technique.</li>
+            
+            <li>Reconnaître un mouvement de rotation et de translation.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>En séance 20, tu as découvert qu’un vieux lecteur CD peut avoir une seconde vie. Aujourd’hui, tu l’ouvres pour regarder ses mécanismes.</p><p>Un lecteur CD a deux moteurs : l’un fait sortir le tiroir, l’autre fait tourner le disque. Comment leur mouvement arrive-t-il jusqu’à la pièce qui bouge ?</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Transmettre une rotation</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas observer un lecteur CD ouvert et retrouver, avec les documents 1 et 2, le mécanisme de chaque liaison entre un moteur et la pièce qu’il fait bouger. On attend le mécanisme de chaque liaison et le sens de rotation dans un engrenage.</p></div>
+        
+        
+
+        
+<div class="cours-table-wrapper"><table class="cours-table"><caption>Document 1 — Ce que l’on observe dans un lecteur CD ouvert (débranché)</caption><thead><tr><th scope="col">Pièce du lecteur CD</th><th scope="col">Ce que l’on observe</th></tr></thead><tbody><tr><td>Moteur du tiroir</td><td>petit moteur électrique, avec une petite poulie sur son axe</td></tr><tr><td>Courroie</td><td>élastique qui relie la petite poulie du moteur à une grande poulie</td></tr><tr><td>Roues dentées</td><td>la grande poulie porte une petite roue dentée qui fait tourner une autre roue dentée</td></tr><tr><td>Crémaillère</td><td>barre dentée fixée sous le tiroir : la dernière roue dentée la pousse</td></tr><tr><td>Moteur du disque</td><td>le disque est posé directement sur l’axe de son moteur</td></tr></tbody></table></div>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><caption>Document 2 — Mécanismes qui transmettent une rotation</caption><thead><tr><th scope="col">Mécanisme</th><th scope="col">Ce qu’il fait</th></tr></thead><tbody><tr><td>Poulies et courroie</td><td>transmet une rotation à distance ; les deux poulies tournent dans le même sens</td></tr><tr><td>Engrenage (roues dentées en contact)</td><td>transmet une rotation ; les deux roues tournent en sens inverse</td></tr><tr><td>Pignons et chaîne</td><td>transmet une rotation à distance, sans glisser (comme sur un vélo)</td></tr><tr><td>Entraînement direct</td><td>la pièce est fixée sur l’axe du moteur : pas de mécanisme</td></tr></tbody></table></div>
+    
+
+<ol><li>Au poste maquette, ouvre et ferme le tiroir à la main (lecteur débranché, capot retiré par le professeur) et suis le mouvement depuis le moteur.</li><li>Lis le document 1 (ce que l’on observe) et le document 2 (les mécanismes).</li><li>Pour chaque liaison du tableau, cherche le mécanisme du document 2 qui lui correspond.</li></ol>
+    
+
+<p>Pourquoi un mécanisme ? Le moteur n’est presque jamais placé juste sur la pièce qui bouge : il faut transporter son mouvement, parfois en changeant sa vitesse ou son sens.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — D’après les documents 1 et 2 et ton observation, écris le mécanisme de chaque liaison du lecteur CD.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Liaison dans le lecteur CD</th>
+                                
+                                <th>Mécanisme</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Petite poulie du moteur → grande poulie
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Transmettre une rotation — Mécanisme — Petite poulie du moteur → grande poulie">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Petite roue dentée → roue dentée suivante
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Transmettre une rotation — Mécanisme — Petite roue dentée → roue dentée suivante">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Moteur du disque → disque
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r2_c1" data-required="true" data-row="2" data-col="1" aria-label="Transmettre une rotation — Mécanisme — Moteur du disque → disque">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Suis le mouvement dans le lecteur ouvert : entre deux poulies, il y a un élastique ; entre deux roues dentées, les dents se touchent ; pour le disque, regarde s’il y a une pièce entre lui et son moteur. Le document 2 donne les noms.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a01-q02-label">Question 2 — Dans le lecteur CD, deux roues dentées sont en contact. La première tourne dans le sens des aiguilles d’une montre. Comment tourne la deuxième ?</h3>
+            
+
+            
+            
+                <select id="a01-q02" data-answer-id="a01_q02" data-required="true" aria-labelledby="a01-q02-label"><option value="">Choisis une réponse</option><option value="a">Dans le sens inverse.</option><option value="b">Dans le même sens.</option><option value="c">Elle ne tourne pas.</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Tourne doucement le tiroir à la main et regarde deux roues dentées qui se touchent : tournent-elles dans le même sens ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Plus vite ou plus fort ?</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais reconnaître un mécanisme. Regarde maintenant ce qu’il change à la vitesse.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas calculer, avec l’exemple des poulies, combien de tours fait le moteur du tiroir pour un tour de la grande poulie, puis le vérifier sur le lecteur CD de la classe. On attend un nombre de tours et l’intérêt de ce choix du fabricant.</p></div>
+        
+        
+
+        
+<ol><li>Lis l’exemple : une poulie de 10 mm de diamètre entraîne une poulie de 30 mm.</li><li>La grande poulie est 30 ÷ 10 = 3 fois plus grande : la petite doit faire 3 tours pour que la grande en fasse 1.</li><li>Fais le même calcul avec les poulies du lecteur CD de la question.</li><li>Au poste maquette, mesure à la règle le diamètre des deux poulies du lecteur de la classe : trouves-tu le même rapport ?</li></ol>
+    
+
+<p>Pourquoi une petite poulie sur le moteur ? Le petit moteur tourne très vite mais avec peu de force ; la grande poulie ralentit le mouvement et donne plus de force pour pousser le tiroir.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — Dans un lecteur CD, la poulie du moteur a un diamètre de 6 mm et la grande poulie un diamètre de 24 mm. Combien de tours fait le moteur pour 1 tour de la grande poulie ?</h3>
+            
+
+            
+            
+                <input type="text" inputmode="decimal" id="a02-q01" data-answer-id="a02_q01" data-required="true" aria-labelledby="a02-q01-label"><p>Unité : tours</p>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Fais comme dans l’exemple 30 ÷ 10 : divise le diamètre de la grande poulie par celui de la petite. Le résultat dit combien de tours fait le moteur.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a02-q02-label">Question 2 — Pourquoi le fabricant a-t-il mis une petite poulie sur le moteur et une grande poulie ensuite ?</h3>
+            
+
+            
+            
+                <select id="a02-q02" data-answer-id="a02_q02" data-required="true" aria-labelledby="a02-q02-label"><option value="">Choisis une réponse</option><option value="a">Pour que le tiroir sorte lentement, avec assez de force.</option><option value="b">Pour que le tiroir sorte le plus vite possible.</option><option value="c">Pour que le lecteur soit plus joli.</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Le petit moteur tourne très vite. Après la grande poulie, le mouvement est-il plus lent ou plus rapide ? Et la force pour pousser le tiroir ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Transformer un mouvement</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Le mouvement peut aussi changer de nature.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas reconnaître, sur le lecteur CD, les pièces qui tournent et celles qui avancent en ligne droite, puis expliquer comment sort le tiroir. On attend le mouvement de chaque pièce et une explication pour le tiroir.</p></div>
+        
+        
+
+        
+<div class="cours-table-wrapper"><table class="cours-table"><caption>Document 3 — Transformer un mouvement</caption><thead><tr><th scope="col">Mécanisme</th><th scope="col">Mouvement d’entrée</th><th scope="col">Mouvement de sortie</th><th scope="col">Exemple</th></tr></thead><tbody><tr><td>Pignon et crémaillère</td><td>rotation</td><td>translation (ligne droite)</td><td>tiroir du lecteur CD</td></tr><tr><td>Vis et écrou</td><td>rotation</td><td>translation</td><td>chariot du laser qui avance sous le disque</td></tr><tr><td>Poulie et câble (treuil)</td><td>rotation</td><td>translation</td><td>cabine du monte-charge</td></tr></tbody></table></div>
+    
+
+<ol><li>Lis le document 3.</li><li>Au poste maquette, ouvre et ferme le tiroir à la main : regarde la dernière roue dentée et la crémaillère sous le tiroir.</li><li>Repère aussi le chariot du laser sous le disque : comment avance-t-il ?</li><li>Rotation = tourner autour d’un axe ; translation = avancer en ligne droite.</li></ol>
+    
+
+<p>Pourquoi transformer ? Les moteurs tournent, mais le tiroir et le chariot du laser doivent avancer en ligne droite.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — D’après le document 3 et ton observation, écris le mouvement de chaque pièce du lecteur CD (rotation ou translation).</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Pièce du lecteur CD</th>
+                                
+                                <th>Mouvement</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Tiroir
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Transformer un mouvement — Mouvement — Tiroir">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Disque
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Transformer un mouvement — Mouvement — Disque">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Chariot du laser
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q01_r2_c1" data-required="true" data-row="2" data-col="1" aria-label="Transformer un mouvement — Mouvement — Chariot du laser">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Pour chaque pièce, demande-toi : tourne-t-elle sur elle-même, ou avance-t-elle en ligne droite ? Le document 3 t’aide pour le chariot du laser.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a03-q02-label">Question 2 — Explique comment le tiroir du lecteur CD transforme la rotation de son moteur en sortie du tiroir. Utilise « car ».</h3>
+            
+
+            
+            
+                <textarea id="a03-q02" data-answer-id="a03_q02" data-required="true" aria-labelledby="a03-q02-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Regarde sous le tiroir : la dernière roue dentée tourne, et ses dents poussent une barre dentée. À quoi est fixée cette barre ? Explique avec « car ».</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Pour aller plus loin</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<p>Dans le tiroir, trois roues dentées se suivent : A entraîne B, qui entraîne C.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — Si A tourne dans le sens des aiguilles d’une montre, dans quel sens tourne C ?</h3>
+            
+
+            
+            
+                <textarea id="a04-q01" data-answer-id="a04_q01" data-required="false" aria-labelledby="a04-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Applique la règle de la mission 1 deux fois : A fait tourner B dans un sens, puis B fait tourner C. Dessine trois cercles et des flèches si besoin.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#a05">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a05" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Conclusion</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Conclusion de ton travail</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Il reste à répondre au problème de départ.</p>
+        
+        
+        
+
+        
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a05-q01-label">Question 1 — Réponds au problème du jour : comment le lecteur CD transmet-il et transforme-t-il le mouvement de ses moteurs ? Donne deux exemples de mécanismes.</h3>
+            
+
+            
+            
+                <textarea id="a05-q01" data-answer-id="a05_q01" data-required="true" aria-labelledby="a05-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Deux idées : transmettre une rotation (cite un mécanisme du lecteur) et la transformer en translation (le tiroir ou le chariot du laser).</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a04">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>Transmettre une rotation : poulies et courroie (même sens), engrenage (sens inverse), pignons et chaîne.</li><li>Transformer : pignon et crémaillère, vis et écrou, poulie et câble → translation.</li><li>Petite poulie qui entraîne une grande : moins vite, plus de force.</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://www.education.gouv.fr/media/160767/download" target="_blank" rel="noopener noreferrer">Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)</a></p>
+
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+<section class="course-pix" id="course-pix" aria-labelledby="course-pix-title" data-etablissement="college" data-matiere="techno" data-classe="5e" data-seance="S23">
+    <h2 id="course-pix-title">Aujourd’hui, c’était une séance Pix ?</h2>
+    <p>Si ton professeur t’a fait travailler sur Pix à la place du cours, ta séance de technologie t’attend ici : tu la reprendras la prochaine fois, rien n’est perdu. Quand tu as fini sur Pix, clique sur le bouton pour le signaler.</p>
+    <details><summary>Que faire pendant une séance Pix ?</summary>
+        <ol>
+            <li>Ouvre Pix depuis l’ENT (ou sur pix.fr, « Se connecter »).</li>
+            <li>Saisis le code de campagne donné par ton professeur et vérifie ton prénom et ton nom.</li>
+            <li>Travaille seul et sérieusement : Pix sert à savoir où tu en es.</li>
+            <li>Ne recopie jamais ton mot de passe ni les réponses de Pix sur ce site.</li>
+        </ol>
+        <p><a href="https://pix.fr/" target="_blank" rel="noopener noreferrer">Ouvrir Pix</a></p>
+    </details>
+    <button type="button" id="course-pix-declare" disabled>J’ai fait ma séance Pix</button>
+    <p id="course-pix-status" role="status" aria-live="polite"></p>
+</section>
+
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a05">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/pix-declaration.js"></script>
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>

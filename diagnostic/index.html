@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Test du réseau</title>
+<style>
+body { font-family: system-ui, sans-serif; max-width: 760px; margin: 24px auto; padding: 0 16px; background: #f6f7f9; color: #1d2a36; }
+h1 { font-size: 1.4rem; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+td, th { border: 1px solid #ccd3db; padding: 8px; text-align: left; vertical-align: top; font-size: .95rem; }
+.ok { color: #126b3a; font-weight: 700; } .ko { color: #a3261d; font-weight: 700; }
+button { padding: 10px 16px; font-size: 1rem; margin: 8px 0 16px; cursor: pointer; }
+pre { white-space: pre-wrap; background: #fff; border: 1px solid #ccd3db; padding: 10px; font-size: .85rem; }
+</style>
+</head>
+<body>
+<h1>Test du réseau</h1>
+<p>Cette page vérifie si le réseau de l’établissement laisse passer les échanges avec la base de données du site. Elle n’envoie aucune donnée personnelle.</p>
+<button id="go" type="button">Lancer le test</button>
+<table><thead><tr><th>Test</th><th>Résultat</th><th>Détail</th></tr></thead><tbody id="res"></tbody></table>
+<p>Fais une capture d’écran de ce tableau et du texte ci-dessous.</p>
+<pre id="raw"></pre>
+<script>
+const BASE = "https://evbfflwfyiitrkgzjhwt.supabase.co";
+const KEY = "sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6";
+const headers = { apikey: KEY, Authorization: 'Bearer ' + KEY, 'Content-Type': 'application/json' };
+const tests = [
+  ['Service de connexion (contrôle)', 'GET', '/auth/v1/health', null],
+  ['Lecture d’une table (comme le profil)', 'GET', '/rest/v1/profiles?select=user_id&limit=1', null],
+  ['Fonction, envoi POST (une valeur)', 'POST', '/rest/v1/rpc/diag_ping', '{}'],
+  ['Fonction, envoi POST (une liste)', 'POST', '/rest/v1/rpc/diag_ping_set', '{}'],
+  ['Fonction, lecture GET', 'GET', '/rest/v1/rpc/diag_ping', null]
+];
+document.getElementById('go').addEventListener('click', async () => {
+  const tbody = document.getElementById('res'); const raw = document.getElementById('raw');
+  tbody.replaceChildren(); raw.textContent = 'Base : ' + BASE + '\nNavigateur : ' + navigator.userAgent + '\nHeure : ' + new Date().toISOString() + '\n';
+  for (const [label, method, path, body] of tests) {
+    const tr = tbody.insertRow(); tr.insertCell().textContent = label;
+    const cell = tr.insertCell(); const detail = tr.insertCell();
+    try {
+      const r = await fetch(BASE + path + (path.includes('?') ? '&' : '?') + 't=' + Date.now(), { method, headers, body, cache: 'no-store' });
+      const ok = r.status < 300;
+      cell.textContent = ok ? 'Passe' : 'Refusé (' + r.status + ')'; cell.className = ok ? 'ok' : 'ko';
+      detail.textContent = 'Code ' + r.status + (r.headers.get('content-range') ? ' · Content-Range ' + r.headers.get('content-range') : '');
+      raw.textContent += label + ' : ' + r.status + ' ' + (r.headers.get('content-range') || '-') + '\n';
+    } catch (e) {
+      cell.textContent = 'Bloqué par le réseau'; cell.className = 'ko';
+      detail.textContent = String(e && e.message || e);
+      raw.textContent += label + ' : BLOQUÉ ' + String(e && e.message || e) + '\n';
+    }
+  }
+});
+</script>
+</body>
+</html>

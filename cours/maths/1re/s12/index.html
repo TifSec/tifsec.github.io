@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-paper-version.css?v=20261104-maths-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261104-contrast-4">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="mfr" data-matiere="maths" data-classe="1re" data-seance="S12" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-paper-toggle">Version papier</button><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">Lire le tableau</a></li><li><a href="#a02">Fréquences conditionnelles</a></li><li><a href="#a03">Décider</a></li><li><a href="#a04">Pour aller plus loin — facultatif</a></li><li><a href="#a05">Conclusion de ton travail</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">Mathématiques · Bac Pro 1 · S12</span></div>
+    <h1>Séance 12 : Tableau croisé : discipline et âge des cavaliers</h1>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thèmes du programme</h2>
+        <ul><li>MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre</li><li>MG1, C1.3 — Exploiter la modélisation d’un phénomène</li></ul>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>Comment lire et exploiter un tableau croisé d’effectifs ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétences travaillées</h2>
+        <ul><li>MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre</li><li>MG1, C1.3 — Exploiter la modélisation d’un phénomène</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>Un tableau croisé répartit une population selon deux caractères.</li>
+            
+            <li>Fréquence conditionnelle : effectif d’une case ÷ total de sa ligne (ou de sa colonne).</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Calculer des fréquences marginales et conditionnelles.</li>
+            
+            <li>Interpréter un tableau croisé.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>Un centre équestre compte 200 licenciés.</p><p>Il veut savoir quelles disciplines attirent quelles tranches d’âge.</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+<section id="course-paper-version" class="course-paper-version" hidden aria-labelledby="course-paper-title">
+    <article class="course-paper-sheet">
+        <header><p class="course-paper-kicker">Cours et exercices — version papier</p><h2 id="course-paper-title">Tableau croisé : discipline et âge des cavaliers</h2><p>Comment lire et exploiter un tableau croisé d’effectifs ?</p></header>
+        
+        <section class="course-paper-section">
+            <h3>Le cours en bref</h3>
+            
+<p>Le problème à résoudre : Comment lire et exploiter un tableau croisé d’effectifs ?</p>
+    
+
+<h4>Ce que tu vas apprendre</h4>
+    
+
+<ul><li>Un tableau croisé répartit une population selon deux caractères.</li><li>Fréquence conditionnelle : effectif d’une case ÷ total de sa ligne (ou de sa colonne).</li></ul>
+    
+
+<h4>Ce que tu vas savoir faire</h4>
+    
+
+<ul><li>Calculer des fréquences marginales et conditionnelles.</li><li>Interpréter un tableau croisé.</li></ul>
+    
+
+<h4>Pourquoi cette séance ?</h4>
+    
+
+<p>Un centre équestre compte 200 licenciés. Il veut savoir quelles disciplines attirent quelles tranches d’âge.</p>
+    
+
+<p>Comment utiliser cette fiche : pour chaque partie, lis la méthode et l’exemple, complète les points clés, puis fais l’exercice. Réponds sur les lignes.</p>
+    
+
+
+            
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>I. Lire le tableau</h3>
+            
+<ul><li>Automatisme : 50 ÷ 120 en % (arrondi).</li></ul>
+    
+
+<h4>Ce que tu vas faire</h4>
+    
+
+<p>Tu vas lire le tableau croisé des licenciés par âge et discipline (document 1). On attend un effectif et une fréquence.</p>
+    
+
+<h4>Méthode</h4>
+    
+
+<ol><li>Lis l’exemple : dans le document 1, la case à l’intersection de « 18 ans et plus » et « Loisir » contient 40.</li><li>40 adultes pratiquent le loisir.</li><li>Fréquence des adultes : total de la ligne ÷ total général = 80 ÷ 200 = 0,4 = 40 %.</li><li>À toi : lis le tableau croisé (document 1) et réponds.</li><li>Pourquoi croiser ? On voit ensemble deux informations.</li></ol>
+    
+
+<h4>Exemple et documents</h4>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><caption>Document 1 — Licenciés par âge et discipline (fictif)</caption><thead><tr><th scope="col"></th><th scope="col">CSO</th><th scope="col">Dressage</th><th scope="col">Loisir</th><th scope="col">Total</th></tr></thead><tbody><tr><td>Moins de 18 ans</td><td>50</td><td>20</td><td>50</td><td>120</td></tr><tr><td>18 ans et plus</td><td>20</td><td>20</td><td>40</td><td>80</td></tr><tr><td>Total</td><td>70</td><td>40</td><td>90</td><td>200</td></tr></tbody></table></div>
+    
+
+<h4>Points clés à compléter</h4>
+    
+
+<ul><li>Un tableau croisé répartit une population selon …… caractères.</li><li>Fréquence = effectif ÷ effectif …… .</li></ul>
+    
+
+<h4>Exercice 1 — Lire le tableau</h4>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Combien de cavaliers de moins de 18 ans pratiquent le CSO ? (en cavaliers)</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li><li><span>Quelle fréquence des licenciés a moins de 18 ans ? (en %)</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>II. Fréquences conditionnelles</h3>
+            
+<h4>Ce que tu vas faire</h4>
+    
+
+<p>Tu vas calculer deux fréquences conditionnelles à partir du tableau croisé. On attend les deux pourcentages.</p>
+    
+
+<h4>Méthode</h4>
+    
+
+<ol><li>Lis l’exemple : parmi les adultes, part en loisir ?</li><li>« Parmi les adultes » : le total de référence est 80 (total de la ligne).</li><li>40 ÷ 80 = 0,5 = 50 %.</li><li>Parmi les cavaliers de loisir, part des adultes : référence 90 (total de la colonne) : 40 ÷ 90 ≈ 44,4 %.</li><li>À toi : calcule les deux parts demandées pour le CSO.</li><li>Pourquoi « parmi » ? Le total de référence change : ce n’est pas la même question.</li></ol>
+    
+
+<h4>Points clés à compléter</h4>
+    
+
+<ul><li>« Parmi » change le total de …… .</li><li>Fréquence conditionnelle = case ÷ total de la …… .</li></ul>
+    
+
+<h4>Exercice 2 — Fréquences conditionnelles</h4>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Parmi les moins de 18 ans, part en CSO (au dixième) ? (en %)</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li><li><span>Parmi les cavaliers de CSO, part des moins de 18 ans (au dixième) ? (en %)</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>III. Décider</h3>
+            
+<h4>Ce que tu vas faire</h4>
+    
+
+<p>Tu vas utiliser le tableau croisé pour conseiller le centre sur un cours de dressage adulte. On attend un calcul et un conseil.</p>
+    
+
+<h4>Méthode</h4>
+    
+
+<ol><li>Lis l’exemple : un club veut ouvrir un cours de loisir pour adultes ; 50 % des adultes font déjà du loisir.</li><li>On compare avec les jeunes : 50 ÷ 120 ≈ 41,7 %.</li><li>La demande est plus forte chez les adultes : les données encouragent le projet.</li><li>À toi : le centre veut lancer un cours de dressage pour adultes. Les données l’y encouragent-elles ?</li><li>Pourquoi les données ? Un nouveau cours coûte un moniteur et des chevaux.</li></ol>
+    
+
+<h4>Points clés à compléter</h4>
+    
+
+<ul><li>On utilise les fréquences pour …… .</li><li>20 ÷ 80 = …… %.</li></ul>
+    
+
+<h4>Exercice 3 — Décider</h4>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Que montrent les données sur le dressage chez les adultes ? Conseille le centre.</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Conclusion</h3>
+            
+<p>Avec ce que tu as fait dans les parties précédentes, réponds en quelques phrases complètes.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Réponds au problème du jour : comment lire et exploiter un tableau croisé d’effectifs ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Pour aller plus loin (facultatif)</h3>
+            
+<p>On tire un licencié au hasard.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Probabilité qu’il fasse du loisir ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>À retenir</h3>
+            
+<ul><li>Conditionnelle : case ÷ total de la ligne (ou colonne).</li><li>« Parmi » change la référence.</li></ul>
+    
+
+
+            
+        </section>
+        
+        <section class="course-paper-section course-paper-break">
+            <h2 class="course-paper-part">Fiche d’exercices</h2><h3>Exercice 1 — Tableau croisé</h3>
+            
+<div class="cours-table-wrapper"><table class="cours-table"><thead><tr><th scope="col"></th><th scope="col">Club</th><th scope="col">Compétition</th><th scope="col">Total</th></tr></thead><tbody><tr><td>Poney</td><td>40</td><td>10</td><td>50</td></tr><tr><td>Cheval</td><td>20</td><td>30</td><td>50</td></tr><tr><td>Total</td><td>60</td><td>40</td><td>100</td></tr></tbody></table></div>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Part des cavaliers en compétition ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li><li><span>Parmi les cavaliers à poney, part en compétition ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Exercice 2 — Parmi</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>Parmi les compétiteurs, part à cheval ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Exercice 3 — Décider</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>Le club doit-il proposer plus de compétition à poney ? Argumente.</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+    </article>
+</section>
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Lire le tableau</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas lire le tableau croisé des licenciés par âge et discipline (document 1). On attend un effectif et une fréquence.</p></div>
+        
+        
+
+        
+<ul><li>Automatisme : 50 ÷ 120 en % (arrondi).</li></ul>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><caption>Document 1 — Licenciés par âge et discipline (fictif)</caption><thead><tr><th scope="col"></th><th scope="col">CSO</th><th scope="col">Dressage</th><th scope="col">Loisir</th><th scope="col">Total</th></tr></thead><tbody><tr><td>Moins de 18 ans</td><td>50</td><td>20</td><td>50</td><td>120</td></tr><tr><td>18 ans et plus</td><td>20</td><td>20</td><td>40</td><td>80</td></tr><tr><td>Total</td><td>70</td><td>40</td><td>90</td><td>200</td></tr></tbody></table></div>
+    
+
+<ol><li>Lis l’exemple : dans le document 1, la case à l’intersection de « 18 ans et plus » et « Loisir » contient 40.</li><li>40 adultes pratiquent le loisir.</li><li>Fréquence des adultes : total de la ligne ÷ total général = 80 ÷ 200 = 0,4 = 40 %.</li><li>À toi : lis le tableau croisé (document 1) et réponds.</li><li>Pourquoi croiser ? On voit ensemble deux informations.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Point clé</th>
+                                
+                                <th>Mot(s) manquant(s)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Un tableau croisé répartit une population selon …… caractères.
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Lire le tableau — Mot(s) manquant(s) — Un tableau croisé répartit une population selon …… caractères.">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Fréquence = effectif ÷ effectif …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Lire le tableau — Mot(s) manquant(s) — Fréquence = effectif ÷ effectif …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Un tableau croisé classe les cavaliers selon combien de caractères (ici l’âge et la discipline) ? Et une fréquence se divise par l’effectif… ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a01-q02-label">Question 2 — Combien de cavaliers de moins de 18 ans pratiquent le CSO ?</h3>
+            
+
+            
+            
+                <input type="text" inputmode="decimal" id="a01-q02" data-answer-id="a01_q02" data-required="true" aria-labelledby="a01-q02-label"><p>Unité : cavaliers</p>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Cherche dans le document 1 la case au croisement de la ligne « Moins de 18 ans » et de la colonne « CSO ».</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a01-q03-label">Question 3 — Quelle fréquence des licenciés a moins de 18 ans ?</h3>
+            
+
+            
+            
+                <input type="text" inputmode="decimal" id="a01-q03" data-answer-id="a01_q03" data-required="true" aria-labelledby="a01-q03-label"><p>Unité : %</p>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Total de la ligne « Moins de 18 ans » ÷ total général.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Fréquences conditionnelles</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais lire le tableau. Calcule « parmi ».</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas calculer deux fréquences conditionnelles à partir du tableau croisé. On attend les deux pourcentages.</p></div>
+        
+        
+
+        
+<ol><li>Lis l’exemple : parmi les adultes, part en loisir ?</li><li>« Parmi les adultes » : le total de référence est 80 (total de la ligne).</li><li>40 ÷ 80 = 0,5 = 50 %.</li><li>Parmi les cavaliers de loisir, part des adultes : référence 90 (total de la colonne) : 40 ÷ 90 ≈ 44,4 %.</li><li>À toi : calcule les deux parts demandées pour le CSO.</li><li>Pourquoi « parmi » ? Le total de référence change : ce n’est pas la même question.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Point clé</th>
+                                
+                                <th>Mot(s) manquant(s)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    « Parmi » change le total de …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Fréquences conditionnelles — Mot(s) manquant(s) — « Parmi » change le total de …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Fréquence conditionnelle = case ÷ total de la …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Fréquences conditionnelles — Mot(s) manquant(s) — Fréquence conditionnelle = case ÷ total de la …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Relis l’exemple : « parmi les adultes » change le total de… ? On divise la case par le total de la ligne ou de la colonne concernée.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a02-q02-label">Question 2 — Parmi les moins de 18 ans, part en CSO (au dixième) ?</h3>
+            
+
+            
+            
+                <input type="text" inputmode="decimal" id="a02-q02" data-answer-id="a02_q02" data-required="true" aria-labelledby="a02-q02-label"><p>Unité : %</p>
+
+                
+            <details><summary>Un coup de pouce</summary><p>« Parmi les moins de 18 ans » : la référence est le total de cette ligne. Case CSO ÷ total de la ligne.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a02-q03-label">Question 3 — Parmi les cavaliers de CSO, part des moins de 18 ans (au dixième) ?</h3>
+            
+
+            
+            
+                <input type="text" inputmode="decimal" id="a02-q03" data-answer-id="a02_q03" data-required="true" aria-labelledby="a02-q03-label"><p>Unité : %</p>
+
+                
+            <details><summary>Un coup de pouce</summary><p>« Parmi les cavaliers de CSO » : la référence est le total de la colonne CSO.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Décider</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Les fréquences sont calculées. Aide le centre à décider.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas utiliser le tableau croisé pour conseiller le centre sur un cours de dressage adulte. On attend un calcul et un conseil.</p></div>
+        
+        
+
+        
+<ol><li>Lis l’exemple : un club veut ouvrir un cours de loisir pour adultes ; 50 % des adultes font déjà du loisir.</li><li>On compare avec les jeunes : 50 ÷ 120 ≈ 41,7 %.</li><li>La demande est plus forte chez les adultes : les données encouragent le projet.</li><li>À toi : le centre veut lancer un cours de dressage pour adultes. Les données l’y encouragent-elles ?</li><li>Pourquoi les données ? Un nouveau cours coûte un moniteur et des chevaux.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Point clé</th>
+                                
+                                <th>Mot(s) manquant(s)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    On utilise les fréquences pour …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Décider — Mot(s) manquant(s) — On utilise les fréquences pour …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    20 ÷ 80 = …… %.
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Décider — Mot(s) manquant(s) — 20 ÷ 80 = …… %.">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Les fréquences servent à… (prendre une décision, comparer) ? Puis calcule 20 ÷ 80 en %.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a03-q02-label">Question 2 — Que montrent les données sur le dressage chez les adultes ? Conseille le centre.</h3>
+            
+
+            
+            
+                <textarea id="a03-q02" data-answer-id="a03_q02" data-required="true" aria-labelledby="a03-q02-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Comme l’exemple du loisir : part du dressage chez les adultes, puis chez les jeunes. Compare et conseille.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Pour aller plus loin</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<p>On tire un licencié au hasard.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — Probabilité qu’il fasse du loisir ?</h3>
+            
+
+            
+            
+                <textarea id="a04-q01" data-answer-id="a04_q01" data-required="false" aria-labelledby="a04-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Probabilité = nombre de cavaliers de loisir ÷ nombre total de licenciés.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#a05">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a05" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Conclusion</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Conclusion de ton travail</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais exploiter un tableau croisé. Il reste à répondre au problème de départ.</p>
+        
+        
+        
+
+        
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a05-q01-label">Question 1 — Réponds au problème du jour : comment lire et exploiter un tableau croisé d’effectifs ?</h3>
+            
+
+            
+            
+                <textarea id="a05-q01" data-answer-id="a05_q01" data-required="true" aria-labelledby="a05-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Dis comment lire un tableau croisé et calculer une fréquence conditionnelle.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a04">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>Conditionnelle : case ÷ total de la ligne (ou colonne).</li><li>« Parmi » change la référence.</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf" target="_blank" rel="noopener noreferrer">ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1</a></p>
+
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a05">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-paper-version.js?v=20261022-paper-tab-1"></script>
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>

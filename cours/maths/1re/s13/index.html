@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-paper-version.css?v=20261104-maths-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261104-contrast-4">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="mfr" data-matiere="maths" data-classe="1re" data-seance="S13" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-paper-toggle">Version papier</button><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">L’aire trompeuse</a></li><li><a href="#a02">La période choisie</a></li><li><a href="#a03">La grille critique</a></li><li><a href="#a04">Pour aller plus loin — facultatif</a></li><li><a href="#a05">Conclusion de ton travail</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">Mathématiques · Bac Pro 1 · S13</span></div>
+    <h1>Séance 13 : Ce graphique est-il honnête ?</h1>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thème du programme</h2>
+        <p>MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>Comment repérer un graphique qui déforme les données ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétence travaillée</h2>
+        <ul><li>MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>Pièges : axe qui ne commence pas à 0, échelle non régulière, aires trompeuses (images agrandies), absence de source, période choisie.</li>
+            
+            <li>Lire un graphique : titre, unités, échelle, source, intérêt de l’auteur.</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Analyser un graphique de façon critique.</li>
+            
+            <li>Corriger un graphique.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>En 2de, tu as vu l’axe tronqué.</p><p>Aujourd’hui, d’autres pièges, plus subtils.</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+<section id="course-paper-version" class="course-paper-version" hidden aria-labelledby="course-paper-title">
+    <article class="course-paper-sheet">
+        <header><p class="course-paper-kicker">Cours et exercices — version papier</p><h2 id="course-paper-title">Ce graphique est-il honnête ?</h2><p>Comment repérer un graphique qui déforme les données ?</p></header>
+        
+        <section class="course-paper-section">
+            <h3>Le cours en bref</h3>
+            
+<p>Le problème à résoudre : Comment repérer un graphique qui déforme les données ?</p>
+    
+
+<h4>Ce que tu vas apprendre</h4>
+    
+
+<ul><li>Pièges : axe qui ne commence pas à 0, échelle non régulière, aires trompeuses (images agrandies), absence de source, période choisie.</li><li>Lire un graphique : titre, unités, échelle, source, intérêt de l’auteur.</li></ul>
+    
+
+<h4>Ce que tu vas savoir faire</h4>
+    
+
+<ul><li>Analyser un graphique de façon critique.</li><li>Corriger un graphique.</li></ul>
+    
+
+<h4>Pourquoi cette séance ?</h4>
+    
+
+<p>En 2de, tu as vu l’axe tronqué. Aujourd’hui, d’autres pièges, plus subtils.</p>
+    
+
+<p>Comment utiliser cette fiche : pour chaque partie, lis la méthode et l’exemple, complète les points clés, puis fais l’exercice. Réponds sur les lignes.</p>
+    
+
+
+            
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>I. L’aire trompeuse</h3>
+            
+<ul><li>Automatisme : 2² = ? ; 3² = ?</li></ul>
+    
+
+<h4>Ce que tu vas faire</h4>
+    
+
+<p>Tu vas calculer comment une image agrandie déforme une évolution de chiffre d’affaires. On attend le rapport des aires et l’impression donnée.</p>
+    
+
+<h4>Méthode</h4>
+    
+
+<ol><li>Lis l’exemple : un carré de 1 cm de côté devient un carré de 3 cm de côté.</li><li>Aire avant : 1 × 1 = 1 cm² ; après : 3 × 3 = 9 cm².</li><li>La longueur est multipliée par 3, l’aire par 3² = 9.</li><li>À toi : un dessin de cheval est 2 fois plus grand (hauteur et largeur). Calcule le rapport des aires.</li><li>Pourquoi l’aire ? L’œil compare les surfaces, pas les hauteurs.</li></ol>
+    
+
+<h4>Points clés à compléter</h4>
+    
+
+<ul><li>Quand une image double en hauteur et en largeur, son aire est multipliée par …… .</li><li>L’œil compare les …… .</li></ul>
+    
+
+<h4>Exercice 1 — L’aire trompeuse</h4>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Par combien l’aire du dessin est-elle multipliée ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li><li><span>Quelle impression donne le dessin ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>II. La période choisie</h3>
+            
+<h4>Ce que tu vas faire</h4>
+    
+
+<p>Tu vas expliquer pourquoi deux graphiques sur les licences d’un club semblent se contredire (document 1). On attend l’explication.</p>
+    
+
+<h4>Méthode</h4>
+    
+
+<ol><li>Lis l’exemple : une courbe de températures de mai à juillet monte ; de juillet à septembre, elle descend.</li><li>Les deux sont vraies : seule la période choisie change le message.</li><li>À toi : lis les deux graphiques décrits (document 1) et explique la contradiction.</li><li>Pourquoi la période ? En choisissant le début et la fin, on peut faire dire le contraire.</li></ol>
+    
+
+<h4>Exemple et documents</h4>
+    
+
+<ul><li>Graphique A (club concurrent) : licences 2021-2024, courbe en hausse : « Le club est en plein essor ! »</li><li>Graphique B (presse) : licences 2018-2024, courbe en baisse : « Le club perd des cavaliers. »</li></ul>
+    
+
+<h4>Le graphique : le faire, le lire, le comprendre</h4>
+    
+
+<figure class="cours-document"><img src="/tifsec-test-eleves/assets/images/graphiques/maths-1re-s13-periodes.svg" alt="Les mêmes données de licences, sur deux périodes différentes." loading="lazy" decoding="async"><figcaption>Les mêmes données de licences, sur deux périodes différentes.</figcaption></figure>
+    
+
+<h4>Comment faire ce graphique</h4>
+    
+
+<ol><li>Pour être honnête : montrer toute la période disponible et indiquer la source.</li></ol>
+    
+
+<h4>Comment le lire</h4>
+    
+
+<ul><li>Regarde l’année de début de chaque graphique.</li></ul>
+    
+
+<h4>Comment le comprendre</h4>
+    
+
+<ul><li>En partant du point le plus bas (2021), on fait croire à un essor ; sur toute la période, les licences ont baissé.</li><li>Toujours vérifier la période choisie avant de conclure.</li></ul>
+    
+
+<h4>Points clés à compléter</h4>
+    
+
+<ul><li>Choisir la …… peut faire dire le contraire.</li><li>On vérifie toujours les dates de …… et de fin.</li></ul>
+    
+
+<h4>Exercice 2 — La période choisie</h4>
+    
+
+
+            <ol class="course-paper-questions"><li><span>D’après le document 1, pourquoi les deux graphiques semblent-ils se contredire ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>III. La grille critique</h3>
+            
+<h4>Ce que tu vas faire</h4>
+    
+
+<p>Tu vas appliquer la grille de lecture critique à un graphique de la presse équestre. On attend trois réponses.</p>
+    
+
+<h4>Méthode</h4>
+    
+
+<ol><li>Rappel de la grille : titre, axes et unités, axe à 0, échelle régulière, période, source, auteur et but.</li><li>À toi : applique la grille à un graphique trouvé dans la presse équestre ou fourni, et remplis-la.</li><li>Pourquoi une grille ? On ne laisse passer aucun piège.</li></ol>
+    
+
+<h4>Points clés à compléter</h4>
+    
+
+<ul><li>On vérifie la …… et la date.</li><li>On se demande qui a …… à ce graphique.</li></ul>
+    
+
+<h4>Exercice 3 — La grille critique</h4>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><thead><tr><th scope="col">Question</th><th scope="col">Réponse</th></tr></thead><tbody><tr><td>Source et date ?</td><td></td></tr><tr><td>Axe à 0 ? échelle régulière ?</td><td></td></tr><tr><td>Qui a intérêt à ce graphique ?</td><td></td></tr></tbody></table></div>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Applique la grille.</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Conclusion</h3>
+            
+<p>Avec ce que tu as fait dans les parties précédentes, réponds en quelques phrases complètes.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Réponds au problème du jour : comment repérer un graphique qui déforme les données ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Pour aller plus loin (facultatif)</h3>
+            
+<p>Un graphique en 3D incliné.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Quel piège ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>À retenir</h3>
+            
+<ul><li>Pièges : axe, aire, période, 3D, source.</li><li>Grille critique.</li></ul>
+    
+
+
+            
+        </section>
+        
+        <section class="course-paper-section course-paper-break">
+            <h2 class="course-paper-part">Fiche d’exercices</h2><h3>Exercice 1 — Aire</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>Un dessin est agrandi 3 fois en hauteur et en largeur. Aire × ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Exercice 2 — Période</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>Pourquoi deux graphiques sur des périodes différentes peuvent-ils se contredire ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Exercice 3 — Grille</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>Cite trois vérifications de la grille critique.</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+    </article>
+</section>
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>L’aire trompeuse</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas calculer comment une image agrandie déforme une évolution de chiffre d’affaires. On attend le rapport des aires et l’impression donnée.</p></div>
+        
+        
+
+        
+<ul><li>Automatisme : 2² = ? ; 3² = ?</li></ul>
+    
+
+<ol><li>Lis l’exemple : un carré de 1 cm de côté devient un carré de 3 cm de côté.</li><li>Aire avant : 1 × 1 = 1 cm² ; après : 3 × 3 = 9 cm².</li><li>La longueur est multipliée par 3, l’aire par 3² = 9.</li><li>À toi : un dessin de cheval est 2 fois plus grand (hauteur et largeur). Calcule le rapport des aires.</li><li>Pourquoi l’aire ? L’œil compare les surfaces, pas les hauteurs.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Point clé</th>
+                                
+                                <th>Mot(s) manquant(s)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Quand une image double en hauteur et en largeur, son aire est multipliée par …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="L’aire trompeuse — Mot(s) manquant(s) — Quand une image double en hauteur et en largeur, son aire est multipliée par …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    L’œil compare les …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="L’aire trompeuse — Mot(s) manquant(s) — L’œil compare les …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Relis l’exemple du carré : longueur × 3 donne aire × 3² = 9. Hauteur et largeur × 2 donnent aire × … ? Et l’œil compare les longueurs ou les… ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a01-q02-label">Question 2 — Par combien l’aire du dessin est-elle multipliée ?</h3>
+            
+
+            
+            
+                <input type="text" inputmode="decimal" id="a01-q02" data-answer-id="a01_q02" data-required="true" aria-labelledby="a01-q02-label">
+
+                
+            <details><summary>Un coup de pouce</summary><p>Le dessin est 2 fois plus grand en hauteur et en largeur : multiplie 2 par 2.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a01-q03-label">Question 3 — Quelle impression donne le dessin ?</h3>
+            
+
+            
+            
+                <textarea id="a01-q03" data-answer-id="a01_q03" data-required="true" aria-labelledby="a01-q03-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Si l’aire est multipliée par 4 alors que la valeur double, la hausse paraît-elle plus petite ou plus grande ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>La période choisie</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Les dessins peuvent tromper. Les périodes aussi.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas expliquer pourquoi deux graphiques sur les licences d’un club semblent se contredire (document 1). On attend l’explication.</p></div>
+        
+        
+
+        
+<ul><li>Graphique A (club concurrent) : licences 2021-2024, courbe en hausse : « Le club est en plein essor ! »</li><li>Graphique B (presse) : licences 2018-2024, courbe en baisse : « Le club perd des cavaliers. »</li></ul>
+    
+
+<figure class="cours-document"><img src="/tifsec-test-eleves/assets/images/graphiques/maths-1re-s13-periodes.svg" alt="Les mêmes données de licences, sur deux périodes différentes." loading="lazy" decoding="async"><figcaption>Les mêmes données de licences, sur deux périodes différentes.</figcaption></figure>
+    
+
+<h4>Comment faire ce graphique</h4>
+    
+
+<ol><li>Pour être honnête : montrer toute la période disponible et indiquer la source.</li></ol>
+    
+
+<h4>Comment le lire</h4>
+    
+
+<ul><li>Regarde l’année de début de chaque graphique.</li></ul>
+    
+
+<h4>Comment le comprendre</h4>
+    
+
+<ul><li>En partant du point le plus bas (2021), on fait croire à un essor ; sur toute la période, les licences ont baissé.</li><li>Toujours vérifier la période choisie avant de conclure.</li></ul>
+    
+
+<ol><li>Lis l’exemple : une courbe de températures de mai à juillet monte ; de juillet à septembre, elle descend.</li><li>Les deux sont vraies : seule la période choisie change le message.</li><li>À toi : lis les deux graphiques décrits (document 1) et explique la contradiction.</li><li>Pourquoi la période ? En choisissant le début et la fin, on peut faire dire le contraire.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Point clé</th>
+                                
+                                <th>Mot(s) manquant(s)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Choisir la …… peut faire dire le contraire.
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="La période choisie — Mot(s) manquant(s) — Choisir la …… peut faire dire le contraire.">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    On vérifie toujours les dates de …… et de fin.
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="La période choisie — Mot(s) manquant(s) — On vérifie toujours les dates de …… et de fin.">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Le choix de quoi peut faire dire le contraire ? Et quelles dates faut-il toujours vérifier ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a02-q02-label">Question 2 — D’après le document 1, pourquoi les deux graphiques semblent-ils se contredire ?</h3>
+            
+
+            
+            
+                <textarea id="a02-q02" data-answer-id="a02_q02" data-required="true" aria-labelledby="a02-q02-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Dans le document 1, compare les années de début des deux graphiques : montrent-ils la même période ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>La grille critique</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu connais plusieurs pièges. Analyse un vrai graphique.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas appliquer la grille de lecture critique à un graphique de la presse équestre. On attend trois réponses.</p></div>
+        
+        
+
+        
+<ol><li>Rappel de la grille : titre, axes et unités, axe à 0, échelle régulière, période, source, auteur et but.</li><li>À toi : applique la grille à un graphique trouvé dans la presse équestre ou fourni, et remplis-la.</li><li>Pourquoi une grille ? On ne laisse passer aucun piège.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Point clé</th>
+                                
+                                <th>Mot(s) manquant(s)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    On vérifie la …… et la date.
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="La grille critique — Mot(s) manquant(s) — On vérifie la …… et la date.">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    On se demande qui a …… à ce graphique.
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="La grille critique — Mot(s) manquant(s) — On se demande qui a …… à ce graphique.">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>La grille commence par vérifier d’où viennent les données et la date. Puis on se demande qui a… à publier ce graphique.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a03-q02-label">Question 2 — Applique la grille.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Question</th>
+                                
+                                <th>Réponse</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Source et date ?
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q02_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="La grille critique — Réponse — Source et date ?">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Axe à 0 ? échelle régulière ?
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q02_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="La grille critique — Réponse — Axe à 0 ? échelle régulière ?">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Qui a intérêt à ce graphique ?
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q02_r2_c1" data-required="true" data-row="2" data-col="1" aria-label="La grille critique — Réponse — Qui a intérêt à ce graphique ?">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Sur ton graphique, cherche ligne par ligne : source et date écrites ? axe qui part de 0 ? graduations régulières ? qui le publie et pourquoi ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Pour aller plus loin</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<p>Un graphique en 3D incliné.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — Quel piège ?</h3>
+            
+
+            
+            
+                <textarea id="a04-q01" data-answer-id="a04_q01" data-required="false" aria-labelledby="a04-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Avec la 3D, les parties à l’avant paraissent plus grandes. Quel effet sur la comparaison des parts ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#a05">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a05" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Conclusion</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Conclusion de ton travail</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais repérer un graphique déformant. Il reste à répondre au problème de départ.</p>
+        
+        
+        
+
+        
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a05-q01-label">Question 1 — Réponds au problème du jour : comment repérer un graphique qui déforme les données ?</h3>
+            
+
+            
+            
+                <textarea id="a05-q01" data-answer-id="a05_q01" data-required="true" aria-labelledby="a05-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Cite les pièges vus (aire, période, axe, 3D) et la grille pour les repérer.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a04">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>Pièges : axe, aire, période, 3D, source.</li><li>Grille critique.</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf" target="_blank" rel="noopener noreferrer">ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1</a></p>
+
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a05">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-paper-version.js?v=20261022-paper-tab-1"></script>
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>

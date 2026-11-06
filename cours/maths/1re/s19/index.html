@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-paper-version.css?v=20261104-maths-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261104-contrast-4">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="mfr" data-matiere="maths" data-classe="1re" data-seance="S19" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-paper-toggle">Version papier</button><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">Tester les différences</a></li><li><a href="#a02">Tester les quotients</a></li><li><a href="#a03">Le nuage (n ; uₙ)</a></li><li><a href="#a04">Pour aller plus loin — facultatif</a></li><li><a href="#a05">Conclusion de ton travail</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">Mathématiques · Bac Pro 1 · S19</span></div>
+    <h1>Séance 19 : Arithmétique ou géométrique ?</h1>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thème du programme</h2>
+        <p>MG1, C1.3 — Exploiter la modélisation d’un phénomène</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>Comment reconnaître le type de suite qui modélise une situation ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétence travaillée</h2>
+        <ul><li>MG1, C1.3 — Exploiter la modélisation d’un phénomène</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>Arithmétique : différences constantes (uₙ₊₁ − uₙ = r) ; points alignés sur un nuage (n ; uₙ).</li>
+            
+            <li>Géométrique : quotients constants (uₙ₊₁ ÷ uₙ = q) ; courbe qui s’incurve.</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Tester différences et quotients.</li>
+            
+            <li>Choisir un modèle.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>En S16-S18, tu as vu deux types de suites.</p><p>Face à des données, laquelle choisir ?</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+<section id="course-paper-version" class="course-paper-version" hidden aria-labelledby="course-paper-title">
+    <article class="course-paper-sheet">
+        <header><p class="course-paper-kicker">Cours et exercices — version papier</p><h2 id="course-paper-title">Arithmétique ou géométrique ?</h2><p>Comment reconnaître le type de suite qui modélise une situation ?</p></header>
+        
+        <section class="course-paper-section">
+            <h3>Le cours en bref</h3>
+            
+<p>Le problème à résoudre : Comment reconnaître le type de suite qui modélise une situation ?</p>
+    
+
+<h4>Ce que tu vas apprendre</h4>
+    
+
+<ul><li>Arithmétique : différences constantes (uₙ₊₁ − uₙ = r) ; points alignés sur un nuage (n ; uₙ).</li><li>Géométrique : quotients constants (uₙ₊₁ ÷ uₙ = q) ; courbe qui s’incurve.</li></ul>
+    
+
+<h4>Ce que tu vas savoir faire</h4>
+    
+
+<ul><li>Tester différences et quotients.</li><li>Choisir un modèle.</li></ul>
+    
+
+<h4>Pourquoi cette séance ?</h4>
+    
+
+<p>En S16-S18, tu as vu deux types de suites. Face à des données, laquelle choisir ?</p>
+    
+
+<p>Comment utiliser cette fiche : pour chaque partie, lis la méthode et l’exemple, complète les points clés, puis fais l’exercice. Réponds sur les lignes.</p>
+    
+
+
+            
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>I. Tester les différences</h3>
+            
+<ul><li>Automatisme : 1 080 ÷ 1 200 = ?</li></ul>
+    
+
+<h4>Ce que tu vas faire</h4>
+    
+
+<p>Tu vas tester les différences successives de la série A (document 1). On attend les différences et ta conclusion.</p>
+    
+
+<h4>Méthode</h4>
+    
+
+<ol><li>Lis l’exemple : 100 ; 130 ; 160 ; 190.</li><li>Différences : 130 − 100 = 30 ; 160 − 130 = 30 ; 190 − 160 = 30.</li><li>Elles sont toutes égales : suite arithmétique de raison 30.</li><li>À toi : lis les deux séries (document 1) et calcule les différences successives de la série A.</li><li>Pourquoi les différences ? Si elles sont constantes, la suite est arithmétique.</li></ol>
+    
+
+<h4>Exemple et documents</h4>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><caption>Document 1 — Deux séries (fictives)</caption><thead><tr><th scope="col">n</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th></tr></thead><tbody><tr><td>Série A</td><td>2 000</td><td>1 850</td><td>1 700</td><td>1 550</td></tr><tr><td>Série B</td><td>1 200</td><td>1 080</td><td>972</td><td>874,8</td></tr></tbody></table></div>
+    
+
+<h4>Points clés à compléter</h4>
+    
+
+<ul><li>Différences constantes : suite …… .</li><li>Différence = uₙ₊₁ − …… .</li></ul>
+    
+
+<h4>Exercice 1 — Tester les différences</h4>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Calcule les différences de la série A. Est-elle arithmétique ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>II. Tester les quotients</h3>
+            
+<h4>Ce que tu vas faire</h4>
+    
+
+<p>Tu vas tester les quotients successifs de la série B. On attend les quotients, ta conclusion et une interprétation.</p>
+    
+
+<h4>Méthode</h4>
+    
+
+<ol><li>Lis l’exemple : 500 ; 550 ; 605 ; 665,5.</li><li>Quotients : 550 ÷ 500 = 1,1 ; 605 ÷ 550 = 1,1 ; 665,5 ÷ 605 = 1,1.</li><li>Ils sont tous égaux : suite géométrique de raison 1,1 (hausse de 10 %).</li><li>À toi : calcule les quotients successifs de la série B.</li><li>Pourquoi les quotients ? S’ils sont constants, la suite est géométrique.</li></ol>
+    
+
+<h4>Points clés à compléter</h4>
+    
+
+<ul><li>Quotients constants : suite …… .</li><li>Une baisse de 10 % donne q = …… .</li></ul>
+    
+
+<h4>Exercice 2 — Tester les quotients</h4>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Calcule les quotients de la série B. Est-elle géométrique ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li><li><span>Que pourrait représenter la série B ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>III. Le nuage (n ; uₙ)</h3>
+            
+<h4>Ce que tu vas faire</h4>
+    
+
+<p>Tu vas tracer les nuages (n ; uₙ) des deux séries et décrire leur forme. On attend la description des deux formes.</p>
+    
+
+<h4>Méthode</h4>
+    
+
+<ol><li>Au tableur : colonne n, colonne uₙ ; sélectionne, Insertion &gt; Diagramme &gt; XY (dispersion) &gt; Points seuls.</li><li>Regarde si les points forment une droite ou une courbe.</li><li>À toi : trace les deux nuages et compare leur forme.</li><li>Pourquoi le graphique ? Il permet de deviner le type avant de calculer.</li></ol>
+    
+
+<h4>Le graphique : le faire, le lire, le comprendre</h4>
+    
+
+<figure class="cours-document"><img src="/tifsec-test-eleves/assets/images/graphiques/maths-1re-s19-suites.svg" alt="Nuages (n ; uₙ) des deux séries." loading="lazy" decoding="async"><figcaption>Nuages (n ; uₙ) des deux séries.</figcaption></figure>
+    
+
+<h4>Comment faire ce graphique</h4>
+    
+
+<ol><li>Au tableur : colonne n, colonne uₙ, Insertion &gt; Diagramme &gt; XY (dispersion) &gt; Points seuls.</li></ol>
+    
+
+<h4>Comment le lire</h4>
+    
+
+<ul><li>Regarde si les points sont sur une droite ou sur une courbe.</li></ul>
+    
+
+<h4>Comment le comprendre</h4>
+    
+
+<ul><li>Points alignés : la suite varie toujours de la même quantité (arithmétique).</li><li>Points sur une courbe qui s’aplatit : la suite varie toujours du même pourcentage (géométrique).</li></ul>
+    
+
+<h4>Points clés à compléter</h4>
+    
+
+<ul><li>Nuage d’une suite arithmétique : points …… .</li><li>Nuage d’une suite géométrique : une …… .</li></ul>
+    
+
+<h4>Exercice 3 — Le nuage (n ; uₙ)</h4>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Décris la forme des deux nuages.</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Conclusion</h3>
+            
+<p>Avec ce que tu as fait dans les parties précédentes, réponds en quelques phrases complètes.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Réponds au problème du jour : comment reconnaître le type de suite qui modélise une situation ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Pour aller plus loin (facultatif)</h3>
+            
+<p>Une série : 100, 110, 121, 133,1.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Type et raison ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>À retenir</h3>
+            
+<ul><li>Différences constantes : arithmétique.</li><li>Quotients constants : géométrique.</li></ul>
+    
+
+
+            
+        </section>
+        
+        <section class="course-paper-section course-paper-break">
+            <h2 class="course-paper-part">Fiche d’exercices</h2><h3>Exercice 1 — Type de suite</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>80, 72, 64, 56 : type et raison ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li><li><span>200, 220, 242, 266,2 : type et raison ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Exercice 2 — Nuage</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>Quelle forme a le nuage d’une suite arithmétique ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Exercice 3 — Modéliser</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>Une pension augmente de 2 % par an : quel type de suite ?</span><span class="course-paper-answer-lines" aria-hidden="true"></span></li></ol>
+        </section>
+        
+    </article>
+</section>
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Tester les différences</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas tester les différences successives de la série A (document 1). On attend les différences et ta conclusion.</p></div>
+        
+        
+
+        
+<ul><li>Automatisme : 1 080 ÷ 1 200 = ?</li></ul>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><caption>Document 1 — Deux séries (fictives)</caption><thead><tr><th scope="col">n</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th></tr></thead><tbody><tr><td>Série A</td><td>2 000</td><td>1 850</td><td>1 700</td><td>1 550</td></tr><tr><td>Série B</td><td>1 200</td><td>1 080</td><td>972</td><td>874,8</td></tr></tbody></table></div>
+    
+
+<ol><li>Lis l’exemple : 100 ; 130 ; 160 ; 190.</li><li>Différences : 130 − 100 = 30 ; 160 − 130 = 30 ; 190 − 160 = 30.</li><li>Elles sont toutes égales : suite arithmétique de raison 30.</li><li>À toi : lis les deux séries (document 1) et calcule les différences successives de la série A.</li><li>Pourquoi les différences ? Si elles sont constantes, la suite est arithmétique.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Point clé</th>
+                                
+                                <th>Mot(s) manquant(s)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Différences constantes : suite …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Tester les différences — Mot(s) manquant(s) — Différences constantes : suite …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Différence = uₙ₊₁ − …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a01_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Tester les différences — Mot(s) manquant(s) — Différence = uₙ₊₁ − …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Relis l’exemple 100 ; 130 ; 160 : les différences sont toutes égales, donc suite… ? Et la différence se calcule uₙ₊₁ moins… ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a01-q02-label">Question 2 — Calcule les différences de la série A. Est-elle arithmétique ?</h3>
+            
+
+            
+            
+                <textarea id="a01-q02" data-answer-id="a01_q02" data-required="true" aria-labelledby="a01-q02-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Calcule 1 850 − 2 000, puis 1 700 − 1 850, puis 1 550 − 1 700. Sont-elles égales ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Tester les quotients</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> A est arithmétique. Et B ?</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas tester les quotients successifs de la série B. On attend les quotients, ta conclusion et une interprétation.</p></div>
+        
+        
+
+        
+<ol><li>Lis l’exemple : 500 ; 550 ; 605 ; 665,5.</li><li>Quotients : 550 ÷ 500 = 1,1 ; 605 ÷ 550 = 1,1 ; 665,5 ÷ 605 = 1,1.</li><li>Ils sont tous égaux : suite géométrique de raison 1,1 (hausse de 10 %).</li><li>À toi : calcule les quotients successifs de la série B.</li><li>Pourquoi les quotients ? S’ils sont constants, la suite est géométrique.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Point clé</th>
+                                
+                                <th>Mot(s) manquant(s)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Quotients constants : suite …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Tester les quotients — Mot(s) manquant(s) — Quotients constants : suite …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Une baisse de 10 % donne q = …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a02_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Tester les quotients — Mot(s) manquant(s) — Une baisse de 10 % donne q = …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Relis l’exemple 500 ; 550 ; 605 : quotients égaux, donc suite… ? Et une baisse de 10 % donne q = 1 − combien ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a02-q02-label">Question 2 — Calcule les quotients de la série B. Est-elle géométrique ?</h3>
+            
+
+            
+            
+                <textarea id="a02-q02" data-answer-id="a02_q02" data-required="true" aria-labelledby="a02-q02-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Calcule 1 080 ÷ 1 200, 972 ÷ 1 080, 874,8 ÷ 972. Sont-ils égaux ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a02-q03-label">Question 3 — Que pourrait représenter la série B ?</h3>
+            
+
+            
+            
+                <textarea id="a02-q03" data-answer-id="a02_q03" data-required="true" aria-labelledby="a02-q03-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>La série B perd le même pourcentage chaque année. Pense à quelque chose à l’écurie qui perd de la valeur ainsi (matériel, véhicule…).</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Le nuage (n ; uₙ)</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Les calculs sont faits. Vérifie graphiquement.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas tracer les nuages (n ; uₙ) des deux séries et décrire leur forme. On attend la description des deux formes.</p></div>
+        
+        
+
+        
+<figure class="cours-document"><img src="/tifsec-test-eleves/assets/images/graphiques/maths-1re-s19-suites.svg" alt="Nuages (n ; uₙ) des deux séries." loading="lazy" decoding="async"><figcaption>Nuages (n ; uₙ) des deux séries.</figcaption></figure>
+    
+
+<h4>Comment faire ce graphique</h4>
+    
+
+<ol><li>Au tableur : colonne n, colonne uₙ, Insertion &gt; Diagramme &gt; XY (dispersion) &gt; Points seuls.</li></ol>
+    
+
+<h4>Comment le lire</h4>
+    
+
+<ul><li>Regarde si les points sont sur une droite ou sur une courbe.</li></ul>
+    
+
+<h4>Comment le comprendre</h4>
+    
+
+<ul><li>Points alignés : la suite varie toujours de la même quantité (arithmétique).</li><li>Points sur une courbe qui s’aplatit : la suite varie toujours du même pourcentage (géométrique).</li></ul>
+    
+
+<ol><li>Au tableur : colonne n, colonne uₙ ; sélectionne, Insertion &gt; Diagramme &gt; XY (dispersion) &gt; Points seuls.</li><li>Regarde si les points forment une droite ou une courbe.</li><li>À toi : trace les deux nuages et compare leur forme.</li><li>Pourquoi le graphique ? Il permet de deviner le type avant de calculer.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.</h3>
+            
+
+            
+            
+                <div class="cours-table-wrapper">
+                    <table class="cours-table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Point clé</th>
+                                
+                                <th>Mot(s) manquant(s)</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Nuage d’une suite arithmétique : points …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q01_r0_c1" data-required="true" data-row="0" data-col="1" aria-label="Le nuage (n ; uₙ) — Mot(s) manquant(s) — Nuage d’une suite arithmétique : points …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                    Nuage d’une suite géométrique : une …… .
+                                    
+                                </td>
+                                
+                                <td>
+                                    
+                                    <input type="text" data-answer-id="a03_q01_r1_c1" data-required="true" data-row="1" data-col="1" aria-label="Le nuage (n ; uₙ) — Mot(s) manquant(s) — Nuage d’une suite géométrique : une …… .">
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            
+            <details><summary>Un coup de pouce</summary><p>Suite arithmétique : les points sont… ? Suite géométrique : les points forment une… ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a03-q02-label">Question 2 — Décris la forme des deux nuages.</h3>
+            
+
+            
+            
+                <textarea id="a03-q02" data-answer-id="a03_q02" data-required="true" aria-labelledby="a03-q02-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Regarde les deux nuages tracés au tableur : lequel est sur une droite, lequel sur une courbe ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Pour aller plus loin</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<p>Une série : 100, 110, 121, 133,1.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — Type et raison ?</h3>
+            
+
+            
+            
+                <textarea id="a04-q01" data-answer-id="a04_q01" data-required="false" aria-labelledby="a04-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Teste les différences (10, 11, 12,1) puis les quotients : lesquels sont constants ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#a05">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a05" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Conclusion</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Conclusion de ton travail</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais reconnaître une suite. Il reste à répondre au problème de départ.</p>
+        
+        
+        
+
+        
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a05-q01-label">Question 1 — Réponds au problème du jour : comment reconnaître le type de suite qui modélise une situation ?</h3>
+            
+
+            
+            
+                <textarea id="a05-q01" data-answer-id="a05_q01" data-required="true" aria-labelledby="a05-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Dis comment reconnaître une suite arithmétique ou géométrique, par le calcul et par le graphique.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a04">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>Différences constantes : arithmétique.</li><li>Quotients constants : géométrique.</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf" target="_blank" rel="noopener noreferrer">ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1</a></p>
+
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a05">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-paper-version.js?v=20261022-paper-tab-1"></script>
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>
