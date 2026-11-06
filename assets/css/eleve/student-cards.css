@@ -1,0 +1,48 @@
+.student-content.student-card-board { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-content: start; }
+.student-expand-card { min-width: 0; border: 1px solid var(--student-border, #cedce3); border-radius: 14px; background: var(--student-surface, white); color: var(--student-text, #243047); }
+.student-expand-card > summary { display: flex; flex-direction: column; gap: 10px; min-height: 168px; padding: 20px; cursor: pointer; list-style: none; }
+.student-expand-card > summary::-webkit-details-marker { display: none; }
+.student-card-icon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: var(--student-soft, #eaf2f6); color: var(--student-link, #285f79); font-size: 1.2rem; }
+.student-card-title { font-size: 1rem; font-weight: 650; color: var(--student-heading, #203e51); }
+.student-card-preview { color: var(--student-muted, #526176); font-size: .84rem; line-height: 1.5; }
+.student-card-hint { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; margin-top: auto; color: var(--student-link, #285f79); font-size: .75rem; }
+.student-expand-card > summary:hover { box-shadow: inset 0 0 0 2px var(--student-border, #cedce3); border-radius: inherit; }
+.student-card-body { position: absolute; left: 0; right: 0; top: 0; z-index: 30; min-height: 100%; max-height: min(72vh, 700px); overflow: auto; overscroll-behavior: contain; padding: 16px; border: 2px solid var(--student-link, #285f79); border-radius: 16px; background: var(--student-surface, white); color: var(--student-text, #243047); box-shadow: 0 16px 48px #101e3a44; animation: student-card-reveal .14s ease-out; }
+.student-card-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 12px; color: var(--student-heading, #203e51); }
+.student-card-toolbar strong { font-size: .95rem; }
+.student-card-toolbar button { flex-shrink: 0; }
+.student-card-placeholder { font-size: .85rem; color: var(--student-muted, #526176); }
+.student-card-body:has(> section:not([hidden])) > .student-card-placeholder { display: none; }
+.student-card-body .student-panel { margin: 0; box-shadow: none; }
+.student-card-body #student-invitations { width: 100%; }
+.student-card-body .student-next-art { display: none; }
+.student-card-body .student-next-lesson { max-width: 100%; }
+.student-expand-card:has(#student-next-panel) { border-top: 4px solid var(--student-link, #285f79); }
+:root[data-student-theme="cyberpunk"] .student-expand-card { border-radius: 3px 18px; border-left: 3px solid #7ce9f4; }
+:root[data-student-theme="minecraft"] .student-expand-card { border-radius: 0; box-shadow: 3px 3px 0 #354c2933; }
+:root[data-student-theme="farming"] .student-expand-card { border-top: 4px solid #6b803d; }
+:root[data-student-theme="neon"] .student-expand-card {
+    border: 2px solid transparent;
+    background: linear-gradient(var(--student-surface), var(--student-surface)) padding-box, conic-gradient(from var(--student-rgb-angle), #ff4b93, #9e72ff, #4ea5ff, #56f4dd, #ff4b93) border-box;
+    animation: student-rgb-orbit 7s linear infinite;
+}
+:root[data-student-theme="neon"]:has(#student-theme-motion:checked) .student-expand-card { animation-play-state: paused; }
+@keyframes student-card-reveal { from { opacity: .7; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 700px) {
+    .student-content.student-card-board { order: 0; width: 100%; gap: 10px; }
+    .student-expand-card > summary { min-height: 165px; padding: 14px; }
+    .student-card-title { font-size: .9rem; }
+    .student-card-body { position: fixed; inset: 12vh 12px auto; min-height: 0; max-height: 75vh; padding: 10px; }
+    .student-card-toolbar { gap: 8px; }
+}
+@media (max-width: 370px) { .student-content.student-card-board { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+    .student-card-body, :root[data-student-theme="neon"] .student-expand-card { animation: none; }
+}
+
+.student-card-arrow { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--student-border, #cedce3); border-radius: 50%; background: var(--student-soft, #eaf2f6); color: var(--student-link, #285f79); box-shadow: 0 2px 5px #152d4510; }
+.student-expand-card[open] > summary .student-card-arrow { transform: rotate(180deg); }
+
+.student-card-arrow svg { display: block; }
+:root .student-shell .student-card-toolbar button[data-card-close] { display: grid; place-items: center; width: 44px; height: 44px; min-height: 44px; padding: 0; border-radius: 50%; }
+.student-card-toolbar [data-card-close] svg { transform: rotate(180deg); }
