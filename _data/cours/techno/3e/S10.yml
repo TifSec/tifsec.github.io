@@ -1,151 +1,123 @@
-titre: 'Séance 10 : Comment l’ordinateur écrit-il un mot ?'
+titre: 'Séance 10 : Quel chemin suit mon message ?'
 themes:
     - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
-problematique: Comment un ordinateur représente-t-il des nombres et des lettres avec seulement des 0 et des 1 ?
+problematique: Par où passe un message envoyé à un ami à l’autre bout de la France ?
 competences_bo:
     - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
 objectifs:
     connaissances:
-        - 'Un bit vaut 0 ou 1. En binaire, chaque position vaut le double de la précédente : 1, 2, 4, 8, 16, 32, 64, 128. Exemple : 1010 en binaire = 8 + 2 = 10.'
-        - 'Le code ASCII associe un nombre à chaque caractère : A = 65, B = 66… ; a = 97.'
+        - 'Internet est un réseau de réseaux : un message part du téléphone, passe par le réseau local (box ou antenne), puis par des routeurs de fournisseurs d’accès, jusqu’au serveur de l’application, puis jusqu’au destinataire.'
+        - Le message est découpé en paquets qui peuvent prendre des chemins différents ; ils sont rassemblés à l’arrivée.
     competences:
-        - Convertir un nombre binaire en décimal (et inversement, petits nombres).
-        - Coder un mot avec le code ASCII.
+        - Représenter la circulation d’une information sur Internet.
+        - Expliquer le découpage en paquets.
 pourquoi:
-    - En 5e, tu as vu les octets et les tailles de fichiers.
-    - Aujourd’hui, tu découvres comment les 0 et les 1 deviennent des nombres et des lettres.
+    - En séances 8 et 9, tu as vu comment une photo ou un texte devient une suite de 0 et de 1. En 4e, tu as étudié le réseau local du collège.
+    - 'En 3e, tu sors du collège : comment un message traverse-t-il Internet ?'
 activites:
     -   id: a01
-        titre: Du binaire au décimal
-        consigne: Tu vas apprendre à lire un nombre écrit en binaire (avec des 0 et des 1), à l’aide de l’exemple expliqué. On attend deux nombres binaires convertis en décimal.
+        titre: Le chemin
+        consigne: Tu vas suivre le trajet d’une photo envoyée par Léa à Tom sur une messagerie, à partir de l’exemple expliqué. On attend les étapes du trajet remises dans l’ordre.
         contenu:
-            -   type: tableau
-                titre: 'Exemple expliqué : 00001010 = 8 + 2 = 10'
-                colonnes:
-                    - '128'
-                    - '64'
-                    - '32'
-                    - '16'
-                    - '8'
-                    - '4'
-                    - '2'
-                    - '1'
-                lignes:
-                    -   - '0'
-                        - '0'
-                        - '0'
-                        - '0'
-                        - '1'
-                        - '0'
-                        - '1'
-                        - '0'
+            -   type: paragraphe
+                texte: 'Exemple expliqué : Léa envoie une photo depuis son téléphone en Wi-Fi. Photo → box de Léa → réseau de son fournisseur → routeurs d’Internet → serveur de l’application de messagerie → réseau mobile de Tom → téléphone de Tom.'
             -   type: etapes
                 elements:
-                    - 'Lis l’exemple expliqué : chaque case a une valeur (128, 64, … 1).'
-                    - Pour un nombre binaire, repère les cases qui contiennent 1.
-                    - Additionne leurs valeurs.
+                    - 'Lis l’exemple expliqué : la photo de Léa.'
+                    - Repère chaque équipement traversé, dans l’ordre.
+                    - Numérote les étapes du tableau de 1 à 5.
             -   type: paragraphe
-                texte: 'Pourquoi des 0 et des 1 ? Dans un ordinateur, un fil est soit sous tension, soit non : deux états seulement, qu’on note 1 et 0.'
-        questions:
-            -   id: q01
-                type: nombre
-                enonce: Que vaut le nombre binaire 00000101 en décimal ?
-                aide: Écris l’opération, calcule, vérifie l’unité.
-            -   id: q02
-                type: nombre
-                enonce: Que vaut le nombre binaire 00001111 en décimal ?
-                aide: Écris l’opération, calcule, vérifie l’unité.
-    -   id: a02
-        titre: Du décimal au binaire
-        transition: Tu sais lire le binaire. Fais l’inverse.
-        consigne: Tu vas écrire un nombre décimal (12) en binaire, avec la méthode des plus grandes valeurs. On attend le nombre sur 8 bits et la méthode.
-        contenu:
-            -   type: etapes
-                elements:
-                    - Prends le nombre 12.
-                    - 'Cherche la plus grande valeur du tableau qui tient dans 12 (8) : mets 1 dans sa case.'
-                    - Recommence avec le reste (12 − 8 = 4).
-                    - Mets 0 dans les autres cases.
-            -   type: paragraphe
-                texte: 'Pourquoi commencer par la plus grande valeur ? Comme pour rendre la monnaie : on prend d’abord les gros billets.'
-        questions:
-            -   id: q01
-                type: texte
-                enonce: Écris le nombre 12 en binaire sur 8 bits et explique ta méthode.
-                aide: Une idée + « car » + une raison tirée de la séance.
-    -   id: a03
-        titre: Le code ASCII
-        transition: Les nombres sont codés. Et les lettres ?
-        consigne: Tu vas coder et décoder des mots avec le code ASCII, à partir de l’extrait de table du document 1. On attend un mot codé et un message décodé.
-        contenu:
-            -   type: tableau
-                titre: Document 1 — Extrait de la table ASCII
-                colonnes:
-                    - Caractère
-                    - A
-                    - B
-                    - C
-                    - E
-                    - O
-                    - T
-                lignes:
-                    -   - Code
-                        - '65'
-                        - '66'
-                        - '67'
-                        - '69'
-                        - '79'
-                        - '84'
-            -   type: etapes
-                elements:
-                    - 'Lis le document 1 : le code de quelques lettres.'
-                    - Pour coder un mot, remplace chaque lettre par son code.
-                    - Pour décoder, fais l’inverse.
-            -   type: paragraphe
-                texte: 'Pourquoi un code commun ? Tous les ordinateurs utilisent la même table : un texte écrit sur l’un se lit sur l’autre.'
+                texte: 'Pourquoi passer par un serveur ? Le message n’est pas envoyé directement au téléphone de Tom : le serveur de l’application le garde et le transmet quand Tom est connecté.'
         questions:
             -   id: q01
                 type: tableau
-                enonce: Code le mot « EAU » avec la table ASCII du document 1.
+                enonce: Remets dans l’ordre (1 à 5) le trajet d’un message envoyé par messagerie.
                 colonnes:
-                    - Lettre
-                    - Code
+                    - Étape
+                    - Numéro
                 lignes:
-                    -   - E
+                    -   - Serveur de l’application
                         - ''
-                    -   - A
+                    -   - Téléphone de l’expéditeur
                         - ''
-                    -   - U (code 85)
+                    -   - Téléphone du destinataire
+                        - ''
+                    -   - Box ou antenne de l’expéditeur
+                        - ''
+                    -   - Routeurs d’Internet
                         - ''
                 aide: 'Une case à la fois : la ligne croise la colonne (réflexe n° 6).'
-            -   id: q02
+    -   id: a02
+        titre: Les paquets
+        transition: Tu connais le chemin. Le message voyage-t-il en un seul morceau ?
+        consigne: Tu vas comprendre pourquoi un message est découpé en paquets numérotés, à partir du texte ci-dessous. On attend le rôle du numéro et ce qui se passe quand un paquet se perd.
+        contenu:
+            -   type: paragraphe
+                texte: Une photo de 3 Mo est découpée en environ 2 000 paquets. Chaque paquet contient une partie de la photo, l’adresse de destination et son numéro.
+            -   type: etapes
+                elements:
+                    - Lis le texte sur les paquets.
+                    - Imagine 2 000 morceaux qui prennent des routes différentes.
+                    - Demande-toi comment les remettre dans l’ordre, et que faire si un morceau se perd.
+            -   type: paragraphe
+                texte: Pourquoi découper ? Un gros fichier découpé passe par plusieurs chemins en même temps, et une erreur oblige à renvoyer un seul petit morceau, pas tout.
+        questions:
+            -   id: q01
                 type: texte
-                enonce: Décode le message 84 79 84 79 avec le document 1.
-                aide: Une phrase complète qui reprend les mots de la question.
+                enonce: La photo de Léa est découpée en paquets. Pourquoi chaque paquet porte-t-il un numéro ?
+                aide: Une idée + « car » + une raison tirée de la séance.
+            -   id: q02
+                type: qcm
+                enonce: Un paquet de la photo se perd en route. Que se passe-t-il ?
+                choix:
+                    -   id: a
+                        texte: Le destinataire le redemande, et il est renvoyé.
+                    -   id: b
+                        texte: La photo est perdue pour toujours.
+                    -   id: c
+                        texte: Tout le message est renvoyé à chaque fois.
+                aide: Élimine d’abord les réponses impossibles.
+    -   id: a03
+        titre: Un réseau de réseaux
+        transition: Tous ces réseaux sont reliés.
+        consigne: Tu vas expliquer l’expression « réseau de réseaux » en t’appuyant sur le réseau du collège étudié en 4e. On attend une explication avec le rôle des routeurs et l’exemple du collège.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Rappelle-toi le réseau du collège (4e) : ordinateurs, commutateur, routeur.'
+                    - Imagine des milliers de réseaux comme lui.
+                    - Explique ce qui les relie.
+            -   type: paragraphe
+                texte: 'Pourquoi « réseau de réseaux » ? Personne ne possède Internet en entier : chaque réseau garde son organisation et se relie aux autres par des routeurs.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi dit-on qu’Internet est un « réseau de réseaux » ? Appuie-toi sur le réseau du collège vu en 4e.
+                aide: Une idée + « car » + une raison tirée de la séance.
     -   id: a04
         titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
             -   type: paragraphe
-                texte: Un octet = 8 bits.
+                texte: Plus de 95 % des communications entre continents passent par des câbles sous-marins.
         questions:
             -   id: q01
                 type: texte
-                enonce: Combien de valeurs différentes un octet peut-il représenter ?
-                aide: Une phrase complète qui reprend les mots de la question.
+                enonce: Pourquoi pas par satellite ?
+                aide: Une idée + « car » + une raison tirée de la séance.
     -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
-        transition: Tu sais coder en binaire. Il reste à répondre au problème de départ.
+        transition: Tu as suivi un message. Il reste à répondre au problème de départ.
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment un ordinateur représente-t-il nombres et lettres avec des 0 et des 1 ?'
+                enonce: 'Réponds au problème du jour : par où passe un message envoyé à un ami loin de chez toi ?'
                 aide: Reprends les mots du problème et de « Ce que je retiens », avec un exemple de la séance.
 retenir:
-    - 'Binaire : positions 1, 2, 4, 8, 16, 32, 64, 128.'
-    - 'ASCII : un code par caractère (A = 65).'
+    - 'Internet : réseau de réseaux reliés par des routeurs.'
+    - Les messages sont découpés en paquets numérotés.
 sources:
     -   type: lien
         titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)

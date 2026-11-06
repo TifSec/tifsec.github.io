@@ -9,6 +9,7 @@ objectifs:
     connaissances:
         - Dans Filius, on place des ordinateurs et un commutateur, on les relie, puis on donne une adresse IP à chaque ordinateur.
         - 'La commande ping envoie un petit message et attend une réponse : elle vérifie que deux appareils communiquent.'
+        - Un objet connecté reçoit une adresse IP fixe, libre et du même réseau, pour être toujours joignable.
     competences:
         - Construire un réseau dans un simulateur.
         - Paramétrer les adresses IP.
@@ -56,8 +57,7 @@ activites:
                         texte: L’imprimante.
                 aide: Élimine d’abord les réponses impossibles.
         ressources:
-            - &id001
-                type: lien
+            -   type: lien
                 titre: Filius — logiciel libre de simulation de réseau (site officiel)
                 url: https://www.lernsoftware-filius.de/Herunterladen
     -   id: a02
@@ -83,26 +83,40 @@ activites:
                 enonce: Quels câbles clignotent pendant le ping ? Que montre ce chemin ?
                 aide: Une phrase complète qui reprend les mots de la question.
         ressources:
-            - *id001
+            -   type: lien
+                titre: Filius — logiciel libre de simulation de réseau (site officiel)
+                url: https://www.lernsoftware-filius.de/Herunterladen
     -   id: a03
-        titre: Provoquer une erreur
-        transition: Ton réseau marche. Que se passe-t-il si on se trompe d’adresse ?
-        consigne: 'Tu vas provoquer volontairement une erreur dans ton réseau Filius : un quatrième ordinateur avec une adresse déjà prise. On attend ce que tu observes, son explication et la correction.'
+        titre: Ajouter un objet connecté
+        transition: Ton réseau fonctionne. Ajoute-lui un objet connecté.
+        consigne: Tu vas ajouter un objet connecté (la station météo, simulée par un ordinateur) à ton réseau Filius, en lui donnant une adresse IP fixe. On attend l’explication du conflit d’adresses et le paramétrage qui fonctionne.
         contenu:
             -   type: etapes
                 elements:
-                    - Ajoute un quatrième ordinateur avec l’adresse 192.168.1.2 (déjà prise).
-                    - Fais un ping vers 192.168.1.2.
-                    - Observe, puis corrige l’adresse.
+                    - 'Ajoute un quatrième appareil : la « station météo » du collège (un ordinateur dans Filius joue son rôle).'
+                    - 'Donne-lui d’abord l’adresse 192.168.1.2, déjà prise : fais un ping et observe.'
+                    - 'Corrige : donne-lui une adresse IP fixe libre (par exemple 192.168.1.10) et le même masque, puis refais le ping depuis PC 1.'
             -   type: paragraphe
-                texte: Pourquoi provoquer une erreur ? Voir une panne volontaire aide à la reconnaître quand elle arrive pour de vrai.
+                texte: Pourquoi une adresse fixe ? Un objet connecté (station, imprimante, caméra) doit toujours garder la même adresse pour que les autres appareils le retrouvent.
         questions:
             -   id: q01
                 type: texte
-                enonce: Que se passe-t-il ? Explique et propose une correction.
+                enonce: Avec l’adresse 192.168.1.2, que se passe-t-il ? Explique pourquoi.
                 aide: Une idée + « car » + une raison tirée de la séance.
-        ressources:
-            - *id001
+            -   id: q02
+                type: tableau
+                enonce: Écris le paramétrage fixe que tu as donné à la station météo pour qu’elle rejoigne le réseau.
+                colonnes:
+                    - Paramètre
+                    - Valeur
+                lignes:
+                    -   - Adresse IP
+                        - ''
+                    -   - Masque
+                        - ''
+                    -   - Résultat du ping depuis PC 1
+                        - ''
+                aide: 'Une case à la fois : la ligne croise la colonne (réflexe n° 6).'
     -   id: a04
         titre: Pour aller plus loin
         defi: true
@@ -116,7 +130,9 @@ activites:
                 enonce: Installe un serveur web sur PC 3 et un navigateur sur PC 1. Que tapes-tu dans le navigateur ?
                 aide: Une phrase complète qui reprend les mots de la question.
         ressources:
-            - *id001
+            -   type: lien
+                titre: Filius — logiciel libre de simulation de réseau (site officiel)
+                url: https://www.lernsoftware-filius.de/Herunterladen
     -   id: a05
         titre: Conclusion de ton travail
         conclusion: true

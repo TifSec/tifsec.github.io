@@ -1,78 +1,108 @@
 titre: 'Séance 37 : La cuve prévient l’afficheur'
 themes:
     - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
-problematique: Comment deux objets communiquent-ils une alerte par radio ?
+problematique: Comment deux objets communicants échangent-ils plusieurs alertes différentes ?
 competences_bo:
     - Concevoir, écrire, tester et mettre au point un programme
     - Imaginer, concevoir et réaliser une ou des solutions en réponse à un besoin, à des exigences (de développement durable, par exemple) ou à la nécessité d’améliorations dans une démarche de créativité
 objectifs:
     connaissances:
-        - La carte de la cuve envoie l’alerte par radio ; la carte « afficheur » (dans la salle) la reçoit et l’affiche.
-        - Test réel avec la carte libre et la carte du tracker, reprogrammée le temps de la séance, puis on lui remet son programme.
+        - 'La radio micro:bit vue en 4e : même groupe, « envoyer », « quand une donnée est reçue ».'
+        - 'En 3e, l’afficheur doit comprendre plusieurs messages (PLEINE, VIDE, TROUBLE) : on se met d’accord sur un vocabulaire commun, c’est un protocole de communication.'
     competences:
-        - Programmer un émetteur et un récepteur d’alerte.
+        - Réinvestir la liaison radio de 4e.
+        - Définir les messages échangés entre deux objets.
         - Tester une communication réelle.
 pourquoi:
-    - En 4e, tu as programmé une liaison radio. En séance 36, tu as programmé ta fonction.
-    - Aujourd’hui, la cuve prévient l’afficheur.
+    - En 4e, tu as programmé la liaison radio du tracker. En séance 36, tu as programmé ta fonction.
+    - Aujourd’hui, la cuve prévient l’afficheur, avec plusieurs alertes.
 activites:
     -   id: a01
-        titre: L’émetteur
-        consigne: Tu vas ajouter l’envoi d’une alerte radio à la fonction declencherAlerte de la cuve, comme pour le tracker en 4e. On attend la description des blocs ajoutés.
+        titre: Ce que je sais déjà (4e)
+        consigne: Tu vas retrouver de mémoire les blocs de la liaison radio programmée en 4e avec le tracker, puis les vérifier avec le rappel. On attend le bloc radio qui correspond à chaque rôle.
         contenu:
+            -   type: paragraphe
+                texte: 'Rappel de 4e : les deux cartes utilisent le même groupe radio ; l’émetteur envoie une donnée ; le récepteur réagit dans le bloc « quand une donnée est reçue ».'
+            -   type: citation
+                texte: 'Réflexe brevet n° 13 : je cherche le bloc ou la ligne qui manque.'
             -   type: etapes
                 elements:
-                    - Ouvre la fonction declencherAlerte (projet de la classe).
-                    - Au démarrage, ajoute « radio définir groupe » avec le numéro de ton groupe.
-                    - Dans declencherAlerte, ajoute « radio envoyer chaîne « PLEINE » ».
+                    - Sans regarder ton projet de 4e, écris les trois blocs indispensables d’une liaison radio.
+                    - Vérifie ensuite avec le rappel ci-dessous.
+                    - Corrige ce qui manquait.
             -   type: paragraphe
-                texte: 'Pourquoi une chaîne de caractères ? L’afficheur affiche directement le mot reçu : pas besoin de décoder un nombre.'
+                texte: Pourquoi commencer de mémoire ? Retrouver seul ce qu’on a appris l’an dernier le fixe bien mieux que le relire.
         questions:
             -   id: q01
-                type: texte
-                enonce: Décris les blocs que tu as ajoutés à la carte de la cuve pour envoyer l’alerte par radio.
+                type: tableau
+                enonce: Écris le bloc radio qui correspond à chaque rôle (vu en 4e avec le tracker).
+                colonnes:
+                    - Rôle
+                    - Bloc radio
+                lignes:
+                    -   - Les deux cartes s’écoutent
+                        - ''
+                    -   - La carte de la cuve parle
+                        - ''
+                    -   - La carte afficheur réagit
+                        - ''
                 aide: Bloc par bloc (réflexe n° 9).
         ressources:
-            - &id001
-                type: lien
-                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+            -   type: lien
+                titre: MakeCode micro:bit (simulateur gratuit)
                 url: https://makecode.microbit.org/
     -   id: a02
-        titre: Le récepteur
-        transition: La cuve envoie. Programme l’afficheur.
-        consigne: Tu vas programmer la carte « afficheur » qui, dans la salle, reçoit l’alerte de la cuve et la signale. On attend ses blocs et ce que tu observes dans le simulateur.
+        titre: Plusieurs alertes, un vocabulaire commun
+        transition: Tu sais relier deux cartes. Fais-leur maintenant échanger plusieurs alertes.
+        consigne: Tu vas faire envoyer par la cuve trois alertes différentes et programmer l’afficheur pour qu’il réagisse à chacune, dans le simulateur. On attend le tableau des messages et une explication sur l’importance du vocabulaire commun.
         contenu:
             -   type: etapes
                 elements:
-                    - Crée un projet 3e_S37_afficheur.
-                    - 'Au démarrage : même groupe radio que la cuve.'
-                    - '« quand une chaîne est reçue par radio » : afficher la chaîne et jouer un son.'
-                    - Teste dans le simulateur (deux cartes).
+                    - Dans declencherAlerte, envoie « PLEINE », « VIDE » ou « TROUBLE » selon la situation de la cuve.
+                    - 'Sur l’afficheur, dans « quand une chaîne est reçue », ajoute un SI … SINON SI … pour chaque message : texte affiché et son différent.'
+                    - 'Teste dans le simulateur : change le niveau et la turbidité simulés, vérifie la réaction de l’afficheur.'
             -   type: paragraphe
-                texte: Pourquoi un son ? L’alerte doit être remarquée même si personne ne regarde l’écran.
+                texte: 'Pourquoi un vocabulaire commun ? Si la cuve envoie « Pleine » et que l’afficheur attend « PLEINE », rien ne se passe : les deux objets doivent parler exactement la même langue.'
         questions:
             -   id: q01
+                type: tableau
+                enonce: Complète le tableau des messages échangés entre la cuve et l’afficheur.
+                colonnes:
+                    - Situation de la cuve
+                    - Message envoyé
+                    - Réaction de l’afficheur
+                lignes:
+                    -   - Niveau > 95 %
+                        - ''
+                        - ''
+                    -   - Niveau < 10 %
+                        - ''
+                        - ''
+                aide: Ligne × colonne.
+            -   id: q02
                 type: texte
-                enonce: Décris les blocs de la carte afficheur et ce que tu observes dans le simulateur quand la cuve envoie l’alerte.
-                aide: Bloc par bloc (réflexe n° 9).
+                enonce: Explique pourquoi l’afficheur ne réagit pas si la cuve envoie « Pleine » au lieu de « PLEINE ».
+                aide: Pense à « car » (réflexe n° 4).
         ressources:
-            - *id001
+            -   type: lien
+                titre: MakeCode micro:bit (simulateur gratuit)
+                url: https://makecode.microbit.org/
     -   id: a03
         titre: Test réel (poste maquette)
         transition: La simulation marche. Testons en vrai.
-        consigne: Tu vas tester l’alerte radio sur de vraies cartes micro:bit, au poste maquette. On attend le résultat du test et la distance maximale de réception.
+        consigne: Tu vas tester les alertes radio sur de vraies cartes micro:bit, au poste maquette. On attend le résultat du test pour chaque alerte et la distance maximale de réception.
         contenu:
             -   type: etapes
                 elements:
                     - Le professeur téléverse l’émetteur sur la carte libre et le récepteur sur la carte du tracker (son programme est sauvegardé).
-                    - Éloignez progressivement les deux cartes.
+                    - Envoyez chaque alerte, puis éloignez progressivement les deux cartes.
                     - Notez la plus grande distance où l’alerte est reçue.
             -   type: paragraphe
                 texte: 'Pourquoi un test réel ? Le simulateur ne connaît ni les murs ni la distance : seul l’essai réel le prouve.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Le test réel de l’alerte a-t-il fonctionné ? Jusqu’à quelle distance ?
+                enonce: Le test réel des trois alertes a-t-il fonctionné ? Jusqu’à quelle distance ?
                 aide: Attendu ou observé ?
             -   id: q02
                 type: qcm
@@ -104,10 +134,11 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment deux objets communiquent-ils une alerte par radio ?'
+                enonce: 'Réponds au problème du jour : comment deux objets communicants échangent-ils plusieurs alertes différentes ?'
                 aide: Reprends les mots du problème (réflexe n° 3).
 retenir:
-    - 'Deux objets communicants : même groupe radio, émission, réception, test réel.'
+    - 'Deux objets communicants : même groupe radio et messages définis à l’avance, identiques des deux côtés (protocole).'
+    - On teste en simulation, puis en réel.
 sources:
     -   type: lien
         titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
