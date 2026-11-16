@@ -1,0 +1,112 @@
+titre: 'Séance 7 : Compter et additionner selon des critères'
+themes:
+    - MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre
+problematique: Comment faire calculer le tableur selon une condition ?
+competences_bo:
+    - MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre
+objectifs:
+    connaissances:
+        - =SI(test;si vrai;si faux) ; =NB.SI(plage;critère) compte ; =SOMME.SI(plage;critère;plage à additionner) additionne.
+        - 'Les critères numériques s’écrivent entre guillemets : ">2000".'
+    competences:
+        - Utiliser SI, NB.SI et SOMME.SI.
+pourquoi:
+    - Le fichier est propre (S06).
+    - 'On peut maintenant le faire parler : combien de communes sans centre équestre ? combien de prairies dans ces communes ?'
+activites:
+    -   id: a01
+        titre: Une alerte avec SI
+        consigne: Tu vas classer chaque commune selon la présence de centres équestres avec la fonction SI. On attend une formule et le nombre de communes sans centre.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : en C2, le nombre de centres : 2.'
+                    - =SI(C2=0;"aucune";"présente") → présente ; avec 0 → aucune.
+                    - 'À toi : ajoute en colonne H une colonne « Concurrence » (titre en H1).'
+                    - Écris =SI(C2=0;"aucune";"présente") et recopie.
+                    - Filtre sur « aucune ».
+                    - Pourquoi SI ? Le tableur classe chaque commune automatiquement.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris la formule de la ligne 5 après recopie.
+                aide: Recopie la formule de la ligne 2 en pensant que C2 devient C5 ; les textes entre guillemets ne changent pas.
+            -   id: q02
+                type: nombre
+                enonce: Combien de communes n’ont aucun centre équestre ?
+                unite: communes
+                aide: Compte les « aucune » de ta colonne d’alerte avec NB.SI.
+    -   id: a02
+        titre: Compter avec NB.SI
+        transition: Le SI marche ligne par ligne. NB.SI résume tout le fichier.
+        consigne: Tu vas compter avec NB.SI les communes sans centre et celles de plus de 3 000 ha de prairies. On attend un résultat et le rôle des guillemets.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : =NB.SI(C2:C6;0) compte les cellules égales à 0.'
+                    - '=NB.SI(D2:D6;">3000") compte celles supérieures à 3 000 : la condition s’écrit entre guillemets.'
+                    - 'Pour une autre feuille, on écrit son nom devant : Données.C2:C38.'
+                    - 'À toi : dans une feuille « Analyse », écris =NB.SI(Données.C2:C38;0).'
+                    - Compare avec ton filtre.
+                    - 'Compte les communes de plus de 3 000 ha de prairies : =NB.SI(Données.D2:D38;">3000").'
+                    - Pourquoi NB.SI ? Le résultat se met à jour si les données changent ; le filtre, non.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Combien de communes ont plus de 3 000 ha de prairies ?
+                unite: communes
+                aide: NB.SI sur la colonne des prairies avec le critère « plus grand que 3000 ». Lis le résultat.
+            -   id: q02
+                type: texte
+                enonce: Pourquoi écrit-on ">3000" entre guillemets ?
+                aide: 'Le critère contient un signe et un nombre : comment le tableur sait-il qu’il ne s’agit pas d’un calcul ?'
+    -   id: a03
+        titre: Additionner avec SOMME.SI
+        transition: Tu sais compter. Additionne maintenant selon un critère.
+        consigne: Tu vas calculer avec SOMME.SI la surface de prairies des communes sans centre équestre. On attend la surface et ce qu’elle signifie.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : =SOMME.SI(H2:H6;"aucune";D2:D6).'
+                    - Calc additionne les valeurs de D seulement sur les lignes où H vaut « aucune ».
+                    - 'À toi : calcule la surface totale de prairies des communes sans concurrence : =SOMME.SI(Données.H2:H38;"aucune";Données.D2:D38).'
+                    - Compare avec le total du département.
+                    - Pourquoi SOMME.SI ? On additionne seulement les lignes qui nous intéressent.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quelle surface de prairies se trouve dans les communes sans centre ?
+                unite: ha
+                aide: 'SOMME.SI : la plage du critère (centres), le critère (0), puis la plage à additionner (prairies).'
+            -   id: q02
+                type: texte
+                enonce: Que représente ce chiffre pour le porteur de projet ?
+                aide: 'Pense au porteur de projet : des prairies là où il n’y a encore aucun centre équestre, c’est quoi pour lui ?'
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le porteur veut une commune sans centre ET avec plus de 3 000 ha.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quelle fonction faut-il ?
+                aide: 'Deux conditions à la fois : NB.SI n’en prend qu’une. Cherche la version avec « .ENS ».'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Le tableur calcule selon des critères. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment faire calculer le tableur selon une condition ?'
+                aide: Dis à quoi servent SI, NB.SI et SOMME.SI, et comment on écrit un critère.
+retenir:
+    - SI, NB.SI, SOMME.SI.
+    - 'Critère : ">3000".'
+sources:
+    -   type: lien
+        titre: ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf

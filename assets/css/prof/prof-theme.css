@@ -1,0 +1,53 @@
+/* Réutiliser les palettes communes sans recolorer les états de correction. */
+.prof-header-actions { flex-wrap: wrap; }
+:root[data-student-theme] .prof-header { background: var(--student-banner); }
+:root[data-student-theme] .prof-nav { background: var(--student-surface); border-color: var(--student-border); }
+:root[data-student-theme] .prof-nav a { color: var(--student-muted); }
+:root[data-student-theme] .prof-nav a:hover { background: var(--student-soft); color: var(--student-link); }
+:root[data-student-theme] .prof-nav a[aria-current="page"] { color: var(--student-link); border-color: var(--student-link); }
+:root[data-student-theme] .prof-main :is(h1, h2, h3, .prof-eyebrow) { color: var(--student-heading); }
+:root[data-student-theme] :is(.prof-description, .prof-hint, .prof-dashboard > p:not(.prof-eyebrow), .prof-dashboard-card p, .prof-shortcuts a > span, .prof-filter label) { color: var(--student-muted); }
+:root[data-student-theme] :is(.prof-dashboard-card, .prof-shortcuts a) { background: var(--student-surface); color: var(--student-text); border-color: var(--student-border); }
+:root[data-student-theme] .prof-dashboard-icon { background: var(--student-soft); }
+:root[data-student-theme] .prof-main a { color: var(--student-link); }
+:root[data-student-theme] .prof-main :is(button, select, textarea, input) { background: var(--student-surface); color: var(--student-text); border-color: var(--student-border); }
+:root[data-student-theme] .prof-main button:hover { background: var(--student-soft); }
+:root[data-student-theme] .prof-main :is(#tracking-save, .student-approve) { background: var(--student-hero); color: white; }
+:root[data-student-theme] .prof-shell #prof-logout { background: var(--student-hero); color: white; border-color: #ffffff80; }
+:root[data-student-theme] .prof-header .student-theme-picker > summary { border-color: #ffffff80; }
+:root[data-student-theme] .prof-shell .site-footer { background: var(--student-surface); color: var(--student-muted); }
+/* Les documents, copies et tableaux existants restent sur une surface claire. */
+:root[data-student-theme] .prof-main :is(.cours-intro, .cours-activite, .cours-synthese, table) { background: white; color: #243047; }
+:root[data-student-theme] .prof-main :is(.cours-intro, .cours-activite, .cours-synthese, table) :is(h1, h2, h3) { color: #243c58; }
+:root[data-student-theme] .prof-main :is(.cours-intro, .cours-activite, .cours-synthese, table) a { color: #245a85; }
+:root[data-student-theme="cyberpunk"] .prof-header { border-bottom: 3px solid #ffe85b; }
+:root[data-student-theme="cyberpunk"] .prof-dashboard-card { border-left: 3px solid #7ce9f4; border-radius: 3px 18px; box-shadow: 4px 4px 0 #e96bab33; }
+:root[data-student-theme="minecraft"] .prof-header { border-bottom: 8px solid #77563b; }
+:root[data-student-theme="minecraft"] :is(.prof-dashboard-card, .prof-shortcuts a, .prof-main button) { border-radius: 0; box-shadow: 3px 3px 0 #354c2933; }
+:root[data-student-theme="farming"] .prof-header { border-bottom: 5px solid #f4dc83; }
+:root[data-student-theme="farming"] .prof-dashboard-card { border-top: 4px solid #6b803d; }
+:root[data-student-theme="neon"] :is(.prof-dashboard-card, .prof-shortcuts a, .prof-header button, .prof-main button) {
+    border: 2px solid transparent;
+    background: linear-gradient(var(--student-surface), var(--student-surface)) padding-box, conic-gradient(from var(--student-rgb-angle), #ff4b93, #9e72ff, #4ea5ff, #56f4dd, #ff4b93) border-box;
+    animation: student-rgb-orbit 7s linear infinite;
+    box-shadow: 0 0 12px #6a76ff25;
+}
+:root[data-student-theme="neon"] .prof-header button { --student-surface: #192344; }
+:root[data-student-theme="neon"]:has(#student-theme-motion:checked) :is(.prof-dashboard-card, .prof-shortcuts a, .prof-header button, .prof-main button) { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+    :root[data-student-theme="neon"] :is(.prof-dashboard-card, .prof-shortcuts a, .prof-header button, .prof-main button) { animation: none; }
+}
+
+:root[data-student-theme] .prof-main :is(.tracking-filters, .tracking-sidebar, .gradebook-detail) { background: var(--student-surface); color: var(--student-text); }
+:root[data-student-theme] :is(#tracking-preview, #tracking-correction, .private-course-notes, .private-course-setup, #teacher-course[data-mode="private"] #teacher-course-status) { color: #243047; }
+:root[data-student-theme] :is(#tracking-preview, #tracking-correction, .private-course-notes, .private-course-setup, .copy-correction) :is(h1, h2, h3) { color: #243c58; }
+:root[data-student-theme] .prof-main .tracking-copy[aria-pressed="true"] { background: var(--student-soft); color: var(--student-text); border-color: var(--student-link); }
+
+/* Les questions suivent la palette sombre même dans une fiche de cours blanche. */
+:root[data-student-theme] .prof-main .cours-question :is(h1, h2, h3, h4, summary) { color: var(--student-text); }
+:root[data-student-theme] .prof-main .cours-question a { color: var(--student-link); }
+
+/* Les corrigés et aides gardent un texte foncé sur leurs encadrés clairs. */
+:root[data-student-theme] .prof-main :is(.teacher-annotation, .private-course-notes, .private-course-setup, .copy-question-correction, .copy-correction) { color: #43351e; }
+:root[data-student-theme] .prof-main :is(.teacher-annotation, .private-course-notes, .private-course-setup, .copy-question-correction, .copy-correction) :is(h1, h2, h3, h4, p, li, summary, label) { color: #43351e; }
+:root[data-student-theme] .prof-main :is(.teacher-annotation, .private-course-notes, .private-course-setup, .copy-question-correction, .copy-correction) a { color: #245a85; }

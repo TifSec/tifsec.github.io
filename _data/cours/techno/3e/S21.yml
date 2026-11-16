@@ -1,0 +1,146 @@
+titre: 'Séance 21 : Organiser notre projet'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment construire le planning du projet de la cuve ?
+competences_bo:
+    - Imaginer, concevoir et réaliser une ou des solutions en réponse à un besoin, à des exigences (de développement durable, par exemple) ou à la nécessité d’améliorations dans une démarche de créativité
+objectifs:
+    connaissances:
+        - Un planning liste les tâches, leur durée, leur ordre (certaines dépendent d’autres) et qui les fait.
+        - Dans Calc, on construit un planning en colonnes (tâche, responsable, séance de début, durée, séance de fin = début + durée − 1).
+    competences:
+        - Élaborer un planning de projet.
+        - Identifier les dépendances entre tâches.
+pourquoi:
+    - En 5e et en 4e, le planning t’était fourni.
+    - En 3e, c’est toi qui l’élabores, dans Calc.
+activites:
+    -   id: a01
+        titre: Les dépendances
+        consigne: Tu vas analyser les tâches du projet de la cuve et leurs dépendances, à partir du document 1. On attend l’explication d’une dépendance et ce qu’elle permet d’organiser.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Tâches du projet (simplifié)
+                colonnes:
+                    - Tâche
+                    - Durée (séances)
+                    - Doit attendre…
+                lignes:
+                    -   - Schéma de la chaîne d’énergie
+                        - '1'
+                        - —
+                    -   - Choix de la source d’énergie
+                        - '1'
+                        - Schéma d’énergie
+                    -   - Chaîne d’information
+                        - '2'
+                        - —
+                    -   - Algorithme
+                        - '1'
+                        - Chaîne d’information
+                    -   - Programme
+                        - '2'
+                        - Algorithme
+                    -   - Tests
+                        - '1'
+                        - Programme
+            -   type: etapes
+                elements:
+                    - 'Lis le document 1 : chaque tâche, sa durée, ce qu’elle doit attendre.'
+                    - 'Repère les tâches qui n’attendent rien : elles peuvent commencer tout de suite.'
+                    - Repère les tâches qui en attendent une autre.
+            -   type: paragraphe
+                texte: 'Pourquoi des dépendances ? On ne peut pas tester un programme qui n’existe pas : l’ordre de certaines tâches est imposé.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le document 1, pourquoi la tâche « Programme » ne peut-elle pas commencer avant « Algorithme » ?
+                aide: 'Dans le document 1, regarde ce que produit la tâche « Algorithme » : de quoi la tâche « Programme » a-t-elle besoin pour commencer ?'
+            -   id: q02
+                type: qcm
+                enonce: D’après le document 1, deux tâches qui ne dépendent pas l’une de l’autre…
+                choix:
+                    -   id: a
+                        texte: … peuvent être faites en même temps par deux groupes.
+                    -   id: b
+                        texte: … doivent être faites à la suite.
+                    -   id: c
+                        texte: … ne servent à rien.
+                aide: Si une tâche n’attend pas le résultat de l’autre, deux groupes peuvent-ils y travailler en parallèle ?
+    -   id: a02
+        titre: Le planning dans Calc
+        transition: Les dépendances sont claires. Construis le planning.
+        consigne: Tu vas construire dans Calc le planning du projet de la cuve, avec une formule qui calcule la séance de fin de chaque tâche. On attend deux lignes cohérentes avec les dépendances du document 1.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre Calc et enregistre sous 3e_planning_groupe.ods.
+                    - 'Colonnes : Tâche, Responsable, Début (n° de séance), Durée, Fin.'
+                    - En E2, écris =C2+D2-1, puis recopie vers le bas.
+                    - Vérifie que chaque tâche commence après la fin de celle qu’elle attend.
+            -   type: paragraphe
+                texte: Pourquoi « début + durée − 1 » ? Une tâche d’une séance qui commence en séance 35 finit en séance 35, pas 36.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Recopie deux lignes du planning du projet de la cuve que tu as construit dans Calc.
+                colonnes:
+                    - Tâche
+                    - Responsable
+                    - Début
+                    - Fin
+                lignes:
+                    -   - ''
+                        - ''
+                        - ''
+                        - ''
+                    -   - ''
+                        - ''
+                        - ''
+                        - ''
+                aide: 'Recopie deux lignes de ton planning Calc : tâche, début, durée, fin. Vérifie que fin = début + durée − 1.'
+    -   id: a03
+        titre: Vérifier le planning
+        transition: Le planning est écrit. Vérifie-le.
+        consigne: Tu vas vérifier que ton planning respecte les dépendances entre tâches. On attend une vérification chiffrée sur les tâches « Programme » et « Tests ».
+        contenu:
+            -   type: etapes
+                elements:
+                    - Relis ton planning ligne par ligne.
+                    - Pour chaque tâche qui en attend une autre, compare sa séance de début à la fin de la tâche attendue.
+                    - Corrige si une tâche commence trop tôt.
+            -   type: paragraphe
+                texte: 'Pourquoi vérifier ? Une erreur de planning se paie plus tard : un groupe se retrouve sans travail ou en retard.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Dans ton planning, la tâche « Tests » commence-t-elle bien après la fin de « Programme » ? Donne les numéros de séance.
+                aide: Lis la séance de fin de « Programme » et la séance de début de « Tests » dans ton planning, puis compare.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le chemin le plus long dans les dépendances donne la durée minimale du projet.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le document 1, quelle est la durée minimale (en séances) de la partie information → tests ?
+                aide: Dans le document 1, suis la chaîne des tâches liées de l’information jusqu’aux tests et additionne leurs durées.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Le planning est prêt. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment construire le planning du projet de la cuve ?'
+                aide: 'Cite les étapes : lister les tâches, leurs durées, les dépendances, les responsables, puis calculer les dates dans Calc.'
+retenir:
+    - 'Planning : tâches, durées, dépendances, responsables.'
+    - Fin = début + durée − 1.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

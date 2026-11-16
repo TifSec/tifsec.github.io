@@ -1,0 +1,144 @@
+titre: 'Séance 38 : Bilan : expliquer le monte-charge'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Suis-je capable d’expliquer comment fonctionne le monte-charge, de ses boutons à son moteur ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+    - Comprendre et modifier un programme associé à une fonctionnalité d’un objet ou d’un système technique
+objectifs:
+    connaissances:
+        - Le monte-charge rassemble une chaîne d’information (boutons, contacts, capteur, carte, écran, voyants) et une chaîne d’énergie (moteur, poulie, câble, contrepoids).
+    competences:
+        - Réutiliser chaînes d’information et d’énergie, lecture de programme et tests.
+pourquoi:
+    - Depuis la séance 33, tu as étudié le monte-charge sous tous ses angles.
+    - 'Aujourd’hui, tu fais le bilan sur un nouveau cas : un monte-plats de restaurant qui fonctionne sur le même principe.'
+activites:
+    -   id: a01
+        titre: Le monte-plats
+        consigne: Tu vas analyser un nouvel objet, le monte-plats d’un restaurant (documents 1 et 2), avec ce que tu as appris sur le monte-charge. On attend sa chaîne d’information et sa transmission du mouvement.
+        contenu:
+            -   type: titre
+                texte: Document 1 — Le monte-plats d’un restaurant
+            -   type: citation
+                texte: Dans un restaurant, la cuisine est au sous-sol. Un monte-plats transporte les assiettes jusqu’à la salle. Un cuisinier pose les plats et appuie sur « Envoyer ». Un capteur de fin de course détecte l’arrivée en haut. Un voyant s’allume dans la salle pour prévenir le serveur. Un moteur, une poulie, un câble et un contrepoids font monter la cabine.
+            -   type: titre
+                texte: Document 2 — Extrait de son programme
+            -   type: code
+                texte: "toujours\n    si (contact bas appuyé) ET (bouton Envoyer appuyé) alors\n        tant que (contact haut pas appuyé)\n            faire tourner le moteur à la vitesse 120\n        arrêter le moteur\n        allumer le voyant de la salle"
+            -   type: etapes
+                elements:
+                    - Lis le document 1.
+                    - Range les constituants comme pour le monte-charge (séance 33).
+                    - Compare sa transmission avec celle du monte-charge (séance 34).
+            -   type: paragraphe
+                texte: 'Pourquoi un nouvel objet ? C’est le bilan : tu montres que tu sais appliquer seul tes méthodes.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'D’après le document 1, classe ces constituants dans la chaîne d’information : acquérir, traiter ou communiquer.'
+                colonnes:
+                    - Constituant
+                    - Fonction
+                lignes:
+                    -   - Bouton « Envoyer »
+                        - ''
+                    -   - Capteur de fin de course
+                        - ''
+                    -   - Voyant de la salle
+                        - ''
+                aide: 'Applique la méthode de la séance 33 au monte-plats : chaque constituant récupère-t-il une information, ou informe-t-il quelqu’un ?'
+            -   id: q02
+                type: qcm
+                enonce: Quel constituant non cité dans le document 1 doit forcément exister pour « traiter » ?
+                choix:
+                    -   id: a
+                        texte: Une carte programmable (comme la micro:bit).
+                    -   id: b
+                        texte: Un deuxième voyant.
+                    -   id: c
+                        texte: Un ventilateur.
+                aide: Le document 1 cite des constituants qui acquièrent et qui communiquent. Mais qui décide ? Pense à la carte du monte-charge.
+            -   id: q03
+                type: tableau
+                enonce: D’après le document 1, complète la transmission du mouvement du monte-plats.
+                colonnes:
+                    - Ordre
+                    - Constituant
+                lignes:
+                    -   - '1'
+                        - Moteur
+                    -   - '2'
+                        - ''
+                    -   - '3'
+                        - ''
+                    -   - '4'
+                        - Cabine
+                aide: 'Fais comme pour le monte-charge en séance 34 : entre le moteur et la cabine, quelles deux pièces transmettent le mouvement ?'
+    -   id: a02
+        titre: Lire le programme
+        transition: Tu as reconnu les chaînes. Lis maintenant son programme, comme celui du monte-charge.
+        consigne: Tu vas lire le programme du monte-plats (document 2) bloc par bloc. On attend les conditions de démarrage et le rôle du voyant de la salle.
+        contenu:
+            -   type: paragraphe
+                texte: 'Rappel du réflexe n° 9 : bloc par bloc.'
+            -   type: etapes
+                elements:
+                    - Lis le programme bloc par bloc (réflexe n° 9).
+                    - Repère la condition qui démarre le moteur.
+                    - Repère quand le voyant s’allume.
+            -   type: paragraphe
+                texte: 'Pourquoi lire bloc par bloc ? Comme une recette, un programme s’exécute dans l’ordre : on le comprend ligne après ligne.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le document 2, que doit-il se passer pour que le moteur démarre ?
+                aide: 'Dans le document 2, lis la condition après « si » : deux choses doivent être vraies en même temps.'
+            -   id: q02
+                type: texte
+                enonce: Quand le voyant de la salle s’allume-t-il ? Pourquoi est-ce utile au serveur ?
+                aide: 'Dans le document 2, cherche la ligne qui allume le voyant : elle arrive après quelle action ? Puis mets-toi à la place du serveur en salle.'
+    -   id: a03
+        titre: Tester le programme du monte-plats
+        transition: Tu as lu le programme. Prépare maintenant sa vérification.
+        consigne: Tu vas préparer deux tests pour vérifier le programme du monte-plats (document 2), comme en séance 37. On attend deux tests avec leur résultat attendu.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Choisis une situation où le moteur doit démarrer, et une où il ne doit pas démarrer.
+                    - Pour chacune, écris l’action et le résultat attendu d’après le document 2.
+            -   type: paragraphe
+                texte: Pourquoi un test où rien ne doit se passer ? Un programme juste doit aussi savoir ne rien faire quand les conditions ne sont pas réunies.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris le résultat attendu de deux tests pour vérifier ce programme.
+                aide: 'Fais comme en séance 37 : choisis deux situations (cabine en bas ou en haut, bouton appuyé ou non) et écris ce que le programme doit faire.'
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le serveur renvoie la cabine vide en bas.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris en « si … alors … » la partie de programme pour faire redescendre la cabine.
+                aide: 'Fais le miroir du programme de montée : la cabine doit être en haut, on appuie sur un bouton de retour, et le moteur tourne dans l’autre sens jusqu’au contact bas.'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as réutilisé toute la séquence. Il reste à expliquer le monte-charge du collège.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Explique en 4 ou 5 phrases comment fonctionne le monte-charge du collège, des boutons jusqu’au moteur.
+                aide: 'Raconte le monte-charge comme une chaîne : ce qui informe la carte, ce qu’elle décide, ce qu’elle commande (moteur, écran, voyants) et comment la cabine monte.'
+retenir:
+    - 'Un monte-charge : chaîne d’information (acquérir, traiter, communiquer) + chaîne d’énergie (moteur, poulie, câble, contrepoids).'
+    - Son programme décide avec des conditions et s’arrête grâce aux contacts de fin de course.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

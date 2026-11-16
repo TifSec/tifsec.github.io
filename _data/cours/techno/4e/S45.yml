@@ -1,0 +1,141 @@
+titre: 'Séance 45 : La liaison radio est-elle fiable ?'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment proposer et mener un protocole pour vérifier la portée de la liaison radio ?
+competences_bo:
+    - Valider les solutions techniques par des simulations ou par des protocoles de tests
+objectifs:
+    connaissances:
+        - 'Fiabilité d’une liaison : proportion de messages reçus selon la distance et les obstacles.'
+        - 'Protocole : je change la distance (ou l’obstacle), je mesure le nombre de messages reçus sur 10 envoyés, je garde le reste identique.'
+    competences:
+        - Proposer un protocole de test.
+        - Vérifier un critère du cahier des charges.
+pourquoi:
+    - En séance 44, émetteur et récepteur ont fonctionné dans le simulateur.
+    - Aujourd’hui, on teste en vrai avec le tracker et la deuxième carte. Le cahier des charges (séance 41) demandait une réception à au moins 10 m.
+activites:
+    -   id: a01
+        titre: Proposer le protocole
+        consigne: 'Tu vas écrire le protocole d’un essai qui vérifie si la liaison radio entre le tracker (émetteur) et la deuxième carte (récepteur) fonctionne jusqu’à 10 m, comme le demande le cahier des charges de la séance 41. Tu t’appuies sur le réflexe R15. On attend trois lignes précises : ce que tu changes, ce que tu mesures, ce que tu gardes identique.'
+        contenu:
+            -   type: citation
+                texte: 'Réflexe brevet n° 15 : j’écris ce que je change, ce que je mesure, ce que je garde identique.'
+            -   type: etapes
+                elements:
+                    - 'Relis le critère du cahier des charges : « réception à au moins 10 m ».'
+                    - 'Choisis ce que tu fais varier : la distance entre le tracker et la carte réceptrice (ou un obstacle).'
+                    - 'Choisis ce que tu mesures : le nombre de messages reçus quand le tracker en envoie 10.'
+                    - Liste tout ce qui doit rester identique pour que l’essai soit juste.
+            -   type: paragraphe
+                texte: 'Pourquoi compter des messages sur 10 ? Un seul message reçu ne prouve rien : sur 10 envois, on voit si la liaison est fiable ou si elle « décroche ».'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Écris ton protocole pour vérifier que la carte réceptrice reçoit bien les mesures du tracker à 10 m ou plus.
+                colonnes:
+                    - Rubrique
+                    - Mon protocole
+                lignes:
+                    -   - Ce que je change
+                        - ''
+                    -   - Ce que je mesure
+                        - ''
+                    -   - Ce que je garde identique
+                        - ''
+                aide: 'Applique R15 au tracker communicant : ce que tu fais varier (distance, obstacle), ce que tu comptes (messages reçus), ce qui reste identique.'
+    -   id: a02
+        titre: Exploiter les mesures
+        transition: La classe applique le protocole retenu.
+        consigne: Tu vas exploiter les résultats de l’essai de portée réalisé par la classe avec le tracker et la carte réceptrice (document 1). On attend un pourcentage calculé et une conclusion sur le critère « 10 m » du cahier des charges.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Exemple de résultats (à remplacer par ceux de la classe)
+                colonnes:
+                    - Distance
+                    - 2 m
+                    - 5 m
+                    - 10 m
+                    - 15 m
+                    - 10 m derrière un mur
+                lignes:
+                    -   - Messages reçus sur 10
+                        - '10'
+                        - '10'
+                        - '9'
+                        - '6'
+                        - '3'
+            -   type: etapes
+                elements:
+                    - Le professeur téléverse le programme d’un groupe sur le tracker et sur la carte libre ; la classe applique le protocole retenu.
+                    - Lis les résultats mis en commun (document 1).
+                    - Calcule le pourcentage de messages reçus à 10 m.
+                    - Regarde aussi le cas « derrière un mur ».
+            -   type: paragraphe
+                texte: Pourquoi un pourcentage ? Il permet de comparer facilement avec un critère, même si on n’envoie pas toujours 10 messages.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: D’après le document 1, quel pourcentage des messages envoyés par le tracker est reçu à 10 m ?
+                unite: '%'
+                aide: Dans le document 1, lis le nombre de messages reçus à 10 m sur le nombre envoyé, puis passe en pourcentage.
+            -   id: q02
+                type: texte
+                enonce: Le critère du cahier des charges « réception à au moins 10 m » est-il respecté ? Justifie avec le document 1, et parle du mur.
+                aide: Compare le critère « au moins 10 m » aux résultats du document 1 en ligne directe et derrière le mur. Cite les deux valeurs.
+    -   id: a03
+        titre: Améliorer l’installation
+        transition: Tu connais la portée. Utilise-la pour bien installer le récepteur.
+        consigne: Tu vas utiliser les résultats de l’essai pour conseiller un emplacement à la carte réceptrice du tracker dans la salle. On attend un conseil justifié par les mesures et un moyen de le vérifier.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Reprends ta conclusion de la mission 2.
+                    - Cherche où placer la carte réceptrice dans la salle pour éviter les obstacles.
+                    - Propose une amélioration et dis comment la vérifier.
+            -   type: paragraphe
+                texte: 'Pourquoi proposer une amélioration ? Un test ne sert pas qu’à juger : il aide à mieux installer l’objet.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après tes résultats, où conseilles-tu d’installer la carte réceptrice du tracker dans la salle ? Comment vérifierais-tu que ton conseil fonctionne ?
+                aide: Choisis un emplacement qui évite ce qui gêne la liaison dans tes résultats, puis dis quel test refaire pour vérifier.
+            -   id: q02
+                type: qcm
+                enonce: Après les tests, que faut-il faire sur le tracker du collège ?
+                choix:
+                    -   id: a
+                        texte: Remettre le programme d’origine (ou garder le nôtre si la classe l’adopte).
+                    -   id: b
+                        texte: Rien.
+                    -   id: c
+                        texte: Le démonter.
+                aide: Rappelle-toi la règle de la classe pour le tracker du collège après les essais.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Certains messages arrivent mais sont perdus si le récepteur est occupé.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment la carte réceptrice pourrait-elle signaler qu’elle n’a rien reçu depuis 10 s ?
+                aide: La carte réceptrice peut retenir l’heure du dernier message reçu. Que faire si cette heure est trop ancienne ?
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: La liaison est testée. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment as-tu vérifié la fiabilité de la liaison radio du tracker, et qu’as-tu conclu ?'
+                aide: Résume ton protocole, ta conclusion chiffrée et la limite trouvée (obstacle).
+retenir:
+    - 'Fiabilité : messages reçus / messages envoyés, selon distance et obstacles.'
+    - On vérifie un critère du cahier des charges par un test.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

@@ -1,0 +1,114 @@
+name: Vérifications
+
+# Lance la compilation Jekyll et tous les tests à chaque envoi sur une branche
+# de travail et à chaque demande de fusion. Ne publie rien et ne touche pas à Supabase.
+# Sur refonte-jekyll, si tout passe, les deux sites compilés sont rangés dans les branches
+# construit/eleves (futur https://tifsec.github.io/, base réelle) et construit/bac-a-sable
+# (https://tifsec.github.io/tifsec-test-eleves/, base de test, brouillons visibles).
+on:
+  push:
+    branches-ignore: [main, 'construit/**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verifications-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  site-et-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      # Gemfile.lock a été créé sous Windows (plateforme x64-mingw-ucrt seulement) :
+      # on ajoute la plateforme Linux le temps de la vérification, sans modifier le dépôt.
+      - name: Jekyll
+        run: |
+          gem install bundler -v 4.0.22 --no-document || gem install bundler --no-document
+          bundle lock --add-platform x86_64-linux
+          bundle install --jobs 4
+
+      - name: Compiler le site (version des tests, brouillons compris)
+        run: bundle exec jekyll build --config _config.yml,_checks/config-tests.yml
+
+      - name: Compiler le site des élèves et le bac à sable
+        run: |
+          bundle exec jekyll build --config _config.yml -d _site_eleves
+          bundle exec jekyll build --config _config.yml,_config_bac_a_sable.yml -d _site_bac_a_sable
+
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Dépendances des tests
+        working-directory: _checks
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+
+      - name: Tests
+        run: |
+          set +e
+          node --experimental-vm-modules --test --test-reporter=tap _checks/*.test.mjs > tests.tap 2>&1
+          status=$?
+          grep -E '^# (tests|pass|fail)' tests.tap | tee -a "$GITHUB_STEP_SUMMARY"
+          # Chaque test en échec devient une annotation lisible dans le résumé de l'exécution.
+          # Une annotation par tranche (GitHub limite le nombre d'annotations par étape).
+          node -e '
+            const lines = require("fs").readFileSync("tests.tap", "utf8").split("\n");
+            const out = [];
+            lines.forEach((l, i) => { if (/^\s*not ok/.test(l)) {
+              const detail = lines.slice(i + 1, i + 25).filter(x => /error:|expected:|actual:|location:/.test(x)).slice(0, 4).map(x => "    " + x.trim()).join("\n");
+              out.push(l.trim() + "\n" + detail); } });
+            let chunk = "";
+            const flush = () => { if (chunk) console.log("::error title=Tests en échec::" + chunk.replace(/%/g, "%25").replace(/\r/g, "").replace(/\n/g, "%0A")); chunk = ""; };
+            for (const item of out) { if ((chunk + item).length > 3500) flush(); chunk += item + "\n"; }
+            flush();'
+          exit $status
+
+      - name: Liste des séances lue par les fonctions professeur à jour
+        run: node _checks/export-question-catalogue.mjs --check
+
+      - name: Contrôle de publication (aucun corrigé, secret ni dossier interne publié)
+        run: node _checks/check-publication.mjs
+
+      - name: Contrôle de publication des deux sites
+        run: |
+          node _checks/check-publication.mjs _site_eleves
+          node _checks/check-publication.mjs _site_bac_a_sable /tifsec-test-eleves
+
+      - name: Aucun brouillon visible sur le site des élèves
+        run: node _checks/check-drafts.mjs _site_eleves
+
+      - name: Le site des élèves utilise la vraie base, le bac à sable la base de test
+        run: |
+          grep -q 'content="https://aqbjykgppbyrzqxlzxuf.supabase.co"' _site_eleves/eleve/index.html
+          grep -q 'content="https://evbfflwfyiitrkgzjhwt.supabase.co"' _site_bac_a_sable/eleve/index.html
+          ! grep -rq 'evbfflwfyiitrkgzjhwt' _site_eleves
+          ! grep -rq 'aqbjykgppbyrzqxlzxuf' _site_bac_a_sable
+
+      - name: Ranger les sites compilés (refonte-jekyll uniquement)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/refonte-jekyll'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for pair in "_site_eleves construit/eleves" "_site_bac_a_sable construit/bac-a-sable"; do
+            set -- $pair
+            cd "$GITHUB_WORKSPACE/$1"
+            git init -q -b main . && git add -A
+            git commit -q -m "Site compilé depuis refonte-jekyll ${GITHUB_SHA::7}"
+            git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:"refs/heads/$2"
+          done

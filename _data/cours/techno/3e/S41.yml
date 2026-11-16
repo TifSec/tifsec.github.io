@@ -1,0 +1,143 @@
+titre: 'Séance 41 : Choisir les constituants et câbler la cuve en simulation'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Quels constituants choisir et comment les relier pour réaliser le prototype numérique de la cuve ?
+competences_bo:
+    - Imaginer, concevoir et réaliser une ou des solutions en réponse à un besoin, à des exigences (de développement durable, par exemple) ou à la nécessité d’améliorations dans une démarche de créativité
+objectifs:
+    connaissances:
+        - On choisit chaque constituant selon le cahier des charges (fonction, alimentation, prix) et on le relie à la bonne broche de la carte.
+        - Dans Tinkercad Circuits, on câble la micro:bit, le capteur à ultrasons, la LED (avec sa résistance) et le buzzer, puis on simule.
+    competences:
+        - Choisir des constituants et les justifier.
+        - Câbler un circuit en simulation.
+pourquoi:
+    - En séance 25, tu as défini la chaîne d’information ; en séance 27, tu as modélisé le couvercle.
+    - Aujourd’hui, tu assembles le prototype numérique.
+activites:
+    -   id: a01
+        titre: Choisir les constituants
+        consigne: Tu vas vérifier les constituants choisis par la classe pour le prototype de la cuve et leurs broches (document 1). On attend le rôle de la résistance de la LED et la raison du choix du bouton A.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Proposition de la classe
+                colonnes:
+                    - Fonction
+                    - Constituant choisi
+                    - Broche
+                lignes:
+                    -   - Mesurer le niveau
+                        - Capteur à ultrasons
+                        - P1 (trig) et P2 (echo)
+                    -   - Alerter visuellement
+                        - LED rouge + résistance 220 Ω
+                        - P0
+                    -   - Alerter par le son
+                        - Buzzer
+                        - P8
+                    -   - Demander l’affichage
+                        - Bouton A de la carte
+                        - —
+            -   type: etapes
+                elements:
+                    - Lis la proposition de la classe (document 1).
+                    - Pour chaque constituant, vérifie qu’il remplit une fonction du cahier des charges.
+                    - Repère pourquoi la LED a une résistance.
+            -   type: paragraphe
+                texte: Pourquoi justifier chaque constituant ? Un constituant sans fonction coûte de l’argent et de l’énergie pour rien.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le document 1, pourquoi met-on une résistance en série avec la LED rouge de la cuve ?
+                aide: Une LED branchée directement sur une broche reçoit trop de courant. Quel composant limite ce courant ?
+            -   id: q02
+                type: qcm
+                enonce: Pourquoi la classe utilise-t-elle le bouton A de la carte plutôt qu’un bouton externe ?
+                choix:
+                    -   id: a
+                        texte: 'Il est déjà sur la carte : moins de câblage, moins de pièces.'
+                    -   id: b
+                        texte: Il est plus joli.
+                    -   id: c
+                        texte: Obligatoire.
+                aide: 'Compare un bouton déjà présent sur la carte et un bouton à câbler : nombre de fils, de pièces, risque d’erreur.'
+    -   id: a02
+        titre: Câbler
+        transition: Les constituants sont choisis. Câble-les.
+        consigne: Tu vas câbler le prototype numérique de la cuve dans Tinkercad Circuits, en suivant le document 1. On attend la broche de chaque constituant.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre Tinkercad Circuits, nouveau circuit 3e_S41_groupe.
+                    - Place la micro:bit, le capteur à ultrasons, la LED, la résistance et le buzzer.
+                    - Relie chaque constituant à sa broche (document 1).
+                    - Relie toutes les masses (GND) entre elles.
+            -   type: paragraphe
+                texte: 'Pourquoi une masse commune ? Une tension se mesure toujours entre deux points : sans masse commune, les constituants ne « parlent » pas la même langue.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Note le câblage de ton circuit Tinkercad pour la cuve.
+                colonnes:
+                    - Constituant
+                    - Broche reliée
+                lignes:
+                    -   - LED (avec sa résistance)
+                        - ''
+                    -   - Buzzer
+                        - ''
+                    -   - Capteur à ultrasons (echo)
+                        - ''
+                aide: Dans ton circuit Tinkercad, suis le fil de chaque constituant jusqu’à la carte et note la broche.
+        ressources:
+            -   type: lien
+                titre: Tinkercad Circuits — simulation de circuits avec micro:bit
+                url: https://www.tinkercad.com/learn/circuits
+    -   id: a03
+        titre: Simuler
+        transition: Le circuit est câblé. Vérifie-le en simulation.
+        consigne: Tu vas vérifier ton câblage par une simulation avec un programme simple. On attend ce que fait la LED et ta conclusion sur le câblage.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Écris un programme simple : allumer la LED si la distance est inférieure à 20 cm.'
+                    - Lance la simulation.
+                    - Déplace l’objet devant le capteur et observe la LED.
+            -   type: paragraphe
+                texte: 'Pourquoi un programme simple ? Il vérifie seulement le câblage : s’il marche, on pourra charger le vrai programme sans doute sur les fils.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Décris le résultat de la simulation de ton circuit : que fait la LED quand l’objet s’approche du capteur ? Le câblage est-il bon ?'
+                aide: 'Lance la simulation, rapproche l’objet du capteur et observe la LED : à quelle distance réagit-elle ? Le comportement correspond-il au programme ?'
+        ressources:
+            -   type: lien
+                titre: Tinkercad Circuits — simulation de circuits avec micro:bit
+                url: https://www.tinkercad.com/learn/circuits
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Toutes les masses doivent être reliées.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Que se passe-t-il si le capteur n’a pas la même masse que la carte ?
+                aide: Un capteur mesure par rapport à la masse (le GND). Que se passe-t-il si ce point de référence n’est pas commun ?
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : quels constituants choisir et comment les relier pour le prototype numérique de la cuve ?'
+                aide: Cite les constituants choisis avec une raison chacun, puis les broches utilisées et le test en simulation.
+retenir:
+    - Choisir des constituants selon le cahier des charges ; câbler aux bonnes broches ; simuler.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

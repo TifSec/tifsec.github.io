@@ -1,0 +1,137 @@
+titre: 'Séance 31 : Arcade : à quoi sert un score ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment un programme peut-il compter les objets ramassés par le joueur ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
+    - Comprendre et modifier un programme associé à une fonctionnalité d’un objet ou d’un système technique
+objectifs:
+    connaissances:
+        - 'Une variable garde une valeur qui peut changer pendant le programme : ici, le score.'
+        - 'Un événement déclenche des instructions quand quelque chose se produit : ici, quand le joueur touche un objet.'
+    competences:
+        - Créer un objet à ramasser.
+        - Utiliser un événement « lorsque … chevauche … ».
+        - Modifier une variable (le score) et prévoir son effet.
+pourquoi:
+    - En séance 30, ton personnage se déplace avec les boutons.
+    - 'Un jeu devient intéressant quand on compte des points. Aujourd’hui, tu ajoutes un objet à ramasser et un score : c’est une variable qui change à chaque événement.'
+activites:
+    -   id: a01
+        titre: Ajouter un objet à ramasser
+        consigne: Tu vas ajouter à ton jeu Arcade un objet à ramasser. On attend l’explication de ce qui manque pour que l’objet réagisse.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre ton projet de la séance 30 (Mes projets dans MakeCode Arcade).
+                    - Dans « au démarrage », ajoute un nouveau bloc « définir mySprite2 à sprite … de type Food » et dessine un petit objet (une pièce, un fruit).
+                    - 'Teste : l’objet apparaît au milieu de l’écran, mais rien ne se passe quand tu le touches.'
+            -   type: paragraphe
+                texte: 'Pourquoi rien ne se passe ? Parce que le programme ne sait pas encore quoi faire quand le joueur touche l’objet : il manque un événement.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Pourquoi l’objet ne réagit-il pas quand le joueur le touche ?
+                choix:
+                    -   id: a
+                        texte: Aucun bloc ne dit quoi faire à ce moment-là.
+                    -   id: b
+                        texte: L’objet est trop petit.
+                    -   id: c
+                        texte: Le simulateur est en panne.
+                aide: Un programme ne fait que ce qu’on lui écrit. Y a-t-il un bloc qui dit quoi faire quand les deux sprites se touchent ?
+        ressources:
+            -   type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a02
+        titre: L’événement et le score
+        transition: 'Pour que le jeu réagisse, il faut un événement : « lorsque le joueur touche l’objet ».'
+        consigne: Tu vas programmer l’événement qui fait monter le score quand le personnage touche l’objet. On attend une lecture du programme bloc par bloc, une valeur du score et un test.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Dans « Sprites », fais glisser le bloc « lorsque sprite de type Player chevauche otherSprite de type Food » (il se place tout seul dans la zone de travail).
+                    - Dans ce bloc, ajoute « Info » > « modifier le score de 1 ».
+                    - Ajoute aussi « Sprites » > « définir otherSprite position x … y … » avec des nombres au hasard (« Maths » > « choisir au hasard de 10 à 150 »).
+                    - 'Teste : à chaque fois que ton personnage touche l’objet, le score augmente et l’objet change de place.'
+            -   type: code
+                texte: "lorsque sprite de type Player chevauche otherSprite de type Food\n    modifier le score de 1\n    définir otherSprite position x (au hasard 10 à 150) y (au hasard 10 à 110)"
+            -   type: paragraphe
+                texte: 'Rappel du réflexe n° 9 : lis le programme bloc par bloc. Le score est une variable : il garde le nombre d’objets ramassés.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Lis ce programme bloc par bloc (réflexe n° 9) : écris ce que fait chaque ligne.'
+                aide: 'Lis le programme ligne par ligne, comme une recette : la première dit quand, la suivante dit quoi faire, la dernière ce que devient l’objet.'
+            -   id: q02
+                type: nombre
+                enonce: Ton personnage a touché l’objet 7 fois depuis le début. Quelle est la valeur du score ?
+                unite: points
+                aide: 'À chaque contact, le score augmente de 1. Il part de 0 : combien après 7 contacts ?'
+            -   id: q03
+                type: texte
+                enonce: 'Prévois : que se passe-t-il si on remplace « modifier le score de 1 » par « modifier le score de 5 » ? Teste et compare.'
+                aide: Si chaque objet rapporte 5 au lieu de 1, multiplie le nombre d’objets ramassés par 5. Puis teste pour vérifier.
+    -   id: a03
+        titre: Ajouter un ennemi
+        transition: Ton jeu compte les points. Pour le rendre plus intéressant, ajoute un ennemi qui fait perdre des vies.
+        consigne: Tu vas ajouter un ennemi qui fait perdre une vie. On attend l’événement utilisé et le nombre de variables qui comptent quelque chose dans ton jeu.
+        contenu:
+            -   type: paragraphe
+                texte: Un ennemi rend le jeu plus difficile. Il se crée comme l’objet, avec le type Enemy, et un événement « lorsque Player chevauche Enemy » peut faire perdre une vie (« Info » > « modifier les vies de -1 »).
+            -   type: etapes
+                elements:
+                    - Crée un sprite de type Enemy, comme l’objet.
+                    - Ajoute l’événement « lorsque Player chevauche Enemy ».
+                    - Dedans, mets « modifier la vie de -1 ».
+            -   type: paragraphe
+                texte: 'Pourquoi un ennemi ? Un jeu sans difficulté devient vite ennuyeux : l’ennemi crée un défi.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ajoute un ennemi qui fait perdre une vie. Écris l’événement et l’instruction que tu as utilisés.
+                aide: Fais comme pour l’objet à ramasser, mais avec le type Enemy, et cherche le bloc qui modifie les vies au lieu du score.
+            -   id: q02
+                type: qcm
+                enonce: Dans ton jeu, combien de variables différentes comptent quelque chose ?
+                choix:
+                    -   id: a
+                        texte: 'Deux : le score et les vies.'
+                    -   id: b
+                        texte: 'Une seule : le score.'
+                    -   id: c
+                        texte: Aucune.
+                aide: 'Une variable est une boîte qui garde un nombre. Dans ton jeu, compte les boîtes : ce qui compte les points, ce qui compte les vies.'
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Dans « Sprites », le bloc « définir mySprite vitesse vx … vy … » fait bouger un sprite tout seul.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Fais bouger l’ennemi tout seul et explique quels nombres tu as choisis.
+                aide: Donne à l’ennemi une vitesse vx et vy (comme ton personnage en séance 30) et cherche une option pour qu’il ne sorte pas de l’écran.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as utilisé un événement et des variables. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment un programme peut-il compter les objets ramassés par le joueur ?'
+                aide: Explique le rôle de la variable score et de l’événement qui la fait augmenter.
+retenir:
+    - Un événement déclenche des instructions quand quelque chose se produit.
+    - Une variable (score, vies) garde une valeur qui change pendant le jeu.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download
+    -   type: lien
+        titre: MakeCode Arcade (gratuit, dans le navigateur)
+        url: https://arcade.makecode.com/

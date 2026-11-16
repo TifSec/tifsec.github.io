@@ -1,0 +1,144 @@
+titre: 'Séance 46 : Calc n° 2 : que nous apprennent les mesures reçues ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Que nous apprennent les mesures de lumière reçues pendant une journée ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+objectifs:
+    connaissances:
+        - 'Dans Calc : MIN, MAX et MOYENNE sur une plage ; un graphique en courbe montre l’évolution dans le temps.'
+        - 'On interprète un graphique : quand la lumière est maximale, quand elle chute, et pourquoi.'
+    competences:
+        - Utiliser MIN, MAX et MOYENNE.
+        - Tracer et interpréter un graphique en courbe avec titre et axes.
+pourquoi:
+    - En séance 45, la liaison radio a été testée. La carte réceptrice a enregistré la lumière envoyée par le tracker toutes les heures.
+    - Aujourd’hui, tu exploites ces mesures dans Calc.
+activites:
+    -   id: a01
+        titre: Les calculs
+        consigne: Tu vas calculer dans Calc la valeur la plus faible, la plus forte et la moyenne des mesures de lumière envoyées par le tracker pendant une journée (document 1). On attend un fichier enregistré et les trois résultats.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Lumière reçue par la carte réceptrice, une journée ensoleillée (exemple)
+                colonnes:
+                    - Heure
+                    - 8 h
+                    - 9 h
+                    - 10 h
+                    - 11 h
+                    - 12 h
+                    - 13 h
+                    - 14 h
+                    - 15 h
+                    - 16 h
+                    - 17 h
+                lignes:
+                    -   - Lumière (0-510)
+                        - '60'
+                        - '150'
+                        - '280'
+                        - '390'
+                        - '460'
+                        - '470'
+                        - '430'
+                        - '300'
+                        - '170'
+                        - '70'
+            -   type: etapes
+                elements:
+                    - Ouvre Calc et enregistre sous 4e_S46_groupe.ods.
+                    - 'Recopie le document 1 : heures en ligne 1, valeurs en ligne 2, à partir de la colonne B.'
+                    - En B4, écris =MIN(B2:K2) ; en B5, =MAX(B2:K2) ; en B6, =MOYENNE(B2:K2).
+                    - Écris une étiquette en A4, A5, A6.
+            -   type: paragraphe
+                texte: 'Pourquoi des fonctions ? Si une mesure change, Calc recalcule tout seul : pas d’erreur de calcul à la main.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Recopie les résultats calculés par Calc pour les mesures de lumière du document 1.
+                colonnes:
+                    - Fonction
+                    - Résultat
+                lignes:
+                    -   - MIN
+                        - ''
+                    -   - MAX
+                        - ''
+                    -   - MOYENNE
+                        - ''
+                aide: Dans ta feuille Calc, utilise MIN, MAX et MOYENNE sur la plage des mesures de lumière et recopie les trois résultats.
+    -   id: a02
+        titre: Le graphique
+        transition: Les calculs sont faits. Un graphique montre l’évolution.
+        consigne: Tu vas tracer dans Calc la courbe de la lumière reçue au cours de la journée, avec un titre et des axes nommés. On attend une description de la courbe et son explication.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Sélectionne les lignes 1 et 2 (A1:K2).
+                    - Insertion > Diagramme > Lignes.
+                    - 'Titre : « Lumière reçue par le tracker » ; axe X : « Heure » ; axe Y : « Lumière ».'
+                    - Enregistre (Ctrl + S).
+            -   type: paragraphe
+                texte: 'Pourquoi une courbe ? Elle montre comment une grandeur évolue dans le temps : on voit d’un coup d’œil le matin, midi et le soir.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Décris l’évolution de la lumière reçue par le tracker pendant la journée et explique-la.
+                aide: 'Regarde ta courbe du matin au soir : quand monte-t-elle, quand atteint-elle son maximum, quand descend-elle ? Relie cela à la position du soleil.'
+            -   id: q02
+                type: qcm
+                enonce: Pourquoi un graphique en courbe plutôt qu’en secteurs pour ces mesures ?
+                choix:
+                    -   id: a
+                        texte: Pour montrer une évolution dans le temps.
+                    -   id: b
+                        texte: Pour montrer des parts d’un total.
+                    -   id: c
+                        texte: C’est pareil.
+                aide: 'Tes mesures sont prises heure après heure : veux-tu montrer des parts d’un total, ou une évolution dans le temps ?'
+    -   id: a03
+        titre: Interpréter
+        transition: Tu as décrit la courbe. Tire-en une information utile.
+        consigne: Tu vas utiliser les mesures de lumière pour savoir à quels moments le panneau du tracker est le plus efficace. On attend un nombre d’heures lu sur les mesures.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Repère sur ta courbe les heures où la lumière dépasse 300.
+                    - Compte ces heures.
+                    - Fais le lien avec la production d’électricité du panneau du tracker.
+            -   type: paragraphe
+                texte: 'Pourquoi relier au panneau ? Le tracker sert à produire de l’électricité : ces mesures disent quand il est le plus utile.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: D’après le document 1, pendant combien d’heures relevées la lumière dépasse-t-elle 300 ?
+                unite: h
+                aide: Dans le document 1, compte les heures où la valeur est strictement supérieure à 300.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: La fonction SI permet d’écrire « Fort » ou « Faible ».
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris une formule qui affiche « Fort » si la valeur de B2 dépasse 300, sinon « Faible ».
+                aide: 'Utilise la fonction SI : le test sur B2, puis le texte si vrai, puis le texte si faux, entre guillemets.'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as exploité les mesures. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : que nous apprennent les mesures de lumière reçues pendant une journée ?'
+                aide: Cite les trois valeurs calculées, le moment du maximum et ce que cela apprend sur le tracker.
+retenir:
+    - MIN, MAX, MOYENNE sur une plage ; graphique en courbe pour une évolution dans le temps.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

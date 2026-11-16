@@ -1,0 +1,181 @@
+titre: 'Séance 16 : Pourquoi ces deux ordinateurs ne se parlent-ils pas ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment trouver et corriger une panne dans un réseau ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+    - Identifier un dysfonctionnement d’un objet technique et y remédier
+objectifs:
+    connaissances:
+        - Une panne de réseau peut venir d’une liaison absente, d’une adresse en double, d’une adresse d’un autre réseau ou d’un mauvais masque.
+        - On vérifie dans l’ordre (liaison, adresse, masque), et on refait un ping après chaque correction.
+    competences:
+        - Suivre une méthode de diagnostic.
+        - Corriger une panne de paramétrage.
+pourquoi:
+    - En séance 15, tu as construit un réseau qui fonctionne.
+    - Aujourd’hui, le professeur te donne un réseau Filius en panne. À toi de trouver pourquoi.
+activites:
+    -   id: a01
+        titre: La méthode
+        consigne: Tu vas apprendre la méthode de diagnostic d’une panne de réseau à partir du document 1 (liaison, adresse, réseau, masque). On attend l’ordre des vérifications et le rôle du ping.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Méthode de diagnostic
+                colonnes:
+                    - Étape
+                    - Je vérifie…
+                    - Si c’est faux…
+                lignes:
+                    -   - '1'
+                        - Chaque ordinateur est-il relié au commutateur ?
+                        - J’ajoute le câble.
+                    -   - '2'
+                        - Les adresses sont-elles uniques ?
+                        - Je change l’adresse en double.
+                    -   - '3'
+                        - Les trois premiers nombres sont-ils identiques ?
+                        - Je corrige l’adresse.
+                    -   - '4'
+                        - Le masque est-il 255.255.255.0 partout ?
+                        - Je corrige le masque.
+            -   type: etapes
+                elements:
+                    - Lis la méthode du document 1.
+                    - 'Retiens l’ordre : liaison, adresse unique, même réseau, masque.'
+                    - 'Retiens la règle : un ping après chaque correction.'
+            -   type: paragraphe
+                texte: 'Pourquoi un ping après chaque correction ? Pour savoir laquelle a réglé la panne : une seule modification à la fois (réflexe n° 8).'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Pourquoi refaire un ping après chaque correction ?
+                choix:
+                    -   id: a
+                        texte: Pour savoir quelle correction a résolu la panne.
+                    -   id: b
+                        texte: Pour aller plus vite.
+                    -   id: c
+                        texte: Parce que Filius l’exige.
+                aide: Si tu fais trois corrections puis un seul ping, sais-tu laquelle a réparé la panne ?
+            -   id: q02
+                type: qcm
+                enonce: Par quoi commence-t-on ?
+                choix:
+                    -   id: a
+                        texte: Vérifier que chaque ordinateur est relié.
+                    -   id: b
+                        texte: Changer tous les masques.
+                    -   id: c
+                        texte: Racheter un commutateur.
+                aide: 'Relis le document 1 : on vérifie d’abord le plus simple, ce qu’on voit sur le schéma.'
+    -   id: a02
+        titre: Le réseau en panne
+        transition: Tu connais la méthode. Applique-la au réseau fourni.
+        consigne: Tu vas dépanner le réseau fourni par le professeur (fichier Filius ou document 2) en appliquant la méthode. On attend la panne de chaque ordinateur et sa correction.
+        contenu:
+            -   type: tableau
+                titre: Document 2 — Le réseau fourni
+                colonnes:
+                    - Ordinateur
+                    - Adresse
+                    - Masque
+                    - Câble
+                lignes:
+                    -   - PC A
+                        - '192.168.1.1'
+                        - '255.255.255.0'
+                        - oui
+                    -   - PC B
+                        - '192.168.2.2'
+                        - '255.255.255.0'
+                        - oui
+                    -   - PC C
+                        - '192.168.1.3'
+                        - '255.255.255.0'
+                        - non
+                    -   - PC D
+                        - '192.168.1.1'
+                        - '255.255.255.0'
+                        - oui
+            -   type: etapes
+                elements:
+                    - Ouvre le fichier Filius du professeur (ou lis le document 2).
+                    - Applique la méthode ordinateur par ordinateur.
+                    - Note la panne de chacun.
+            -   type: paragraphe
+                texte: 'Pourquoi suivre la méthode même si on « voit » la panne ? Parce qu’il y en a souvent plusieurs : la méthode évite d’en oublier.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Écris la panne de chaque ordinateur (ou « aucune »).
+                colonnes:
+                    - Ordinateur
+                    - Panne
+                lignes:
+                    -   - PC B
+                        - ''
+                    -   - PC C
+                        - ''
+                    -   - PC D
+                        - ''
+                aide: 'Pour chaque PC du document 2, vérifie dans l’ordre de la méthode : est-il relié ? son adresse est-elle unique ? est-elle du même réseau ?'
+            -   id: q02
+                type: tableau
+                enonce: Propose la correction pour chaque ordinateur.
+                colonnes:
+                    - Ordinateur
+                    - Correction
+                lignes:
+                    -   - PC B
+                        - ''
+                    -   - PC C
+                        - ''
+                    -   - PC D
+                        - ''
+                aide: 'Pour chaque panne trouvée, propose le geste qui la corrige : ajouter un câble, ou choisir une adresse libre du réseau 192.168.1.'
+    -   id: a03
+        titre: Prouver que c’est réparé
+        transition: Les pannes sont corrigées. Prouve-le.
+        consigne: Tu vas prouver que le réseau de la mission 2 est réparé. On attend la liste des pings à faire et ce qu’ils doivent montrer.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Après tes corrections, choisis les pings à faire.
+                    - Un ping vers chaque ordinateur doit répondre.
+                    - Écris ta liste de vérifications.
+            -   type: paragraphe
+                texte: 'Pourquoi prouver ? Un technicien ne dit pas « je crois que ça marche » : il montre un test réussi.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quels pings fais-tu pour prouver que tout fonctionne ?
+                aide: Pour prouver que tout marche, depuis quel PC fais-tu des pings, et vers lesquels ?
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Certaines pannes viennent du commutateur lui-même.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment prouver que c’est le commutateur, et pas un ordinateur ?
+                aide: Si tous les PC sont bien paramétrés et que rien ne passe, quel équipement leur est commun ? Comment le vérifier en le remplaçant ?
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as dépanné un réseau. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment trouver et corriger une panne dans un réseau ?'
+                aide: 'Cite les vérifications dans l’ordre de la méthode, puis la règle : une correction à la fois, un ping après chacune.'
+retenir:
+    - 'Diagnostic réseau : liaison → adresse unique → même réseau → masque.'
+    - Une correction à la fois, un ping après chacune.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

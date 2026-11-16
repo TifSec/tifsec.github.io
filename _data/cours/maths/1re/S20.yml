@@ -1,0 +1,282 @@
+titre: 'Séance 20 : Combien a-t-on dépensé en tout ?'
+themes:
+    - MG1, C1.3 — Exploiter la modélisation d’un phénomène
+problematique: Comment calculer la somme des termes d’une suite avec le tableur ?
+competences_bo:
+    - MG1, C1.3 — Exploiter la modélisation d’un phénomène
+objectifs:
+    connaissances:
+        - La somme de termes = total cumulé sur plusieurs périodes (ex. coût total d’une pension sur 10 ans).
+        - 'Au tableur : colonne des termes, puis SOMME, ou colonne de cumul.'
+    competences:
+        - Calculer une somme de termes au tableur.
+        - Comparer deux contrats sur leur coût total.
+pourquoi:
+    - En S18, tu as comparé deux options de prix pour 2036.
+    - 'Mais le client paie chaque année : quel est le coût total sur 10 ans ?'
+activites:
+    -   id: a01
+        titre: Les termes au tableur
+        consigne: Tu vas construire au tableur les coûts annuels des deux options de pension sur 10 ans. On attend deux coûts annuels.
+        contenu:
+            -   type: liste
+                elements:
+                    - 'Automatisme : 12 × 508 = ?'
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : un loyer de 100 € par mois, +2 % par an.'
+                    - 'Coût annuel l’année n : 12 × 100 × 1,02ⁿ ; au tableur, en B2 : =12*100*1,02^A2.'
+                    - 'Pour n = 0 : 12 × 100 = 1 200 €.'
+                    - 'À toi : colonne A : n de 0 à 9 ; colonne B : 12 × 400 × 1,03ⁿ (option A) ; colonne C : 12 × (400 + 12n) (option B).'
+                    - Pourquoi × 12 ? Le prix est mensuel, le coût annuel compte 12 mois.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
+                colonnes:
+                    - Point clé
+                    - Mot(s) manquant(s)
+                lignes:
+                    -   - Coût annuel = 12 × coût …… .
+                        - ''
+                    -   - 'Pour n = 9, option B : 12 × (400 + …… ).'
+                        - ''
+                aide: Le coût annuel, c’est 12 fois le coût de quoi ? Pour l’option B avec n = 9, que vaut 12n ?
+            -   id: q02
+                type: nombre
+                enonce: Coût annuel de l’option A pour n = 0 ?
+                unite: €
+                aide: 'Pour n = 0 : 12 × 400 × 1,03⁰. Rappel : tout nombre puissance 0 vaut 1.'
+            -   id: q03
+                type: nombre
+                enonce: Coût annuel de l’option B pour n = 9 ?
+                unite: €
+                aide: 'Pour n = 9 : 12 × (400 + 12 × 9). Calcule d’abord la parenthèse.'
+    -   id: a02
+        titre: Les sommes
+        transition: Les coûts annuels sont prêts. Additionne-les.
+        consigne: Tu vas calculer avec le tableur le coût total de chaque option de pension sur 10 ans. On attend les deux totaux.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : =SOMME(B2:B11) additionne les 10 coûts annuels de la colonne B.'
+                    - C’est ce que le client paie en tout sur 10 ans.
+                    - 'À toi : calcule SOMME(B2:B11) et SOMME(C2:C11), puis compare.'
+                    - Pourquoi la somme ? C’est ce que le client paie vraiment.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
+                colonnes:
+                    - Point clé
+                    - Mot(s) manquant(s)
+                lignes:
+                    -   - Le total payé est la …… des termes.
+                        - ''
+                    -   - 'Au tableur : =…… (B2:B11).'
+                        - ''
+                aide: Le total payé est la… des termes. Et quelle fonction du tableur additionne une plage ?
+            -   id: q02
+                type: nombre
+                enonce: Coût total option A sur 10 ans (à l’euro près) ?
+                unite: €
+                aide: Tape =SOMME(B2:B11) sur la colonne de l’option A et arrondis à l’euro.
+            -   id: q03
+                type: nombre
+                enonce: Coût total option B ?
+                unite: €
+                aide: 'Même chose sur la colonne de l’option B : =SOMME(C2:C11).'
+    -   id: a03
+        titre: Conseiller
+        transition: Les totaux sont calculés. Que conseiller ?
+        consigne: Tu vas conseiller le client sur l’option de pension la moins chère sur 10 ans. On attend un conseil chiffré.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple de conseil : « Je vous conseille l’option … : … € sur 10 ans contre … €, soit … € d’économie. »'
+                    - Ajoute une remarque sur le long terme.
+                    - 'À toi : rédige ton conseil au client avec les chiffres.'
+                    - Pourquoi un conseil ? Le calcul sert la décision.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
+                colonnes:
+                    - Point clé
+                    - Mot(s) manquant(s)
+                lignes:
+                    -   - On conseille l’option au coût total le plus …… .
+                        - ''
+                    -   - L’écart entre les options …… avec le temps.
+                        - ''
+                aide: On conseille l’option au coût total le plus… ? Et l’écart entre les options grandit ou diminue avec le temps ?
+            -   id: q02
+                type: texte
+                enonce: Quelle option conseilles-tu ? Justifie avec les totaux.
+                aide: 'Comme l’exemple : « Je vous conseille l’option … : … € sur 10 ans contre … €, soit … € d’économie », puis une remarque sur le long terme.'
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: 'Formule de la somme d’une suite géométrique : u₀ × (1 − qⁿ) ÷ (1 − q).'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Vérifie le total A.
+                aide: Ici u₀ = 12 × 400, q = 1,03 et n = 10. Calcule avec la formule et compare à ton SOMME.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu sais calculer une somme de termes. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment calculer la somme des termes d’une suite avec le tableur ?'
+                aide: Dis comment calculer les coûts année par année, le total, et faire un conseil chiffré.
+retenir:
+    - 'Somme de termes : coût cumulé.'
+    - SOMME au tableur.
+sources:
+    -   type: lien
+        titre: ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf
+version_papier:
+    surtitre: Cours et exercices — version papier
+    titre: Combien a-t-on dépensé en tout ?
+    introduction: Comment calculer la somme des termes d’une suite avec le tableur ?
+    sections:
+        -   titre: Le cours en bref
+            blocs:
+                -   type: paragraphe
+                    texte: 'Le problème à résoudre : Comment calculer la somme des termes d’une suite avec le tableur ?'
+                -   type: titre
+                    texte: Ce que tu vas apprendre
+                -   type: liste
+                    elements:
+                        - La somme de termes = total cumulé sur plusieurs périodes (ex. coût total d’une pension sur 10 ans).
+                        - 'Au tableur : colonne des termes, puis SOMME, ou colonne de cumul.'
+                -   type: titre
+                    texte: Ce que tu vas savoir faire
+                -   type: liste
+                    elements:
+                        - Calculer une somme de termes au tableur.
+                        - Comparer deux contrats sur leur coût total.
+                -   type: titre
+                    texte: Pourquoi cette séance ?
+                -   type: paragraphe
+                    texte: 'En S18, tu as comparé deux options de prix pour 2036. Mais le client paie chaque année : quel est le coût total sur 10 ans ?'
+                -   type: paragraphe
+                    texte: 'Comment utiliser cette fiche : pour chaque partie, lis la méthode et l’exemple, complète les points clés, puis fais l’exercice. Réponds sur les lignes.'
+        -   titre: I. Les termes au tableur
+            blocs:
+                -   type: liste
+                    elements:
+                        - 'Automatisme : 12 × 508 = ?'
+                -   type: titre
+                    texte: Ce que tu vas faire
+                -   type: paragraphe
+                    texte: Tu vas construire au tableur les coûts annuels des deux options de pension sur 10 ans. On attend deux coûts annuels.
+                -   type: titre
+                    texte: Méthode
+                -   type: etapes
+                    elements:
+                        - 'Lis l’exemple : un loyer de 100 € par mois, +2 % par an.'
+                        - 'Coût annuel l’année n : 12 × 100 × 1,02ⁿ ; au tableur, en B2 : =12*100*1,02^A2.'
+                        - 'Pour n = 0 : 12 × 100 = 1 200 €.'
+                        - 'À toi : colonne A : n de 0 à 9 ; colonne B : 12 × 400 × 1,03ⁿ (option A) ; colonne C : 12 × (400 + 12n) (option B).'
+                        - Pourquoi × 12 ? Le prix est mensuel, le coût annuel compte 12 mois.
+                -   type: titre
+                    texte: Points clés à compléter
+                -   type: liste
+                    elements:
+                        - Coût annuel = 12 × coût …… .
+                        - 'Pour n = 9, option B : 12 × (400 + …… ).'
+                -   type: titre
+                    texte: Exercice 1 — Les termes au tableur
+            questions:
+                - Coût annuel de l’option A pour n = 0 ? (en €)
+                - Coût annuel de l’option B pour n = 9 ? (en €)
+        -   titre: II. Les sommes
+            blocs:
+                -   type: titre
+                    texte: Ce que tu vas faire
+                -   type: paragraphe
+                    texte: Tu vas calculer avec le tableur le coût total de chaque option de pension sur 10 ans. On attend les deux totaux.
+                -   type: titre
+                    texte: Méthode
+                -   type: etapes
+                    elements:
+                        - 'Lis l’exemple : =SOMME(B2:B11) additionne les 10 coûts annuels de la colonne B.'
+                        - C’est ce que le client paie en tout sur 10 ans.
+                        - 'À toi : calcule SOMME(B2:B11) et SOMME(C2:C11), puis compare.'
+                        - Pourquoi la somme ? C’est ce que le client paie vraiment.
+                -   type: titre
+                    texte: Points clés à compléter
+                -   type: liste
+                    elements:
+                        - Le total payé est la …… des termes.
+                        - 'Au tableur : =…… (B2:B11).'
+                -   type: titre
+                    texte: Exercice 2 — Les sommes
+            questions:
+                - Coût total option A sur 10 ans (à l’euro près) ? (en €)
+                - Coût total option B ? (en €)
+        -   titre: III. Conseiller
+            blocs:
+                -   type: titre
+                    texte: Ce que tu vas faire
+                -   type: paragraphe
+                    texte: Tu vas conseiller le client sur l’option de pension la moins chère sur 10 ans. On attend un conseil chiffré.
+                -   type: titre
+                    texte: Méthode
+                -   type: etapes
+                    elements:
+                        - 'Lis l’exemple de conseil : « Je vous conseille l’option … : … € sur 10 ans contre … €, soit … € d’économie. »'
+                        - Ajoute une remarque sur le long terme.
+                        - 'À toi : rédige ton conseil au client avec les chiffres.'
+                        - Pourquoi un conseil ? Le calcul sert la décision.
+                -   type: titre
+                    texte: Points clés à compléter
+                -   type: liste
+                    elements:
+                        - On conseille l’option au coût total le plus …… .
+                        - L’écart entre les options …… avec le temps.
+                -   type: titre
+                    texte: Exercice 3 — Conseiller
+            questions:
+                - Quelle option conseilles-tu ? Justifie avec les totaux.
+        -   titre: Conclusion
+            blocs:
+                -   type: paragraphe
+                    texte: Avec ce que tu as fait dans les parties précédentes, réponds en quelques phrases complètes.
+            questions:
+                - 'Réponds au problème du jour : comment calculer la somme des termes d’une suite avec le tableur ?'
+        -   titre: Pour aller plus loin (facultatif)
+            blocs:
+                -   type: paragraphe
+                    texte: 'Formule de la somme d’une suite géométrique : u₀ × (1 − qⁿ) ÷ (1 − q).'
+            questions:
+                - Vérifie le total A.
+        -   titre: À retenir
+            blocs:
+                -   type: liste
+                    elements:
+                        - 'Somme de termes : coût cumulé.'
+                        - SOMME au tableur.
+        -   titre: Exercice 1 — Somme
+            blocs: []
+            questions:
+                - 'Termes 100, 110, 120, …, 190 (10 termes) : somme ?'
+                - Formule tableur de la somme de B2 à B11 ?
+            saut_page: true
+            surtitre: Fiche d’exercices
+        -   titre: Exercice 2 — Coût total
+            blocs: []
+            questions:
+                - 'Un abonnement de 30 € par mois augmente de 2 € chaque mois : total sur 12 mois ?'
+        -   titre: Exercice 3 — Comparer
+            blocs: []
+            questions:
+                - 'Option A 4 800 € par an fixe, option B 4 500 € +5 % par an : laquelle est moins chère sur 3 ans ?'

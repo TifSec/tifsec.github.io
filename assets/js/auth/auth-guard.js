@@ -5,8 +5,8 @@ import { checkSession } from "./auth-session.js";
 export async function checkAccess(allowedRoles) {
     const session = await checkSession();
 
-    if (!session) {
-        return { allowed: false, reason: "not_authenticated" };
+    if (session.status !== "authenticated") {
+        return { allowed: false, reason: session.status };
     }
 
     if (!allowedRoles.includes(session.profile.role)) {

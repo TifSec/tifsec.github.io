@@ -1,0 +1,131 @@
+titre: 'Séance 33 : Une vague d’ennemis'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment gérer plusieurs objets du même type avec une liste et une boucle « pour chaque » ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
+objectifs:
+    connaissances:
+        - Une liste range plusieurs éléments sous un seul nom ; l’indice du premier est 0.
+        - La boucle « pour chaque élément » applique la même action à tous.
+    competences:
+        - Lire et parcourir une liste.
+        - Utiliser « pour chaque ».
+pourquoi:
+    - En séance 32, tu as fait tomber des fruits un par un.
+    - 'Aujourd’hui, tu ajoutes une vague de pièges qui doivent tous accélérer ensemble : il faut une liste.'
+activites:
+    -   id: a01
+        titre: Comprendre une liste
+        consigne: Tu vas découvrir ce qu’est une liste en programmation, à partir de l’exemple expliqué. On attend que tu saches lire un élément par son indice et donner la longueur d’une liste.
+        contenu:
+            -   type: paragraphe
+                texte: 'Exemple expliqué : vitesses = [30, 50, 80]. Indice 0 → 30 ; indice 1 → 50 ; indice 2 → 80. Longueur : 3.'
+            -   type: etapes
+                elements:
+                    - Lis l’exemple expliqué.
+                    - Compte les éléments à partir de 0.
+                    - Réponds sur la liste des couleurs.
+            -   type: paragraphe
+                texte: 'Pourquoi commencer à 0 ? C’est la convention de presque tous les langages : le premier élément est à l’indice 0.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Voici une liste : couleurs = [rouge, vert, bleu, jaune]. Complète le tableau.'
+                colonnes:
+                    - Question
+                    - Réponse
+                lignes:
+                    -   - Élément d’indice 0
+                        - ''
+                    -   - Élément d’indice 2
+                        - ''
+                    -   - Longueur
+                        - ''
+                aide: 'Dans une liste, on compte les indices à partir de 0 : le premier élément a l’indice 0. Compte ensuite le nombre total d’éléments.'
+            -   id: q02
+                type: qcm
+                enonce: Quel est l’indice du dernier élément d’une liste de 4 éléments ?
+                choix:
+                    -   id: a
+                        texte: '3'
+                    -   id: b
+                        texte: '4'
+                    -   id: c
+                        texte: '0'
+                aide: Si le premier a l’indice 0 et qu’il y a 4 éléments, quel indice porte le quatrième ?
+    -   id: a02
+        titre: Créer la vague
+        transition: Tu sais ce qu’est une liste. Utilise-la.
+        consigne: Tu vas ajouter à ton jeu « Récolte » une vague de 5 pièges rangés dans une liste, qui accélèrent tous ensemble grâce à « pour chaque ». On attend l’explication de l’intérêt de « pour chaque ».
+        contenu:
+            -   type: etapes
+                elements:
+                    - Au démarrage, crée 5 sprites « piège » (type Enemy).
+                    - Utilise « tableau de sprites de type Enemy » pour les récupérer dans une liste.
+                    - 'Toutes les 5 s : « pour chaque valeur de pièges » → mettre vy de valeur à 80.'
+                    - 'Teste : tous accélèrent ensemble.'
+            -   type: paragraphe
+                texte: Pourquoi « pour chaque » ? Un seul bloc agit sur tous les pièges, quel que soit leur nombre.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi « pour chaque » est-il plus pratique que 5 blocs « mettre vy » ?
+                aide: 'Imagine que tu ajoutes 20 pièges : avec un bloc par piège, combien de blocs faudrait-il ? Et avec « pour chaque » ?'
+            -   id: q02
+                type: texte
+                enonce: Décris en langage naturel ce que fait ton programme toutes les 5 secondes.
+                aide: 'Lis ton bloc « à chaque 5000 ms » et ce qu’il contient : pour qui, et quelle vitesse est donnée ?'
+        ressources:
+            -   type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a03
+        titre: Compter les pièges
+        transition: La vague fonctionne. Compte les pièges.
+        consigne: Tu vas afficher dans ton jeu le nombre de pièges restants. On attend le bloc utilisé et sa valeur quand tous les pièges sont détruits.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Affiche le nombre de pièges restants (longueur de la liste).
+                    - Détruis un piège en le touchant.
+                    - Observe le nombre qui change.
+            -   type: paragraphe
+                texte: Pourquoi la longueur ? Elle permet de savoir quand la vague est terminée.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quel bloc donne le nombre de pièges, et que vaut-il quand tous sont détruits ?
+                aide: Cherche dans la catégorie « Tableaux » le bloc qui compte les éléments ; que reste-t-il dans la liste quand tous les pièges sont détruits ?
+        ressources:
+            -   type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Une nouvelle vague peut arriver quand la précédente est finie.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris la règle en langage naturel.
+                aide: 'Combine le bloc qui compte les pièges et une condition SI : que faire quand il n’en reste plus ?'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ta vague fonctionne. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment gérer plusieurs objets du même type ?'
+                aide: Explique comment une liste regroupe des objets du même type, et ce que permet « pour chaque ».
+retenir:
+    - 'Liste : indice à partir de 0, longueur.'
+    - '« pour chaque » : même action sur tous.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

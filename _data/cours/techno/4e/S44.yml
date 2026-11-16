@@ -1,0 +1,121 @@
+titre: 'Séance 44 : Programmer l’émetteur et le récepteur'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment ajouter l’envoi des mesures au programme du tracker sans casser ce qui fonctionne ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
+objectifs:
+    connaissances:
+        - 'On part du programme existant du tracker (chercherSoleil, suivi de la lumière) et on ajoute seulement : le groupe radio au démarrage, et l’envoi de la luminosité et de l’angle dans la boucle.'
+        - 'Le récepteur a son propre programme : il reçoit les valeurs nommées et les affiche.'
+    competences:
+        - Ajouter une fonction à un programme existant.
+        - Programmer un récepteur.
+pourquoi:
+    - En séances 42 et 43, tu as découvert la radio et préparé le prototype.
+    - Aujourd’hui, tu programmes, dans le simulateur, l’émetteur (programme du tracker complété) et le récepteur.
+activites:
+    -   id: a01
+        titre: L’émetteur
+        consigne: Tu vas ajouter l’envoi radio de la luminosité et de l’angle dans une copie du vrai programme du tracker, sans toucher au suivi du soleil. On attend les ajouts au bon endroit et l’explication de la règle « ne rien casser ».
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre une copie du programme du tracker (lien du professeur).
+                    - Au démarrage, ajoute « radio définir groupe » avec ton numéro.
+                    - Dans la boucle « toujours », après le réglage de l’angle, ajoute « radio envoyer valeur « lum » = gauche + droite » et « radio envoyer valeur « angle » = angle ».
+                    - Ne modifie rien d’autre.
+            -   type: paragraphe
+                texte: 'Pourquoi « ne modifie rien d’autre » ? Le suivi du soleil fonctionne déjà : on ajoute la nouvelle fonction sans risquer de le casser.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi ne faut-il rien modifier d’autre dans le programme du tracker quand on ajoute l’envoi radio ?
+                aide: 'Le tracker suit déjà le soleil correctement : que risques-tu si tu modifies d’autres blocs que ceux de la radio ?'
+            -   id: q02
+                type: tableau
+                enonce: Dans le programme du tracker, où places-tu chaque ajout ?
+                colonnes:
+                    - Ajout
+                    - Emplacement
+                lignes:
+                    -   - radio définir groupe
+                        - ''
+                    -   - radio envoyer valeur « lum »
+                        - ''
+                aide: Le groupe se règle une seule fois, au lancement ; l’envoi doit se refaire à chaque nouvelle mesure. Où places-tu chaque bloc ?
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+                url: https://makecode.microbit.org/
+    -   id: a02
+        titre: Le récepteur
+        transition: L’émetteur envoie. Programme maintenant le récepteur.
+        consigne: Tu vas programmer la deuxième carte, celle qui recevra et affichera dans la salle les mesures envoyées par le tracker. On attend son algorithme en langage naturel.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Crée un nouveau projet 4e_S44_recepteur.
+                    - 'Au démarrage : le même groupe radio que l’émetteur.'
+                    - Ajoute « quand une donnée est reçue par radio name, value ».
+                    - 'Dedans : si name = « lum » alors montrer value ; si name = « angle » alors montrer value (ou une flèche).'
+            -   type: paragraphe
+                texte: 'Pourquoi deux conditions sur le nom ? Le tracker envoie deux mesures : le récepteur doit les distinguer, comme en séance 42.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris en langage naturel l’algorithme de la carte réceptrice du tracker.
+                aide: Écris QUAND une valeur nommée est reçue, puis un SI pour chaque nom envoyé par le tracker, avec ce qui s’affiche.
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+                url: https://makecode.microbit.org/
+    -   id: a03
+        titre: Tester les deux programmes
+        transition: Les deux programmes sont écrits. Vérifie qu’ils marchent ensemble.
+        consigne: Tu vas tester ensemble, dans le simulateur, le programme du tracker complété et celui du récepteur. On attend ce que montre le récepteur et la preuve que le suivi du soleil marche toujours.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Dans le simulateur de l’émetteur, change la lumière des capteurs gauche et droit.
+                    - Observe le récepteur (ou bascule entre les deux projets).
+                    - Vérifie que le suivi du soleil fonctionne toujours.
+            -   type: paragraphe
+                texte: Pourquoi revérifier le suivi du soleil ? C’est la preuve que l’ajout n’a rien cassé.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Dans le simulateur, change la lumière des capteurs du tracker. Que montre la carte réceptrice ? Le suivi du soleil fonctionne-t-il toujours ?
+                aide: 'Dans le simulateur, bouge les curseurs de lumière du tracker : regarde à la fois la carte réceptrice et le servomoteur.'
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+                url: https://makecode.microbit.org/
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Envoyer trop souvent occupe la radio et vide les piles.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment n’envoyer les mesures que toutes les 5 secondes, sans ralentir le suivi du soleil ?
+                aide: Si tu mets une pause de 5 secondes dans la boucle du tracker, le suivi ralentit. Quelle autre boucle peut s’exécuter à son propre rythme ?
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Les deux programmes sont prêts. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment as-tu ajouté l’envoi des mesures sans casser le programme du tracker ?'
+                aide: Dis ce que tu as ajouté (et où) sans toucher au reste, puis comment tu as vérifié que le suivi fonctionnait toujours.
+retenir:
+    - 'Ajouter une fonction : on complète sans modifier ce qui marche.'
+    - 'Émetteur : groupe + envoi de valeurs nommées ; récepteur : quand reçue + conditions sur le nom.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

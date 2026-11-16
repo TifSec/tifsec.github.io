@@ -1,13 +1,14 @@
 /* ========== REDIRECTIONS APRÈS CONNEXION ========== */
+import { sitePath } from './site-path.js';
 
 const ROUTES = {
     student: "/eleve/",
     teacher: "/prof/",
-    auth: "/auth/"
+    auth: "/connexion/"
 };
 
 export function getRedirectUrl(role) {
-    return ROUTES[role] || null;
+    return ROUTES[role] ? sitePath(ROUTES[role]) : null;
 }
 
 export function redirectUser(role) {

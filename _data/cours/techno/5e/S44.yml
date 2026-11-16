@@ -1,0 +1,161 @@
+titre: 'Séance 44 : Comment est fait le tracker ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Quels constituants permettent au tracker de suivre la lumière, et comment son programme les utilise-t-il ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+    - Imaginer, concevoir et réaliser une ou des solutions en réponse à un besoin, à des exigences (de développement durable, par exemple) ou à la nécessité d’améliorations dans une démarche de créativité
+objectifs:
+    connaissances:
+        - Le tracker utilise deux capteurs de lumière (un à gauche, un à droite), une carte micro:bit, un servomoteur qui fait tourner la tête, et un petit panneau solaire.
+        - Son programme compare la lumière à gauche et à droite et tourne la tête vers le côté le plus éclairé ; une fonction cherche l’angle le plus lumineux.
+    competences:
+        - Identifier les constituants du tracker et leur fonction.
+        - Repérer dans le programme ce que lit chaque capteur et ce que commande le servomoteur.
+pourquoi:
+    - En séance 43, ton groupe a choisi une amélioration.
+    - 'Pour modifier le tracker, il faut d’abord comprendre comment il est fait et comment son programme fonctionne : c’est le travail du jour.'
+activites:
+    -   id: a01
+        titre: Les constituants (poste maquette)
+        consigne: Tu vas observer le tracker (au poste maquette ou avec le document 1) et trouver la fonction de chacun de ses constituants. On attend une fonction par constituant.
+        contenu:
+            -   type: paragraphe
+                texte: Chaque groupe passe au poste maquette pour observer le tracker (sans rien débrancher). Les autres travaillent avec le document 1.
+            -   type: tableau
+                titre: Document 1 — Les constituants du tracker
+                colonnes:
+                    - Constituant
+                    - Rôle
+                lignes:
+                    -   - Capteur de lumière gauche (Grove)
+                        - Mesure la lumière à gauche.
+                    -   - Capteur de lumière droit (Grove)
+                        - Mesure la lumière à droite.
+                    -   - Carte micro:bit V1 et son shield Grove
+                        - Lit les capteurs, exécute le programme et commande le servomoteur.
+                    -   - Servomoteur (Grove)
+                        - Fait tourner la tête à un angle précis (de 20° à 160°).
+                    -   - Petit panneau solaire (de lampe de jardin)
+                        - Produit de l’électricité à partir de la lumière.
+                    -   - Socle et tête imprimés en 3D
+                        - Supportent et protègent les constituants.
+            -   type: etapes
+                elements:
+                    - Observe le tracker sans rien débrancher (ou lis le document 1).
+                    - 'Pour chaque constituant, demande-toi : capte-t-il, décide-t-il, agit-il, ou convertit-il l’énergie ?'
+                    - Écris sa fonction.
+            -   type: paragraphe
+                texte: Pourquoi les fonctions ? Pour modifier le programme, il faut savoir quel constituant fait quoi.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Pour chaque constituant du tracker (document 1), écris sa fonction : acquérir, traiter, communiquer (agir) ou convertir l’énergie.'
+                colonnes:
+                    - Constituant
+                    - Fonction
+                lignes:
+                    -   - Capteurs de lumière
+                        - ''
+                    -   - Carte micro:bit
+                        - ''
+                    -   - Servomoteur
+                        - ''
+                    -   - Panneau solaire
+                        - ''
+                aide: 'Au poste maquette, regarde ce que fait chaque constituant du document 1 : mesurer la lumière, décider, faire tourner la tête, ou transformer la lumière en électricité ?'
+    -   id: a02
+        titre: Lire le programme
+        transition: Tu connais les constituants. Regarde maintenant comment le programme les utilise.
+        consigne: Tu vas lire le programme du tracker (version simplifiée) et prévoir ce qu’il fait dans deux situations. On attend deux prévisions précises.
+        contenu:
+            -   type: paragraphe
+                texte: Voici le programme du tracker, en version simplifiée en français (le vrai programme est en blocs, dans MakeCode).
+            -   type: code
+                texte: "au démarrage\n    angle = 90 ; tourner le servomoteur à 90°\n    appeler chercherSoleil\n\ntoujours\n    gauche = lumière lue par le capteur de gauche\n    droite = lumière lue par le capteur de droite\n    luminosité = gauche + droite\n    si luminosité < 0,7 × meilleure luminosité alors\n        appeler chercherSoleil          (la lumière a beaucoup baissé : on recherche)\n    sinon\n        si gauche > droite + 30 alors angle = angle − 1\n        sinon si droite > gauche + 30 alors angle = angle + 1\n        garder angle entre 20° et 160°\n        tourner le servomoteur à angle\n    pause 100 ms\n\nfonction chercherSoleil\n    balayer de 20° à 160° par pas de 5° et retenir l’angle le plus éclairé\n    tourner le servomoteur vers cet angle"
+            -   type: paragraphe
+                texte: 'Rappel du réflexe n° 9 : bloc par bloc. Rappel de la séance 32 : une condition « si … alors ».'
+            -   type: etapes
+                elements:
+                    - Lis le programme bloc par bloc (réflexe n° 9).
+                    - Repère la condition sur l’écart de 30.
+                    - Applique-la aux valeurs des questions.
+            -   type: paragraphe
+                texte: Pourquoi un écart de 30 ? Sans lui, le tracker bougerait sans arrêt pour de toutes petites différences de lumière.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Que fait le tracker si le capteur de gauche reçoit beaucoup plus de lumière que celui de droite (écart supérieur à 30) ?
+                choix:
+                    -   id: a
+                        texte: 'Il diminue l’angle : la tête tourne vers la gauche.'
+                    -   id: b
+                        texte: Il ne bouge pas.
+                    -   id: c
+                        texte: Il s’éteint.
+                aide: 'Lis la condition du programme sur l’écart gauche − droite : si la gauche est plus éclairée, l’angle augmente-t-il ou diminue-t-il ? Vers où tourne la tête ?'
+            -   id: q02
+                type: qcm
+                enonce: Le capteur gauche lit 500 et le capteur droit lit 510. Que fait le tracker ?
+                choix:
+                    -   id: a
+                        texte: 'Rien : l’écart (10) est plus petit que 30.'
+                    -   id: b
+                        texte: Il tourne à droite.
+                    -   id: c
+                        texte: Il cherche le soleil.
+                aide: Calcule l’écart entre les deux capteurs, puis compare-le au nombre 30 de la condition.
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+                url: https://makecode.microbit.org/
+    -   id: a03
+        titre: Fonction et amélioration
+        transition: Tu sais comment le tracker suit la lumière. Prépare maintenant ton amélioration.
+        consigne: Tu vas repérer dans le programme du tracker la fonction chercherSoleil et l’endroit que ton groupe modifiera pour son amélioration. On attend le rôle de la fonction et l’endroit précis à modifier.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Repère la ligne « appeler chercherSoleil » et la définition de la fonction.
+                    - Relis l’amélioration choisie par ton groupe (séance 43).
+                    - Cherche le bloc du programme qui concerne ton amélioration.
+            -   type: paragraphe
+                texte: Pourquoi repérer avant de modifier ? Dans un programme qui marche, on ne touche qu’à l’endroit nécessaire, pour ne rien casser.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: À quoi sert la fonction chercherSoleil, et quand est-elle appelée ?
+                aide: 'Lis la fonction chercherSoleil : entre quels angles balaie-t-elle ? Puis cherche dans le programme les endroits où elle est appelée.'
+            -   id: q02
+                type: texte
+                enonce: Repère, dans le programme, l’endroit que ton groupe devra modifier pour son amélioration (A, B ou C). Explique.
+                aide: 'Pour ton amélioration, demande-toi : faut-il ajouter une nouvelle condition dans « toujours », changer un nombre, ou ajouter un affichage ? Repère le bloc concerné.'
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le capteur de lumière donne une valeur de 0 (noir) à 1023 (très lumineux).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pour le mode nuit (amélioration A), quelle valeur de luminosité (gauche + droite) choisirais-tu comme seuil « il fait nuit » ? Comment le vérifier ?
+                aide: La nuit, les deux capteurs reçoivent très peu de lumière. Comment mesurer leur valeur dans le noir pour choisir ton seuil ?
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as compris le tracker. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : quels constituants permettent au tracker de suivre la lumière, et comment son programme les utilise-t-il ?'
+                aide: Cite les constituants dans l’ordre de la chaîne (capteurs, carte, servomoteur) et dis ce que le programme compare pour décider de tourner.
+retenir:
+    - Capteurs de lumière (acquérir) → carte micro:bit (traiter) → servomoteur (agir).
+    - Le programme compare gauche et droite ; une fonction cherche l’angle le plus lumineux.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

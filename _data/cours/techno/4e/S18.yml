@@ -1,0 +1,137 @@
+titre: 'Séance 18 : Bilan et entraînement au brevet n° 2 : le réseau d’une médiathèque'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Suis-je capable d’analyser un réseau et de calculer un temps de transfert sur un dossier de type brevet ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+objectifs:
+    connaissances:
+        - Réseau local, adresse IP, débit et durée de transfert.
+    competences:
+        - Utiliser les réflexes R1 à R10 et R16 sur un dossier réseau.
+pourquoi:
+    - Depuis la séance 13, tu as étudié le réseau.
+    - Aujourd’hui, un dossier sur le réseau d’une médiathèque (situation inventée), mission par mission.
+activites:
+    -   id: a01
+        titre: Les équipements de la médiathèque
+        consigne: Tu vas t’entraîner au brevet sur le réseau d’une médiathèque (document 1). On attend le rôle de chaque équipement et la topologie du réseau filaire.
+        contenu:
+            -   type: titre
+                texte: Document 1 — Le réseau de la médiathèque
+            -   type: citation
+                texte: Six ordinateurs et une imprimante sont reliés par câble à un commutateur. Un point d’accès Wi-Fi permet aux visiteurs de se connecter. Une box relie la médiathèque à Internet avec un débit de 100 Mbit/s.
+            -   type: etapes
+                elements:
+                    - Lis tout le document 1 une première fois.
+                    - Repère chaque équipement.
+                    - Écris son rôle avec les mots de la séance 13.
+            -   type: paragraphe
+                texte: 'Pourquoi les mots exacts ? Au brevet, « commutateur » et « routeur » ne sont pas interchangeables : le vocabulaire juste rapporte des points.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: D’après le document 1, donne le rôle de chaque équipement.
+                colonnes:
+                    - Équipement
+                    - Rôle
+                lignes:
+                    -   - Commutateur
+                        - ''
+                    -   - Point d’accès Wi-Fi
+                        - ''
+                    -   - Box
+                        - ''
+                aide: 'Pour chaque équipement du document 1, demande-toi : relie-t-il les postes entre eux, les appareils sans fil, ou la médiathèque à Internet ?'
+            -   id: q02
+                type: qcm
+                enonce: Quelle est la topologie du réseau filaire ?
+                choix:
+                    -   id: a
+                        texte: En étoile, autour du commutateur.
+                    -   id: b
+                        texte: En ligne.
+                    -   id: c
+                        texte: Aucune.
+                aide: 'Dans le document 1, tous les postes câblés arrivent au même équipement : quelle forme cela dessine-t-il ?'
+    -   id: a02
+        titre: Une panne d’impression
+        transition: Les équipements sont connus. Un problème empêche d’imprimer.
+        consigne: Tu vas chercher pourquoi un poste de la médiathèque ne peut pas imprimer, à partir des adresses du document 2. On attend la cause de la panne et une correction.
+        contenu:
+            -   type: tableau
+                titre: Document 2
+                colonnes:
+                    - Appareil
+                    - Adresse IP
+                lignes:
+                    -   - Poste accueil
+                        - '192.168.10.2'
+                    -   - Poste 1
+                        - '192.168.10.3'
+                    -   - Imprimante
+                        - '192.168.10.3'
+                    -   - Tablette visiteur
+                        - '192.168.10.40'
+            -   type: etapes
+                elements:
+                    - Lis le document 2.
+                    - Compare les adresses deux à deux.
+                    - Trouve le problème et propose une correction.
+            -   type: paragraphe
+                texte: Pourquoi comparer les adresses ? Une adresse en double est la panne la plus fréquente dans un petit réseau (séance 16).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le document 2, pourquoi le Poste 1 ne peut-il pas imprimer ? Propose une correction.
+                aide: Dans le document 2, compare l’adresse du Poste 1 à celle de l’imprimante et des autres appareils. Que remarques-tu ? Propose une adresse libre.
+    -   id: a03
+        titre: Calculer et argumenter
+        transition: Le problème est trouvé. Termine par le calcul et l’argument.
+        consigne: Tu vas calculer un temps de téléchargement et argumenter sur la sécurité du Wi-Fi des visiteurs de la médiathèque. On attend un résultat avec son unité et une justification avec « car ».
+        contenu:
+            -   type: etapes
+                elements:
+                    - Calcule la durée avec la méthode de la séance 17 (× 8, ÷ débit).
+                    - Écris l’unité (réflexe n° 5).
+                    - Pour la dernière question, justifie avec « car », puis relis tout (R16).
+            -   type: paragraphe
+                texte: Pourquoi relire à la fin ? C’est le moment de vérifier unités et justifications sur tout le dossier.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Un visiteur télécharge un fichier de 500 Mo à 100 Mbit/s. Combien de secondes ?
+                unite: s
+                aide: 'Même méthode qu’en séance 17 : taille × 8, puis ÷ débit.'
+            -   id: q02
+                type: texte
+                enonce: Pourquoi le Wi-Fi des visiteurs doit-il être séparé du réseau du personnel ? Justifie avec « car ».
+                aide: 'Pense aux fichiers du personnel (inscriptions, comptes…) : un visiteur doit-il pouvoir y accéder ? Justifie avec « car ».'
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le débit est partagé entre les visiteurs.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Si 4 visiteurs téléchargent en même temps, combien de temps pour le fichier de 500 Mo ?
+                aide: 'Les 4 visiteurs se partagent le débit : divise d’abord le débit par 4, puis refais le calcul de durée.'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as traité un dossier complet. Fais le point.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quel point du réseau dois-tu encore revoir, et comment vas-tu le travailler ?
+                aide: 'Relis ta copie : où as-tu hésité (équipements, adresses, calcul de débit) ? Dis comment tu vas le retravailler.'
+retenir:
+    - 'Réseau local : terminaux, commutateur, point d’accès, box ; adresses uniques.'
+    - Durée = taille × 8 ÷ débit.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

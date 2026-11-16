@@ -1,0 +1,130 @@
+titre: 'Séance 32 : Traduire l’algorithme en blocs'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment traduire un algorithme en programme qui fonctionne ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
+objectifs:
+    connaissances:
+        - 'Chaque ligne de l’algorithme devient un ou plusieurs blocs : QUAND → événement ; SI → « si … alors » ; RÉPÉTER → « à chaque … ms » ou « toujours ».'
+        - On teste après chaque partie.
+    competences:
+        - Traduire un algorithme en blocs Arcade.
+        - Utiliser une boucle.
+pourquoi:
+    - En séance 31, tu as écrit l’algorithme du jeu « Récolte ».
+    - Aujourd’hui, tu le traduis en blocs dans MakeCode Arcade.
+activites:
+    -   id: a01
+        titre: Le panier
+        consigne: 'Tu vas commencer à programmer le jeu « Récolte » dans MakeCode Arcade : le panier qui se déplace avec les flèches. On attend un panier qui fonctionne et le bloc qui traduit la règle.'
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre MakeCode Arcade, nouveau projet 4e_S32_tonprenom.
+                    - Crée un sprite « panier » (type Player) en bas de l’écran.
+                    - Ajoute « déplacer panier avec les boutons » et mets la vitesse verticale à 0.
+                    - Teste avec les flèches.
+            -   type: paragraphe
+                texte: Pourquoi vitesse verticale 0 ? Le panier ne doit bouger que de gauche à droite, comme dans les règles.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Quel bloc traduit « QUAND on appuie sur une flèche : déplacer le panier » ?'
+                aide: Cherche dans la catégorie « Contrôleur » le bloc qui fait bouger un sprite avec les flèches.
+            -   id: q02
+                type: qcm
+                enonce: Que fait la vitesse verticale 0 ?
+                choix:
+                    -   id: a
+                        texte: Le panier ne monte ni ne descend.
+                    -   id: b
+                        texte: Le panier ne bouge plus.
+                    -   id: c
+                        texte: Il va plus vite.
+                aide: vy est la vitesse de haut en bas. Si elle vaut 0, le panier peut-il monter ou descendre ?
+        ressources:
+            -   type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a02
+        titre: Les fruits
+        transition: Le panier bouge. Fais tomber les fruits.
+        consigne: Tu vas programmer les fruits qui tombent et le score du jeu « Récolte », en traduisant ton algorithme de la séance 31. On attend l’association entre chaque ligne de l’algorithme et son bloc.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Dans « à chaque 2000 ms », crée un sprite « fruit » (type Food) en haut, x au hasard entre 10 et 150.
+                    - Donne-lui vy = 50.
+                    - 'Ajoute « quand Player chevauche Food » : score +1, détruire le fruit.'
+                    - Teste.
+            -   type: paragraphe
+                texte: Pourquoi tester après chaque partie ? Si un bug apparaît, on sait qu’il vient de la dernière partie ajoutée.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Associe chaque ligne de l’algorithme à son bloc.
+                colonnes:
+                    - Algorithme
+                    - Bloc Arcade
+                lignes:
+                    -   - Toutes les 2 secondes
+                        - ''
+                    -   - Position au hasard
+                        - ''
+                    -   - QUAND le panier touche un fruit
+                        - ''
+                aide: 'Pour chaque ligne de l’algorithme, cherche le bloc correspondant : une répétition dans le temps (catégorie Jeu), un nombre aléatoire (Maths), un contact entre sprites (Sprites).'
+        ressources:
+            -   type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a03
+        titre: Les vies
+        transition: Les fruits tombent. Il manque les vies.
+        consigne: 'Tu vas programmer les vies du jeu « Récolte » : un fruit qui touche le sol fait perdre une vie. On attend la description des blocs utilisés.'
+        contenu:
+            -   type: etapes
+                elements:
+                    - Au démarrage, mets les vies à 3.
+                    - Quand un fruit sort par le bas (y > 120), retire une vie et détruis le fruit.
+                    - 'Teste : à 0 vie, la partie s’arrête.'
+            -   type: paragraphe
+                texte: 'Pourquoi les vies ? Elles donnent un enjeu au joueur : c’est la condition de fin de partie.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Décris les blocs utilisés pour retirer une vie quand un fruit touche le sol.
+                aide: 'Un fruit touche le sol quand sa position y dépasse le bas de l’écran : décris le bloc qui le teste et celui qui change les vies.'
+        ressources:
+            -   type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le jeu peut afficher un message de fin.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ajoute « Bravo ! » quand le score atteint 20. Quel bloc ?
+                aide: 'Il faut une condition sur le score et une action de fin : où places-tu ce test pour qu’il soit vérifié à chaque point marqué ?'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton jeu prend forme. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment as-tu traduit ton algorithme en programme ? Donne deux exemples.'
+                aide: Donne deux lignes de ton algorithme et le bloc qui traduit chacune (par exemple QUAND, RÉPÉTER), puis dis comment tu as testé.
+retenir:
+    - QUAND → événement ; SI → « si … alors » ; RÉPÉTER → « toujours » / « à chaque … ms ».
+    - Tester après chaque partie.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

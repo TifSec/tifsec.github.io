@@ -1,0 +1,156 @@
+titre: 'Séance 37 : Le programme fait-il ce qu’on attend ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment vérifier, test après test, que le monte-charge et son jumeau numérique se comportent comme prévu ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
+    - Valider les solutions techniques par des simulations ou par des protocoles de tests
+objectifs:
+    connaissances:
+        - Une liste de vérifications décrit, pour chaque test, l’action et le résultat attendu.
+        - 'Un jumeau numérique est une copie virtuelle d’un objet réel : il reproduit à l’écran ce que fait la maquette.'
+    competences:
+        - Prévoir le résultat attendu de chaque test à partir du programme.
+        - Comparer le résultat observé au résultat attendu.
+        - Comparer la maquette et son jumeau numérique.
+pourquoi:
+    - En séance 32, tu as testé ton jeu avec une liste de vérifications. En séance 35, tu as lu le programme du monte-charge.
+    - 'Aujourd’hui, tu vérifies le vrai monte-charge de la même façon. Le professeur montre aussi son jumeau numérique : une copie en 3D qui bouge comme la maquette.'
+activites:
+    -   id: a01
+        titre: Préparer la liste de vérifications
+        consigne: Tu vas préparer la liste de vérifications du monte-charge en écrivant le résultat attendu de chaque test, d’après le programme. On attend un attendu par test.
+        contenu:
+            -   type: paragraphe
+                texte: 'Rappel du programme (séance 35) : au démarrage, voyants orange ; en attente, voyants verts et « Attente » ; si la cabine est en bas et qu’on appuie sur Étage, elle monte jusqu’au contact haut ; si elle est en haut et qu’on appuie sur RDC, elle descend jusqu’au contact bas.'
+            -   type: paragraphe
+                texte: 'Exemple expliqué : test « on allume la maquette » → résultat attendu : les voyants s’allument en orange, car c’est la couleur choisie dans « au démarrage ».'
+            -   type: etapes
+                elements:
+                    - Relis le programme (séance 35) rappelé ci-dessus.
+                    - Lis l’exemple expliqué.
+                    - Pour chaque test, écris ce que le programme doit faire.
+            -   type: paragraphe
+                texte: Pourquoi écrire l’attendu avant ? Sinon, on trouve « normal » tout ce que fait la maquette.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Écris le résultat attendu de chaque test, d’après le programme du monte-charge (séance 35).
+                colonnes:
+                    - Test
+                    - Résultat attendu
+                lignes:
+                    -   - Rien n’est appuyé (attente)
+                        - ''
+                    -   - Cabine en bas, appui sur Étage
+                        - ''
+                    -   - Cabine en haut, appui sur Étage
+                        - ''
+                    -   - Cabine en haut, appui sur RDC
+                        - ''
+                aide: 'Pour chaque situation, relis le programme de la séance 35 : la condition est-elle vraie ou fausse ? Écris ce que la cabine, l’écran et les voyants doivent faire.'
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+                url: https://makecode.microbit.org/
+    -   id: a02
+        titre: Tester la maquette (poste maquette)
+        transition: Tu sais ce qui doit se passer. Vérifions maintenant ce qui se passe vraiment.
+        consigne: Tu vas tester le monte-charge au poste maquette, test par test, et noter ce que tu observes. On attend un résultat observé par test et une analyse d’un cas particulier.
+        contenu:
+            -   type: paragraphe
+                texte: 'Les groupes passent à tour de rôle : un élève fait l’action, un autre lit le résultat attendu, un troisième note le résultat observé. Les résultats de toute la classe sont mis en commun.'
+            -   type: paragraphe
+                texte: 'Rappel du réflexe n° 8 : un test à la fois. Si un résultat est différent de l’attendu, on le note sans rien modifier.'
+            -   type: etapes
+                elements:
+                    - Un élève fait l’action, un autre lit l’attendu, un troisième note l’observé.
+                    - Fais un seul test à la fois.
+                    - Note OK ou décris la différence.
+            -   type: paragraphe
+                texte: 'Pourquoi trois rôles ? Chacun se concentre sur une tâche : on ne rate rien.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Écris le résultat observé pour chaque test (OK si conforme, sinon décris ce qui s’est passé).
+                colonnes:
+                    - Test
+                    - Résultat observé
+                lignes:
+                    -   - Attente
+                        - ''
+                    -   - En bas + Étage
+                        - ''
+                    -   - En haut + Étage
+                        - ''
+                    -   - En haut + RDC
+                        - ''
+                aide: Pendant la démonstration, compare ce que tu vois à ce que tu as écrit à la mission 1, test par test. Si c’est pareil, écris OK.
+            -   id: q02
+                type: qcm
+                enonce: Pendant le test « En haut + Étage », la cabine ne bouge pas. Est-ce une panne ?
+                choix:
+                    -   id: a
+                        texte: 'Non : c’est le comportement attendu, la condition est fausse.'
+                    -   id: b
+                        texte: 'Oui : il faut changer le moteur.'
+                    -   id: c
+                        texte: 'Oui : le bouton est cassé.'
+                aide: 'Reprends ta prévision de la mission 1 pour « En haut + Étage » : la cabine devait-elle bouger ?'
+    -   id: a03
+        titre: La maquette et son jumeau numérique
+        transition: La maquette fonctionne comme prévu. Le professeur montre maintenant sa copie virtuelle.
+        consigne: Tu vas découvrir le jumeau numérique du monte-charge, lors d’une démonstration avec OpenSpace3D. On attend un point commun, une différence et un intérêt pour un vrai ascenseur.
+        contenu:
+            -   type: paragraphe
+                texte: 'Démonstration : le professeur relie la maquette à l’ordinateur et lance le jumeau numérique (logiciel OpenSpace3D). Quand la vraie cabine monte, la cabine virtuelle monte aussi à l’écran, dans un bâtiment en 3D.'
+            -   type: paragraphe
+                texte: Le jumeau utilise un autre programme sur la carte, prévu pour communiquer avec l’ordinateur. Les ingénieurs utilisent des jumeaux numériques pour tester et surveiller de vrais équipements à distance.
+            -   type: etapes
+                elements:
+                    - Observe la vraie cabine et la cabine virtuelle en même temps.
+                    - Note ce qui est pareil et ce qui est différent.
+                    - Imagine l’intérêt pour un immeuble.
+            -   type: paragraphe
+                texte: Pourquoi un jumeau numérique ? Il permet de surveiller et de tester un objet à distance, sans risque.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Décris un point commun et une différence entre la maquette et son jumeau numérique, d’après la démonstration.
+                aide: 'Regarde la maquette et l’écran du jumeau numérique pendant la démonstration : qu’est-ce qui se passe en même temps ? Qu’est-ce qui n’existe que sur l’un des deux ?'
+            -   id: q02
+                type: texte
+                enonce: Donne un intérêt d’un jumeau numérique pour un vrai ascenseur d’immeuble.
+                aide: Un jumeau numérique montre ce que fait la machine sans être à côté. Pour un technicien d’ascenseurs, en quoi est-ce utile ?
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: 'Un test oublié : on appuie sur les deux boutons en même temps.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: D’après le programme, que va-t-il se passer si la cabine est en bas et qu’on appuie sur Étage et RDC en même temps ? Explique.
+                aide: 'Relis les deux conditions du programme : avec la cabine en bas, laquelle est vraie ? Que se passe-t-il pour l’autre ?'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as préparé, réalisé et comparé des tests. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment vérifier, test après test, que le monte-charge se comporte comme prévu ?'
+                aide: 'Décris les étapes : écrire le résultat attendu de chaque test d’après le programme, faire les tests, comparer, noter les écarts.'
+retenir:
+    - 'Tester : pour chaque action, comparer le résultat observé au résultat attendu.'
+    - Un jumeau numérique est une copie virtuelle qui reproduit le comportement de l’objet réel.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download
+    -   type: lien
+        titre: 'Éduscol — Édubase : le projet de monte-charge'
+        url: https://edubase.eduscol.education.fr/fiche/24732

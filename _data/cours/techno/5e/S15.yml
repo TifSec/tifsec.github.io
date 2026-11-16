@@ -1,0 +1,157 @@
+titre: 'Séance 15 : Comment décrire une cuve d’eau avec des données ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Quelles données faut-il pour décrire une cuve de récupération d’eau de pluie et suivre son remplissage ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+objectifs:
+    connaissances:
+        - Un objet se décrit avec des descripteurs (hauteur d’eau, capacité, matériau…) qui prennent des valeurs.
+        - 'Une donnée a un type : nombre, texte, ou booléen (vrai/faux, qu’on peut écrire 1/0).'
+    competences:
+        - Choisir des descripteurs pour décrire un objet.
+        - Donner le type de chaque donnée.
+        - Lire une fiche de données.
+pourquoi:
+    - 'Notre classe prépare un projet de cuve d’eau intelligente : une cuve qui récupère l’eau de pluie et surveille son niveau. Elle n’est pas encore construite : on l’étudie sur documents.'
+    - Pour qu’une cuve « intelligente » puisse prévenir quand elle est pleine, elle doit utiliser des données. Aujourd’hui, tu apprends à décrire un objet avec des données.
+activites:
+    -   id: a01
+        titre: Descripteurs et valeurs
+        consigne: 'Tu vas apprendre à décrire un objet avec des données, à partir de l’exemple de la cuve. On attend le type de chaque donnée : nombre, texte ou booléen.'
+        contenu:
+            -   type: paragraphe
+                texte: Un descripteur, c’est une caractéristique qu’on peut mesurer ou noter. Sa valeur, c’est ce qu’on mesure ou note.
+            -   type: tableau
+                titre: 'Exemple expliqué : la cuve du document'
+                colonnes:
+                    - Descripteur
+                    - Valeur
+                    - Type de donnée
+                lignes:
+                    -   - Capacité
+                        - 1 000
+                        - Nombre (en litres)
+                    -   - Matériau
+                        - Plastique
+                        - Texte
+                    -   - Couvercle fermé
+                        - Vrai
+                        - Booléen (vrai ou faux)
+            -   type: paragraphe
+                texte: 'Un booléen n’a que deux valeurs : vrai ou faux. L’ordinateur l’écrit avec un seul bit : 1 pour vrai, 0 pour faux (séance 14).'
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : chaque descripteur a une valeur.'
+                    - 'Pour chaque donnée, demande-toi : est-ce un nombre, un mot, ou seulement vrai / faux ?'
+                    - Écris le type.
+            -   type: paragraphe
+                texte: Pourquoi un type ? L’ordinateur ne range pas de la même façon un nombre, un texte ou un vrai / faux.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Donne le type de chaque donnée de la cuve : nombre, texte ou booléen.'
+                colonnes:
+                    - Descripteur
+                    - Valeur
+                    - Type
+                lignes:
+                    -   - Hauteur d’eau
+                        - 42 cm
+                        - ''
+                    -   - Couleur
+                        - Vert
+                        - ''
+                    -   - Cuve pleine
+                        - Faux
+                        - ''
+                    -   - Nombre de litres récupérés hier
+                        - '120'
+                        - ''
+                aide: 'Pour chaque donnée, demande-toi : est-ce une mesure avec un chiffre (nombre), un mot (texte), ou seulement vrai ou faux (booléen) ?'
+    -   id: a02
+        titre: Une fiche de données pour la cuve
+        transition: 'Tu sais ce qu’est un descripteur et un type de donnée. Applique cela à notre projet : la cuve intelligente.'
+        consigne: Tu vas étudier les données que la cuve intelligente pourrait mesurer, à partir du document 1. On attend la donnée calculée, le type de « cuve pleine » et sa valeur en bit.
+        contenu:
+            -   type: titre
+                texte: Document 1 — Ce que la cuve intelligente pourrait mesurer
+            -   type: citation
+                texte: Un capteur placé dans le couvercle mesure la distance jusqu’à la surface de l’eau. La carte électronique en déduit la hauteur d’eau. Quand la hauteur dépasse 90 cm, la cuve est considérée comme pleine et un voyant s’allume. Chaque soir, la hauteur est enregistrée avec la date.
+            -   type: paragraphe
+                texte: 'Rappel du réflexe brevet n° 5 (séance 14) : écris toujours l’unité.'
+            -   type: etapes
+                elements:
+                    - 'Lis le document 1 : que mesure le capteur, que calcule la carte ?'
+                    - Repère quand « cuve pleine » devient vraie.
+                    - Compare 95 cm avec le seuil du document.
+            -   type: paragraphe
+                texte: 'Pourquoi un booléen ? Pour décider d’allumer un voyant, la carte n’a besoin que de savoir : oui ou non.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: D’après le document 1, quelle donnée la cuve calcule-t-elle à partir de la distance mesurée ?
+                choix:
+                    -   id: a
+                        texte: La hauteur d’eau.
+                    -   id: b
+                        texte: La couleur de l’eau.
+                    -   id: c
+                        texte: La température.
+                aide: Le capteur du couvercle mesure une distance jusqu’à l’eau. Dans le document 1, cherche ce que la cuve en déduit.
+            -   id: q02
+                type: texte
+                enonce: D’après le document 1, la donnée « cuve pleine » est-elle un nombre, un texte ou un booléen ? Explique quand elle vaut vrai.
+                aide: « Cuve pleine » ne peut prendre que deux valeurs. Dans le document 1, cherche la hauteur qui fait passer cette donnée à vrai.
+            -   id: q03
+                type: nombre
+                enonce: Ce soir, la hauteur d’eau est de 95 cm. Écris la valeur du booléen « cuve pleine » avec un bit (1 pour vrai, 0 pour faux).
+                aide: 'Compare 95 cm à la hauteur limite du document 1 : la cuve est-elle pleine ? Vrai s’écrit 1, faux s’écrit 0.'
+    -   id: a03
+        titre: Choisir ses descripteurs
+        transition: Les données du document ont été choisies par le concepteur. À toi de proposer les tiennes.
+        consigne: Tu vas proposer d’autres descripteurs utiles pour suivre la cuve. On attend deux descripteurs, avec leur type, leur unité et leur utilité.
+        contenu:
+            -   type: paragraphe
+                texte: 'Un descripteur utile aide à répondre à une question. Exemple : pour savoir s’il faut arroser avec l’eau de la cuve, la hauteur d’eau est utile ; la couleur de la cuve ne l’est pas.'
+            -   type: etapes
+                elements:
+                    - 'Relis l’exemple : un descripteur utile aide à répondre à une question.'
+                    - Pense à ce que le collège voudrait savoir sur sa cuve.
+                    - Pour chaque descripteur, écris son type, son unité et à quoi il sert.
+            -   type: paragraphe
+                texte: 'Pourquoi choisir ? Mesurer tout ne sert à rien : on garde les données qui aident à décider.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Propose deux autres descripteurs utiles pour suivre la cuve, avec leur type et leur unité si c’est un nombre. Explique à quoi sert chacun.
+                aide: 'Pense à ce qui aide à prévoir le remplissage (la pluie, la date) ou à surveiller l’eau (sa propreté). Pour chacun : type, unité si c’est un nombre, utilité.'
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Une cuve de 1 000 L mesure 1 m de haut.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Si la hauteur d’eau est de 40 cm, combien de litres environ contient-elle ? Explique ton calcul.
+                aide: 'Le document 1 dit combien de litres il y a pour une hauteur donnée. Utilise la proportionnalité : 40 cm, c’est quelle fraction de cette hauteur ?'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as décrit la cuve avec des données. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : quelles données faut-il pour décrire la cuve et suivre son remplissage ? Donne au moins trois données avec leur type.'
+                aide: Choisis au moins trois données vues aujourd’hui (hauteur, cuve pleine, date…) et donne pour chacune son type.
+retenir:
+    - Un descripteur est une caractéristique ; il prend une valeur.
+    - 'Types de données : nombre, texte, booléen (vrai/faux, 1/0).'
+    - 'Les données permettent à un objet « intelligent » de décider (ex. : cuve pleine).'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

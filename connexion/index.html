@@ -1,0 +1,24 @@
+---
+layout: auth
+title: Connexion
+permalink: /connexion/
+---
+<section class="auth-card">
+    {% include auth/auth-header.html %}
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <button type="button" id="auth-session-logout" hidden>Se déconnecter pour utiliser un autre compte</button>
+    <div class="auth-columns">
+        {% include auth/auth-login.html %}
+        <div class="auth-separator">
+            <span>ou</span>
+        </div>
+        {% include auth/auth-register.html %}
+    </div>
+    {% include auth/auth-footer.html %}
+</section>
+
+{% include config/classes-data.html %}
+<noscript><p>Active JavaScript pour te connecter à ton espace.</p></noscript>
+
+{% include config/supabase-script.html %}
+<script type="module" src="{{ '/assets/js/auth/auth-init.js' | relative_url }}"></script>

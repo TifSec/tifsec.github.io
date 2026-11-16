@@ -1,0 +1,129 @@
+titre: 'Séance 5 : Comment une machine apprend-elle ?'
+themes:
+    - 'Les objets et les systèmes techniques : leurs usages et leurs interactions à découvrir et analyser'
+problematique: Comment une intelligence artificielle apprend-elle à reconnaître des images ?
+competences_bo:
+    - Décrire les liens entre usages et évolutions technologiques des objets et des systèmes techniques
+objectifs:
+    connaissances:
+        - 'L’apprentissage automatique : on donne à la machine de nombreux exemples classés (« eau claire », « eau trouble ») ; elle en tire un modèle qui classe de nouvelles images.'
+        - 'La machine ne « comprend » pas : elle repère des régularités dans les exemples.'
+    competences:
+        - Entraîner un modèle simple avec des exemples.
+        - Tester le modèle et expliquer ses résultats.
+pourquoi:
+    - En séance 3, tu as vu des innovations de rupture. L’intelligence artificielle en est une.
+    - Aujourd’hui, tu entraînes toi-même une IA à reconnaître de l’eau claire et de l’eau trouble, utile pour notre future cuve.
+activites:
+    -   id: a01
+        titre: Entraîner
+        consigne: Tu vas entraîner une intelligence artificielle à reconnaître de l’eau claire et de l’eau trouble, dans Teachable Machine, avec les photos fournies par le professeur. On attend un modèle entraîné et l’explication du rôle des exemples.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre Teachable Machine > Projet d’image standard.
+                    - 'Classe 1 : « eau claire » ; ajoute les 20 photos fournies par le professeur.'
+                    - 'Classe 2 : « eau trouble » ; ajoute les 20 photos fournies.'
+                    - Clique sur « Entraîner le modèle ».
+            -   type: paragraphe
+                texte: Pourquoi des exemples ? Comme un enfant à qui on montre beaucoup de chats et de chiens, la machine compare les exemples ; plus il y en a, et plus ils sont variés, mieux elle classe.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Dans Teachable Machine, que donnes-tu à la machine pour qu’elle apprenne à reconnaître l’eau claire ?
+                choix:
+                    -   id: a
+                        texte: Des exemples déjà classés.
+                    -   id: b
+                        texte: Un dictionnaire.
+                    -   id: c
+                        texte: 'Rien : elle sait déjà.'
+                aide: Pour apprendre, la machine regarde des images dont on lui dit déjà à quelle classe elles appartiennent. Comment appelle-t-on ces images ?
+            -   id: q02
+                type: texte
+                enonce: Pourquoi faut-il beaucoup de photos variées d’eau claire et d’eau trouble pour entraîner le modèle ?
+                aide: 'Si toutes les photos d’eau claire ont le même fond, que risque d’apprendre la machine : la couleur de l’eau, ou le fond ?'
+        ressources:
+            -   type: lien
+                titre: Teachable Machine (Google) — apprentissage automatique dans le navigateur
+                url: https://teachablemachine.withgoogle.com/
+    -   id: a02
+        titre: Tester
+        transition: Le modèle est entraîné. Est-il fiable ?
+        consigne: Tu vas tester le modèle que tu as entraîné sur des photos qu’il n’a jamais vues. On attend un tableau des réponses du modèle, avec les pourcentages de confiance.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Clique sur « Aperçu » et charge les 6 photos de test fournies (jamais vues pendant l’entraînement).
+                    - Pour chacune, note la réponse attendue et la réponse du modèle avec son pourcentage.
+                    - Compte les erreurs.
+            -   type: paragraphe
+                texte: 'Pourquoi des photos jamais vues ? Une IA doit marcher sur des cas nouveaux : la tester sur ses propres exemples ne prouverait rien.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Teste ton modèle avec les photos de test et note les résultats.
+                colonnes:
+                    - Photo de test
+                    - Réponse attendue
+                    - Réponse du modèle (et %)
+                lignes:
+                    -   - '1'
+                        - claire
+                        - ''
+                    -   - '2'
+                        - trouble
+                        - ''
+                    -   - '3'
+                        - claire
+                        - ''
+                aide: Pour chaque photo de test, note la classe proposée par Teachable Machine et son pourcentage.
+        ressources:
+            -   type: lien
+                titre: Teachable Machine (Google) — apprentissage automatique dans le navigateur
+                url: https://teachablemachine.withgoogle.com/
+    -   id: a03
+        titre: Expliquer une erreur
+        transition: Le modèle n’est pas parfait. Comprends pourquoi.
+        consigne: Tu vas expliquer une erreur ou une hésitation de ton modèle et proposer comment mieux l’entraîner. On attend une cause plausible et une amélioration.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Choisis une photo où le modèle hésite ou se trompe (ou imagine-la).
+                    - 'Cherche ce qui la rend différente des photos d’entraînement : éclairage, verre, fond…'
+                    - Propose une amélioration de l’entraînement.
+            -   type: paragraphe
+                texte: 'Pourquoi chercher la cause ? Une IA se trompe pour une raison : le plus souvent, ses exemples ne couvraient pas ce cas.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ton modèle a hésité ou s’est trompé sur une photo. Propose une explication et une amélioration de l’entraînement.
+                aide: 'Compare la photo ratée à tes exemples d’entraînement : éclairage, fond, angle de prise de vue ? Propose quelles photos ajouter.'
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Teachable Machine affiche un pourcentage de confiance.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Que signifie « 60 % claire » pour une photo ?
+                aide: 100 % = sûr ; 50 % = au hasard. Où se situe 60 % ?
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as entraîné une IA. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment une IA apprend-elle à reconnaître des images ?'
+                aide: 'Explique les trois étapes : des exemples classés, l’entraînement, puis le test sur des images nouvelles.'
+retenir:
+    - 'Apprentissage automatique : exemples classés → modèle → test sur des images nouvelles.'
+    - La machine repère des régularités ; elle ne comprend pas.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

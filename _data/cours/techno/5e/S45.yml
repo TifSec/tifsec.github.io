@@ -1,0 +1,151 @@
+titre: 'Séance 45 : Programmer notre amélioration'
+themes:
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment modifier le programme du tracker pour réaliser notre amélioration, et la tester dans le simulateur ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
+    - Comprendre et modifier un programme associé à une fonctionnalité d’un objet ou d’un système technique
+objectifs:
+    connaissances:
+        - 'Modifier un programme existant : on garde ce qui fonctionne et on ajoute ou change seulement ce qui est nécessaire.'
+        - Dans le simulateur MakeCode, on peut régler la valeur lue sur une broche pour imiter un capteur.
+    competences:
+        - Ouvrir le programme fourni et le modifier.
+        - Tester une modification dans le simulateur.
+        - Expliquer sa modification.
+pourquoi:
+    - En séance 44, tu as repéré l’endroit du programme à modifier.
+    - 'Aujourd’hui, tu programmes ton amélioration dans le simulateur. Tous les groupes travaillent en même temps ; le vrai tracker attendra la séance 46. Le guidage est plus léger : à toi de proposer ta démarche, une aide est disponible pour chaque amélioration.'
+activites:
+    -   id: a01
+        titre: Ouvrir le programme
+        consigne: Tu vas ouvrir une copie du programme du tracker dans MakeCode et découvrir son simulateur. On attend la raison de travailler sur une copie.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre le lien du programme du tracker donné par le professeur (ou importe le fichier tracker_solaire.js dans MakeCode, onglet JavaScript, puis reviens sur Blocs).
+                    - 'Renomme le projet : 5e_S45_groupe.'
+                    - Repère les blocs « au démarrage », « toujours » et la fonction chercherSoleil.
+            -   type: paragraphe
+                texte: 'Dans le simulateur, clique sur les broches P1 et P2 pour régler la lumière simulée des capteurs gauche et droit. Le servomoteur est sur P0 : son angle s’affiche.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Pourquoi travailler sur une copie du programme et pas sur l’original ?
+                choix:
+                    -   id: a
+                        texte: Pour pouvoir revenir au programme qui fonctionne en cas d’erreur.
+                    -   id: b
+                        texte: Parce que l’original est trop long.
+                    -   id: c
+                        texte: Pour aller plus vite.
+                aide: Si ta modification provoque un bug, comment retrouver le programme qui marchait avant ?
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+                url: https://makecode.microbit.org/
+    -   id: a02
+        titre: Programmer
+        transition: Le programme est ouvert. À toi de faire ta modification, avec l’aide si besoin.
+        consigne: Tu vas programmer l’amélioration choisie par ton groupe, avec l’aide du document 1. On attend la description précise de ta modification et ce qu’elle fait.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Aide pour chaque amélioration
+                colonnes:
+                    - Amélioration
+                    - 'Aide : ce qu’il faut ajouter ou changer'
+                lignes:
+                    -   - A — Mode nuit
+                        - 'Dans « toujours », au début du « sinon » : si luminosité < 100 alors angle = 20 (et tourner le servomoteur à angle).'
+                    -   - B — Afficher la direction
+                        - 'Après « tourner le servomoteur à angle » : si angle < 90 alors afficher une flèche vers la gauche, sinon une flèche vers la droite.'
+                    -   - C — Réagir moins souvent
+                        - Remplacer 30 par 80 dans les deux comparaisons, ou remplacer la pause de 100 ms par 1 000 ms.
+            -   type: paragraphe
+                texte: 'Rappel du réflexe n° 8 : fais une modification, teste, puis passe à la suivante.'
+            -   type: etapes
+                elements:
+                    - Lis l’aide du document 1 pour ton amélioration.
+                    - Fais une seule modification, puis teste.
+                    - Note quels blocs tu as ajoutés ou changés, et où.
+            -   type: paragraphe
+                texte: Pourquoi une modification à la fois ? Si quelque chose ne marche plus, tu sais tout de suite pourquoi.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Décris précisément la modification que ton groupe a faite (quels blocs ajoutés ou changés, et où).
+                aide: 'Décris ta modification comme une recette : quel bloc as-tu ajouté ou changé, avec quels nombres, et dans quelle partie du programme (au démarrage, toujours, fonction) ?'
+            -   id: q02
+                type: texte
+                enonce: Explique en une phrase, avec « si … alors … » ou avec les nombres, ce que fait ta modification.
+                aide: Reformule ta modification en une phrase « si [situation] alors [action du tracker] », avec les nombres de ton programme.
+    -   id: a03
+        titre: Tester dans le simulateur
+        transition: Ta modification est faite. Il faut maintenant prouver qu’elle fonctionne.
+        consigne: 'Tu vas tester ton amélioration dans le simulateur avec deux tests : un où elle doit agir, un où elle ne doit pas agir. On attend tes deux tests et leurs résultats.'
+        contenu:
+            -   type: paragraphe
+                texte: 'Prépare deux tests : un où l’amélioration doit agir, un où elle ne doit pas agir. Exemple pour A : P1 et P2 à 20 (nuit) → angle 20 ; P1 et P2 à 600 (jour) → le tracker suit la lumière normalement.'
+            -   type: etapes
+                elements:
+                    - Lis l’exemple de tests pour l’amélioration A.
+                    - Écris tes deux tests avant de les faire.
+                    - Fais-les dans le simulateur et note les résultats.
+            -   type: paragraphe
+                texte: Pourquoi deux tests ? L’amélioration doit marcher quand il faut, et ne rien changer le reste du temps.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Écris tes deux tests et leurs résultats dans le simulateur.
+                colonnes:
+                    - Test (valeurs de P1 et P2)
+                    - Résultat attendu
+                    - Résultat observé
+                lignes:
+                    -   - ''
+                        - ''
+                        - ''
+                    -   - ''
+                        - ''
+                        - ''
+                aide: 'Fais deux tests dans le simulateur avec le curseur de lumière : un où ton amélioration doit se déclencher, un où elle ne doit pas. Note l’attendu et l’observé.'
+            -   id: q02
+                type: qcm
+                enonce: Le simulateur montre que ton programme fonctionne. Est-ce suffisant pour être sûr qu’il marchera sur le vrai tracker ?
+                choix:
+                    -   id: a
+                        texte: 'Non : il faudra tester sur le vrai tracker, avec de vrais capteurs.'
+                    -   id: b
+                        texte: Oui, c’est certain.
+                    -   id: c
+                        texte: Non, le simulateur ne sert à rien.
+                aide: Le simulateur utilise des curseurs ; le vrai tracker reçoit la vraie lumière de la salle. Les valeurs seront-elles exactement les mêmes ?
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: On peut combiner deux améliorations.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ajoute une deuxième amélioration et explique comment tu as vérifié qu’elle ne gêne pas la première.
+                aide: 'Teste chaque amélioration seule, puis les deux ensemble : le comportement de la première a-t-il changé ?'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton amélioration est programmée et testée dans le simulateur. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment avez-vous modifié le programme du tracker, et comment l’avez-vous testé ?'
+                aide: Résume ta modification (quoi et où) et les deux tests faits dans le simulateur.
+retenir:
+    - On modifie une copie du programme et on garde l’original.
+    - 'On teste chaque modification : un cas où elle agit, un cas où elle n’agit pas.'
+    - 'Une entrée simulée n’est pas une mesure réelle : il faudra tester sur le vrai tracker.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

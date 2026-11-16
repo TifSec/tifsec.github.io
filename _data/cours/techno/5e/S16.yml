@@ -1,0 +1,185 @@
+titre: 'Séance 16 : Calc n° 1 : dix jours de pluie dans la cuve'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment un tableur aide-t-il à analyser les relevés de pluie de la cuve ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+objectifs:
+    connaissances:
+        - 'Un tableur (Calc ou Excel) range des données dans des cellules repérées par une colonne (lettre) et une ligne (numéro) : A1, B2…'
+        - Une formule commence par = ; la fonction SOMME additionne une plage de cellules.
+        - Trier range les lignes dans un ordre ; filtrer n’affiche que certaines lignes.
+    competences:
+        - Saisir des données dans un tableur.
+        - Écrire une formule avec SOMME.
+        - Trier et filtrer des données.
+        - 'Lire un tableau : une ligne croise une colonne (réflexe brevet n° 6).'
+pourquoi:
+    - En séance 15, tu as décrit la cuve avec des données.
+    - Avec des relevés sur plusieurs jours, il devient difficile de tout calculer à la main. Le tableur le fait pour toi. Ton fichier reste sur l’ordinateur ; sur le site, tu écris tes formules et tes résultats.
+activites:
+    -   id: a01
+        titre: Saisir les données
+        consigne: Tu vas saisir dans Calc les relevés de pluie de dix jours (document 1) pour la cuve. On attend une valeur lue dans le document et l’adresse d’une cellule.
+        contenu:
+            -   type: paragraphe
+                texte: Voici les relevés de pluie de dix jours (données inventées pour l’exercice). Un toit de 20 m² envoie 20 litres d’eau dans la cuve pour chaque millimètre de pluie.
+            -   type: tableau
+                titre: Document 1 — Relevés de pluie
+                colonnes:
+                    - Jour
+                    - Pluie (mm)
+                lignes:
+                    -   - '1'
+                        - '0'
+                    -   - '2'
+                        - '5'
+                    -   - '3'
+                        - '12'
+                    -   - '4'
+                        - '0'
+                    -   - '5'
+                        - '0'
+                    -   - '6'
+                        - '8'
+                    -   - '7'
+                        - '3'
+                    -   - '8'
+                        - '0'
+                    -   - '9'
+                        - '15'
+                    -   - '10'
+                        - '2'
+            -   type: etapes
+                elements:
+                    - Ouvre LibreOffice Calc (ou Excel) et enregistre le fichier sous 5e_S16_tonprenom.ods.
+                    - En A1, écris Jour ; en B1, écris Pluie (mm) ; en C1, écris Eau récupérée (L).
+                    - Recopie les jours dans la colonne A (A2 à A11) et la pluie dans la colonne B (B2 à B11).
+            -   type: citation
+                texte: 'Réflexe brevet n° 6 : pour lire un tableau, je croise une ligne et une colonne. Exemple : dans le document 1, la ligne du jour 3 croise la colonne Pluie : 12 mm.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: D’après le document 1, combien de millimètres de pluie sont tombés le jour 6 ?
+                unite: mm
+                aide: Dans le document 1, croise la ligne du jour 6 avec la colonne de la pluie (réflexe n° 6).
+            -   id: q02
+                type: qcm
+                enonce: Dans ton tableur, dans quelle cellule se trouve la pluie du jour 1 ?
+                choix:
+                    -   id: a
+                        texte: B2
+                    -   id: b
+                        texte: A1
+                    -   id: c
+                        texte: B1
+                aide: 'La ligne 1 contient les titres : le jour 1 est donc sur la ligne suivante. La pluie est dans la deuxième colonne.'
+    -   id: a02
+        titre: Calculer avec des formules
+        transition: Tes données sont saisies. Le tableur peut maintenant calculer à ta place, à condition d’écrire la bonne formule.
+        consigne: Tu vas faire calculer par Calc l’eau récupérée chaque jour et le total de pluie, avec des formules. On attend la formule de B12 et le total affiché.
+        contenu:
+            -   type: paragraphe
+                texte: 'Exemple expliqué : pour l’eau récupérée le jour 1, on multiplie la pluie par 20. En C2, on écrit =B2*20. Le tableur affiche le résultat.'
+            -   type: etapes
+                elements:
+                    - En C2, écris =B2*20 puis appuie sur Entrée.
+                    - 'Sélectionne C2, attrape le petit carré en bas à droite et tire jusqu’à C11 : la formule se recopie pour chaque jour.'
+                    - En A12, écris Total. En B12, écris =SOMME(B2:B11). En C12, écris =SOMME(C2:C11).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris exactement la formule que tu as mise en B12.
+                aide: 'Recopie la formule telle qu’elle apparaît dans la barre de formule quand tu cliques sur B12 : elle commence par « = ».'
+            -   id: q02
+                type: nombre
+                enonce: Quel total de pluie (en mm) le tableur affiche-t-il en B12 ?
+                unite: mm
+                aide: Clique sur B12 et lis le nombre affiché dans la cellule (pas la formule).
+    -   id: a03
+        titre: Lire les résultats du tableur
+        transition: Les formules sont écrites. Lis maintenant ce que le tableur a calculé.
+        consigne: Tu vas lire, dans ta feuille Calc, l’eau récupérée par la cuve en 10 jours et le résultat d’une formule recopiée. On attend deux valeurs lues dans ton tableur.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Regarde la cellule C12 : le total d’eau récupérée.'
+                    - Clique sur la cellule C4 et lis la formule dans la barre en haut.
+                    - Note la valeur affichée dans la cellule.
+            -   type: paragraphe
+                texte: Pourquoi cliquer sur la cellule ? La cellule montre le résultat ; la barre de formule montre le calcul qui le produit.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Combien de litres d’eau la cuve a-t-elle récupérés en 10 jours (C12) ?
+                unite: L
+                aide: Clique sur C12 et lis le total en litres affiché par le tableur.
+            -   id: q02
+                type: nombre
+                enonce: Le jour 3, quelle formule est en C4 et quelle valeur affiche-t-elle ? Écris seulement la valeur.
+                unite: L
+                aide: 'Clique sur C4 : la barre de formule montre le calcul, la cellule montre le résultat. Écris le résultat.'
+    -   id: a04
+        titre: Trier et filtrer
+        transition: Les totaux sont calculés. Pour répondre à d’autres questions (le jour le plus pluvieux, les jours secs), on trie et on filtre.
+        consigne: Tu vas trier et filtrer les relevés de pluie dans Calc. On attend le premier jour après le tri, le nombre de jours sans pluie et la différence entre trier et filtrer.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Sélectionne les cellules A1 à C11.
+                    - 'Menu Données > Trier : trie selon la colonne Pluie (mm), ordre décroissant.'
+                    - Annule le tri (Ctrl + Z), puis Données > AutoFiltre.
+                    - 'Clique sur la flèche de la colonne Pluie et coche seulement 0 : tu vois les jours sans pluie.'
+            -   type: paragraphe
+                texte: Trier change l’ordre des lignes ; filtrer cache les lignes qui ne t’intéressent pas, sans les effacer.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Après le tri décroissant, quel jour apparaît en premier ?
+                choix:
+                    -   id: a
+                        texte: Le jour 9.
+                    -   id: b
+                        texte: Le jour 3.
+                    -   id: c
+                        texte: Le jour 1.
+                aide: Après « Trier du plus grand au plus petit » sur la pluie, regarde quelle ligne est remontée tout en haut.
+            -   id: q02
+                type: nombre
+                enonce: Avec le filtre, combien de jours sans pluie vois-tu ?
+                unite: jours
+                aide: Avec le filtre, garde seulement la valeur 0 dans la colonne pluie et compte les lignes qui restent.
+            -   id: q03
+                type: texte
+                enonce: Quelle est la différence entre trier et filtrer ?
+                aide: 'Pense à ce que tu as vu à l’écran : après le tri, as-tu encore toutes les lignes ? Après le filtre ?'
+    -   id: a05
+        titre: 'Défi : la moyenne'
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: La fonction MOYENNE calcule la moyenne d’une plage.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris la formule qui calcule la pluie moyenne par jour, et donne le résultat.
+                aide: Utilise la fonction qui fait la moyenne, sur la même plage que SOMME, puis lis le résultat avec son unité.
+    -   id: a06
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as saisi, calculé, trié et filtré. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment un tableur aide-t-il à analyser les relevés de pluie de la cuve ? Donne deux exemples de ce que tu as fait.'
+                aide: 'Cite deux choses que le tableur a faites pour toi aujourd’hui : un calcul automatique (une formule) et une façon de lire les données (trier ou filtrer).'
+retenir:
+    - Une cellule se repère par sa colonne et sa ligne (B2). Une formule commence par =.
+    - =SOMME(B2:B11) additionne la plage ; une formule se recopie en tirant la poignée.
+    - Trier change l’ordre ; filtrer cache des lignes sans les effacer.
+    - 'Réflexe brevet n° 6 : je lis un tableau en croisant une ligne et une colonne.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

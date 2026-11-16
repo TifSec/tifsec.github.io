@@ -1,0 +1,151 @@
+titre: 'Séance 15 : Construire un petit réseau en simulation'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment construire, paramétrer et vérifier un petit réseau local ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+    - Valider les solutions techniques par des simulations ou par des protocoles de tests
+objectifs:
+    connaissances:
+        - Dans Filius, on place des ordinateurs et un commutateur, on les relie, puis on donne une adresse IP à chaque ordinateur.
+        - 'La commande ping envoie un petit message et attend une réponse : elle vérifie que deux appareils communiquent.'
+        - Un objet connecté reçoit une adresse IP fixe, libre et du même réseau, pour être toujours joignable.
+    competences:
+        - Construire un réseau dans un simulateur.
+        - Paramétrer les adresses IP.
+        - Vérifier avec ping.
+pourquoi:
+    - En séances 13 et 14, tu as vu les équipements et les adresses.
+    - Aujourd’hui, tu construis toi-même un réseau dans le simulateur Filius.
+activites:
+    -   id: a01
+        titre: Construire le réseau
+        consigne: Tu vas construire dans le logiciel Filius un petit réseau de trois ordinateurs reliés à un commutateur, en suivant les étapes. On attend le paramétrage (adresses, masque) de tes ordinateurs.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Ouvre Filius en mode conception (icône du marteau).
+                    - Place trois ordinateurs et un commutateur.
+                    - Relie chaque ordinateur au commutateur avec un câble.
+                    - 'Double-clique sur chaque ordinateur : adresses 192.168.1.1, 192.168.1.2, 192.168.1.3 ; masque 255.255.255.0.'
+            -   type: paragraphe
+                texte: Pourquoi un simulateur ? On peut construire, casser et réparer un réseau sans risque pour celui du collège.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Recopie le paramétrage de tes ordinateurs.
+                colonnes:
+                    - Ordinateur
+                    - Adresse IP
+                lignes:
+                    -   - PC 1
+                        - ''
+                    -   - PC 2
+                        - ''
+                    -   - PC 3
+                        - ''
+                aide: Double-clique sur chaque ordinateur dans Filius et recopie son adresse IP.
+            -   id: q02
+                type: qcm
+                enonce: Quel équipement relie tes trois ordinateurs ?
+                choix:
+                    -   id: a
+                        texte: Le commutateur.
+                    -   id: b
+                        texte: Le routeur.
+                    -   id: c
+                        texte: L’imprimante.
+                aide: 'Regarde ton schéma Filius : au milieu, à quel équipement les trois câbles arrivent-ils ?'
+        ressources:
+            -   type: lien
+                titre: Filius — logiciel libre de simulation de réseau (site officiel)
+                url: https://www.lernsoftware-filius.de/Herunterladen
+    -   id: a02
+        titre: Vérifier avec ping
+        transition: Ton réseau est construit. Vérifie qu’il fonctionne.
+        consigne: Tu vas vérifier avec la commande ping, dans Filius, que tes ordinateurs communiquent. On attend une ligne de réponse recopiée et l’explication du chemin suivi par les messages.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Passe en mode simulation (triangle vert).
+                    - Sur PC 1, installe le logiciel « Ligne de commande ».
+                    - 'Tape : ping 192.168.1.3 puis Entrée.'
+                    - Observe les réponses et les câbles qui clignotent.
+            -   type: paragraphe
+                texte: 'Pourquoi ping ? C’est le premier test des techniciens réseau : il dit tout de suite si deux appareils se parlent.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Recopie une ligne affichée par le ping et dis si les ordinateurs communiquent.
+                aide: Dans la ligne de commande de PC 1, recopie une ligne de réponse du ping, puis dis si elle montre que PC 3 a répondu.
+            -   id: q02
+                type: texte
+                enonce: Quels câbles clignotent pendant le ping ? Que montre ce chemin ?
+                aide: 'Pendant le ping, regarde quels câbles s’allument en vert : vont-ils vers tous les PC, ou seulement vers celui qu’on appelle ?'
+        ressources:
+            -   type: lien
+                titre: Filius — logiciel libre de simulation de réseau (site officiel)
+                url: https://www.lernsoftware-filius.de/Herunterladen
+    -   id: a03
+        titre: Ajouter un objet connecté
+        transition: Ton réseau fonctionne. Ajoute-lui un objet connecté.
+        consigne: Tu vas ajouter un objet connecté (la station météo, simulée par un ordinateur) à ton réseau Filius, en lui donnant une adresse IP fixe. On attend l’explication du conflit d’adresses et le paramétrage qui fonctionne.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Ajoute un quatrième appareil : la « station météo » du collège (un ordinateur dans Filius joue son rôle).'
+                    - 'Donne-lui d’abord l’adresse 192.168.1.2, déjà prise : fais un ping et observe.'
+                    - 'Corrige : donne-lui une adresse IP fixe libre (par exemple 192.168.1.10) et le même masque, puis refais le ping depuis PC 1.'
+            -   type: paragraphe
+                texte: Pourquoi une adresse fixe ? Un objet connecté (station, imprimante, caméra) doit toujours garder la même adresse pour que les autres appareils le retrouvent.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Avec l’adresse 192.168.1.2, que se passe-t-il ? Explique pourquoi.
+                aide: 'Donne à la station l’adresse de PC 2 : deux appareils ont alors la même adresse. À qui le message doit-il aller ?'
+            -   id: q02
+                type: tableau
+                enonce: Écris le paramétrage fixe que tu as donné à la station météo pour qu’elle rejoigne le réseau.
+                colonnes:
+                    - Paramètre
+                    - Valeur
+                lignes:
+                    -   - Adresse IP
+                        - ''
+                    -   - Masque
+                        - ''
+                    -   - Résultat du ping depuis PC 1
+                        - ''
+                aide: Garde 192.168.1., choisis un dernier nombre libre, le même masque que les PC, puis refais le ping depuis PC 1.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Dans Filius, on peut ajouter un serveur web.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Installe un serveur web sur PC 3 et un navigateur sur PC 1. Que tapes-tu dans le navigateur ?
+                aide: 'Le navigateur va chercher le serveur à son adresse : laquelle tapes-tu, avec http:// devant ?'
+        ressources:
+            -   type: lien
+                titre: Filius — logiciel libre de simulation de réseau (site officiel)
+                url: https://www.lernsoftware-filius.de/Herunterladen
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as construit et testé un réseau. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment construire, paramétrer et vérifier un petit réseau local ? Cite les étapes dans l’ordre.'
+                aide: 'Reprends les étapes de Filius : relier, donner les adresses, vérifier avec ping, puis ajouter un objet avec une adresse fixe libre.'
+retenir:
+    - 'Construire : ordinateurs + commutateur + câbles. Paramétrer : une adresse unique par ordinateur.'
+    - 'Vérifier : ping.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

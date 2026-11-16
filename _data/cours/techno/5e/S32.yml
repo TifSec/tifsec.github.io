@@ -1,0 +1,163 @@
+titre: 'Séance 32 : Arcade : quand a-t-on gagné ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Comment un programme décide-t-il que la partie est gagnée, et comment vérifier qu’il fonctionne ?
+competences_bo:
+    - Concevoir, écrire, tester et mettre au point un programme
+    - Valider les solutions techniques par des simulations ou par des protocoles de tests
+objectifs:
+    connaissances:
+        - 'Une condition « si … alors … » permet au programme de décider : si le score atteint 10, alors on a gagné.'
+        - Tester un programme, c’est vérifier avec une liste de cas qu’il fait bien ce qu’on attend.
+    competences:
+        - Écrire une condition « si … alors … ».
+        - Tester un programme avec une liste de vérifications.
+        - Faire tester son jeu par un camarade.
+pourquoi:
+    - En séance 31, ton jeu compte les objets ramassés.
+    - Un jeu doit pouvoir se terminer. Aujourd’hui, tu ajoutes une condition de victoire, puis tu testes ton jeu comme un vrai testeur. Ce sont exactement les blocs que tu retrouveras dans le programme du monte-charge.
+activites:
+    -   id: a01
+        titre: La condition de victoire
+        consigne: Tu vas programmer la condition de victoire de ton jeu Arcade (score de 10). On attend une prévision et l’explication de la place de la condition.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Dans l’événement « lorsque Player chevauche Food », après « modifier le score de 1 », ajoute « Logique » > « si … alors ».
+                    - Dans le « si », mets la comparaison « score = 10 » (« Logique » > comparaison, et « Info » > « score »).
+                    - Dans le « alors », ajoute « Jeu » > « fin du jeu » et choisis « gagné ».
+            -   type: code
+                texte: "lorsque sprite de type Player chevauche otherSprite de type Food\n    modifier le score de 1\n    définir otherSprite position x (au hasard) y (au hasard)\n    si score = 10 alors\n        fin du jeu (gagné)"
+            -   type: paragraphe
+                texte: 'Exemple expliqué : à chaque objet ramassé, le programme vérifie la condition. Tant que le score vaut moins de 10, la condition est fausse et le jeu continue. Quand il vaut 10, elle devient vraie : la partie est gagnée.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Le score vaut 6. Le joueur ramasse un objet. La partie est-elle gagnée ?
+                choix:
+                    -   id: a
+                        texte: Non, le score vaut 7, la condition est fausse.
+                    -   id: b
+                        texte: Oui, dès qu’on ramasse un objet.
+                    -   id: c
+                        texte: Oui, car 6 est plus que 5.
+                aide: Ajoute 1 au score, puis compare au nombre écrit dans la condition « si score = … ». Est-ce égal ?
+            -   id: q02
+                type: texte
+                enonce: Pourquoi la condition est-elle placée dans l’événement « lorsque Player chevauche Food » et pas dans « au démarrage » ?
+                aide: « Au démarrage » ne s’exécute qu’une fois, au lancement. Que vaut le score à ce moment-là ? Quand le score change-t-il ?
+        ressources:
+            -   type: lien
+                titre: MakeCode Arcade (gratuit, dans le navigateur)
+                url: https://arcade.makecode.com/
+    -   id: a02
+        titre: Tester comme un professionnel
+        transition: Ton jeu peut être gagné. Mais fonctionne-t-il vraiment ? On le vérifie avec une liste de tests.
+        consigne: Tu vas tester ton jeu avec une liste de vérifications, comme un professionnel. On attend le résultat de chaque test et une correction (ou l’intérêt de tester).
+        contenu:
+            -   type: tableau
+                titre: Liste de vérifications
+                colonnes:
+                    - Test
+                    - Ce que je fais
+                    - Ce qui doit se passer
+                    - Résultat (OK ou pas OK)
+                lignes:
+                    -   - '1'
+                        - Je ramasse un objet
+                        - Le score passe de 0 à 1 et l’objet change de place
+                        - …
+                    -   - '2'
+                        - Je touche un ennemi
+                        - Je perds une vie
+                        - …
+                    -   - '3'
+                        - Je ramasse 10 objets
+                        - La partie est gagnée
+                        - …
+                    -   - '4'
+                        - Je perds toutes mes vies
+                        - La partie est perdue
+                        - …
+            -   type: paragraphe
+                texte: 'Rappel du réflexe n° 8 : on teste une chose à la fois. Si un test échoue, on cherche le bloc responsable avant de tout changer.'
+            -   type: etapes
+                elements:
+                    - Lis la liste de vérifications.
+                    - Fais les tests un par un.
+                    - Note OK ou pas OK, et corrige le bloc en cause si besoin.
+            -   type: paragraphe
+                texte: Pourquoi une liste ? Sans liste, on oublie des cas ; avec elle, on teste tout, dans l’ordre.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Écris le résultat de chaque test de ton jeu : OK ou pas OK.'
+                colonnes:
+                    - Test
+                    - Résultat
+                lignes:
+                    -   - 1 (objet ramassé)
+                        - ''
+                    -   - 2 (ennemi)
+                        - ''
+                    -   - 3 (10 objets)
+                        - ''
+                    -   - 4 (plus de vies)
+                        - ''
+                aide: Fais chaque test de la liste, un par un, sur ton jeu, et note seulement OK ou pas OK.
+            -   id: q02
+                type: texte
+                enonce: Si un test était « pas OK », quel bloc as-tu corrigé et comment ? Si tout était OK, explique à quoi sert de tester quand même.
+                aide: Si un test a raté, retrouve le bloc concerné (événement, condition, nombre) et dis ce que tu as changé. Si tout est OK, pense à ce qu’un test évite avant de donner son jeu.
+    -   id: a03
+        titre: Faire tester par un camarade
+        transition: Tu as testé ton jeu. Un autre joueur verra peut-être des choses que tu n’as pas vues.
+        consigne: Tu vas faire tester ton jeu par un camarade pendant 3 minutes. On attend son avis et l’amélioration que tu vas faire.
+        contenu:
+            -   type: paragraphe
+                texte: Échange ton poste avec un camarade pendant 3 minutes. Il joue à ton jeu et te dit ce qui est facile ou difficile, comme en séance 5.
+            -   type: etapes
+                elements:
+                    - Échange ton poste avec un camarade.
+                    - Pendant qu’il joue, note ce qu’il dit.
+                    - Choisis une amélioration à faire.
+            -   type: paragraphe
+                texte: Pourquoi un testeur ? Comme en séance 5, l’utilisateur voit des difficultés que le concepteur ne voit plus.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Qu’a dit ton camarade de ton jeu ? Quelle amélioration vas-tu faire ?
+                aide: Note une phrase de ton camarade (ce qu’il a aimé ou pas), puis une amélioration précise que tu vas faire.
+    -   id: a04
+        titre: 'Défi : le chrono'
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: « Info » > « démarrer le compte à rebours » permet de limiter le temps.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Ajoute un compte à rebours de 30 secondes. Que se passe-t-il quand il arrive à 0 ? Le jeu est-il plus intéressant ?
+                aide: Cherche le bloc de compte à rebours dans la catégorie « Infos », règle-le sur 30 et joue une partie jusqu’à la fin.
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Ton jeu est terminé et testé. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment le programme décide-t-il que la partie est gagnée, et comment vérifier qu’il fonctionne ?'
+                aide: 'Deux idées : la condition qui teste le score et l’endroit où elle est placée, puis la liste de vérifications pour tester.'
+retenir:
+    - Une condition « si … alors … » permet au programme de décider.
+    - On place une condition là où la valeur change (dans l’événement).
+    - 'Tester : une liste de cas, un à la fois, puis faire tester par quelqu’un d’autre.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download
+    -   type: lien
+        titre: MakeCode Arcade (gratuit, dans le navigateur)
+        url: https://arcade.makecode.com/

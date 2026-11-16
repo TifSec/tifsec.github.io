@@ -1,0 +1,124 @@
+titre: 'Séance 13 : Un prix au kilo pour toutes les lignes'
+themes:
+    - EG4, objectif 3-1 — Utiliser de manière pertinente les outils bureautiques et les outils de communication
+problematique: Comment utiliser une même valeur dans toutes les lignes d’un calcul ?
+competences_bo:
+    - EG4, objectif 3-1 — Utiliser de manière pertinente les outils bureautiques et les outils de communication
+objectifs:
+    connaissances:
+        - Une référence absolue ($B$1) ne change pas quand on recopie la formule.
+        - On place une valeur commune (prix, taux) dans une seule cellule.
+    competences:
+        - Écrire une formule avec une référence absolue.
+        - Mettre à jour un tableau en changeant une seule valeur.
+pourquoi:
+    - En S11, tu as calculé le foin du mois.
+    - 'Le fournisseur facture le foin au kilo : le même prix pour tous les chevaux.'
+activites:
+    -   id: a01
+        titre: La formule qui casse
+        consigne: Tu vas observer ce qui se passe quand on recopie une formule qui utilise le prix au kilo. On attend la formule obtenue et la raison de l’erreur.
+        contenu:
+            -   type: fichier
+                titre: rations de foin des 8 chevaux (si tu n’as plus ton fichier de S11)
+                url: /assets/fichiers/tim/2de/foin.ods
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : =D2*E1 recopiée vers le bas devient =D3*E2, puis =D4*E3…'
+                    - 'La référence au prix (E1) glisse avec les lignes : le calcul n’utilise plus le prix.'
+                    - 'À toi : ouvre ton fichier foin de S11.'
+                    - 'En E1, écris le prix : 0,18 (€/kg).'
+                    - En E2, écris =D2*E1 puis recopie vers le bas.
+                    - Observe les lignes 3 et suivantes.
+                    - Pourquoi 0 ou une erreur ? En recopiant, E1 devient E2, E3… qui ne contiennent pas le prix.
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Quelle formule obtient-on en E3 après recopie de =D2*E1 ?
+                choix:
+                    -   id: a
+                        texte: =D3*E2
+                    -   id: b
+                        texte: =D3*E1
+                    -   id: c
+                        texte: =D2*E1
+                aide: En recopiant vers le bas, Calc décale chaque référence d’une ligne. Que devient E1 ?
+            -   id: q02
+                type: texte
+                enonce: Pourquoi le résultat de E3 est-il faux ?
+                aide: 'Regarde ce que contient la cellule E2 qui est utilisée en E3 : est-ce le prix au kilo ?'
+    -   id: a02
+        titre: Bloquer le prix
+        transition: Le prix doit rester le même sur toutes les lignes. Bloque-le.
+        consigne: Tu vas bloquer la cellule du prix avec $ pour calculer le coût du foin de chaque cheval. On attend le coût de Galopin et une formule recopiée.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : =D2*$E$1.'
+                    - 'Recopiée, elle devient =D3*$E$1 : seule la ligne de D change, E1 reste bloquée.'
+                    - 'Avec 200 kg en D3 et 0,18 € en E1 : 200 × 0,18 = 36 €.'
+                    - 'À toi : corrige E2 : =D2*$E$1 (touche F4 après E1).'
+                    - Recopie vers le bas.
+                    - Format monétaire sur la colonne E.
+                    - 'Pourquoi le $ ? Il fige la colonne et la ligne : toutes les lignes utilisent la même cellule E1.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quel coût de foin par mois Calc affiche-t-il pour Galopin (300 kg) ?
+                unite: €
+                aide: Multiplie les 300 kg de Galopin par le prix au kilo de E1, ou lis la cellule de sa ligne.
+            -   id: q02
+                type: texte
+                enonce: Écris la formule de E4 après recopie.
+                aide: Après recopie, le D change de ligne, mais le prix reste bloqué par les « $ ». Écris la formule de la ligne 4.
+    -   id: a03
+        titre: Le prix augmente
+        transition: Les coûts sont justes. Le fournisseur change son prix.
+        consigne: Tu vas mettre à jour le prix du foin dans la seule cellule E1 et comparer les totaux. On attend le nouveau total et l’augmentation.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : si le prix en E1 passe de 0,18 à 0,20 €, toutes les cellules qui utilisent $E$1 se recalculent.'
+                    - 'On ne modifie qu’une seule cellule : c’est l’intérêt de bloquer la référence.'
+                    - 'À toi : le fournisseur passe à 0,21 €/kg : modifie seulement E1.'
+                    - 'Ajoute en E11 le total : =SOMME(E2:E9).'
+                    - Compare avec l’ancien total.
+                    - Pourquoi une seule cellule ? Changer un prix dans 8 formules serait long et risqué.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quel est le nouveau coût total du foin pour le mois ?
+                unite: €
+                aide: Change le prix dans E1 comme demandé, puis lis le nouveau total en bas de la colonne.
+            -   id: q02
+                type: texte
+                enonce: De combien le coût mensuel augmente-t-il ?
+                aide: Fais la différence entre le nouveau total et l’ancien total (321,30 €).
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: On peut nommer une cellule (Plage > Définir le nom).
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment écrire la formule si E1 s’appelle « prix_foin » ?
+                aide: 'Une cellule nommée s’utilise comme une référence : on écrit son nom à la place de $E$1.'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu sais utiliser une valeur commune. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment utiliser une même valeur dans toutes les lignes d’un calcul ?'
+                aide: Dis où on place la valeur commune et comment la bloquer pour toutes les lignes.
+retenir:
+    - '$E$1 : référence absolue (F4).'
+    - Une valeur commune = une seule cellule.
+sources:
+    -   type: lien
+        titre: ChloroFil — Seconde professionnelle, document d’accompagnement du module EG4
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/2nde-pro/2nde-pro-da-EG4.pdf

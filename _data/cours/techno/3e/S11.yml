@@ -1,0 +1,132 @@
+titre: 'Séance 11 : Pourquoi des routeurs ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment un routeur choisit-il par où envoyer un paquet ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+objectifs:
+    connaissances:
+        - 'Un routeur relie plusieurs réseaux. Il lit l’adresse de destination du paquet et consulte sa table de routage : pour chaque réseau de destination, elle indique la sortie (l’interface) à utiliser.'
+        - S’il existe plusieurs chemins, un routeur peut contourner une liaison en panne.
+    competences:
+        - Lire une table de routage.
+        - Suivre le chemin d’un paquet.
+pourquoi:
+    - En séance 10, tu as vu que les paquets traversent des routeurs.
+    - 'Aujourd’hui, activité débranchée : tu joues le rôle des routeurs.'
+activites:
+    -   id: a01
+        titre: Lire une table de routage
+        consigne: Tu vas apprendre à lire la table de routage d’un routeur (document 1). On attend la sortie choisie par le routeur R1 pour trois paquets.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Table de routage du routeur R1
+                colonnes:
+                    - Réseau de destination
+                    - Sortie à utiliser
+                lignes:
+                    -   - Réseau A
+                        - Sortie 1 (vers R2)
+                    -   - Réseau B
+                        - Sortie 2 (vers R3)
+                    -   - Réseau C
+                        - Sortie 2 (vers R3)
+                    -   - Autre
+                        - Sortie 3 (vers Internet)
+            -   type: paragraphe
+                texte: 'Exemple expliqué : un paquet arrive à R1 pour le réseau B. R1 lit la ligne « Réseau B » : il l’envoie par la sortie 2, vers R3.'
+            -   type: etapes
+                elements:
+                    - Lis l’exemple expliqué.
+                    - Pour chaque paquet, cherche la ligne de sa destination dans le document 1.
+                    - Si la destination n’est pas dans la table, utilise la ligne « Autre ».
+            -   type: paragraphe
+                texte: 'Pourquoi une ligne « Autre » ? Un routeur ne connaît pas tous les réseaux du monde : ce qu’il ne connaît pas, il l’envoie vers Internet.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: D’après le document 1, par quelle sortie le routeur R1 envoie-t-il chaque paquet ?
+                colonnes:
+                    - Destination du paquet
+                    - Sortie
+                lignes:
+                    -   - Réseau A
+                        - ''
+                    -   - Réseau C
+                        - ''
+                    -   - Un site inconnu
+                        - ''
+                aide: Dans le document 1, cherche chaque destination dans la colonne de gauche et lis la sortie sur la même ligne. Pour un site inconnu, cherche la ligne « par défaut ».
+    -   id: a02
+        titre: Le jeu des routeurs (débranché)
+        transition: Tu sais lire une table. Joue maintenant les routeurs.
+        consigne: Tu vas jouer, avec toute la classe, le trajet de paquets entre quatre routeurs, puis gérer une panne de liaison. On attend un nouveau chemin et la modification de la table de R1.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Quatre élèves jouent les routeurs R1, R2, R3, R4, chacun avec sa table.
+                    - Des paquets (papiers) circulent dans la classe.
+                    - 'Le professeur coupe la liaison R1-R3 : observe ce qui bloque.'
+            -   type: paragraphe
+                texte: Pourquoi couper une liaison ? Pour voir comment Internet continue à fonctionner quand un câble ou un routeur tombe en panne.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Dans le jeu, la liaison R1-R3 est coupée. Comment le paquet pour le réseau B peut-il encore arriver ? Que faut-il changer dans la table de R1 (document 1) ?
+                aide: 'Regarde le schéma du jeu : quel autre chemin relie R1 au réseau B sans la liaison coupée ? Puis dis quelle ligne de la table de R1 doit changer.'
+    -   id: a03
+        titre: Plusieurs chemins
+        transition: La panne a été contournée. Pourquoi est-ce possible ?
+        consigne: Tu vas expliquer pourquoi Internet résiste aux pannes, à partir de ce que tu as observé dans le jeu des routeurs. On attend l’intérêt d’avoir plusieurs chemins.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Repense au jeu : combien de chemins menaient au réseau B ?'
+                    - Imagine qu’il n’y en ait qu’un seul.
+                    - Explique l’intérêt d’avoir plusieurs chemins.
+            -   type: paragraphe
+                texte: 'Pourquoi plusieurs chemins ? C’est la redondance : si un chemin tombe, un autre prend le relais.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Pourquoi Internet a-t-il beaucoup de chemins possibles entre deux points ?
+                choix:
+                    -   id: a
+                        texte: Pour continuer à fonctionner si une liaison tombe en panne.
+                    -   id: b
+                        texte: Pour être plus joli.
+                    -   id: c
+                        texte: Par hasard.
+                aide: Pense à ce qui arrive sur une route coupée quand il n’existe aucun autre chemin.
+            -   id: q02
+                type: texte
+                enonce: Dans le jeu des routeurs, que se serait-il passé s’il n’y avait eu qu’un seul chemin vers le réseau B ?
+                aide: Avec un seul chemin et une liaison coupée, le paquet a-t-il une autre route ?
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Les vrais routeurs mettent à jour leurs tables automatiquement.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quel avantage par rapport à une mise à jour à la main ?
+                aide: Un humain met du temps à remarquer une panne et à corriger les tables. Que gagne-t-on si les routeurs le font seuls ?
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as joué les routeurs. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment un routeur choisit-il par où envoyer un paquet ?'
+                aide: Explique ce que le routeur lit sur le paquet, puis ce qu’il consulte pour choisir la sortie.
+retenir:
+    - 'Routeur : relie des réseaux ; table de routage : destination → sortie.'
+    - 'Plusieurs chemins : Internet résiste aux pannes.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

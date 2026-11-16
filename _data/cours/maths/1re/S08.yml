@@ -1,0 +1,303 @@
+titre: 'Séance 8 : Résumer une série au tableur'
+themes:
+    - MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre
+problematique: Comment résumer rapidement une série avec des indicateurs au tableur ?
+competences_bo:
+    - MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre
+objectifs:
+    connaissances:
+        - 'Indicateurs de position : moyenne, médiane ; de dispersion : étendue, quartiles, écart interquartile, écart-type.'
+        - 'Fonctions : MOYENNE, MEDIANE, QUARTILE, ECARTYPEP, MIN, MAX.'
+    competences:
+        - Calculer des indicateurs au tableur.
+        - Interpréter position et dispersion.
+pourquoi:
+    - En 2de, tu as calculé des indicateurs à la main.
+    - 'En 1re, on travaille sur de vraies tailles de fichiers : les notes de 60 chevaux en concours de modèle et allures.'
+activites:
+    -   id: a01
+        titre: Les indicateurs
+        consigne: Tu vas calculer au tableur les indicateurs de position des 60 notes de concours. On attend trois résultats.
+        contenu:
+            -   type: fichier
+                titre: notes de 60 chevaux en modèle et allures
+                url: /assets/fichiers/maths/1re/modele_allures.ods
+            -   type: liste
+                elements:
+                    - 'Automatisme : moyenne de 12, 14, 16.'
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : 4 notes en B2:B5.'
+                    - '=NB(B2:B5) compte les valeurs : 4.'
+                    - =MOYENNE(B2:B5), =MEDIANE(B2:B5), =MIN(B2:B5), =MAX(B2:B5) donnent les autres indicateurs.
+                    - 'À toi : ouvre le fichier modele_allures.ods (à télécharger ci-dessus, 60 notes sur 20) et calcule NB, MOYENNE, MEDIANE, MIN, MAX.'
+                    - Pourquoi NB ? Vérifier qu’aucune note ne manque.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
+                colonnes:
+                    - Point clé
+                    - Mot(s) manquant(s)
+                lignes:
+                    -   - La moyenne et la médiane sont des indicateurs de …… .
+                        - ''
+                    -   - =NB(plage) compte les …… .
+                        - ''
+                aide: 'Moyenne et médiane disent où se trouvent les notes : indicateurs de… ? Et NB compte les cellules qui contiennent des… ?'
+            -   id: q02
+                type: tableau
+                enonce: Résultats.
+                colonnes:
+                    - Indicateur
+                    - Valeur
+                lignes:
+                    -   - NB
+                        - ''
+                    -   - MOYENNE (au centième)
+                        - ''
+                    -   - MEDIANE
+                        - ''
+                aide: Ouvre modele_allures.ods et tape =NB(…), =MOYENNE(…), =MEDIANE(…) sur la plage des 60 notes.
+    -   id: a02
+        titre: La dispersion
+        transition: Tu as la position. Mesure la dispersion.
+        consigne: Tu vas calculer les quartiles, l’écart interquartile et l’écart-type des notes. On attend les quatre valeurs.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : =QUARTILE(B2:B5;1) donne Q1, =QUARTILE(B2:B5;3) donne Q3.'
+                    - 'Écart interquartile : Q3 − Q1 dans une autre cellule.'
+                    - '=ECARTYPEP(B2:B5) donne l’écart-type : plus il est grand, plus les notes s’éloignent de la moyenne.'
+                    - 'À toi : calcule Q1, Q3, l’écart interquartile et ECARTYPEP pour les 60 notes.'
+                    - Pourquoi l’écart-type ? Il mesure l’écart moyen à la moyenne.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
+                colonnes:
+                    - Point clé
+                    - Mot(s) manquant(s)
+                lignes:
+                    -   - L’écart-type mesure la dispersion autour de la …… .
+                        - ''
+                    -   - Écart interquartile = …… − Q1.
+                        - ''
+                aide: L’écart-type mesure l’éloignement par rapport à quel indicateur ? Et l’écart interquartile, c’est quel quartile moins Q1 ?
+            -   id: q02
+                type: texte
+                enonce: Écris Q1, Q3, l’écart interquartile et l’écart-type.
+                aide: Utilise =QUARTILE(plage;1), =QUARTILE(plage;3), leur différence, et =ECARTYPEP(plage).
+    -   id: a03
+        titre: Interpréter
+        transition: Les indicateurs sont calculés. Que disent-ils ?
+        consigne: Tu vas interpréter la position et la dispersion des notes en deux phrases. On attend les deux phrases.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : médiane 12, Q1 = 10, Q3 = 14.'
+                    - 'Position : « La moitié des chevaux a plus de 12 sur 20. »'
+                    - 'Dispersion : « La moitié centrale des notes est entre 10 et 14 : écart de 4 points. »'
+                    - 'À toi : rédige deux phrases avec tes résultats, une sur la position, une sur la dispersion.'
+                    - Pourquoi deux phrases ? Un juge veut savoir le niveau moyen et si les chevaux sont homogènes.
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
+                colonnes:
+                    - Point clé
+                    - Mot(s) manquant(s)
+                lignes:
+                    -   - On interprète avec une phrase sur la position et une sur la …… .
+                        - ''
+                    -   - La moitié des valeurs est au-dessus de la …… .
+                        - ''
+                aide: On écrit une phrase sur la position et une autre sur la… ? Et la moitié des valeurs est au-dessus de quel indicateur ?
+            -   id: q02
+                type: texte
+                enonce: Rédige ton interprétation.
+                aide: 'Comme l’exemple : une phrase avec ta médiane, une phrase avec ton Q1, ton Q3 et l’écart entre eux.'
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Une note de 4/20 (cheval boiteux) entre dans la série.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Quel indicateur bouge le plus : moyenne ou médiane ?'
+                aide: 'Ajoute 4/20 dans ta série : recalcule la moyenne et la médiane, et compare de combien chacune bouge.'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu sais résumer une série au tableur. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment résumer rapidement une série avec des indicateurs au tableur ?'
+                aide: Dis les fonctions utilisées et comment tu interprètes position et dispersion.
+retenir:
+    - MOYENNE, MEDIANE, QUARTILE, ECARTYPEP.
+    - Position + dispersion.
+sources:
+    -   type: lien
+        titre: ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf
+version_papier:
+    surtitre: Cours et exercices — version papier
+    titre: Résumer une série au tableur
+    introduction: Comment résumer rapidement une série avec des indicateurs au tableur ?
+    sections:
+        -   titre: Le cours en bref
+            blocs:
+                -   type: paragraphe
+                    texte: 'Le problème à résoudre : Comment résumer rapidement une série avec des indicateurs au tableur ?'
+                -   type: titre
+                    texte: Ce que tu vas apprendre
+                -   type: liste
+                    elements:
+                        - 'Indicateurs de position : moyenne, médiane ; de dispersion : étendue, quartiles, écart interquartile, écart-type.'
+                        - 'Fonctions : MOYENNE, MEDIANE, QUARTILE, ECARTYPEP, MIN, MAX.'
+                -   type: titre
+                    texte: Ce que tu vas savoir faire
+                -   type: liste
+                    elements:
+                        - Calculer des indicateurs au tableur.
+                        - Interpréter position et dispersion.
+                -   type: titre
+                    texte: Pourquoi cette séance ?
+                -   type: paragraphe
+                    texte: 'En 2de, tu as calculé des indicateurs à la main. En 1re, on travaille sur de vraies tailles de fichiers : les notes de 60 chevaux en concours de modèle et allures.'
+                -   type: paragraphe
+                    texte: 'Comment utiliser cette fiche : pour chaque partie, lis la méthode et l’exemple, complète les points clés, puis fais l’exercice. Réponds sur les lignes.'
+        -   titre: I. Les indicateurs
+            blocs:
+                -   type: liste
+                    elements:
+                        - 'Automatisme : moyenne de 12, 14, 16.'
+                -   type: titre
+                    texte: Ce que tu vas faire
+                -   type: paragraphe
+                    texte: Tu vas calculer au tableur les indicateurs de position des 60 notes de concours. On attend trois résultats.
+                -   type: titre
+                    texte: Méthode
+                -   type: etapes
+                    elements:
+                        - 'Lis l’exemple : 4 notes en B2:B5.'
+                        - '=NB(B2:B5) compte les valeurs : 4.'
+                        - =MOYENNE(B2:B5), =MEDIANE(B2:B5), =MIN(B2:B5), =MAX(B2:B5) donnent les autres indicateurs.
+                        - 'À toi : ouvre le fichier modele_allures.ods (à télécharger ci-dessus, 60 notes sur 20) et calcule NB, MOYENNE, MEDIANE, MIN, MAX.'
+                        - Pourquoi NB ? Vérifier qu’aucune note ne manque.
+                -   type: titre
+                    texte: Exemple et documents
+                -   type: fichier
+                    titre: notes de 60 chevaux en modèle et allures
+                    url: /assets/fichiers/maths/1re/modele_allures.ods
+                -   type: titre
+                    texte: Points clés à compléter
+                -   type: liste
+                    elements:
+                        - La moyenne et la médiane sont des indicateurs de …… .
+                        - =NB(plage) compte les …… .
+                -   type: titre
+                    texte: Exercice 1 — Les indicateurs
+                -   type: tableau
+                    colonnes:
+                        - Indicateur
+                        - Valeur
+                    lignes:
+                        -   - NB
+                            - ''
+                        -   - MOYENNE (au centième)
+                            - ''
+                        -   - MEDIANE
+                            - ''
+            questions:
+                - Résultats.
+        -   titre: II. La dispersion
+            blocs:
+                -   type: titre
+                    texte: Ce que tu vas faire
+                -   type: paragraphe
+                    texte: Tu vas calculer les quartiles, l’écart interquartile et l’écart-type des notes. On attend les quatre valeurs.
+                -   type: titre
+                    texte: Méthode
+                -   type: etapes
+                    elements:
+                        - 'Lis l’exemple : =QUARTILE(B2:B5;1) donne Q1, =QUARTILE(B2:B5;3) donne Q3.'
+                        - 'Écart interquartile : Q3 − Q1 dans une autre cellule.'
+                        - '=ECARTYPEP(B2:B5) donne l’écart-type : plus il est grand, plus les notes s’éloignent de la moyenne.'
+                        - 'À toi : calcule Q1, Q3, l’écart interquartile et ECARTYPEP pour les 60 notes.'
+                        - Pourquoi l’écart-type ? Il mesure l’écart moyen à la moyenne.
+                -   type: titre
+                    texte: Points clés à compléter
+                -   type: liste
+                    elements:
+                        - L’écart-type mesure la dispersion autour de la …… .
+                        - Écart interquartile = …… − Q1.
+                -   type: titre
+                    texte: Exercice 2 — La dispersion
+            questions:
+                - Écris Q1, Q3, l’écart interquartile et l’écart-type.
+        -   titre: III. Interpréter
+            blocs:
+                -   type: titre
+                    texte: Ce que tu vas faire
+                -   type: paragraphe
+                    texte: Tu vas interpréter la position et la dispersion des notes en deux phrases. On attend les deux phrases.
+                -   type: titre
+                    texte: Méthode
+                -   type: etapes
+                    elements:
+                        - 'Lis l’exemple : médiane 12, Q1 = 10, Q3 = 14.'
+                        - 'Position : « La moitié des chevaux a plus de 12 sur 20. »'
+                        - 'Dispersion : « La moitié centrale des notes est entre 10 et 14 : écart de 4 points. »'
+                        - 'À toi : rédige deux phrases avec tes résultats, une sur la position, une sur la dispersion.'
+                        - Pourquoi deux phrases ? Un juge veut savoir le niveau moyen et si les chevaux sont homogènes.
+                -   type: titre
+                    texte: Points clés à compléter
+                -   type: liste
+                    elements:
+                        - On interprète avec une phrase sur la position et une sur la …… .
+                        - La moitié des valeurs est au-dessus de la …… .
+                -   type: titre
+                    texte: Exercice 3 — Interpréter
+            questions:
+                - Rédige ton interprétation.
+        -   titre: Conclusion
+            blocs:
+                -   type: paragraphe
+                    texte: Avec ce que tu as fait dans les parties précédentes, réponds en quelques phrases complètes.
+            questions:
+                - 'Réponds au problème du jour : comment résumer rapidement une série avec des indicateurs au tableur ?'
+        -   titre: Pour aller plus loin (facultatif)
+            blocs:
+                -   type: paragraphe
+                    texte: Une note de 4/20 (cheval boiteux) entre dans la série.
+            questions:
+                - 'Quel indicateur bouge le plus : moyenne ou médiane ?'
+        -   titre: À retenir
+            blocs:
+                -   type: liste
+                    elements:
+                        - MOYENNE, MEDIANE, QUARTILE, ECARTYPEP.
+                        - Position + dispersion.
+        -   titre: Exercice 1 — Indicateurs
+            blocs:
+                -   type: paragraphe
+                    texte: 'Notes : 11, 12, 13, 14, 14, 15, 16, 17.'
+            questions:
+                - Moyenne ?
+                - Médiane ?
+            saut_page: true
+            surtitre: Fiche d’exercices
+        -   titre: Exercice 2 — Dispersion
+            blocs: []
+            questions:
+                - Étendue des notes ?
+        -   titre: Exercice 3 — Interpréter
+            blocs: []
+            questions:
+                - Rédige une phrase sur la position et une sur la dispersion.

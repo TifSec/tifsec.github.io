@@ -1,8 +1,7 @@
 /* ========== MESSAGES D'AUTHENTIFICATION ========== */
 
-const messageElement = document.getElementById("message");
-
 export function showMessage(text, type = "error") {
+    const messageElement = document.getElementById("message");
     if (!messageElement) {
         console.warn("Élément #message introuvable :", text);
         return;
@@ -14,6 +13,7 @@ export function showMessage(text, type = "error") {
 }
 
 export function hideMessage() {
+    const messageElement = document.getElementById("message");
     if (!messageElement) {
         return;
     }

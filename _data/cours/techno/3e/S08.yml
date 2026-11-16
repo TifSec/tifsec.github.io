@@ -1,0 +1,152 @@
+titre: 'Séance 8 : Comment l’ordinateur écrit-il un mot ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment un ordinateur représente-t-il des nombres et des lettres avec seulement des 0 et des 1 ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+objectifs:
+    connaissances:
+        - 'Un bit vaut 0 ou 1. En binaire, chaque position vaut le double de la précédente : 1, 2, 4, 8, 16, 32, 64, 128. Exemple : 1010 en binaire = 8 + 2 = 10.'
+        - 'Le code ASCII associe un nombre à chaque caractère : A = 65, B = 66… ; a = 97.'
+    competences:
+        - Convertir un nombre binaire en décimal (et inversement, petits nombres).
+        - Coder un mot avec le code ASCII.
+pourquoi:
+    - En 5e, tu as vu les octets et les tailles de fichiers. Avant de suivre tes données sur Internet, tu découvres comment elles sont codées.
+    - Aujourd’hui, tu découvres comment les 0 et les 1 deviennent des nombres et des lettres.
+activites:
+    -   id: a01
+        titre: Du binaire au décimal
+        consigne: Tu vas apprendre à lire un nombre écrit en binaire (avec des 0 et des 1), à l’aide de l’exemple expliqué. On attend deux nombres binaires convertis en décimal.
+        contenu:
+            -   type: tableau
+                titre: 'Exemple expliqué : 00001010 = 8 + 2 = 10'
+                colonnes:
+                    - '128'
+                    - '64'
+                    - '32'
+                    - '16'
+                    - '8'
+                    - '4'
+                    - '2'
+                    - '1'
+                lignes:
+                    -   - '0'
+                        - '0'
+                        - '0'
+                        - '0'
+                        - '1'
+                        - '0'
+                        - '1'
+                        - '0'
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple expliqué : chaque case a une valeur (128, 64, … 1).'
+                    - Pour un nombre binaire, repère les cases qui contiennent 1.
+                    - Additionne leurs valeurs.
+            -   type: paragraphe
+                texte: 'Pourquoi des 0 et des 1 ? Dans un ordinateur, un fil est soit sous tension, soit non : deux états seulement, qu’on note 1 et 0.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Que vaut le nombre binaire 00000101 en décimal ?
+                aide: 'Fais comme dans l’exemple : écris sous chaque bit sa valeur (128, 64, 32, 16, 8, 4, 2, 1) et additionne celles où il y a un 1.'
+            -   id: q02
+                type: nombre
+                enonce: Que vaut le nombre binaire 00001111 en décimal ?
+                aide: 'Même méthode : repère les bits à 1 en partant de la droite et additionne leurs valeurs.'
+    -   id: a02
+        titre: Du décimal au binaire
+        transition: Tu sais lire le binaire. Fais l’inverse.
+        consigne: Tu vas écrire un nombre décimal (12) en binaire, avec la méthode des plus grandes valeurs. On attend le nombre sur 8 bits et la méthode.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Prends le nombre 12.
+                    - 'Cherche la plus grande valeur du tableau qui tient dans 12 (8) : mets 1 dans sa case.'
+                    - Recommence avec le reste (12 − 8 = 4).
+                    - Mets 0 dans les autres cases.
+            -   type: paragraphe
+                texte: 'Pourquoi commencer par la plus grande valeur ? Comme pour rendre la monnaie : on prend d’abord les gros billets.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris le nombre 12 en binaire sur 8 bits et explique ta méthode.
+                aide: Décompose 12 en somme de valeurs de la liste 8, 4, 2, 1, puis place un 1 sous chacune et des 0 ailleurs, sur 8 bits.
+    -   id: a03
+        titre: Le code ASCII
+        transition: Les nombres sont codés. Et les lettres ?
+        consigne: Tu vas coder et décoder des mots avec le code ASCII, à partir de l’extrait de table du document 1. On attend un mot codé et un message décodé.
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Extrait de la table ASCII
+                colonnes:
+                    - Caractère
+                    - A
+                    - B
+                    - C
+                    - E
+                    - O
+                    - T
+                lignes:
+                    -   - Code
+                        - '65'
+                        - '66'
+                        - '67'
+                        - '69'
+                        - '79'
+                        - '84'
+            -   type: etapes
+                elements:
+                    - 'Lis le document 1 : le code de quelques lettres.'
+                    - Pour coder un mot, remplace chaque lettre par son code.
+                    - Pour décoder, fais l’inverse.
+            -   type: paragraphe
+                texte: 'Pourquoi un code commun ? Tous les ordinateurs utilisent la même table : un texte écrit sur l’un se lit sur l’autre.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Code le mot « EAU » avec la table ASCII du document 1.
+                colonnes:
+                    - Lettre
+                    - Code
+                lignes:
+                    -   - E
+                        - ''
+                    -   - A
+                        - ''
+                    -   - U (code 85)
+                        - ''
+                aide: Cherche chaque lettre dans la table du document 1 et recopie son code.
+            -   id: q02
+                type: texte
+                enonce: Décode le message 84 79 84 79 avec le document 1.
+                aide: Cherche chaque nombre dans la table du document 1 et lis la lettre correspondante.
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Un octet = 8 bits.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Combien de valeurs différentes un octet peut-il représenter ?
+                aide: 'Un bit a 2 valeurs. Un octet a 8 bits : multiplie 2 par lui-même 8 fois.'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu sais coder en binaire. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment un ordinateur représente-t-il nombres et lettres avec des 0 et des 1 ?'
+                aide: 'Explique les deux codages vus aujourd’hui : les nombres (valeurs des positions) et les lettres (un code par caractère).'
+retenir:
+    - 'Binaire : positions 1, 2, 4, 8, 16, 32, 64, 128.'
+    - 'ASCII : un code par caractère (A = 65).'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

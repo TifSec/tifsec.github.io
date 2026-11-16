@@ -1,0 +1,152 @@
+titre: 'Séance 43 : Que manque-t-il au prototype ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+    - 'Création, conception, réalisation, innovations : des objets à concevoir et à réaliser'
+problematique: Quels constituants faut-il ajouter au tracker pour qu’il communique ?
+competences_bo:
+    - Imaginer, concevoir et réaliser une ou des solutions en réponse à un besoin, à des exigences (de développement durable, par exemple) ou à la nécessité d’améliorations dans une démarche de créativité
+objectifs:
+    connaissances:
+        - Le tracker a déjà une carte (émettrice possible), des capteurs et un servomoteur. Il manque une carte réceptrice (notre deuxième micro:bit), son affichage (écran à LED intégré) et son alimentation (boîtier piles ou câble USB).
+        - On vérifie que l’ajout respecte le cahier des charges (distance, autonomie).
+    competences:
+        - Identifier les constituants manquants d’un prototype.
+        - Choisir une alimentation adaptée.
+pourquoi:
+    - En séance 42, la radio a fonctionné dans le simulateur.
+    - 'Pour le vrai prototype, il faut faire l’inventaire : qu’a-t-on, que manque-t-il ?'
+activites:
+    -   id: a01
+        titre: Inventaire
+        consigne: 'Tu vas faire l’inventaire du prototype du tracker communicant à partir du document 1 : ce qui existe déjà et ce qui manque pour qu’il envoie ses mesures. On attend le rôle de chaque constituant manquant.'
+        contenu:
+            -   type: tableau
+                titre: Document 1 — Inventaire du tracker
+                colonnes:
+                    - Constituant
+                    - Présent sur le tracker ?
+                lignes:
+                    -   - Carte micro:bit avec radio
+                        - Oui
+                    -   - Capteurs de lumière
+                        - Oui
+                    -   - Servomoteur
+                        - Oui
+                    -   - Deuxième carte (récepteur)
+                        - Non (la carte libre de la classe)
+                    -   - Alimentation du récepteur
+                        - Non
+            -   type: etapes
+                elements:
+                    - 'Lis le document 1 : ce qui est déjà sur le tracker et ce qui manque.'
+                    - Pour chaque constituant manquant, demande-toi à quoi il servira dans le projet.
+                    - Écris son rôle.
+            -   type: paragraphe
+                texte: 'Pourquoi un inventaire ? On n’achète ni ne fabrique rien d’inutile : on part de ce qu’on a déjà.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: D’après le document 1, écris le rôle de chaque constituant qui manque au tracker communicant.
+                colonnes:
+                    - Constituant manquant
+                    - Rôle
+                lignes:
+                    -   - Deuxième carte
+                        - ''
+                    -   - Alimentation du récepteur
+                        - ''
+                aide: Dans le document 1, repère ce que le tracker a déjà, puis demande-toi ce que fait chaque constituant qui manque pour la fonction radio.
+    -   id: a02
+        titre: Choisir l’alimentation
+        transition: Tu sais ce qui manque. Choisis l’alimentation du récepteur.
+        consigne: Tu vas choisir comment alimenter la carte réceptrice du tracker, en comparant les deux solutions du document 2 avec le besoin. On attend un choix justifié par le document.
+        contenu:
+            -   type: tableau
+                titre: Document 2 — Alimenter la carte réceptrice
+                colonnes:
+                    - Solution
+                    - Autonomie
+                    - Mobilité
+                lignes:
+                    -   - Câble USB sur l’ordinateur
+                        - Illimitée
+                        - Faible (près de l’ordinateur)
+                    -   - Boîtier 2 piles AAA
+                        - Plusieurs jours
+                        - Bonne
+            -   type: etapes
+                elements:
+                    - 'Lis le document 2 : deux solutions pour alimenter la carte réceptrice.'
+                    - 'Relis le besoin : la carte doit pouvoir être posée n’importe où dans la salle.'
+                    - Compare les deux solutions sur ce critère et choisis.
+            -   type: paragraphe
+                texte: 'Pourquoi partir du besoin ? La meilleure solution n’existe pas en général : c’est celle qui répond le mieux à ce qu’on demande.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: La carte réceptrice du tracker doit pouvoir être posée n’importe où dans la salle. Quelle alimentation choisis-tu ? Justifie avec le document 2.
+                aide: 'La carte doit pouvoir être posée n’importe où : dans le document 2, compare les alimentations sur la mobilité et l’autonomie, puis justifie.'
+            -   id: q02
+                type: qcm
+                enonce: Pourquoi la carte réceptrice n’a-t-elle pas besoin de capteur de lumière ?
+                choix:
+                    -   id: a
+                        texte: 'Elle reçoit la mesure par radio : elle ne mesure rien elle-même.'
+                    -   id: b
+                        texte: Parce qu’elle est à l’ombre.
+                    -   id: c
+                        texte: Elle en a besoin.
+                aide: La lumière est mesurée par le tracker lui-même. Comment la carte réceptrice reçoit-elle cette valeur ?
+    -   id: a03
+        titre: La chaîne d’information du prototype
+        transition: Il reste à dessiner la nouvelle chaîne d’information.
+        consigne: Tu vas compléter la chaîne d’information du tracker devenu communicant, avec les constituants des missions 1 et 2. On attend chaque constituant dans la bonne colonne.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Reprends la chaîne d’information du tracker vue en 5e.
+                    - 'Ajoute la nouvelle partie : la carte du tracker émet, la deuxième carte reçoit et affiche.'
+                    - Range chaque constituant dans sa colonne.
+            -   type: paragraphe
+                texte: 'Pourquoi redessiner la chaîne ? Ajouter une fonction change l’organisation de l’objet : la chaîne montre le nouveau trajet de l’information.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Complète la chaîne d’information du tracker communicant.
+                colonnes:
+                    - Acquérir
+                    - Traiter et émettre
+                    - Recevoir et communiquer
+                lignes:
+                    -   - ''
+                        - ''
+                        - ''
+                aide: 'Range les constituants du tracker communicant : ce qui mesure, ce qui décide et envoie, ce qui reçoit et affiche.'
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: La carte réceptrice pourrait aussi émettre un son quand la lumière est faible.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quel constituant ajouterais-tu, et quel bloc ?
+                aide: Pour prévenir quelqu’un qui ne regarde pas l’écran, quel constituant ajouter à la carte réceptrice, et quel bloc pour le commander ?
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: L’inventaire est fait. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : quels constituants faut-il ajouter au tracker pour qu’il communique ?'
+                aide: Cite les constituants ajoutés au prototype et le rôle de chacun.
+retenir:
+    - 'Inventaire du prototype : ce qu’on a, ce qui manque, choix argumenté.'
+    - 'Récepteur : deuxième micro:bit + alimentation.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

@@ -1,33 +1,78 @@
 <!-- ========== INTRODUCTION DU COURS ========== -->
 
-<header class="cours-intro">
+<header class="cours-intro" id="course-intro" data-course-step>
+    {% assign matiere_label = page.matiere | default: 'Cours' %}
+    {% case page.matiere %}{% when 'techno' %}{% assign matiere_label = 'Technologie' %}{% when 'tim' %}{% assign matiere_label = 'TIM' %}{% when 'maths' %}{% assign matiere_label = 'Mathématiques' %}{% endcase %}
+    {% assign classe_label = page.classe %}{% assign classes_etablissement = site.data.classes[page.etablissement].classes %}{% for classe_item in classes_etablissement %}{% if classe_item.id == page.classe %}{% assign classe_label = classe_item.nom %}{% endif %}{% endfor %}
+    {% assign mission_propre = false %}{% for bloc in include.cours.introduction %}{% if bloc.texte and bloc.texte contains 'Ta mission' %}{% assign mission_propre = true %}{% endif %}{% endfor %}
+    {% unless mission_propre %}<div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">{{ matiere_label | escape }} · {{ classe_label | escape }} · {{ page.seance | upcase | escape }}</span></div>{% endunless %}
     <h1>{{ include.cours.titre | escape }}</h1>
+    {% if page.seance == 'S01' or page.seance == 'S02' or page.seance == 'S03' %}
+    <aside class="course-learning-sequence" aria-label="Comment avancer dans le cours">
+        <strong>Pour avancer</strong>
+        <ol>
+            <li>Lis les repères et les étapes.</li>
+            <li>Observe l’exemple s’il y en a un.</li>
+            <li>Essaie à ton tour avec les questions.</li>
+            <li>Réutilise une méthode déjà rencontrée.</li>
+        </ol>
+        <p>Tu peux garder le cours ouvert et utiliser les aides si tu bloques.</p>
+    </aside>
+    {% endif %}
 
-    {% if include.cours.theme %}
-    <p class="cours-theme">
-        <strong>Thème :</strong> {{ include.cours.theme | escape }}
-    </p>
+    {% assign themes_bo = include.cours.themes %}{% if themes_bo == nil and include.cours.theme %}{% assign themes_bo = include.cours.theme | split: '|||' %}{% endif %}
+    {% if themes_bo.size > 0 %}
+    <section class="course-info-card cours-theme">
+        <h2>{% if themes_bo.size > 1 %}Thèmes du programme{% else %}Thème du programme{% endif %}</h2>
+        {% if themes_bo.size > 1 %}<ul>{% for theme in themes_bo %}<li>{{ theme | escape }}</li>{% endfor %}</ul>{% else %}<p>{{ themes_bo.first | escape }}</p>{% endif %}
+    </section>
     {% endif %}
 
     {% if include.cours.problematique %}
-    <p class="cours-problematique">
-        <strong>Problématique :</strong> {{ include.cours.problematique | escape }}
-    </p>
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>{{ include.cours.problematique | escape }}</p>
+    </section>
     {% endif %}
 
-    <section class="cours-objectifs">
-        <h2>Ce que vous allez apprendre</h2>
+    {% if include.cours.competences_bo.size > 0 %}
+    <section class="course-info-card cours-competences-bo">
+        <h2>{% if include.cours.competences_bo.size > 1 %}Compétences travaillées{% else %}Compétence travaillée{% endif %}</h2>
+        <ul>{% for competence in include.cours.competences_bo %}<li>{{ competence | escape }}</li>{% endfor %}</ul>
+    </section>
+    {% endif %}
+
+    {% assign objectifs_savoirs = include.cours.objectifs.connaissances %}{% assign objectifs_savoir_faire = include.cours.objectifs.competences %}
+    {% if objectifs_savoirs.size > 0 or objectifs_savoir_faire.size > 0 %}
+    <section class="course-info-card cours-objectifs">
+        {% if objectifs_savoirs.size > 0 %}
+        <h2>Ce que tu vas apprendre</h2>
         <ul>
-            {% for objectif in include.cours.objectifs.connaissances %}
+            {% for objectif in objectifs_savoirs %}
             <li>{{ objectif | escape }}</li>
             {% endfor %}
         </ul>
-
-        <h2>Ce que vous allez apprendre à faire</h2>
+        {% endif %}
+        {% if objectifs_savoir_faire.size > 0 %}
+        <h2>Ce que tu vas apprendre à faire</h2>
         <ul>
-            {% for competence in include.cours.objectifs.competences %}
+            {% for competence in objectifs_savoir_faire %}
             <li>{{ competence | escape }}</li>
             {% endfor %}
         </ul>
+        {% endif %}
     </section>
+    {% endif %}
+
+    {% if include.cours.pourquoi %}<section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2>{% if include.cours.pourquoi.first %}<div class="course-info-why-text">{% for phrase in include.cours.pourquoi %}<p>{{ phrase | escape }}</p>{% endfor %}</div>{% else %}<p>{{ include.cours.pourquoi | escape }}</p>{% endif %}</section>{% endif %}
+    {% assign application = include.cours.application_quotidienne | default: include.cours.application %}
+    {% if application %}<section class="course-info-card course-info-everyday"><h2>Dans la vie quotidienne</h2><p>{{ application | escape }}</p></section>{% endif %}
+    {% if include.cours.lien_precedent %}<section class="course-info-card course-info-previous"><h2>Pour commencer</h2><p>{{ include.cours.lien_precedent | escape }}</p></section>{% endif %}
+    {% if include.cours.prerequis %}<section class="course-info-card course-info-prerequisites"><h2>Ce qui va nous servir</h2><ul>{% for notion in include.cours.prerequis %}<li>{{ notion | escape }}</li>{% endfor %}</ul></section>{% endif %}
+    {% if include.cours.notions %}<section class="course-info-card cours-notions"><h2>Les repères pour comprendre</h2>{% for notion in include.cours.notions %}<h3>{{ notion.titre | escape }}</h3><p>{{ notion.texte | escape }}</p>{% endfor %}</section>{% endif %}
+    {% if include.cours.introduction %}{% include cours/cours-blocs.html blocs=include.cours.introduction %}{% endif %}
+    {% if include.cours.ressources %}<section><h2>Ressources du cours</h2>{% include cours/cours-blocs.html blocs=include.cours.ressources %}</section>{% endif %}
+    {% if include.cours.reperes_officiels %}{% include cours/cours-ressources.html titre="Les attendus officiels" blocs=include.cours.reperes_officiels %}{% endif %}
+    {% assign premiere_activite = include.cours.activites | first %}
+    {% if premiere_activite %}<nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#{{ premiere_activite.id | escape }}">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>{% endif %}
 </header>

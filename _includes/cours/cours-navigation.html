@@ -1,0 +1,7 @@
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li>{% for activite in include.cours.activites %}<li><a href="#{{ activite.id | escape }}">{{ activite.titre | escape }}{% if activite.facultatif or activite.obligatoire == false %} — facultatif{% endif %}</a></li>{% endfor %}<li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>

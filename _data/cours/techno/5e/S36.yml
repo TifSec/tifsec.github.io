@@ -1,0 +1,158 @@
+titre: 'Séance 36 : Que se passe-t-il si je change un nombre du programme ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Comment changer la vitesse du moteur dans le programme, et comment vérifier l’effet de ce changement ?
+competences_bo:
+    - Comprendre et modifier un programme associé à une fonctionnalité d’un objet ou d’un système technique
+    - Valider les solutions techniques par des simulations ou par des protocoles de tests
+objectifs:
+    connaissances:
+        - 'Un paramètre est un nombre du programme qui règle un comportement : ici, la vitesse du moteur (137 dans le programme d’origine, sur une échelle de 0 à 255).'
+        - 'On vérifie l’effet d’un changement par un test : prévoir, changer une seule chose, observer, comparer.'
+    competences:
+        - Repérer un paramètre dans un programme.
+        - Prévoir l’effet d’un changement, puis le vérifier par un test.
+pourquoi:
+    - En séance 30, tu as changé la vitesse de ton personnage dans Arcade. En séance 35, tu as lu le programme du monte-charge.
+    - Aujourd’hui, tu modifies un paramètre du vrai programme. Chaque groupe prépare sa modification ; le professeur l’envoie sur la maquette, un groupe à la fois.
+activites:
+    -   id: a01
+        titre: Repérer les paramètres
+        consigne: Tu vas repérer le paramètre de vitesse du moteur dans le programme du monte-charge et prévoir l’effet d’un changement. On attend une prévision pour la vitesse 0 et pour la vitesse de ton groupe.
+        contenu:
+            -   type: code
+                texte: 'faire tourner le moteur vers l’avant à la vitesse 137
+
+                    écran : écrire « Appel Etage »'
+            -   type: paragraphe
+                texte: Dans le programme d’origine, le moteur tourne à la vitesse 137. La carte accepte des valeurs de 0 (arrêt) à 255 (vitesse maximale).
+            -   type: paragraphe
+                texte: 'Rappel de la séance 6 et du réflexe n° 8 : je change une seule chose à la fois.'
+            -   type: etapes
+                elements:
+                    - 'Lis le bloc du moteur : vitesse 137, entre 0 et 255.'
+                    - Choisis une vitesse entre 80 et 200.
+                    - Écris ta prévision avant le test.
+            -   type: paragraphe
+                texte: 'Pourquoi un seul paramètre ? Réflexe n° 8 : si on change deux choses, on ne sait pas laquelle a eu un effet.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Que se passe-t-il probablement si on met la vitesse à 0 ?
+                choix:
+                    -   id: a
+                        texte: 'Le moteur ne tourne pas : la cabine ne monte pas.'
+                    -   id: b
+                        texte: La cabine monte très vite.
+                    -   id: c
+                        texte: L’écran s’éteint.
+                aide: Le nombre 137 règle la vitesse du moteur. Avec une vitesse de 0, le moteur peut-il faire tourner la poulie ?
+            -   id: q02
+                type: texte
+                enonce: 'Ton groupe choisit une nouvelle vitesse (entre 80 et 200). Écris ta valeur et ta prévision : la cabine montera-t-elle plus vite ou moins vite, et pourquoi ?'
+                aide: 'Compare ta valeur à 137 : plus grande ou plus petite ? Écris ta prévision et explique-la avec ce que règle ce nombre.'
+        ressources:
+            -   type: lien
+                titre: MakeCode micro:bit (gratuit, dans le navigateur)
+                url: https://makecode.microbit.org/
+    -   id: a02
+        titre: Tester (poste maquette)
+        transition: Tu as prévu. Le test sur la vraie maquette va dire si tu avais raison.
+        consigne: Tu vas mesurer au poste maquette la durée de montée de la cabine avec deux vitesses, puis exploiter le document 1. On attend tes mesures avec leur unité, un calcul et la comparaison avec ta prévision.
+        contenu:
+            -   type: tableau
+                titre: Protocole de test
+                colonnes:
+                    - Étape
+                    - Ce qu’on fait
+                lignes:
+                    -   - '1'
+                        - Mesurer avec un chronomètre la durée de la montée avec le programme d’origine (vitesse 137).
+                    -   - '2'
+                        - Le professeur envoie le programme modifié du groupe.
+                    -   - '3'
+                        - Mesurer la durée de la montée avec la nouvelle vitesse, dans les mêmes conditions (cabine vide).
+                    -   - '4'
+                        - Le professeur remet le programme d’origine.
+            -   type: tableau
+                titre: Document 1 — Exemple de résultats d’une autre classe (valeurs inventées)
+                colonnes:
+                    - Vitesse
+                    - Durée de la montée
+                lignes:
+                    -   - '137'
+                        - 6 s
+                    -   - '100'
+                        - 9 s
+                    -   - '200'
+                        - 4 s
+            -   type: etapes
+                elements:
+                    - 'Suis le protocole de test : chronomètre la montée à 137, puis à ta vitesse.'
+                    - Note les durées en secondes.
+                    - Compare avec ta prévision. Le professeur remet ensuite le programme d’origine.
+            -   type: paragraphe
+                texte: 'Pourquoi chronométrer ? La durée est une preuve chiffrée : « plus vite » ne suffit pas.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris les durées mesurées par ton groupe (vitesse 137 et ta vitesse), avec leur unité.
+                aide: Recopie les deux chronos de ton groupe (celui avec 137 et celui avec ta valeur), en secondes.
+            -   id: q02
+                type: nombre
+                enonce: D’après le document 1, combien de secondes gagne-t-on en passant de la vitesse 137 à la vitesse 200 ?
+                unite: s
+                aide: Dans le document 1, lis la durée de montée avec 137 et avec 200, puis fais la différence.
+            -   id: q03
+                type: texte
+                enonce: Ta prévision était-elle juste ? Compare avec tes mesures.
+                aide: 'Compare ta prévision de la mission 1 avec tes deux durées mesurées : la cabine est-elle allée plus vite ou moins vite ?'
+    -   id: a03
+        titre: Plus vite, est-ce mieux ?
+        transition: Tu as mesuré l’effet de la vitesse. Mais la vitesse la plus grande est-elle la meilleure ?
+        consigne: Tu vas réfléchir aux avantages et aux inconvénients d’une grande vitesse, puis proposer un autre changement. On attend un avantage, un inconvénient et une proposition expliquée.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Pense à l’utilisateur et aux objets transportés.
+                    - Cherche ce qu’une grande vitesse apporte et ce qu’elle risque.
+                    - Propose un autre paramètre ou message à changer.
+            -   type: paragraphe
+                texte: Pourquoi pas toujours plus vite ? Un monte-charge trop rapide peut renverser sa charge ou s’arrêter brutalement.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Donne un avantage et un inconvénient d’une vitesse très élevée pour un monte-charge.
+                aide: 'Pense à ce qui se passe à l’arrivée et à ce qu’il y a dans la cabine : un trajet rapide est agréable, mais un arrêt brutal ?'
+            -   id: q02
+                type: texte
+                enonce: Propose un autre paramètre ou un message de l’écran que tu aimerais changer, et explique ce que cela apporterait à l’utilisateur.
+                aide: 'Relis les messages de l’écran et les autres nombres du programme (attentes, couleurs) : lequel changerais-tu pour aider l’utilisateur ?'
+    -   id: a04
+        titre: Défi
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le capteur à ultrasons mesure la distance pendant le trajet.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Imagine comment on pourrait utiliser cette distance pour ralentir la cabine juste avant l’arrivée. Écris ton idée en « si … alors … ».
+                aide: 'Le capteur mesure la distance jusqu’à la cabine. Quand elle est presque arrivée, cette distance devient petite : écris « si distance < … alors vitesse … ».'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as modifié un paramètre et vérifié son effet. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment changer la vitesse du moteur, et comment vérifier l’effet de ce changement ?'
+                aide: Dis où se trouve le nombre qui règle la vitesse dans le programme, puis comment tu as vérifié son effet (prévision, mesure, comparaison).
+retenir:
+    - Un paramètre est un nombre qui règle un comportement (vitesse 0 à 255).
+    - 'On vérifie un changement par un test : prévoir, ne changer qu’une chose, mesurer, comparer.'
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

@@ -1,74 +1,82 @@
 /* ========== CONNEXION UTILISATEUR ========== */
 
 import { db } from "../bdd/bdd-connect.js";
-import { usernameToEmail } from "./auth-username.js";
-import { showMessage } from "./auth-message.js";
+import { getLoginEmail } from "./auth-username.js";
+import { showMessage, hideMessage } from "./auth-message.js";
 import { redirectUser } from "./auth-redirect.js";
+import { loadProfile, getSessionMessage } from "./auth-session.js";
+import { beginAuthAction, endAuthAction, isAuthActionRunning } from "./auth-action.js";
 
-export function initLogin() {
-    const loginButton = document.getElementById("login-button");
-    const usernameInput = document.getElementById("login-username");
-    const passwordInput = document.getElementById("login-password");
+export function initLogin({ onProfileMissing } = {}) {
+    const form = document.getElementById("login");
+    const button = document.getElementById("login-button");
+    const identifier = document.getElementById("login-username");
+    const password = document.getElementById("login-password");
+    const sessionLogout = document.getElementById("auth-session-logout");
+    let busy = false;
+    let attempted = false;
 
-    if (!loginButton || !usernameInput || !passwordInput) {
-        console.error("Formulaire de connexion introuvable.");
-        return;
+    if (!form || !button || !identifier || !password) {
+        return () => false;
     }
-
-    loginButton.addEventListener("click", async () => {
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value;
-
-        if (!username || !password) {
-            showMessage("Merci de saisir ton identifiant et ton mot de passe.");
+    form.addEventListener("submit", async event => {
+        event.preventDefault();
+        if (busy || isAuthActionRunning()) {
+            return;
+        }
+        attempted = true;
+        hideMessage();
+        const email = getLoginEmail(identifier.value);
+        if (!email || !password.value) {
+            showMessage("Saisis un identifiant ou une adresse e-mail valide et ton mot de passe.");
+            return;
+        }
+        if (!db) {
+            showMessage(getSessionMessage("service_unavailable"));
             return;
         }
 
-        loginButton.disabled = true;
-
+        if (!beginAuthAction()) {
+            return;
+        }
+        busy = true;
+        form.setAttribute("aria-busy", "true");
         try {
-            const { data, error } = await db.auth.signInWithPassword({
-                email: usernameToEmail(username),
-                password: password
-            });
-
+            const { data, error } = await db.auth.signInWithPassword({ email, password: password.value });
             if (error) {
-                showMessage("Identifiant ou mot de passe incorrect.");
+                const message = error.status === 429 ? "Trop de tentatives. Patiente avant de réessayer."
+                    : error.status >= 500 || error.name === "AuthRetryableFetchError" ? "Le service de connexion est indisponible. Réessaie dans un instant."
+                    : "Identifiant ou mot de passe incorrect.";
+                showMessage(message);
                 return;
             }
-
-            const user = data.user;
-
-            if (!user) {
-                showMessage("Impossible de récupérer le compte.");
+            if (!data?.user) {
+                showMessage(getSessionMessage("session_error"));
                 return;
             }
-
-            const { data: profile, error: profileError } = await db
-                .from("profiles")
-                .select("role, classe")
-                .eq("user_id", user.id)
-                .single();
-
-            if (profileError || !profile) {
-                showMessage("Connexion réussie, mais profil introuvable.");
+            if (sessionLogout) {
+                sessionLogout.hidden = false;
+            }
+            const session = await loadProfile(data.user);
+            if (session.status !== "authenticated") {
+                if (session.status === "profile_missing" && onProfileMissing) {
+                    onProfileMissing(session.user);
+                    showMessage("Ton compte existe. Complète le formulaire de profil élève pour terminer ton inscription.");
+                } else {
+                    showMessage(getSessionMessage(session.status));
+                }
                 return;
             }
-
-            /* ========== REDIRECTION APRÈS CONNEXION ========== */
-
-            showMessage("Connexion réussie ! Redirection en cours...", "success");
-
-            const redirected = redirectUser(profile.role);
-
-            if (!redirected) {
-                showMessage("Ton compte possède un rôle non reconnu.");
-            }
-        } catch (error) {
-            console.error("Erreur de connexion :", error);
-            showMessage("Une erreur technique est survenue.");
+            showMessage("Connexion réussie. Ouverture de ton espace…", "success");
+            redirectUser(session.profile.role);
+        } catch {
+            showMessage("Impossible de se connecter pour le moment. Vérifie ta connexion puis réessaie.");
         } finally {
-            loginButton.disabled = false;
+            password.value = "";
+            busy = false;
+            endAuthAction();
+            form.setAttribute("aria-busy", "false");
         }
     });
+    return () => attempted;
 }

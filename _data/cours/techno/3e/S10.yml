@@ -1,0 +1,124 @@
+titre: 'Séance 10 : Quel chemin suit mon message ?'
+themes:
+    - 'Structure, fonctionnement, comportement : des objets et des systèmes techniques à comprendre'
+problematique: Par où passe un message envoyé à un ami à l’autre bout de la France ?
+competences_bo:
+    - Décrire et caractériser l’organisation interne d’un objet ou d’un système technique et ses échanges avec son environnement (énergies, données)
+objectifs:
+    connaissances:
+        - 'Internet est un réseau de réseaux : un message part du téléphone, passe par le réseau local (box ou antenne), puis par des routeurs de fournisseurs d’accès, jusqu’au serveur de l’application, puis jusqu’au destinataire.'
+        - Le message est découpé en paquets qui peuvent prendre des chemins différents ; ils sont rassemblés à l’arrivée.
+    competences:
+        - Représenter la circulation d’une information sur Internet.
+        - Expliquer le découpage en paquets.
+pourquoi:
+    - En séances 8 et 9, tu as vu comment une photo ou un texte devient une suite de 0 et de 1. En 4e, tu as étudié le réseau local du collège.
+    - 'En 3e, tu sors du collège : comment un message traverse-t-il Internet ?'
+activites:
+    -   id: a01
+        titre: Le chemin
+        consigne: Tu vas suivre le trajet d’une photo envoyée par Léa à Tom sur une messagerie, à partir de l’exemple expliqué. On attend les étapes du trajet remises dans l’ordre.
+        contenu:
+            -   type: paragraphe
+                texte: 'Exemple expliqué : Léa envoie une photo depuis son téléphone en Wi-Fi. Photo → box de Léa → réseau de son fournisseur → routeurs d’Internet → serveur de l’application de messagerie → réseau mobile de Tom → téléphone de Tom.'
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple expliqué : la photo de Léa.'
+                    - Repère chaque équipement traversé, dans l’ordre.
+                    - Numérote les étapes du tableau de 1 à 5.
+            -   type: paragraphe
+                texte: 'Pourquoi passer par un serveur ? Le message n’est pas envoyé directement au téléphone de Tom : le serveur de l’application le garde et le transmet quand Tom est connecté.'
+        questions:
+            -   id: q01
+                type: tableau
+                enonce: Remets dans l’ordre (1 à 5) le trajet d’un message envoyé par messagerie.
+                colonnes:
+                    - Étape
+                    - Numéro
+                lignes:
+                    -   - Serveur de l’application
+                        - ''
+                    -   - Téléphone de l’expéditeur
+                        - ''
+                    -   - Téléphone du destinataire
+                        - ''
+                    -   - Box ou antenne de l’expéditeur
+                        - ''
+                    -   - Routeurs d’Internet
+                        - ''
+                aide: 'Suis le message comme en séance 8 de 4e : il part de ton téléphone, passe par ta box ou l’antenne, traverse Internet, s’arrête sur un serveur, puis arrive.'
+    -   id: a02
+        titre: Les paquets
+        transition: Tu connais le chemin. Le message voyage-t-il en un seul morceau ?
+        consigne: Tu vas comprendre pourquoi un message est découpé en paquets numérotés, à partir du texte ci-dessous. On attend le rôle du numéro et ce qui se passe quand un paquet se perd.
+        contenu:
+            -   type: paragraphe
+                texte: Une photo de 3 Mo est découpée en environ 2 000 paquets. Chaque paquet contient une partie de la photo, l’adresse de destination et son numéro.
+            -   type: etapes
+                elements:
+                    - Lis le texte sur les paquets.
+                    - Imagine 2 000 morceaux qui prennent des routes différentes.
+                    - Demande-toi comment les remettre dans l’ordre, et que faire si un morceau se perd.
+            -   type: paragraphe
+                texte: Pourquoi découper ? Un gros fichier découpé passe par plusieurs chemins en même temps, et une erreur oblige à renvoyer un seul petit morceau, pas tout.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: La photo de Léa est découpée en paquets. Pourquoi chaque paquet porte-t-il un numéro ?
+                aide: Les paquets ne prennent pas tous le même chemin. Que faut-il à l’arrivée pour reconstituer la photo dans l’ordre ?
+            -   id: q02
+                type: qcm
+                enonce: Un paquet de la photo se perd en route. Que se passe-t-il ?
+                choix:
+                    -   id: a
+                        texte: Le destinataire le redemande, et il est renvoyé.
+                    -   id: b
+                        texte: La photo est perdue pour toujours.
+                    -   id: c
+                        texte: Tout le message est renvoyé à chaque fois.
+                aide: Le destinataire voit qu’un numéro manque dans la suite des paquets. Que peut-il faire ?
+    -   id: a03
+        titre: Un réseau de réseaux
+        transition: Tous ces réseaux sont reliés.
+        consigne: Tu vas expliquer l’expression « réseau de réseaux » en t’appuyant sur le réseau du collège étudié en 4e. On attend une explication avec le rôle des routeurs et l’exemple du collège.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Rappelle-toi le réseau du collège (4e) : ordinateurs, commutateur, routeur.'
+                    - Imagine des milliers de réseaux comme lui.
+                    - Explique ce qui les relie.
+            -   type: paragraphe
+                texte: 'Pourquoi « réseau de réseaux » ? Personne ne possède Internet en entier : chaque réseau garde son organisation et se relie aux autres par des routeurs.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi dit-on qu’Internet est un « réseau de réseaux » ? Appuie-toi sur le réseau du collège vu en 4e.
+                aide: Rappelle-toi le réseau local du collège et son routeur. Internet relie combien de réseaux comme celui-là ?
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Plus de 95 % des communications entre continents passent par des câbles sous-marins.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Pourquoi pas par satellite ?
+                aide: 'Compare un câble sous-marin et un satellite : débit possible, et distance parcourue par le signal.'
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as suivi un message. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : par où passe un message envoyé à un ami loin de chez toi ?'
+                aide: Récite le trajet du message, équipement par équipement, et précise sous quelle forme il voyage.
+retenir:
+    - 'Internet : réseau de réseaux reliés par des routeurs.'
+    - Les messages sont découpés en paquets numérotés.
+sources:
+    -   type: lien
+        titre: Ministère de l’Éducation nationale — Programme de technologie du cycle 4 (BO n° 9 du 29 février 2024)
+        url: https://www.education.gouv.fr/media/160767/download

@@ -1,0 +1,160 @@
+titre: 'Séance 11 : Combien de foin par mois pour l’écurie ?'
+themes:
+    - EG4, objectif 3-1 — Utiliser de manière pertinente les outils bureautiques et les outils de communication
+problematique: Comment résumer un ensemble de données avec les fonctions du tableur ?
+competences_bo:
+    - EG4, objectif 3-1 — Utiliser de manière pertinente les outils bureautiques et les outils de communication
+objectifs:
+    connaissances:
+        - Une formule commence par = ; on recopie avec la poignée.
+        - SOMME, MOYENNE, MIN, MAX, NB résument une plage de cellules.
+    competences:
+        - Écrire des formules et les recopier.
+        - Utiliser SOMME, MOYENNE, MIN, MAX, NB.
+pourquoi:
+    - En S10, tu as saisi un inventaire.
+    - Le gérant veut connaître la consommation de foin du mois de ses 8 chevaux.
+activites:
+    -   id: a01
+        titre: Calculer par cheval
+        consigne: Tu vas calculer dans Calc la consommation de foin du mois de chaque cheval (document 1). On attend le résultat pour Tango et une formule recopiée.
+        contenu:
+            -   type: fichier
+                titre: rations de foin des 8 chevaux
+                url: /assets/fichiers/tim/2de/foin.ods
+            -   type: tableau
+                titre: Document 1 — Contenu de foin.ods (fictif)
+                colonnes:
+                    - Cheval
+                    - Poids (kg)
+                    - Foin par jour (kg)
+                lignes:
+                    -   - Tango
+                        - '550'
+                        - '9'
+                    -   - Iris
+                        - '480'
+                        - '8'
+                    -   - Nuage
+                        - '300'
+                        - '5'
+                    -   - Galopin
+                        - '600'
+                        - '10'
+                    -   - Pacha
+                        - '520'
+                        - '8,5'
+                    -   - Réglisse
+                        - '250'
+                        - '4'
+                    -   - Belle
+                        - '500'
+                        - '8'
+                    -   - Éclair
+                        - '420'
+                        - '7'
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : un poney mange 4 kg de foin par jour (en C2).'
+                    - 'En D2 : =C2*30 → Calc affiche 120 kg pour le mois.'
+                    - Recopiée en D3, la formule devient =C3*30.
+                    - 'À toi : ouvre le fichier foin.ods (à télécharger ci-dessus) ; enregistre sous 2de_TIM_foin.ods.'
+                    - 'En D2 : =C2*30 (consommation du mois).'
+                    - Recopie jusqu’à la ligne 9.
+                    - Contrôle une valeur de tête.
+                    - Pourquoi contrôler de tête ? Une formule fausse recopiée donne 8 résultats faux.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quelle consommation mensuelle Calc affiche-t-il pour Tango (9 kg par jour) ?
+                unite: kg
+                aide: Tango mange 9 kg par jour ; le mois compte 30 jours dans la feuille. Lis le résultat de Calc en D.
+            -   id: q02
+                type: texte
+                enonce: Écris la formule de D5 après recopie.
+                aide: 'Clique sur D5 : la formule de D2 a glissé de 3 lignes. Recopie ce que montre la barre de formule.'
+    -   id: a02
+        titre: Résumer l’écurie
+        transition: Chaque cheval a son calcul. Résume pour toute l’écurie.
+        consigne: Tu vas résumer la consommation de l’écurie avec SOMME, MOYENNE, MIN, MAX et NB. On attend le total du mois et trois résultats.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : rations 4, 6 et 8 kg en C2:C4.'
+                    - =SOMME(C2:C4) → 18 ; =MOYENNE(C2:C4) → 6 ; =MIN(C2:C4) → 4 ; =MAX(C2:C4) → 8 ; =NB(C2:C4) → 3.
+                    - 'À toi : en D11 : =SOMME(D2:D9).'
+                    - 'En C12 : =MOYENNE(C2:C9) ; en C13 : =MIN(C2:C9) ; en C14 : =MAX(C2:C9) ; en C15 : =NB(C2:C9).'
+                    - Écris un titre en colonne B pour chaque résultat.
+                    - Pourquoi des fonctions ? Elles résument 8 lignes (ou 800) en un seul nombre utile.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quel total de foin par mois Calc affiche-t-il en D11 ?
+                unite: kg
+                aide: 'Clique sur D11 : c’est la SOMME de la colonne des consommations mensuelles. Lis le total en kg.'
+            -   id: q02
+                type: tableau
+                enonce: Écris les résultats de Calc.
+                colonnes:
+                    - Fonction
+                    - Résultat
+                lignes:
+                    -   - MOYENNE (kg/jour)
+                        - ''
+                    -   - MIN
+                        - ''
+                    -   - MAX
+                        - ''
+                aide: Recopie ce qu’affichent les cellules MOYENNE, MIN et MAX de ta feuille (consommation par jour).
+    -   id: a03
+        titre: Combien de bottes ?
+        transition: Tu connais la consommation totale. Transforme-la en commande.
+        consigne: Tu vas calculer le nombre de bottes de foin à commander pour le mois, en arrondissant au supérieur. On attend le nombre de bottes et la raison de l’arrondi.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : 1 100 kg de foin, bottes de 250 kg.'
+                    - =1100/250 → 4,4 bottes.
+                    - '=ARRONDI.SUP(1100/250;0) → 5 bottes : on arrondit au nombre entier supérieur (0 décimale).'
+                    - 'À toi : une botte de foin pèse 250 kg (botte ronde, ordre de grandeur).'
+                    - 'En D16 : =D11/250.'
+                    - Arrondis au supérieur avec =ARRONDI.SUP(D11/250;0).
+                    - 'Pourquoi arrondir au supérieur ? On n’achète pas 7,14 bottes : il en faut 8 pour ne pas manquer.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Combien de bottes de 250 kg faut-il commander pour le mois ?
+                unite: bottes
+                aide: Divise le total du mois par 250 kg, puis cherche l’entier au-dessus du résultat.
+            -   id: q02
+                type: texte
+                enonce: Pourquoi arrondir au supérieur et pas au plus proche ?
+                aide: Si tu arrondis au plus proche, tu commandes un peu moins que le besoin. Que se passe-t-il les derniers jours ?
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: La consommation varie selon la saison et le travail.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment faire varier le « 30 jours » sans réécrire les formules ?
+                aide: Si le « 30 » est écrit dans une cellule, que suffit-il de changer pour un mois de 31 jours ?
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu connais les besoins en foin. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment résumer un ensemble de données avec les fonctions du tableur ?'
+                aide: Cite les fonctions utilisées pour résumer l’écurie et l’arrondi choisi pour les bottes.
+retenir:
+    - =SOMME, =MOYENNE, =MIN, =MAX, =NB sur une plage.
+    - ARRONDI.SUP pour une commande.
+sources:
+    -   type: lien
+        titre: ChloroFil — Seconde professionnelle, document d’accompagnement du module EG4
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/2nde-pro/2nde-pro-da-EG4.pdf

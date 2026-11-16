@@ -1,0 +1,114 @@
+titre: 'Séance 8 : Plusieurs critères et des couleurs qui alertent'
+themes:
+    - MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre
+problematique: Comment croiser plusieurs critères et faire ressortir les meilleures communes ?
+competences_bo:
+    - MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre
+objectifs:
+    connaissances:
+        - NB.SI.ENS et SOMME.SI.ENS acceptent plusieurs critères (tous doivent être vrais).
+        - La mise en forme conditionnelle colore les cellules selon leur valeur.
+    competences:
+        - Utiliser NB.SI.ENS.
+        - Créer une mise en forme conditionnelle.
+pourquoi:
+    - En S07, tu as utilisé un critère à la fois.
+    - Le porteur de projet a trois exigences en même temps.
+activites:
+    -   id: a01
+        titre: Trois critères
+        consigne: Tu vas compter avec NB.SI.ENS les communes qui respectent les trois exigences du porteur de projet. On attend le nombre et le fonctionnement de la fonction.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : =NB.SI.ENS(C2:C6;0;E2:E6;"<20").'
+                    - 'Calc compte les lignes qui respectent les deux conditions à la fois : 0 centre ET moins de 20 km.'
+                    - On ajoute autant de couples (plage ; condition) que de critères.
+                    - 'À toi : exigences : aucun centre, plus de 2 000 ha, moins de 30 km de la ville.'
+                    - Écris =NB.SI.ENS(C2:C38;0;D2:D38;">2000";E2:E38;"<30").
+                    - Lis le résultat.
+                    - Pourquoi .ENS ? Toutes les conditions doivent être vraies en même temps.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Combien de communes respectent les trois exigences ?
+                unite: communes
+                aide: Lis le résultat de ta formule NB.SI.ENS avec les trois couples plage-critère.
+            -   id: q02
+                type: qcm
+                enonce: Que fait NB.SI.ENS si une seule condition est fausse ?
+                choix:
+                    -   id: a
+                        texte: Il ne compte pas la ligne.
+                    -   id: b
+                        texte: Il compte la ligne à moitié.
+                    -   id: c
+                        texte: Il affiche une erreur.
+                aide: NB.SI.ENS compte une ligne seulement si toutes les conditions sont vraies en même temps.
+    -   id: a02
+        titre: Un score
+        transition: Quatre communes passent. Comment classer les autres ?
+        consigne: Tu vas calculer un score sur trois critères pour chaque commune et trier. On attend les communes au score maximal et le score maximal possible.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : une commune avec 0 centre, 2 500 ha, 40 km.'
+                    - SI(C2=0;1;0) → 1 ; SI(D2>2000;1;0) → 1 ; SI(E2<30;1;0) → 0.
+                    - 'Score : 1 + 1 + 0 = 2 critères sur 3.'
+                    - 'À toi : ajoute une colonne « Score » : =SI(C2=0;1;0)+SI(D2>2000;1;0)+SI(E2<30;1;0).'
+                    - Recopie ; trie par score décroissant.
+                    - Pourquoi un score ? On classe toutes les communes, même celles qui ne cochent pas tout.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Quelles sont les communes qui ont le score maximal ?
+                aide: Trie ton tableau par score, du plus grand au plus petit, et recopie les communes de tête.
+            -   id: q02
+                type: nombre
+                enonce: Quel est le score maximal possible ?
+                unite: points
+                aide: Chaque critère respecté donne 1 point. Combien de critères y a-t-il ?
+    -   id: a03
+        titre: Des couleurs
+        transition: Le classement est fait. Rends-le visible.
+        consigne: Tu vas colorer la colonne Score avec la mise en forme conditionnelle en gardant le texte lisible. On attend tes règles et pourquoi elles sont lisibles.
+        contenu:
+            -   type: etapes
+                elements:
+                    - Sélectionne la colonne Score.
+                    - 'Format > Conditionnel > Échelle de couleurs (ou conditions : 3 vert, 2 orange, ≤1 gris).'
+                    - Vérifie que le texte reste lisible (texte foncé sur fond clair).
+                    - Pourquoi des couleurs ? Le porteur voit les meilleures communes en un coup d’œil.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Décris tes règles de couleur et pourquoi elles sont lisibles.
+                aide: 'Décris tes règles (quel score → quelle couleur) et vérifie : le texte noir se lit-il sur ces fonds ?'
+    -   id: a04
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: paragraphe
+                texte: Le critère « distance » est-il aussi important que « prairies » ?
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Comment donner plus de poids à un critère ?
+                aide: Si les prairies comptent plus que la distance, comment faire pour que ce critère rapporte plus de points ?
+    -   id: a05
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Les meilleures communes ressortent. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : comment croiser plusieurs critères et faire ressortir les meilleures communes ?'
+                aide: Dis comment tu croises les critères, comment tu fais un score, et comment tu fais ressortir les meilleures communes.
+retenir:
+    - NB.SI.ENS / SOMME.SI.ENS.
+    - Score + mise en forme conditionnelle.
+sources:
+    -   type: lien
+        titre: ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf
