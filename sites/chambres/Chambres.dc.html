@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>La Grange du Signal – chambres d'hôtes</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#5B3A6E}a:hover{color:#3F2550}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes zoomout{from{transform:scale(1.12)}to{transform:scale(1)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.36s}.d4{animation-delay:.5s}
+.zoom{animation:zoomout 2.4s cubic-bezier(.2,.7,.2,1) both}
+.floaty{animation:floaty 6s ease-in-out infinite}
+.live{animation:blink 1.8s ease-in-out infinite}
+.card{transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s}
+.card:hover{transform:translateY(-8px);box-shadow:0 24px 48px -24px rgba(34,32,31,.45)}
+.card .ph{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.card:hover .ph{transform:scale(1.06)}
+.btn{transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(0,0,0,.5)}
+.btn .arr{display:inline-block;transition:transform .25s}
+.btn:hover .arr{transform:translateX(5px)}
+.day{transition:transform .15s,background-color .15s}
+.day.free:hover{transform:scale(1.12);background-color:#5B3A6E!important;color:#FFFFFF!important}
+.field{transition:border-color .2s,box-shadow .2s}
+.field:focus{outline:none;border-color:#5B3A6E;box-shadow:0 0 0 4px rgba(91,58,110,.15)}
+.ul{background-image:linear-gradient(currentColor,currentColor);background-size:0 2px;background-position:0 100%;background-repeat:no-repeat;transition:background-size .3s;text-decoration:none}
+.ul:hover{background-size:100% 2px}
+@supports (animation-timeline: view()){.reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 28%}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #22201F; background: #FAF8F4; min-height: 100%; overflow-x: hidden">
+
+  <header style="position: sticky; top: 0; z-index: 10; background: rgba(250,248,244,.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(34,32,31,.06)">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between">
+      <a href="#" style="text-decoration: none; color: #22201F; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px">La Grange du Signal</a>
+      <nav aria-label="Navigation principale" style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center; font-size: 15px">
+        <a href="#chambres" class="ul">Chambres</a>
+        <a href="#reserver" class="ul">Réserver</a>
+        <a href="#autour" class="ul">Autour de nous</a>
+        <div style="display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: #EFEAE2" aria-label="Langue">
+          <button type="button" aria-pressed="true" style="min-width: 44px; min-height: 40px; border-radius: 9px; border: 0; background: #22201F; color: #FFFFFF; font: inherit; font-weight: 700">FR</button>
+          <button type="button" aria-pressed="false" style="min-width: 44px; min-height: 40px; border-radius: 9px; border: 0; background: transparent; color: #22201F; font: inherit">EN</button>
+          <button type="button" aria-pressed="false" style="min-width: 44px; min-height: 40px; border-radius: 9px; border: 0; background: transparent; color: #22201F; font: inherit">NL</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section style="max-width: 1200px; margin: 0 auto; padding: 32px 24px 56px">
+    <div style="position: relative; border-radius: 32px; overflow: hidden; min-height: 520px; display: flex; align-items: flex-end">
+      <div class="zoom" role="img" aria-label="Grande photo de la maison" style="position: absolute; inset: 0; background-color: #CDBFAA; background-image: radial-gradient(rgba(255,255,255,.28) 1.5px, transparent 1.5px); background-size: 20px 20px; display: flex; align-items: center; justify-content: center; color: #4A3D2E; font-weight: 700; font-size: 18px">Grande photo de la maison</div>
+      <div style="position: relative; margin: 32px; background: #FAF8F4; border-radius: 24px; padding: 32px; max-width: 560px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.45)">
+        <p class="rise d1" style="margin: 0; font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #5B3A6E">Chambres d'hôtes · Margeride</p>
+        <h1 class="rise d2" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(34px, 4.5vw, 56px); line-height: 1; letter-spacing: -.02em">Dormir au calme, entre forêt et granit.</h1>
+        <p class="rise d3" style="margin: 0; font-size: 17px; line-height: 1.55; color: #4A4542">Une grange rénovée, 4 chambres, la table d'hôtes et les sentiers au départ de la maison.</p>
+        <a href="#reserver" class="btn rise d4" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 54px; padding: 0 28px; border-radius: 14px; background: #5B3A6E; color: #FFFFFF; font-weight: 700; text-decoration: none">Réserver en direct <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <div class="floaty" style="position: absolute; right: 32px; top: 32px; padding: 14px 18px; border-radius: 16px; background: #FFFFFF; font-weight: 700; font-size: 15px; box-shadow: 0 20px 40px -20px rgba(0,0,0,.45); display: flex; align-items: center; gap: 10px">
+        <span style="width: 10px; height: 10px; border-radius: 50%; background: #2E8B57; display: inline-block"></span>Sans commission de plateforme
+      </div>
+    </div>
+  </section>
+
+  <section id="chambres" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 64px; display: flex; flex-direction: column; gap: 26px">
+    <h2 class="reveal" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(30px, 4vw, 44px); letter-spacing: -.01em">Nos chambres</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px">
+      <sc-for list="{{rooms}}" as="r" hint-placeholder-count="4">
+        <article class="card reveal" style="background: #FFFFFF; border-radius: 22px; overflow: hidden; display: flex; flex-direction: column">
+          <div style="height: 200px; overflow: hidden">
+            <div class="ph" role="img" aria-label="Photo de la chambre" style="height: 100%; background-color: {{r.tint}}; background-image: radial-gradient(rgba(255,255,255,.35) 1.5px, transparent 1.5px); background-size: 18px 18px; display: flex; align-items: center; justify-content: center; color: #3F2550; font-weight: 700">Photo de la chambre</div>
+          </div>
+          <div style="padding: 20px; display: flex; flex-direction: column; gap: 8px">
+            <h3 style="margin: 0; font-size: 21px; font-family: 'Bricolage Grotesque', sans-serif">{{r.nom}}</h3>
+            <p style="margin: 0; color: #4A4542; font-size: 15px">{{r.detail}}</p>
+            <p style="margin: 6px 0 0; font-weight: 700">[VOTRE PRIX] <span style="font-weight: 400; color: #4A4542">/ nuit, petit-déjeuner inclus</span></p>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="reserver" style="background: #22201F; color: #FAF8F4">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 64px 24px; display: flex; flex-direction: column; gap: 40px">
+      <div class="reveal" style="display: flex; flex-direction: column; gap: 10px; max-width: 720px">
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(30px, 4vw, 44px)">Réserver en 3 étapes</h2>
+        <p style="margin: 0; color: #CFC8BC; font-size: 17px">Simple pour vous, sans risque de double réservation.</p>
+      </div>
+      <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+        <sc-for list="{{steps}}" as="s" hint-placeholder-count="3">
+          <li class="reveal" style="padding: 22px; border-radius: 18px; background: rgba(250,248,244,.06); border: 1px solid rgba(250,248,244,.12); display: flex; flex-direction: column; gap: 8px">
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 36px; font-weight: 800; color: #C9A9DA">{{s.n}}</span>
+            <strong style="font-size: 18px">{{s.t}}</strong>
+            <span style="color: #CFC8BC; line-height: 1.5">{{s.d}}</span>
+          </li>
+        </sc-for>
+      </ol>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 28px">
+        <div class="reveal" style="flex: 1 1 420px; background: #FAF8F4; color: #22201F; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center">
+            <h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px">Disponibilités · juillet</h3>
+            <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: #3D6B4F; font-weight: 700"><span class="live" style="width: 8px; height: 8px; border-radius: 50%; background: #2E8B57; display: inline-block"></span>Synchronisé avec Airbnb et Booking</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; text-align: center; font-size: 15px">
+            <sc-for list="{{days}}" as="d" hint-placeholder-count="31">
+              <div class="day {{d.cls}}" style="padding: 10px 0; border-radius: 10px; background: {{d.bg}}; color: {{d.fg}}; text-decoration: {{d.deco}}">{{d.n}}</div>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 18px; font-size: 14px; color: #4A4542">
+            <span style="display: inline-flex; gap: 8px; align-items: center"><span style="width: 14px; height: 14px; border-radius: 4px; background: #E6F0E2; display: inline-block"></span>Libre</span>
+            <span style="display: inline-flex; gap: 8px; align-items: center"><span style="width: 14px; height: 14px; border-radius: 4px; background: #E5DFD5; display: inline-block"></span>Complet</span>
+          </div>
+        </div>
+
+        <form class="reveal" style="flex: 1 1 380px; background: #FAF8F4; color: #22201F; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 12px" onsubmit="return false">
+          <h3 style="margin: 0 0 4px; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px">Demande de réservation</h3>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="arr" style="font-weight: 700">Arrivée</label>
+              <input id="arr" type="date" class="field" style="min-height: 48px; padding: 0 12px; border: 2px solid #D8D0C3; border-radius: 12px; font: inherit; background: #FFFFFF">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="dep" style="font-weight: 700">Départ</label>
+              <input id="dep" type="date" class="field" style="min-height: 48px; padding: 0 12px; border: 2px solid #D8D0C3; border-radius: 12px; font: inherit; background: #FFFFFF">
+            </div>
+          </div>
+          <label for="pers" style="font-weight: 700">Nombre de personnes</label>
+          <input id="pers" type="number" min="1" value="2" class="field" style="min-height: 48px; padding: 0 12px; border: 2px solid #D8D0C3; border-radius: 12px; font: inherit; background: #FFFFFF">
+          <label for="mail" style="font-weight: 700">E-mail</label>
+          <input id="mail" type="email" class="field" style="min-height: 48px; padding: 0 12px; border: 2px solid #D8D0C3; border-radius: 12px; font: inherit; background: #FFFFFF">
+          <div style="display: flex; gap: 10px; align-items: flex-start; margin-top: 4px">
+            <input id="cgv" type="checkbox" style="width: 22px; height: 22px; margin-top: 2px; accent-color: #5B3A6E">
+            <label for="cgv" style="font-size: 15px; line-height: 1.45">J'accepte les <a href="#">conditions de réservation et d'annulation</a>.</label>
+          </div>
+          <p style="margin: 0; padding: 12px 14px; border-radius: 12px; background: #F1ECF4; font-size: 15px; line-height: 1.45; color: #3F2550">Votre séjour est confirmé à réception des arrhes (30 %), via un lien de paiement sécurisé envoyé par e-mail.</p>
+          <button type="submit" class="btn" style="min-height: 54px; border: 0; border-radius: 14px; background: #5B3A6E; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Envoyer ma demande <span class="arr" aria-hidden="true">→</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="autour" style="max-width: 1200px; margin: 0 auto; padding: 64px 24px; display: flex; flex-direction: column; gap: 24px">
+    <h2 class="reveal" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(30px, 4vw, 44px)">Autour de nous</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px">
+      <sc-for list="{{around}}" as="a" hint-placeholder-count="4">
+        <div class="card reveal" style="padding: 22px; border-radius: 18px; background: #FFFFFF; display: flex; flex-direction: column; gap: 6px">
+          <strong style="font-size: 18px">{{a.t}}</strong>
+          <span style="color: #4A4542">{{a.d}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div class="reveal" style="background: #F1ECF4; border-radius: 18px; padding: 24px; color: #3F2550">Vos avis clients (Google, Gîtes de France) s'afficheront ici.</div>
+  </section>
+
+  <footer style="border-top: 1px solid #E8E1D5">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; gap: 20px; font-size: 14px; color: #5E5853">
+      <span>[ADRESSE] · [VOTRE NUMÉRO]</span>
+      <a href="#" class="ul">Mentions légales</a>
+      <a href="#" class="ul">Confidentialité</a>
+      <a href="#" class="ul">Conditions de réservation</a>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":2600}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const full = [4, 5, 11, 12, 13, 18, 19, 25, 26];
+    const days = [];
+    for (let i = 1; i <= 31; i++) {
+      const isFull = full.indexOf(i) !== -1;
+      days.push({ n: i, cls: isFull ? 'full' : 'free', bg: isFull ? '#E5DFD5' : '#E6F0E2', fg: isFull ? '#6B645E' : '#22381C', deco: isFull ? 'line-through' : 'none' });
+    }
+    return {
+      days: days,
+      rooms: [
+        { nom: 'Chambre Bruyère', detail: '2 personnes · lit double · salle d’eau', tint: '#E3D9EA' },
+        { nom: 'Chambre Myrtille', detail: '3 personnes · vue sur la forêt', tint: '#D6DCEC' },
+        { nom: 'Chambre Granit', detail: '4 personnes · familiale', tint: '#DCD7D0' },
+        { nom: 'Chambre Genêt', detail: '2 personnes · accessible PMR', tint: '#EFE3C2' }
+      ],
+      steps: [
+        { n: '01', t: 'Vous envoyez une demande', d: 'Choisissez vos dates : rien n’est débité à ce stade.' },
+        { n: '02', t: 'Nous confirmons', d: 'Réponse sous 24 h avec un lien pour régler les arrhes.' },
+        { n: '03', t: 'Vous arrivez', d: 'Le solde se règle sur place. Bon séjour !' }
+      ],
+      around: [
+        { t: 'Viaduc de Garabit', d: 'Gorges de la Truyère' },
+        { t: 'Écomusée de Margeride', d: 'Ferme, école, jardin' },
+        { t: 'Randonnée et VTT', d: 'Au départ de la maison' },
+        { t: 'Saint-Flour', d: 'Cité médiévale' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

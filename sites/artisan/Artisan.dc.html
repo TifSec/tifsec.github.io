@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Menuiserie Roux – artisan menuisier</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#9A4A12}a:hover{color:#6E330B}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes draw{from{background-size:0 .22em}to{background-size:100% .22em}}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-12px) rotate(-4deg)}}
+@keyframes grain{0%{background-position:0 0}100%{background-position:240px 0}}
+.rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.08s}.d2{animation-delay:.2s}.d3{animation-delay:.34s}.d4{animation-delay:.5s}
+.hl{background-image:linear-gradient(#D9772B,#D9772B);background-repeat:no-repeat;background-position:0 92%;background-size:0 .22em;animation:draw 1s cubic-bezier(.2,.7,.2,1) .9s forwards}
+.floaty{animation:floaty 6s ease-in-out infinite}
+.wood{animation:grain 30s linear infinite}
+.card{transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s,background-color .3s}
+.card:hover{transform:translateY(-8px);box-shadow:0 24px 48px -24px rgba(30,27,24,.45)}
+.card .ic{transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.card:hover .ic{transform:rotate(-10deg) scale(1.1)}
+.shot{overflow:hidden;border-radius:18px;position:relative}
+.shot .ph{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.shot:hover .ph{transform:scale(1.07)}
+.shot .cap{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.shot:hover .cap{transform:translateY(-4px)}
+.btn{transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(0,0,0,.5)}
+.btn .arr{display:inline-block;transition:transform .25s}
+.btn:hover .arr{transform:translateX(5px)}
+.field{transition:border-color .2s,box-shadow .2s}
+.field:focus{outline:none;border-color:#9A4A12;box-shadow:0 0 0 4px rgba(154,74,18,.15)}
+.ul{background-image:linear-gradient(currentColor,currentColor);background-size:0 2px;background-position:0 100%;background-repeat:no-repeat;transition:background-size .3s;text-decoration:none}
+.ul:hover{background-size:100% 2px}
+@supports (animation-timeline: view()){.reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 28%}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}.hl{background-size:100% .22em}}
+</style>
+</helmet>
+<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #1E1B18; background: #F5F2EC; min-height: 100%; font-size: 17px; overflow-x: hidden">
+
+  <header style="position: sticky; top: 0; z-index: 10; background: rgba(30,27,24,.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #F5F2EC">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between">
+      <a href="#" style="color: #F5F2EC; text-decoration: none; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px">Menuiserie Roux</a>
+      <nav aria-label="Navigation principale" style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center">
+        <a href="#services" class="ul" style="color: #F5F2EC">Savoir-faire</a>
+        <a href="#realisations" class="ul" style="color: #F5F2EC">Réalisations</a>
+        <a href="#zone" class="ul" style="color: #F5F2EC">Zone d'intervention</a>
+        <a href="#devis" class="btn" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 12px; background: #D9772B; color: #1E1B18; font-weight: 700; text-decoration: none">Demander un devis</a>
+      </nav>
+    </div>
+  </header>
+
+  <section style="background: #1E1B18; color: #F5F2EC; position: relative; overflow: hidden">
+    <div class="wood" aria-hidden="true" style="position: absolute; inset: 0; opacity: .06; background-image: repeating-linear-gradient(100deg, #F5F2EC 0 2px, transparent 2px 22px)"></div>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 72px 24px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center; position: relative">
+      <div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 20px">
+        <p class="rise d1" style="margin: 0; font-weight: 700; color: #D9772B; text-transform: uppercase; letter-spacing: .08em; font-size: 14px">Menuisier · charpentier · [VILLE]</p>
+        <h1 class="rise d2" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(40px, 6vw, 74px); line-height: .98; letter-spacing: -.02em">Du bois du pays, <span class="hl">taillé sur mesure</span> pour votre maison.</h1>
+        <p class="rise d3" style="margin: 0; line-height: 1.6; color: #CFC6B8; max-width: 540px">Fenêtres, escaliers, charpentes et agencements. Atelier familial depuis [ANNÉE], devis gratuit dans tout l'est du Cantal.</p>
+        <div class="rise d4" style="display: flex; flex-wrap: wrap; gap: 12px">
+          <a href="#devis" class="btn" style="display: inline-flex; align-items: center; gap: 8px; min-height: 56px; padding: 0 28px; border-radius: 14px; background: #D9772B; color: #1E1B18; font-weight: 700; text-decoration: none">Demander un devis <span class="arr" aria-hidden="true">→</span></a>
+          <a href="tel:+33000000000" class="btn" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 28px; border-radius: 14px; border: 2px solid #F5F2EC; color: #F5F2EC; font-weight: 700; text-decoration: none">Appeler l'atelier</a>
+        </div>
+      </div>
+      <div class="rise d3" style="flex: 1 1 380px; position: relative; min-height: 420px">
+        <div role="img" aria-label="Photo de l'atelier" style="position: absolute; inset: 0; border-radius: 28px; background-color: #8A5A34; background-image: repeating-linear-gradient(95deg, rgba(255,255,255,.07) 0 3px, transparent 3px 26px); display: flex; align-items: center; justify-content: center; color: #F5E6D3; font-weight: 700">Photo de l'atelier</div>
+        <div class="floaty" style="position: absolute; left: -18px; bottom: 28px; padding: 16px 20px; border-radius: 16px; background: #F5F2EC; color: #1E1B18; font-weight: 700; box-shadow: 0 20px 40px -20px rgba(0,0,0,.6)">Devis gratuit sous 48 h</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="max-width: 1200px; margin: 0 auto; padding: 64px 24px; display: flex; flex-direction: column; gap: 26px">
+    <h2 class="reveal" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(30px, 4vw, 46px); letter-spacing: -.01em">Savoir-faire</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px">
+      <sc-for list="{{services}}" as="s" hint-placeholder-count="4">
+        <div class="card reveal" style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+          <span class="ic" aria-hidden="true" style="width: 52px; height: 52px; border-radius: 14px; background: #F7E3D2; color: #9A4A12; display: flex; align-items: center; justify-content: center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{s.icon}}"></path></svg>
+          </span>
+          <h3 style="margin: 0; font-size: 21px; font-family: 'Bricolage Grotesque', sans-serif">{{s.t}}</h3>
+          <p style="margin: 0; color: #4A443D; line-height: 1.5">{{s.d}}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="realisations" style="background: #EBE4D8">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 64px 24px; display: flex; flex-direction: column; gap: 26px">
+      <h2 class="reveal" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(30px, 4vw, 46px)">Réalisations</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px">
+        <sc-for list="{{works}}" as="w" hint-placeholder-count="6">
+          <figure class="shot reveal" style="margin: 0; height: {{w.h}}">
+            <div class="ph" role="img" aria-label="Photo de chantier" style="height: 100%; background-color: {{w.tint}}; background-image: repeating-linear-gradient(95deg, rgba(255,255,255,.12) 0 3px, transparent 3px 24px); display: flex; align-items: center; justify-content: center; color: #4A2A10; font-weight: 700">Photo avant / après</div>
+            <figcaption class="cap" style="position: absolute; left: 12px; bottom: 12px; padding: 8px 14px; border-radius: 10px; background: rgba(255,255,255,.94); font-size: 15px; font-weight: 700">{{w.t}}</figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 1200px; margin: 0 auto; padding: 64px 24px; display: flex; flex-wrap: wrap; gap: 28px">
+    <div id="zone" class="reveal" style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 14px">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(28px, 3.5vw, 40px)">Zone d'intervention</h2>
+      <p style="margin: 0; line-height: 1.6; color: #4A443D">Saint-Flour, Ruynes-en-Margeride, Neuvéglise-sur-Truyère, Massiac, Chaudes-Aigues et alentours (environ 40 km).</p>
+      <div role="img" aria-label="Carte de la zone d'intervention" style="height: 240px; border-radius: 20px; background-color: #DDE3D6; background-image: linear-gradient(rgba(58,74,53,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(58,74,53,.08) 1px, transparent 1px); background-size: 36px 36px; display: flex; align-items: center; justify-content: center; color: #3A4A35; font-weight: 700">Carte de la zone</div>
+      <p style="margin: 0; font-size: 15px; color: #4A443D">Certifications : [QUALIBAT, RGE…]</p>
+    </div>
+    <form id="devis" class="reveal" style="flex: 1 1 400px; background: #FFFFFF; border-radius: 24px; padding: 30px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 30px 60px -40px rgba(30,27,24,.5)" onsubmit="return false">
+      <h2 style="margin: 0 0 4px; font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(26px, 3vw, 34px)">Demande de devis</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="nom" style="font-weight: 700">Nom</label>
+          <input id="nom" type="text" class="field" style="min-height: 48px; padding: 0 12px; border: 2px solid #DDD3C4; border-radius: 12px; font: inherit">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="tel" style="font-weight: 700">Téléphone</label>
+          <input id="tel" type="tel" class="field" style="min-height: 48px; padding: 0 12px; border: 2px solid #DDD3C4; border-radius: 12px; font: inherit">
+        </div>
+      </div>
+      <label for="type" style="font-weight: 700">Type de travaux</label>
+      <select id="type" class="field" style="min-height: 48px; padding: 0 12px; border: 2px solid #DDD3C4; border-radius: 12px; font: inherit; background: #FFFFFF">
+        <option>Fenêtres et portes</option>
+        <option>Escalier</option>
+        <option>Charpente</option>
+        <option>Agencement intérieur</option>
+      </select>
+      <label for="projet" style="font-weight: 700">Votre projet</label>
+      <textarea id="projet" rows="4" class="field" style="padding: 12px; border: 2px solid #DDD3C4; border-radius: 12px; font: inherit; resize: vertical"></textarea>
+      <button type="submit" class="btn" style="min-height: 56px; border: 0; border-radius: 14px; background: #9A4A12; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Envoyer ma demande <span class="arr" aria-hidden="true">→</span></button>
+    </form>
+  </section>
+
+  <footer style="background: #1E1B18; color: #E9E3D8">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 20px; font-size: 15px">
+      <span>Menuiserie Roux · [ADRESSE] · SIRET [N°]</span>
+      <a href="#" class="ul" style="color: #E9E3D8">Mentions légales</a>
+      <a href="#" class="ul" style="color: #E9E3D8">Confidentialité</a>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":2300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      services: [
+        { t: 'Fenêtres et portes', d: 'Bois, PVC ou alu, pose et rénovation.', icon: 'M4 3h16v18H4z M12 3v18 M4 12h16' },
+        { t: 'Escaliers', d: 'Droits, quart tournant ou hélicoïdaux, sur mesure.', icon: 'M4 20h4v-4h4v-4h4V8h4 M4 20V4' },
+        { t: 'Charpente', d: 'Neuf et rénovation de toitures anciennes.', icon: 'M2 12l10-8 10 8 M5 10v10h14V10 M9 20v-6h6v6' },
+        { t: 'Agencement', d: 'Cuisines, placards, bibliothèques.', icon: 'M4 4h16v16H4z M4 12h16 M12 4v16 M8 8h0 M16 16h0' }
+      ],
+      works: [
+        { t: '[Escalier en chêne – COMMUNE]', tint: '#C49A6C', h: '300px' },
+        { t: '[Fenêtres – COMMUNE]', tint: '#B88A5E', h: '300px' },
+        { t: '[Charpente – COMMUNE]', tint: '#9E7148', h: '300px' },
+        { t: '[Cuisine – COMMUNE]', tint: '#D2AE85', h: '240px' },
+        { t: '[Porte d’entrée – COMMUNE]', tint: '#A8784F', h: '240px' },
+        { t: '[Placards – COMMUNE]', tint: '#C9A27A', h: '240px' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
