@@ -25,12 +25,13 @@ class Node {
     }
 }
 
-async function harness({ mode='teacher', enabled=true, session=teacher, rpc={}, queries={}, catalogue=[lesson], query='' }={}) {
+async function harness({ mode='teacher', enabled=true, session=teacher, rpc={}, queries={}, catalogue=[lesson], query='', dataset={} }={}) {
     const ids= mode==='teacher' ? ['teacher-tracking', ...['status','subject','class','lesson','copies','preview','detail','feedback','correction','filters','identity','copy-status','finish','save','refresh','history'].map(x=>'tracking-'+x)] :
         mode==='group' ? ['course-collaboration','group-controls','group-status','group-copy','group-classmates','group-create','course-feedback','group-create-panel','group-refresh'] :
         mode==='roster' ? ['teacher-students','students-status','students-controls','students-class','students-refresh','students-list'] : ['student-invitations'];
     const nodes=new Map(ids.map(id=>[id,new Node(['tracking-subject','tracking-class','tracking-lesson','group-copy','students-class'].includes(id)?'select':'div')]));
     nodes.get(ids[0]).dataset.enabled=String(enabled);
+    Object.assign(nodes.get(ids[0]).dataset,dataset);
     const catalogNode=new Node(); catalogNode.textContent=JSON.stringify(catalogue); nodes.set('seances-data',catalogNode);
     const classesNode=new Node();classesNode.textContent=JSON.stringify({college:{nom:'Collège',classes:[{id:'3e',nom:'3e'}]}});nodes.set('classes-data',classesNode);
     const controls={session,checks:0,calls:[],auth:null,interval:null};
@@ -40,7 +41,7 @@ async function harness({ mode='teacher', enabled=true, session=teacher, rpc={}, 
         from(table){ const filters=[]; const run=async()=>{controls.calls.push({table,filters}); const result=queries[table];
             if(typeof result==='function')return result(filters);
             return {data:result ?? (table==='teacher_class_assignments'?[lesson]:[]),error:null}; };
-            return {select(){return this;},eq(k,v){filters.push([k,v]);return this;},maybeSingle:run,then(resolve,reject){return run().then(resolve,reject);} };
+            return {select(){return this;},eq(k,v){filters.push([k,v]);return this;},in(k,v){filters.push([k,v]);return this;},maybeSingle:run,then(resolve,reject){return run().then(resolve,reject);} };
         }
     };
     const context=createContext({
@@ -219,4 +220,26 @@ test('gestion élèves : réponse reçue après déconnexion ne révèle aucun n
 test('élève en attente : aucune invitation chargée avant validation',async()=>{
     const h=await harness({mode:'student',session:{...pupil,profile:{...pupil.profile,enrollment_status:'pending'}}});
     assert.equal(h.controls.calls.length,0);assert.match(h.nodes.get('student-invitations').children[0].textContent,/validation/);
+});
+
+test('professeur : copies rangées en « à corriger », « en cours » ; les corrigées sont masquées',async()=>{
+    const rows=[
+        {copy_id:1,max_members:1,participants:'Léa',answer_count:5,last_saved:'2026-11-18T08:00:00Z',terminee:false,is_history:false},
+        {copy_id:2,max_members:1,participants:'Tom',answer_count:2,last_saved:'2026-11-18T08:05:00Z',terminee:false,is_history:false},
+        {copy_id:3,max_members:1,participants:'Zoé',answer_count:6,last_saved:'2026-11-18T08:10:00Z',terminee:true,is_history:false},
+        {copy_id:4,max_members:1,participants:'Noé',answer_count:6,last_saved:'2026-11-18T08:12:00Z',terminee:true,is_history:false}
+    ];
+    const h=await harness({dataset:{gradeValidation:'true',studentSubmission:'true'},rpc:{refonte_teacher_copies:()=>rows},queries:{
+        work_sessions:()=>({data:[{id:1,current_evaluation_id:null,submitted_at:'2026-11-18T08:30:00Z'},{id:2,current_evaluation_id:null,submitted_at:null},
+            {id:3,current_evaluation_id:9,submitted_at:'2026-11-18T08:20:00Z'},{id:4,current_evaluation_id:null,submitted_at:null}],error:null}),
+        work_evaluations:()=>({data:[{id:9,total:15}],error:null})
+    }});
+    const groups=h.nodes.get('tracking-copies').children;
+    assert.deepEqual(groups.map(g=>g.dataset.state),['a-corriger','en-cours']);
+    assert.deepEqual(groups[0].children.slice(2).map(b=>b.dataset.copy),['1','4']);
+    assert.match(groups[0].children[2].textContent,/Rendue par l’élève le .* — à corriger/);
+    assert.match(groups[0].children[3].textContent,/Clôturée par vous — à corriger/);
+    assert.deepEqual(groups[1].children.slice(2).map(b=>b.dataset.copy),['2']);
+    assert.match(groups[1].children[2].textContent,/En cours — pas encore rendue/);
+    assert.match(h.nodes.get('tracking-status').textContent,/2 à corriger, 1 en cours, 1 déjà corrigée/);
 });

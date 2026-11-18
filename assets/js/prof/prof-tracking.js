@@ -21,19 +21,21 @@ export function initTeacherTracking() {
     const status = element('status'), subject = element('subject'), schoolClass = element('class'), lesson = element('lesson');
     const copies = element('copies'), preview = element('preview'), detail = element('detail');
     const feedback = element('feedback'), correction = element('correction'), filters = element('filters');
-    const history = element('history');
+    const history = element('history'), showCorrected = element('corrected');
     const assisted = initCopyCorrection({ db, checkSession, onValidated(result) {
         if (!selected || String(selected.copy_id) !== result.copy_id) return;
         selected.terminee = true;
         if (typeof result.saved_feedback === 'string') savedComment = result.saved_feedback;
         selected.evaluation = { id: result.evaluation_id, total: result.total, marks: result.marks };
+        selected.has_grade = true; selected.grade_total = result.total;
         element('copy-status').textContent = 'Correction validée — note ' + result.total + ' / 20 — copie verrouillée';
         element('finish').textContent = 'Rouvrir la copie';
-        copies.querySelectorAll('button').forEach(button => { if (button.dataset.copy === String(selected.copy_id)) button.textContent = copyLabel(selected); });
-        status.textContent = 'Correction et note validées. La copie est verrouillée pour les élèves.';
+        renderCopies();
+        status.textContent = 'Correction et note validées. La copie est verrouillée pour les élèves' +
+            (showCorrected?.checked ? '.' : ' ; elle passe dans les copies déjà corrigées (masquées).');
     } });
     let generation = 0, selection = 0, userId = null, lessons = [], selected = null, savedComment = '', busy = false;
-    let displayedLesson = '', reading = 0;
+    let displayedLesson = '', reading = 0, listedRows = [], statesKnown = false;
     // Bonus d'XP du petit défi : section présente seulement si le site l'active (bac à sable pour l'instant).
     const challenge = document.getElementById('tracking-challenge');
     const challengeBox = document.getElementById('tracking-challenge-award');
@@ -62,7 +64,7 @@ export function initTeacherTracking() {
         element('identity').textContent = ''; element('copy-status').textContent = '';
     }
     function reset() {
-        ++generation; ++reading; clearCopy(); userId = null; lessons = []; displayedLesson = ''; copies.replaceChildren();
+        ++generation; ++reading; clearCopy(); userId = null; lessons = []; displayedLesson = ''; listedRows = []; statesKnown = false; copies.replaceChildren();
         subject.replaceChildren(); schoolClass.replaceChildren(); lesson.replaceChildren(); filters.disabled = true;
     }
     function mayLeave() {
@@ -70,11 +72,91 @@ export function initTeacherTracking() {
         return !selected || (feedback.value === savedComment && !assisted.hasDraft()) || window.confirm('Abandonner les points, appréciations ou commentaire non enregistrés ?');
     }
     function currentLesson() { return lessons.find(row => row.url === lesson.value); }
+    // État d'une copie dans la liste : à corriger (rendue par l'élève ou clôturée par le professeur),
+    // en cours (commencée, pas encore rendue) ou déjà corrigée (note validée).
+    function copyState(row) {
+        if (row.is_history) return 'history';
+        if (row.evaluation || row.has_grade) return 'corrigee';
+        if (row.submitted_at || row.terminee) return 'a-corriger';
+        return 'en-cours';
+    }
+    const when = value => new Date(value).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+    function stateLabel(row) {
+        if (row.is_history) return 'Consultation uniquement';
+        if (!statesKnown && !row.evaluation) return row.terminee ? 'Terminée' : 'En cours';
+        const state = copyState(row);
+        if (state === 'corrigee') return 'Corrigée' + (typeof (row.evaluation?.total ?? row.grade_total) === 'number' ? ' — ' + (row.evaluation?.total ?? row.grade_total) + ' / 20' : '');
+        if (state === 'a-corriger') return (row.submitted_at ? 'Rendue par l’élève le ' + when(row.submitted_at) : 'Clôturée par vous') + ' — à corriger';
+        return 'En cours — pas encore rendue';
+    }
     function copyLabel(row) {
         const date = row.last_saved ? new Date(row.last_saved).toLocaleString('fr-FR') : 'aucune réponse enregistrée';
         return (row.participants || 'Participants indisponibles') + '\n' +
             (row.is_history ? 'Historique individuel' : row.max_members > 1 ? 'Copie collective de référence' : 'Copie individuelle de référence') + ' · ' + row.answer_count + ' réponse(s)\n' + date + '\n' +
-            (row.is_history ? 'Consultation uniquement' : row.terminee ? 'Terminée' : 'En cours');
+            stateLabel(row);
+    }
+    function copyButton(row) {
+        const button = document.createElement('button'); button.type = 'button'; button.className = 'tracking-copy';
+        button.dataset.copy = String(row.copy_id);
+        button.setAttribute('aria-pressed', String(Boolean(selected) && String(selected.copy_id) === String(row.copy_id)));
+        button.dataset.kind = row.is_history ? 'history' : row.max_members > 1 ? 'group' : 'individual';
+        if (statesKnown) button.dataset.state = copyState(row);
+        button.textContent = copyLabel(row);
+        button.addEventListener('click', () => showCopy(row));
+        return button;
+    }
+    const GROUPS = [
+        ['a-corriger', 'À corriger', 'Copies rendues par les élèves, ou clôturées par vous.'],
+        ['en-cours', 'En cours', 'Copies commencées mais pas encore rendues : les élèves peuvent encore travailler.'],
+        ['corrigee', 'Déjà corrigées', 'Note validée.']
+    ];
+    // Affiche la liste : plate si les états ne sont pas connus (ou en historique), sinon rangée par état.
+    function renderCopies() {
+        copies.replaceChildren();
+        if (!statesKnown || history?.checked) { for (const row of listedRows) copies.append(copyButton(row)); return; }
+        for (const [state, title, hint] of GROUPS) {
+            let rows = listedRows.filter(row => copyState(row) === state);
+            if (state === 'corrigee' && !showCorrected?.checked) continue;
+            if (state === 'a-corriger') rows = rows.slice().sort((a, b) => String(a.submitted_at || '9').localeCompare(String(b.submitted_at || '9')));
+            const group = document.createElement('div'); group.className = 'tracking-group'; group.dataset.state = state;
+            const heading = document.createElement('h3'); heading.textContent = title + ' (' + rows.length + ')';
+            const note = document.createElement('p'); note.className = 'tracking-group-hint';
+            note.textContent = rows.length ? hint : state === 'a-corriger' ? 'Aucune copie à corriger pour l’instant.' : 'Aucune copie.';
+            group.append(heading, note, ...rows.map(copyButton));
+            copies.append(group);
+        }
+    }
+    function listSummary() {
+        if (!listedRows.length) return 'Aucune copie commencée pour cette séance.';
+        if (!statesKnown || history?.checked) return listedRows.length + ' copie(s). Choisissez une copie pour consulter les réponses.';
+        const count = state => listedRows.filter(row => copyState(row) === state).length;
+        const done = count('corrigee');
+        return count('a-corriger') + ' à corriger, ' + count('en-cours') + ' en cours, ' + done + ' déjà corrigée(s)' +
+            (done && !showCorrected?.checked ? ' (masquées : cochez « Afficher les copies déjà corrigées »)' : '') + '.';
+    }
+    // Lit en une fois l'état « rendue » et « corrigée » des copies listées.
+    async function readStates(rows) {
+        if (root.dataset.gradeValidation !== 'true') return false;
+        const ids = rows.filter(row => !row.is_history).map(row => row.copy_id);
+        if (!ids.length) return true;
+        const columns = 'id, current_evaluation_id' + (root.dataset.studentSubmission === 'true' ? ', submitted_at' : '');
+        const sessions = await db.from('work_sessions').select(columns).in('id', ids);
+        if (sessions.error || !Array.isArray(sessions.data)) return false;
+        const byId = new Map(sessions.data.map(item => [String(item.id), item]));
+        const evaluationIds = sessions.data.map(item => item.current_evaluation_id).filter(Boolean);
+        const totals = new Map();
+        if (evaluationIds.length) {
+            const grades = await db.from('work_evaluations').select('id, total').in('id', evaluationIds);
+            if (!grades.error) for (const grade of grades.data || []) totals.set(String(grade.id), grade.total);
+        }
+        for (const row of rows) {
+            const item = byId.get(String(row.copy_id));
+            if (!item) continue;
+            row.submitted_at = item.submitted_at || null;
+            row.has_grade = Boolean(item.current_evaluation_id);
+            row.grade_total = totals.get(String(item.current_evaluation_id));
+        }
+        return true;
     }
     function options(select, entries) {
         select.replaceChildren();
@@ -122,7 +204,8 @@ export function initTeacherTracking() {
             });
             row.evaluation = grade.data;
             row.submitted_at = grade.submittedAt;
-            if (row.evaluation) row.terminee = true;
+            row.has_grade = Boolean(row.evaluation);
+            if (row.evaluation) { row.terminee = true; row.grade_total = row.evaluation.total; }
             selected = row; savedComment = comments.data?.commentaire || ''; feedback.value = savedComment;
             assisted.select(row, userId);
             element('identity').textContent = row.participants || 'Participants indisponibles';
@@ -130,7 +213,10 @@ export function initTeacherTracking() {
             if (row.evaluation) element('copy-status').textContent = 'Note validée : ' + row.evaluation.total + ' / 20 — copie verrouillée';
             element('finish').textContent = row.terminee ? 'Rouvrir la copie' : 'Terminer la copie';
             correction.disabled = Boolean(row.is_history); correction.hidden = Boolean(row.is_history); detail.hidden = false;
-            copies.querySelectorAll('button').forEach(button => { button.setAttribute('aria-pressed', String(button.dataset.copy === String(row.copy_id))); });
+            copies.querySelectorAll('button').forEach(button => {
+                button.setAttribute('aria-pressed', String(button.dataset.copy === String(row.copy_id)));
+                if (button.dataset.copy === String(row.copy_id)) button.textContent = copyLabel(row);
+            });
             status.textContent = 'Copie chargée. Les réponses sont consultables dans le cours.';
             showChallenge(row, Boolean(documentCourse.querySelector('.course-challenge')), chosen).catch(() => {
                 if (chosen === selection && challengeStatus) challengeStatus.textContent = 'Bonus du défi indisponible pour le moment.';
@@ -158,14 +244,12 @@ export function initTeacherTracking() {
                 p_history: Boolean(history?.checked)
             });
             if (current !== generation || request !== reading) return;
-            for (const row of rows) {
-                const button = document.createElement('button'); button.type = 'button'; button.className = 'tracking-copy';
-                button.dataset.copy = String(row.copy_id); button.setAttribute('aria-pressed', 'false');
-                button.dataset.kind = row.is_history ? 'history' : row.max_members > 1 ? 'group' : 'individual';
-                button.textContent = copyLabel(row);
-                button.addEventListener('click', () => showCopy(row)); copies.append(button);
-            }
-            status.textContent = rows.length ? rows.length + ' copie(s). Choisissez une copie pour consulter les réponses.' : 'Aucune copie commencée pour cette séance.';
+            let known = false;
+            try { known = !history?.checked && await readStates(rows); } catch { known = false; }
+            if (current !== generation || request !== reading) return;
+            listedRows = rows; statesKnown = known;
+            renderCopies();
+            status.textContent = listSummary();
             if (requestedCopy) {
                 const row = rows.find(row => String(row.copy_id) === requestedCopy); requestedCopy = null;
                 if (row) await showCopy(row);
@@ -205,6 +289,7 @@ export function initTeacherTracking() {
     lesson.addEventListener('change', () => { if (!mayLeave()) { lesson.value = displayedLesson; return; } listCopies(); });
     element('refresh').addEventListener('click', () => { if (mayLeave()) listCopies(); });
     history?.addEventListener('change', () => { if (!mayLeave()) { history.checked = !history.checked; return; } listCopies(); });
+    showCorrected?.addEventListener('change', () => { renderCopies(); status.textContent = listSummary(); });
     async function mutate(action) {
         if (!selected || selected.is_history || busy || assisted.isBusy()) return;
         if (action !== 'save' && selected.terminee && selected.evaluation && !window.confirm('Rouvrir cette copie retirera sa note courante. La correction validée sera conservée dans l’historique. Continuer ?')) return;
@@ -220,9 +305,9 @@ export function initTeacherTracking() {
             else {
                 assisted.clear();
                 row.terminee = !row.terminee;
-                if (!row.terminee) row.evaluation = null;
+                if (!row.terminee) { row.evaluation = null; row.has_grade = false; row.grade_total = undefined; }
                 assisted.select(row, userId);
-                copies.querySelectorAll('button').forEach(button => { if (button.dataset.copy === String(row.copy_id)) button.textContent = copyLabel(row); });
+                renderCopies();
                 element('copy-status').textContent = row.terminee ? 'Copie terminée' : 'Copie en cours';
                 element('finish').textContent = row.terminee ? 'Rouvrir la copie' : 'Terminer la copie';
                 status.textContent = row.terminee ? 'Copie terminée : les élèves peuvent la consulter.' : 'Copie rouverte : les participants peuvent répondre.';

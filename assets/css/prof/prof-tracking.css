@@ -24,3 +24,12 @@
 @media (max-width: 1100px) { .tracking-filters { grid-template-columns: 1fr 1fr; } .prof-filter-wide { grid-column: 1 / -1; } }
 @media (max-width: 850px) { .tracking-workspace { grid-template-columns: 1fr; } #tracking-copies { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); } }
 @media (max-width: 480px) { .tracking-filters { grid-template-columns: 1fr; } }
+/* Copies rangées par état : à corriger, en cours, déjà corrigées. */
+.tracking-group { display: grid; gap: .6rem; }
+.tracking-group + .tracking-group { margin-top: .9rem; padding-top: .9rem; border-top: 1px solid #dbe4ee; }
+.tracking-group h3 { margin: 0; font-size: .95rem; color: #213b57; }
+.tracking-group[data-state="a-corriger"] h3 { color: #9a4d00; }
+.tracking-group-hint { margin: 0; font-size: .75rem; line-height: 1.5; color: #5d6b7c; }
+.prof-main .tracking-copy[data-state="a-corriger"] { border-left-color: #d9822b; }
+.prof-main .tracking-copy[data-state="en-cours"] { border-left-color: #a5b3c3; background: #fbfcfd; }
+.prof-main .tracking-copy[data-state="corrigee"] { border-left-color: #2f8a57; background: #f6fbf8; }
