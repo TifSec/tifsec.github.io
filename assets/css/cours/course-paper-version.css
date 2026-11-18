@@ -17,40 +17,38 @@
 .course-paper-questions li { margin: 12px 0; padding-left: 4px; }
 .course-paper-answer-lines { display: block; min-height: 32px; margin-top: 5px; border-bottom: 1px solid #8795a1; }
 @media print {
-    @page { size: A4; margin: 14mm; }
+    /* Version papier imprimée : texte en 12 pt et interligne aéré (retours des élèves, 18/11/2026),
+       sans gaspiller de papier : les parties peuvent se couper entre deux pages (sinon chaque partie
+       trop longue part entière sur la page suivante et laisse un grand blanc). On garde seulement
+       un titre avec ce qui le suit, et une question avec sa ligne de réponse. */
+    @page { size: A4; margin: 12mm 13mm; }
     body * { visibility: hidden !important; }
     #course-paper-version:not([hidden]), #course-paper-version:not([hidden]) * { visibility: visible !important; }
     #course-paper-version:not([hidden]) { position: absolute; inset: 0; width: 100%; margin: 0; }
     .course-paper-actions { display: none !important; }
-    .course-paper-sheet { max-width: none; padding: 0; border: 0; border-radius: 0; box-shadow: none; color: #111; font-size: 10pt; }
-    .course-paper-sheet header { border-color: #111; }
-    .course-paper-kicker, .course-paper-section h3 { color: #111; }
-    /* Impression compacte : les parties peuvent se couper entre deux pages (sinon chaque partie
-       trop longue part entière sur la page suivante et laisse un grand blanc). On garde seulement
-       un titre avec ce qui le suit, et une question avec sa ligne de réponse. */
-    @page { margin: 10mm 11mm; }
-    .course-paper-sheet { line-height: 1.3; }
-    .course-paper-sheet header { padding-bottom: 4px; border-bottom-width: 1.5px; }
-    .course-paper-sheet header h2 { margin: 0 0 2px; font-size: 13pt; }
+    .course-paper-sheet { max-width: none; padding: 0; border: 0; border-radius: 0; box-shadow: none; color: #111; font-size: 12pt; line-height: 1.45; }
+    .course-paper-sheet header { border-color: #111; padding-bottom: 5px; border-bottom-width: 1.5px; }
+    .course-paper-sheet header h2 { margin: 0 0 3px; font-size: 16pt; line-height: 1.25; }
     .course-paper-sheet header p { margin: 0; }
-    .course-paper-kicker { margin-bottom: 2px; font-size: 7.5pt; }
-    .course-paper-section { margin-top: 6px; break-inside: auto; }
-    .course-paper-section h3 { margin: 0 0 2px; font-size: 11pt; break-after: avoid; }
-    .course-paper-section h4 { margin: 4px 0 1px; font-size: 10pt; break-after: avoid; }
-    .course-paper-section p { margin: 2px 0; }
-    .course-paper-section :is(ul, ol) { margin: 2px 0; padding-left: 18px; }
-    .course-paper-section :is(ul, ol) li { margin: 1px 0; break-inside: avoid; }
-    .course-paper-section .cours-table-wrapper { margin: 3px 0; overflow: visible; break-inside: avoid; }
-    .course-paper-section .cours-table { font-size: 9pt; }
-    .course-paper-section .cours-table :is(th, td) { padding: 2px 6px; }
-    .course-paper-section .cours-table caption { padding: 1px 0; }
-    .course-paper-section .cours-table td:empty { height: 1.5em; }
-    .course-paper-questions { margin: 2px 0; padding-left: 20px; }
-    .course-paper-questions li { margin: 3px 0; padding-left: 2px; break-inside: avoid; }
-    .course-paper-answer-lines { min-height: 20px; margin-top: 0; }
-    .course-paper-part { margin: 0 0 4px; font-size: 12pt; break-after: avoid; }
+    .course-paper-kicker, .course-paper-section h3 { color: #111; }
+    .course-paper-kicker { margin-bottom: 2px; font-size: 9pt; }
+    .course-paper-section { margin-top: 10px; break-inside: auto; }
+    .course-paper-section h3 { margin: 0 0 3px; font-size: 14pt; line-height: 1.25; break-after: avoid; }
+    .course-paper-section h4 { margin: 6px 0 2px; font-size: 12pt; break-after: avoid; }
+    .course-paper-section p { margin: 3px 0; }
+    .course-paper-section :is(ul, ol) { margin: 3px 0; padding-left: 22px; }
+    .course-paper-section :is(ul, ol) li { margin: 2px 0; break-inside: avoid; }
+    .course-paper-section .cours-table-wrapper { margin: 5px 0; overflow: visible; break-inside: avoid; }
+    .course-paper-section .cours-table { font-size: 11pt; line-height: 1.3; }
+    .course-paper-section .cours-table :is(th, td) { padding: 3px 7px; }
+    .course-paper-section .cours-table caption { padding: 2px 0; }
+    .course-paper-section .cours-table td:empty { height: 1.6em; }
+    .course-paper-questions { margin: 3px 0; padding-left: 24px; }
+    .course-paper-questions li { margin: 4px 0; padding-left: 2px; break-inside: avoid; }
+    .course-paper-answer-lines { min-height: 26px; margin-top: 0; }
+    .course-paper-part { margin: 0 0 6px; font-size: 15pt; break-after: avoid; }
     /* La fiche d'exercices suit le cours sans forcer une nouvelle page. */
-    .course-paper-break { break-before: auto; margin-top: 10px; padding-top: 6px; border-top: 1.5px dashed #555; }
+    .course-paper-break { break-before: auto; margin-top: 14px; padding-top: 8px; border-top: 1.5px dashed #555; }
 }
 @media (max-width: 700px) {
     .course-paper-actions { align-items: flex-start; flex-direction: column; }
