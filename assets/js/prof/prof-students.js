@@ -27,6 +27,12 @@ export function initStudents() {
         status.textContent = 'Chargement des élèves…';
         try {
             const rows = await collaborationRpc('refonte_students', { p_school: chosen.etablissement, p_class: chosen.classe });
+            // Identifiants de connexion (partie avant « @ ») ; la liste reste utilisable si la fonction n'existe pas sur la base.
+            let logins = new Map();
+            try {
+                const found = await collaborationRpc('refonte_student_logins', { p_school: chosen.etablissement, p_class: chosen.classe });
+                logins = new Map((found || []).map(row => [row.user_id, row.identifiant]));
+            } catch { logins = new Map(); }
             const verified = await checkSession();
             if (current !== generation || reading !== request) return;
             if (verified.status !== 'authenticated' || verified.user.id !== userId || verified.profile.role !== 'teacher') {
@@ -36,7 +42,13 @@ export function initStudents() {
                 const card = document.createElement('article'); card.className = 'student-card';
                 const state = text('p', ENROLLMENT_LABELS[pupil.enrollment_status] || 'État indisponible');
                 state.className = 'student-state'; state.dataset.state = pupil.enrollment_status;
-                card.append(text('h2', pupil.prenom + ' ' + pupil.nom), state);
+                card.append(text('h2', pupil.prenom + ' ' + pupil.nom));
+                if (logins.size) {
+                    const login = text('p', 'Identifiant : '); login.className = 'student-login';
+                    const value = text('code', logins.get(pupil.user_id) || 'non disponible');
+                    login.append(value); card.append(login);
+                }
+                card.append(state);
                 const form = document.createElement('fieldset'), destination = document.createElement('select');
                 const destinationLabel = text('label', 'Affectation'); destinationLabel.append(destination);
                 for (const row of classes) destination.add(new Option(label(row), key(row)));

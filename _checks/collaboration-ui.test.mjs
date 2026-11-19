@@ -243,3 +243,12 @@ test('professeur : copies rangées en « à corriger », « en cours » ; les co
     assert.match(groups[1].children[2].textContent,/En cours — pas encore rendue/);
     assert.match(h.nodes.get('tracking-status').textContent,/2 à corriger, 1 en cours, 1 déjà corrigée/);
 });
+
+test('gestion élèves : identifiant de connexion affiché sous le nom',async()=>{
+    const row={user_id:'a',prenom:'Alex',nom:'Fictif',etablissement:'mfr',classe:'2de',enrollment_status:'approved'};
+    const h=await harness({mode:'roster',rpc:{refonte_students:()=>[row],refonte_student_logins:()=>[{user_id:'a',identifiant:'alex.fictif2'}]}});
+    const card=h.nodes.get('students-list').children[0];
+    const login=card.children.find(c=>c.className==='student-login');
+    assert.ok(login,'ligne Identifiant absente');
+    assert.match(login.textContent+login.children.map(c=>c.textContent).join(''),/Identifiant : .*alex\.fictif2/);
+});

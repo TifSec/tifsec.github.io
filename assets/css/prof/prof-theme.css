@@ -51,3 +51,12 @@
 :root[data-student-theme] .prof-main :is(.teacher-annotation, .private-course-notes, .private-course-setup, .copy-question-correction, .copy-correction) { color: #43351e; }
 :root[data-student-theme] .prof-main :is(.teacher-annotation, .private-course-notes, .private-course-setup, .copy-question-correction, .copy-correction) :is(h1, h2, h3, h4, p, li, summary, label) { color: #43351e; }
 :root[data-student-theme] .prof-main :is(.teacher-annotation, .private-course-notes, .private-course-setup, .copy-question-correction, .copy-correction) a { color: #245a85; }
+
+/* Suivi des copies rangées par état : couleurs d'état gardées dans tous les thèmes, textes lisibles sur fond sombre. */
+:root[data-student-theme] .prof-main .tracking-copy { border-left-width: 4px; }
+:root[data-student-theme] .prof-main .tracking-copy[data-state="a-corriger"] { border-left-color: #e08a2e; }
+:root[data-student-theme] .prof-main .tracking-copy[data-state="en-cours"] { border-left-color: var(--student-muted); }
+:root[data-student-theme] .prof-main .tracking-copy[data-state="corrigee"] { border-left-color: #35a066; }
+:root[data-student-theme] .prof-main .tracking-copy[aria-pressed="true"] { border-left-width: 4px; }
+:root[data-student-theme] .prof-main .tracking-group + .tracking-group { border-top-color: var(--student-border); }
+:root[data-student-theme] .prof-main :is(.tracking-group-hint, .tracking-history-toggle) { color: var(--student-muted); }
