@@ -86,8 +86,8 @@ export function renderTeacherNotes(preview, summary, content, lesson) {
     for (const note of content.accompagnement || []) {
         const activity = activityOf(note.activite);
         const body = Object.fromEntries(Object.entries(note).filter(([key]) => key !== 'activite'));
-        const guide = 'exemple_au_tableau' in body || 'calculs_de_tete' in body;
-        staged.push([activity, panel(guide ? 'Guide professeur — exemple au tableau, calculs de tête, exercices corrigés' : 'Accompagnement — professeur', body, guide), 'heading']);
+        const guide = 'exemple_au_tableau' in body || 'calculs_de_tete' in body || 'exercices_entrainement' in body;
+        staged.push([activity, panel(guide ? ('exemple_au_tableau' in body ? 'Guide professeur — exemple au tableau, calculs de tête, exercices corrigés' : 'Guide professeur — calculs détaillés') : 'Accompagnement — professeur', body, guide), 'heading']);
     }
     for (const note of content.correction || []) {
         if (!id(note.question)) throw new Error('invalid_question');
