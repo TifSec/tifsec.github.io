@@ -4,6 +4,7 @@
     {% when 'code' %}<pre class="cours-code"><code>{{ bloc.texte | escape }}</code></pre>
     {% when 'tableau' %}<div class="cours-table-wrapper"><table class="cours-table">{% if bloc.titre %}<caption>{{ bloc.titre | escape }}</caption>{% endif %}<thead><tr>{% for colonne in bloc.colonnes %}<th scope="col">{{ colonne | escape }}</th>{% endfor %}</tr></thead><tbody>{% for ligne in bloc.lignes %}<tr>{% for cellule in ligne %}<td>{{ cellule | escape }}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div>
     {% when 'paragraphe' %}<p>{{ bloc.texte | escape }}</p>
+    {% when 'zone' %}{% assign lignes = bloc.lignes | default: 6 | at_most: 12 %}<div class="cours-zone" aria-hidden="true">{% for i in (1..lignes) %}<span></span>{% endfor %}</div>
     {% when 'titre' %}<h4>{{ bloc.texte | escape }}</h4>
     {% when 'citation' %}<blockquote>{{ bloc.texte | escape }}</blockquote>
     {% when 'image' %}{% assign protocole = bloc.url | slice: 0, 8 %}{% assign dossier = bloc.url | slice: 0, 8 %}{% assign image_url = '' %}{% if protocole == 'https://' %}{% assign image_url = bloc.url %}{% elsif dossier == '/assets/' %}{% assign image_url = bloc.url | relative_url %}{% endif %}{% if image_url != '' %}<figure class="cours-document"><img src="{{ image_url | escape }}" alt="{{ bloc.alternative | escape }}" loading="lazy" decoding="async">{% if bloc.legende %}<figcaption>{{ bloc.legende | escape }}</figcaption>{% endif %}</figure>{% endif %}

@@ -7,7 +7,12 @@ const labels = {
     criteres: 'Critères de réussite', bareme_detaille: 'Répartition des points', repartition: 'Barème par case', erreurs_frequentes: 'Erreurs fréquentes', points: 'Points proposés',
     choix_attendus: 'Choix attendus', unite_attendue: 'Unité', tolerance_absolue: 'Tolérance',
     mode: 'Mode de correction', dictionnaire: 'Réponses reconnues par case', champ: 'Case', reponses_acceptees: 'Variantes acceptées', retour_pendant_travail: 'Retour pendant le travail',
-    usage: 'Usage', mots_cles: 'Mots-clés repérés automatiquement (proposition de points)', critere: 'Critère', variantes: 'Mots ou débuts de mots reconnus (« démont* » = démonter, démontage…)', validation_finale: 'Validation finale', prolongements_dans_note: 'Prolongements dans la note'
+    usage: 'Usage', mots_cles: 'Mots-clés repérés automatiquement (proposition de points)', critere: 'Critère', variantes: 'Mots ou débuts de mots reconnus (« démont* » = démonter, démontage…)', validation_finale: 'Validation finale', prolongements_dans_note: 'Prolongements dans la note',
+    avant_de_commencer: 'Avant de commencer', prerequis: 'Prérequis', erreur_a_faire_tomber: 'L’erreur à faire tomber', fil_rouge: 'Fil rouge',
+    conclusion_attendue: 'Conclusion attendue', exemple_au_tableau: 'Exemple résolu à faire au tableau (masqué pour les élèves)',
+    calculs_de_tete: 'Les calculs, et comment les faire de tête', exercices_entrainement: 'Exercices d’entraînement corrigés',
+    points_attention: 'Points d’attention', entrainement: 'Exercices d’entraînement', situation: 'La situation',
+    ce_que_cest: 'Ce que c’est', a_quoi_ca_sert: 'À quoi ça sert', comment_ca_marche: 'Comment ça marche'
 };
 const correctionFields = new Set([
     'attendu', 'explication', 'points', 'criteres', 'repartition', 'choix_attendus',
@@ -81,7 +86,8 @@ export function renderTeacherNotes(preview, summary, content, lesson) {
     for (const note of content.accompagnement || []) {
         const activity = activityOf(note.activite);
         const body = Object.fromEntries(Object.entries(note).filter(([key]) => key !== 'activite'));
-        staged.push([activity, panel('Accompagnement — professeur', body, false), 'heading']);
+        const guide = 'exemple_au_tableau' in body || 'calculs_de_tete' in body;
+        staged.push([activity, panel(guide ? 'Guide professeur — exemple au tableau, calculs de tête, exercices corrigés' : 'Accompagnement — professeur', body, guide), 'heading']);
     }
     for (const note of content.correction || []) {
         if (!id(note.question)) throw new Error('invalid_question');

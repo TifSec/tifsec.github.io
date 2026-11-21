@@ -15,7 +15,11 @@
 .course-paper-section ul li { margin: 6px 0; }
 .course-paper-section .cours-table td:empty { min-width: 3.5em; height: 1.8em; }
 .course-paper-questions li { margin: 12px 0; padding-left: 4px; }
-.course-paper-answer-lines { display: block; min-height: 32px; margin-top: 5px; border-bottom: 1px solid #8795a1; }
+/* Lignes de réponse : deux lignes pointillées assez hautes pour écrire à la main (retours des élèves, 21/11/2026). */
+.course-paper-answer-lines { display: block; margin-top: 2px; }
+.course-paper-answer-lines > span, .cours-zone > span { display: block; height: 34px; border-bottom: 1px dotted #6b7885; }
+/* Zone vide pour recopier l'exemple fait ensemble en classe. */
+.cours-zone { display: block; margin: 4px 0 8px; padding: 0 6px; border: 1px solid #b8c2cc; border-radius: 4px; }
 .course-paper-number { white-space: nowrap; }
 @media print {
     /* Version papier imprimée : texte en 12 pt et interligne aéré (retours des élèves, 18/11/2026),
@@ -46,7 +50,8 @@
     .course-paper-section .cours-table td:empty { height: 1.6em; }
     .course-paper-questions { margin: 3px 0; padding-left: 24px; }
     .course-paper-questions li { margin: 4px 0; padding-left: 2px; break-inside: avoid; }
-    .course-paper-answer-lines { min-height: 26px; margin-top: 0; }
+    .course-paper-answer-lines > span, .cours-zone > span { height: 9mm; }
+    .cours-zone { break-inside: avoid; }
     .course-paper-part { margin: 0 0 6px; font-size: 15pt; break-after: avoid; }
     /* La fiche d'exercices suit le cours sans forcer une nouvelle page. */
     .course-paper-break { break-before: auto; margin-top: 14px; padding-top: 8px; border-top: 1.5px dashed #555; }
