@@ -1,482 +1,512 @@
-titre: 'Séance 16 : Laisser le tableur calculer les indicateurs'
+titre: 'Séance 16 : Les fonctions du tableur pour les indicateurs'
 themes:
-    - EG4, 1-1 — Organiser et traiter des données statistiques à une variable
-problematique: Comment obtenir rapidement les indicateurs d’une grande série avec le tableur ?
+- EG4, 1-1 — Organiser et traiter des données statistiques à une variable
+problematique: Comment faire calculer moyenne, médiane, quartiles et étendue par le tableur, et contrôler le résultat ?
 competences_bo:
-    - EG4, 1-1 — Organiser et traiter des données statistiques à une variable
+- EG4, 1-1 — Organiser et traiter des données statistiques à une variable
 objectifs:
     connaissances:
-        - 'Fonctions : MOYENNE, MEDIANE, MIN, MAX, QUARTILE(plage;1) et QUARTILE(plage;3), NB.'
-        - Le tableur traite des centaines de valeurs sans erreur de calcul.
+    - =MOYENNE(plage) ; =MEDIANE(plage) ; =MIN(plage) ; =MAX(plage).
+    - =QUARTILE(plage;1) et =QUARTILE(plage;3).
     competences:
-        - Utiliser les fonctions statistiques du tableur.
-        - Contrôler un résultat.
+    - Écrire la bonne formule pour un indicateur.
+    - Contrôler un résultat du tableur par un ordre de grandeur.
 pourquoi:
-    - De S11 à S15, tu as calculé à la main sur de petites séries.
-    - 'Le fichier des pesées de l’élevage compte 120 valeurs : le tableur est indispensable.'
+- 'Aujourd’hui, trois notions : les fonctions de position, les fonctions de dispersion, contrôler le tableur.'
+- 'Pour chacune : la notion, la méthode, pourquoi ça marche, un exemple au tableau, puis beaucoup d’exercices.'
 activites:
-    -   id: a01
-        titre: Les fonctions
-        consigne: Tu vas calculer avec les fonctions du tableur les indicateurs principaux des 120 pesées de poulains. On attend trois résultats.
-        contenu:
-            -   type: titre
-                texte: La situation
-            -   type: paragraphe
-                texte: On a 120 pesées de poulains. Calculer la moyenne à la main prendrait longtemps, avec des risques d’erreur.
-            -   type: titre
-                texte: Ce que c’est
-            -   type: paragraphe
-                texte: Une fonction du tableur est une formule toute prête qui calcule un indicateur sur une plage de cellules (par exemple B2:B121, « de B2 à B121 »).
-            -   type: titre
-                texte: À quoi ça sert
-            -   type: liste
-                elements:
-                    - Traiter des centaines de valeurs en quelques secondes.
-                    - Refaire le calcul automatiquement si une donnée change.
-            -   type: titre
-                texte: Comment ça marche
-            -   type: etapes
-                elements:
-                    - Dans une cellule vide, on tape = puis le nom de la fonction et la plage entre parenthèses.
-                    - =NB(plage) d’abord, pour vérifier le nombre de valeurs.
-                    - =MOYENNE, =MEDIANE, =MIN, =MAX donnent les autres indicateurs.
-            -   type: paragraphe
-                texte: 'À retenir : Une formule commence toujours par = ; la plage s’écrit B2:B121.'
-            -   type: titre
-                texte: Exemple fait ensemble en classe
-            -   type: paragraphe
-                texte: Ton professeur résout un exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
-            -   type: titre
-                texte: Exercices d’entraînement (cherche, puis on corrige ensemble)
-            -   type: etapes
-                elements:
-                    - Quelle formule pour la valeur maximale des cellules C2 à C50 ?
-                    - Quelle formule pour compter les nombres de D2 à D30 ?
-            -   type: fichier
-                titre: pesées de 120 poulains à 6 mois
-                url: /assets/fichiers/maths/2de/pesees.ods
-            -   type: liste
-                elements:
-                    - 'Automatisme : calcule 251 − 250,4.'
-            -   type: titre
-                texte: Ta mission
-            -   type: etapes
-                elements:
-                    - 'À toi : ouvre le fichier pesees.ods (à télécharger ci-dessus, 120 poids de poulains à 6 mois) et calcule NB, MOYENNE, MEDIANE, MIN, MAX.'
-                    - Pourquoi NB d’abord ? On vérifie qu’on a bien les 120 valeurs.
-        questions:
-            -   id: q01
-                type: tableau
-                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
-                colonnes:
-                    - Point clé
-                    - Mot(s) manquant(s)
-                lignes:
-                    -   - =MOYENNE(plage) calcule la …… .
-                        - ''
-                    -   - =NB(plage) compte les cellules qui contiennent un …… .
-                        - ''
-                aide: 'Le nom de la fonction le dit : MOYENNE calcule… ? Et NB compte les cellules qui contiennent quoi ?'
-            -   id: q02
-                type: tableau
-                enonce: Écris les résultats.
-                colonnes:
-                    - Indicateur
-                    - Valeur
-                lignes:
-                    -   - NB
-                        - ''
-                    -   - MOYENNE (kg, au dixième)
-                        - ''
-                    -   - MEDIANE (kg)
-                        - ''
-                aide: Tape =NB(…), =MOYENNE(…) et =MEDIANE(…) sur la plage des poids, puis recopie ce qu’affiche le tableur.
-    -   id: a02
-        titre: Les quartiles
-        transition: Tu as la position. Mesure la dispersion.
-        consigne: Tu vas calculer les quartiles et l’écart interquartile des pesées avec le tableur. On attend les valeurs et une formule.
-        contenu:
-            -   type: titre
-                texte: La situation
-            -   type: paragraphe
-                texte: Ranger 120 valeurs à la main pour trouver les quartiles serait très long.
-            -   type: titre
-                texte: Ce que c’est
-            -   type: paragraphe
-                texte: 'La fonction QUARTILE donne directement Q1 ou Q3 : le 2e nombre indique lequel (1 ou 3).'
-            -   type: titre
-                texte: À quoi ça sert
-            -   type: liste
-                elements:
-                    - Mesurer la dispersion d’une grande série sans la ranger.
-            -   type: titre
-                texte: Comment ça marche
-            -   type: etapes
-                elements:
-                    - =QUARTILE(plage;1) donne Q1 ; =QUARTILE(plage;3) donne Q3.
-                    - 'Dans une autre cellule : = (cellule de Q3) − (cellule de Q1) donne l’écart interquartile.'
-            -   type: paragraphe
-                texte: 'À retenir : QUARTILE(plage;1) → Q1 ; QUARTILE(plage;3) → Q3.'
-            -   type: titre
-                texte: Exemple fait ensemble en classe
-            -   type: paragraphe
-                texte: Ton professeur résout un exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
-            -   type: titre
-                texte: Exercices d’entraînement (cherche, puis on corrige ensemble)
-            -   type: etapes
-                elements:
-                    - Écris la formule de Q3 pour les cellules A2 à A41.
-            -   type: titre
-                texte: Ta mission
-            -   type: etapes
-                elements:
-                    - 'À toi : calcule Q1, Q3 et l’écart interquartile des 120 poids.'
-                    - Pourquoi cette fonction ? Elle évite de ranger 120 valeurs à la main.
-        questions:
-            -   id: q01
-                type: tableau
-                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
-                colonnes:
-                    - Point clé
-                    - Mot(s) manquant(s)
-                lignes:
-                    -   - =QUARTILE(plage;1) donne le …… quartile.
-                        - ''
-                    -   - =QUARTILE(plage;3) donne le …… quartile.
-                        - ''
-                aide: 'Le deuxième argument de QUARTILE dit quel quartile : 1 donne le… ? 3 donne le… ?'
-            -   id: q02
-                type: texte
-                enonce: Écris Q1, Q3 et l’écart interquartile.
-                aide: Utilise QUARTILE avec 1 puis 3, et fais la différence pour l’écart interquartile.
-            -   id: q03
-                type: texte
-                enonce: Écris la formule de Q1 (valeurs en B2:B121).
-                aide: La fonction s’écrit avec la plage des poids, un point-virgule, puis le numéro du quartile.
-    -   id: a03
-        titre: Contrôler
-        transition: Les calculs sont faits. Sont-ils plausibles ?
-        consigne: Tu vas contrôler la plausibilité des indicateurs et repérer une valeur suspecte. On attend la valeur et ton action.
-        contenu:
-            -   type: titre
-                texte: La situation
-            -   type: paragraphe
-                texte: Le tableur ne se trompe pas dans ses calculs… mais si une donnée est mal tapée, le résultat est faux. Comment le repérer ?
-            -   type: titre
-                texte: Ce que c’est
-            -   type: paragraphe
-                texte: Contrôler la plausibilité, c’est vérifier qu’un résultat a un ordre de grandeur réaliste.
-            -   type: titre
-                texte: À quoi ça sert
-            -   type: liste
-                elements:
-                    - Repérer une erreur de saisie avant de prendre une décision.
-            -   type: titre
-                texte: Comment ça marche
-            -   type: etapes
-                elements:
-                    - On compare MIN et MAX aux valeurs possibles (un poulain de 6 mois pèse environ 200 à 300 kg).
-                    - On vérifie que la moyenne est entre MIN et MAX et proche de la médiane.
-                    - On cherche la valeur suspecte et on la vérifie auprès de la source.
-            -   type: paragraphe
-                texte: 'À retenir : Une erreur de saisie fausse surtout la moyenne ; la médiane bouge peu.'
-            -   type: titre
-                texte: Exemple fait ensemble en classe
-            -   type: paragraphe
-                texte: Ton professeur résout un exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
-            -   type: titre
-                texte: Exercices d’entraînement (cherche, puis on corrige ensemble)
-            -   type: etapes
-                elements:
-                    - MIN = 1,2 kg pour des chevaux adultes. Que penses-tu ?
-            -   type: titre
-                texte: Ta mission
-            -   type: etapes
-                elements:
-                    - 'À toi : vérifie que la moyenne est entre MIN et MAX, puis repère la valeur suspecte.'
-                    - Pourquoi contrôler ? Un poids de 2 480 kg tapé à la place de 248 fausse la moyenne.
-        questions:
-            -   id: q01
-                type: tableau
-                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
-                colonnes:
-                    - Point clé
-                    - Mot(s) manquant(s)
-                lignes:
-                    -   - On vérifie qu’un résultat est …… (ordre de grandeur).
-                        - ''
-                    -   - Une erreur de saisie fausse surtout la …… .
-                        - ''
-                aide: Un poids de poulain de 2 000 kg est-il possible ? On vérifie l’ordre de… Et quel indicateur une valeur fausse déplace-t-elle le plus ?
-            -   id: q02
-                type: texte
-                enonce: As-tu trouvé une valeur suspecte ? Que fais-tu ?
-                aide: Trie la colonne des poids et regarde le début et la fin de la liste. Si une valeur est impossible, qui peut la corriger ?
-    -   id: a04
-        titre: Pour aller plus loin
-        defi: true
-        facultatif: true
-        contenu:
-            -   type: paragraphe
-                texte: Le tableur peut tracer une boîte à moustaches (selon la version).
-        questions:
-            -   id: q01
-                type: texte
-                enonce: Que montre-t-elle ?
-                aide: La boîte à moustaches dessine la médiane, Q1, Q3, le minimum et le maximum. Qu’est-ce qu’elle permet de voir d’un coup d’œil ?
-    -   id: a05
-        titre: Conclusion de ton travail
-        conclusion: true
-        transition: Le tableur calcule tes indicateurs. Il reste à répondre au problème de départ.
-        questions:
-            -   id: q01
-                type: texte
-                enonce: 'Réponds au problème du jour : comment obtenir rapidement les indicateurs d’une grande série avec le tableur ?'
-                aide: Cite les fonctions du tableur utilisées et les contrôles à faire sur les résultats.
+-   id: a01
+    titre: Partie 1 — Les fonctions de position
+    consigne: 'Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.'
+    contenu:
+    -   type: titre
+        texte: La notion
+    -   type: paragraphe
+        texte: 'Le tableur a des fonctions toutes prêtes : on écrit leur nom et la plage de cellules, il fait le calcul.'
+    -   type: paragraphe
+        texte: Une plage comme B2:B11 désigne toutes les cellules de B2 à B11.
+    -   type: paragraphe
+        texte: 'À retenir : =MOYENNE(B2:B11) ; =MEDIANE(B2:B11) ; =MIN(B2:B11) ; =MAX(B2:B11).'
+    -   type: titre
+        texte: Comment ça fonctionne
+    -   type: etapes
+        elements:
+        - Clique dans une cellule vide.
+        - Tape = puis le nom de la fonction.
+        - Ouvre la parenthèse, écris la plage (ou sélectionne les cellules), ferme la parenthèse.
+        - Valide avec Entrée.
+    -   type: titre
+        texte: Pourquoi ça marche
+    -   type: paragraphe
+        texte: 1. Ce que fait le tableur
+    -   type: liste
+        elements:
+        - =MOYENNE(B2:B11) additionne les 10 cellules et divise par 10, comme toi à la main.
+        - =MEDIANE range les valeurs et prend celle du milieu.
+    -   type: paragraphe
+        texte: 2. Pourquoi la plage est importante
+    -   type: liste
+        elements:
+        - Si tu écris B2:B10, le tableur oublie la cellule B11.
+        - Le calcul est juste… mais sur la mauvaise série.
+    -   type: titre
+        texte: Exemple fait ensemble en classe
+    -   type: paragraphe
+        texte: Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
+    -   type: titre
+        texte: Exercices
+    -   type: paragraphe
+        texte: 'Poids de 10 poulains (kg), dans les cellules B2 à B11 : 42 ; 45 ; 47 ; 48 ; 50 ; 51 ; 53 ; 55 ; 58 ; 61.'
+    questions:
+    -   id: q01
+        type: qcm
+        enonce: Série A — Quelle formule donne la moyenne des poids ?
+        choix:
+        -   id: a
+            texte: MOYENNE(B2:B11)
+        -   id: b
+            texte: =MOYENNE(B2:B11)
+        -   id: c
+            texte: =MOYENNE(B2:B10)
+        aide: Une formule commence par = et la plage va jusqu’à B11.
+    -   id: q02
+        type: qcm
+        enonce: Quelle formule donne la médiane ?
+        choix:
+        -   id: a
+            texte: =MEDIANE(B2:B11)
+        -   id: b
+            texte: =MILIEU(B2:B11)
+        -   id: c
+            texte: =MEDIANE(B2;B11)
+        aide: 'La plage s’écrit avec « : ».'
+    -   id: q03
+        type: qcm
+        enonce: Quelle formule donne le plus grand poids ?
+        choix:
+        -   id: a
+            texte: =GRAND(B2:B11)
+        -   id: b
+            texte: =MIN(B2:B11)
+        -   id: c
+            texte: =MAX(B2:B11)
+        aide: 'Le plus grand : maximum.'
+    -   id: q04
+        type: nombre
+        enonce: Combien de cellules contient la plage B2:B11 ?
+        aide: De 2 à 11.
+    -   id: q05
+        type: nombre
+        enonce: Série B — Quel résultat affiche =MOYENNE(B2:B11) ?
+        unite: kg
+        aide: Calcule la moyenne à la main.
+    -   id: q06
+        type: nombre
+        enonce: Quel résultat affiche =MEDIANE(B2:B11) ?
+        unite: kg
+        aide: Moyenne de la 5e et de la 6e valeur.
+    -   id: q07
+        type: nombre
+        enonce: Quel résultat affiche =MIN(B2:B11) ?
+        unite: kg
+        aide: La plus petite valeur.
+-   id: a02
+    titre: Partie 2 — Les fonctions de dispersion
+    transition: 'Tu sais faire calculer la position. Deuxième notion : la dispersion.'
+    consigne: 'Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.'
+    contenu:
+    -   type: titre
+        texte: La notion
+    -   type: paragraphe
+        texte: 'Pour l’étendue, on combine deux fonctions : MAX − MIN.'
+    -   type: paragraphe
+        texte: Pour les quartiles, la fonction QUARTILE prend la plage et le numéro du quartile.
+    -   type: paragraphe
+        texte: 'À retenir : Étendue : =MAX(B2:B11)-MIN(B2:B11). Q1 : =QUARTILE(B2:B11;1). Q3 : =QUARTILE(B2:B11;3).'
+    -   type: titre
+        texte: Comment ça fonctionne
+    -   type: etapes
+        elements:
+        - 'Étendue : écris =MAX(plage)-MIN(plage) dans une seule cellule.'
+        - 'Q1 : =QUARTILE(plage;1). Q3 : =QUARTILE(plage;3).'
+        - 'Écart interquartile : soustrais la cellule de Q1 de celle de Q3.'
+        - Le point-virgule sépare la plage et le numéro du quartile.
+    -   type: titre
+        texte: Pourquoi ça marche
+    -   type: paragraphe
+        texte: 1. Une formule peut contenir un calcul
+    -   type: liste
+        elements:
+        - =MAX(B2:B11)-MIN(B2:B11) calcule le max, le min, puis la soustraction.
+        - C’est exactement « max − min » écrit pour le tableur.
+    -   type: paragraphe
+        texte: 2. Pourquoi un numéro dans QUARTILE
+    -   type: liste
+        elements:
+        - La même fonction donne Q1 (1), la médiane (2) ou Q3 (3).
+        - Le numéro dit au tableur lequel tu veux.
+    -   type: titre
+        texte: Exemple fait ensemble en classe
+    -   type: paragraphe
+        texte: Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
+    -   type: titre
+        texte: Exercices
+    -   type: paragraphe
+        texte: Même série de 10 poids en B2:B11.
+    questions:
+    -   id: q01
+        type: qcm
+        enonce: Série A — Quelle formule donne l’étendue ?
+        choix:
+        -   id: a
+            texte: =MAX(B2:B11)-MIN(B2:B11)
+        -   id: b
+            texte: =ETENDUE(B2:B11)
+        -   id: c
+            texte: =MAX(B2:B11)+MIN(B2:B11)
+        aide: Étendue = max − min.
+    -   id: q02
+        type: qcm
+        enonce: Quelle formule donne Q1 ?
+        choix:
+        -   id: a
+            texte: =QUARTILE(B2:B11)
+        -   id: b
+            texte: =QUARTILE(B2:B11;1)
+        -   id: c
+            texte: =QUARTILE(1)
+        aide: Il faut la plage et le numéro.
+    -   id: q03
+        type: qcm
+        enonce: Quelle formule donne Q3 ?
+        choix:
+        -   id: a
+            texte: =QUARTILE(B2:B11;2)
+        -   id: b
+            texte: =QUARTILE3(B2:B11)
+        -   id: c
+            texte: =QUARTILE(B2:B11;3)
+        aide: Numéro 3.
+    -   id: q04
+        type: nombre
+        enonce: Série B — Quel résultat affiche la formule de l’étendue ?
+        unite: kg
+        aide: Max − min, à la main.
+    -   id: q05
+        type: nombre
+        enonce: Calcule Q1 à la main (méthode du cours).
+        unite: kg
+        aide: 10 ÷ 4 = 2,5 → rang 3.
+    -   id: q06
+        type: nombre
+        enonce: Calcule Q3 à la main (méthode du cours).
+        unite: kg
+        aide: 30 ÷ 4 = 7,5 → rang 8.
+    -   id: q07
+        type: nombre
+        enonce: Écart interquartile (avec tes Q1 et Q3) ?
+        unite: kg
+        aide: Q3 − Q1.
+-   id: a03
+    titre: Partie 3 — Contrôler le résultat du tableur
+    transition: 'Dernière notion : ne pas croire le tableur les yeux fermés.'
+    consigne: 'Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.'
+    contenu:
+    -   type: titre
+        texte: La notion
+    -   type: paragraphe
+        texte: Le tableur calcule toujours ce qu’on lui demande, même si la formule est fausse.
+    -   type: paragraphe
+        texte: Il faut donc contrôler le résultat avec un ordre de grandeur.
+    -   type: paragraphe
+        texte: 'À retenir : Une moyenne ou une médiane est entre le min et le max ; une étendue est positive ; Q1 ≤ médiane ≤ Q3.'
+    -   type: titre
+        texte: Comment ça fonctionne
+    -   type: etapes
+        elements:
+        - Regarde le min et le max de la série.
+        - Vérifie que la moyenne et la médiane sont entre les deux.
+        - Vérifie que Q1 ≤ médiane ≤ Q3.
+        - Si ce n’est pas le cas, relis la formule et la plage.
+    -   type: titre
+        texte: Pourquoi ça marche
+    -   type: paragraphe
+        texte: 1. Pourquoi la moyenne est entre min et max
+    -   type: liste
+        elements:
+        - Si on partage le total en parts égales, chaque part ne peut pas dépasser la plus grande valeur.
+        - Ni être plus petite que la plus petite.
+    -   type: paragraphe
+        texte: 2. D’où viennent les erreurs
+    -   type: liste
+        elements:
+        - Une mauvaise plage, une cellule vide, une valeur mal tapée (450 au lieu de 45).
+        - Le contrôle repère ces erreurs en quelques secondes.
+    -   type: titre
+        texte: Exemple fait ensemble en classe
+    -   type: paragraphe
+        texte: Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
+    -   type: titre
+        texte: Exercices
+    -   type: paragraphe
+        texte: Poids entre 42 et 61 kg (même série).
+    questions:
+    -   id: q01
+        type: qcm
+        enonce: Série A — Le tableur affiche une moyenne de 92 kg. Est-ce possible ?
+        choix:
+        -   id: a
+            texte: Oui
+        -   id: b
+            texte: Non, la moyenne doit être entre 42 et 61 kg
+        aide: Compare avec le min et le max.
+    -   id: q02
+        type: qcm
+        enonce: Le tableur affiche une médiane de 50,5 kg. Est-ce possible ?
+        choix:
+        -   id: a
+            texte: Oui
+        -   id: b
+            texte: Non
+        aide: Est-ce entre 42 et 61 ?
+    -   id: q03
+        type: qcm
+        enonce: Le tableur affiche Q1 = 56 kg et Q3 = 48 kg. Est-ce possible ?
+        choix:
+        -   id: a
+            texte: Oui
+        -   id: b
+            texte: Non, Q1 doit être plus petit que Q3
+        aide: Q1 ≤ Q3.
+    -   id: q04
+        type: qcm
+        enonce: Le tableur affiche une étendue de −19. Que s’est-il passé ?
+        choix:
+        -   id: a
+            texte: La formule fait MIN − MAX au lieu de MAX − MIN
+        -   id: b
+            texte: Rien, c’est juste
+        aide: Une étendue est toujours positive.
+    -   id: q05
+        type: nombre
+        enonce: Série B — Un poids de 45 kg a été tapé 450. De combien la somme a-t-elle augmenté ?
+        unite: kg
+        aide: 450 − 45.
+    -   id: q06
+        type: nombre
+        enonce: De combien la moyenne des 10 poids a-t-elle augmenté ?
+        unite: kg
+        aide: Écart de la somme ÷ 10.
+-   id: a04
+    titre: Encore des exercices (si tu as fini)
+    defi: true
+    facultatif: true
+    contenu:
+    -   type: paragraphe
+        texte: Tu as fini ? Entraîne-toi encore. Ces exercices ne comptent pas dans la note.
+    questions:
+    -   id: q01
+        type: qcm
+        enonce: Formule du plus petit poids en C2:C21 ?
+        choix:
+        -   id: a
+            texte: =PETIT(C2:C21)
+        -   id: b
+            texte: =MIN(C2:C21)
+    -   id: q02
+        type: nombre
+        enonce: Combien de cellules dans C2:C21 ?
+    -   id: q03
+        type: qcm
+        enonce: Formule de la moyenne en D3:D15 ?
+        choix:
+        -   id: a
+            texte: =MOYENNE(D3:D15)
+        -   id: b
+            texte: =MOYENNE(D3;D15)
+    -   id: q04
+        type: qcm
+        enonce: Valeurs entre 10 et 20 ; le tableur donne une médiane de 25. Possible ?
+        choix:
+        -   id: a
+            texte: Oui
+        -   id: b
+            texte: Non
 retenir:
-    - =MOYENNE, =MEDIANE, =QUARTILE(plage;1).
-    - Contrôler l’ordre de grandeur.
+- Une formule commence par = ; la plage B2:B11 veut dire « de B2 à B11 ».
+- =MOYENNE(B2:B11) ; =MEDIANE(B2:B11) ; =MIN(…) ; =MAX(…).
+- '=QUARTILE(B2:B11;1) pour Q1, ;3 pour Q3. Étendue : =MAX(…)−MIN(…).'
+- 'Le tableur peut calculer les quartiles autrement qu’à la main : on vérifie l’ordre de grandeur.'
 sources:
-    -   type: lien
-        titre: ChloroFil — Seconde professionnelle, document d’accompagnement du module EG4
-        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/2nde-pro/2nde-pro-da-EG4.pdf
+-   type: lien
+    titre: ChloroFil — Seconde professionnelle, document d’accompagnement du module EG4
+    url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/2nde-pro/2nde-pro-da-EG4.pdf
 version_papier:
     surtitre: Cours et exercices — version papier
-    titre: Laisser le tableur calculer les indicateurs
-    introduction: Comment obtenir rapidement les indicateurs d’une grande série avec le tableur ?
+    titre: Les fonctions du tableur pour les indicateurs
+    introduction: 'Trois notions : fonctions de position, fonctions de dispersion, contrôler. Pour chacune : la notion, la méthode, l’exemple au tableau, puis les exercices.'
     sections:
-        -   titre: Le cours en bref
-            blocs:
-                -   type: paragraphe
-                    texte: 'Le problème à résoudre : Comment obtenir rapidement les indicateurs d’une grande série avec le tableur ?'
-                -   type: titre
-                    texte: Ce que tu vas apprendre
-                -   type: liste
-                    elements:
-                        - 'Fonctions : MOYENNE, MEDIANE, MIN, MAX, QUARTILE(plage;1) et QUARTILE(plage;3), NB.'
-                        - Le tableur traite des centaines de valeurs sans erreur de calcul.
-                -   type: titre
-                    texte: Ce que tu vas savoir faire
-                -   type: liste
-                    elements:
-                        - Utiliser les fonctions statistiques du tableur.
-                        - Contrôler un résultat.
-                -   type: titre
-                    texte: Pourquoi cette séance ?
-                -   type: paragraphe
-                    texte: 'De S11 à S15, tu as calculé à la main sur de petites séries. Le fichier des pesées de l’élevage compte 120 valeurs : le tableur est indispensable.'
-                -   type: paragraphe
-                    texte: 'Comment utiliser cette fiche : pour chaque partie, lis la méthode et l’exemple, complète les points clés, puis fais l’exercice. Réponds sur les lignes.'
-        -   titre: I. Les fonctions
-            blocs:
-                -   type: titre
-                    texte: La situation
-                -   type: paragraphe
-                    texte: On a 120 pesées de poulains. Calculer la moyenne à la main prendrait longtemps, avec des risques d’erreur.
-                -   type: titre
-                    texte: Ce que c’est
-                -   type: paragraphe
-                    texte: Une fonction du tableur est une formule toute prête qui calcule un indicateur sur une plage de cellules (par exemple B2:B121, « de B2 à B121 »).
-                -   type: titre
-                    texte: À quoi ça sert
-                -   type: liste
-                    elements:
-                        - Traiter des centaines de valeurs en quelques secondes.
-                        - Refaire le calcul automatiquement si une donnée change.
-                -   type: titre
-                    texte: Comment ça marche
-                -   type: etapes
-                    elements:
-                        - Dans une cellule vide, on tape = puis le nom de la fonction et la plage entre parenthèses.
-                        - =NB(plage) d’abord, pour vérifier le nombre de valeurs.
-                        - =MOYENNE, =MEDIANE, =MIN, =MAX donnent les autres indicateurs.
-                -   type: paragraphe
-                    texte: 'À retenir : Une formule commence toujours par = ; la plage s’écrit B2:B121.'
-                -   type: titre
-                    texte: Exemple fait ensemble en classe
-                -   type: zone
-                    lignes: 6
-                -   type: liste
-                    elements:
-                        - 'Automatisme : calcule 251 − 250,4.'
-                -   type: titre
-                    texte: Ce que tu vas faire
-                -   type: paragraphe
-                    texte: Tu vas calculer avec les fonctions du tableur les indicateurs principaux des 120 pesées de poulains. On attend trois résultats.
-                -   type: titre
-                    texte: Ta mission
-                -   type: etapes
-                    elements:
-                        - 'À toi : ouvre le fichier pesees.ods (à télécharger ci-dessus, 120 poids de poulains à 6 mois) et calcule NB, MOYENNE, MEDIANE, MIN, MAX.'
-                        - Pourquoi NB d’abord ? On vérifie qu’on a bien les 120 valeurs.
-                -   type: titre
-                    texte: Exemple et documents
-                -   type: fichier
-                    titre: pesées de 120 poulains à 6 mois
-                    url: /assets/fichiers/maths/2de/pesees.ods
-                -   type: titre
-                    texte: Points clés à compléter
-                -   type: trous
-                    elements:
-                        -   - '=MOYENNE(plage) calcule la '
-                            - ''
-                            - ' .'
-                        -   - '=NB(plage) compte les cellules qui contiennent un '
-                            - ''
-                            - ' .'
-                -   type: titre
-                    texte: Exercice 1 — Les fonctions
-                -   type: tableau
-                    colonnes:
-                        - Indicateur
-                        - Valeur
-                    lignes:
-                        -   - NB
-                            - ''
-                        -   - MOYENNE (kg, au dixième)
-                            - ''
-                        -   - MEDIANE (kg)
-                            - ''
-            questions:
-                - Entraînement — Quelle formule pour la valeur maximale des cellules C2 à C50 ?
-                - Entraînement — Quelle formule pour compter les nombres de D2 à D30 ?
-                - Écris les résultats.
-        -   titre: II. Les quartiles
-            blocs:
-                -   type: titre
-                    texte: La situation
-                -   type: paragraphe
-                    texte: Ranger 120 valeurs à la main pour trouver les quartiles serait très long.
-                -   type: titre
-                    texte: Ce que c’est
-                -   type: paragraphe
-                    texte: 'La fonction QUARTILE donne directement Q1 ou Q3 : le 2e nombre indique lequel (1 ou 3).'
-                -   type: titre
-                    texte: À quoi ça sert
-                -   type: liste
-                    elements:
-                        - Mesurer la dispersion d’une grande série sans la ranger.
-                -   type: titre
-                    texte: Comment ça marche
-                -   type: etapes
-                    elements:
-                        - =QUARTILE(plage;1) donne Q1 ; =QUARTILE(plage;3) donne Q3.
-                        - 'Dans une autre cellule : = (cellule de Q3) − (cellule de Q1) donne l’écart interquartile.'
-                -   type: paragraphe
-                    texte: 'À retenir : QUARTILE(plage;1) → Q1 ; QUARTILE(plage;3) → Q3.'
-                -   type: titre
-                    texte: Exemple fait ensemble en classe
-                -   type: zone
-                    lignes: 6
-                -   type: titre
-                    texte: Ce que tu vas faire
-                -   type: paragraphe
-                    texte: Tu vas calculer les quartiles et l’écart interquartile des pesées avec le tableur. On attend les valeurs et une formule.
-                -   type: titre
-                    texte: Ta mission
-                -   type: etapes
-                    elements:
-                        - 'À toi : calcule Q1, Q3 et l’écart interquartile des 120 poids.'
-                        - Pourquoi cette fonction ? Elle évite de ranger 120 valeurs à la main.
-                -   type: titre
-                    texte: Points clés à compléter
-                -   type: trous
-                    elements:
-                        -   - '=QUARTILE(plage;1) donne le '
-                            - ''
-                            - ' quartile.'
-                        -   - '=QUARTILE(plage;3) donne le '
-                            - ''
-                            - ' quartile.'
-                -   type: titre
-                    texte: Exercice 2 — Les quartiles
-            questions:
-                - Entraînement — Écris la formule de Q3 pour les cellules A2 à A41.
-                - Écris Q1, Q3 et l’écart interquartile.
-                - Écris la formule de Q1 (valeurs en B2:B121).
-        -   titre: III. Contrôler
-            blocs:
-                -   type: titre
-                    texte: La situation
-                -   type: paragraphe
-                    texte: Le tableur ne se trompe pas dans ses calculs… mais si une donnée est mal tapée, le résultat est faux. Comment le repérer ?
-                -   type: titre
-                    texte: Ce que c’est
-                -   type: paragraphe
-                    texte: Contrôler la plausibilité, c’est vérifier qu’un résultat a un ordre de grandeur réaliste.
-                -   type: titre
-                    texte: À quoi ça sert
-                -   type: liste
-                    elements:
-                        - Repérer une erreur de saisie avant de prendre une décision.
-                -   type: titre
-                    texte: Comment ça marche
-                -   type: etapes
-                    elements:
-                        - On compare MIN et MAX aux valeurs possibles (un poulain de 6 mois pèse environ 200 à 300 kg).
-                        - On vérifie que la moyenne est entre MIN et MAX et proche de la médiane.
-                        - On cherche la valeur suspecte et on la vérifie auprès de la source.
-                -   type: paragraphe
-                    texte: 'À retenir : Une erreur de saisie fausse surtout la moyenne ; la médiane bouge peu.'
-                -   type: titre
-                    texte: Exemple fait ensemble en classe
-                -   type: zone
-                    lignes: 6
-                -   type: titre
-                    texte: Ce que tu vas faire
-                -   type: paragraphe
-                    texte: Tu vas contrôler la plausibilité des indicateurs et repérer une valeur suspecte. On attend la valeur et ton action.
-                -   type: titre
-                    texte: Ta mission
-                -   type: etapes
-                    elements:
-                        - 'À toi : vérifie que la moyenne est entre MIN et MAX, puis repère la valeur suspecte.'
-                        - Pourquoi contrôler ? Un poids de 2 480 kg tapé à la place de 248 fausse la moyenne.
-                -   type: titre
-                    texte: Points clés à compléter
-                -   type: trous
-                    elements:
-                        -   - 'On vérifie qu’un résultat est '
-                            - ''
-                            - ' (ordre de grandeur).'
-                        -   - 'Une erreur de saisie fausse surtout la '
-                            - ''
-                            - ' .'
-                -   type: titre
-                    texte: Exercice 3 — Contrôler
-            questions:
-                - Entraînement — MIN = 1,2 kg pour des chevaux adultes. Que penses-tu ?
-                - As-tu trouvé une valeur suspecte ? Que fais-tu ?
-        -   titre: Conclusion
-            blocs:
-                -   type: paragraphe
-                    texte: Avec ce que tu as fait dans les parties précédentes, réponds en quelques phrases complètes.
-            questions:
-                - 'Réponds au problème du jour : comment obtenir rapidement les indicateurs d’une grande série avec le tableur ?'
-        -   titre: Pour aller plus loin (facultatif)
-            blocs:
-                -   type: paragraphe
-                    texte: Le tableur peut tracer une boîte à moustaches (selon la version).
-            questions:
-                - Que montre-t-elle ?
-        -   titre: À retenir
-            blocs:
-                -   type: liste
-                    elements:
-                        - =MOYENNE, =MEDIANE, =QUARTILE(plage;1).
-                        - Contrôler l’ordre de grandeur.
-        -   titre: Exercice 1 — Formules
-            blocs: []
-            questions:
-                - Écris la formule de la moyenne des cellules B2 à B51.
-                - Et du premier quartile ?
-            saut_page: true
-            surtitre: Fiche d’exercices
-        -   titre: Exercice 2 — Contrôle
-            blocs: []
-            questions:
-                - MIN = 180, MAX = 320, MOYENNE = 412. Est-ce possible ?
-        -   titre: Exercice 3 — Comptage
-            blocs: []
-            questions:
-                - Quelle fonction compte les cellules qui contiennent un nombre ?
+    -   titre: I. Les fonctions de position
+        blocs:
+        -   type: titre
+            texte: La notion
+        -   type: paragraphe
+            texte: 'Le tableur a des fonctions toutes prêtes : on écrit leur nom et la plage de cellules, il fait le calcul.'
+        -   type: paragraphe
+            texte: Une plage comme B2:B11 désigne toutes les cellules de B2 à B11.
+        -   type: titre
+            texte: À retenir
+        -   type: paragraphe
+            texte: =MOYENNE(B2:B11) ; =MEDIANE(B2:B11) ; =MIN(B2:B11) ; =MAX(B2:B11).
+        -   type: titre
+            texte: Comment ça fonctionne
+        -   type: etapes
+            elements:
+            - Clique dans une cellule vide.
+            - Tape = puis le nom de la fonction.
+            - Ouvre la parenthèse, écris la plage (ou sélectionne les cellules), ferme la parenthèse.
+            - Valide avec Entrée.
+        -   type: titre
+            texte: Pourquoi ça marche
+        -   type: paragraphe
+            texte: 1. Ce que fait le tableur
+        -   type: liste
+            elements:
+            - =MOYENNE(B2:B11) additionne les 10 cellules et divise par 10, comme toi à la main.
+            - =MEDIANE range les valeurs et prend celle du milieu.
+        -   type: paragraphe
+            texte: 2. Pourquoi la plage est importante
+        -   type: liste
+            elements:
+            - Si tu écris B2:B10, le tableur oublie la cellule B11.
+            - Le calcul est juste… mais sur la mauvaise série.
+        -   type: titre
+            texte: Exemple fait ensemble en classe
+        -   type: zone
+            lignes: 6
+        -   type: titre
+            texte: Exercices (calculatrice autorisée)
+        -   type: paragraphe
+            texte: 'Poids de 10 poulains (kg), dans les cellules B2 à B11 : 42 ; 45 ; 47 ; 48 ; 50 ; 51 ; 53 ; 55 ; 58 ; 61.'
+        questions:
+        - 'Série A — Quelle formule donne la moyenne des poids ? Choix : MOYENNE(B2:B11) / =MOYENNE(B2:B11) / =MOYENNE(B2:B10).'
+        - 'Quelle formule donne la médiane ? Choix : =MEDIANE(B2:B11) / =MILIEU(B2:B11) / =MEDIANE(B2;B11).'
+        - 'Quelle formule donne le plus grand poids ? Choix : =GRAND(B2:B11) / =MIN(B2:B11) / =MAX(B2:B11).'
+        - Combien de cellules contient la plage B2:B11 ?
+        - Série B — Quel résultat affiche =MOYENNE(B2:B11) ? (en kg)
+        - Quel résultat affiche =MEDIANE(B2:B11) ? (en kg)
+        - Quel résultat affiche =MIN(B2:B11) ? (en kg)
+    -   titre: II. Les fonctions de dispersion
+        blocs:
+        -   type: titre
+            texte: La notion
+        -   type: paragraphe
+            texte: 'Pour l’étendue, on combine deux fonctions : MAX − MIN.'
+        -   type: paragraphe
+            texte: Pour les quartiles, la fonction QUARTILE prend la plage et le numéro du quartile.
+        -   type: titre
+            texte: À retenir
+        -   type: paragraphe
+            texte: 'Étendue : =MAX(B2:B11)-MIN(B2:B11). Q1 : =QUARTILE(B2:B11;1). Q3 : =QUARTILE(B2:B11;3).'
+        -   type: titre
+            texte: Comment ça fonctionne
+        -   type: etapes
+            elements:
+            - 'Étendue : écris =MAX(plage)-MIN(plage) dans une seule cellule.'
+            - 'Q1 : =QUARTILE(plage;1). Q3 : =QUARTILE(plage;3).'
+            - 'Écart interquartile : soustrais la cellule de Q1 de celle de Q3.'
+            - Le point-virgule sépare la plage et le numéro du quartile.
+        -   type: titre
+            texte: Pourquoi ça marche
+        -   type: paragraphe
+            texte: 1. Une formule peut contenir un calcul
+        -   type: liste
+            elements:
+            - =MAX(B2:B11)-MIN(B2:B11) calcule le max, le min, puis la soustraction.
+            - C’est exactement « max − min » écrit pour le tableur.
+        -   type: paragraphe
+            texte: 2. Pourquoi un numéro dans QUARTILE
+        -   type: liste
+            elements:
+            - La même fonction donne Q1 (1), la médiane (2) ou Q3 (3).
+            - Le numéro dit au tableur lequel tu veux.
+        -   type: titre
+            texte: Exemple fait ensemble en classe
+        -   type: zone
+            lignes: 6
+        -   type: titre
+            texte: Exercices (calculatrice autorisée)
+        -   type: paragraphe
+            texte: Même série de 10 poids en B2:B11.
+        questions:
+        - 'Série A — Quelle formule donne l’étendue ? Choix : =MAX(B2:B11)-MIN(B2:B11) / =ETENDUE(B2:B11) / =MAX(B2:B11)+MIN(B2:B11).'
+        - 'Quelle formule donne Q1 ? Choix : =QUARTILE(B2:B11) / =QUARTILE(B2:B11;1) / =QUARTILE(1).'
+        - 'Quelle formule donne Q3 ? Choix : =QUARTILE(B2:B11;2) / =QUARTILE3(B2:B11) / =QUARTILE(B2:B11;3).'
+        - Série B — Quel résultat affiche la formule de l’étendue ? (en kg)
+        - Calcule Q1 à la main (méthode du cours). (en kg)
+        - Calcule Q3 à la main (méthode du cours). (en kg)
+        - Écart interquartile (avec tes Q1 et Q3) ? (en kg)
+    -   titre: III. Contrôler le résultat du tableur
+        blocs:
+        -   type: titre
+            texte: La notion
+        -   type: paragraphe
+            texte: Le tableur calcule toujours ce qu’on lui demande, même si la formule est fausse.
+        -   type: paragraphe
+            texte: Il faut donc contrôler le résultat avec un ordre de grandeur.
+        -   type: titre
+            texte: À retenir
+        -   type: paragraphe
+            texte: Une moyenne ou une médiane est entre le min et le max ; une étendue est positive ; Q1 ≤ médiane ≤ Q3.
+        -   type: titre
+            texte: Comment ça fonctionne
+        -   type: etapes
+            elements:
+            - Regarde le min et le max de la série.
+            - Vérifie que la moyenne et la médiane sont entre les deux.
+            - Vérifie que Q1 ≤ médiane ≤ Q3.
+            - Si ce n’est pas le cas, relis la formule et la plage.
+        -   type: titre
+            texte: Pourquoi ça marche
+        -   type: paragraphe
+            texte: 1. Pourquoi la moyenne est entre min et max
+        -   type: liste
+            elements:
+            - Si on partage le total en parts égales, chaque part ne peut pas dépasser la plus grande valeur.
+            - Ni être plus petite que la plus petite.
+        -   type: paragraphe
+            texte: 2. D’où viennent les erreurs
+        -   type: liste
+            elements:
+            - Une mauvaise plage, une cellule vide, une valeur mal tapée (450 au lieu de 45).
+            - Le contrôle repère ces erreurs en quelques secondes.
+        -   type: titre
+            texte: Exemple fait ensemble en classe
+        -   type: zone
+            lignes: 6
+        -   type: titre
+            texte: Exercices (calculatrice autorisée)
+        -   type: paragraphe
+            texte: Poids entre 42 et 61 kg (même série).
+        questions:
+        - 'Série A — Le tableur affiche une moyenne de 92 kg. Est-ce possible ? Choix : Oui / Non, la moyenne doit être entre 42 et 61 kg.'
+        - 'Le tableur affiche une médiane de 50,5 kg. Est-ce possible ? Choix : Oui / Non.'
+        - 'Le tableur affiche Q1 = 56 kg et Q3 = 48 kg. Est-ce possible ? Choix : Oui / Non, Q1 doit être plus petit que Q3.'
+        - 'Le tableur affiche une étendue de −19. Que s’est-il passé ? Choix : La formule fait MIN − MAX au lieu de MAX − MIN / Rien, c’est juste.'
+        - Série B — Un poids de 45 kg a été tapé 450. De combien la somme a-t-elle augmenté ? (en kg)
+        - De combien la moyenne des 10 poids a-t-elle augmenté ? (en kg)
+    -   titre: Encore des exercices (si tu as fini)
+        blocs: []
+        questions:
+        - 'Formule du plus petit poids en C2:C21 ? Choix : =PETIT(C2:C21) / =MIN(C2:C21).'
+        - Combien de cellules dans C2:C21 ?
+        - 'Formule de la moyenne en D3:D15 ? Choix : =MOYENNE(D3:D15) / =MOYENNE(D3;D15).'
+        - 'Valeurs entre 10 et 20 ; le tableur donne une médiane de 25. Possible ? Choix : Oui / Non.'
+    -   titre: À retenir
+        blocs:
+        -   type: liste
+            elements:
+            - Une formule commence par = ; la plage B2:B11 veut dire « de B2 à B11 ».
+            - =MOYENNE(B2:B11) ; =MEDIANE(B2:B11) ; =MIN(…) ; =MAX(…).
+            - '=QUARTILE(B2:B11;1) pour Q1, ;3 pour Q3. Étendue : =MAX(…)−MIN(…).'
+            - 'Le tableur peut calculer les quartiles autrement qu’à la main : on vérifie l’ordre de grandeur.'
