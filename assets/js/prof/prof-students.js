@@ -56,7 +56,8 @@ export function initStudents() {
                 const save = text('button', 'Enregistrer l’affectation'), approve = text('button', 'Valider l’inscription');
                 save.type = approve.type = 'button'; approve.hidden = pupil.enrollment_status === 'approved';
                 approve.className = 'student-approve';
-                form.append(destinationLabel, save, approve); card.append(form); list.append(card);
+                form.append(destinationLabel, save, approve); card.append(form);
+                card.append(passwordForm(pupil)); list.append(card);
                 async function update(approval) {
                     if (busy || current !== generation) return;
                     const target = classes.find(row => key(row) === destination.value);
@@ -81,6 +82,38 @@ export function initStudents() {
             }
             status.textContent = rows.length ? rows.length + ' élève(s) dans cette classe.' : 'Aucun élève inscrit dans cette classe.';
         } catch { if (current === generation && reading === request) status.textContent = 'Impossible de charger les élèves. Réessayez en actualisant.'; }
+    }
+    // Nouveau mot de passe tapé par l'élève sur le poste du professeur ; jamais affiché ni conservé par la page.
+    function passwordForm(pupil) {
+        const box = document.createElement('details'); box.className = 'student-password';
+        box.append(text('summary', 'Nouveau mot de passe'));
+        const first = document.createElement('input'), second = document.createElement('input');
+        for (const field of [first, second]) { field.type = 'password'; field.autocomplete = 'new-password'; field.minLength = 8; field.maxLength = 72; }
+        const firstLabel = text('label', 'Nouveau mot de passe (8 caractères minimum)'); firstLabel.append(first);
+        const secondLabel = text('label', 'Le retaper'); secondLabel.append(second);
+        const show = document.createElement('input'); show.type = 'checkbox';
+        const showLabel = document.createElement('label'); showLabel.className = 'student-password-show'; showLabel.append(show, ' Afficher');
+        show.addEventListener('change', () => { first.type = second.type = show.checked ? 'text' : 'password'; });
+        const send = text('button', 'Enregistrer le mot de passe'); send.type = 'button';
+        const note = text('p', ''); note.className = 'student-password-note'; note.setAttribute('role', 'status');
+        function clear() { first.value = second.value = ''; show.checked = false; first.type = second.type = 'password'; }
+        box.addEventListener('toggle', () => { if (!box.open) { clear(); note.textContent = ''; } else first.focus(); });
+        send.addEventListener('click', async () => {
+            if (busy) return;
+            if (first.value.length < 8) { note.textContent = 'Le mot de passe doit faire au moins 8 caractères.'; first.focus(); return; }
+            if (first.value.length > 72) { note.textContent = 'Le mot de passe est trop long (72 caractères maximum).'; return; }
+            if (first.value !== second.value) { note.textContent = 'Les deux mots de passe sont différents.'; second.focus(); return; }
+            busy = true; send.disabled = true; note.textContent = 'Enregistrement…';
+            try {
+                await collaborationRpc('refonte_reset_student_password', { p_student: pupil.user_id, p_password: first.value });
+                clear(); note.textContent = 'Mot de passe changé. L’élève peut se connecter avec son identifiant et ce nouveau mot de passe.';
+            } catch (error) {
+                note.textContent = error?.code === '42501' ? 'Cet élève n’est pas dans une de vos classes.' :
+                    error?.code === 'PGRST202' ? 'Fonction absente de la base : demandez sa mise en place.' : 'Mot de passe non changé. Réessayez.';
+            } finally { busy = false; send.disabled = false; }
+        });
+        box.append(firstLabel, secondLabel, showLabel, send, note);
+        return box;
     }
     async function load() {
         reset(); const current = generation;

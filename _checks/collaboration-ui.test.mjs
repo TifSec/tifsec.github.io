@@ -18,10 +18,11 @@ class Node {
     removeEventListener(type, fn) { if(this.events.get(type)===fn)this.events.delete(type); }
     fire(type) { return this.events.get(type)?.({}); }
     setAttribute(key,value) { this.attributes[key]=value; }
+    focus() {}
     querySelectorAll(selector) {
         const all=this.children.flatMap(child=>child instanceof Node ? [child,...child.querySelectorAll('*')] : []);
         return all.filter(child=> selector==='*' || (selector==='button'&&child.tagName==='button') ||
-            (selector==='fieldset'&&child.tagName==='fieldset') || (selector==='[data-answer-id]'&&child.dataset.answerId) || (selector==='input:checked'&&child.tagName==='input'&&child.checked));
+            (selector==='fieldset'&&child.tagName==='fieldset') || (selector==='input'&&child.tagName==='input') || (selector==='[data-answer-id]'&&child.dataset.answerId) || (selector==='input:checked'&&child.tagName==='input'&&child.checked));
     }
 }
 
@@ -203,12 +204,27 @@ test('gestion élèves : validation explicite, état attendu envoyé et liste ac
     let approved=false;
     const row={user_id:'a',prenom:'Alex',nom:'Fictif',etablissement:'college',classe:'3e',enrollment_status:'pending'};
     const h=await harness({mode:'roster',rpc:{refonte_students:()=>[{...row,enrollment_status:approved?'approved':'pending'}],refonte_update_student:()=>{approved=true;}}});
-    const buttons=h.nodes.get('students-list').querySelectorAll('button');assert.equal(buttons.length,2);
+    const buttons=h.nodes.get('students-list').querySelectorAll('button');assert.equal(buttons.length,3);
     assert.equal(h.controls.calls.some(c=>c.name==='refonte_update_student'),false);
     await buttons[1].fire('click');
     const call=h.controls.calls.find(c=>c.name==='refonte_update_student');
     assert.equal(call.params.p_approve,true);assert.equal(call.params.p_expected_status,'pending');assert.equal(call.params.p_student,'a');
     assert.match(h.nodes.get('students-status').textContent,/validée/);
+});
+
+test('gestion élèves : nouveau mot de passe vérifié avant envoi, champs vidés après',async()=>{
+    const row={user_id:'a',prenom:'Alex',nom:'Fictif',etablissement:'college',classe:'3e',enrollment_status:'approved'};
+    const h=await harness({mode:'roster',rpc:{refonte_students:()=>[row],refonte_reset_student_password:()=>null}});
+    const card=h.nodes.get('students-list').children[0];const inputs=card.querySelectorAll('input');
+    const [first,second]=inputs;const send=card.querySelectorAll('button')[2];
+    first.value='court';second.value='court';await send.fire('click');
+    assert.equal(h.controls.calls.some(c=>c.name==='refonte_reset_student_password'),false);
+    first.value='Cheval2026';second.value='Cheval2027';await send.fire('click');
+    assert.equal(h.controls.calls.some(c=>c.name==='refonte_reset_student_password'),false);
+    second.value='Cheval2026';await send.fire('click');
+    const call=h.controls.calls.find(c=>c.name==='refonte_reset_student_password');
+    assert.equal(call.params.p_student,'a');assert.equal(call.params.p_password,'Cheval2026');
+    assert.equal(first.value,'');assert.equal(second.value,'');
 });
 
 test('gestion élèves : réponse reçue après déconnexion ne révèle aucun nom',async()=>{

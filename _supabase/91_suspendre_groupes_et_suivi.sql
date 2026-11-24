@@ -13,7 +13,8 @@ do $$ declare item record; begin
         where n.nspname='refonte_private' or (n.nspname='public' and p.proname in
             ('refonte_classmates','refonte_create_group','refonte_reply_invitation','refonte_invitations',
              'refonte_my_groups','refonte_teacher_copies','refonte_save_feedback','refonte_finish_copy',
-             'refonte_students','refonte_update_student','refonte_student_logins')) loop
+             'refonte_students','refonte_update_student','refonte_student_logins',
+             'refonte_reset_student_password')) loop
         execute format('revoke all on function %s from public, anon, authenticated',item.signature);
     end loop;
 end $$;

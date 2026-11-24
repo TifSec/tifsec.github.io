@@ -35,3 +35,9 @@ Les droits de création/écriture du moteur Jekyll et de collaboration vérifien
 Le contrôle transactionnel `08` a également réussi sur la base hébergée. Il place temporairement un profil pilote en attente, teste les refus puis une validation/correction par le professeur, et restaure le profil par `ROLLBACK`. Aucune réponse, copie ou identité n’est modifiée par ce contrôle ; aucune validation effective n’est effectuée pour l’utilisateur.
 
 Aucune nouvelle alerte de sécurité Supabase. Les deux avertissements antérieurs restent documentés dans [GROUPES-ET-SUIVI.md](GROUPES-ET-SUIVI.md). La suspension `91` ferme également les nouvelles opérations de gestion des élèves. Aucune publication ni fusion vers `main`.
+
+## Identifiant et nouveau mot de passe (lots 20 et 21)
+
+- `20_identifiants_eleves.sql` : le professeur de la classe voit l'identifiant de connexion de l'élève (partie avant « @ » des comptes `@eleve.example.com`).
+- `21_mot_de_passe_eleve.sql` : depuis « Élèves et inscriptions », le professeur de la classe peut enregistrer un nouveau mot de passe tapé par l'élève sur son poste (8 à 72 caractères, saisi deux fois). Le mot de passe est chiffré en bcrypt par la base, jamais conservé ni renvoyé en clair ; les sessions ouvertes de l'élève sont fermées. Un élève ou un professeur d'une autre classe reçoit un refus.
+- Les deux lots sont appliqués sur la base de test seulement ; la vraie base attend l'accord du professeur.
