@@ -48,7 +48,7 @@
 {% include cours/cours-navigation.html cours=cours %}
 <div class="course-reading">
 {% include cours/cours-intro.html cours=cours %}
-{% if cours.version_papier %}{% assign numero_papier = '' %}{% if cours.titre contains ' : ' %}{% assign numero_papier = cours.titre | split: ' : ' | first %}{% endif %}{% include cours/cours-version-papier.html version=cours.version_papier numero=numero_papier %}{% endif %}
+{% if cours.version_papier %}{% assign numero_papier = '' %}{% if cours.titre contains ' : ' %}{% assign numero_papier = cours.titre | split: ' : ' | first %}{% endif %}{% assign classe_papier = site.data.classes[page.etablissement].classes | where: 'id', page.classe | first %}{% assign matiere_papier = page.matiere %}{% if page.matiere == 'maths' %}{% assign matiere_papier = 'Mathématiques' %}{% elsif page.matiere == 'tim' %}{% assign matiere_papier = 'TIM' %}{% elsif page.matiere == 'techno' %}{% assign matiere_papier = 'Technologie' %}{% endif %}{% include cours/cours-version-papier.html version=cours.version_papier numero=numero_papier classe=classe_papier.nom matiere=matiere_papier %}{% endif %}
     <fieldset id="course-answers" class="course-answer-fields" disabled>
         <legend>Réponses aux activités</legend>
         {% include cours/cours-activites.html cours=cours %}
