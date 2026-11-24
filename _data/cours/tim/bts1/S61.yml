@@ -1,0 +1,283 @@
+titre: 'Renforcement 1 : Construire le tableau de remboursement d’un emprunt'
+themes:
+    - C4.1 — Évaluer la performance globale d’un système biotechnique
+    - En lien avec le cours de gestion C6.1 — Les intérêts d’emprunt
+problematique: L’écurie emprunte 30 000 € pour refaire sa carrière. Comment construire, dans le tableur, un tableau de remboursement juste, lisible, et que l’on peut refaire pour n’importe quel prêt ?
+competences_bo:
+    - C4.1 — Évaluer la performance globale d’un système biotechnique
+objectifs:
+    connaissances:
+        - 'Un emprunt : capital, taux, durée. Annuité = capital remboursé + intérêts.'
+        - 'Une ligne du tableau : intérêts = capital du début × taux ; capital remboursé = annuité − intérêts ; capital restant dû = capital du début − capital remboursé.'
+        - 'Le symbole $ bloque une cellule quand on recopie une formule.'
+    competences:
+        - Mettre en forme une feuille de calcul (titre, formats € et %, bordures, en-têtes).
+        - Écrire des formules avec des cellules, puis les recopier vers le bas sans erreur.
+        - Préparer l’impression d’un tableau sur une page.
+        - Refaire seul le tableau de remboursement d’un autre prêt.
+pourquoi:
+    - En cours de gestion, tu as fait ce tableau à la main. C’est long, et une seule erreur fausse toutes les lignes suivantes.
+    - Un tableau bien construit dans le tableur se recalcule tout seul quand on change le taux ou la durée. Tu pourras comparer plusieurs offres de prêt en quelques secondes.
+activites:
+    -   id: a01
+        titre: Comprendre le tableau de remboursement
+        consigne: Tu vas calculer à la calculatrice une ligne du tableau de remboursement de l’exemple du cours. On attend les 3 montants de l’année 2.
+        contenu:
+            -   type: titre
+                texte: Les mots du prêt
+            -   type: liste
+                elements:
+                    - 'Capital : la somme empruntée à la banque.'
+                    - 'Taux : le pourcentage d’intérêts payé chaque année sur ce qu’il reste à rembourser.'
+                    - 'Durée : le nombre d’années pour rembourser.'
+                    - 'Annuité : la somme versée à la banque chaque année. Avec des annuités constantes, c’est toujours la même.'
+                    - 'L’annuité contient deux parts : les intérêts (le prix du prêt) et le capital remboursé (ce qui fait baisser la dette).'
+                    - 'Capital restant dû : ce qu’il reste à rembourser à la fin de l’année.'
+            -   type: titre
+                texte: Exemple du cours
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : emprunt de 10 000 € sur 6 ans, au taux de 1,75 %. L’annuité est de 1 770,23 €.'
+                    - 'Année 1. Capital du début : 10 000 €.'
+                    - 'Intérêts = capital du début × taux = 10 000 × 0,0175 = 175 €.'
+                    - 'Capital remboursé = annuité − intérêts = 1 770,23 − 175 = 1 595,23 €.'
+                    - 'Capital restant dû = capital du début − capital remboursé = 10 000 − 1 595,23 = 8 404,77 €.'
+                    - 'À toi : l’année 2 commence avec le capital restant dû de l’année 1, soit 8 404,77 €. Refais les 3 calculs avec ce nombre, arrondis au centime.'
+                    - 'Pourquoi les intérêts baissent-ils chaque année ? Parce qu’on les calcule sur ce qu’il reste à rembourser, et cette somme baisse.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Année 2 de l’exemple — combien d’intérêts ?
+                unite: €
+                aide: 'Intérêts = capital du début de l’année 2 × taux. Le taux 1,75 % s’écrit 0,0175.'
+            -   id: q02
+                type: nombre
+                enonce: Année 2 de l’exemple — combien de capital remboursé ?
+                unite: €
+                aide: Capital remboursé = annuité − intérêts que tu viens de trouver.
+            -   id: q03
+                type: nombre
+                enonce: Année 2 de l’exemple — quel capital reste dû à la fin de l’année ?
+                unite: €
+                aide: Capital restant dû = capital du début de l’année 2 − capital remboursé.
+    -   id: a02
+        titre: Préparer la feuille
+        transition: Tu sais calculer une ligne à la main. Maintenant, tu prépares la feuille du tableur qui fera ces calculs pour toi.
+        consigne: Tu vas créer et mettre en forme la feuille de l’emprunt de l’écurie, avant d’écrire la moindre formule. On attend une feuille rangée comme le modèle (document 1).
+        contenu:
+            -   type: paragraphe
+                texte: 'L’écurie emprunte 30 000 € sur 6 ans, au taux de 3 % (offre A de la banque). Ouvre un classeur vide (LibreOffice Calc ou Excel) et enregistre-le tout de suite sous le nom « emprunt-carriere-NOM ».'
+            -   type: titre
+                texte: Document 1 — où placer chaque information
+            -   type: tableau
+                colonnes:
+                    - Cellule(s)
+                    - Ce que tu y écris
+                lignes:
+                    -   - B1
+                        - Remboursement d’emprunt par annuités constantes
+                    -   - B3, B4, B5
+                        - 'Capital :   Durée (années) :   Taux :'
+                    -   - C3, C4, C5
+                        - 30000   6   3%
+                    -   - B6, B7
+                        - 'Coefficient :   Annuité :'
+                    -   - B9 à G9
+                        - Année   Capital début   Annuité   Intérêts   Capital remboursé   Capital restant dû
+                    -   - B10 à B15
+                        - 1   2   3   4   5   6 (une année par ligne)
+                    -   - B16
+                        - Total
+            -   type: titre
+                texte: La mise en forme
+            -   type: etapes
+                elements:
+                    - 'Le titre : sélectionne B1 à G1, clique sur « Fusionner et centrer », mets-le en gras, taille 14.'
+                    - 'Le capital (C3) : format Monétaire (€). Le taux (C5) : tape 3% avec le signe %, le tableur le range au format Pourcentage.'
+                    - 'Les en-têtes (B9 à G9) : gras, centrés, fond coloré, « Renvoyer à la ligne automatiquement » pour que les titres longs tiennent.'
+                    - 'Les colonnes : double-clique sur le trait entre deux lettres de colonnes, la largeur s’ajuste toute seule.'
+                    - 'Les bordures : sélectionne B9 à G16, puis Bordures > « Toutes les bordures ».'
+                    - 'Pourquoi tout mettre en forme avant les formules ? Une feuille rangée se relit facilement : tu repères tout de suite une case vide ou un nombre faux.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: Tu tapes 3 dans la cellule du taux, sans le signe %. Que va comprendre le tableur ?
+                choix:
+                    -   id: a
+                        texte: Un taux de 300 %, donc tous les intérêts seront faux.
+                    -   id: b
+                        texte: Un taux de 3 %, c’est pareil.
+                    -   id: c
+                        texte: Une erreur, la cellule restera vide.
+                aide: 'Pour le tableur, 3 % vaut 0,03. Que vaut le nombre 3 écrit en pourcentage ?'
+    -   id: a03
+        titre: Le coefficient et l’annuité
+        transition: La feuille est prête. Tu écris maintenant tes deux premières formules, qui donnent l’annuité.
+        consigne: Tu vas calculer, avec des formules, le coefficient d’annuité constante et l’annuité de l’offre A. On attend les deux résultats.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : dans le cours, coefficient = taux ÷ (1 − (1 + taux)^−durée). Pour 10 000 € à 1,75 % sur 6 ans : 0,0175 ÷ (1 − 1,0175^−6) = 0,177022.'
+                    - 'Annuité = capital × coefficient = 10 000 × 0,177022 = 1 770,23 €.'
+                    - 'Dans le tableur, une formule commence toujours par = et utilise les cellules, jamais les nombres tapés à la main.'
+                    - 'À toi : en C6, tape =C5/(1-(1+C5)^(-C4)) puis Entrée. Mets C6 au format Nombre avec 6 décimales.'
+                    - 'En C7, écris la formule de l’annuité avec les cellules du capital et du coefficient. Mets C7 au format Monétaire.'
+                    - 'Pourquoi des cellules plutôt que des nombres ? Si la banque change le taux, tu changes une seule case et tout se recalcule.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quel coefficient obtiens-tu en C6 (6 chiffres après la virgule) ?
+                aide: 'Vérifie que C4 contient 6 et C5 contient 3 %. Avec 6 décimales, le résultat commence par 0,18.'
+            -   id: q02
+                type: nombre
+                enonce: Quelle est l’annuité de l’offre A ?
+                unite: €
+                aide: 'Annuité = capital × coefficient. Quelle formule vas-tu écrire en C7, avec les cellules C3 et C6 ?'
+    -   id: a04
+        titre: Les formules du tableau
+        transition: Tu connais l’annuité. Tu remplis maintenant le tableau, année par année, mais en n’écrivant les formules qu’une seule fois.
+        consigne: Tu vas écrire les formules de l’année 1, les recopier jusqu’à l’année 6, puis ajouter les totaux. On attend 5 réponses lues dans ton tableau.
+        contenu:
+            -   type: titre
+                texte: L’année 1 (ligne 10)
+            -   type: etapes
+                elements:
+                    - 'Lis l’exemple : ce sont les mêmes calculs qu’en mission 1, mais avec les cellules.'
+                    - 'C10, capital du début : =C3 (le capital emprunté).'
+                    - 'D10, annuité : =$C$7'
+                    - 'E10, intérêts : =C10*$C$5'
+                    - 'F10, capital remboursé : =D10-E10'
+                    - 'G10, capital restant dû : =C10-F10'
+            -   type: titre
+                texte: Les années suivantes
+            -   type: etapes
+                elements:
+                    - 'C11, capital du début de l’année 2 : =G10 (ce qui reste dû à la fin de l’année 1).'
+                    - 'Recopie : sélectionne D10 à G10, attrape le petit carré en bas à droite de la sélection et tire jusqu’à la ligne 15. Fais pareil avec C11, jusqu’à C15.'
+                    - 'Le symbole $ : quand on recopie vers le bas, C5 devient C6, puis C7… Avec $C$5, la cellule reste bloquée sur le taux.'
+                    - 'Les totaux : en D16, tape =SOMME(D10:D15), puis recopie vers la droite jusqu’à F16. Mets la ligne 16 en gras.'
+                    - 'Vérification : en G15, le capital restant dû doit être 0. Sinon, une formule est fausse.'
+                    - 'Pourquoi un seul $ dans =C10*$C$5 ? Le capital du début doit changer à chaque ligne, le taux non.'
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Combien d’intérêts l’écurie paie-t-elle l’année 1 ?
+                unite: €
+                aide: Lis la cellule E10. Elle doit valoir le capital × le taux.
+            -   id: q02
+                type: nombre
+                enonce: Quel capital reste dû à la fin de l’année 2 ?
+                unite: €
+                aide: Lis la cellule G11. Si le nombre te paraît bizarre, vérifie la formule de C11.
+            -   id: q03
+                type: qcm
+                enonce: 'Un camarade a écrit =C10*C5 en E10 et l’a recopiée. Que se passe-t-il à la ligne 11 ?'
+                choix:
+                    -   id: a
+                        texte: La formule devient =C11*C6 et multiplie par le coefficient au lieu du taux.
+                    -   id: b
+                        texte: Rien, la formule reste juste.
+                    -   id: c
+                        texte: La formule devient =C11*$C$5.
+                aide: Sans $, chaque cellule de la formule descend d’une ligne quand on recopie. Qu’y a-t-il en C6 ?
+            -   id: q04
+                type: nombre
+                enonce: Combien l’écurie paie-t-elle d’intérêts en tout sur les 6 ans (ligne Total) ?
+                unite: €
+                aide: Lis la cellule E16. Elle additionne les intérêts des 6 années.
+            -   id: q05
+                type: nombre
+                enonce: Quel capital reste dû à la fin de l’année 6 ?
+                unite: €
+                aide: Lis la cellule G15. Un prêt entièrement remboursé ne laisse plus rien à payer.
+    -   id: a05
+        titre: La mise en page
+        transition: Les calculs sont justes. Il reste à rendre le tableau lisible et imprimable, pour le montrer au banquier ou à un associé.
+        consigne: Tu vas finir la mise en forme du tableau et préparer son impression sur une seule page. On attend un aperçu avant impression propre.
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Sélectionne C10 à G16 : format Monétaire (€) avec 2 décimales.'
+                    - 'Mets en gras la ligne Total et colore légèrement la colonne « Capital restant dû ».'
+                    - 'Ouvre l’aperçu avant impression (Fichier > Aperçu, ou Imprimer).'
+                    - 'Choisis l’orientation Paysage et l’option « Ajuster à une page » (Excel) ou « Adapter à la largeur de la page » (Calc).'
+                    - 'Ajoute un en-tête avec ton nom et la date (Insertion > En-tête et pied de page dans Excel ; Format > Styles de page > En-tête dans Calc).'
+                    - 'Pourquoi une seule page ? Un tableau coupé en deux se lit mal et on oublie souvent la deuxième feuille.'
+        questions:
+            -   id: q01
+                type: qcm
+                enonce: À l’aperçu, la colonne « Capital restant dû » part sur une deuxième page. Que fais-tu ?
+                choix:
+                    -   id: a
+                        texte: Je passe en Paysage et je choisis « Ajuster à une page ».
+                    -   id: b
+                        texte: J’efface la colonne « Capital restant dû ».
+                    -   id: c
+                        texte: Je réduis la taille du texte à 6 dans tout le tableau.
+                aide: On ne supprime jamais une information utile. Quel réglage d’impression donne plus de place en largeur ?
+    -   id: a06
+        titre: Seul, sans aide
+        transition: Tu as construit un tableau complet, pas à pas. Montre maintenant que tu sais le refaire seul.
+        consigne: Tu vas refaire seul le tableau complet pour l’offre B de la banque, dans une nouvelle feuille, sans copier-coller la première. On attend l’annuité, le total des intérêts et ton choix entre les deux offres.
+        contenu:
+            -   type: paragraphe
+                texte: 'Offre B : 30 000 € sur 8 ans, au taux de 2,5 %.'
+            -   type: etapes
+                elements:
+                    - Ajoute une nouvelle feuille, nomme-la « Offre B ».
+                    - 'Refais tout : titre, paramètres, coefficient, annuité, tableau de 8 années, totaux, formats, bordures, mise en page.'
+                    - 'Vérifie ton tableau toi-même : le capital restant dû de la dernière année doit être 0.'
+                    - Puis compare avec l’offre A.
+        questions:
+            -   id: q01
+                type: nombre
+                enonce: Quelle est l’annuité de l’offre B ?
+                unite: €
+            -   id: q02
+                type: nombre
+                enonce: Combien l’écurie paierait-elle d’intérêts en tout avec l’offre B ?
+                unite: €
+            -   id: q03
+                type: texte
+                enonce: Quelle offre coûte le moins cher en intérêts ? Pourquoi, alors que son taux est plus élevé ?
+    -   id: a07
+        titre: Pour aller plus loin
+        defi: true
+        facultatif: true
+        contenu:
+            -   type: etapes
+                elements:
+                    - 'Le tableur a une fonction toute prête pour l’annuité : =VPM(taux;durée;-capital). Teste-la dans une cellule vide de l’offre A.'
+                    - 'Ton tableau ne marche que pour 6 ans. Fais un tableau de 15 lignes qui affiche 0 sur les lignes au-delà de la durée, avec les fonctions SI et OU.'
+        questions:
+            -   id: q01
+                type: texte
+                enonce: Écris la formule VPM de l’offre A et le résultat obtenu. Puis écris la formule de ta colonne « Année » qui s’arrête à la bonne durée.
+                aide: 'Pour VPM : taux en C5, durée en C4, capital en C3. Pour la colonne Année : SI l’année d’avant + 1 dépasse la durée, alors 0, sinon l’année d’avant + 1.'
+    -   id: a08
+        titre: Conclusion de ton travail
+        conclusion: true
+        transition: Tu as construit et refait le tableau de remboursement. Il reste à répondre au problème de départ.
+        questions:
+            -   id: q01
+                type: texte
+                enonce: 'Réponds au problème du jour : quelles sont les étapes pour construire le tableau de remboursement d’un emprunt dans le tableur, et quelle offre l’écurie devrait-elle choisir ?'
+                aide: 'Donne les étapes dans l’ordre : paramètres, coefficient et annuité, ligne de l’année 1 avec les $, recopie, totaux, vérification, mise en page. Puis l’offre choisie, avec ses chiffres.'
+retenir:
+    - 'Une ligne : intérêts = capital du début × taux ; capital remboursé = annuité − intérêts ; capital restant dû = capital du début − capital remboursé.'
+    - 'L’année suivante commence avec le capital restant dû de l’année d’avant.'
+    - 'Le $ bloque une cellule (taux, annuité) quand on recopie une formule.'
+    - 'Vérification : le capital restant dû de la dernière année vaut 0.'
+    - 'Un taux plus bas ne veut pas dire un prêt moins cher : la durée compte aussi.'
+sources:
+    -   type: lien
+        titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
+        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf
+    -   type: lien
+        titre: Microsoft — Vue d’ensemble des formules (références relatives et absolues, le $)
+        url: https://support.microsoft.com/fr-fr/Excel/get-started/overview-of-formulas-in-excel
+    -   type: lien
+        titre: Ma-calculatrice.fr — simulateur d’emprunt (pour vérifier ton tableau)
+        url: https://www.ma-calculatrice.fr/calculer-emprunt
+    -   type: paragraphe
+        texte: Cours de gestion C6.1 — Les intérêts d’emprunt (extrait distribué en classe).
