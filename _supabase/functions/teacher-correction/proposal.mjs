@@ -21,7 +21,8 @@ function teacherGuidance(rule, result) {
 }
 
 export function answerSnapshot(rows, schema) {
-    const allowed = new Set(schema.questions.flatMap(question => question.champs));
+    // Le champ « calcul » d'une question nombre est enregistré avec la copie mais n'entre pas dans la vérification automatique.
+    const allowed = new Set(schema.questions.flatMap(question => [...question.champs, ...(typeof question.calcul === 'string' ? [question.calcul] : [])]));
     const seen = new Set();
     if (!Array.isArray(rows) || rows.length > 1000) throw new Error('invalid_answers');
     return rows.map(row => {

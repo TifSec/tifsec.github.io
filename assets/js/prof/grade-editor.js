@@ -48,7 +48,7 @@ export function initGradeEditor({ db, checkSession, page = document, onValidated
     function attach(parent, row) {
         if (!root || !proposal) return;
         const saved = evaluation?.marks?.find(mark => mark.cle === row.cle);
-        const answers = [...parent.querySelectorAll('[data-answer-id]')];
+        const answers = [...parent.querySelectorAll('[data-answer-id]')].filter(field => field.dataset?.answerRole !== 'calcul');
         const cells = row.resultats_cellules;
         const entries = cells || [{ champ: row.cle, maximum: row.maximum,
             points_proposes: ['correcte', 'incorrecte'].includes(row.etat) || row.raison === 'mots_cles' ? row.points_proposes : null }];

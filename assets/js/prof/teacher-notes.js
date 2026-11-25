@@ -94,7 +94,7 @@ export function renderTeacherNotes(preview, summary, content, lesson) {
         const question = activityOf(note.activite).querySelector('[data-question="' + note.question + '"]');
         if (!question) throw new Error('question_missing');
         const body = Object.fromEntries(Object.entries(note).filter(([key]) => correctionFields.has(key)));
-        const fields = [...question.querySelectorAll('[data-answer-id]')];
+        const fields = [...question.querySelectorAll('[data-answer-id]')].filter(field => field.dataset?.answerRole !== 'calcul');
         const values = expectedFieldValues(note, fields);
         const written = writtenAnswer(note, fields);
         const title = written ? 'Pistes de réponse — professeur (cliquer pour afficher)' : values.size ? 'Explication du corrigé — professeur (cliquer pour afficher)' : 'Corrigé — professeur (cliquer pour afficher)';

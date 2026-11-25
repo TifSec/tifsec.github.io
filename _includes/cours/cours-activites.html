@@ -26,7 +26,15 @@
                 <textarea id="{{ activite.id }}-{{ question.id }}" data-answer-id="{{ activite.id }}_{{ question.id }}" data-required="{% if activite.facultatif or activite.obligatoire == false or question.facultatif or question.obligatoire == false %}false{% else %}true{% endif %}" {% if question.enonce %}aria-labelledby="{{ activite.id }}-{{ question.id }}-label"{% else %}aria-label="Réponse à la question {{ forloop.index }}"{% endif %} rows="4" placeholder="Écris ta réponse ici..."></textarea>
 
                 {% when "nombre" %}
-                <input type="text" inputmode="decimal" id="{{ activite.id }}-{{ question.id }}" data-answer-id="{{ activite.id }}_{{ question.id }}" data-required="{% if activite.facultatif or activite.obligatoire == false or question.facultatif or question.obligatoire == false %}false{% else %}true{% endif %}" aria-labelledby="{{ activite.id }}-{{ question.id }}-label">{% if question.unite %}<p>Unité : {{ question.unite | escape }}</p>{% endif %}
+                {% capture requis_nombre %}{% if activite.facultatif or activite.obligatoire == false or question.facultatif or question.obligatoire == false %}false{% else %}true{% endif %}{% endcapture %}
+                {% if question.calcul %}<div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="{{ activite.id }}-{{ question.id }}-calcul">✏️ Ton calcul <span>écris le calcul que tu as posé (exemple : 380 × 1,05)</span></label>
+                <textarea class="cours-calcul" id="{{ activite.id }}-{{ question.id }}-calcul" data-answer-id="{{ activite.id }}_{{ question.id }}_calcul" data-answer-role="calcul" data-required="{{ requis_nombre }}" rows="2" placeholder="Écris ton calcul ici..."></textarea>
+                </div>{% endif %}
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="{{ activite.id }}-{{ question.id }}">🎯 Résultat <span>un nombre seulement{% if question.unite %}, en {{ question.unite | escape }}{% endif %}</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="{{ activite.id }}-{{ question.id }}" data-answer-id="{{ activite.id }}_{{ question.id }}" data-required="{{ requis_nombre }}" aria-labelledby="{{ activite.id }}-{{ question.id }}-label">{% if question.unite %}<span class="cours-resultat-unite">{{ question.unite | escape }}</span>{% endif %}</span>
+                </div>
 
                 {% when "qcm" %}
                 <select id="{{ activite.id }}-{{ question.id }}" data-answer-id="{{ activite.id }}_{{ question.id }}" data-required="{% if activite.facultatif or activite.obligatoire == false or question.facultatif or question.obligatoire == false %}false{% else %}true{% endif %}" aria-labelledby="{{ activite.id }}-{{ question.id }}-label"><option value="">Choisis une réponse</option>{% for choix in question.choix %}<option value="{{ choix.id | escape }}">{{ choix.texte | escape }}</option>{% endfor %}</select>

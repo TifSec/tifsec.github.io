@@ -15,7 +15,8 @@ export function questionCatalogue() {
             const fields = question.type === 'tableau' ? question.lignes.flatMap((row, r) => row.flatMap((cell, c) => cell === '' ? [key + '_r' + r + '_c' + c] : [])) : [key];
             questions.push({ activite: activity.id, id: question.id, type: question.type, cle: key, champs: fields,
                 facultatif: Boolean(activity.facultatif || activity.obligatoire === false || question.facultatif || question.obligatoire === false),
-                ...(question.type === 'qcm' ? { choix: question.choix.map(choice => ({ id: choice.id })) } : {}) });
+                ...(question.type === 'qcm' ? { choix: question.choix.map(choice => ({ id: choice.id })) } : {}),
+                ...(question.type === 'nombre' && question.calcul === true ? { calcul: key + '_calcul' } : {}) });
         }
         result.push({ etablissement: lesson.etablissement, matiere: subject, classe: schoolClass, seance: lesson.id, version: lesson.version || 'v1', questions });
     }
