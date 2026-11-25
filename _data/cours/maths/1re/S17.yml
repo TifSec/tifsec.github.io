@@ -1,473 +1,436 @@
-titre: 'Séance 17 : Calculer directement le stock au 60e jour'
+titre: 'Séance 17 : Calculer directement un terme d’une suite arithmétique'
 themes:
-    - MG1, C1.3 — Exploiter la modélisation d’un phénomène
-problematique: Comment calculer n’importe quel terme d’une suite arithmétique sans calculer tous les précédents ?
+- MG1, C1.3 — Exploiter la modélisation d’un phénomène
+problematique: Comment calculer directement le 60e terme d’une suite arithmétique, et savoir quand elle atteint une valeur ?
 competences_bo:
-    - MG1, C1.3 — Exploiter la modélisation d’un phénomène
+- MG1, C1.3 — Exploiter la modélisation d’un phénomène
 objectifs:
     connaissances:
-        - 'Terme général : uₙ = u₀ + n × r.'
-        - On peut résoudre uₙ = valeur pour trouver n.
-    competences:
-        - Utiliser le terme général.
-        - Résoudre une équation pour trouver un rang.
-pourquoi:
-    - En S16, le tableur calculait chaque jour.
-    - Avec une formule, on obtient directement n’importe quel jour.
-activites:
-    -   id: a01
-        titre: Le terme général
-        consigne: Tu vas utiliser le terme général de la suite du stock pour calculer u₃ et u₂₅. On attend les deux valeurs.
-        contenu:
-            -   type: titre
-                texte: La situation
-            -   type: paragraphe
-                texte: Combien restera-t-il de foin au jour 25 ? Calculer les 25 jours un par un serait long.
-            -   type: titre
-                texte: Ce que c’est
-            -   type: paragraphe
-                texte: Le terme général est une formule qui donne directement n’importe quel terme uₙ à partir de u₀, de la raison r et du rang n.
-            -   type: titre
-                texte: À quoi ça sert
-            -   type: liste
-                elements:
-                    - Calculer un terme lointain sans calculer tous les précédents.
-                    - 'Faire des prévisions rapides : stock, poids, économies.'
-            -   type: titre
-                texte: Comment ça marche
-            -   type: etapes
-                elements:
-                    - Pour aller de u₀ à uₙ, on ajoute n fois la raison r.
-                    - Donc uₙ = u₀ + n × r.
-                    - On remplace n par le rang voulu et on calcule (× avant +).
-            -   type: paragraphe
-                texte: 'À retenir : uₙ = u₀ + n × r.'
-            -   type: titre
-                texte: Exemple fait ensemble en classe
-            -   type: paragraphe
-                texte: Ton professeur résout un exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
-            -   type: titre
-                texte: Exercices d’entraînement (cherche, puis on corrige ensemble)
-            -   type: etapes
-                elements:
-                    - u₀ = 300 et r = 15. Calcule u₁₀.
-                    - u₀ = 2 500 et r = −40. Calcule u₂₀.
-            -   type: liste
-                elements:
-                    - 'Automatisme : 180 × 25 = ?'
-            -   type: titre
-                texte: Ta mission
-            -   type: etapes
-                elements:
-                    - 'À toi : utilise uₙ = 6 000 − 180n pour calculer u₃ et u₂₅.'
-                    - Pourquoi une formule directe ? Plus besoin de calculer les 59 jours précédents.
-        questions:
-            -   id: q01
-                type: tableau
-                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
-                colonnes:
-                    - Point clé
-                    - Mot(s) manquant(s)
-                lignes:
-                    -   - 'Terme général : uₙ = u₀ + n × …… .'
-                        - ''
-                    -   - u₂₅ = 6 000 − 180 × …… .
-                        - ''
-                aide: 'Relis l’exemple uₙ = 500 − 20n : on part de u₀ et on ajoute n fois la… ? Pour u₂₅, n vaut combien ?'
-            -   id: q02
-                type: nombre
-                enonce: Calcule u₃ avec la formule.
-                unite: kg
-                aide: Remplace n par 3 dans 6 000 − 180n. Compare avec la valeur trouvée en S16.
-            -   id: q03
-                type: nombre
-                enonce: Calcule u₂₅.
-                unite: kg
-                aide: 'Remplace n par 25 : fais d’abord 180 × 25.'
-    -   id: a02
-        titre: Trouver le rang
-        transition: Tu calcules un terme. Fais le chemin inverse.
-        consigne: Tu vas trouver le jour où il reste 1 860 kg et celui où le stock passe sous le seuil d’alerte. On attend les deux jours.
-        contenu:
-            -   type: titre
-                texte: La situation
-            -   type: paragraphe
-                texte: À quel jour restera-t-il 1 860 kg ? Quand le stock passera-t-il sous le seuil d’alerte de 1 000 kg ?
-            -   type: titre
-                texte: Ce que c’est
-            -   type: paragraphe
-                texte: 'Trouver le rang, c’est chercher n quand on connaît la valeur du terme : on résout une équation (ou une inéquation).'
-            -   type: titre
-                texte: À quoi ça sert
-            -   type: liste
-                elements:
-                    - Prévoir le jour où il faut commander, où un objectif est atteint.
-            -   type: titre
-                texte: Comment ça marche
-            -   type: etapes
-                elements:
-                    - On écrit u₀ + n × r = k.
-                    - On enlève u₀ des deux côtés, puis on divise par r.
-                    - 'Le rang est un nombre entier : pour un seuil, on arrondit au rang suivant.'
-            -   type: paragraphe
-                texte: 'À retenir : Pour trouver n, on résout uₙ = k.'
-            -   type: titre
-                texte: Exemple fait ensemble en classe
-            -   type: paragraphe
-                texte: Ton professeur résout un exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
-            -   type: titre
-                texte: Exercices d’entraînement (cherche, puis on corrige ensemble)
-            -   type: etapes
-                elements:
-                    - u₀ = 500 et r = −20. À quel rang le terme vaut-il 260 ?
-                    - u₀ = 100 et r = 25. À partir de quel rang le terme dépasse-t-il 400 ?
-            -   type: titre
-                texte: Ta mission
-            -   type: etapes
-                elements:
-                    - 'À toi : résous 6 000 − 180n = 1 860, puis cherche quand le stock passe sous 1 000 kg.'
-                    - Pourquoi une équation ? On cherche le jour, pas le stock.
-        questions:
-            -   id: q01
-                type: tableau
-                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
-                colonnes:
-                    - Point clé
-                    - Mot(s) manquant(s)
-                lignes:
-                    -   - Pour trouver n, on …… l’équation uₙ = k.
-                        - ''
-                    -   - Le rang est un nombre …… .
-                        - ''
-                aide: Pour trouver le jour, on… l’équation uₙ = k. Et un numéro de jour est un nombre entier ou décimal ?
-            -   id: q02
-                type: nombre
-                enonce: Quel jour reste-t-il 1 860 kg ?
-                unite: jour
-                aide: 'Comme l’exemple 500 − 20n = 260 : écris 6 000 − 180n = 1 860, enlève 6 000, divise par −180.'
-            -   id: q03
-                type: texte
-                enonce: Le stock passe sous 1 000 kg (seuil d’alerte) quel jour ?
-                aide: Résous 6 000 − 180n = 1 000 ; si le résultat n’est pas entier, quel jour le stock passe-t-il vraiment sous 1 000 ?
-    -   id: a03
-        titre: Un autre contexte
-        transition: Tu maîtrises la formule. Applique-la à la croissance.
-        consigne: Tu vas écrire le terme général de la croissance d’un poulain et calculer son poids au jour 30. On attend la formule et la valeur.
-        contenu:
-            -   type: titre
-                texte: La situation
-            -   type: paragraphe
-                texte: Un poulain pèse 55 kg à la naissance et prend environ 1,2 kg par jour pendant les premières semaines. Combien pèsera-t-il au jour 30 ?
-            -   type: titre
-                texte: Ce que c’est
-            -   type: paragraphe
-                texte: 'Le même outil s’applique à une suite croissante : ici, le poids augmente chaque jour de la même quantité (r > 0).'
-            -   type: titre
-                texte: À quoi ça sert
-            -   type: liste
-                elements:
-                    - Suivre la croissance d’un poulain et repérer un retard.
-                    - Comprendre qu’un modèle a un domaine de validité.
-            -   type: titre
-                texte: Comment ça marche
-            -   type: etapes
-                elements:
-                    - On identifie u₀ (poids à la naissance) et r (gain par jour).
-                    - On écrit le terme général vₙ = v₀ + n × r.
-                    - On calcule le terme demandé et on se demande si le modèle reste réaliste.
-            -   type: paragraphe
-                texte: 'À retenir : Un modèle n’est valable que sur un domaine limité.'
-            -   type: titre
-                texte: Exemple fait ensemble en classe
-            -   type: paragraphe
-                texte: Ton professeur résout un exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
-            -   type: titre
-                texte: Exercices d’entraînement (cherche, puis on corrige ensemble)
-            -   type: etapes
-                elements:
-                    - Un poney pèse 20 kg à la naissance et prend 0,5 kg par jour. Écris vₙ et calcule v₂₀.
-            -   type: paragraphe
-                texte: Modèle simplifié, valable seulement sur les premières semaines.
-            -   type: titre
-                texte: Ta mission
-            -   type: etapes
-                elements:
-                    - 'À toi : un poulain pèse 55 kg à la naissance et prend environ 1,2 kg par jour (modèle simplifié). Écris le terme général.'
-                    - Pourquoi un autre contexte ? Une suite arithmétique croissante, cette fois.
-        questions:
-            -   id: q01
-                type: tableau
-                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
-                colonnes:
-                    - Point clé
-                    - Mot(s) manquant(s)
-                lignes:
-                    -   - 'Croissance : vₙ = 55 + …… n.'
-                        - ''
-                    -   - Un modèle a un domaine de …… .
-                        - ''
-                aide: Le poulain prend environ combien de kg par jour (voir « À toi ») ? Et un modèle est valable sur un domaine de… ?
-            -   id: q02
-                type: texte
-                enonce: Écris vₙ (poids au jour n) et calcule v₃₀.
-                aide: Premier terme = poids à la naissance ; raison = gain par jour. Écris vₙ, puis remplace n par 30.
-    -   id: a04
-        titre: Pour aller plus loin
-        defi: true
-        facultatif: true
-        contenu:
-            -   type: paragraphe
-                texte: Le modèle prévoit 493 kg au bout d’un an (n = 365).
-        questions:
-            -   id: q01
-                type: texte
-                enonce: Est-ce réaliste ?
-                aide: Compare 493 kg au poids d’un cheval adulte et à celui d’un poulain d’un an. La croissance reste-t-elle la même toute l’année ?
-    -   id: a05
-        titre: Conclusion de ton travail
-        conclusion: true
-        transition: Tu sais utiliser le terme général. Il reste à répondre au problème de départ.
-        questions:
-            -   id: q01
-                type: texte
-                enonce: 'Réponds au problème du jour : comment calculer n’importe quel terme d’une suite arithmétique ?'
-                aide: Dis la formule du terme général, comment trouver un rang, et la limite du modèle.
-retenir:
     - uₙ = u₀ + n × r.
-    - Résoudre pour trouver n.
+    - 'Pour trouver n : résoudre u₀ + n × r = valeur.'
+    competences:
+    - Calculer un terme de rang n directement.
+    - Trouver le rang où la suite atteint ou dépasse une valeur.
+    - Résoudre un problème avec une suite arithmétique.
+pourquoi:
+- 'Aujourd’hui, trois notions : la formule directe, retrouver le rang, résoudre un problème.'
+- 'Pour chacune : la notion, la méthode, pourquoi ça marche, un exemple au tableau, puis beaucoup d’exercices.'
+activites:
+-   id: a01
+    titre: Partie 1 — La formule directe
+    consigne: 'Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.'
+    contenu:
+    -   type: titre
+        texte: La notion
+    -   type: paragraphe
+        texte: Plutôt que d’ajouter r soixante fois, on peut calculer directement u₆₀.
+    -   type: paragraphe
+        texte: Après n étapes, on a ajouté n fois la raison au terme de départ.
+    -   type: paragraphe
+        texte: 'À retenir : uₙ = u₀ + n × r.'
+    -   type: titre
+        texte: Comment ça fonctionne
+    -   type: etapes
+        elements:
+        - Repère u₀ et r.
+        - Remplace n par le rang demandé.
+        - Calcule n × r d’abord, puis ajoute u₀.
+        - Contrôle avec les premiers termes (n = 1, n = 2).
+    -   type: titre
+        texte: Pourquoi ça marche
+    -   type: paragraphe
+        texte: 1. En comptant les ajouts
+    -   type: liste
+        elements:
+        - u₁ = u₀ + r ; u₂ = u₀ + r + r = u₀ + 2r ; u₃ = u₀ + 3r.
+        - 'Pour aller jusqu’au rang n, on ajoute r exactement n fois : uₙ = u₀ + n × r.'
+    -   type: paragraphe
+        texte: 2. Pourquoi × avant +
+    -   type: liste
+        elements:
+        - On calcule d’abord tout ce qu’on a ajouté (n × r), puis on l’ajoute au départ.
+    -   type: titre
+        texte: Exemple fait ensemble en classe
+    -   type: paragraphe
+        texte: Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
+    -   type: titre
+        texte: Exercices
+    -   type: paragraphe
+        texte: Calculatrice autorisée.
+    questions:
+    -   id: q01
+        type: nombre
+        enonce: Série A — u₀ = 10, r = 3. Calcule u₅.
+        aide: 10 + 5 × 3.
+    -   id: q02
+        type: nombre
+        enonce: u₀ = 10, r = 3. Calcule u₂₀.
+        aide: 10 + 20 × 3.
+    -   id: q03
+        type: nombre
+        enonce: u₀ = 500, r = −12. Calcule u₁₀.
+        aide: 500 + 10 × (−12).
+    -   id: q04
+        type: nombre
+        enonce: u₀ = 2 000 kg, r = −25 kg par jour. Stock u₆₀ ?
+        unite: kg
+        aide: 2 000 − 60 × 25.
+    -   id: q05
+        type: nombre
+        enonce: Série B — u₀ = 320 €, r = 15 €. Prix u₈ ?
+        unite: €
+        aide: 320 + 8 × 15.
+    -   id: q06
+        type: nombre
+        enonce: u₀ = 1,5, r = 0,4. Calcule u₁₀.
+        aide: 1,5 + 10 × 0,4.
+    -   id: q07
+        type: nombre
+        enonce: u₀ = 80, r = −2,5. Calcule u₁₂.
+        aide: 80 − 12 × 2,5.
+-   id: a02
+    titre: Partie 2 — Retrouver le rang
+    transition: 'Tu sais calculer un terme. Deuxième notion : chercher quand la suite atteint une valeur.'
+    consigne: 'Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.'
+    contenu:
+    -   type: titre
+        texte: La notion
+    -   type: paragraphe
+        texte: On connaît la valeur visée (par exemple un stock de 500 kg) et on cherche à quel rang elle est atteinte.
+    -   type: paragraphe
+        texte: On écrit l’équation u₀ + n × r = valeur et on cherche n.
+    -   type: paragraphe
+        texte: 'À retenir : n = (valeur − u₀) ÷ r.'
+    -   type: titre
+        texte: Comment ça fonctionne
+    -   type: etapes
+        elements:
+        - Écris u₀ + n × r = valeur.
+        - 'Enlève u₀ des deux côtés : n × r = valeur − u₀.'
+        - 'Divise par r : n = (valeur − u₀) ÷ r.'
+        - Si n n’est pas entier, arrondis à l’entier au-dessus pour « atteindre » ou « passer sous ».
+    -   type: titre
+        texte: Pourquoi ça marche
+    -   type: paragraphe
+        texte: 1. On défait les calculs
+    -   type: liste
+        elements:
+        - 'La formule fait : × r, puis + u₀.'
+        - 'Pour revenir à n, on défait dans l’ordre inverse : − u₀, puis ÷ r.'
+    -   type: paragraphe
+        texte: 2. Pourquoi arrondir au-dessus
+    -   type: liste
+        elements:
+        - 'n = 13,3 veut dire : au rang 13, pas encore ; au rang 14, c’est fait.'
+        - Le premier rang qui convient est 14.
+    -   type: titre
+        texte: Exemple fait ensemble en classe
+    -   type: paragraphe
+        texte: Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
+    -   type: titre
+        texte: Exercices
+    -   type: paragraphe
+        texte: Calculatrice autorisée.
+    questions:
+    -   id: q01
+        type: nombre
+        enonce: Série A — u₀ = 10, r = 3. Pour quel n a-t-on uₙ = 40 ?
+        aide: (40 − 10) ÷ 3.
+    -   id: q02
+        type: nombre
+        enonce: u₀ = 500, r = −12. Pour quel n a-t-on uₙ = 260 ?
+        aide: (260 − 500) ÷ (−12).
+    -   id: q03
+        type: nombre
+        enonce: u₀ = 2 000, r = −25. Pour quel n reste-t-il 500 kg ?
+        aide: (500 − 2 000) ÷ (−25).
+    -   id: q04
+        type: nombre
+        enonce: u₀ = 320, r = 15. Pour quel n le prix vaut-il 425 € ?
+        aide: (425 − 320) ÷ 15.
+    -   id: q05
+        type: nombre
+        enonce: Série B — u₀ = 100, r = 7. Premier rang où uₙ dépasse 150 ?
+        aide: (150 − 100) ÷ 7 ≈ 7,1 → arrondi au-dessus.
+    -   id: q06
+        type: nombre
+        enonce: u₀ = 24, r = −2,5. Premier rang où le stock passe sous 5 t ?
+        aide: (5 − 24) ÷ (−2,5) = 7,6 → arrondi au-dessus.
+    -   id: q07
+        type: qcm
+        enonce: Un élève trouve n = 13,2 pour « dépasser 200 ». Quelle réponse donner ?
+        choix:
+        -   id: a
+            texte: n = 13
+        -   id: b
+            texte: n = 14
+        -   id: c
+            texte: n = 13,2
+        aide: Un rang est entier ; au rang 13 on n’a pas encore dépassé.
+-   id: a03
+    titre: Partie 3 — Résoudre un problème
+    transition: 'Dernière notion : utiliser tout cela dans une situation.'
+    consigne: 'Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.'
+    contenu:
+    -   type: titre
+        texte: La notion
+    -   type: paragraphe
+        texte: 'Dans un problème, il faut d’abord reconnaître la suite : valeur de départ, et quantité ajoutée ou retirée à chaque étape.'
+    -   type: paragraphe
+        texte: Ensuite, on utilise la formule ou on cherche le rang.
+    -   type: paragraphe
+        texte: 'À retenir : Identifier u₀ et r ; écrire uₙ = u₀ + n × r ; calculer ou résoudre.'
+    -   type: titre
+        texte: Comment ça fonctionne
+    -   type: etapes
+        elements:
+        - Écris u₀ (la valeur de départ) et r (le changement à chaque étape, avec son signe).
+        - Écris uₙ = u₀ + n × r.
+        - Calcule un terme ou cherche n selon la question.
+        - Réponds par une phrase avec l’unité.
+    -   type: titre
+        texte: Pourquoi ça marche
+    -   type: paragraphe
+        texte: 1. Pourquoi le modèle marche
+    -   type: liste
+        elements:
+        - 'Une écurie qui utilise 30 kg de foin par jour fait baisser le stock de 30 chaque jour : c’est une suite arithmétique.'
+    -   type: paragraphe
+        texte: 2. Ses limites
+    -   type: liste
+        elements:
+        - 'Si la consommation change (plus de chevaux, été au pré), la raison change : il faut un nouveau modèle.'
+    -   type: titre
+        texte: Exemple fait ensemble en classe
+    -   type: paragraphe
+        texte: Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
+    -   type: titre
+        texte: Exercices
+    -   type: paragraphe
+        texte: Calculatrice autorisée.
+    questions:
+    -   id: q01
+        type: nombre
+        enonce: Série A — 4 500 kg de foin, 45 kg par jour. Stock après 30 jours ?
+        unite: kg
+        aide: 4 500 − 30 × 45.
+    -   id: q02
+        type: nombre
+        enonce: 'Même écurie : au bout de combien de jours le stock est-il vide ?'
+        unite: jours
+        aide: 4 500 ÷ 45.
+    -   id: q03
+        type: nombre
+        enonce: Une pension coûte 350 € et augmente de 12 € par an. Prix dans 10 ans ?
+        unite: €
+        aide: 350 + 10 × 12.
+    -   id: q04
+        type: nombre
+        enonce: Dans combien d’années dépassera-t-elle 450 € ?
+        unite: ans
+        aide: (450 − 350) ÷ 12 ≈ 8,3 → arrondi au-dessus.
+    -   id: q05
+        type: nombre
+        enonce: Série B — Un poulain pèse 50 kg et prend 1,2 kg par jour. Poids au jour 100 ?
+        unite: kg
+        aide: 50 + 100 × 1,2.
+    -   id: q06
+        type: qcm
+        enonce: Pour le stock de foin, la raison est…
+        choix:
+        -   id: a
+            texte: '45'
+        -   id: b
+            texte: −45
+        -   id: c
+            texte: 4 500
+        aide: Le stock baisse.
+-   id: a04
+    titre: Encore des exercices (si tu as fini)
+    defi: true
+    facultatif: true
+    contenu:
+    -   type: paragraphe
+        texte: Tu as fini ? Entraîne-toi encore. Ces exercices ne comptent pas dans la note.
+    questions:
+    -   id: q01
+        type: nombre
+        enonce: 'u₀ = 7, r = 4 : u₁₀₀ ?'
+    -   id: q02
+        type: nombre
+        enonce: 'u₀ = 90, r = −6 : rang où uₙ = 0 ?'
+    -   id: q03
+        type: nombre
+        enonce: 'u₀ = 12, r = 0,5 : premier rang où uₙ dépasse 20 ?'
+retenir:
+- uₙ = u₀ + n × r (si la suite commence à u₀).
+- 'Pour trouver n : n = (valeur − u₀) ÷ r.'
+- Si n n’est pas entier, on arrondit à l’entier au-dessus pour « atteindre » ou « dépasser ».
 sources:
-    -   type: lien
-        titre: ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1
-        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf
+-   type: lien
+    titre: ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1
+    url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf
 version_papier:
     surtitre: Cours et exercices — version papier
-    titre: Calculer directement le stock au 60e jour
-    introduction: Comment calculer n’importe quel terme d’une suite arithmétique sans calculer tous les précédents ?
+    titre: Calculer directement un terme d’une suite arithmétique
+    introduction: 'Trois notions : la formule uₙ = u₀ + n × r, retrouver le rang, résoudre un problème. Pour chacune : la notion, la méthode, l’exemple au tableau, puis les exercices.'
     sections:
-        -   titre: Le cours en bref
-            blocs:
-                -   type: paragraphe
-                    texte: 'Le problème à résoudre : Comment calculer n’importe quel terme d’une suite arithmétique sans calculer tous les précédents ?'
-                -   type: titre
-                    texte: Ce que tu vas apprendre
-                -   type: liste
-                    elements:
-                        - 'Terme général : uₙ = u₀ + n × r.'
-                        - On peut résoudre uₙ = valeur pour trouver n.
-                -   type: titre
-                    texte: Ce que tu vas savoir faire
-                -   type: liste
-                    elements:
-                        - Utiliser le terme général.
-                        - Résoudre une équation pour trouver un rang.
-                -   type: titre
-                    texte: Pourquoi cette séance ?
-                -   type: paragraphe
-                    texte: En S16, le tableur calculait chaque jour. Avec une formule, on obtient directement n’importe quel jour.
-                -   type: paragraphe
-                    texte: 'Comment utiliser cette fiche : pour chaque partie, lis la méthode et l’exemple, complète les points clés, puis fais l’exercice. Réponds sur les lignes.'
-        -   titre: I. Le terme général
-            blocs:
-                -   type: titre
-                    texte: La situation
-                -   type: paragraphe
-                    texte: Combien restera-t-il de foin au jour 25 ? Calculer les 25 jours un par un serait long.
-                -   type: titre
-                    texte: Ce que c’est
-                -   type: paragraphe
-                    texte: Le terme général est une formule qui donne directement n’importe quel terme uₙ à partir de u₀, de la raison r et du rang n.
-                -   type: titre
-                    texte: À quoi ça sert
-                -   type: liste
-                    elements:
-                        - Calculer un terme lointain sans calculer tous les précédents.
-                        - 'Faire des prévisions rapides : stock, poids, économies.'
-                -   type: titre
-                    texte: Comment ça marche
-                -   type: etapes
-                    elements:
-                        - Pour aller de u₀ à uₙ, on ajoute n fois la raison r.
-                        - Donc uₙ = u₀ + n × r.
-                        - On remplace n par le rang voulu et on calcule (× avant +).
-                -   type: paragraphe
-                    texte: 'À retenir : uₙ = u₀ + n × r.'
-                -   type: titre
-                    texte: Exemple fait ensemble en classe
-                -   type: zone
-                    lignes: 6
-                -   type: liste
-                    elements:
-                        - 'Automatisme : 180 × 25 = ?'
-                -   type: titre
-                    texte: Ce que tu vas faire
-                -   type: paragraphe
-                    texte: Tu vas utiliser le terme général de la suite du stock pour calculer u₃ et u₂₅. On attend les deux valeurs.
-                -   type: titre
-                    texte: Ta mission
-                -   type: etapes
-                    elements:
-                        - 'À toi : utilise uₙ = 6 000 − 180n pour calculer u₃ et u₂₅.'
-                        - Pourquoi une formule directe ? Plus besoin de calculer les 59 jours précédents.
-                -   type: titre
-                    texte: Points clés à compléter
-                -   type: trous
-                    elements:
-                        -   - 'Terme général : uₙ = u₀ + n × '
-                            - ''
-                            - ' .'
-                        -   - 'u₂₅ = 6 000 − 180 × '
-                            - ''
-                            - ' .'
-                -   type: titre
-                    texte: Exercice 1 — Le terme général
-            questions:
-                - Entraînement — u₀ = 300 et r = 15. Calcule u₁₀.
-                - Entraînement — u₀ = 2 500 et r = −40. Calcule u₂₀.
-                - Calcule u₃ avec la formule. (en kg)
-                - Calcule u₂₅. (en kg)
-        -   titre: II. Trouver le rang
-            blocs:
-                -   type: titre
-                    texte: La situation
-                -   type: paragraphe
-                    texte: À quel jour restera-t-il 1 860 kg ? Quand le stock passera-t-il sous le seuil d’alerte de 1 000 kg ?
-                -   type: titre
-                    texte: Ce que c’est
-                -   type: paragraphe
-                    texte: 'Trouver le rang, c’est chercher n quand on connaît la valeur du terme : on résout une équation (ou une inéquation).'
-                -   type: titre
-                    texte: À quoi ça sert
-                -   type: liste
-                    elements:
-                        - Prévoir le jour où il faut commander, où un objectif est atteint.
-                -   type: titre
-                    texte: Comment ça marche
-                -   type: etapes
-                    elements:
-                        - On écrit u₀ + n × r = k.
-                        - On enlève u₀ des deux côtés, puis on divise par r.
-                        - 'Le rang est un nombre entier : pour un seuil, on arrondit au rang suivant.'
-                -   type: paragraphe
-                    texte: 'À retenir : Pour trouver n, on résout uₙ = k.'
-                -   type: titre
-                    texte: Exemple fait ensemble en classe
-                -   type: zone
-                    lignes: 6
-                -   type: titre
-                    texte: Ce que tu vas faire
-                -   type: paragraphe
-                    texte: Tu vas trouver le jour où il reste 1 860 kg et celui où le stock passe sous le seuil d’alerte. On attend les deux jours.
-                -   type: titre
-                    texte: Ta mission
-                -   type: etapes
-                    elements:
-                        - 'À toi : résous 6 000 − 180n = 1 860, puis cherche quand le stock passe sous 1 000 kg.'
-                        - Pourquoi une équation ? On cherche le jour, pas le stock.
-                -   type: titre
-                    texte: Points clés à compléter
-                -   type: trous
-                    elements:
-                        -   - 'Pour trouver n, on '
-                            - ''
-                            - ' l’équation uₙ = k.'
-                        -   - 'Le rang est un nombre '
-                            - ''
-                            - ' .'
-                -   type: titre
-                    texte: Exercice 2 — Trouver le rang
-            questions:
-                - Entraînement — u₀ = 500 et r = −20. À quel rang le terme vaut-il 260 ?
-                - Entraînement — u₀ = 100 et r = 25. À partir de quel rang le terme dépasse-t-il 400 ?
-                - Quel jour reste-t-il 1 860 kg ? (en jour)
-                - Le stock passe sous 1 000 kg (seuil d’alerte) quel jour ?
-        -   titre: III. Un autre contexte
-            blocs:
-                -   type: titre
-                    texte: La situation
-                -   type: paragraphe
-                    texte: Un poulain pèse 55 kg à la naissance et prend environ 1,2 kg par jour pendant les premières semaines. Combien pèsera-t-il au jour 30 ?
-                -   type: titre
-                    texte: Ce que c’est
-                -   type: paragraphe
-                    texte: 'Le même outil s’applique à une suite croissante : ici, le poids augmente chaque jour de la même quantité (r > 0).'
-                -   type: titre
-                    texte: À quoi ça sert
-                -   type: liste
-                    elements:
-                        - Suivre la croissance d’un poulain et repérer un retard.
-                        - Comprendre qu’un modèle a un domaine de validité.
-                -   type: titre
-                    texte: Comment ça marche
-                -   type: etapes
-                    elements:
-                        - On identifie u₀ (poids à la naissance) et r (gain par jour).
-                        - On écrit le terme général vₙ = v₀ + n × r.
-                        - On calcule le terme demandé et on se demande si le modèle reste réaliste.
-                -   type: paragraphe
-                    texte: 'À retenir : Un modèle n’est valable que sur un domaine limité.'
-                -   type: titre
-                    texte: Exemple fait ensemble en classe
-                -   type: zone
-                    lignes: 6
-                -   type: titre
-                    texte: Ce que tu vas faire
-                -   type: paragraphe
-                    texte: Tu vas écrire le terme général de la croissance d’un poulain et calculer son poids au jour 30. On attend la formule et la valeur.
-                -   type: titre
-                    texte: Ta mission
-                -   type: etapes
-                    elements:
-                        - 'À toi : un poulain pèse 55 kg à la naissance et prend environ 1,2 kg par jour (modèle simplifié). Écris le terme général.'
-                        - Pourquoi un autre contexte ? Une suite arithmétique croissante, cette fois.
-                -   type: titre
-                    texte: Exemple et documents
-                -   type: paragraphe
-                    texte: Modèle simplifié, valable seulement sur les premières semaines.
-                -   type: titre
-                    texte: Points clés à compléter
-                -   type: trous
-                    elements:
-                        -   - 'Croissance : vₙ = 55 + '
-                            - ''
-                            - ' n.'
-                        -   - 'Un modèle a un domaine de '
-                            - ''
-                            - ' .'
-                -   type: titre
-                    texte: Exercice 3 — Un autre contexte
-            questions:
-                - Entraînement — Un poney pèse 20 kg à la naissance et prend 0,5 kg par jour. Écris vₙ et calcule v₂₀.
-                - Écris vₙ (poids au jour n) et calcule v₃₀.
-        -   titre: Conclusion
-            blocs:
-                -   type: paragraphe
-                    texte: Avec ce que tu as fait dans les parties précédentes, réponds en quelques phrases complètes.
-            questions:
-                - 'Réponds au problème du jour : comment calculer n’importe quel terme d’une suite arithmétique ?'
-        -   titre: Pour aller plus loin (facultatif)
-            blocs:
-                -   type: paragraphe
-                    texte: Le modèle prévoit 493 kg au bout d’un an (n = 365).
-            questions:
-                - Est-ce réaliste ?
-        -   titre: À retenir
-            blocs:
-                -   type: liste
-                    elements:
-                        - uₙ = u₀ + n × r.
-                        - Résoudre pour trouver n.
-        -   titre: Exercice 1 — Terme général
-            blocs: []
-            questions:
-                - 'u₀ = 3 000, r = −150 : u₁₂ ?'
-                - Quel rang donne 0 ?
-            saut_page: true
-            surtitre: Fiche d’exercices
-        -   titre: Exercice 2 — Croissance
-            blocs: []
-            questions:
-                - 'v₀ = 50, r = 1,5 : v₂₀ ?'
-        -   titre: Exercice 3 — Seuil
-            blocs: []
-            questions:
-                - 'u₀ = 3 000, r = −150 : premier rang où uₙ < 500 ?'
+    -   titre: I. La formule directe
+        blocs:
+        -   type: titre
+            texte: La notion
+        -   type: paragraphe
+            texte: Plutôt que d’ajouter r soixante fois, on peut calculer directement u₆₀.
+        -   type: paragraphe
+            texte: Après n étapes, on a ajouté n fois la raison au terme de départ.
+        -   type: titre
+            texte: À retenir
+        -   type: paragraphe
+            texte: uₙ = u₀ + n × r.
+        -   type: titre
+            texte: Comment ça fonctionne
+        -   type: etapes
+            elements:
+            - Repère u₀ et r.
+            - Remplace n par le rang demandé.
+            - Calcule n × r d’abord, puis ajoute u₀.
+            - Contrôle avec les premiers termes (n = 1, n = 2).
+        -   type: titre
+            texte: Pourquoi ça marche
+        -   type: paragraphe
+            texte: 1. En comptant les ajouts
+        -   type: liste
+            elements:
+            - u₁ = u₀ + r ; u₂ = u₀ + r + r = u₀ + 2r ; u₃ = u₀ + 3r.
+            - 'Pour aller jusqu’au rang n, on ajoute r exactement n fois : uₙ = u₀ + n × r.'
+        -   type: paragraphe
+            texte: 2. Pourquoi × avant +
+        -   type: liste
+            elements:
+            - On calcule d’abord tout ce qu’on a ajouté (n × r), puis on l’ajoute au départ.
+        -   type: titre
+            texte: Exemple fait ensemble en classe
+        -   type: zone
+            lignes: 6
+        -   type: titre
+            texte: Exercices (calculatrice autorisée)
+        -   type: paragraphe
+            texte: Calculatrice autorisée.
+        questions:
+        - Série A — u₀ = 10, r = 3. Calcule u₅.
+        - u₀ = 10, r = 3. Calcule u₂₀.
+        - u₀ = 500, r = −12. Calcule u₁₀.
+        - u₀ = 2 000 kg, r = −25 kg par jour. Stock u₆₀ ? (en kg)
+        - Série B — u₀ = 320 €, r = 15 €. Prix u₈ ? (en €)
+        - u₀ = 1,5, r = 0,4. Calcule u₁₀.
+        - u₀ = 80, r = −2,5. Calcule u₁₂.
+    -   titre: II. Retrouver le rang
+        blocs:
+        -   type: titre
+            texte: La notion
+        -   type: paragraphe
+            texte: On connaît la valeur visée (par exemple un stock de 500 kg) et on cherche à quel rang elle est atteinte.
+        -   type: paragraphe
+            texte: On écrit l’équation u₀ + n × r = valeur et on cherche n.
+        -   type: titre
+            texte: À retenir
+        -   type: paragraphe
+            texte: n = (valeur − u₀) ÷ r.
+        -   type: titre
+            texte: Comment ça fonctionne
+        -   type: etapes
+            elements:
+            - Écris u₀ + n × r = valeur.
+            - 'Enlève u₀ des deux côtés : n × r = valeur − u₀.'
+            - 'Divise par r : n = (valeur − u₀) ÷ r.'
+            - Si n n’est pas entier, arrondis à l’entier au-dessus pour « atteindre » ou « passer sous ».
+        -   type: titre
+            texte: Pourquoi ça marche
+        -   type: paragraphe
+            texte: 1. On défait les calculs
+        -   type: liste
+            elements:
+            - 'La formule fait : × r, puis + u₀.'
+            - 'Pour revenir à n, on défait dans l’ordre inverse : − u₀, puis ÷ r.'
+        -   type: paragraphe
+            texte: 2. Pourquoi arrondir au-dessus
+        -   type: liste
+            elements:
+            - 'n = 13,3 veut dire : au rang 13, pas encore ; au rang 14, c’est fait.'
+            - Le premier rang qui convient est 14.
+        -   type: titre
+            texte: Exemple fait ensemble en classe
+        -   type: zone
+            lignes: 6
+        -   type: titre
+            texte: Exercices (calculatrice autorisée)
+        -   type: paragraphe
+            texte: Calculatrice autorisée.
+        questions:
+        - Série A — u₀ = 10, r = 3. Pour quel n a-t-on uₙ = 40 ?
+        - u₀ = 500, r = −12. Pour quel n a-t-on uₙ = 260 ?
+        - u₀ = 2 000, r = −25. Pour quel n reste-t-il 500 kg ?
+        - u₀ = 320, r = 15. Pour quel n le prix vaut-il 425 € ?
+        - Série B — u₀ = 100, r = 7. Premier rang où uₙ dépasse 150 ?
+        - u₀ = 24, r = −2,5. Premier rang où le stock passe sous 5 t ?
+        - 'Un élève trouve n = 13,2 pour « dépasser 200 ». Quelle réponse donner ? Choix : n = 13 / n = 14 / n = 13,2.'
+    -   titre: III. Résoudre un problème
+        blocs:
+        -   type: titre
+            texte: La notion
+        -   type: paragraphe
+            texte: 'Dans un problème, il faut d’abord reconnaître la suite : valeur de départ, et quantité ajoutée ou retirée à chaque étape.'
+        -   type: paragraphe
+            texte: Ensuite, on utilise la formule ou on cherche le rang.
+        -   type: titre
+            texte: À retenir
+        -   type: paragraphe
+            texte: Identifier u₀ et r ; écrire uₙ = u₀ + n × r ; calculer ou résoudre.
+        -   type: titre
+            texte: Comment ça fonctionne
+        -   type: etapes
+            elements:
+            - Écris u₀ (la valeur de départ) et r (le changement à chaque étape, avec son signe).
+            - Écris uₙ = u₀ + n × r.
+            - Calcule un terme ou cherche n selon la question.
+            - Réponds par une phrase avec l’unité.
+        -   type: titre
+            texte: Pourquoi ça marche
+        -   type: paragraphe
+            texte: 1. Pourquoi le modèle marche
+        -   type: liste
+            elements:
+            - 'Une écurie qui utilise 30 kg de foin par jour fait baisser le stock de 30 chaque jour : c’est une suite arithmétique.'
+        -   type: paragraphe
+            texte: 2. Ses limites
+        -   type: liste
+            elements:
+            - 'Si la consommation change (plus de chevaux, été au pré), la raison change : il faut un nouveau modèle.'
+        -   type: titre
+            texte: Exemple fait ensemble en classe
+        -   type: zone
+            lignes: 6
+        -   type: titre
+            texte: Exercices (calculatrice autorisée)
+        -   type: paragraphe
+            texte: Calculatrice autorisée.
+        questions:
+        - Série A — 4 500 kg de foin, 45 kg par jour. Stock après 30 jours ? (en kg)
+        - 'Même écurie : au bout de combien de jours le stock est-il vide ? (en jours)'
+        - Une pension coûte 350 € et augmente de 12 € par an. Prix dans 10 ans ? (en €)
+        - Dans combien d’années dépassera-t-elle 450 € ? (en ans)
+        - Série B — Un poulain pèse 50 kg et prend 1,2 kg par jour. Poids au jour 100 ? (en kg)
+        - 'Pour le stock de foin, la raison est… Choix : 45 / −45 / 4 500.'
+    -   titre: Encore des exercices (si tu as fini)
+        blocs: []
+        questions:
+        - 'u₀ = 7, r = 4 : u₁₀₀ ?'
+        - 'u₀ = 90, r = −6 : rang où uₙ = 0 ?'
+        - 'u₀ = 12, r = 0,5 : premier rang où uₙ dépasse 20 ?'
+    -   titre: À retenir
+        blocs:
+        -   type: liste
+            elements:
+            - uₙ = u₀ + n × r (si la suite commence à u₀).
+            - 'Pour trouver n : n = (valeur − u₀) ÷ r.'
+            - Si n n’est pas entier, on arrondit à l’entier au-dessus pour « atteindre » ou « dépasser ».

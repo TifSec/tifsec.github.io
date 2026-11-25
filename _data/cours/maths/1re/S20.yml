@@ -1,466 +1,432 @@
-titre: 'Séance 20 : Combien a-t-on dépensé en tout ?'
+titre: 'Séance 20 : Combien a-t-on dépensé en tout ? La somme des termes'
 themes:
-    - MG1, C1.3 — Exploiter la modélisation d’un phénomène
-problematique: Comment calculer la somme des termes d’une suite avec le tableur ?
+- MG1, C1.3 — Exploiter la modélisation d’un phénomène
+problematique: Comment calculer rapidement le total de plusieurs termes d’une suite (dépenses de plusieurs années, plusieurs mois) ?
 competences_bo:
-    - MG1, C1.3 — Exploiter la modélisation d’un phénomène
+- MG1, C1.3 — Exploiter la modélisation d’un phénomène
 objectifs:
     connaissances:
-        - La somme de termes = total cumulé sur plusieurs périodes (ex. coût total d’une pension sur 10 ans).
-        - 'Au tableur : colonne des termes, puis SOMME, ou colonne de cumul.'
+    - 'Somme de termes d’une suite arithmétique : S = nombre de termes × (premier + dernier) ÷ 2.'
+    - 'Somme de termes d’une suite géométrique : S = premier terme × (1 − qⁿ) ÷ (1 − q), avec n le nombre de termes.'
     competences:
-        - Calculer une somme de termes au tableur.
-        - Comparer deux contrats sur leur coût total.
+    - Additionner les premiers termes d’une suite.
+    - Utiliser la formule de la somme pour une suite arithmétique.
+    - Utiliser la formule de la somme pour une suite géométrique.
 pourquoi:
-    - En S18, tu as comparé deux options de prix pour 2036.
-    - 'Mais le client paie chaque année : quel est le coût total sur 10 ans ?'
+- 'Aujourd’hui, trois notions : additionner les termes, la somme d’une suite arithmétique, la somme d’une suite géométrique.'
+- 'Pour chacune : la notion, la méthode, pourquoi ça marche, un exemple au tableau, puis beaucoup d’exercices.'
 activites:
-    -   id: a01
-        titre: Les termes au tableur
-        consigne: Tu vas construire au tableur les coûts annuels des deux options de pension sur 10 ans. On attend deux coûts annuels.
-        contenu:
-            -   type: titre
-                texte: La situation
-            -   type: paragraphe
-                texte: Le client paie une pension tous les mois pendant 10 ans. Combien paie-t-il chaque année avec chaque option ?
-            -   type: titre
-                texte: Ce que c’est
-            -   type: paragraphe
-                texte: 'Le coût annuel est le terme de la suite pour une année : 12 fois le prix mensuel de cette année-là.'
-            -   type: titre
-                texte: À quoi ça sert
-            -   type: liste
-                elements:
-                    - Préparer le calcul du total sur plusieurs années.
-                    - Comparer deux contrats année par année.
-            -   type: titre
-                texte: Comment ça marche
-            -   type: etapes
-                elements:
-                    - 'Colonne A : le rang n de 0 à 9.'
-                    - 'Option A : =12*400*1,03^A2 ; option B : =12*(400+12*A2).'
-                    - On recopie vers le bas jusqu’à n = 9.
-            -   type: paragraphe
-                texte: 'À retenir : Coût annuel = 12 × coût mensuel.'
-            -   type: titre
-                texte: Exemple fait ensemble en classe
-            -   type: paragraphe
-                texte: Ton professeur résout un exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
-            -   type: titre
-                texte: Exercices d’entraînement (cherche, puis on corrige ensemble)
-            -   type: etapes
-                elements:
-                    - Un loyer de 100 € par mois augmente de 2 % par an. Coût annuel pour n = 0 et n = 1 ?
-            -   type: liste
-                elements:
-                    - 'Automatisme : 12 × 508 = ?'
-            -   type: titre
-                texte: Ta mission
-            -   type: etapes
-                elements:
-                    - 'À toi : colonne A : n de 0 à 9 ; colonne B : 12 × 400 × 1,03ⁿ (option A) ; colonne C : 12 × (400 + 12n) (option B).'
-                    - Pourquoi × 12 ? Le prix est mensuel, le coût annuel compte 12 mois.
-        questions:
-            -   id: q01
-                type: tableau
-                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
-                colonnes:
-                    - Point clé
-                    - Mot(s) manquant(s)
-                lignes:
-                    -   - Coût annuel = 12 × coût …… .
-                        - ''
-                    -   - 'Pour n = 9, option B : 12 × (400 + …… ).'
-                        - ''
-                aide: Le coût annuel, c’est 12 fois le coût de quoi ? Pour l’option B avec n = 9, que vaut 12n ?
-            -   id: q02
-                type: nombre
-                enonce: Coût annuel de l’option A pour n = 0 ?
-                unite: €
-                aide: 'Pour n = 0 : 12 × 400 × 1,03⁰. Rappel : tout nombre puissance 0 vaut 1.'
-            -   id: q03
-                type: nombre
-                enonce: Coût annuel de l’option B pour n = 9 ?
-                unite: €
-                aide: 'Pour n = 9 : 12 × (400 + 12 × 9). Calcule d’abord la parenthèse.'
-    -   id: a02
-        titre: Les sommes
-        transition: Les coûts annuels sont prêts. Additionne-les.
-        consigne: Tu vas calculer avec le tableur le coût total de chaque option de pension sur 10 ans. On attend les deux totaux.
-        contenu:
-            -   type: titre
-                texte: La situation
-            -   type: paragraphe
-                texte: Ce qui compte pour le client, c’est ce qu’il paie en tout sur 10 ans.
-            -   type: titre
-                texte: Ce que c’est
-            -   type: paragraphe
-                texte: 'La somme des termes est le total cumulé sur plusieurs périodes : u₀ + u₁ + … + u₉.'
-            -   type: titre
-                texte: À quoi ça sert
-            -   type: liste
-                elements:
-                    - Connaître le coût total d’un contrat, d’un crédit, d’un abonnement.
-                    - Comparer des options sur toute leur durée.
-            -   type: titre
-                texte: Comment ça marche
-            -   type: etapes
-                elements:
-                    - 'Au tableur : =SOMME(B2:B11) additionne les 10 coûts annuels.'
-                    - On fait de même pour l’autre option et on compare.
-                    - On peut aussi faire une colonne de cumul (chaque ligne = cumul précédent + terme).
-            -   type: paragraphe
-                texte: 'À retenir : Total payé = somme des termes.'
-            -   type: titre
-                texte: Exemple fait ensemble en classe
-            -   type: paragraphe
-                texte: Ton professeur résout un exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
-            -   type: titre
-                texte: Exercices d’entraînement (cherche, puis on corrige ensemble)
-            -   type: etapes
-                elements:
-                    - Termes 100 ; 110 ; 120 ; 130. Quelle est leur somme ?
-                    - Quelle formule additionne les cellules C2 à C11 ?
-            -   type: titre
-                texte: Ta mission
-            -   type: etapes
-                elements:
-                    - 'À toi : calcule SOMME(B2:B11) et SOMME(C2:C11), puis compare.'
-                    - Pourquoi la somme ? C’est ce que le client paie vraiment.
-        questions:
-            -   id: q01
-                type: tableau
-                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
-                colonnes:
-                    - Point clé
-                    - Mot(s) manquant(s)
-                lignes:
-                    -   - Le total payé est la …… des termes.
-                        - ''
-                    -   - 'Au tableur : =…… (B2:B11).'
-                        - ''
-                aide: Le total payé est la… des termes. Et quelle fonction du tableur additionne une plage ?
-            -   id: q02
-                type: nombre
-                enonce: Coût total option A sur 10 ans (à l’euro près) ?
-                unite: €
-                aide: Tape =SOMME(B2:B11) sur la colonne de l’option A et arrondis à l’euro.
-            -   id: q03
-                type: nombre
-                enonce: Coût total option B ?
-                unite: €
-                aide: 'Même chose sur la colonne de l’option B : =SOMME(C2:C11).'
-    -   id: a03
-        titre: Conseiller
-        transition: Les totaux sont calculés. Que conseiller ?
-        consigne: Tu vas conseiller le client sur l’option de pension la moins chère sur 10 ans. On attend un conseil chiffré.
-        contenu:
-            -   type: titre
-                texte: La situation
-            -   type: paragraphe
-                texte: 'Le client demande conseil : quelle option choisir ?'
-            -   type: titre
-                texte: Ce que c’est
-            -   type: paragraphe
-                texte: Un conseil chiffré donne une recommandation claire appuyée sur les totaux calculés.
-            -   type: titre
-                texte: À quoi ça sert
-            -   type: liste
-                elements:
-                    - Aider un client à décider ; défendre un choix devant un responsable.
-            -   type: titre
-                texte: Comment ça marche
-            -   type: etapes
-                elements:
-                    - On nomme l’option conseillée.
-                    - On donne les deux totaux et l’économie réalisée.
-                    - On ajoute une remarque sur le long terme.
-            -   type: paragraphe
-                texte: 'À retenir : On conseille l’option au coût total le plus faible, chiffres à l’appui.'
-            -   type: titre
-                texte: Exemple fait ensemble en classe
-            -   type: paragraphe
-                texte: Ton professeur résout un exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
-            -   type: titre
-                texte: Exercices d’entraînement (cherche, puis on corrige ensemble)
-            -   type: etapes
-                elements:
-                    - 'Option C : 30 000 € sur 5 ans ; option D : 29 400 €. Rédige le conseil.'
-            -   type: titre
-                texte: Ta mission
-            -   type: etapes
-                elements:
-                    - 'À toi : rédige ton conseil au client avec les chiffres.'
-                    - Pourquoi un conseil ? Le calcul sert la décision.
-        questions:
-            -   id: q01
-                type: tableau
-                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
-                colonnes:
-                    - Point clé
-                    - Mot(s) manquant(s)
-                lignes:
-                    -   - On conseille l’option au coût total le plus …… .
-                        - ''
-                    -   - L’écart entre les options …… avec le temps.
-                        - ''
-                aide: On conseille l’option au coût total le plus… ? Et l’écart entre les options grandit ou diminue avec le temps ?
-            -   id: q02
-                type: texte
-                enonce: Quelle option conseilles-tu ? Justifie avec les totaux.
-                aide: 'Comme l’exemple : « Je vous conseille l’option … : … € sur 10 ans contre … €, soit … € d’économie », puis une remarque sur le long terme.'
-    -   id: a04
-        titre: Pour aller plus loin
-        defi: true
-        facultatif: true
-        contenu:
-            -   type: paragraphe
-                texte: 'Formule de la somme d’une suite géométrique : u₀ × (1 − qⁿ) ÷ (1 − q).'
-        questions:
-            -   id: q01
-                type: texte
-                enonce: Vérifie le total A.
-                aide: Ici u₀ = 12 × 400, q = 1,03 et n = 10. Calcule avec la formule et compare à ton SOMME.
-    -   id: a05
-        titre: Conclusion de ton travail
-        conclusion: true
-        transition: Tu sais calculer une somme de termes. Il reste à répondre au problème de départ.
-        questions:
-            -   id: q01
-                type: texte
-                enonce: 'Réponds au problème du jour : comment calculer la somme des termes d’une suite avec le tableur ?'
-                aide: Dis comment calculer les coûts année par année, le total, et faire un conseil chiffré.
+-   id: a01
+    titre: Partie 1 — Additionner les termes
+    consigne: 'Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.'
+    contenu:
+    -   type: titre
+        texte: La notion
+    -   type: paragraphe
+        texte: Le prix payé chaque année forme une suite ; ce qu’on a payé en tout est la somme de ses termes.
+    -   type: paragraphe
+        texte: Pour peu de termes, on les calcule et on les additionne.
+    -   type: paragraphe
+        texte: 'À retenir : Total = u₀ + u₁ + u₂ + … (autant de termes que de périodes).'
+    -   type: titre
+        texte: Comment ça fonctionne
+    -   type: etapes
+        elements:
+        - 'Compte le nombre de périodes : c’est le nombre de termes.'
+        - Calcule chaque terme.
+        - Additionne-les.
+        - 'Attention : de u₀ à u₃, il y a 4 termes.'
+    -   type: titre
+        texte: Pourquoi ça marche
+    -   type: paragraphe
+        texte: 1. Pourquoi une somme
+    -   type: liste
+        elements:
+        - Chaque année, on paie le terme de l’année.
+        - 'Sur 4 ans, on paie les 4 termes : on les additionne.'
+    -   type: paragraphe
+        texte: 2. Pourquoi compter les termes
+    -   type: liste
+        elements:
+        - 'De u₀ à u₃ : u₀, u₁, u₂, u₃ → 4 termes, pas 3.'
+    -   type: titre
+        texte: Exemple fait ensemble en classe
+    -   type: paragraphe
+        texte: Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
+    -   type: titre
+        texte: Exercices
+    -   type: paragraphe
+        texte: Calculatrice autorisée.
+    questions:
+    -   id: q01
+        type: nombre
+        enonce: Série A — Combien de termes de u₀ à u₉ ?
+        aide: Compte de 0 à 9.
+    -   id: q02
+        type: nombre
+        enonce: Combien de termes de u₀ à u₁₄ ?
+        aide: De 0 à 14.
+    -   id: q03
+        type: nombre
+        enonce: 'u₀ = 100, r = 10 : u₀ + u₁ + u₂ ?'
+        aide: 100 + 110 + 120.
+    -   id: q04
+        type: nombre
+        enonce: 'u₀ = 50, r = −5 : u₀ + u₁ + u₂ + u₃ ?'
+        aide: 50 + 45 + 40 + 35.
+    -   id: q05
+        type: nombre
+        enonce: 'Série B — u₀ = 200, q = 2 : u₀ + u₁ + u₂ ?'
+        aide: 200 + 400 + 800.
+    -   id: q06
+        type: nombre
+        enonce: 'Foin : 120 € le 1er mois, puis + 8 € par mois. Total sur 3 mois ?'
+        unite: €
+        aide: 120 + 128 + 136.
+-   id: a02
+    titre: Partie 2 — La somme d’une suite arithmétique
+    transition: 'Additionner 3 termes, c’est facile ; 20 termes, c’est long. Deuxième notion : une formule.'
+    consigne: 'Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.'
+    contenu:
+    -   type: titre
+        texte: La notion
+    -   type: paragraphe
+        texte: Pour une suite arithmétique, le premier et le dernier terme, le deuxième et l’avant-dernier, etc., ont toujours la même somme.
+    -   type: paragraphe
+        texte: Cela donne une formule rapide.
+    -   type: paragraphe
+        texte: 'À retenir : S = nombre de termes × (premier terme + dernier terme) ÷ 2.'
+    -   type: titre
+        texte: Comment ça fonctionne
+    -   type: etapes
+        elements:
+        - Compte le nombre de termes.
+        - Calcule le dernier terme avec uₙ = u₀ + n × r.
+        - Additionne premier et dernier.
+        - Multiplie par le nombre de termes, puis divise par 2.
+    -   type: titre
+        texte: Pourquoi ça marche
+    -   type: paragraphe
+        texte: 1. L’astuce des paires
+    -   type: liste
+        elements:
+        - '1 + 2 + … + 10 : on associe 1 + 10 = 11, 2 + 9 = 11, … : 5 paires de 11.'
+        - 'Total : 5 × 11 = 55 = 10 × (1 + 10) ÷ 2.'
+    -   type: paragraphe
+        texte: 2. Pourquoi diviser par 2
+    -   type: liste
+        elements:
+        - Avec n termes, on fait n ÷ 2 paires.
+        - 'Chaque paire vaut premier + dernier : S = n × (premier + dernier) ÷ 2.'
+    -   type: titre
+        texte: Exemple fait ensemble en classe
+    -   type: paragraphe
+        texte: Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
+    -   type: titre
+        texte: Exercices
+    -   type: paragraphe
+        texte: Calculatrice autorisée.
+    questions:
+    -   id: q01
+        type: nombre
+        enonce: Série A — Somme 1 + 2 + … + 20 ?
+        aide: 20 × (1 + 20) ÷ 2.
+    -   id: q02
+        type: nombre
+        enonce: 'u₀ = 100, r = 10 : dernier terme u₉ ?'
+        aide: 100 + 9 × 10.
+    -   id: q03
+        type: nombre
+        enonce: Somme u₀ + … + u₉ ?
+        aide: 10 × (100 + 190) ÷ 2.
+    -   id: q04
+        type: nombre
+        enonce: 'u₀ = 50, r = 4 : somme des 15 premiers termes (u₀ à u₁₄) ?'
+        aide: 'Dernier : 50 + 14 × 4 = 106 ; 15 × 156 ÷ 2.'
+    -   id: q05
+        type: nombre
+        enonce: 'Série B — Pension : 350 € la 1re année, + 12 € par an. Total sur 10 ans ?'
+        unite: €
+        aide: 'Dernier : 350 + 9 × 12 = 458 ; 10 × 808 ÷ 2.'
+    -   id: q06
+        type: nombre
+        enonce: 'Stock utilisé : 60 kg le 1er jour, puis 2 kg de moins chaque jour. Total sur 20 jours ?'
+        unite: kg
+        aide: 'Dernier : 60 − 19 × 2 = 22 ; 20 × 82 ÷ 2.'
+    -   id: q07
+        type: nombre
+        enonce: Somme 5 + 10 + 15 + … + 100 ?
+        aide: 20 termes ; 20 × 105 ÷ 2.
+-   id: a03
+    titre: Partie 3 — La somme d’une suite géométrique
+    transition: 'Dernière notion : le total quand le prix augmente d’un même pourcentage.'
+    consigne: 'Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.'
+    contenu:
+    -   type: titre
+        texte: La notion
+    -   type: paragraphe
+        texte: Pour une suite géométrique, l’astuce des paires ne marche plus.
+    -   type: paragraphe
+        texte: On utilise une autre formule, avec la puissance qⁿ.
+    -   type: paragraphe
+        texte: 'À retenir : S = premier terme × (1 − qⁿ) ÷ (1 − q), avec n = nombre de termes.'
+    -   type: titre
+        texte: Comment ça fonctionne
+    -   type: etapes
+        elements:
+        - Repère le premier terme, q et le nombre de termes n.
+        - Calcule qⁿ (touche ^).
+        - Calcule premier × (1 − qⁿ) ÷ (1 − q).
+        - Contrôle sur 2 ou 3 termes en les additionnant.
+    -   type: titre
+        texte: Pourquoi ça marche
+    -   type: paragraphe
+        texte: 1. L’idée
+    -   type: liste
+        elements:
+        - S = u₀ + u₀q + u₀q² ; q × S = u₀q + u₀q² + u₀q³.
+        - 'En soustrayant, presque tout s’annule : S − qS = u₀ − u₀q³, d’où S = u₀(1 − q³) ÷ (1 − q).'
+    -   type: paragraphe
+        texte: 2. Vérification
+    -   type: liste
+        elements:
+        - 'u₀ = 200, q = 2, 3 termes : 200 × (1 − 8) ÷ (1 − 2) = 200 × 7 = 1 400.'
+        - C’est bien 200 + 400 + 800.
+    -   type: titre
+        texte: Exemple fait ensemble en classe
+    -   type: paragraphe
+        texte: Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
+    -   type: titre
+        texte: Exercices
+    -   type: paragraphe
+        texte: Calculatrice autorisée. Arrondis au centime.
+    questions:
+    -   id: q01
+        type: nombre
+        enonce: 'Série A — u₀ = 100, q = 2, 4 termes : somme ?'
+        aide: 100 × (1 − 2⁴) ÷ (1 − 2).
+    -   id: q02
+        type: nombre
+        enonce: 'u₀ = 1 000, q = 0,5, 3 termes : somme ?'
+        aide: 1 000 × (1 − 0,125) ÷ 0,5.
+    -   id: q03
+        type: nombre
+        enonce: 'u₀ = 400, q = 1,03, 10 termes : somme (au centime) ?'
+        unite: €
+        aide: 400 × (1 − 1,03¹⁰) ÷ (1 − 1,03).
+    -   id: q04
+        type: nombre
+        enonce: 'u₀ = 500, q = 1,1, 3 termes : somme ?'
+        aide: 500 + 550 + 605.
+    -   id: q05
+        type: nombre
+        enonce: Série B — Un club gagne 50 licences la 1re année, puis 10 % de plus chaque année. Total sur 5 ans (au dixième) ?
+        unite: licences
+        aide: 50 × (1 − 1,1⁵) ÷ (1 − 1,1).
+    -   id: q06
+        type: qcm
+        enonce: 'Pension sur 10 ans : A (+12 € par an, départ 350 €) totalise 4 040 € ; B (+3 %, départ 400 €) ≈ 4 585,55 €. La moins chère sur 10 ans ?'
+        choix:
+        -   id: a
+            texte: A
+        -   id: b
+            texte: B
+        aide: Compare les totaux.
+    -   id: q07
+        type: nombre
+        enonce: Différence entre les deux totaux (au centime) ?
+        unite: €
+        aide: 4 585,55 − 4 040.
+-   id: a04
+    titre: Encore des exercices (si tu as fini)
+    defi: true
+    facultatif: true
+    contenu:
+    -   type: paragraphe
+        texte: Tu as fini ? Entraîne-toi encore. Ces exercices ne comptent pas dans la note.
+    questions:
+    -   id: q01
+        type: nombre
+        enonce: Somme 1 + 2 + … + 50 ?
+    -   id: q02
+        type: nombre
+        enonce: 'u₀ = 20, r = 3 : somme des 10 premiers termes ?'
+    -   id: q03
+        type: nombre
+        enonce: 'u₀ = 3, q = 3, 4 termes : somme ?'
 retenir:
-    - 'Somme de termes : coût cumulé.'
-    - SOMME au tableur.
+- Total sur plusieurs périodes = somme des termes.
+- 'Arithmétique : S = nombre de termes × (premier + dernier) ÷ 2.'
+- 'Géométrique : S = premier × (1 − qⁿ) ÷ (1 − q), n = nombre de termes.'
+- De u₀ à uₙ₋₁, il y a n termes.
 sources:
-    -   type: lien
-        titre: ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1
-        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf
+-   type: lien
+    titre: ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1
+    url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf
 version_papier:
     surtitre: Cours et exercices — version papier
-    titre: Combien a-t-on dépensé en tout ?
-    introduction: Comment calculer la somme des termes d’une suite avec le tableur ?
+    titre: Combien a-t-on dépensé en tout ? La somme des termes
+    introduction: 'Trois notions : additionner les termes, somme arithmétique, somme géométrique. Pour chacune : la notion, la méthode, l’exemple au tableau, puis les exercices.'
     sections:
-        -   titre: Le cours en bref
-            blocs:
-                -   type: paragraphe
-                    texte: 'Le problème à résoudre : Comment calculer la somme des termes d’une suite avec le tableur ?'
-                -   type: titre
-                    texte: Ce que tu vas apprendre
-                -   type: liste
-                    elements:
-                        - La somme de termes = total cumulé sur plusieurs périodes (ex. coût total d’une pension sur 10 ans).
-                        - 'Au tableur : colonne des termes, puis SOMME, ou colonne de cumul.'
-                -   type: titre
-                    texte: Ce que tu vas savoir faire
-                -   type: liste
-                    elements:
-                        - Calculer une somme de termes au tableur.
-                        - Comparer deux contrats sur leur coût total.
-                -   type: titre
-                    texte: Pourquoi cette séance ?
-                -   type: paragraphe
-                    texte: 'En S18, tu as comparé deux options de prix pour 2036. Mais le client paie chaque année : quel est le coût total sur 10 ans ?'
-                -   type: paragraphe
-                    texte: 'Comment utiliser cette fiche : pour chaque partie, lis la méthode et l’exemple, complète les points clés, puis fais l’exercice. Réponds sur les lignes.'
-        -   titre: I. Les termes au tableur
-            blocs:
-                -   type: titre
-                    texte: La situation
-                -   type: paragraphe
-                    texte: Le client paie une pension tous les mois pendant 10 ans. Combien paie-t-il chaque année avec chaque option ?
-                -   type: titre
-                    texte: Ce que c’est
-                -   type: paragraphe
-                    texte: 'Le coût annuel est le terme de la suite pour une année : 12 fois le prix mensuel de cette année-là.'
-                -   type: titre
-                    texte: À quoi ça sert
-                -   type: liste
-                    elements:
-                        - Préparer le calcul du total sur plusieurs années.
-                        - Comparer deux contrats année par année.
-                -   type: titre
-                    texte: Comment ça marche
-                -   type: etapes
-                    elements:
-                        - 'Colonne A : le rang n de 0 à 9.'
-                        - 'Option A : =12*400*1,03^A2 ; option B : =12*(400+12*A2).'
-                        - On recopie vers le bas jusqu’à n = 9.
-                -   type: paragraphe
-                    texte: 'À retenir : Coût annuel = 12 × coût mensuel.'
-                -   type: titre
-                    texte: Exemple fait ensemble en classe
-                -   type: zone
-                    lignes: 6
-                -   type: liste
-                    elements:
-                        - 'Automatisme : 12 × 508 = ?'
-                -   type: titre
-                    texte: Ce que tu vas faire
-                -   type: paragraphe
-                    texte: Tu vas construire au tableur les coûts annuels des deux options de pension sur 10 ans. On attend deux coûts annuels.
-                -   type: titre
-                    texte: Ta mission
-                -   type: etapes
-                    elements:
-                        - 'À toi : colonne A : n de 0 à 9 ; colonne B : 12 × 400 × 1,03ⁿ (option A) ; colonne C : 12 × (400 + 12n) (option B).'
-                        - Pourquoi × 12 ? Le prix est mensuel, le coût annuel compte 12 mois.
-                -   type: titre
-                    texte: Points clés à compléter
-                -   type: trous
-                    elements:
-                        -   - 'Coût annuel = 12 × coût '
-                            - ''
-                            - ' .'
-                        -   - 'Pour n = 9, option B : 12 × (400 + '
-                            - ''
-                            - ' ).'
-                -   type: titre
-                    texte: Exercice 1 — Les termes au tableur
-            questions:
-                - Entraînement — Un loyer de 100 € par mois augmente de 2 % par an. Coût annuel pour n = 0 et n = 1 ?
-                - Coût annuel de l’option A pour n = 0 ? (en €)
-                - Coût annuel de l’option B pour n = 9 ? (en €)
-        -   titre: II. Les sommes
-            blocs:
-                -   type: titre
-                    texte: La situation
-                -   type: paragraphe
-                    texte: Ce qui compte pour le client, c’est ce qu’il paie en tout sur 10 ans.
-                -   type: titre
-                    texte: Ce que c’est
-                -   type: paragraphe
-                    texte: 'La somme des termes est le total cumulé sur plusieurs périodes : u₀ + u₁ + … + u₉.'
-                -   type: titre
-                    texte: À quoi ça sert
-                -   type: liste
-                    elements:
-                        - Connaître le coût total d’un contrat, d’un crédit, d’un abonnement.
-                        - Comparer des options sur toute leur durée.
-                -   type: titre
-                    texte: Comment ça marche
-                -   type: etapes
-                    elements:
-                        - 'Au tableur : =SOMME(B2:B11) additionne les 10 coûts annuels.'
-                        - On fait de même pour l’autre option et on compare.
-                        - On peut aussi faire une colonne de cumul (chaque ligne = cumul précédent + terme).
-                -   type: paragraphe
-                    texte: 'À retenir : Total payé = somme des termes.'
-                -   type: titre
-                    texte: Exemple fait ensemble en classe
-                -   type: zone
-                    lignes: 6
-                -   type: titre
-                    texte: Ce que tu vas faire
-                -   type: paragraphe
-                    texte: Tu vas calculer avec le tableur le coût total de chaque option de pension sur 10 ans. On attend les deux totaux.
-                -   type: titre
-                    texte: Ta mission
-                -   type: etapes
-                    elements:
-                        - 'À toi : calcule SOMME(B2:B11) et SOMME(C2:C11), puis compare.'
-                        - Pourquoi la somme ? C’est ce que le client paie vraiment.
-                -   type: titre
-                    texte: Points clés à compléter
-                -   type: trous
-                    elements:
-                        -   - 'Le total payé est la '
-                            - ''
-                            - ' des termes.'
-                        -   - 'Au tableur : ='
-                            - ''
-                            - ' (B2:B11).'
-                -   type: titre
-                    texte: Exercice 2 — Les sommes
-            questions:
-                - Entraînement — Termes 100 ; 110 ; 120 ; 130. Quelle est leur somme ?
-                - Entraînement — Quelle formule additionne les cellules C2 à C11 ?
-                - Coût total option A sur 10 ans (à l’euro près) ? (en €)
-                - Coût total option B ? (en €)
-        -   titre: III. Conseiller
-            blocs:
-                -   type: titre
-                    texte: La situation
-                -   type: paragraphe
-                    texte: 'Le client demande conseil : quelle option choisir ?'
-                -   type: titre
-                    texte: Ce que c’est
-                -   type: paragraphe
-                    texte: Un conseil chiffré donne une recommandation claire appuyée sur les totaux calculés.
-                -   type: titre
-                    texte: À quoi ça sert
-                -   type: liste
-                    elements:
-                        - Aider un client à décider ; défendre un choix devant un responsable.
-                -   type: titre
-                    texte: Comment ça marche
-                -   type: etapes
-                    elements:
-                        - On nomme l’option conseillée.
-                        - On donne les deux totaux et l’économie réalisée.
-                        - On ajoute une remarque sur le long terme.
-                -   type: paragraphe
-                    texte: 'À retenir : On conseille l’option au coût total le plus faible, chiffres à l’appui.'
-                -   type: titre
-                    texte: Exemple fait ensemble en classe
-                -   type: zone
-                    lignes: 6
-                -   type: titre
-                    texte: Ce que tu vas faire
-                -   type: paragraphe
-                    texte: Tu vas conseiller le client sur l’option de pension la moins chère sur 10 ans. On attend un conseil chiffré.
-                -   type: titre
-                    texte: Ta mission
-                -   type: etapes
-                    elements:
-                        - 'À toi : rédige ton conseil au client avec les chiffres.'
-                        - Pourquoi un conseil ? Le calcul sert la décision.
-                -   type: titre
-                    texte: Points clés à compléter
-                -   type: trous
-                    elements:
-                        -   - 'On conseille l’option au coût total le plus '
-                            - ''
-                            - ' .'
-                        -   - 'L’écart entre les options '
-                            - ''
-                            - ' avec le temps.'
-                -   type: titre
-                    texte: Exercice 3 — Conseiller
-            questions:
-                - 'Entraînement — Option C : 30 000 € sur 5 ans ; option D : 29 400 €. Rédige le conseil.'
-                - Quelle option conseilles-tu ? Justifie avec les totaux.
-        -   titre: Conclusion
-            blocs:
-                -   type: paragraphe
-                    texte: Avec ce que tu as fait dans les parties précédentes, réponds en quelques phrases complètes.
-            questions:
-                - 'Réponds au problème du jour : comment calculer la somme des termes d’une suite avec le tableur ?'
-        -   titre: Pour aller plus loin (facultatif)
-            blocs:
-                -   type: paragraphe
-                    texte: 'Formule de la somme d’une suite géométrique : u₀ × (1 − qⁿ) ÷ (1 − q).'
-            questions:
-                - Vérifie le total A.
-        -   titre: À retenir
-            blocs:
-                -   type: liste
-                    elements:
-                        - 'Somme de termes : coût cumulé.'
-                        - SOMME au tableur.
-        -   titre: Exercice 1 — Somme
-            blocs: []
-            questions:
-                - 'Termes 100, 110, 120, …, 190 (10 termes) : somme ?'
-                - Formule tableur de la somme de B2 à B11 ?
-            saut_page: true
-            surtitre: Fiche d’exercices
-        -   titre: Exercice 2 — Coût total
-            blocs: []
-            questions:
-                - 'Un abonnement de 30 € par mois augmente de 2 € chaque mois : total sur 12 mois ?'
-        -   titre: Exercice 3 — Comparer
-            blocs: []
-            questions:
-                - 'Option A 4 800 € par an fixe, option B 4 500 € +5 % par an : laquelle est moins chère sur 3 ans ?'
+    -   titre: I. Additionner les termes
+        blocs:
+        -   type: titre
+            texte: La notion
+        -   type: paragraphe
+            texte: Le prix payé chaque année forme une suite ; ce qu’on a payé en tout est la somme de ses termes.
+        -   type: paragraphe
+            texte: Pour peu de termes, on les calcule et on les additionne.
+        -   type: titre
+            texte: À retenir
+        -   type: paragraphe
+            texte: Total = u₀ + u₁ + u₂ + … (autant de termes que de périodes).
+        -   type: titre
+            texte: Comment ça fonctionne
+        -   type: etapes
+            elements:
+            - 'Compte le nombre de périodes : c’est le nombre de termes.'
+            - Calcule chaque terme.
+            - Additionne-les.
+            - 'Attention : de u₀ à u₃, il y a 4 termes.'
+        -   type: titre
+            texte: Pourquoi ça marche
+        -   type: paragraphe
+            texte: 1. Pourquoi une somme
+        -   type: liste
+            elements:
+            - Chaque année, on paie le terme de l’année.
+            - 'Sur 4 ans, on paie les 4 termes : on les additionne.'
+        -   type: paragraphe
+            texte: 2. Pourquoi compter les termes
+        -   type: liste
+            elements:
+            - 'De u₀ à u₃ : u₀, u₁, u₂, u₃ → 4 termes, pas 3.'
+        -   type: titre
+            texte: Exemple fait ensemble en classe
+        -   type: zone
+            lignes: 6
+        -   type: titre
+            texte: Exercices (calculatrice autorisée)
+        -   type: paragraphe
+            texte: Calculatrice autorisée.
+        questions:
+        - Série A — Combien de termes de u₀ à u₉ ?
+        - Combien de termes de u₀ à u₁₄ ?
+        - 'u₀ = 100, r = 10 : u₀ + u₁ + u₂ ?'
+        - 'u₀ = 50, r = −5 : u₀ + u₁ + u₂ + u₃ ?'
+        - 'Série B — u₀ = 200, q = 2 : u₀ + u₁ + u₂ ?'
+        - 'Foin : 120 € le 1er mois, puis + 8 € par mois. Total sur 3 mois ? (en €)'
+    -   titre: II. La somme d’une suite arithmétique
+        blocs:
+        -   type: titre
+            texte: La notion
+        -   type: paragraphe
+            texte: Pour une suite arithmétique, le premier et le dernier terme, le deuxième et l’avant-dernier, etc., ont toujours la même somme.
+        -   type: paragraphe
+            texte: Cela donne une formule rapide.
+        -   type: titre
+            texte: À retenir
+        -   type: paragraphe
+            texte: S = nombre de termes × (premier terme + dernier terme) ÷ 2.
+        -   type: titre
+            texte: Comment ça fonctionne
+        -   type: etapes
+            elements:
+            - Compte le nombre de termes.
+            - Calcule le dernier terme avec uₙ = u₀ + n × r.
+            - Additionne premier et dernier.
+            - Multiplie par le nombre de termes, puis divise par 2.
+        -   type: titre
+            texte: Pourquoi ça marche
+        -   type: paragraphe
+            texte: 1. L’astuce des paires
+        -   type: liste
+            elements:
+            - '1 + 2 + … + 10 : on associe 1 + 10 = 11, 2 + 9 = 11, … : 5 paires de 11.'
+            - 'Total : 5 × 11 = 55 = 10 × (1 + 10) ÷ 2.'
+        -   type: paragraphe
+            texte: 2. Pourquoi diviser par 2
+        -   type: liste
+            elements:
+            - Avec n termes, on fait n ÷ 2 paires.
+            - 'Chaque paire vaut premier + dernier : S = n × (premier + dernier) ÷ 2.'
+        -   type: titre
+            texte: Exemple fait ensemble en classe
+        -   type: zone
+            lignes: 6
+        -   type: titre
+            texte: Exercices (calculatrice autorisée)
+        -   type: paragraphe
+            texte: Calculatrice autorisée.
+        questions:
+        - Série A — Somme 1 + 2 + … + 20 ?
+        - 'u₀ = 100, r = 10 : dernier terme u₉ ?'
+        - Somme u₀ + … + u₉ ?
+        - 'u₀ = 50, r = 4 : somme des 15 premiers termes (u₀ à u₁₄) ?'
+        - 'Série B — Pension : 350 € la 1re année, + 12 € par an. Total sur 10 ans ? (en €)'
+        - 'Stock utilisé : 60 kg le 1er jour, puis 2 kg de moins chaque jour. Total sur 20 jours ? (en kg)'
+        - Somme 5 + 10 + 15 + … + 100 ?
+    -   titre: III. La somme d’une suite géométrique
+        blocs:
+        -   type: titre
+            texte: La notion
+        -   type: paragraphe
+            texte: Pour une suite géométrique, l’astuce des paires ne marche plus.
+        -   type: paragraphe
+            texte: On utilise une autre formule, avec la puissance qⁿ.
+        -   type: titre
+            texte: À retenir
+        -   type: paragraphe
+            texte: S = premier terme × (1 − qⁿ) ÷ (1 − q), avec n = nombre de termes.
+        -   type: titre
+            texte: Comment ça fonctionne
+        -   type: etapes
+            elements:
+            - Repère le premier terme, q et le nombre de termes n.
+            - Calcule qⁿ (touche ^).
+            - Calcule premier × (1 − qⁿ) ÷ (1 − q).
+            - Contrôle sur 2 ou 3 termes en les additionnant.
+        -   type: titre
+            texte: Pourquoi ça marche
+        -   type: paragraphe
+            texte: 1. L’idée
+        -   type: liste
+            elements:
+            - S = u₀ + u₀q + u₀q² ; q × S = u₀q + u₀q² + u₀q³.
+            - 'En soustrayant, presque tout s’annule : S − qS = u₀ − u₀q³, d’où S = u₀(1 − q³) ÷ (1 − q).'
+        -   type: paragraphe
+            texte: 2. Vérification
+        -   type: liste
+            elements:
+            - 'u₀ = 200, q = 2, 3 termes : 200 × (1 − 8) ÷ (1 − 2) = 200 × 7 = 1 400.'
+            - C’est bien 200 + 400 + 800.
+        -   type: titre
+            texte: Exemple fait ensemble en classe
+        -   type: zone
+            lignes: 6
+        -   type: titre
+            texte: Exercices (calculatrice autorisée)
+        -   type: paragraphe
+            texte: Calculatrice autorisée. Arrondis au centime.
+        questions:
+        - 'Série A — u₀ = 100, q = 2, 4 termes : somme ?'
+        - 'u₀ = 1 000, q = 0,5, 3 termes : somme ?'
+        - 'u₀ = 400, q = 1,03, 10 termes : somme (au centime) ? (en €)'
+        - 'u₀ = 500, q = 1,1, 3 termes : somme ?'
+        - Série B — Un club gagne 50 licences la 1re année, puis 10 % de plus chaque année. Total sur 5 ans (au dixième) ? (en licences)
+        - 'Pension sur 10 ans : A (+12 € par an, départ 350 €) totalise 4 040 € ; B (+3 %, départ 400 €) ≈ 4 585,55 €. La moins chère sur 10 ans ? Choix : A / B.'
+        - Différence entre les deux totaux (au centime) ? (en €)
+    -   titre: Encore des exercices (si tu as fini)
+        blocs: []
+        questions:
+        - Somme 1 + 2 + … + 50 ?
+        - 'u₀ = 20, r = 3 : somme des 10 premiers termes ?'
+        - 'u₀ = 3, q = 3, 4 termes : somme ?'
+    -   titre: À retenir
+        blocs:
+        -   type: liste
+            elements:
+            - Total sur plusieurs périodes = somme des termes.
+            - 'Arithmétique : S = nombre de termes × (premier + dernier) ÷ 2.'
+            - 'Géométrique : S = premier × (1 − qⁿ) ÷ (1 − q), n = nombre de termes.'
+            - De u₀ à uₙ₋₁, il y a n termes.

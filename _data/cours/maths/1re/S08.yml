@@ -1,487 +1,455 @@
-titre: 'Séance 8 : Résumer une série au tableur'
+titre: 'Séance 8 : Résumer une série : position, dispersion, écart-type'
 themes:
-    - MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre
-problematique: Comment résumer rapidement une série avec des indicateurs au tableur ?
+- MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre
+problematique: Comment résumer une série avec un indicateur de position et un indicateur de dispersion, dont l’écart-type ?
 competences_bo:
-    - MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre
+- MG1, C1.2 — Étudier un phénomène social ou professionnel à l’aide de données, notamment en nombre
 objectifs:
     connaissances:
-        - 'Indicateurs de position : moyenne, médiane ; de dispersion : étendue, quartiles, écart interquartile, écart-type.'
-        - 'Fonctions du tableur : NB, MOYENNE, MEDIANE, QUARTILE, ECARTYPEP, MIN, MAX.'
+    - Moyenne, médiane ; étendue, quartiles, écart interquartile.
+    - L’écart-type σ mesure l’écart moyen des valeurs à la moyenne.
     competences:
-        - Calculer des indicateurs au tableur.
-        - Interpréter position et dispersion.
+    - Calculer moyenne et médiane.
+    - Calculer étendue, Q1, Q3.
+    - Obtenir l’écart-type avec la calculatrice (ou le tableur) et l’interpréter.
 pourquoi:
-    - En 2de, tu as calculé des indicateurs à la main.
-    - 'En 1re, on travaille sur de vraies tailles de fichiers : les notes de 60 chevaux en concours de modèle et allures.'
+- 'Aujourd’hui, trois notions : la position, la dispersion avec les quartiles, l’écart-type.'
+- 'Pour chacune : la notion, la méthode, pourquoi ça marche, un exemple au tableau, puis beaucoup d’exercices.'
 activites:
-    -   id: a01
-        titre: Les indicateurs
-        consigne: Tu vas calculer au tableur les indicateurs de position des 60 notes de concours. On attend trois résultats.
-        contenu:
-            -   type: titre
-                texte: La situation
-            -   type: paragraphe
-                texte: 'Un juge a noté 60 chevaux sur 20 pour leurs allures. Calculer la moyenne de 60 notes à la main serait long : le tableur le fait en une formule.'
-            -   type: titre
-                texte: Ce que c’est
-            -   type: paragraphe
-                texte: 'Un indicateur de position est un seul nombre qui dit autour de quelle valeur se situe la série : la moyenne (valeur d’équilibre) ou la médiane (valeur du milieu de la série rangée).'
-            -   type: titre
-                texte: À quoi ça sert
-            -   type: liste
-                elements:
-                    - Résumer une longue série en un seul nombre.
-                    - Comparer le niveau de deux groupes, de deux années.
-            -   type: titre
-                texte: Comment ça marche
-            -   type: etapes
-                elements:
-                    - On sélectionne la plage des valeurs (par exemple B2:B61), sans le titre.
-                    - '=NB(plage) compte les valeurs : on vérifie qu’il n’en manque pas.'
-                    - =MOYENNE(plage) et =MEDIANE(plage) donnent la position ; =MIN et =MAX les extrêmes.
-            -   type: paragraphe
-                texte: 'À retenir : Moyenne et médiane sont des indicateurs de position.'
-            -   type: titre
-                texte: Exemple fait ensemble en classe
-            -   type: paragraphe
-                texte: Ton professeur résout un exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
-            -   type: titre
-                texte: Exercices d’entraînement (cherche, puis on corrige ensemble)
-            -   type: etapes
-                elements:
-                    - Calcule de tête la moyenne et la médiane de 10 ; 12 ; 17.
-                    - Quelle formule écrire pour la moyenne des cellules C2 à C30 ?
-            -   type: fichier
-                titre: notes de 60 chevaux en modèle et allures
-                url: /assets/fichiers/maths/1re/modele_allures.ods
-            -   type: liste
-                elements:
-                    - 'Automatisme : moyenne de 12, 14, 16.'
-            -   type: titre
-                texte: Ta mission
-            -   type: etapes
-                elements:
-                    - 'À toi : ouvre le fichier modele_allures.ods (à télécharger ci-dessus, 60 notes sur 20) et calcule NB, MOYENNE, MEDIANE, MIN, MAX.'
-                    - Pourquoi NB ? Vérifier qu’aucune note ne manque.
-        questions:
-            -   id: q01
-                type: tableau
-                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
-                colonnes:
-                    - Point clé
-                    - Mot(s) manquant(s)
-                lignes:
-                    -   - La moyenne et la médiane sont des indicateurs de …… .
-                        - ''
-                    -   - =NB(plage) compte les …… .
-                        - ''
-                aide: 'Moyenne et médiane disent où se trouvent les notes : indicateurs de… ? Et NB compte les cellules qui contiennent des… ?'
-            -   id: q02
-                type: tableau
-                enonce: Résultats.
-                colonnes:
-                    - Indicateur
-                    - Valeur
-                lignes:
-                    -   - NB
-                        - ''
-                    -   - MOYENNE (au centième)
-                        - ''
-                    -   - MEDIANE
-                        - ''
-                aide: Ouvre modele_allures.ods et tape =NB(…), =MOYENNE(…), =MEDIANE(…) sur la plage des 60 notes.
-    -   id: a02
-        titre: La dispersion
-        transition: Tu as la position. Mesure la dispersion.
-        consigne: Tu vas calculer les quartiles, l’écart interquartile et l’écart-type des notes. On attend les quatre valeurs.
-        contenu:
-            -   type: titre
-                texte: La situation
-            -   type: paragraphe
-                texte: Deux juges peuvent avoir la même moyenne, mais l’un met des notes très proches, l’autre des notes très écartées. Comment le mesurer ?
-            -   type: titre
-                texte: Ce que c’est
-            -   type: paragraphe
-                texte: Un indicateur de dispersion dit si les valeurs sont serrées ou étalées. Les quartiles Q1 et Q3 coupent la série rangée en quatre parts égales ; l’écart interquartile Q3 − Q1 contient la moitié centrale des valeurs ; l’écart-type mesure l’écart moyen à la moyenne.
-            -   type: titre
-                texte: À quoi ça sert
-            -   type: liste
-                elements:
-                    - Savoir si un groupe est homogène ou hétérogène.
-                    - Compléter la moyenne, qui ne dit rien de la dispersion.
-            -   type: titre
-                texte: Comment ça marche
-            -   type: etapes
-                elements:
-                    - =QUARTILE(plage;1) donne Q1 ; =QUARTILE(plage;3) donne Q3.
-                    - 'Dans une autre cellule : =Q3 − Q1 (en cliquant sur les deux cellules) donne l’écart interquartile.'
-                    - '=ECARTYPEP(plage) donne l’écart-type : plus il est grand, plus les valeurs s’éloignent de la moyenne.'
-            -   type: paragraphe
-                texte: 'À retenir : Écart interquartile = Q3 − Q1 ; un écart-type grand = série dispersée.'
-            -   type: titre
-                texte: Exemple fait ensemble en classe
-            -   type: paragraphe
-                texte: Ton professeur résout un exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
-            -   type: titre
-                texte: Exercices d’entraînement (cherche, puis on corrige ensemble)
-            -   type: etapes
-                elements:
-                    - Q1 = 10 et Q3 = 16. Calcule l’écart interquartile.
-                    - 'Série A : écart-type 1 ; série B : écart-type 4. Laquelle est la plus homogène ?'
-            -   type: titre
-                texte: Ta mission
-            -   type: etapes
-                elements:
-                    - 'À toi : calcule Q1, Q3, l’écart interquartile et ECARTYPEP pour les 60 notes.'
-                    - Pourquoi l’écart-type ? Il mesure l’écart moyen à la moyenne.
-        questions:
-            -   id: q01
-                type: tableau
-                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
-                colonnes:
-                    - Point clé
-                    - Mot(s) manquant(s)
-                lignes:
-                    -   - L’écart-type mesure la dispersion autour de la …… .
-                        - ''
-                    -   - Écart interquartile = …… − Q1.
-                        - ''
-                aide: L’écart-type mesure l’éloignement par rapport à quel indicateur ? Et l’écart interquartile, c’est quel quartile moins Q1 ?
-            -   id: q02
-                type: texte
-                enonce: Écris Q1, Q3, l’écart interquartile et l’écart-type.
-                aide: Utilise =QUARTILE(plage;1), =QUARTILE(plage;3), leur différence, et =ECARTYPEP(plage).
-    -   id: a03
-        titre: Interpréter
-        transition: Les indicateurs sont calculés. Que disent-ils ?
-        consigne: Tu vas interpréter la position et la dispersion des notes en deux phrases. On attend les deux phrases.
-        contenu:
-            -   type: titre
-                texte: La situation
-            -   type: paragraphe
-                texte: L’organisateur du concours veut savoir en deux phrases si le niveau était bon et si les chevaux étaient homogènes.
-            -   type: titre
-                texte: Ce que c’est
-            -   type: paragraphe
-                texte: Interpréter, c’est traduire les indicateurs en phrases compréhensibles par quelqu’un qui n’a pas fait le calcul.
-            -   type: titre
-                texte: À quoi ça sert
-            -   type: liste
-                elements:
-                    - Communiquer un résultat à un juge, un éleveur, un client.
-                    - Prendre une décision à partir de chiffres.
-            -   type: titre
-                texte: Comment ça marche
-            -   type: etapes
-                elements:
-                    - 'Une phrase sur la position : « La moitié des chevaux a plus de … (médiane). »'
-                    - 'Une phrase sur la dispersion : « La moitié centrale des notes est entre Q1 et Q3, soit un écart de … points. »'
-                    - 'On conclut : série homogène ou dispersée.'
-            -   type: paragraphe
-                texte: 'À retenir : Une phrase pour la position, une phrase pour la dispersion, toujours avec les chiffres.'
-            -   type: titre
-                texte: Exemple fait ensemble en classe
-            -   type: paragraphe
-                texte: Ton professeur résout un exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
-            -   type: titre
-                texte: Exercices d’entraînement (cherche, puis on corrige ensemble)
-            -   type: etapes
-                elements:
-                    - Médiane 15, Q1 = 14, Q3 = 16. Écris les deux phrases.
-            -   type: titre
-                texte: Ta mission
-            -   type: etapes
-                elements:
-                    - 'À toi : rédige deux phrases avec tes résultats, une sur la position, une sur la dispersion.'
-                    - Pourquoi deux phrases ? Un juge veut savoir le niveau moyen et si les chevaux sont homogènes.
-        questions:
-            -   id: q01
-                type: tableau
-                enonce: 'Points clés du cours : complète chaque phrase avec le ou les mots qui manquent.'
-                colonnes:
-                    - Point clé
-                    - Mot(s) manquant(s)
-                lignes:
-                    -   - On interprète avec une phrase sur la position et une sur la …… .
-                        - ''
-                    -   - La moitié des valeurs est au-dessus de la …… .
-                        - ''
-                aide: On écrit une phrase sur la position et une autre sur la… ? Et la moitié des valeurs est au-dessus de quel indicateur ?
-            -   id: q02
-                type: texte
-                enonce: Rédige ton interprétation.
-                aide: 'Comme l’exemple : une phrase avec ta médiane, une phrase avec ton Q1, ton Q3 et l’écart entre eux.'
-    -   id: a04
-        titre: Pour aller plus loin
-        defi: true
-        facultatif: true
-        contenu:
-            -   type: paragraphe
-                texte: Une note de 4/20 (cheval boiteux) entre dans la série.
-        questions:
-            -   id: q01
-                type: texte
-                enonce: 'Quel indicateur bouge le plus : moyenne ou médiane ?'
-                aide: 'Ajoute 4/20 dans ta série : recalcule la moyenne et la médiane, et compare de combien chacune bouge.'
-    -   id: a05
-        titre: Conclusion de ton travail
-        conclusion: true
-        transition: Tu sais résumer une série au tableur. Il reste à répondre au problème de départ.
-        questions:
-            -   id: q01
-                type: texte
-                enonce: 'Réponds au problème du jour : comment résumer rapidement une série avec des indicateurs au tableur ?'
-                aide: Dis les fonctions utilisées et comment tu interprètes position et dispersion.
+-   id: a01
+    titre: Partie 1 — Moyenne et médiane
+    consigne: 'Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.'
+    contenu:
+    -   type: titre
+        texte: La notion
+    -   type: paragraphe
+        texte: Un indicateur de position dit autour de quelle valeur se trouve la série.
+    -   type: paragraphe
+        texte: 'Les deux principaux : la moyenne et la médiane.'
+    -   type: paragraphe
+        texte: 'À retenir : Moyenne = somme ÷ effectif. Médiane : valeur du milieu de la série rangée (effectif pair : moyenne des deux du milieu).'
+    -   type: titre
+        texte: Comment ça fonctionne
+    -   type: etapes
+        elements:
+        - Range la série.
+        - 'Moyenne : additionne, divise par l’effectif.'
+        - 'Médiane : rang (n + 1) ÷ 2 ; si n est pair, moyenne des valeurs de rangs n ÷ 2 et n ÷ 2 + 1.'
+        - 'Contrôle : les deux sont entre le min et le max.'
+    -   type: titre
+        texte: Pourquoi ça marche
+    -   type: paragraphe
+        texte: 1. La moyenne partage
+    -   type: liste
+        elements:
+        - Si tous les chevaux avaient le même poids, avec le même total, chacun pèserait la moyenne.
+    -   type: paragraphe
+        texte: 2. La médiane coupe en deux
+    -   type: liste
+        elements:
+        - Autant de chevaux pèsent moins que la médiane que plus.
+        - Elle ne bouge pas si le plus lourd prend 100 kg.
+    -   type: titre
+        texte: Exemple fait ensemble en classe
+    -   type: paragraphe
+        texte: Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
+    -   type: titre
+        texte: Exercices
+    -   type: paragraphe
+        texte: 'Poids (kg) de 10 chevaux, rangés :'
+    -   type: paragraphe
+        texte: 480 ; 495 ; 500 ; 510 ; 515 ; 520 ; 530 ; 540 ; 555 ; 575.
+    questions:
+    -   id: q01
+        type: nombre
+        enonce: Série A — Somme des poids ?
+        unite: kg
+        aide: Additionne les 10 valeurs.
+    -   id: q02
+        type: nombre
+        enonce: Moyenne ?
+        unite: kg
+        aide: Somme ÷ 10.
+    -   id: q03
+        type: nombre
+        enonce: Médiane ?
+        unite: kg
+        aide: '10 valeurs : (5e + 6e) ÷ 2.'
+    -   id: q04
+        type: nombre
+        enonce: Médiane de 7 ; 3 ; 9 ; 4 ; 12 ?
+        aide: Range d’abord.
+    -   id: q05
+        type: nombre
+        enonce: Moyenne de 7 ; 3 ; 9 ; 4 ; 12 ?
+        aide: Somme ÷ 5.
+    -   id: q06
+        type: nombre
+        enonce: Série B — Si le cheval de 575 kg pesait 675 kg, quelle serait la nouvelle moyenne ?
+        unite: kg
+        aide: La somme augmente de 100.
+    -   id: q07
+        type: nombre
+        enonce: Et la nouvelle médiane ?
+        unite: kg
+        aide: Les deux valeurs du milieu changent-elles ?
+-   id: a02
+    titre: Partie 2 — Étendue et quartiles
+    transition: 'Tu sais situer la série. Deuxième notion : mesurer si elle est serrée ou étalée.'
+    consigne: 'Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.'
+    contenu:
+    -   type: titre
+        texte: La notion
+    -   type: paragraphe
+        texte: Un indicateur de dispersion dit si les valeurs sont proches ou éloignées les unes des autres.
+    -   type: paragraphe
+        texte: Étendue = max − min ; écart interquartile = Q3 − Q1.
+    -   type: paragraphe
+        texte: 'À retenir : Q1 : rang n ÷ 4 ; Q3 : rang 3n ÷ 4 (arrondis à l’entier au-dessus) dans la série rangée.'
+    -   type: titre
+        texte: Comment ça fonctionne
+    -   type: etapes
+        elements:
+        - Range la série et compte n.
+        - Calcule les rangs de Q1 et Q3, arrondis au-dessus.
+        - Lis Q1 et Q3.
+        - Calcule Q3 − Q1 et max − min.
+    -   type: titre
+        texte: Pourquoi ça marche
+    -   type: paragraphe
+        texte: 1. Ce que disent les quartiles
+    -   type: liste
+        elements:
+        - Au moins 25 % des valeurs sont ≤ Q1, au moins 75 % sont ≤ Q3.
+        - Entre Q1 et Q3 se trouve environ la moitié centrale des valeurs.
+    -   type: paragraphe
+        texte: 2. Pourquoi l’écart interquartile
+    -   type: liste
+        elements:
+        - Il ne dépend pas des valeurs extrêmes.
+        - Il mesure la largeur du « cœur » de la série.
+    -   type: titre
+        texte: Exemple fait ensemble en classe
+    -   type: paragraphe
+        texte: Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
+    -   type: titre
+        texte: Exercices
+    -   type: paragraphe
+        texte: Même série de 10 poids.
+    -   type: paragraphe
+        texte: 480 ; 495 ; 500 ; 510 ; 515 ; 520 ; 530 ; 540 ; 555 ; 575.
+    questions:
+    -   id: q01
+        type: nombre
+        enonce: Série A — Étendue ?
+        unite: kg
+        aide: Max − min.
+    -   id: q02
+        type: nombre
+        enonce: Rang de Q1 ?
+        aide: 10 ÷ 4 = 2,5 → arrondi au-dessus.
+    -   id: q03
+        type: nombre
+        enonce: Q1 ?
+        unite: kg
+        aide: La 3e valeur.
+    -   id: q04
+        type: nombre
+        enonce: Rang de Q3 ?
+        aide: 30 ÷ 4 = 7,5 → arrondi au-dessus.
+    -   id: q05
+        type: nombre
+        enonce: Q3 ?
+        unite: kg
+        aide: La 8e valeur.
+    -   id: q06
+        type: nombre
+        enonce: Série B — Écart interquartile ?
+        unite: kg
+        aide: Q3 − Q1.
+    -   id: q07
+        type: nombre
+        enonce: 'Série 3 ; 5 ; 6 ; 6 ; 8 ; 9 ; 9 ; 10 ; 14 ; 15 ; 18 ; 20 : écart interquartile ?'
+        aide: 'n = 12 : rangs 3 et 9.'
+-   id: a03
+    titre: Partie 3 — L’écart-type
+    transition: 'Dernière notion : un indicateur de dispersion qui utilise toutes les valeurs.'
+    consigne: 'Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.'
+    contenu:
+    -   type: titre
+        texte: La notion
+    -   type: paragraphe
+        texte: L’écart-type, noté σ (sigma), mesure de combien les valeurs s’écartent en moyenne de la moyenne.
+    -   type: paragraphe
+        texte: Plus σ est petit, plus les valeurs sont serrées autour de la moyenne. Il a la même unité que la série.
+    -   type: paragraphe
+        texte: 'À retenir : σ s’obtient à la calculatrice (mode statistique, σx) ou au tableur (=ECARTYPEP(plage)).'
+    -   type: titre
+        texte: Comment ça fonctionne
+    -   type: etapes
+        elements:
+        - 'Calculatrice : mode STAT, saisis les valeurs dans une liste.'
+        - Lance le calcul à une variable (1-Var) ; lis x̄ (moyenne) et σx (écart-type).
+        - 'Tableur : =ECARTYPEP(B2:B11).'
+        - Arrondis au centième et écris l’unité.
+    -   type: titre
+        texte: Pourquoi ça marche
+    -   type: paragraphe
+        texte: 1. L’idée
+    -   type: liste
+        elements:
+        - Pour chaque valeur, on regarde son écart à la moyenne.
+        - L’écart-type est une sorte de moyenne de ces écarts (on les met au carré pour ne pas avoir de négatifs, puis on prend la racine carrée).
+    -   type: paragraphe
+        texte: 2. Sur un petit exemple
+    -   type: liste
+        elements:
+        - 'Série 4 ; 6 ; 8 ; 10 ; 12 : moyenne 8 ; écarts −4, −2, 0, 2, 4.'
+        - 'Carrés : 16, 4, 0, 4, 16 ; moyenne 8 ; racine de 8 ≈ 2,83 = σ.'
+    -   type: titre
+        texte: Exemple fait ensemble en classe
+    -   type: paragraphe
+        texte: Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.
+    -   type: titre
+        texte: Exercices
+    -   type: paragraphe
+        texte: Calculatrice en mode statistique (ou tableur). Arrondis au centième.
+    questions:
+    -   id: q01
+        type: nombre
+        enonce: Série A — Écart-type de 10 ; 10 ; 10 ; 10 ?
+        aide: Toutes les valeurs sont égales.
+    -   id: q02
+        type: nombre
+        enonce: Écart-type de 4 ; 6 ; 8 ; 10 ; 12 ?
+        aide: 'Calculatrice : σx.'
+    -   id: q03
+        type: nombre
+        enonce: Écart-type de 2 ; 4 ; 6 ; 8 ?
+        aide: 'Calculatrice : σx.'
+    -   id: q04
+        type: nombre
+        enonce: Écart-type des 10 poids de chevaux ?
+        unite: kg
+        aide: Saisis les 10 valeurs ; lis σx.
+    -   id: q05
+        type: qcm
+        enonce: 'Série B — Lot A : σ = 3 kg. Lot B : σ = 12 kg. Lequel est le plus homogène ?'
+        choix:
+        -   id: a
+            texte: Lot A
+        -   id: b
+            texte: Lot B
+        aide: Le plus petit σ.
+    -   id: q06
+        type: qcm
+        enonce: Sur la calculatrice, quelle valeur prendre ?
+        choix:
+        -   id: a
+            texte: σx
+        -   id: b
+            texte: sx
+        -   id: c
+            texte: Σx
+        aide: σ est la lettre sigma minuscule.
+-   id: a04
+    titre: Encore des exercices (si tu as fini)
+    defi: true
+    facultatif: true
+    contenu:
+    -   type: paragraphe
+        texte: Tu as fini ? Entraîne-toi encore. Ces exercices ne comptent pas dans la note.
+    questions:
+    -   id: q01
+        type: nombre
+        enonce: Moyenne de 15 ; 18 ; 20 ; 27 ?
+    -   id: q02
+        type: nombre
+        enonce: Médiane de 15 ; 18 ; 20 ; 27 ?
+    -   id: q03
+        type: nombre
+        enonce: Écart-type de 1 ; 3 ; 5 ; 7 ; 9 ?
+    -   id: q04
+        type: nombre
+        enonce: Écart-type de 50 ; 50 ; 60 ; 60 ?
 retenir:
-    - MOYENNE, MEDIANE, QUARTILE, ECARTYPEP.
-    - Position + dispersion.
+- 'Moyenne = somme ÷ effectif ; médiane : valeur du milieu de la série rangée.'
+- 'Q1 : rang n ÷ 4 ; Q3 : rang 3n ÷ 4 (arrondis au-dessus) ; écart interquartile = Q3 − Q1.'
+- 'Écart-type σ : écart « moyen » à la moyenne ; petit σ = valeurs serrées autour de la moyenne.'
+- 'Au tableur : =MOYENNE, =MEDIANE, =QUARTILE(;1), =ECARTYPEP.'
 sources:
-    -   type: lien
-        titre: ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1
-        url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf
+-   type: lien
+    titre: ChloroFil — Bac Pro, tronc commun rénové, document d’accompagnement du module MG1
+    url: https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/bacpro/bacpro-tc-da-MG1.pdf
 version_papier:
     surtitre: Cours et exercices — version papier
-    titre: Résumer une série au tableur
-    introduction: Comment résumer rapidement une série avec des indicateurs au tableur ?
+    titre: 'Résumer une série : position, dispersion, écart-type'
+    introduction: 'Trois notions : position, quartiles, écart-type. Pour chacune : la notion, la méthode, l’exemple au tableau, puis les exercices.'
     sections:
-        -   titre: Le cours en bref
-            blocs:
-                -   type: paragraphe
-                    texte: 'Le problème à résoudre : Comment résumer rapidement une série avec des indicateurs au tableur ?'
-                -   type: titre
-                    texte: Ce que tu vas apprendre
-                -   type: liste
-                    elements:
-                        - 'Indicateurs de position : moyenne, médiane ; de dispersion : étendue, quartiles, écart interquartile, écart-type.'
-                        - 'Fonctions du tableur : NB, MOYENNE, MEDIANE, QUARTILE, ECARTYPEP, MIN, MAX.'
-                -   type: titre
-                    texte: Ce que tu vas savoir faire
-                -   type: liste
-                    elements:
-                        - Calculer des indicateurs au tableur.
-                        - Interpréter position et dispersion.
-                -   type: titre
-                    texte: Pourquoi cette séance ?
-                -   type: paragraphe
-                    texte: 'En 2de, tu as calculé des indicateurs à la main. En 1re, on travaille sur de vraies tailles de fichiers : les notes de 60 chevaux en concours de modèle et allures.'
-                -   type: paragraphe
-                    texte: 'Comment utiliser cette fiche : pour chaque partie, lis la méthode et l’exemple, complète les points clés, puis fais l’exercice. Réponds sur les lignes.'
-        -   titre: I. Les indicateurs
-            blocs:
-                -   type: titre
-                    texte: La situation
-                -   type: paragraphe
-                    texte: 'Un juge a noté 60 chevaux sur 20 pour leurs allures. Calculer la moyenne de 60 notes à la main serait long : le tableur le fait en une formule.'
-                -   type: titre
-                    texte: Ce que c’est
-                -   type: paragraphe
-                    texte: 'Un indicateur de position est un seul nombre qui dit autour de quelle valeur se situe la série : la moyenne (valeur d’équilibre) ou la médiane (valeur du milieu de la série rangée).'
-                -   type: titre
-                    texte: À quoi ça sert
-                -   type: liste
-                    elements:
-                        - Résumer une longue série en un seul nombre.
-                        - Comparer le niveau de deux groupes, de deux années.
-                -   type: titre
-                    texte: Comment ça marche
-                -   type: etapes
-                    elements:
-                        - On sélectionne la plage des valeurs (par exemple B2:B61), sans le titre.
-                        - '=NB(plage) compte les valeurs : on vérifie qu’il n’en manque pas.'
-                        - =MOYENNE(plage) et =MEDIANE(plage) donnent la position ; =MIN et =MAX les extrêmes.
-                -   type: paragraphe
-                    texte: 'À retenir : Moyenne et médiane sont des indicateurs de position.'
-                -   type: titre
-                    texte: Exemple fait ensemble en classe
-                -   type: zone
-                    lignes: 6
-                -   type: liste
-                    elements:
-                        - 'Automatisme : moyenne de 12, 14, 16.'
-                -   type: titre
-                    texte: Ce que tu vas faire
-                -   type: paragraphe
-                    texte: Tu vas calculer au tableur les indicateurs de position des 60 notes de concours. On attend trois résultats.
-                -   type: titre
-                    texte: Ta mission
-                -   type: etapes
-                    elements:
-                        - 'À toi : ouvre le fichier modele_allures.ods (à télécharger ci-dessus, 60 notes sur 20) et calcule NB, MOYENNE, MEDIANE, MIN, MAX.'
-                        - Pourquoi NB ? Vérifier qu’aucune note ne manque.
-                -   type: titre
-                    texte: Exemple et documents
-                -   type: fichier
-                    titre: notes de 60 chevaux en modèle et allures
-                    url: /assets/fichiers/maths/1re/modele_allures.ods
-                -   type: titre
-                    texte: Points clés à compléter
-                -   type: trous
-                    elements:
-                        -   - 'La moyenne et la médiane sont des indicateurs de '
-                            - ''
-                            - ' .'
-                        -   - '=NB(plage) compte les '
-                            - ''
-                            - ' .'
-                -   type: titre
-                    texte: Exercice 1 — Les indicateurs
-                -   type: tableau
-                    colonnes:
-                        - Indicateur
-                        - Valeur
-                    lignes:
-                        -   - NB
-                            - ''
-                        -   - MOYENNE (au centième)
-                            - ''
-                        -   - MEDIANE
-                            - ''
-            questions:
-                - Entraînement — Calcule de tête la moyenne et la médiane de 10 ; 12 ; 17.
-                - Entraînement — Quelle formule écrire pour la moyenne des cellules C2 à C30 ?
-                - Résultats.
-        -   titre: II. La dispersion
-            blocs:
-                -   type: titre
-                    texte: La situation
-                -   type: paragraphe
-                    texte: Deux juges peuvent avoir la même moyenne, mais l’un met des notes très proches, l’autre des notes très écartées. Comment le mesurer ?
-                -   type: titre
-                    texte: Ce que c’est
-                -   type: paragraphe
-                    texte: Un indicateur de dispersion dit si les valeurs sont serrées ou étalées. Les quartiles Q1 et Q3 coupent la série rangée en quatre parts égales ; l’écart interquartile Q3 − Q1 contient la moitié centrale des valeurs ; l’écart-type mesure l’écart moyen à la moyenne.
-                -   type: titre
-                    texte: À quoi ça sert
-                -   type: liste
-                    elements:
-                        - Savoir si un groupe est homogène ou hétérogène.
-                        - Compléter la moyenne, qui ne dit rien de la dispersion.
-                -   type: titre
-                    texte: Comment ça marche
-                -   type: etapes
-                    elements:
-                        - =QUARTILE(plage;1) donne Q1 ; =QUARTILE(plage;3) donne Q3.
-                        - 'Dans une autre cellule : =Q3 − Q1 (en cliquant sur les deux cellules) donne l’écart interquartile.'
-                        - '=ECARTYPEP(plage) donne l’écart-type : plus il est grand, plus les valeurs s’éloignent de la moyenne.'
-                -   type: paragraphe
-                    texte: 'À retenir : Écart interquartile = Q3 − Q1 ; un écart-type grand = série dispersée.'
-                -   type: titre
-                    texte: Exemple fait ensemble en classe
-                -   type: zone
-                    lignes: 6
-                -   type: titre
-                    texte: Ce que tu vas faire
-                -   type: paragraphe
-                    texte: Tu vas calculer les quartiles, l’écart interquartile et l’écart-type des notes. On attend les quatre valeurs.
-                -   type: titre
-                    texte: Ta mission
-                -   type: etapes
-                    elements:
-                        - 'À toi : calcule Q1, Q3, l’écart interquartile et ECARTYPEP pour les 60 notes.'
-                        - Pourquoi l’écart-type ? Il mesure l’écart moyen à la moyenne.
-                -   type: titre
-                    texte: Points clés à compléter
-                -   type: trous
-                    elements:
-                        -   - 'L’écart-type mesure la dispersion autour de la '
-                            - ''
-                            - ' .'
-                        -   - 'Écart interquartile = '
-                            - ''
-                            - ' − Q1.'
-                -   type: titre
-                    texte: Exercice 2 — La dispersion
-            questions:
-                - Entraînement — Q1 = 10 et Q3 = 16. Calcule l’écart interquartile.
-                - 'Entraînement — Série A : écart-type 1 ; série B : écart-type 4. Laquelle est la plus homogène ?'
-                - Écris Q1, Q3, l’écart interquartile et l’écart-type.
-        -   titre: III. Interpréter
-            blocs:
-                -   type: titre
-                    texte: La situation
-                -   type: paragraphe
-                    texte: L’organisateur du concours veut savoir en deux phrases si le niveau était bon et si les chevaux étaient homogènes.
-                -   type: titre
-                    texte: Ce que c’est
-                -   type: paragraphe
-                    texte: Interpréter, c’est traduire les indicateurs en phrases compréhensibles par quelqu’un qui n’a pas fait le calcul.
-                -   type: titre
-                    texte: À quoi ça sert
-                -   type: liste
-                    elements:
-                        - Communiquer un résultat à un juge, un éleveur, un client.
-                        - Prendre une décision à partir de chiffres.
-                -   type: titre
-                    texte: Comment ça marche
-                -   type: etapes
-                    elements:
-                        - 'Une phrase sur la position : « La moitié des chevaux a plus de … (médiane). »'
-                        - 'Une phrase sur la dispersion : « La moitié centrale des notes est entre Q1 et Q3, soit un écart de … points. »'
-                        - 'On conclut : série homogène ou dispersée.'
-                -   type: paragraphe
-                    texte: 'À retenir : Une phrase pour la position, une phrase pour la dispersion, toujours avec les chiffres.'
-                -   type: titre
-                    texte: Exemple fait ensemble en classe
-                -   type: zone
-                    lignes: 6
-                -   type: titre
-                    texte: Ce que tu vas faire
-                -   type: paragraphe
-                    texte: Tu vas interpréter la position et la dispersion des notes en deux phrases. On attend les deux phrases.
-                -   type: titre
-                    texte: Ta mission
-                -   type: etapes
-                    elements:
-                        - 'À toi : rédige deux phrases avec tes résultats, une sur la position, une sur la dispersion.'
-                        - Pourquoi deux phrases ? Un juge veut savoir le niveau moyen et si les chevaux sont homogènes.
-                -   type: titre
-                    texte: Points clés à compléter
-                -   type: trous
-                    elements:
-                        -   - 'On interprète avec une phrase sur la position et une sur la '
-                            - ''
-                            - ' .'
-                        -   - 'La moitié des valeurs est au-dessus de la '
-                            - ''
-                            - ' .'
-                -   type: titre
-                    texte: Exercice 3 — Interpréter
-            questions:
-                - Entraînement — Médiane 15, Q1 = 14, Q3 = 16. Écris les deux phrases.
-                - Rédige ton interprétation.
-        -   titre: Conclusion
-            blocs:
-                -   type: paragraphe
-                    texte: Avec ce que tu as fait dans les parties précédentes, réponds en quelques phrases complètes.
-            questions:
-                - 'Réponds au problème du jour : comment résumer rapidement une série avec des indicateurs au tableur ?'
-        -   titre: Pour aller plus loin (facultatif)
-            blocs:
-                -   type: paragraphe
-                    texte: Une note de 4/20 (cheval boiteux) entre dans la série.
-            questions:
-                - 'Quel indicateur bouge le plus : moyenne ou médiane ?'
-        -   titre: À retenir
-            blocs:
-                -   type: liste
-                    elements:
-                        - MOYENNE, MEDIANE, QUARTILE, ECARTYPEP.
-                        - Position + dispersion.
-        -   titre: Exercice 1 — Indicateurs
-            blocs:
-                -   type: paragraphe
-                    texte: 'Notes : 11, 12, 13, 14, 14, 15, 16, 17.'
-            questions:
-                - Moyenne ?
-                - Médiane ?
-            saut_page: true
-            surtitre: Fiche d’exercices
-        -   titre: Exercice 2 — Dispersion
-            blocs: []
-            questions:
-                - Étendue des notes ?
-        -   titre: Exercice 3 — Interpréter
-            blocs: []
-            questions:
-                - Rédige une phrase sur la position et une sur la dispersion.
+    -   titre: I. Moyenne et médiane
+        blocs:
+        -   type: titre
+            texte: La notion
+        -   type: paragraphe
+            texte: Un indicateur de position dit autour de quelle valeur se trouve la série.
+        -   type: paragraphe
+            texte: 'Les deux principaux : la moyenne et la médiane.'
+        -   type: titre
+            texte: À retenir
+        -   type: paragraphe
+            texte: 'Moyenne = somme ÷ effectif. Médiane : valeur du milieu de la série rangée (effectif pair : moyenne des deux du milieu).'
+        -   type: titre
+            texte: Comment ça fonctionne
+        -   type: etapes
+            elements:
+            - Range la série.
+            - 'Moyenne : additionne, divise par l’effectif.'
+            - 'Médiane : rang (n + 1) ÷ 2 ; si n est pair, moyenne des valeurs de rangs n ÷ 2 et n ÷ 2 + 1.'
+            - 'Contrôle : les deux sont entre le min et le max.'
+        -   type: titre
+            texte: Pourquoi ça marche
+        -   type: paragraphe
+            texte: 1. La moyenne partage
+        -   type: liste
+            elements:
+            - Si tous les chevaux avaient le même poids, avec le même total, chacun pèserait la moyenne.
+        -   type: paragraphe
+            texte: 2. La médiane coupe en deux
+        -   type: liste
+            elements:
+            - Autant de chevaux pèsent moins que la médiane que plus.
+            - Elle ne bouge pas si le plus lourd prend 100 kg.
+        -   type: titre
+            texte: Exemple fait ensemble en classe
+        -   type: zone
+            lignes: 6
+        -   type: titre
+            texte: Exercices (calculatrice autorisée)
+        -   type: paragraphe
+            texte: 'Poids (kg) de 10 chevaux, rangés :'
+        -   type: paragraphe
+            texte: 480 ; 495 ; 500 ; 510 ; 515 ; 520 ; 530 ; 540 ; 555 ; 575.
+        questions:
+        - Série A — Somme des poids ? (en kg)
+        - Moyenne ? (en kg)
+        - Médiane ? (en kg)
+        - Médiane de 7 ; 3 ; 9 ; 4 ; 12 ?
+        - Moyenne de 7 ; 3 ; 9 ; 4 ; 12 ?
+        - Série B — Si le cheval de 575 kg pesait 675 kg, quelle serait la nouvelle moyenne ? (en kg)
+        - Et la nouvelle médiane ? (en kg)
+    -   titre: II. Étendue et quartiles
+        blocs:
+        -   type: titre
+            texte: La notion
+        -   type: paragraphe
+            texte: Un indicateur de dispersion dit si les valeurs sont proches ou éloignées les unes des autres.
+        -   type: paragraphe
+            texte: Étendue = max − min ; écart interquartile = Q3 − Q1.
+        -   type: titre
+            texte: À retenir
+        -   type: paragraphe
+            texte: 'Q1 : rang n ÷ 4 ; Q3 : rang 3n ÷ 4 (arrondis à l’entier au-dessus) dans la série rangée.'
+        -   type: titre
+            texte: Comment ça fonctionne
+        -   type: etapes
+            elements:
+            - Range la série et compte n.
+            - Calcule les rangs de Q1 et Q3, arrondis au-dessus.
+            - Lis Q1 et Q3.
+            - Calcule Q3 − Q1 et max − min.
+        -   type: titre
+            texte: Pourquoi ça marche
+        -   type: paragraphe
+            texte: 1. Ce que disent les quartiles
+        -   type: liste
+            elements:
+            - Au moins 25 % des valeurs sont ≤ Q1, au moins 75 % sont ≤ Q3.
+            - Entre Q1 et Q3 se trouve environ la moitié centrale des valeurs.
+        -   type: paragraphe
+            texte: 2. Pourquoi l’écart interquartile
+        -   type: liste
+            elements:
+            - Il ne dépend pas des valeurs extrêmes.
+            - Il mesure la largeur du « cœur » de la série.
+        -   type: titre
+            texte: Exemple fait ensemble en classe
+        -   type: zone
+            lignes: 6
+        -   type: titre
+            texte: Exercices (calculatrice autorisée)
+        -   type: paragraphe
+            texte: Même série de 10 poids.
+        -   type: paragraphe
+            texte: 480 ; 495 ; 500 ; 510 ; 515 ; 520 ; 530 ; 540 ; 555 ; 575.
+        questions:
+        - Série A — Étendue ? (en kg)
+        - Rang de Q1 ?
+        - Q1 ? (en kg)
+        - Rang de Q3 ?
+        - Q3 ? (en kg)
+        - Série B — Écart interquartile ? (en kg)
+        - 'Série 3 ; 5 ; 6 ; 6 ; 8 ; 9 ; 9 ; 10 ; 14 ; 15 ; 18 ; 20 : écart interquartile ?'
+    -   titre: III. L’écart-type
+        blocs:
+        -   type: titre
+            texte: La notion
+        -   type: paragraphe
+            texte: L’écart-type, noté σ (sigma), mesure de combien les valeurs s’écartent en moyenne de la moyenne.
+        -   type: paragraphe
+            texte: Plus σ est petit, plus les valeurs sont serrées autour de la moyenne. Il a la même unité que la série.
+        -   type: titre
+            texte: À retenir
+        -   type: paragraphe
+            texte: σ s’obtient à la calculatrice (mode statistique, σx) ou au tableur (=ECARTYPEP(plage)).
+        -   type: titre
+            texte: Comment ça fonctionne
+        -   type: etapes
+            elements:
+            - 'Calculatrice : mode STAT, saisis les valeurs dans une liste.'
+            - Lance le calcul à une variable (1-Var) ; lis x̄ (moyenne) et σx (écart-type).
+            - 'Tableur : =ECARTYPEP(B2:B11).'
+            - Arrondis au centième et écris l’unité.
+        -   type: titre
+            texte: Pourquoi ça marche
+        -   type: paragraphe
+            texte: 1. L’idée
+        -   type: liste
+            elements:
+            - Pour chaque valeur, on regarde son écart à la moyenne.
+            - L’écart-type est une sorte de moyenne de ces écarts (on les met au carré pour ne pas avoir de négatifs, puis on prend la racine carrée).
+        -   type: paragraphe
+            texte: 2. Sur un petit exemple
+        -   type: liste
+            elements:
+            - 'Série 4 ; 6 ; 8 ; 10 ; 12 : moyenne 8 ; écarts −4, −2, 0, 2, 4.'
+            - 'Carrés : 16, 4, 0, 4, 16 ; moyenne 8 ; racine de 8 ≈ 2,83 = σ.'
+        -   type: titre
+            texte: Exemple fait ensemble en classe
+        -   type: zone
+            lignes: 6
+        -   type: titre
+            texte: Exercices (calculatrice autorisée)
+        -   type: paragraphe
+            texte: Calculatrice en mode statistique (ou tableur). Arrondis au centième.
+        questions:
+        - Série A — Écart-type de 10 ; 10 ; 10 ; 10 ?
+        - Écart-type de 4 ; 6 ; 8 ; 10 ; 12 ?
+        - Écart-type de 2 ; 4 ; 6 ; 8 ?
+        - Écart-type des 10 poids de chevaux ? (en kg)
+        - 'Série B — Lot A : σ = 3 kg. Lot B : σ = 12 kg. Lequel est le plus homogène ? Choix : Lot A / Lot B.'
+        - 'Sur la calculatrice, quelle valeur prendre ? Choix : σx / sx / Σx.'
+    -   titre: Encore des exercices (si tu as fini)
+        blocs: []
+        questions:
+        - Moyenne de 15 ; 18 ; 20 ; 27 ?
+        - Médiane de 15 ; 18 ; 20 ; 27 ?
+        - Écart-type de 1 ; 3 ; 5 ; 7 ; 9 ?
+        - Écart-type de 50 ; 50 ; 60 ; 60 ?
+    -   titre: À retenir
+        blocs:
+        -   type: liste
+            elements:
+            - 'Moyenne = somme ÷ effectif ; médiane : valeur du milieu de la série rangée.'
+            - 'Q1 : rang n ÷ 4 ; Q3 : rang 3n ÷ 4 (arrondis au-dessus) ; écart interquartile = Q3 − Q1.'
+            - 'Écart-type σ : écart « moyen » à la moyenne ; petit σ = valeurs serrées autour de la moyenne.'
+            - 'Au tableur : =MOYENNE, =MEDIANE, =QUARTILE(;1), =ECARTYPEP.'
