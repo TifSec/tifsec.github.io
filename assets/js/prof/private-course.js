@@ -1,7 +1,7 @@
 import { db } from '../bdd/bdd-connect.js';
 import { checkSession } from '../auth/auth-session.js';
 
-import { loadCoursePreview } from './course-preview.js?v=20261029-prof-2';
+import { addPaperCorrection, loadCoursePreview } from './course-preview.js?v=20261126-corrige';
 import { initCourseSteps } from '../cours/course-steps.js?v=20261029-prof-2';
 import { clearTeacherNotes, renderTeacherNotes } from './teacher-notes.js?v=20261029-prof-2';
 import { catalogueScopes, classLabel, initialCourseScope, lessonsInScope } from './course-selection.js?v=20261104-classes-1';
@@ -115,6 +115,7 @@ export function initPrivateCourse() {
                 if (current !== generation) return;
                 if (response.error || !response.data?.content) throw new Error('private_unavailable');
                 renderTeacherNotes(preview, notes, response.data.content, lesson);
+                addPaperCorrection(preview, response.data.content);
                 root.dataset.mode = 'private';
                 status.textContent = 'Version professeur chargée : les conseils et corrigés accompagnent les activités. Passez en version élève avant de projeter.';
             } else {

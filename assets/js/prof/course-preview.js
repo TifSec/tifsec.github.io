@@ -62,11 +62,52 @@ export async function loadCoursePreview(root, lesson, signal, isCurrent) {
                 if (status) status.textContent = 'Le nouvel onglet a été bloqué. Autorise les fenêtres surgissantes pour ouvrir la fiche.';
             }
         });
-        actions.append(toggle);
+        // Source cachée gardée dans la page : le corrigé papier du professeur la recopie.
+        paper.setAttribute('data-paper-source', '');
+        actions.append(toggle, paper);
         content.unshift(actions);
     }
     root.replaceChildren(...content);
     root.querySelectorAll('[data-answer-id]').forEach(field => { field.disabled = true; field.value = ''; });
     mountCourseGraphs(root);
+    return true;
+}
+
+// Corrigé de la version papier (maths) : même fiche que celle des élèves, réponses à la place des lignes.
+// Réponses reprises dans l'ordre des questions ; si le nombre ne correspond pas, aucun bouton.
+// Le bouton porte data-teacher-private : il disparaît avec les autres notes privées.
+export function addPaperCorrection(preview, content) {
+    const fiche = content?.corrige_version_papier?.fiche;
+    const actions = preview.querySelector('.teacher-course-paper-actions');
+    const source = actions?.querySelector('[data-paper-source]');
+    if (!Array.isArray(fiche) || !source) return false;
+    const answers = fiche.flatMap(part => Array.isArray(part?.reponses) ? part.reponses.map(item => String(item?.reponse ?? '')) : []);
+    if (!answers.length || answers.length !== source.querySelectorAll('.course-paper-questions > li').length) return false;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = 'Version papier — corrigé professeur';
+    button.setAttribute('data-teacher-private', '');
+    button.addEventListener('click', () => {
+        const copy = source.cloneNode(true);
+        copy.removeAttribute('data-paper-source');
+        copy.querySelectorAll('.course-paper-questions > li').forEach((item, index) => {
+            item.querySelectorAll('.course-paper-answer-lines, .course-paper-zone-label, .course-paper-resultat').forEach(node => node.remove());
+            const answer = document.createElement('span');
+            answer.className = 'course-paper-corrige';
+            answer.textContent = answers[index];
+            item.append(answer);
+        });
+        const header = copy.querySelector('.course-paper-sheet > header');
+        const banner = document.createElement('p');
+        banner.className = 'course-paper-corrige-banner';
+        banner.textContent = 'Corrigé professeur — ne pas distribuer';
+        header?.prepend(banner);
+        header?.querySelector('h2')?.prepend('Corrigé — ');
+        if (!openCoursePaperTab(copy)) {
+            const status = preview.parentElement?.querySelector('[role="status"]');
+            if (status) status.textContent = 'Le nouvel onglet a été bloqué. Autorise les fenêtres surgissantes pour ouvrir le corrigé.';
+        }
+    });
+    actions.append(button);
     return true;
 }
