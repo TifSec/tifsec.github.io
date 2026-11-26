@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css?v=20261125-calcul">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-paper-version.css?v=20261125-calcul">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261104-contrast-4">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="mfr" data-matiere="maths" data-classe="2de" data-seance="S04" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-paper-toggle">Version papier</button><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">Partie 1 — Le passage à l’unité</a></li><li><a href="#a02">Partie 2 — Le produit en croix</a></li><li><a href="#a03">Partie 3 — Estimer le poids</a></li><li><a href="#a04">Encore des exercices (si tu as fini) — facultatif</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">Mathématiques · 2de Pro · S04</span></div>
+    <h1>Séance 4 : La quatrième proportionnelle : dose de vermifuge et poids du cheval</h1>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thème du programme</h2>
+        <p>EG4, 1-4 — Identifier des situations de proportionnalité et résoudre les problèmes associés</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>Comment calculer une dose proportionnelle au poids, et estimer un poids quand on n’a pas de balance ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétence travaillée</h2>
+        <ul><li>EG4, 1-4 — Identifier des situations de proportionnalité et résoudre les problèmes associés</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>Passage à l’unité : valeur pour 1, puis × la quantité voulue.</li>
+            
+            <li>Produit en croix : a → b ; c → x donne x = b × c ÷ a.</li>
+            
+            <li>Estimer : lire entre deux valeurs d’un tableau.</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Calculer une dose par le passage à l’unité.</li>
+            
+            <li>Calculer une dose par le produit en croix et l’arrondir comme la notice le demande.</li>
+            
+            <li>Estimer un poids avec un tableau.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>Aujourd’hui, trois notions : le passage à l’unité, le produit en croix, l’estimation.</p><p>Pour chacune : la notion, la méthode, pourquoi ça marche, un exemple au tableau, puis beaucoup d’exercices.</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+<section id="course-paper-version" class="course-paper-version" hidden aria-labelledby="course-paper-title">
+    <article class="course-paper-sheet">
+        <header><p class="course-paper-class">Mathématiques — 2de Pro</p><p class="course-paper-kicker">Cours et exercices — version papier</p><h2 id="course-paper-title"><span class="course-paper-number">Séance 4</span> — La quatrième proportionnelle : dose de vermifuge et poids du cheval</h2><p>Trois notions : le passage à l’unité, le produit en croix, estimer un poids. Pour chacune : la notion, la méthode, l’exemple au tableau, puis les exercices.</p></header>
+        
+        <section class="course-paper-section">
+            <h3>I. Le passage à l’unité</h3>
+            
+<h4>La notion</h4>
+    
+
+<p>Pour trouver une valeur proportionnelle, on peut d’abord calculer la valeur pour 1 (1 kg, 1 cheval…).</p>
+    
+
+<p>Ensuite, on multiplie par la quantité voulue.</p>
+    
+
+<h4>À retenir</h4>
+    
+
+<p>Valeur pour 1 = valeur connue ÷ quantité connue ; puis × la quantité voulue.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Écris la correspondance connue (100 kg → 1 graduation).</li><li>Calcule pour 1 kg : 1 ÷ 100 = 0,01 graduation.</li><li>Multiplie par le poids voulu.</li><li>Contrôle : un cheval plus lourd reçoit plus.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi passer par 1</p>
+    
+
+<ul><li>« Pour 1 kg » est la plus petite part commune.</li><li>Une fois connue, on peut l’utiliser pour n’importe quel poids.</li></ul>
+    
+
+<p>2. Une autre façon</p>
+    
+
+<ul><li>520 kg, c’est 5,2 fois 100 kg.</li><li>Donc 5,2 fois 1 graduation : 5,2 graduations.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<div class="cours-zone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    
+
+<h4>Exercices (calculatrice autorisée)</h4>
+    
+
+<p>Notice fictive : 1 graduation de seringue pour 100 kg de poids.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Série A — Graduations pour un cheval de 500 kg ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Graduations pour un cheval de 520 kg ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Graduations pour un poney de 250 kg ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Graduations pour un cheval de 640 kg ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Série B — 3 sacs coûtent 42 €. Prix d’un sac ? (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Prix de 7 sacs ? (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>5 L de shampooing pour 20 chevaux. Combien pour 12 chevaux ? (en L)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>II. Le produit en croix</h3>
+            
+<h4>La notion</h4>
+    
+
+<p>Le produit en croix donne directement la valeur manquante dans un tableau de proportionnalité à 4 cases.</p>
+    
+
+<p>Pour un médicament, on arrondit ensuite comme la notice le demande.</p>
+    
+
+<h4>À retenir</h4>
+    
+
+<p>a → b ; c → x : x = b × c ÷ a. Notice : arrondir à la demi-graduation supérieure.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Place les 3 nombres connus dans un tableau à 4 cases.</li><li>Multiplie les deux nombres de la diagonale complète.</li><li>Divise par le nombre en face de x.</li><li>Arrondis : pour une dose, à la demi-graduation au-dessus (5,2 → 5,5).</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. D’où vient la formule</p>
+    
+
+<ul><li>Coefficient : k = b ÷ a. Donc x = c × (b ÷ a) = b × c ÷ a.</li><li>On a juste changé l’ordre des calculs.</li></ul>
+    
+
+<p>2. Pourquoi arrondir au-dessus</p>
+    
+
+<ul><li>Une dose trop faible peut ne pas être efficace.</li><li>La notice demande donc d’arrondir à la demi-graduation supérieure.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<div class="cours-zone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    
+
+<h4>Exercices (calculatrice autorisée)</h4>
+    
+
+<p>Notice fictive : 2 graduations pour 200 kg ; arrondir à la demi-graduation supérieure.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Série A — Dose calculée pour 520 kg (avant arrondi) ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Dose arrondie pour 520 kg ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Dose calculée pour 680 kg ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Dose arrondie pour 680 kg ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Dose arrondie pour 310 kg ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Série B — 4 kg de granulés pour 500 kg de cheval ; combien pour 450 kg ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Une seringue = 6 graduations. Combien de seringues pour un cheval de trait de 900 kg (2 graduations pour 200 kg) ? (en seringues)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>III. Estimer le poids</h3>
+            
+<h4>La notion</h4>
+    
+
+<p>Estimer, c’est trouver une valeur approchée.</p>
+    
+
+<p>Un tableau donne le poids approximatif d’un cheval selon son tour de poitrine, mesuré au ruban.</p>
+    
+
+<h4>À retenir</h4>
+    
+
+<p>Entre deux lignes du tableau, on estime avec la valeur du milieu.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Mesure le tour de poitrine.</li><li>Cherche-le dans le tableau.</li><li>S’il est entre deux colonnes, prends le milieu des deux poids.</li><li>Utilise ce poids pour calculer la dose.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi le milieu</p>
+    
+
+<ul><li>185 cm est pile entre 180 et 190.</li><li>Le poids est donc à peu près entre 470 et 530 kg, au milieu : 500 kg.</li></ul>
+    
+
+<p>2. Est-ce proportionnel ?</p>
+    
+
+<ul><li>410 ÷ 170 ≈ 2,41 ; 600 ÷ 200 = 3 : les quotients changent.</li><li>Ce n’est pas proportionnel : on ne peut pas utiliser un coefficient, seulement lire le tableau.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<div class="cours-zone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    
+
+<h4>Exercices (calculatrice autorisée)</h4>
+    
+
+<p>Tableau d’estimation du poids :</p>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><thead><tr><th scope="col">Tour de poitrine (cm)</th><th scope="col">170</th><th scope="col">180</th><th scope="col">190</th><th scope="col">200</th></tr></thead><tbody><tr><td>Poids estimé (kg)</td><td>410</td><td>470</td><td>530</td><td>600</td></tr></tbody></table></div>
+    
+
+<p>Document — Estimation du poids d’un cheval de selle (ordre de grandeur, données indicatives).</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Série A — Poids estimé pour 190 cm ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Poids estimé pour 185 cm ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Poids estimé pour 195 cm ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Le poids est-il proportionnel au tour de poitrine ? Choix : Oui / Non.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Série B — Dose arrondie (2 graduations pour 200 kg) pour un cheval de 185 cm de tour de poitrine ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Dose arrondie pour 195 cm de tour de poitrine ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Encore des exercices (si tu as fini)</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>1 graduation pour 100 kg : dose pour 470 kg ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Arrondie à la demi-graduation supérieure ? (en graduations)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>6 kg pour 400 kg ; combien pour 560 kg ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Poids estimé pour 175 cm ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>À retenir</h3>
+            
+<ul><li>Passage à l’unité : on calcule pour 1, puis on multiplie.</li><li>Produit en croix : x = b × c ÷ a.</li><li>Une dose de médicament s’arrondit comme la notice le dit (ici : à la demi-graduation supérieure).</li><li>Estimer : prendre la valeur du milieu entre deux lignes du tableau.</li></ul>
+    
+
+
+            
+        </section>
+        
+    </article>
+</section>
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Partie 1 — Le passage à l’unité</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.</p></div>
+        
+        
+
+        
+<h4>La notion</h4>
+    
+
+<p>Pour trouver une valeur proportionnelle, on peut d’abord calculer la valeur pour 1 (1 kg, 1 cheval…).</p>
+    
+
+<p>Ensuite, on multiplie par la quantité voulue.</p>
+    
+
+<p>À retenir : Valeur pour 1 = valeur connue ÷ quantité connue ; puis × la quantité voulue.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Écris la correspondance connue (100 kg → 1 graduation).</li><li>Calcule pour 1 kg : 1 ÷ 100 = 0,01 graduation.</li><li>Multiplie par le poids voulu.</li><li>Contrôle : un cheval plus lourd reçoit plus.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi passer par 1</p>
+    
+
+<ul><li>« Pour 1 kg » est la plus petite part commune.</li><li>Une fois connue, on peut l’utiliser pour n’importe quel poids.</li></ul>
+    
+
+<p>2. Une autre façon</p>
+    
+
+<ul><li>520 kg, c’est 5,2 fois 100 kg.</li><li>Donc 5,2 fois 1 graduation : 5,2 graduations.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<p>Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.</p>
+    
+
+<h4>Exercices</h4>
+    
+
+<p>Notice fictive : 1 graduation de seringue pour 100 kg de poids.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — Série A — Graduations pour un cheval de 500 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q01-calcul" data-answer-id="a01_q01_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q01">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q01" data-answer-id="a01_q01" data-required="true" aria-labelledby="a01-q01-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>500 ÷ 100.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a01-q02-label">Question 2 — Graduations pour un cheval de 520 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q02-calcul" data-answer-id="a01_q02_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q02">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q02" data-answer-id="a01_q02" data-required="true" aria-labelledby="a01-q02-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>520 × 0,01.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a01-q03-label">Question 3 — Graduations pour un poney de 250 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q03-calcul" data-answer-id="a01_q03_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q03">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q03" data-answer-id="a01_q03" data-required="true" aria-labelledby="a01-q03-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>250 × 0,01.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a01-q04-label">Question 4 — Graduations pour un cheval de 640 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q04-calcul" data-answer-id="a01_q04_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q04">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q04" data-answer-id="a01_q04" data-required="true" aria-labelledby="a01-q04-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>640 × 0,01.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a01-q05-label">Question 5 — Série B — 3 sacs coûtent 42 €. Prix d’un sac ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q05-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q05-calcul" data-answer-id="a01_q05_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q05">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q05" data-answer-id="a01_q05" data-required="true" aria-labelledby="a01-q05-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>42 ÷ 3.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q06">
+            
+            
+            <h3 id="a01-q06-label">Question 6 — Prix de 7 sacs ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q06-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q06-calcul" data-answer-id="a01_q06_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q06">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q06" data-answer-id="a01_q06" data-required="true" aria-labelledby="a01-q06-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>14 × 7.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q07">
+            
+            
+            <h3 id="a01-q07-label">Question 7 — 5 L de shampooing pour 20 chevaux. Combien pour 12 chevaux ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q07-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q07-calcul" data-answer-id="a01_q07_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q07">🎯 Résultat <span>un nombre seulement, en L</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q07" data-answer-id="a01_q07" data-required="true" aria-labelledby="a01-q07-label"><span class="cours-resultat-unite">L</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Pour 1 cheval : 0,25 L.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Partie 2 — Le produit en croix</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais passer par l’unité. Deuxième notion : une méthode directe.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.</p></div>
+        
+        
+
+        
+<h4>La notion</h4>
+    
+
+<p>Le produit en croix donne directement la valeur manquante dans un tableau de proportionnalité à 4 cases.</p>
+    
+
+<p>Pour un médicament, on arrondit ensuite comme la notice le demande.</p>
+    
+
+<p>À retenir : a → b ; c → x : x = b × c ÷ a. Notice : arrondir à la demi-graduation supérieure.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Place les 3 nombres connus dans un tableau à 4 cases.</li><li>Multiplie les deux nombres de la diagonale complète.</li><li>Divise par le nombre en face de x.</li><li>Arrondis : pour une dose, à la demi-graduation au-dessus (5,2 → 5,5).</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. D’où vient la formule</p>
+    
+
+<ul><li>Coefficient : k = b ÷ a. Donc x = c × (b ÷ a) = b × c ÷ a.</li><li>On a juste changé l’ordre des calculs.</li></ul>
+    
+
+<p>2. Pourquoi arrondir au-dessus</p>
+    
+
+<ul><li>Une dose trop faible peut ne pas être efficace.</li><li>La notice demande donc d’arrondir à la demi-graduation supérieure.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<p>Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.</p>
+    
+
+<h4>Exercices</h4>
+    
+
+<p>Notice fictive : 2 graduations pour 200 kg ; arrondir à la demi-graduation supérieure.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — Série A — Dose calculée pour 520 kg (avant arrondi) ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q01-calcul" data-answer-id="a02_q01_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q01">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q01" data-answer-id="a02_q01" data-required="true" aria-labelledby="a02-q01-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>2 × 520 ÷ 200.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a02-q02-label">Question 2 — Dose arrondie pour 520 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q02-calcul" data-answer-id="a02_q02_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q02">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q02" data-answer-id="a02_q02" data-required="true" aria-labelledby="a02-q02-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Demi-graduation au-dessus.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a02-q03-label">Question 3 — Dose calculée pour 680 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q03-calcul" data-answer-id="a02_q03_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q03">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q03" data-answer-id="a02_q03" data-required="true" aria-labelledby="a02-q03-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>2 × 680 ÷ 200.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a02-q04-label">Question 4 — Dose arrondie pour 680 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q04-calcul" data-answer-id="a02_q04_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q04">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q04" data-answer-id="a02_q04" data-required="true" aria-labelledby="a02-q04-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Demi-graduation au-dessus.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a02-q05-label">Question 5 — Dose arrondie pour 310 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q05-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q05-calcul" data-answer-id="a02_q05_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q05">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q05" data-answer-id="a02_q05" data-required="true" aria-labelledby="a02-q05-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>3,1 → au-dessus.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q06">
+            
+            
+            <h3 id="a02-q06-label">Question 6 — Série B — 4 kg de granulés pour 500 kg de cheval ; combien pour 450 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q06-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q06-calcul" data-answer-id="a02_q06_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q06">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q06" data-answer-id="a02_q06" data-required="true" aria-labelledby="a02-q06-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>4 × 450 ÷ 500.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q07">
+            
+            
+            <h3 id="a02-q07-label">Question 7 — Une seringue = 6 graduations. Combien de seringues pour un cheval de trait de 900 kg (2 graduations pour 200 kg) ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q07-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q07-calcul" data-answer-id="a02_q07_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q07">🎯 Résultat <span>un nombre seulement, en seringues</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q07" data-answer-id="a02_q07" data-required="true" aria-labelledby="a02-q07-label"><span class="cours-resultat-unite">seringues</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>9 graduations ÷ 6.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Partie 3 — Estimer le poids</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Dernière notion : sans balance, comment connaître le poids pour calculer la dose ?</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.</p></div>
+        
+        
+
+        
+<h4>La notion</h4>
+    
+
+<p>Estimer, c’est trouver une valeur approchée.</p>
+    
+
+<p>Un tableau donne le poids approximatif d’un cheval selon son tour de poitrine, mesuré au ruban.</p>
+    
+
+<p>À retenir : Entre deux lignes du tableau, on estime avec la valeur du milieu.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Mesure le tour de poitrine.</li><li>Cherche-le dans le tableau.</li><li>S’il est entre deux colonnes, prends le milieu des deux poids.</li><li>Utilise ce poids pour calculer la dose.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi le milieu</p>
+    
+
+<ul><li>185 cm est pile entre 180 et 190.</li><li>Le poids est donc à peu près entre 470 et 530 kg, au milieu : 500 kg.</li></ul>
+    
+
+<p>2. Est-ce proportionnel ?</p>
+    
+
+<ul><li>410 ÷ 170 ≈ 2,41 ; 600 ÷ 200 = 3 : les quotients changent.</li><li>Ce n’est pas proportionnel : on ne peut pas utiliser un coefficient, seulement lire le tableau.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<p>Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.</p>
+    
+
+<h4>Exercices</h4>
+    
+
+<p>Tableau d’estimation du poids :</p>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><thead><tr><th scope="col">Tour de poitrine (cm)</th><th scope="col">170</th><th scope="col">180</th><th scope="col">190</th><th scope="col">200</th></tr></thead><tbody><tr><td>Poids estimé (kg)</td><td>410</td><td>470</td><td>530</td><td>600</td></tr></tbody></table></div>
+    
+
+<p>Document — Estimation du poids d’un cheval de selle (ordre de grandeur, données indicatives).</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — Série A — Poids estimé pour 190 cm ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q01-calcul" data-answer-id="a03_q01_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q01">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q01" data-answer-id="a03_q01" data-required="true" aria-labelledby="a03-q01-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Lis la colonne 190.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a03-q02-label">Question 2 — Poids estimé pour 185 cm ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q02-calcul" data-answer-id="a03_q02_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q02">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q02" data-answer-id="a03_q02" data-required="true" aria-labelledby="a03-q02-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Milieu entre 470 et 530.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a03-q03-label">Question 3 — Poids estimé pour 195 cm ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q03-calcul" data-answer-id="a03_q03_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q03">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q03" data-answer-id="a03_q03" data-required="true" aria-labelledby="a03-q03-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Milieu entre 530 et 600.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a03-q04-label">Question 4 — Le poids est-il proportionnel au tour de poitrine ?</h3>
+            
+
+            
+            
+                <select id="a03-q04" data-answer-id="a03_q04" data-required="true" aria-labelledby="a03-q04-label"><option value="">Choisis une réponse</option><option value="a">Oui</option><option value="b">Non</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Calcule 410 ÷ 170 et 600 ÷ 200.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a03-q05-label">Question 5 — Série B — Dose arrondie (2 graduations pour 200 kg) pour un cheval de 185 cm de tour de poitrine ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q05-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q05-calcul" data-answer-id="a03_q05_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q05">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q05" data-answer-id="a03_q05" data-required="true" aria-labelledby="a03-q05-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Poids 500 kg ; 2 × 500 ÷ 200.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q06">
+            
+            
+            <h3 id="a03-q06-label">Question 6 — Dose arrondie pour 195 cm de tour de poitrine ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q06-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q06-calcul" data-answer-id="a03_q06_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q06">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q06" data-answer-id="a03_q06" data-required="true" aria-labelledby="a03-q06-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Poids 565 kg ; 5,65 → demi-graduation au-dessus.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Encore des exercices (si tu as fini)</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<p>Tu as fini ? Entraîne-toi encore. Ces exercices ne comptent pas dans la note.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — 1 graduation pour 100 kg : dose pour 470 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q01-calcul" data-answer-id="a04_q01_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q01">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q01" data-answer-id="a04_q01" data-required="false" aria-labelledby="a04-q01-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a04-q02-label">Question 2 — Arrondie à la demi-graduation supérieure ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q02-calcul" data-answer-id="a04_q02_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q02">🎯 Résultat <span>un nombre seulement, en graduations</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q02" data-answer-id="a04_q02" data-required="false" aria-labelledby="a04-q02-label"><span class="cours-resultat-unite">graduations</span></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a04-q03-label">Question 3 — 6 kg pour 400 kg ; combien pour 560 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q03-calcul" data-answer-id="a04_q03_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q03">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q03" data-answer-id="a04_q03" data-required="false" aria-labelledby="a04-q03-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a04-q04-label">Question 4 — Poids estimé pour 175 cm ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q04-calcul" data-answer-id="a04_q04_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q04">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q04" data-answer-id="a04_q04" data-required="false" aria-labelledby="a04-q04-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>Passage à l’unité : on calcule pour 1, puis on multiplie.</li><li>Produit en croix : x = b × c ÷ a.</li><li>Une dose de médicament s’arrondit comme la notice le dit (ici : à la demi-graduation supérieure).</li><li>Estimer : prendre la valeur du milieu entre deux lignes du tableau.</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/2nde-pro/2nde-pro-da-EG4.pdf" target="_blank" rel="noopener noreferrer">ChloroFil — Seconde professionnelle, document d’accompagnement du module EG4</a></p>
+
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a04">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/nombre-seulement.js?v=20261125-calcul"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-paper-version.js?v=20261022-paper-tab-1"></script>
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css?v=20261125-calcul">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-paper-version.css?v=20261125-calcul">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261104-contrast-4">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="mfr" data-matiere="maths" data-classe="2de" data-seance="S13" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-paper-toggle">Version papier</button><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">Partie 1 — La moyenne</a></li><li><a href="#a02">Partie 2 — La médiane</a></li><li><a href="#a03">Partie 3 — Le mode, et quel indicateur choisir</a></li><li><a href="#a04">Encore des exercices (si tu as fini) — facultatif</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">Mathématiques · 2de Pro · S13</span></div>
+    <h1>Séance 13 : Moyenne, médiane et mode</h1>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thème du programme</h2>
+        <p>EG4, 1-1 — Organiser et traiter des données statistiques à une variable</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>Comment résumer une série de valeurs par un seul nombre, et lequel choisir ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétence travaillée</h2>
+        <ul><li>EG4, 1-1 — Organiser et traiter des données statistiques à une variable</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>Moyenne = somme des valeurs ÷ effectif total.</li>
+            
+            <li>Médiane : valeur du milieu de la série rangée.</li>
+            
+            <li>Mode : valeur la plus fréquente.</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Calculer une moyenne.</li>
+            
+            <li>Trouver une médiane (effectif impair ou pair).</li>
+            
+            <li>Trouver le mode et choisir l’indicateur adapté.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>Aujourd’hui, trois notions : la moyenne, la médiane, puis le mode et le choix du bon indicateur.</p><p>Pour chacune : la notion, la méthode, pourquoi ça marche, un exemple au tableau, puis beaucoup d’exercices.</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+<section id="course-paper-version" class="course-paper-version" hidden aria-labelledby="course-paper-title">
+    <article class="course-paper-sheet">
+        <header><p class="course-paper-class">Mathématiques — 2de Pro</p><p class="course-paper-kicker">Cours et exercices — version papier</p><h2 id="course-paper-title"><span class="course-paper-number">Séance 13</span> — Moyenne, médiane et mode</h2><p>Trois notions : moyenne, médiane, mode. Pour chacune : la notion, la méthode, l’exemple au tableau, puis les exercices.</p></header>
+        
+        <section class="course-paper-section">
+            <h3>I. La moyenne</h3>
+            
+<h4>La notion</h4>
+    
+
+<p>La moyenne est la valeur que chacun aurait si on partageait le total en parts égales.</p>
+    
+
+<p>Elle se calcule avec toutes les valeurs de la série.</p>
+    
+
+<h4>À retenir</h4>
+    
+
+<p>Moyenne = somme des valeurs ÷ nombre de valeurs.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Additionne toutes les valeurs.</li><li>Compte le nombre de valeurs (l’effectif total).</li><li>Divise la somme par ce nombre.</li><li>Contrôle : la moyenne est entre la plus petite et la plus grande valeur.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. En partageant</p>
+    
+
+<ul><li>Trois chevaux mangent 4, 6 et 8 kg de foin : 18 kg en tout.</li><li>Si on partage les 18 kg en 3 parts égales, chacun a 18 ÷ 3 = 6 kg : c’est la moyenne.</li></ul>
+    
+
+<p>2. Pourquoi diviser par le nombre de valeurs</p>
+    
+
+<ul><li>On partage entre tous les individus, donc autant de parts que de valeurs.</li><li>Diviser par la plus grande valeur n’a pas de sens : ce n’est pas un nombre de parts.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<div class="cours-zone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    
+
+<h4>Exercices (calculatrice autorisée)</h4>
+    
+
+<p>Calculatrice autorisée.</p>
+    
+
+<p>Série A : durées de pansage (min) de 7 élèves : 8 ; 10 ; 12 ; 12 ; 15 ; 17 ; 24.</p>
+    
+
+<p>Série B : poids (kg) de 6 chevaux : 480 ; 500 ; 520 ; 540 ; 560 ; 600.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Série A — Quelle est la somme des 7 durées de pansage ? (en min)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Quelle est la durée moyenne de pansage ? (en min)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Quel est le poids moyen des 6 chevaux ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Moyenne de 3, 5 et 10 ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Moyenne de 120, 130, 140 et 150 ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Série B — Quatre notes : 10, 12, 14 et une 4e. La moyenne est 13. Quelle est la 4e note ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Un cheval a mangé 7 kg, 8 kg, 9 kg, 6 kg et 10 kg en 5 jours. Moyenne par jour ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>II. La médiane</h3>
+            
+<h4>La notion</h4>
+    
+
+<p>La médiane est la valeur qui partage la série rangée en deux groupes de même effectif.</p>
+    
+
+<p>Au moins la moitié des valeurs sont en dessous (ou égales), au moins la moitié au-dessus (ou égales).</p>
+    
+
+<h4>À retenir</h4>
+    
+
+<p>On range la série. Effectif impair : la valeur du milieu. Effectif pair : la moyenne des deux valeurs du milieu.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Range les valeurs dans l’ordre croissant.</li><li>Compte l’effectif n.</li><li>Si n est impair, la médiane est la valeur de rang (n + 1) ÷ 2.</li><li>Si n est pair, prends les valeurs de rang n ÷ 2 et n ÷ 2 + 1, et fais leur moyenne.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi il faut ranger</p>
+    
+
+<ul><li>La médiane est « au milieu » des valeurs, pas au milieu de la liste écrite au hasard.</li><li>Sans ranger, on peut tomber sur une petite ou une grande valeur.</li></ul>
+    
+
+<p>2. Pourquoi (n + 1) ÷ 2</p>
+    
+
+<ul><li>Pour 7 valeurs, la 4e a 3 valeurs avant et 3 après : (7 + 1) ÷ 2 = 4.</li><li>Pour 6 valeurs, il n’y a pas de valeur pile au milieu : on prend entre la 3e et la 4e.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<div class="cours-zone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    
+
+<h4>Exercices (calculatrice autorisée)</h4>
+    
+
+<p>On reprend les séries A et B.</p>
+    
+
+<p>Série A : 8 ; 10 ; 12 ; 12 ; 15 ; 17 ; 24 (déjà rangée).</p>
+    
+
+<p>Série B : 480 ; 500 ; 520 ; 540 ; 560 ; 600 (déjà rangée).</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Série A — Combien de valeurs dans la série A ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Quel est le rang de la médiane de la série A ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Quelle est la médiane de la série A ? (en min)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Médiane de la série B (6 valeurs) ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Série B — Médiane de : 15 ; 3 ; 9 ; 7 ; 11 ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Médiane de : 6 ; 2 ; 10 ; 4 ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Médiane de : 130 ; 125 ; 140 ; 135 ; 120 ; 145 ; 128 ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>III. Le mode, et quel indicateur choisir</h3>
+            
+<h4>La notion</h4>
+    
+
+<p>Le mode est la valeur qui revient le plus souvent dans la série.</p>
+    
+
+<p>Moyenne, médiane et mode résument la série chacun à leur façon ; on choisit celui qui la représente le mieux.</p>
+    
+
+<h4>À retenir</h4>
+    
+
+<p>Mode = valeur la plus fréquente. Avec une valeur extrême, on préfère la médiane à la moyenne.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Mode : cherche la valeur qui apparaît le plus de fois.</li><li>Compare moyenne et médiane.</li><li>Si une valeur est très éloignée des autres, la moyenne est « tirée » vers elle.</li><li>Dans ce cas, la médiane représente mieux la majorité.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi la moyenne bouge</p>
+    
+
+<ul><li>La moyenne utilise toutes les valeurs : une valeur énorme augmente beaucoup la somme.</li><li>La médiane regarde seulement le rang : la plus grande valeur peut grandir, le milieu reste le même.</li></ul>
+    
+
+<p>2. Un exemple</p>
+    
+
+<ul><li>Salaires : 600, 600, 700, 800, 1 500 € → moyenne 840 €, médiane 700 €.</li><li>Quatre personnes sur cinq gagnent moins que la moyenne : 700 € décrit mieux la situation.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<div class="cours-zone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    
+
+<h4>Exercices (calculatrice autorisée)</h4>
+    
+
+<p>Salaires mensuels (€) de 5 saisonniers : 600 ; 600 ; 700 ; 800 ; 1 500.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Série A — Quel est le mode de la série A (durées de pansage) ? (en min)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Quel est le mode des salaires ? (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Quelle est la moyenne des salaires ? (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Quelle est la médiane des salaires ? (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Série B — Quel indicateur représente le mieux les salaires ? Choix : La moyenne, 840 € / La médiane, 700 € / Aucun.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Si le salaire de 1 500 € devenait 3 000 €, que se passerait-il ? Choix : La moyenne augmenterait, la médiane ne changerait pas / Les deux augmenteraient / Aucune ne changerait.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Encore des exercices (si tu as fini)</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>Moyenne de 4 ; 8 ; 9 ; 11 ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Médiane de 4 ; 8 ; 9 ; 11 ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Mode de 5 ; 7 ; 7 ; 8 ; 9 ; 9 ; 9 ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Médiane de 52 ; 47 ; 60 ; 55 ; 49 ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Moyenne de 52 ; 47 ; 60 ; 55 ; 49 ? (arrondi au dixième)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>À retenir</h3>
+            
+<ul><li>Moyenne = somme ÷ effectif total.</li><li>Médiane : on range la série ; c’est la valeur du milieu (effectif pair : moyenne des deux valeurs du milieu).</li><li>Mode : la valeur qui revient le plus souvent.</li><li>Une valeur extrême (très grande ou très petite) tire la moyenne, pas la médiane.</li></ul>
+    
+
+
+            
+        </section>
+        
+    </article>
+</section>
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Partie 1 — La moyenne</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.</p></div>
+        
+        
+
+        
+<h4>La notion</h4>
+    
+
+<p>La moyenne est la valeur que chacun aurait si on partageait le total en parts égales.</p>
+    
+
+<p>Elle se calcule avec toutes les valeurs de la série.</p>
+    
+
+<p>À retenir : Moyenne = somme des valeurs ÷ nombre de valeurs.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Additionne toutes les valeurs.</li><li>Compte le nombre de valeurs (l’effectif total).</li><li>Divise la somme par ce nombre.</li><li>Contrôle : la moyenne est entre la plus petite et la plus grande valeur.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. En partageant</p>
+    
+
+<ul><li>Trois chevaux mangent 4, 6 et 8 kg de foin : 18 kg en tout.</li><li>Si on partage les 18 kg en 3 parts égales, chacun a 18 ÷ 3 = 6 kg : c’est la moyenne.</li></ul>
+    
+
+<p>2. Pourquoi diviser par le nombre de valeurs</p>
+    
+
+<ul><li>On partage entre tous les individus, donc autant de parts que de valeurs.</li><li>Diviser par la plus grande valeur n’a pas de sens : ce n’est pas un nombre de parts.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<p>Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.</p>
+    
+
+<h4>Exercices</h4>
+    
+
+<p>Calculatrice autorisée.</p>
+    
+
+<p>Série A : durées de pansage (min) de 7 élèves : 8 ; 10 ; 12 ; 12 ; 15 ; 17 ; 24.</p>
+    
+
+<p>Série B : poids (kg) de 6 chevaux : 480 ; 500 ; 520 ; 540 ; 560 ; 600.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — Série A — Quelle est la somme des 7 durées de pansage ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q01-calcul" data-answer-id="a01_q01_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q01">🎯 Résultat <span>un nombre seulement, en min</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q01" data-answer-id="a01_q01" data-required="true" aria-labelledby="a01-q01-label"><span class="cours-resultat-unite">min</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Additionne les 7 valeurs.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a01-q02-label">Question 2 — Quelle est la durée moyenne de pansage ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q02-calcul" data-answer-id="a01_q02_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q02">🎯 Résultat <span>un nombre seulement, en min</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q02" data-answer-id="a01_q02" data-required="true" aria-labelledby="a01-q02-label"><span class="cours-resultat-unite">min</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Somme ÷ 7.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a01-q03-label">Question 3 — Quel est le poids moyen des 6 chevaux ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q03-calcul" data-answer-id="a01_q03_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q03">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q03" data-answer-id="a01_q03" data-required="true" aria-labelledby="a01-q03-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Somme ÷ 6, arrondi au centième.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a01-q04-label">Question 4 — Moyenne de 3, 5 et 10 ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q04-calcul" data-answer-id="a01_q04_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q04">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q04" data-answer-id="a01_q04" data-required="true" aria-labelledby="a01-q04-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Somme ÷ 3.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a01-q05-label">Question 5 — Moyenne de 120, 130, 140 et 150 ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q05-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q05-calcul" data-answer-id="a01_q05_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q05">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q05" data-answer-id="a01_q05" data-required="true" aria-labelledby="a01-q05-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Somme ÷ 4.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q06">
+            
+            
+            <h3 id="a01-q06-label">Question 6 — Série B — Quatre notes : 10, 12, 14 et une 4e. La moyenne est 13. Quelle est la 4e note ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q06-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q06-calcul" data-answer-id="a01_q06_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q06">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q06" data-answer-id="a01_q06" data-required="true" aria-labelledby="a01-q06-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>La somme doit faire 13 × 4 = 52.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q07">
+            
+            
+            <h3 id="a01-q07-label">Question 7 — Un cheval a mangé 7 kg, 8 kg, 9 kg, 6 kg et 10 kg en 5 jours. Moyenne par jour ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q07-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q07-calcul" data-answer-id="a01_q07_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q07">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q07" data-answer-id="a01_q07" data-required="true" aria-labelledby="a01-q07-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Somme ÷ 5.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Partie 2 — La médiane</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais calculer une moyenne. Deuxième notion : la valeur du milieu.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.</p></div>
+        
+        
+
+        
+<h4>La notion</h4>
+    
+
+<p>La médiane est la valeur qui partage la série rangée en deux groupes de même effectif.</p>
+    
+
+<p>Au moins la moitié des valeurs sont en dessous (ou égales), au moins la moitié au-dessus (ou égales).</p>
+    
+
+<p>À retenir : On range la série. Effectif impair : la valeur du milieu. Effectif pair : la moyenne des deux valeurs du milieu.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Range les valeurs dans l’ordre croissant.</li><li>Compte l’effectif n.</li><li>Si n est impair, la médiane est la valeur de rang (n + 1) ÷ 2.</li><li>Si n est pair, prends les valeurs de rang n ÷ 2 et n ÷ 2 + 1, et fais leur moyenne.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi il faut ranger</p>
+    
+
+<ul><li>La médiane est « au milieu » des valeurs, pas au milieu de la liste écrite au hasard.</li><li>Sans ranger, on peut tomber sur une petite ou une grande valeur.</li></ul>
+    
+
+<p>2. Pourquoi (n + 1) ÷ 2</p>
+    
+
+<ul><li>Pour 7 valeurs, la 4e a 3 valeurs avant et 3 après : (7 + 1) ÷ 2 = 4.</li><li>Pour 6 valeurs, il n’y a pas de valeur pile au milieu : on prend entre la 3e et la 4e.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<p>Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.</p>
+    
+
+<h4>Exercices</h4>
+    
+
+<p>On reprend les séries A et B.</p>
+    
+
+<p>Série A : 8 ; 10 ; 12 ; 12 ; 15 ; 17 ; 24 (déjà rangée).</p>
+    
+
+<p>Série B : 480 ; 500 ; 520 ; 540 ; 560 ; 600 (déjà rangée).</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — Série A — Combien de valeurs dans la série A ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q01-calcul" data-answer-id="a02_q01_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q01">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q01" data-answer-id="a02_q01" data-required="true" aria-labelledby="a02-q01-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Compte-les.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a02-q02-label">Question 2 — Quel est le rang de la médiane de la série A ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q02-calcul" data-answer-id="a02_q02_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q02">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q02" data-answer-id="a02_q02" data-required="true" aria-labelledby="a02-q02-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>(n + 1) ÷ 2.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a02-q03-label">Question 3 — Quelle est la médiane de la série A ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q03-calcul" data-answer-id="a02_q03_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q03">🎯 Résultat <span>un nombre seulement, en min</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q03" data-answer-id="a02_q03" data-required="true" aria-labelledby="a02-q03-label"><span class="cours-resultat-unite">min</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Lis la 4e valeur.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a02-q04-label">Question 4 — Médiane de la série B (6 valeurs) ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q04-calcul" data-answer-id="a02_q04_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q04">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q04" data-answer-id="a02_q04" data-required="true" aria-labelledby="a02-q04-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Moyenne de la 3e et de la 4e valeur.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a02-q05-label">Question 5 — Série B — Médiane de : 15 ; 3 ; 9 ; 7 ; 11 ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q05-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q05-calcul" data-answer-id="a02_q05_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q05">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q05" data-answer-id="a02_q05" data-required="true" aria-labelledby="a02-q05-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Range d’abord.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q06">
+            
+            
+            <h3 id="a02-q06-label">Question 6 — Médiane de : 6 ; 2 ; 10 ; 4 ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q06-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q06-calcul" data-answer-id="a02_q06_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q06">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q06" data-answer-id="a02_q06" data-required="true" aria-labelledby="a02-q06-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Range, puis moyenne des 2 du milieu.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q07">
+            
+            
+            <h3 id="a02-q07-label">Question 7 — Médiane de : 130 ; 125 ; 140 ; 135 ; 120 ; 145 ; 128 ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q07-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q07-calcul" data-answer-id="a02_q07_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q07">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q07" data-answer-id="a02_q07" data-required="true" aria-labelledby="a02-q07-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Range les 7 valeurs.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Partie 3 — Le mode, et quel indicateur choisir</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Dernière notion : la valeur la plus fréquente, puis choisir le bon résumé.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.</p></div>
+        
+        
+
+        
+<h4>La notion</h4>
+    
+
+<p>Le mode est la valeur qui revient le plus souvent dans la série.</p>
+    
+
+<p>Moyenne, médiane et mode résument la série chacun à leur façon ; on choisit celui qui la représente le mieux.</p>
+    
+
+<p>À retenir : Mode = valeur la plus fréquente. Avec une valeur extrême, on préfère la médiane à la moyenne.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Mode : cherche la valeur qui apparaît le plus de fois.</li><li>Compare moyenne et médiane.</li><li>Si une valeur est très éloignée des autres, la moyenne est « tirée » vers elle.</li><li>Dans ce cas, la médiane représente mieux la majorité.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi la moyenne bouge</p>
+    
+
+<ul><li>La moyenne utilise toutes les valeurs : une valeur énorme augmente beaucoup la somme.</li><li>La médiane regarde seulement le rang : la plus grande valeur peut grandir, le milieu reste le même.</li></ul>
+    
+
+<p>2. Un exemple</p>
+    
+
+<ul><li>Salaires : 600, 600, 700, 800, 1 500 € → moyenne 840 €, médiane 700 €.</li><li>Quatre personnes sur cinq gagnent moins que la moyenne : 700 € décrit mieux la situation.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<p>Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.</p>
+    
+
+<h4>Exercices</h4>
+    
+
+<p>Salaires mensuels (€) de 5 saisonniers : 600 ; 600 ; 700 ; 800 ; 1 500.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — Série A — Quel est le mode de la série A (durées de pansage) ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q01-calcul" data-answer-id="a03_q01_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q01">🎯 Résultat <span>un nombre seulement, en min</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q01" data-answer-id="a03_q01" data-required="true" aria-labelledby="a03-q01-label"><span class="cours-resultat-unite">min</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Quelle valeur apparaît deux fois ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a03-q02-label">Question 2 — Quel est le mode des salaires ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q02-calcul" data-answer-id="a03_q02_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q02">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q02" data-answer-id="a03_q02" data-required="true" aria-labelledby="a03-q02-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Quelle valeur apparaît le plus ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a03-q03-label">Question 3 — Quelle est la moyenne des salaires ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q03-calcul" data-answer-id="a03_q03_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q03">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q03" data-answer-id="a03_q03" data-required="true" aria-labelledby="a03-q03-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Somme ÷ 5.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a03-q04-label">Question 4 — Quelle est la médiane des salaires ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q04-calcul" data-answer-id="a03_q04_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q04">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q04" data-answer-id="a03_q04" data-required="true" aria-labelledby="a03-q04-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Valeur du milieu (3e).</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a03-q05-label">Question 5 — Série B — Quel indicateur représente le mieux les salaires ?</h3>
+            
+
+            
+            
+                <select id="a03-q05" data-answer-id="a03_q05" data-required="true" aria-labelledby="a03-q05-label"><option value="">Choisis une réponse</option><option value="a">La moyenne, 840 €</option><option value="b">La médiane, 700 €</option><option value="c">Aucun</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Combien de saisonniers gagnent moins que 840 € ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q06">
+            
+            
+            <h3 id="a03-q06-label">Question 6 — Si le salaire de 1 500 € devenait 3 000 €, que se passerait-il ?</h3>
+            
+
+            
+            
+                <select id="a03-q06" data-answer-id="a03_q06" data-required="true" aria-labelledby="a03-q06-label"><option value="">Choisis une réponse</option><option value="a">La moyenne augmenterait, la médiane ne changerait pas</option><option value="b">Les deux augmenteraient</option><option value="c">Aucune ne changerait</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>La médiane dépend-elle de la valeur de la plus grande ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Encore des exercices (si tu as fini)</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<p>Tu as fini ? Entraîne-toi encore. Ces exercices ne comptent pas dans la note.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — Moyenne de 4 ; 8 ; 9 ; 11 ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q01-calcul" data-answer-id="a04_q01_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q01">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q01" data-answer-id="a04_q01" data-required="false" aria-labelledby="a04-q01-label"></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a04-q02-label">Question 2 — Médiane de 4 ; 8 ; 9 ; 11 ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q02-calcul" data-answer-id="a04_q02_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q02">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q02" data-answer-id="a04_q02" data-required="false" aria-labelledby="a04-q02-label"></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a04-q03-label">Question 3 — Mode de 5 ; 7 ; 7 ; 8 ; 9 ; 9 ; 9 ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q03-calcul" data-answer-id="a04_q03_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q03">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q03" data-answer-id="a04_q03" data-required="false" aria-labelledby="a04-q03-label"></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a04-q04-label">Question 4 — Médiane de 52 ; 47 ; 60 ; 55 ; 49 ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q04-calcul" data-answer-id="a04_q04_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q04">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q04" data-answer-id="a04_q04" data-required="false" aria-labelledby="a04-q04-label"></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a04-q05-label">Question 5 — Moyenne de 52 ; 47 ; 60 ; 55 ; 49 ? (arrondi au dixième)</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q05-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q05-calcul" data-answer-id="a04_q05_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q05">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q05" data-answer-id="a04_q05" data-required="false" aria-labelledby="a04-q05-label"></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>Moyenne = somme ÷ effectif total.</li><li>Médiane : on range la série ; c’est la valeur du milieu (effectif pair : moyenne des deux valeurs du milieu).</li><li>Mode : la valeur qui revient le plus souvent.</li><li>Une valeur extrême (très grande ou très petite) tire la moyenne, pas la médiane.</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/2nde-pro/2nde-pro-da-EG4.pdf" target="_blank" rel="noopener noreferrer">ChloroFil — Seconde professionnelle, document d’accompagnement du module EG4</a></p>
+
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a04">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/nombre-seulement.js?v=20261125-calcul"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-paper-version.js?v=20261022-paper-tab-1"></script>
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>

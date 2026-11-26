@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css?v=20261125-calcul">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-paper-version.css?v=20261125-calcul">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261104-contrast-4">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="mfr" data-matiere="maths" data-classe="2de" data-seance="S02" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-paper-toggle">Version papier</button><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">Partie 1 — Les parenthèses sur la calculatrice</a></li><li><a href="#a02">Partie 2 — Arrondir</a></li><li><a href="#a03">Partie 3 — Un calcul complet</a></li><li><a href="#a04">Encore des exercices (si tu as fini) — facultatif</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">Mathématiques · 2de Pro · S02</span></div>
+    <h1>Séance 2 : Bien utiliser sa calculatrice</h1>
+    
+    <aside class="course-learning-sequence" aria-label="Comment avancer dans le cours">
+        <strong>Pour avancer</strong>
+        <ol>
+            <li>Lis les repères et les étapes.</li>
+            <li>Observe l’exemple s’il y en a un.</li>
+            <li>Essaie à ton tour avec les questions.</li>
+            <li>Réutilise une méthode déjà rencontrée.</li>
+        </ol>
+        <p>Tu peux garder le cours ouvert et utiliser les aides si tu bloques.</p>
+    </aside>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thème du programme</h2>
+        <p>EG4, 1-4 — Identifier des situations de proportionnalité et résoudre les problèmes associés</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>Comment taper un calcul juste sur la calculatrice et arrondir correctement le résultat ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétence travaillée</h2>
+        <ul><li>EG4, 1-4 — Identifier des situations de proportionnalité et résoudre les problèmes associés</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>Les parenthèses pour un quotient : (a + b) ÷ c.</li>
+            
+            <li>Arrondir : regarder le chiffre suivant (5 ou plus : on monte).</li>
+            
+            <li>Arrondir seulement à la fin.</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Taper un calcul avec des parenthèses.</li>
+            
+            <li>Arrondir à l’unité, au dixième, au centième.</li>
+            
+            <li>Faire un calcul en plusieurs étapes sans arrondir en route.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>Aujourd’hui, trois notions : les parenthèses sur la calculatrice, arrondir, un calcul complet.</p><p>Pour chacune : la notion, la méthode, pourquoi ça marche, un exemple au tableau, puis beaucoup d’exercices.</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+<section id="course-paper-version" class="course-paper-version" hidden aria-labelledby="course-paper-title">
+    <article class="course-paper-sheet">
+        <header><p class="course-paper-class">Mathématiques — 2de Pro</p><p class="course-paper-kicker">Cours et exercices — version papier</p><h2 id="course-paper-title"><span class="course-paper-number">Séance 2</span> — Bien utiliser sa calculatrice</h2><p>Trois notions : les parenthèses, arrondir, un calcul complet. Pour chacune : la notion, la méthode, l’exemple au tableau, puis les exercices.</p></header>
+        
+        <section class="course-paper-section">
+            <h3>I. Les parenthèses sur la calculatrice</h3>
+            
+<h4>La notion</h4>
+    
+
+<p>La calculatrice applique les priorités : elle fait × et ÷ avant + et −.</p>
+    
+
+<p>Pour diviser une somme, il faut la mettre entre parenthèses.</p>
+    
+
+<h4>À retenir</h4>
+    
+
+<p>Moyenne ou partage d’une somme : (a + b) ÷ c, avec les parenthèses.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Écris le calcul sur papier avant de le taper.</li><li>Mets entre parenthèses tout ce qui doit être calculé ensemble.</li><li>Tape le calcul en une fois.</li><li>Contrôle avec un ordre de grandeur.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Ce que fait la calculatrice</p>
+    
+
+<ul><li>120 + 80 ÷ 4 : elle calcule 80 ÷ 4 = 20, puis 120 + 20 = 140.</li><li>Pour partager 200 kg entre 4 chevaux, il fallait (120 + 80) ÷ 4 = 50.</li></ul>
+    
+
+<p>2. Le contrôle</p>
+    
+
+<ul><li>200 kg pour 4 chevaux, c’est environ 50 kg chacun.</li><li>140 est beaucoup trop : il manquait les parenthèses.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<div class="cours-zone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    
+
+<h4>Exercices (calculatrice autorisée)</h4>
+    
+
+<p>Calculatrice. Tape le calcul en une fois.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Série A — Calcule (120 + 80) ÷ 4.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Que donne 120 + 80 ÷ 4 (sans parenthèses) ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Moyenne de 14 et 20 : calcule (14 + 20) ÷ 2.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Calcule (45 − 9) ÷ 6.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Série B — 3 sacs de 25 kg et 2 sacs de 20 kg partagés entre 5 chevaux : (3 × 25 + 2 × 20) ÷ 5 ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Calcule 150 ÷ (2 + 3).</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Pour partager 90 + 60 entre 3, on tape… Choix : 90 + 60 ÷ 3 / (90 + 60) ÷ 3.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>II. Arrondir</h3>
+            
+<h4>La notion</h4>
+    
+
+<p>La calculatrice donne souvent beaucoup de chiffres après la virgule.</p>
+    
+
+<p>Arrondir, c’est garder un nombre de chiffres utile (unité, dixième, centième) en restant le plus proche possible.</p>
+    
+
+<h4>À retenir</h4>
+    
+
+<p>On regarde le chiffre juste après le dernier gardé : de 0 à 4, on garde ; de 5 à 9, on augmente de 1.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Repère jusqu’où tu gardes (unité, dixième = 1 chiffre après la virgule, centième = 2).</li><li>Regarde le chiffre suivant.</li><li>0 à 4 : on coupe. 5 à 9 : on ajoute 1 au dernier chiffre gardé.</li><li>Pour des euros : au centième (centimes).</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Le plus proche</p>
+    
+
+<ul><li>3,46 est entre 3,4 et 3,5 ; il est plus près de 3,5.</li><li>Le chiffre suivant (6) dit de quel côté on est.</li></ul>
+    
+
+<p>2. Pourquoi pas deux fois</p>
+    
+
+<ul><li>3,46 arrondi au dixième = 3,5. Si on arrondit 3,5 à l’unité, on trouve 4.</li><li>Mais 3,46 arrondi directement à l’unité donne 3 : on arrondit une seule fois.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<div class="cours-zone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    
+
+<h4>Exercices (calculatrice autorisée)</h4>
+    
+
+<p>Écris le nombre arrondi.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Série A — Arrondis 7,6 à l’unité.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Arrondis 12,4 à l’unité.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Arrondis 3,46 au dixième.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Arrondis 15,7249 au centième.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Série B — Arrondis 2,995 au centième.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Calcule 100 ÷ 3 et arrondis au dixième.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Un sac de 25 kg coûte 17,99 €. Prix du kg, au centime ? (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>III. Un calcul complet</h3>
+            
+<h4>La notion</h4>
+    
+
+<p>Un problème demande souvent plusieurs calculs à la suite.</p>
+    
+
+<p>On garde tous les chiffres pendant les calculs et on arrondit seulement le résultat final.</p>
+    
+
+<h4>À retenir</h4>
+    
+
+<p>Arrondir seulement à la fin. Écrire chaque étape.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Écris les étapes du calcul.</li><li>Utilise la touche Rép (ou Ans) pour reprendre le résultat précédent sans le recopier arrondi.</li><li>Arrondis le résultat final.</li><li>Contrôle avec un ordre de grandeur.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi ne pas arrondir en route</p>
+    
+
+<ul><li>Chaque arrondi ajoute une petite erreur.</li><li>Plusieurs petites erreurs, multipliées, en font une grande.</li></ul>
+    
+
+<p>2. Un exemple</p>
+    
+
+<ul><li>Prix du kg : 17,99 ÷ 25 = 0,7196 €. Pour 600 kg : 0,7196 × 600 = 431,76 €.</li><li>Si on arrondit d’abord à 0,72 € : 0,72 × 600 = 432 € : 24 centimes d’écart.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<div class="cours-zone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    
+
+<h4>Exercices (calculatrice autorisée)</h4>
+    
+
+<p>Calculatrice. Arrondis seulement le résultat final.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Série A — 4 chevaux × 10,5 kg × 7 jours : foin en kg ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>294 kg à 0,20 € le kg : coût ? (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Un sac de granulés de 20 kg coûte 15,90 €. Prix de 140 kg ? (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Moyenne de 7,5 ; 8,25 et 9 (au centième) ?</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Série B — 17,99 € les 25 kg : prix de 600 kg, au centime (sans arrondir en route) ? (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Et si on arrondit d’abord le prix du kg à 0,72 € ? (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Encore des exercices (si tu as fini)</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>Calcule (35 + 25) ÷ 4.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Arrondis 9,85 au dixième.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Calcule 50 ÷ 7 au centième.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>2 chevaux × 12 kg × 15 jours ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>À retenir</h3>
+            
+<ul><li>La calculatrice respecte les priorités : pour diviser une somme, il faut des parenthèses.</li><li>Arrondir : on regarde le chiffre juste après ; 0 à 4 on garde, 5 à 9 on monte.</li><li>On arrondit seulement le résultat final.</li></ul>
+    
+
+
+            
+        </section>
+        
+    </article>
+</section>
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Partie 1 — Les parenthèses sur la calculatrice</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.</p></div>
+        
+        
+
+        
+<h4>La notion</h4>
+    
+
+<p>La calculatrice applique les priorités : elle fait × et ÷ avant + et −.</p>
+    
+
+<p>Pour diviser une somme, il faut la mettre entre parenthèses.</p>
+    
+
+<p>À retenir : Moyenne ou partage d’une somme : (a + b) ÷ c, avec les parenthèses.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Écris le calcul sur papier avant de le taper.</li><li>Mets entre parenthèses tout ce qui doit être calculé ensemble.</li><li>Tape le calcul en une fois.</li><li>Contrôle avec un ordre de grandeur.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Ce que fait la calculatrice</p>
+    
+
+<ul><li>120 + 80 ÷ 4 : elle calcule 80 ÷ 4 = 20, puis 120 + 20 = 140.</li><li>Pour partager 200 kg entre 4 chevaux, il fallait (120 + 80) ÷ 4 = 50.</li></ul>
+    
+
+<p>2. Le contrôle</p>
+    
+
+<ul><li>200 kg pour 4 chevaux, c’est environ 50 kg chacun.</li><li>140 est beaucoup trop : il manquait les parenthèses.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<p>Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.</p>
+    
+
+<h4>Exercices</h4>
+    
+
+<p>Calculatrice. Tape le calcul en une fois.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — Série A — Calcule (120 + 80) ÷ 4.</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q01-calcul" data-answer-id="a01_q01_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q01">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q01" data-answer-id="a01_q01" data-required="true" aria-labelledby="a01-q01-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Parenthèses d’abord.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a01-q02-label">Question 2 — Que donne 120 + 80 ÷ 4 (sans parenthèses) ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q02-calcul" data-answer-id="a01_q02_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q02">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q02" data-answer-id="a01_q02" data-required="true" aria-labelledby="a01-q02-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>La division d’abord.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a01-q03-label">Question 3 — Moyenne de 14 et 20 : calcule (14 + 20) ÷ 2.</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q03-calcul" data-answer-id="a01_q03_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q03">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q03" data-answer-id="a01_q03" data-required="true" aria-labelledby="a01-q03-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Parenthèses.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a01-q04-label">Question 4 — Calcule (45 − 9) ÷ 6.</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q04-calcul" data-answer-id="a01_q04_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q04">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q04" data-answer-id="a01_q04" data-required="true" aria-labelledby="a01-q04-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Parenthèses.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a01-q05-label">Question 5 — Série B — 3 sacs de 25 kg et 2 sacs de 20 kg partagés entre 5 chevaux : (3 × 25 + 2 × 20) ÷ 5 ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q05-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q05-calcul" data-answer-id="a01_q05_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q05">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q05" data-answer-id="a01_q05" data-required="true" aria-labelledby="a01-q05-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Parenthèses autour du total.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q06">
+            
+            
+            <h3 id="a01-q06-label">Question 6 — Calcule 150 ÷ (2 + 3).</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q06-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q06-calcul" data-answer-id="a01_q06_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q06">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q06" data-answer-id="a01_q06" data-required="true" aria-labelledby="a01-q06-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Parenthèses au dénominateur.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q07">
+            
+            
+            <h3 id="a01-q07-label">Question 7 — Pour partager 90 + 60 entre 3, on tape…</h3>
+            
+
+            
+            
+                <select id="a01-q07" data-answer-id="a01_q07" data-required="true" aria-labelledby="a01-q07-label"><option value="">Choisis une réponse</option><option value="a">90 + 60 ÷ 3</option><option value="b">(90 + 60) ÷ 3</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>On divise toute la somme.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Partie 2 — Arrondir</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais taper le calcul. Deuxième notion : écrire un résultat raisonnable.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.</p></div>
+        
+        
+
+        
+<h4>La notion</h4>
+    
+
+<p>La calculatrice donne souvent beaucoup de chiffres après la virgule.</p>
+    
+
+<p>Arrondir, c’est garder un nombre de chiffres utile (unité, dixième, centième) en restant le plus proche possible.</p>
+    
+
+<p>À retenir : On regarde le chiffre juste après le dernier gardé : de 0 à 4, on garde ; de 5 à 9, on augmente de 1.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Repère jusqu’où tu gardes (unité, dixième = 1 chiffre après la virgule, centième = 2).</li><li>Regarde le chiffre suivant.</li><li>0 à 4 : on coupe. 5 à 9 : on ajoute 1 au dernier chiffre gardé.</li><li>Pour des euros : au centième (centimes).</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Le plus proche</p>
+    
+
+<ul><li>3,46 est entre 3,4 et 3,5 ; il est plus près de 3,5.</li><li>Le chiffre suivant (6) dit de quel côté on est.</li></ul>
+    
+
+<p>2. Pourquoi pas deux fois</p>
+    
+
+<ul><li>3,46 arrondi au dixième = 3,5. Si on arrondit 3,5 à l’unité, on trouve 4.</li><li>Mais 3,46 arrondi directement à l’unité donne 3 : on arrondit une seule fois.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<p>Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.</p>
+    
+
+<h4>Exercices</h4>
+    
+
+<p>Écris le nombre arrondi.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — Série A — Arrondis 7,6 à l’unité.</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q01-calcul" data-answer-id="a02_q01_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q01">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q01" data-answer-id="a02_q01" data-required="true" aria-labelledby="a02-q01-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Chiffre après la virgule : 6.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a02-q02-label">Question 2 — Arrondis 12,4 à l’unité.</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q02-calcul" data-answer-id="a02_q02_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q02">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q02" data-answer-id="a02_q02" data-required="true" aria-labelledby="a02-q02-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Chiffre suivant : 4.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a02-q03-label">Question 3 — Arrondis 3,46 au dixième.</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q03-calcul" data-answer-id="a02_q03_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q03">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q03" data-answer-id="a02_q03" data-required="true" aria-labelledby="a02-q03-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Chiffre des centièmes : 6.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a02-q04-label">Question 4 — Arrondis 15,7249 au centième.</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q04-calcul" data-answer-id="a02_q04_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q04">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q04" data-answer-id="a02_q04" data-required="true" aria-labelledby="a02-q04-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Chiffre des millièmes : 4.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a02-q05-label">Question 5 — Série B — Arrondis 2,995 au centième.</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q05-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q05-calcul" data-answer-id="a02_q05_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q05">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q05" data-answer-id="a02_q05" data-required="true" aria-labelledby="a02-q05-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>2,99 + 0,01.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q06">
+            
+            
+            <h3 id="a02-q06-label">Question 6 — Calcule 100 ÷ 3 et arrondis au dixième.</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q06-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q06-calcul" data-answer-id="a02_q06_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q06">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q06" data-answer-id="a02_q06" data-required="true" aria-labelledby="a02-q06-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>33,333…</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q07">
+            
+            
+            <h3 id="a02-q07-label">Question 7 — Un sac de 25 kg coûte 17,99 €. Prix du kg, au centime ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q07-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q07-calcul" data-answer-id="a02_q07_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q07">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q07" data-answer-id="a02_q07" data-required="true" aria-labelledby="a02-q07-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>17,99 ÷ 25.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Partie 3 — Un calcul complet</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Dernière notion : enchaîner plusieurs calculs sans perdre de précision.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.</p></div>
+        
+        
+
+        
+<h4>La notion</h4>
+    
+
+<p>Un problème demande souvent plusieurs calculs à la suite.</p>
+    
+
+<p>On garde tous les chiffres pendant les calculs et on arrondit seulement le résultat final.</p>
+    
+
+<p>À retenir : Arrondir seulement à la fin. Écrire chaque étape.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Écris les étapes du calcul.</li><li>Utilise la touche Rép (ou Ans) pour reprendre le résultat précédent sans le recopier arrondi.</li><li>Arrondis le résultat final.</li><li>Contrôle avec un ordre de grandeur.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi ne pas arrondir en route</p>
+    
+
+<ul><li>Chaque arrondi ajoute une petite erreur.</li><li>Plusieurs petites erreurs, multipliées, en font une grande.</li></ul>
+    
+
+<p>2. Un exemple</p>
+    
+
+<ul><li>Prix du kg : 17,99 ÷ 25 = 0,7196 €. Pour 600 kg : 0,7196 × 600 = 431,76 €.</li><li>Si on arrondit d’abord à 0,72 € : 0,72 × 600 = 432 € : 24 centimes d’écart.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<p>Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.</p>
+    
+
+<h4>Exercices</h4>
+    
+
+<p>Calculatrice. Arrondis seulement le résultat final.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — Série A — 4 chevaux × 10,5 kg × 7 jours : foin en kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q01-calcul" data-answer-id="a03_q01_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q01">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q01" data-answer-id="a03_q01" data-required="true" aria-labelledby="a03-q01-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>4 × 10,5 × 7.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a03-q02-label">Question 2 — 294 kg à 0,20 € le kg : coût ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q02-calcul" data-answer-id="a03_q02_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q02">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q02" data-answer-id="a03_q02" data-required="true" aria-labelledby="a03-q02-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>294 × 0,20.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a03-q03-label">Question 3 — Un sac de granulés de 20 kg coûte 15,90 €. Prix de 140 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q03-calcul" data-answer-id="a03_q03_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q03">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q03" data-answer-id="a03_q03" data-required="true" aria-labelledby="a03-q03-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>15,90 ÷ 20 × 140 (ou 7 sacs).</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a03-q04-label">Question 4 — Moyenne de 7,5 ; 8,25 et 9 (au centième) ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q04-calcul" data-answer-id="a03_q04_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q04">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q04" data-answer-id="a03_q04" data-required="true" aria-labelledby="a03-q04-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>(7,5 + 8,25 + 9) ÷ 3.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a03-q05-label">Question 5 — Série B — 17,99 € les 25 kg : prix de 600 kg, au centime (sans arrondir en route) ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q05-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q05-calcul" data-answer-id="a03_q05_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q05">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q05" data-answer-id="a03_q05" data-required="true" aria-labelledby="a03-q05-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>17,99 ÷ 25 × 600.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q06">
+            
+            
+            <h3 id="a03-q06-label">Question 6 — Et si on arrondit d’abord le prix du kg à 0,72 € ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q06-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q06-calcul" data-answer-id="a03_q06_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q06">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q06" data-answer-id="a03_q06" data-required="true" aria-labelledby="a03-q06-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>0,72 × 600.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Encore des exercices (si tu as fini)</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<p>Tu as fini ? Entraîne-toi encore. Ces exercices ne comptent pas dans la note.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — Calcule (35 + 25) ÷ 4.</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q01-calcul" data-answer-id="a04_q01_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q01">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q01" data-answer-id="a04_q01" data-required="false" aria-labelledby="a04-q01-label"></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a04-q02-label">Question 2 — Arrondis 9,85 au dixième.</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q02-calcul" data-answer-id="a04_q02_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q02">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q02" data-answer-id="a04_q02" data-required="false" aria-labelledby="a04-q02-label"></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a04-q03-label">Question 3 — Calcule 50 ÷ 7 au centième.</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q03-calcul" data-answer-id="a04_q03_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q03">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q03" data-answer-id="a04_q03" data-required="false" aria-labelledby="a04-q03-label"></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a04-q04-label">Question 4 — 2 chevaux × 12 kg × 15 jours ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q04-calcul" data-answer-id="a04_q04_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q04">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q04" data-answer-id="a04_q04" data-required="false" aria-labelledby="a04-q04-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>La calculatrice respecte les priorités : pour diviser une somme, il faut des parenthèses.</li><li>Arrondir : on regarde le chiffre juste après ; 0 à 4 on garde, 5 à 9 on monte.</li><li>On arrondit seulement le résultat final.</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/2nde-pro/2nde-pro-da-EG4.pdf" target="_blank" rel="noopener noreferrer">ChloroFil — Seconde professionnelle, document d’accompagnement du module EG4</a></p>
+
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a04">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/nombre-seulement.js?v=20261125-calcul"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-paper-version.js?v=20261022-paper-tab-1"></script>
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>

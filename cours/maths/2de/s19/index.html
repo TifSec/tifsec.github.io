@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css?v=20261125-calcul">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-paper-version.css?v=20261125-calcul">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261104-contrast-4">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="mfr" data-matiere="maths" data-classe="2de" data-seance="S19" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-paper-toggle">Version papier</button><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">Partie 1 — La fonction et son tableau de valeurs</a></li><li><a href="#a02">Partie 2 — Une fonction donnée par une formule</a></li><li><a href="#a03">Partie 3 — La courbe</a></li><li><a href="#a04">Encore des exercices (si tu as fini) — facultatif</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">Mathématiques · 2de Pro · S19</span></div>
+    <h1>Séance 19 : Fonctions, tableau de valeurs et courbe</h1>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thème du programme</h2>
+        <p>EG4, 1-3 — S’approprier des notions de base sur les fonctions</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>Comment décrire une grandeur qui dépend d’une autre, avec un tableau, une formule ou une courbe ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétence travaillée</h2>
+        <ul><li>EG4, 1-3 — S’approprier des notions de base sur les fonctions</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>Une fonction associe à chaque nombre x un seul nombre f(x).</li>
+            
+            <li>f(x) se lit « f de x » : c’est l’image de x.</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Lire un tableau de valeurs.</li>
+            
+            <li>Calculer une image avec une formule.</li>
+            
+            <li>Placer des points et lire une courbe.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>Aujourd’hui, trois notions : la fonction et son tableau de valeurs, la formule, la courbe.</p><p>Pour chacune : la notion, la méthode, pourquoi ça marche, un exemple au tableau, puis beaucoup d’exercices.</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+<section id="course-paper-version" class="course-paper-version" hidden aria-labelledby="course-paper-title">
+    <article class="course-paper-sheet">
+        <header><p class="course-paper-class">Mathématiques — 2de Pro</p><p class="course-paper-kicker">Cours et exercices — version papier</p><h2 id="course-paper-title"><span class="course-paper-number">Séance 19</span> — Fonctions, tableau de valeurs et courbe</h2><p>Trois notions : tableau de valeurs, formule, courbe. Pour chacune : la notion, la méthode, l’exemple au tableau, puis les exercices.</p></header>
+        
+        <section class="course-paper-section">
+            <h3>I. La fonction et son tableau de valeurs</h3>
+            
+<h4>La notion</h4>
+    
+
+<p>Une fonction associe à chaque nombre x (par exemple un âge) un seul nombre f(x) (par exemple un poids).</p>
+    
+
+<p>f(x) s’appelle l’image de x. On écrit f(2) = 130 et on lit « f de 2 égale 130 ».</p>
+    
+
+<h4>À retenir</h4>
+    
+
+<p>Tableau de valeurs : en haut x, en bas l’image f(x).</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Cherche x dans la 1re ligne.</li><li>Descends dans la 2e ligne : c’est f(x).</li><li>Pour une variation : f(fin) − f(début).</li><li>Ne confonds pas x (en haut) et f(x) (en bas).</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi « un seul » nombre</p>
+    
+
+<ul><li>À un âge donné, un poulain n’a qu’un poids.</li><li>C’est ce qui fait que le poids est une fonction de l’âge.</li></ul>
+    
+
+<p>2. Pourquoi une notation</p>
+    
+
+<ul><li>f(3) = 165 est plus court que « à 3 mois, le poulain pèse 165 kg ».</li><li>La lettre f désigne la règle qui transforme l’âge en poids.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<div class="cours-zone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    
+
+<h4>Exercices (calculatrice autorisée)</h4>
+    
+
+<p>Poids d’un poulain (kg) selon son âge x (mois) :</p>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><thead><tr><th scope="col">Âge x (mois)</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th></tr></thead><tbody><tr><td>Poids f(x) (kg)</td><td>50</td><td>90</td><td>130</td><td>165</td><td>195</td><td>220</td><td>240</td></tr></tbody></table></div>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Série A — Que vaut f(0) ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Que vaut f(3) ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Que vaut f(6) ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Pour quel âge le poids est-il 220 kg ? (en mois)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Série B — Prise de poids entre 0 et 1 mois ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Prise de poids entre 3 et 6 mois ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>La prise de poids mensuelle… Choix : augmente avec l’âge / diminue avec l’âge / est toujours la même.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>II. Une fonction donnée par une formule</h3>
+            
+<h4>La notion</h4>
+    
+
+<p>Parfois, la fonction est donnée par une formule, par exemple f(x) = 12x + 50.</p>
+    
+
+<p>Pour trouver f(x), on remplace x par le nombre et on calcule.</p>
+    
+
+<h4>À retenir</h4>
+    
+
+<p>f(x) = 12x + 50 : 12x veut dire 12 × x. On fait la multiplication avant l’addition.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Recopie la formule.</li><li>Remplace x par le nombre (entre parenthèses si besoin).</li><li>Fais la multiplication, puis l’addition.</li><li>Écris f(…) = résultat.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Ce que dit la formule</p>
+    
+
+<ul><li>Le coût de pension d’un poney : 50 € de frais fixes, plus 12 € par jour.</li><li>Pour x jours : 12 × x + 50. C’est f(x).</li></ul>
+    
+
+<p>2. Pourquoi × avant +</p>
+    
+
+<ul><li>On paie d’abord 12 € par jour (12 × 5 = 60 € pour 5 jours), puis on ajoute les 50 €.</li><li>Faire 12 × (5 + 50) donnerait 660 € : absurde.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<div class="cours-zone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    
+
+<h4>Exercices (calculatrice autorisée)</h4>
+    
+
+<p>Coût de pension d’un poney : f(x) = 12x + 50, en euros, pour x jours.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Série A — Calcule f(1). (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Calcule f(10). (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Calcule f(0). (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Calcule f(30). (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Calcule f(7). (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Série B — Autre fonction : g(x) = 3x − 4. Calcule g(5).</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Avec g(x) = 3x − 4, calcule g(0).</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>III. La courbe</h3>
+            
+<h4>La notion</h4>
+    
+
+<p>La courbe d’une fonction est formée de tous les points de coordonnées (x ; f(x)).</p>
+    
+
+<p>On lit x sur l’axe horizontal et f(x) sur l’axe vertical.</p>
+    
+
+<h4>À retenir</h4>
+    
+
+<p>Point de la courbe : (x ; f(x)). Lire f(x) : partir de x en bas, monter jusqu’à la courbe, lire à gauche.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Comment faire ce graphique : pour chaque colonne du tableau, place le point (x ; f(x)), puis relie les points.</li><li>Comment le lire : pars de x sur l’axe horizontal, monte verticalement jusqu’à la courbe, puis va horizontalement jusqu’à l’axe vertical.</li><li>Comment le comprendre : si la courbe monte, f(x) augmente quand x augmente.</li><li>Entre deux points, la courbe donne une valeur approchée.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi des points (x ; f(x))</p>
+    
+
+<ul><li>Chaque colonne du tableau donne un couple : l’âge et le poids.</li><li>Le point est placé à l’abscisse x (horizontal) et à l’ordonnée f(x) (vertical).</li></ul>
+    
+
+<p>2. Pourquoi relier les points</p>
+    
+
+<ul><li>Le poulain grossit aussi entre deux pesées.</li><li>La courbe permet d’estimer son poids à 2 mois et demi, par exemple.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<div class="cours-zone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    
+
+<h4>Exercices (calculatrice autorisée)</h4>
+    
+
+<p>Courbe du poids du poulain (mêmes données que la partie 1) :</p>
+    
+
+<figure class="cours-document"><img src="/tifsec-test-eleves/assets/images/graphiques/maths-2de-s19-classique-poulain.svg" alt="Courbe du poids du poulain selon l’âge, de 0 à 6 mois." loading="lazy" decoding="async"><figcaption>Courbe du poids du poulain selon l’âge, de 0 à 6 mois.</figcaption></figure>
+    
+
+<p>Comment le lire : l’âge est en bas (mois), le poids à gauche (kg). Chaque carreau vertical vaut 20 kg.</p>
+    
+
+
+            <ol class="course-paper-questions"><li><span>Série A — Quelle est l’ordonnée du point d’abscisse 4 ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Le point (1 ; 90) est-il sur la courbe ? Choix : Oui / Non.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Le point (90 ; 1) est-il sur la courbe ? Choix : Oui / Non.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Estime le poids à 3,5 mois (à 5 kg près). (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Série B — Sur ce graphique, la courbe… Choix : monte de 0 à 6 mois / descend / monte puis descend.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Où la courbe monte-t-elle le plus vite ? Choix : Entre 0 et 2 mois / Entre 4 et 6 mois.</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>Encore des exercices (si tu as fini)</h3>
+            
+
+            <ol class="course-paper-questions"><li><span>Avec f(x) = 12x + 50, calcule f(15). (en €)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Avec h(x) = 5x + 2, calcule h(4).</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Avec h(x) = 5x + 2, calcule h(0,5).</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li><li><span>Tableau du poulain : prise de poids entre 1 et 5 mois ? (en kg)</span><span class="course-paper-answer-lines" aria-hidden="true"><span></span><span></span></span></li></ol>
+        </section>
+        
+        <section class="course-paper-section">
+            <h3>À retenir</h3>
+            
+<ul><li>Fonction : à chaque x, on associe un seul nombre f(x), son image.</li><li>Tableau de valeurs : 1re ligne x, 2e ligne f(x).</li><li>Formule : on remplace x par le nombre et on calcule (× avant +).</li><li>Courbe : les points (x ; f(x)) ; pour lire f(x), on part de x sur l’axe horizontal.</li></ul>
+    
+
+
+            
+        </section>
+        
+    </article>
+</section>
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Partie 1 — La fonction et son tableau de valeurs</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.</p></div>
+        
+        
+
+        
+<h4>La notion</h4>
+    
+
+<p>Une fonction associe à chaque nombre x (par exemple un âge) un seul nombre f(x) (par exemple un poids).</p>
+    
+
+<p>f(x) s’appelle l’image de x. On écrit f(2) = 130 et on lit « f de 2 égale 130 ».</p>
+    
+
+<p>À retenir : Tableau de valeurs : en haut x, en bas l’image f(x).</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Cherche x dans la 1re ligne.</li><li>Descends dans la 2e ligne : c’est f(x).</li><li>Pour une variation : f(fin) − f(début).</li><li>Ne confonds pas x (en haut) et f(x) (en bas).</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi « un seul » nombre</p>
+    
+
+<ul><li>À un âge donné, un poulain n’a qu’un poids.</li><li>C’est ce qui fait que le poids est une fonction de l’âge.</li></ul>
+    
+
+<p>2. Pourquoi une notation</p>
+    
+
+<ul><li>f(3) = 165 est plus court que « à 3 mois, le poulain pèse 165 kg ».</li><li>La lettre f désigne la règle qui transforme l’âge en poids.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<p>Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.</p>
+    
+
+<h4>Exercices</h4>
+    
+
+<p>Poids d’un poulain (kg) selon son âge x (mois) :</p>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><thead><tr><th scope="col">Âge x (mois)</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th></tr></thead><tbody><tr><td>Poids f(x) (kg)</td><td>50</td><td>90</td><td>130</td><td>165</td><td>195</td><td>220</td><td>240</td></tr></tbody></table></div>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — Série A — Que vaut f(0) ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q01-calcul" data-answer-id="a01_q01_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q01">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q01" data-answer-id="a01_q01" data-required="true" aria-labelledby="a01-q01-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Colonne x = 0.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a01-q02-label">Question 2 — Que vaut f(3) ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q02-calcul" data-answer-id="a01_q02_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q02">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q02" data-answer-id="a01_q02" data-required="true" aria-labelledby="a01-q02-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Colonne x = 3.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a01-q03-label">Question 3 — Que vaut f(6) ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q03-calcul" data-answer-id="a01_q03_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q03">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q03" data-answer-id="a01_q03" data-required="true" aria-labelledby="a01-q03-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Colonne x = 6.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a01-q04-label">Question 4 — Pour quel âge le poids est-il 220 kg ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q04-calcul" data-answer-id="a01_q04_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q04">🎯 Résultat <span>un nombre seulement, en mois</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q04" data-answer-id="a01_q04" data-required="true" aria-labelledby="a01-q04-label"><span class="cours-resultat-unite">mois</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Cherche 220 dans la 2e ligne, remonte à x.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a01-q05-label">Question 5 — Série B — Prise de poids entre 0 et 1 mois ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q05-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q05-calcul" data-answer-id="a01_q05_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q05">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q05" data-answer-id="a01_q05" data-required="true" aria-labelledby="a01-q05-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>f(1) − f(0).</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q06">
+            
+            
+            <h3 id="a01-q06-label">Question 6 — Prise de poids entre 3 et 6 mois ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a01-q06-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a01-q06-calcul" data-answer-id="a01_q06_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q06">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q06" data-answer-id="a01_q06" data-required="true" aria-labelledby="a01-q06-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>f(6) − f(3).</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q07">
+            
+            
+            <h3 id="a01-q07-label">Question 7 — La prise de poids mensuelle…</h3>
+            
+
+            
+            
+                <select id="a01-q07" data-answer-id="a01_q07" data-required="true" aria-labelledby="a01-q07-label"><option value="">Choisis une réponse</option><option value="a">augmente avec l’âge</option><option value="b">diminue avec l’âge</option><option value="c">est toujours la même</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Calcule les écarts entre deux mois qui se suivent.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Partie 2 — Une fonction donnée par une formule</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais lire un tableau. Deuxième notion : calculer les images avec une formule.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.</p></div>
+        
+        
+
+        
+<h4>La notion</h4>
+    
+
+<p>Parfois, la fonction est donnée par une formule, par exemple f(x) = 12x + 50.</p>
+    
+
+<p>Pour trouver f(x), on remplace x par le nombre et on calcule.</p>
+    
+
+<p>À retenir : f(x) = 12x + 50 : 12x veut dire 12 × x. On fait la multiplication avant l’addition.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Recopie la formule.</li><li>Remplace x par le nombre (entre parenthèses si besoin).</li><li>Fais la multiplication, puis l’addition.</li><li>Écris f(…) = résultat.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Ce que dit la formule</p>
+    
+
+<ul><li>Le coût de pension d’un poney : 50 € de frais fixes, plus 12 € par jour.</li><li>Pour x jours : 12 × x + 50. C’est f(x).</li></ul>
+    
+
+<p>2. Pourquoi × avant +</p>
+    
+
+<ul><li>On paie d’abord 12 € par jour (12 × 5 = 60 € pour 5 jours), puis on ajoute les 50 €.</li><li>Faire 12 × (5 + 50) donnerait 660 € : absurde.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<p>Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.</p>
+    
+
+<h4>Exercices</h4>
+    
+
+<p>Coût de pension d’un poney : f(x) = 12x + 50, en euros, pour x jours.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — Série A — Calcule f(1).</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q01-calcul" data-answer-id="a02_q01_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q01">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q01" data-answer-id="a02_q01" data-required="true" aria-labelledby="a02-q01-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>12 × 1 + 50.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a02-q02-label">Question 2 — Calcule f(10).</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q02-calcul" data-answer-id="a02_q02_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q02">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q02" data-answer-id="a02_q02" data-required="true" aria-labelledby="a02-q02-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>12 × 10 + 50.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a02-q03-label">Question 3 — Calcule f(0).</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q03-calcul" data-answer-id="a02_q03_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q03">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q03" data-answer-id="a02_q03" data-required="true" aria-labelledby="a02-q03-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>12 × 0 + 50.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a02-q04-label">Question 4 — Calcule f(30).</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q04-calcul" data-answer-id="a02_q04_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q04">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q04" data-answer-id="a02_q04" data-required="true" aria-labelledby="a02-q04-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>12 × 30 + 50.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a02-q05-label">Question 5 — Calcule f(7).</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q05-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q05-calcul" data-answer-id="a02_q05_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q05">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q05" data-answer-id="a02_q05" data-required="true" aria-labelledby="a02-q05-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>12 × 7 + 50.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q06">
+            
+            
+            <h3 id="a02-q06-label">Question 6 — Série B — Autre fonction : g(x) = 3x − 4. Calcule g(5).</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q06-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q06-calcul" data-answer-id="a02_q06_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q06">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q06" data-answer-id="a02_q06" data-required="true" aria-labelledby="a02-q06-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>3 × 5 − 4.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q07">
+            
+            
+            <h3 id="a02-q07-label">Question 7 — Avec g(x) = 3x − 4, calcule g(0).</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a02-q07-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a02-q07-calcul" data-answer-id="a02_q07_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a02-q07">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a02-q07" data-answer-id="a02_q07" data-required="true" aria-labelledby="a02-q07-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>3 × 0 − 4.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Partie 3 — La courbe</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Dernière notion : dessiner la fonction et la lire sur un graphique.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Lis la notion et la méthode. On fait l’exemple ensemble au tableau. Ensuite, fais les exercices dans l’ordre : ils sont de plus en plus difficiles.</p></div>
+        
+        
+
+        
+<h4>La notion</h4>
+    
+
+<p>La courbe d’une fonction est formée de tous les points de coordonnées (x ; f(x)).</p>
+    
+
+<p>On lit x sur l’axe horizontal et f(x) sur l’axe vertical.</p>
+    
+
+<p>À retenir : Point de la courbe : (x ; f(x)). Lire f(x) : partir de x en bas, monter jusqu’à la courbe, lire à gauche.</p>
+    
+
+<h4>Comment ça fonctionne</h4>
+    
+
+<ol><li>Comment faire ce graphique : pour chaque colonne du tableau, place le point (x ; f(x)), puis relie les points.</li><li>Comment le lire : pars de x sur l’axe horizontal, monte verticalement jusqu’à la courbe, puis va horizontalement jusqu’à l’axe vertical.</li><li>Comment le comprendre : si la courbe monte, f(x) augmente quand x augmente.</li><li>Entre deux points, la courbe donne une valeur approchée.</li></ol>
+    
+
+<h4>Pourquoi ça marche</h4>
+    
+
+<p>1. Pourquoi des points (x ; f(x))</p>
+    
+
+<ul><li>Chaque colonne du tableau donne un couple : l’âge et le poids.</li><li>Le point est placé à l’abscisse x (horizontal) et à l’ordonnée f(x) (vertical).</li></ul>
+    
+
+<p>2. Pourquoi relier les points</p>
+    
+
+<ul><li>Le poulain grossit aussi entre deux pesées.</li><li>La courbe permet d’estimer son poids à 2 mois et demi, par exemple.</li></ul>
+    
+
+<h4>Exemple fait ensemble en classe</h4>
+    
+
+<p>Ton professeur fait l’exemple au tableau avec toi. Recopie-le dans ton cahier ou sur ta fiche papier.</p>
+    
+
+<h4>Exercices</h4>
+    
+
+<p>Courbe du poids du poulain (mêmes données que la partie 1) :</p>
+    
+
+<figure class="cours-document"><img src="/tifsec-test-eleves/assets/images/graphiques/maths-2de-s19-classique-poulain.svg" alt="Courbe du poids du poulain selon l’âge, de 0 à 6 mois." loading="lazy" decoding="async"><figcaption>Courbe du poids du poulain selon l’âge, de 0 à 6 mois.</figcaption></figure>
+    
+
+<p>Comment le lire : l’âge est en bas (mois), le poids à gauche (kg). Chaque carreau vertical vaut 20 kg.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — Série A — Quelle est l’ordonnée du point d’abscisse 4 ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q01-calcul" data-answer-id="a03_q01_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q01">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q01" data-answer-id="a03_q01" data-required="true" aria-labelledby="a03-q01-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Pars de 4 en bas, monte, lis à gauche.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a03-q02-label">Question 2 — Le point (1 ; 90) est-il sur la courbe ?</h3>
+            
+
+            
+            
+                <select id="a03-q02" data-answer-id="a03_q02" data-required="true" aria-labelledby="a03-q02-label"><option value="">Choisis une réponse</option><option value="a">Oui</option><option value="b">Non</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>À 1 mois, le poids est-il 90 kg ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a03-q03-label">Question 3 — Le point (90 ; 1) est-il sur la courbe ?</h3>
+            
+
+            
+            
+                <select id="a03-q03" data-answer-id="a03_q03" data-required="true" aria-labelledby="a03-q03-label"><option value="">Choisis une réponse</option><option value="a">Oui</option><option value="b">Non</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Dans (x ; y), x est l’âge.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a03-q04-label">Question 4 — Estime le poids à 3,5 mois (à 5 kg près).</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a03-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a03-q04-calcul" data-answer-id="a03_q04_calcul" data-answer-role="calcul" data-required="true" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q04">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q04" data-answer-id="a03_q04" data-required="true" aria-labelledby="a03-q04-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Milieu entre f(3) = 165 et f(4) = 195.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a03-q05-label">Question 5 — Série B — Sur ce graphique, la courbe…</h3>
+            
+
+            
+            
+                <select id="a03-q05" data-answer-id="a03_q05" data-required="true" aria-labelledby="a03-q05-label"><option value="">Choisis une réponse</option><option value="a">monte de 0 à 6 mois</option><option value="b">descend</option><option value="c">monte puis descend</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Regarde de gauche à droite.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q06">
+            
+            
+            <h3 id="a03-q06-label">Question 6 — Où la courbe monte-t-elle le plus vite ?</h3>
+            
+
+            
+            
+                <select id="a03-q06" data-answer-id="a03_q06" data-required="true" aria-labelledby="a03-q06-label"><option value="">Choisis une réponse</option><option value="a">Entre 0 et 2 mois</option><option value="b">Entre 4 et 6 mois</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Là où elle est la plus raide.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Encore des exercices (si tu as fini)</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<p>Tu as fini ? Entraîne-toi encore. Ces exercices ne comptent pas dans la note.</p>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — Avec f(x) = 12x + 50, calcule f(15).</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q01-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q01-calcul" data-answer-id="a04_q01_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q01">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q01" data-answer-id="a04_q01" data-required="false" aria-labelledby="a04-q01-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a04-q02-label">Question 2 — Avec h(x) = 5x + 2, calcule h(4).</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q02-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q02-calcul" data-answer-id="a04_q02_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q02">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q02" data-answer-id="a04_q02" data-required="false" aria-labelledby="a04-q02-label"></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a04-q03-label">Question 3 — Avec h(x) = 5x + 2, calcule h(0,5).</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q03-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q03-calcul" data-answer-id="a04_q03_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q03">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q03" data-answer-id="a04_q03" data-required="false" aria-labelledby="a04-q03-label"></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a04-q04-label">Question 4 — Tableau du poulain : prise de poids entre 1 et 5 mois ?</h3>
+            
+
+            
+            
+                
+                <div class="cours-calcul-box">
+                <label class="cours-calcul-label" for="a04-q04-calcul">✏️ Écris ici le calcul qui t’a permis d’arriver au résultat</label>
+                <textarea class="cours-calcul" id="a04-q04-calcul" data-answer-id="a04_q04_calcul" data-answer-role="calcul" data-required="false" rows="2"></textarea>
+                </div>
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q04">🎯 Résultat <span>un nombre seulement, en kg</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q04" data-answer-id="a04_q04" data-required="false" aria-labelledby="a04-q04-label"><span class="cours-resultat-unite">kg</span></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>Fonction : à chaque x, on associe un seul nombre f(x), son image.</li><li>Tableau de valeurs : 1re ligne x, 2e ligne f(x).</li><li>Formule : on remplace x par le nombre et on calcule (× avant +).</li><li>Courbe : les points (x ; f(x)) ; pour lire f(x), on part de x sur l’axe horizontal.</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/2nde-pro/2nde-pro-da-EG4.pdf" target="_blank" rel="noopener noreferrer">ChloroFil — Seconde professionnelle, document d’accompagnement du module EG4</a></p>
+
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a04">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/nombre-seulement.js?v=20261125-calcul"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-paper-version.js?v=20261022-paper-tab-1"></script>
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>

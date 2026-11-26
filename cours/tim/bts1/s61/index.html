@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="supabase-url" content="https://evbfflwfyiitrkgzjhwt.supabase.co">
+    <meta name="supabase-publishable-key" content="sb_publishable__aRCAzLQv4TmSL0Z1yvcZQ_Nbwd2Ah6">
+    <meta name="tifsec-bonus-defi" content="5">
+
+    <meta name="description" content="Cours de Technologie, TIM et Mathématiques">
+
+    
+    <link rel="preconnect" href="https://evbfflwfyiitrkgzjhwt.supabase.co" crossorigin>
+    <link rel="preload" as="script" href="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp">
+    <link rel="modulepreload" href="/tifsec-test-eleves/assets/js/auth/auth-session.js">
+    
+
+    <title>
+        
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+        
+    </title>
+
+    <link rel="icon" href="/tifsec-test-eleves/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/variables.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/base.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/body.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/header.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/main.css">
+
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/footer.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-message.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/auth/auth-session.css">
+
+    
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-header.css?v=20261022-shop-effects-2">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-activites.css?v=20261125-calcul">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-layout.css?v=20261029-mission-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/cours-sauvegarde.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/collaboration.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/student-evaluation.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-shell.css">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-learning-sequence.css">
+    
+    
+
+    
+
+
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme.css?v=20261022-avatar-shop-1">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/student-theme-worlds.css?v=20261022-avatar-shop-1">
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/cours/course-quest-ui.css?v=20261029-pix-1">
+    
+    
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/eleve/theme-harmonization.css?v=20261022-theme-palette-4">
+    <link rel="stylesheet" href="/tifsec-test-eleves/assets/css/theme-contrast.css?v=20261104-contrast-4">
+    
+</head>
+
+<body class="student-shell student-course-shell">
+    <a class="student-skip" href="#course-intro">Aller au cours</a>
+    <p id="message" class="auth-message" role="status" aria-live="polite" hidden></p>
+    <header class="student-header" id="course-header">
+    <div class="student-header-inner">
+        <div class="student-topbar">
+            <a class="student-brand" href="/tifsec-test-eleves/eleve/"><img src="/tifsec-test-eleves/images/logo.png" width="44" height="44" alt=""><span>Mon espace<span data-profile-field="matieres"></span></span></a>
+            <div class="student-header-actions"><a class="student-home-link" href="/tifsec-test-eleves/eleve/">Mes séances</a><a id="course-login" href="/tifsec-test-eleves/connexion/">Se connecter</a><details class="student-theme-picker" id="student-theme-picker" hidden>
+    <summary>Apparence</summary>
+    <div class="student-theme-options"><label for="student-theme-select">Les couleurs de mon espace</label><select id="student-theme-select" disabled><option value="ocean">Océan · bleu</option><option value="forest">Forêt · vert</option><option value="plum">Prune · violet</option><option value="terracotta">Terre cuite · orangé</option><option value="ruby">Rubis · rouge</option><option value="slate">Ardoise · gris</option><option value="midnight">Minuit · noir</option><option value="rose">Rosée · rose</option><option value="neon">Néon · RGB sombre</option><option value="cyberpunk">Cyberpunk · cité futuriste</option><option value="minecraft">Minecraft · blocs et pixels</option><option value="farming">Farming · campagne et cultures</option></select><p id="student-theme-xp" class="student-theme-xp" hidden></p><div class="student-theme-actions"><button id="student-theme-unlock" type="button" hidden>Débloquer</button><button id="student-theme-cancel" type="button" hidden>Revenir à mon thème</button></div><label class="student-theme-motion"><input type="checkbox" id="student-theme-motion"> Mettre les animations en pause</label><p id="student-theme-status" role="status" aria-live="polite">Ce choix te suivra sur les autres ordinateurs.</p><button id="student-theme-retry" type="button" hidden>Réessayer</button></div>
+</details>
+<button type="button" id="course-logout" hidden>Se déconnecter</button></div>
+        </div>
+        <div class="student-welcome-row" id="course-welcome" hidden>
+            <div><p class="student-eyebrow">Une séance à la fois, à ton rythme.</p><p class="student-course-greeting">Bonjour <span id="course-header-identity"></span></p></div>
+            <dl class="student-profile"><div><dt>Établissement</dt><dd data-profile-field="etablissement"></dd></div><div><dt>Classe</dt><dd data-profile-field="classe"></dd></div><div><dt>Inscription</dt><dd data-profile-field="validation"></dd></div></dl>
+        </div>
+    </div>
+</header>
+
+    <main class="student-course-main" id="student-course-main">
+
+
+
+
+
+<div id="course-work" data-etablissement="mfr" data-matiere="tim" data-classe="bts1" data-seance="S61" data-saving-enabled="true" data-collaboration-enabled="true">
+    <div class="course-save-panel course-toolbar">
+        <p id="course-identity" hidden></p>
+        <p id="course-save-status" role="status" aria-live="polite">Préparation de la séance…</p>
+        <div class="course-toolbar-actions"><span id="course-copy-kind" hidden></span><button type="button" id="course-group-toggle" aria-expanded="false" aria-controls="course-collaboration" hidden>Travailler ensemble</button><button type="button" id="course-retry" hidden>Réessayer</button><button type="button" id="course-reload" hidden>Recharger la copie enregistrée</button></div>
+    </div>
+    <section id="course-collaboration" class="collaboration-panel" hidden aria-labelledby="course-group-heading" data-enabled="true">
+        <div class="course-group-heading"><h2 id="course-group-heading" tabindex="-1">Travailler ensemble</h2><button type="button" id="course-group-close">Revenir au cours</button></div>
+        <p id="group-status" role="status">Les groupes sont propres à chaque séance. Connecte-toi avec ton compte élève pour choisir ta copie.</p>
+        <div id="group-controls" hidden>
+            <label for="group-copy">Copie de cette séance</label><select id="group-copy"></select>
+            <button type="button" id="group-refresh">Actualiser les groupes</button>
+            <div id="group-create-panel" hidden>
+                <p>Choisis un ou deux camarades. Chacun doit accepter pour partager les réponses. Le groupe reprend ton travail actuel ; ta copie individuelle reste dans l’historique.</p>
+                <div id="group-classmates" class="collaboration-roster"></div>
+                <button type="button" id="group-create">Envoyer les invitations</button>
+            </div>
+        </div>
+    </section>
+    <section id="course-feedback" class="collaboration-feedback" aria-live="polite"></section>
+    <section id="course-evaluation" class="student-evaluation" data-enabled="true" aria-live="polite" hidden></section>
+
+<div class="course-columns">
+    <aside class="course-navigation" aria-label="Étapes de la séance">
+        <h2>Ma progression</h2><p id="course-progress-label" role="status">Chargement de la copie…</p>
+        <progress id="course-progress" max="1" value="0" aria-labelledby="course-progress-label"></progress>
+        <p class="course-progress-help">Réponses remplies, pas forcément justes.</p>
+        <details class="course-step-list" id="course-step-list" open><summary>Étapes de la séance</summary><nav><ol><li><a href="#course-intro">Comprendre l’objectif</a></li><li><a href="#a01">Comprendre le tableau de remboursement</a></li><li><a href="#a02">Préparer la feuille</a></li><li><a href="#a03">Le coefficient et l’annuité</a></li><li><a href="#a04">Les formules du tableau</a></li><li><a href="#a05">La mise en page</a></li><li><a href="#a06">Seul, sans aide</a></li><li><a href="#a07">Pour aller plus loin — facultatif</a></li><li><a href="#a08">Conclusion de ton travail</a></li><li><a href="#course-summary">À retenir</a></li></ol></nav></details>
+    </aside>
+
+<div class="course-reading">
+<!-- ========== INTRODUCTION DU COURS ========== -->
+
+<header class="cours-intro" id="course-intro" data-course-step>
+    
+    
+    
+    
+    <div class="course-title-strip"><span class="course-title-kicker">Ta mission du jour</span><span class="course-title-context">TIM · BTSA ACS&#39;AGRI 1 · S61</span></div>
+    <h1>Renforcement 1 : Construire le tableau de remboursement d’un emprunt</h1>
+    
+
+    
+    
+    <section class="course-info-card cours-theme">
+        <h2>Thèmes du programme</h2>
+        <ul><li>C4.1 — Évaluer la performance globale d’un système biotechnique</li><li>En lien avec le cours de gestion C6.1 — Les intérêts d’emprunt</li></ul>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-problematique">
+        <h2>Le problème à résoudre</h2>
+        <p>L’écurie emprunte 30 000 € pour refaire sa carrière. Comment construire, dans le tableur, un tableau de remboursement juste, lisible, et que l’on peut refaire pour n’importe quel prêt ?</p>
+    </section>
+    
+
+    
+    <section class="course-info-card cours-competences-bo">
+        <h2>Compétence travaillée</h2>
+        <ul><li>C4.1 — Évaluer la performance globale d’un système biotechnique</li></ul>
+    </section>
+    
+
+    
+    
+    <section class="course-info-card cours-objectifs">
+        
+        <h2>Ce que tu vas apprendre</h2>
+        <ul>
+            
+            <li>Un emprunt : capital, taux, durée. Annuité = capital remboursé + intérêts.</li>
+            
+            <li>Une ligne du tableau : intérêts = capital du début × taux ; capital remboursé = annuité − intérêts ; capital restant dû = capital du début − capital remboursé.</li>
+            
+            <li>Le symbole $ bloque une cellule quand on recopie une formule.</li>
+            
+        </ul>
+        
+        
+        <h2>Ce que tu vas apprendre à faire</h2>
+        <ul>
+            
+            <li>Mettre en forme une feuille de calcul (titre, formats € et %, bordures, en-têtes).</li>
+            
+            <li>Écrire des formules avec des cellules, puis les recopier vers le bas sans erreur.</li>
+            
+            <li>Préparer l’impression d’un tableau sur une page.</li>
+            
+            <li>Refaire seul le tableau de remboursement d’un autre prêt.</li>
+            
+        </ul>
+        
+    </section>
+    
+
+    <section class="course-info-card course-info-why"><h2>Pourquoi cette séance ?</h2><div class="course-info-why-text"><p>En cours de gestion, tu as fait ce tableau à la main. C’est long, et une seule erreur fausse toutes les lignes suivantes.</p><p>Un tableau bien construit dans le tableur se recalcule tout seul quand on change le taux ou la durée. Tu pourras comparer plusieurs offres de prêt en quelques secondes.</p></div></section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <nav class="course-mission-controls course-intro-controls" aria-label="Commencer la séance"><a class="course-mission-next" href="#a01">J’ai compris l’objectif : commencer la première mission <span aria-hidden="true">→</span></a></nav>
+</header>
+
+
+    <fieldset id="course-answers" class="course-answer-fields" disabled>
+        <legend>Réponses aux activités</legend>
+        <!-- ========== ACTIVITÉS ET QUESTIONS ========== -->
+
+<section class="cours-activites">
+    
+    <article class="cours-activite" id="a01" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 1</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Comprendre le tableau de remboursement</h2>
+        
+        
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas calculer à la calculatrice une ligne du tableau de remboursement de l’exemple du cours. On attend les 3 montants de l’année 2.</p></div>
+        
+        
+
+        
+<h4>Les mots du prêt</h4>
+    
+
+<ul><li>Capital : la somme empruntée à la banque.</li><li>Taux : le pourcentage d’intérêts payé chaque année sur ce qu’il reste à rembourser.</li><li>Durée : le nombre d’années pour rembourser.</li><li>Annuité : la somme versée à la banque chaque année. Avec des annuités constantes, c’est toujours la même.</li><li>L’annuité contient deux parts : les intérêts (le prix du prêt) et le capital remboursé (ce qui fait baisser la dette).</li><li>Capital restant dû : ce qu’il reste à rembourser à la fin de l’année.</li></ul>
+    
+
+<h4>Exemple du cours</h4>
+    
+
+<ol><li>Lis l’exemple : emprunt de 10 000 € sur 6 ans, au taux de 1,75 %. L’annuité est de 1 770,23 €.</li><li>Année 1. Capital du début : 10 000 €.</li><li>Intérêts = capital du début × taux = 10 000 × 0,0175 = 175 €.</li><li>Capital remboursé = annuité − intérêts = 1 770,23 − 175 = 1 595,23 €.</li><li>Capital restant dû = capital du début − capital remboursé = 10 000 − 1 595,23 = 8 404,77 €.</li><li>À toi : l’année 2 commence avec le capital restant dû de l’année 1, soit 8 404,77 €. Refais les 3 calculs avec ce nombre, arrondis au centime.</li><li>Pourquoi les intérêts baissent-ils chaque année ? Parce qu’on les calcule sur ce qu’il reste à rembourser, et cette somme baisse.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a01-q01-label">Question 1 — Année 2 de l’exemple — combien d’intérêts ?</h3>
+            
+
+            
+            
+                
+                
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q01">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q01" data-answer-id="a01_q01" data-required="true" aria-labelledby="a01-q01-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Intérêts = capital du début de l’année 2 × taux. Le taux 1,75 % s’écrit 0,0175.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a01-q02-label">Question 2 — Année 2 de l’exemple — combien de capital remboursé ?</h3>
+            
+
+            
+            
+                
+                
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q02">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q02" data-answer-id="a01_q02" data-required="true" aria-labelledby="a01-q02-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Capital remboursé = annuité − intérêts que tu viens de trouver.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a01-q03-label">Question 3 — Année 2 de l’exemple — quel capital reste dû à la fin de l’année ?</h3>
+            
+
+            
+            
+                
+                
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a01-q03">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a01-q03" data-answer-id="a01_q03" data-required="true" aria-labelledby="a01-q03-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Capital restant dû = capital du début de l’année 2 − capital remboursé.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#course-intro">← Revoir l’objectif</a>
+            <a class="course-mission-next" href="#a02">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a02" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 2</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Préparer la feuille</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu sais calculer une ligne à la main. Maintenant, tu prépares la feuille du tableur qui fera ces calculs pour toi.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas créer et mettre en forme la feuille de l’emprunt de l’écurie, avant d’écrire la moindre formule. On attend une feuille rangée comme le modèle (document 1).</p></div>
+        
+        
+
+        
+<p>L’écurie emprunte 30 000 € sur 6 ans, au taux de 3 % (offre A de la banque). Ouvre un classeur vide (LibreOffice Calc ou Excel) et enregistre-le tout de suite sous le nom « emprunt-carriere-NOM ».</p>
+    
+
+<h4>Document 1 — où placer chaque information</h4>
+    
+
+<div class="cours-table-wrapper"><table class="cours-table"><thead><tr><th scope="col">Cellule(s)</th><th scope="col">Ce que tu y écris</th></tr></thead><tbody><tr><td>B1</td><td>Remboursement d’emprunt par annuités constantes</td></tr><tr><td>B3, B4, B5</td><td>Capital :   Durée (années) :   Taux :</td></tr><tr><td>C3, C4, C5</td><td>30000   6   3%</td></tr><tr><td>B6, B7</td><td>Coefficient :   Annuité :</td></tr><tr><td>B9 à G9</td><td>Année   Capital début   Annuité   Intérêts   Capital remboursé   Capital restant dû</td></tr><tr><td>B10 à B15</td><td>1   2   3   4   5   6 (une année par ligne)</td></tr><tr><td>B16</td><td>Total</td></tr></tbody></table></div>
+    
+
+<h4>La mise en forme</h4>
+    
+
+<ol><li>Le titre : sélectionne B1 à G1, clique sur « Fusionner et centrer », mets-le en gras, taille 14.</li><li>Le capital (C3) : format Monétaire (€). Le taux (C5) : tape 3% avec le signe %, le tableur le range au format Pourcentage.</li><li>Les en-têtes (B9 à G9) : gras, centrés, fond coloré, « Renvoyer à la ligne automatiquement » pour que les titres longs tiennent.</li><li>Les colonnes : double-clique sur le trait entre deux lettres de colonnes, la largeur s’ajuste toute seule.</li><li>Les bordures : sélectionne B9 à G16, puis Bordures &gt; « Toutes les bordures ».</li><li>Pourquoi tout mettre en forme avant les formules ? Une feuille rangée se relit facilement : tu repères tout de suite une case vide ou un nombre faux.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a02-q01-label">Question 1 — Tu tapes 3 dans la cellule du taux, sans le signe %. Que va comprendre le tableur ?</h3>
+            
+
+            
+            
+                <select id="a02-q01" data-answer-id="a02_q01" data-required="true" aria-labelledby="a02-q01-label"><option value="">Choisis une réponse</option><option value="a">Un taux de 300 %, donc tous les intérêts seront faux.</option><option value="b">Un taux de 3 %, c’est pareil.</option><option value="c">Une erreur, la cellule restera vide.</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Pour le tableur, 3 % vaut 0,03. Que vaut le nombre 3 écrit en pourcentage ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a01">← Étape précédente</a>
+            <a class="course-mission-next" href="#a03">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a03" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 3</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Le coefficient et l’annuité</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> La feuille est prête. Tu écris maintenant tes deux premières formules, qui donnent l’annuité.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas calculer, avec des formules, le coefficient d’annuité constante et l’annuité de l’offre A. On attend les deux résultats.</p></div>
+        
+        
+
+        
+<ol><li>Lis l’exemple : dans le cours, coefficient = taux ÷ (1 − (1 + taux)^−durée). Pour 10 000 € à 1,75 % sur 6 ans : 0,0175 ÷ (1 − 1,0175^−6) = 0,177022.</li><li>Annuité = capital × coefficient = 10 000 × 0,177022 = 1 770,23 €.</li><li>Dans le tableur, une formule commence toujours par = et utilise les cellules, jamais les nombres tapés à la main.</li><li>À toi : en C6, tape =C5/(1-(1+C5)^(-C4)) puis Entrée. Mets C6 au format Nombre avec 6 décimales.</li><li>En C7, écris la formule de l’annuité avec les cellules du capital et du coefficient. Mets C7 au format Monétaire.</li><li>Pourquoi des cellules plutôt que des nombres ? Si la banque change le taux, tu changes une seule case et tout se recalcule.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a03-q01-label">Question 1 — Quel coefficient obtiens-tu en C6 (6 chiffres après la virgule) ?</h3>
+            
+
+            
+            
+                
+                
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q01">🎯 Résultat <span>un nombre seulement</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q01" data-answer-id="a03_q01" data-required="true" aria-labelledby="a03-q01-label"></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Vérifie que C4 contient 6 et C5 contient 3 %. Avec 6 décimales, le résultat commence par 0,18.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a03-q02-label">Question 2 — Quelle est l’annuité de l’offre A ?</h3>
+            
+
+            
+            
+                
+                
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a03-q02">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a03-q02" data-answer-id="a03_q02" data-required="true" aria-labelledby="a03-q02-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Annuité = capital × coefficient. Quelle formule vas-tu écrire en C7, avec les cellules C3 et C6 ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a02">← Étape précédente</a>
+            <a class="course-mission-next" href="#a04">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a04" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 4</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Les formules du tableau</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu connais l’annuité. Tu remplis maintenant le tableau, année par année, mais en n’écrivant les formules qu’une seule fois.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas écrire les formules de l’année 1, les recopier jusqu’à l’année 6, puis ajouter les totaux. On attend 5 réponses lues dans ton tableau.</p></div>
+        
+        
+
+        
+<h4>L’année 1 (ligne 10)</h4>
+    
+
+<ol><li>Lis l’exemple : ce sont les mêmes calculs qu’en mission 1, mais avec les cellules.</li><li>C10, capital du début : =C3 (le capital emprunté).</li><li>D10, annuité : =$C$7</li><li>E10, intérêts : =C10*$C$5</li><li>F10, capital remboursé : =D10-E10</li><li>G10, capital restant dû : =C10-F10</li></ol>
+    
+
+<h4>Les années suivantes</h4>
+    
+
+<ol><li>C11, capital du début de l’année 2 : =G10 (ce qui reste dû à la fin de l’année 1).</li><li>Recopie : sélectionne D10 à G10, attrape le petit carré en bas à droite de la sélection et tire jusqu’à la ligne 15. Fais pareil avec C11, jusqu’à C15.</li><li>Le symbole $ : quand on recopie vers le bas, C5 devient C6, puis C7… Avec $C$5, la cellule reste bloquée sur le taux.</li><li>Les totaux : en D16, tape =SOMME(D10:D15), puis recopie vers la droite jusqu’à F16. Mets la ligne 16 en gras.</li><li>Vérification : en G15, le capital restant dû doit être 0. Sinon, une formule est fausse.</li><li>Pourquoi un seul $ dans =C10*$C$5 ? Le capital du début doit changer à chaque ligne, le taux non.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a04-q01-label">Question 1 — Combien d’intérêts l’écurie paie-t-elle l’année 1 ?</h3>
+            
+
+            
+            
+                
+                
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q01">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q01" data-answer-id="a04_q01" data-required="true" aria-labelledby="a04-q01-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Lis la cellule E10. Elle doit valoir le capital × le taux.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a04-q02-label">Question 2 — Quel capital reste dû à la fin de l’année 2 ?</h3>
+            
+
+            
+            
+                
+                
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q02">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q02" data-answer-id="a04_q02" data-required="true" aria-labelledby="a04-q02-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Lis la cellule G11. Si le nombre te paraît bizarre, vérifie la formule de C11.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a04-q03-label">Question 3 — Un camarade a écrit =C10*C5 en E10 et l’a recopiée. Que se passe-t-il à la ligne 11 ?</h3>
+            
+
+            
+            
+                <select id="a04-q03" data-answer-id="a04_q03" data-required="true" aria-labelledby="a04-q03-label"><option value="">Choisis une réponse</option><option value="a">La formule devient =C11*C6 et multiplie par le coefficient au lieu du taux.</option><option value="b">Rien, la formule reste juste.</option><option value="c">La formule devient =C11*$C$5.</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Sans $, chaque cellule de la formule descend d’une ligne quand on recopie. Qu’y a-t-il en C6 ?</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q04">
+            
+            
+            <h3 id="a04-q04-label">Question 4 — Combien l’écurie paie-t-elle d’intérêts en tout sur les 6 ans (ligne Total) ?</h3>
+            
+
+            
+            
+                
+                
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q04">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q04" data-answer-id="a04_q04" data-required="true" aria-labelledby="a04-q04-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Lis la cellule E16. Elle additionne les intérêts des 6 années.</p></details>
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q05">
+            
+            
+            <h3 id="a04-q05-label">Question 5 — Quel capital reste dû à la fin de l’année 6 ?</h3>
+            
+
+            
+            
+                
+                
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a04-q05">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a04-q05" data-answer-id="a04_q05" data-required="true" aria-labelledby="a04-q05-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Lis la cellule G15. Un prêt entièrement remboursé ne laisse plus rien à payer.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a03">← Étape précédente</a>
+            <a class="course-mission-next" href="#a05">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a05" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 5</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>La mise en page</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Les calculs sont justes. Il reste à rendre le tableau lisible et imprimable, pour le montrer au banquier ou à un associé.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas finir la mise en forme du tableau et préparer son impression sur une seule page. On attend un aperçu avant impression propre.</p></div>
+        
+        
+
+        
+<ol><li>Sélectionne C10 à G16 : format Monétaire (€) avec 2 décimales.</li><li>Mets en gras la ligne Total et colore légèrement la colonne « Capital restant dû ».</li><li>Ouvre l’aperçu avant impression (Fichier &gt; Aperçu, ou Imprimer).</li><li>Choisis l’orientation Paysage et l’option « Ajuster à une page » (Excel) ou « Adapter à la largeur de la page » (Calc).</li><li>Ajoute un en-tête avec ton nom et la date (Insertion &gt; En-tête et pied de page dans Excel ; Format &gt; Styles de page &gt; En-tête dans Calc).</li><li>Pourquoi une seule page ? Un tableau coupé en deux se lit mal et on oublie souvent la deuxième feuille.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a05-q01-label">Question 1 — À l’aperçu, la colonne « Capital restant dû » part sur une deuxième page. Que fais-tu ?</h3>
+            
+
+            
+            
+                <select id="a05-q01" data-answer-id="a05_q01" data-required="true" aria-labelledby="a05-q01-label"><option value="">Choisis une réponse</option><option value="a">Je passe en Paysage et je choisis « Ajuster à une page ».</option><option value="b">J’efface la colonne « Capital restant dû ».</option><option value="c">Je réduis la taille du texte à 6 dans tout le tableau.</option></select>
+
+                
+            <details><summary>Un coup de pouce</summary><p>On ne supprime jamais une information utile. Quel réglage d’impression donne plus de place en largeur ?</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a04">← Étape précédente</a>
+            <a class="course-mission-next" href="#a06">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a06" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Mission 6</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Seul, sans aide</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu as construit un tableau complet, pas à pas. Montre maintenant que tu sais le refaire seul.</p>
+        <div class="course-mission-goal"><strong>Ta mission</strong><p>Tu vas refaire seul le tableau complet pour l’offre B de la banque, dans une nouvelle feuille, sans copier-coller la première. On attend l’annuité, le total des intérêts et ton choix entre les deux offres.</p></div>
+        
+        
+
+        
+<p>Offre B : 30 000 € sur 8 ans, au taux de 2,5 %.</p>
+    
+
+<ol><li>Ajoute une nouvelle feuille, nomme-la « Offre B ».</li><li>Refais tout : titre, paramètres, coefficient, annuité, tableau de 8 années, totaux, formats, bordures, mise en page.</li><li>Vérifie ton tableau toi-même : le capital restant dû de la dernière année doit être 0.</li><li>Puis compare avec l’offre A.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a06-q01-label">Question 1 — Quelle est l’annuité de l’offre B ?</h3>
+            
+
+            
+            
+                
+                
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a06-q01">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a06-q01" data-answer-id="a06_q01" data-required="true" aria-labelledby="a06-q01-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q02">
+            
+            
+            <h3 id="a06-q02-label">Question 2 — Combien l’écurie paierait-elle d’intérêts en tout avec l’offre B ?</h3>
+            
+
+            
+            
+                
+                
+                <div class="cours-resultat-box">
+                <label class="cours-resultat-label" for="a06-q02">🎯 Résultat <span>un nombre seulement, en €</span></label>
+                <span class="cours-resultat-ligne"><input class="cours-resultat" type="text" inputmode="decimal" autocomplete="off" pattern="[−\-]?[0-9 ]*([,.][0-9]*)?" data-nombre-seulement id="a06-q02" data-answer-id="a06_q02" data-required="true" aria-labelledby="a06-q02-label"><span class="cours-resultat-unite">€</span></span>
+                </div>
+
+                
+            
+            
+            
+        </div>
+        
+        <div class="cours-question" data-question="q03">
+            
+            
+            <h3 id="a06-q03-label">Question 3 — Quelle offre coûte le moins cher en intérêts ? Pourquoi, alors que son taux est plus élevé ?</h3>
+            
+
+            
+            
+                <textarea id="a06-q03" data-answer-id="a06_q03" data-required="true" aria-labelledby="a06-q03-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a05">← Étape précédente</a>
+            <a class="course-mission-next" href="#a07">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a07" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Défi</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Pour aller plus loin</h2>
+        <p class="course-optional course-challenge">Petit défi pour les plus avancés — facultatif : fais-le seulement si tu as terminé le reste. <strong class="course-challenge-xp">Défi réussi = +5 XP</strong>, plus qu’une question normale : de quoi débloquer plus vite les thèmes du shop.</p>
+        
+        
+        
+        
+
+        
+<ol><li>Le tableur a une fonction toute prête pour l’annuité : =VPM(taux;durée;-capital). Teste-la dans une cellule vide de l’offre A.</li><li>Ton tableau ne marche que pour 6 ans. Fais un tableau de 15 lignes qui affiche 0 sur les lignes au-delà de la durée, avec les fonctions SI et OU.</li></ol>
+    
+
+
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a07-q01-label">Question 1 — Écris la formule VPM de l’offre A et le résultat obtenu. Puis écris la formule de ta colonne « Année » qui s’arrête à la bonne durée.</h3>
+            
+
+            
+            
+                <textarea id="a07-q01" data-answer-id="a07_q01" data-required="false" aria-labelledby="a07-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Pour VPM : taux en C5, durée en C4, capital en C3. Pour la colonne Année : SI l’année d’avant + 1 dépasse la durée, alors 0, sinon l’année d’avant + 1.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a06">← Étape précédente</a>
+            <a class="course-mission-next" href="#a08">Passer à l’étape suivante <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+    <article class="cours-activite" id="a08" data-course-step>
+        <div class="course-mission-heading"><span class="course-mission-number">Conclusion</span><span class="course-step-counter" data-course-step-counter></span><span class="course-mission-status" data-course-mission-status data-state="todo" aria-live="polite">À commencer</span></div>
+        <h2>Conclusion de ton travail</h2>
+        
+        <p class="course-transition"><strong>Pourquoi on change d’exercice ?</strong> Tu as construit et refait le tableau de remboursement. Il reste à répondre au problème de départ.</p>
+        
+        
+        
+
+        
+        
+        
+        <div class="cours-question" data-question="q01">
+            <p class="course-learning-label">À toi d’essayer avec les questions</p>
+            
+            <h3 id="a08-q01-label">Question 1 — Réponds au problème du jour : quelles sont les étapes pour construire le tableau de remboursement d’un emprunt dans le tableur, et quelle offre l’écurie devrait-elle choisir ?</h3>
+            
+
+            
+            
+                <textarea id="a08-q01" data-answer-id="a08_q01" data-required="true" aria-labelledby="a08-q01-label" rows="4" placeholder="Écris ta réponse ici..."></textarea>
+
+                
+            <details><summary>Un coup de pouce</summary><p>Donne les étapes dans l’ordre : paramètres, coefficient et annuité, ligne de l’année 1 avec les $, recopie, totaux, vérification, mise en page. Puis l’offre choisie, avec ses chiffres.</p></details>
+            
+            
+        </div>
+        
+        
+        <nav class="course-mission-controls" aria-label="Continuer dans la séance">
+            <a class="course-mission-back" href="#a07">← Étape précédente</a>
+            <a class="course-mission-next" href="#course-summary">Faire le point <span aria-hidden="true">→</span></a>
+        </nav>
+    </article>
+    
+</section>
+
+    </fieldset>
+    
+    <section class="course-final-step" id="course-final" data-course-step aria-label="Fin de la séance">
+    <div class="course-mission-heading course-final-heading"><span class="course-mission-number">Fin de la séance</span><span class="course-step-counter" data-course-step-counter></span></div>
+    
+<section class="cours-synthese" id="course-summary" aria-labelledby="course-summary-title">
+    <h2 id="course-summary-title">À retenir</h2><ul><li>Une ligne : intérêts = capital du début × taux ; capital remboursé = annuité − intérêts ; capital restant dû = capital du début − capital remboursé.</li><li>L’année suivante commence avec le capital restant dû de l’année d’avant.</li><li>Le $ bloque une cellule (taux, annuité) quand on recopie une formule.</li><li>Vérification : le capital restant dû de la dernière année vaut 0.</li><li>Un taux plus bas ne veut pas dire un prêt moins cher : la durée compte aussi.</li></ul>
+    
+</section>
+
+<section class="cours-sources course-info-card" aria-labelledby="course-sources-title"><h2 id="course-sources-title">Sources et ressources officielles</h2>
+<p><a href="https://chlorofil.fr/fileadmin/user_upload/02-diplomes/referentiels/secondaire/btsa/acsagri-2025/btsa-acsagri-da-tim.pdf" target="_blank" rel="noopener noreferrer">ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)</a></p>
+
+
+<p><a href="https://support.microsoft.com/fr-fr/Excel/get-started/overview-of-formulas-in-excel" target="_blank" rel="noopener noreferrer">Microsoft — Vue d’ensemble des formules (références relatives et absolues, le $)</a></p>
+
+
+<p><a href="https://www.ma-calculatrice.fr/calculer-emprunt" target="_blank" rel="noopener noreferrer">Ma-calculatrice.fr — simulateur d’emprunt (pour vérifier ton tableau)</a></p>
+
+
+<p>Cours de gestion C6.1 — Les intérêts d’emprunt (extrait distribué en classe).</p>
+    
+
+</section>
+
+    <div class="course-submit-panel">
+        <button type="button" id="course-submit" data-enabled="true" hidden disabled>J’ai terminé — remettre ma copie</button>
+        <p id="course-submit-status" role="status" aria-live="polite"></p>
+        <p><a href="/tifsec-test-eleves/eleve/">Retour à mon espace et à la séance suivante</a></p>
+    </div>
+    
+    <nav class="course-mission-controls course-final-controls" aria-label="Revenir dans la séance"><a class="course-mission-back" href="#a08">← Étape précédente</a></nav>
+    </section>
+</div></div>
+</div>
+<noscript><p>Active JavaScript pour charger ta copie et enregistrer tes réponses.</p></noscript>
+
+<script id="classes-data" type="application/json">
+{"college":{"nom":"Collège","classes":[{"id":"5e","nom":"5e","matieres":["techno"]},{"id":"4e","nom":"4e","matieres":["techno"]},{"id":"3e","nom":"3e","matieres":["techno"]}]},"mfr":{"nom":"MFR","classes":[{"id":"4e","nom":"4e MFR","matieres":["tim"]},{"id":"3e","nom":"3e MFR","matieres":["tim"]},{"id":"cap1","nom":"CAPa 1","matieres":["tim"]},{"id":"cap2","nom":"CAPa 2","matieres":["tim"]},{"id":"2de","nom":"2de Pro","matieres":["tim","maths"]},{"id":"1re","nom":"Bac Pro 1","matieres":["tim","maths"]},{"id":"bts1","nom":"BTSA ACS'AGRI 1","matieres":["tim"]},{"id":"bts2","nom":"BTSA ACS'AGRI 2","matieres":["tim"]}]}}
+</script>
+<script src="/tifsec-test-eleves/assets/vendor/supabase/supabase-2.118.0.js" integrity="sha384-UagCvVPT5XXA0Hx+nJYUAGBFseHT9zBgpJMSebsAxl9lciTwbT+39j5VfRjdP5Tp"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-shell.js"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/nombre-seulement.js?v=20261125-calcul"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-work.js"></script>
+
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-steps.js?v=20261029-steps-1"></script>
+<script type="module" src="/tifsec-test-eleves/assets/js/cours/course-progress.js"></script>
+
+
+
+<script type="module" src="/tifsec-test-eleves/assets/js/eleve/student-theme.js"></script>
+
+
+
+    </main>
+    <footer class="site-footer">
+    <p>
+        &copy; 2026
+        BAC À SABLE — Portail pédagogique (comptes fictifs)
+    </p>
+</footer>
+</body>
+</html>
