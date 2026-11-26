@@ -1,7 +1,7 @@
 import { db } from '../bdd/bdd-connect.js';
 import { checkSession } from '../auth/auth-session.js';
 
-import { addPaperCorrection, loadCoursePreview } from './course-preview.js?v=20261126-corrige';
+import { addPaperCorrection, loadCoursePreview } from './course-preview.js?v=20261126-corrige-2';
 import { initCourseSteps } from '../cours/course-steps.js?v=20261029-prof-2';
 import { clearTeacherNotes, renderTeacherNotes } from './teacher-notes.js?v=20261029-prof-2';
 import { catalogueScopes, classLabel, initialCourseScope, lessonsInScope } from './course-selection.js?v=20261104-classes-1';

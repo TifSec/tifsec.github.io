@@ -83,6 +83,10 @@ export function addPaperCorrection(preview, content) {
     if (!Array.isArray(fiche) || !source) return false;
     const answers = fiche.flatMap(part => Array.isArray(part?.reponses) ? part.reponses.map(item => String(item?.reponse ?? '')) : []);
     if (!answers.length || answers.length !== source.querySelectorAll('.course-paper-questions > li').length) return false;
+    const lines = value => (Array.isArray(value) ? value : value == null ? [] : [value]).map(String);
+    const examples = (Array.isArray(content.accompagnement) ? content.accompagnement : [])
+        .filter(note => note && 'exemple_au_tableau' in note)
+        .map(note => ({ tableau: lines(note.exemple_au_tableau), tete: lines(note.exemple_de_tete) }));
     const button = document.createElement('button');
     button.type = 'button';
     button.textContent = 'Version papier — corrigé professeur';
@@ -96,6 +100,20 @@ export function addPaperCorrection(preview, content) {
             answer.className = 'course-paper-corrige';
             answer.textContent = answers[index];
             item.append(answer);
+        });
+        // « Exemple fait ensemble en classe » : la zone vide reçoit l'exemple corrigé de la partie.
+        const zones = [...copy.querySelectorAll('h4')].filter(title => title.textContent.trim() === 'Exemple fait ensemble en classe')
+            .map(title => title.nextElementSibling).filter(zone => zone?.classList.contains('cours-zone'));
+        if (examples.length && zones.length === examples.length) zones.forEach((zone, index) => {
+            const box = document.createElement('div');
+            box.className = 'course-paper-corrige course-paper-corrige-exemple';
+            for (const line of examples[index].tableau) { const p = document.createElement('p'); p.textContent = line; box.append(p); }
+            if (examples[index].tete.length) {
+                const p = document.createElement('p'); p.className = 'course-paper-corrige-tete';
+                p.textContent = 'De tête : ' + examples[index].tete.join(' ');
+                box.append(p);
+            }
+            zone.replaceWith(box);
         });
         const header = copy.querySelector('.course-paper-sheet > header');
         const banner = document.createElement('p');
