@@ -1,15 +1,15 @@
 titre: 'Séance 8 : Calculer des indicateurs de reproduction'
 themes:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
-problematique: Comment calculer des indicateurs de reproduction par étalon avec une requête ?
+problematique: Comment calculer des indicateurs de reproduction par étalon dans un tableur ?
 competences_bo:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
 objectifs:
     connaissances:
-        - Une requête de regroupement (GROUP BY) calcule des totaux et comptages par catégorie.
+        - NB.SI.ENS compte les lignes qui respectent plusieurs critères (un étalon ET une saison ET un résultat) ; une table de pilote fait les mêmes regroupements en quelques clics.
         - Taux de gestation = juments pleines / juments saillies ; utile pour comparer des étalons ou des saisons.
     competences:
-        - Créer une requête de regroupement.
+        - Compter par catégorie avec NB.SI.ENS et une table de pilote.
         - Interpréter un indicateur de reproduction.
 pourquoi:
     - En S07, tu as listé des juments.
@@ -17,31 +17,31 @@ pourquoi:
 activites:
     -   id: a01
         titre: Compter par étalon
-        consigne: Tu vas compter le nombre de saillies par étalon en 2026 avec une requête de regroupement. On attend les effectifs.
+        consigne: Tu vas compter le nombre de saillies par étalon en 2026 avec NB.SI.ENS. On attend les effectifs.
         contenu:
             -   type: fichier
-                titre: base complète de l’élevage
-                url: /assets/fichiers/tim/bts2/elevage_complet.odb
+                titre: classeur complet de l’élevage (LibreOffice Calc)
+                url: /assets/fichiers/tim/bts2/elevage_complet.ods
             -   type: etapes
                 elements:
-                    - 'Requête : Étalon + Saillie ; regroupement par nom d’étalon.'
-                    - 'Fonctions : Nombre(id_saillie).'
-                    - Ajoute un critère d’année 2026.
+                    - 'Nouvelle feuille « Indicateurs » : en A2:A4, les noms des étalons ; en B2, leur numéro (1, 2, 3).'
+                    - 'C2 « saillies 2026 » : =NB.SI.ENS($Saillies.$C$2:$C$100;B2;$Saillies.$D$2:$D$100;">="&DATE(2026;1;1);$Saillies.$D$2:$D$100;"<"&DATE(2027;1;1)) ; recopie vers le bas.'
+                    - 'Vérifie avec une table de pilote (Insertion > Table dynamique) : lignes = id_etalon, données = Nombre de id_saillie, filtre sur 2026.'
                     - Pourquoi regrouper ? On obtient une ligne par étalon au lieu d’une ligne par saillie.
         questions:
             -   id: q01
                 type: texte
                 enonce: Combien de saillies chaque étalon a-t-il réalisées en 2026 ?
-                aide: Requête regroupée par étalon avec un comptage des saillies, critère sur la saison 2026.
+                aide: 'NB.SI.ENS sur la feuille Saillies : critère sur l’étalon et deux critères sur la date (saison 2026). Lis le résultat pour chaque étalon.'
     -   id: a02
         titre: Le taux de gestation
         transition: Tu as les effectifs. Calcule la réussite.
-        consigne: Tu vas calculer le taux de gestation de chaque étalon. On attend le taux de Quatar et le SQL de la requête.
+        consigne: Tu vas calculer le taux de gestation de chaque étalon. On attend le taux de Quatar et les formules utilisées.
         contenu:
             -   type: etapes
                 elements:
-                    - 'Ajoute un champ : SUM(CASE WHEN resultat = ''pleine'' THEN 1 ELSE 0 END).'
-                    - Calcule le taux = pleines / saillies (dans la requête ou dans Calc après export).
+                    - 'D2 « pleines » : même NB.SI.ENS que C2, avec un critère de plus : $Saillies.$E$2:$E$100;"pleine".'
+                    - 'E2 « taux » : =D2/C2, au format pourcentage.'
                     - Pourquoi un taux ? Un étalon avec 12 saillies et 10 juments pleines fait mieux qu’un autre avec 8 et 4.
         questions:
             -   id: q01
@@ -51,8 +51,8 @@ activites:
                 aide: Taux de gestation = juments pleines ÷ saillies × 100.
             -   id: q02
                 type: texte
-                enonce: Écris le SQL de la requête (grandes lignes).
-                aide: Regroupe par étalon ; compte toutes les saillies ; additionne 1 seulement quand le résultat est « pleine ».
+                enonce: Écris les formules des colonnes « pleines » et « taux » (grandes lignes).
+                aide: 'Pleines : le NB.SI.ENS des saillies, avec en plus le critère resultat = "pleine". Taux : pleines ÷ saillies.'
     -   id: a03
         titre: Interpréter avec prudence
         transition: Les taux sont calculés. Que disent-ils vraiment ?
@@ -78,8 +78,8 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: Quelle requête permettrait de le vérifier ?
-                aide: Pour tester l’effet de l’âge, sur quoi faut-il regrouper au lieu de l’étalon ?
+                enonce: Quel calcul permettrait de le vérifier ?
+                aide: Pour tester l’effet de l’âge, sur quoi faut-il regrouper au lieu de l’étalon ? Quelle colonne ajouter dans Saillies ?
     -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
@@ -87,10 +87,10 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment calculer des indicateurs de reproduction par étalon avec une requête ?'
-                aide: Dis comment la requête regroupe, compte et calcule le taux, et les précautions pour l’interpréter.
+                enonce: 'Réponds au problème du jour : comment calculer des indicateurs de reproduction par étalon dans un tableur ?'
+                aide: Dis comment les formules (ou la table de pilote) regroupent, comptent et calculent le taux, et les précautions pour l’interpréter.
 retenir:
-    - GROUP BY ; COUNT ; SUM(CASE…).
+    - NB.SI.ENS (plusieurs critères) ; table de pilote.
     - Taux de gestation ; prudence sur les petits effectifs.
 sources:
     -   type: lien

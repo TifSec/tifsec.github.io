@@ -1,39 +1,39 @@
-titre: 'Séance 10 : Un état imprimable pour le vétérinaire'
+titre: 'Séance 10 : Un document imprimable pour le vétérinaire'
 themes:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
-problematique: Comment produire un document clair à partir de la base ?
+problematique: Comment produire un document clair à partir du classeur ?
 competences_bo:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
 objectifs:
     connaissances:
-        - 'Un état (rapport) met en page le résultat d’une requête : regroupements, tris, totaux.'
-        - On l’exporte en PDF pour le transmettre.
+        - On trie, puis Données > Sous-totaux regroupe les lignes par jument et ajoute un total par groupe.
+        - La mise en page (plage d’impression, en-tête, pied de page) prépare l’export PDF.
     competences:
-        - Créer un état à partir d’une requête.
-        - Regrouper et trier dans un état.
+        - Trier et regrouper avec les sous-totaux.
+        - Mettre en page et exporter en PDF.
 pourquoi:
     - Le vétérinaire passe la semaine prochaine.
     - Il veut l’historique des traitements de l’année, par jument.
 activites:
     -   id: a01
-        titre: La requête source
-        consigne: Tu vas préparer la requête qui sélectionne les soins de l’année par jument. On attend le nombre de lignes et l’ordre de tri.
+        titre: Les données à imprimer
+        consigne: Tu vas préparer une feuille qui rassemble les soins de l’année par jument. On attend le nombre de lignes et l’ordre de tri.
         contenu:
             -   type: fichier
                 titre: registre papier des traitements d’Iris
                 url: /assets/fichiers/tim/bts2/registre_papier_iris.odt
             -   type: fichier
-                titre: base complète de l’élevage
-                url: /assets/fichiers/tim/bts2/elevage_complet.odb
+                titre: classeur complet de l’élevage (LibreOffice Calc)
+                url: /assets/fichiers/tim/bts2/elevage_complet.ods
             -   type: etapes
                 elements:
-                    - 'Requête : Jument + Soin ; champs nom, date, type, produit, délai d’attente ; année en cours ; tri par nom puis date.'
-                    - Pourquoi une requête d’abord ? L’état affiche ce que la requête sélectionne.
+                    - Copie la feuille Soins (clic droit sur l’onglet > Déplacer ou copier) et nomme-la « Vétérinaire » ; ajoute le nom de la jument (RECHERCHEV), garde les soins de 2026.
+                    - Pourquoi une copie ? On met en page sans abîmer la feuille de saisie.
         questions:
             -   id: q01
                 type: texte
-                enonce: Combien de lignes renvoie ta requête ?
-                aide: Exécute la requête source de l’état et lis le nombre d’enregistrements.
+                enonce: Combien de lignes de soins contient ta feuille ?
+                aide: Compte les lignes de soins de 2026 (barre d’état ou =NB(colonne date)).
             -   id: q02
                 type: qcm
                 enonce: Dans quel ordre trier ?
@@ -46,48 +46,48 @@ activites:
                         texte: Au hasard.
                 aide: Le vétérinaire lit le dossier jument par jument, et pour chacune dans l’ordre du temps.
     -   id: a02
-        titre: L’état
+        titre: La mise en page
         transition: Les données sont prêtes. Mets-les en page.
-        consigne: Tu vas créer l’état des traitements regroupé par jument et l’exporter en PDF. On attend la description de la mise en page.
+        consigne: Tu vas regrouper les soins par jument et exporter la feuille en PDF. On attend la description de la mise en page.
         contenu:
             -   type: etapes
                 elements:
-                    - 'Rapports > Assistant : source = ta requête ; regroupement par nom de jument.'
-                    - Ajoute un titre, la date d’édition, les numéros de page.
-                    - Exporte en PDF.
+                    - 'Données > Trier : par nom, puis par date. Puis Données > Sous-totaux : regrouper par nom, fonction Nombre sur la colonne date.'
+                    - 'Format > Zones d’impression > Définir ; Format > Style de page : en-tête (titre, date d’édition), pied de page (numéro de page) ; ligne de titres répétée.'
+                    - Fichier > Exporter au format PDF.
                     - 'Pourquoi regrouper ? Chaque jument a son bloc : le vétérinaire lit comme un carnet.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Décris la mise en page de ton état.
-                aide: 'Décris ton état : l’en-tête, le regroupement par jument, le tableau des soins, la pagination.'
+                enonce: Décris la mise en page de ton document.
+                aide: 'Décris ton document : l’en-tête, le regroupement par jument, le tableau des soins, les totaux, la pagination.'
     -   id: a03
         titre: Vérifier
-        transition: L’état est édité. Est-il juste ?
-        consigne: Tu vas comparer l’état avec le registre papier d’une jument. On attend la différence trouvée et ton action.
+        transition: Le document est prêt. Est-il juste ?
+        consigne: Tu vas comparer ton document avec le registre papier d’une jument. On attend la différence trouvée et ton action.
         contenu:
             -   type: etapes
                 elements:
-                    - Compare l’état avec le registre papier fourni pour une jument.
+                    - Compare ton document avec le registre papier fourni pour une jument.
                     - Signale toute différence.
                     - Pourquoi vérifier ? Le document sert de preuve sanitaire.
         questions:
             -   id: q01
                 type: texte
                 enonce: Quelle différence as-tu trouvée (ou confirme qu’il n’y en a pas) et que fais-tu ?
-                aide: 'Compare ton état avec les ordonnances fournies : un soin manque-t-il ? Que faut-il faire, et avec qui vérifier ?'
+                aide: 'Compare ton document avec le registre papier fourni : un soin manque-t-il ? Que faut-il faire, et avec qui vérifier ?'
     -   id: a04
         titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
             -   type: paragraphe
-                texte: L’état pourrait afficher le nombre de traitements par jument.
+                texte: Le document pourrait afficher le nombre de traitements (et seulement de traitements) par jument.
         questions:
             -   id: q01
                 type: texte
                 enonce: Comment ?
-                aide: Dans l’état, chaque jument a un pied de groupe. Quel champ y ajouter pour compter ses traitements ?
+                aide: Les sous-totaux comptent tous les soins. Quelle formule compte seulement les traitements d’une jument (deux critères) ?
     -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
@@ -95,10 +95,10 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment produire un document clair à partir de la base ?'
-                aide: 'Dis les étapes : requête triée, état regroupé, export, vérification.'
+                enonce: 'Réponds au problème du jour : comment produire un document clair à partir du classeur ?'
+                aide: 'Dis les étapes : données triées, sous-totaux par jument, mise en page, export PDF, vérification.'
 retenir:
-    - Requête → état (regroupement, tri, total) → PDF.
+    - Tri → sous-totaux par jument → mise en page → PDF.
 sources:
     -   type: lien
         titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)

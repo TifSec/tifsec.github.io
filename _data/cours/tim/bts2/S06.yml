@@ -1,49 +1,50 @@
-titre: 'Séance 6 : Relier les tables sans incohérence'
+titre: 'Séance 6 : Relier les feuilles sans incohérence'
 themes:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
-problematique: Comment la base empêche-t-elle d’enregistrer des données incohérentes ?
+problematique: Comment empêcher, dans Calc, d’enregistrer des données incohérentes entre les feuilles ?
 competences_bo:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
 objectifs:
     connaissances:
-        - Une relation relie la clé étrangère à la clé primaire.
-        - L’intégrité référentielle interdit une saillie pour une jument inexistante, ou la suppression d’une jument qui a des saillies (sauf cascade).
+        - RECHERCHEV retrouve une information dans une autre feuille à partir de l’identifiant (le nom de la jument à partir de id_jument).
+        - Une règle de validité « plage de cellules » n’accepte qu’un identifiant qui existe ; la protection de la feuille empêche de supprimer une jument par erreur.
     competences:
-        - Créer des relations avec intégrité référentielle.
-        - Tester les règles de mise à jour et de suppression.
+        - Relier deux feuilles avec RECHERCHEV.
+        - Tester les règles de saisie et de suppression.
 pourquoi:
-    - En S05, les tables existent mais ne sont pas liées.
+    - En S05, les feuilles existent mais ne sont pas reliées.
     - Rien n’empêche encore une saillie pour une jument qui n’existe pas.
 activites:
     -   id: a01
-        titre: Créer les relations
-        consigne: Tu vas créer les relations entre les tables de l’élevage avec l’intégrité référentielle. On attend la liste des relations.
+        titre: Relier les feuilles
+        consigne: Tu vas relier la feuille Saillies aux feuilles Juments et Etalons. On attend la liste des liens et une formule.
         contenu:
             -   type: etapes
                 elements:
-                    - 'Outils > Relations : ajoute les tables.'
-                    - Glisse id_jument (Jument) sur id_jument (Saillie) ; idem pour les autres liens.
-                    - 'Options : mise à jour en cascade, suppression : aucune action.'
-                    - Pourquoi « aucune action » à la suppression ? On ne veut pas effacer par erreur tout l’historique d’une jument.
+                    - 'Dans Saillies, ajoute une colonne nom_jument : =RECHERCHEV(B2;$Juments.$A$2:$C$100;3;0), puis recopie vers le bas.'
+                    - Fais de même pour le nom de l’étalon (feuille Etalons), puis dans Poulains (id_saillie) et Soins (id_jument).
+                    - 'Colonne id_jument de Saillies : Données > Validité > Autoriser : Plage de cellules, source $Juments.$A$2:$A$100 ; action « Stop ».'
+                    - Pourquoi ces règles ? Le nom s’affiche tout seul, et un numéro de jument inconnu est refusé.
         questions:
             -   id: q01
                 type: texte
-                enonce: Liste les relations créées.
-                aide: Ouvre Outils > Relations et liste chaque lien tracé entre deux tables.
+                enonce: Liste les liens créés (quelle colonne renvoie à quelle feuille) et recopie une de tes formules.
+                aide: Pour chaque colonne id_… qui renvoie à une autre feuille, écris « colonne → feuille ». Recopie ensuite une formule RECHERCHEV de la barre de formule.
     -   id: a02
-        titre: Tester l’intégrité
-        transition: Les relations sont créées. Teste-les.
-        consigne: Tu vas tester l’intégrité référentielle avec deux saisies interdites. On attend la réaction de la base.
+        titre: Tester les règles
+        transition: Les feuilles sont reliées. Teste-les.
+        consigne: Tu vas tester tes règles avec deux saisies interdites. On attend la réaction de Calc.
         contenu:
             -   type: etapes
                 elements:
-                    - Saisis une saillie avec id_jument = 99 (inexistant).
-                    - Essaie de supprimer Belle de Mai (qui a des saillies).
+                    - Dans Saillies, saisis une saillie avec id_jument = 99 (inexistant).
+                    - Protège la feuille Juments (Outils > Protéger la feuille, réglages par défaut).
+                    - Essaie ensuite de supprimer la ligne de Belle de Mai (qui a des saillies).
                     - Pourquoi ces tests ? Ce sont les deux erreurs les plus fréquentes.
         questions:
             -   id: q01
                 type: tableau
-                enonce: Que fait la base ?
+                enonce: Que fait Calc ?
                 colonnes:
                     - Test
                     - Réaction
@@ -52,21 +53,21 @@ activites:
                         - ''
                     -   - Supprimer Belle de Mai
                         - ''
-                aide: 'Essaie les deux manipulations. Pour chacune, lis le message : la jument 99 existe-t-elle ? Belle de Mai a-t-elle des saillies ?'
+                aide: 'Essaie les deux manipulations. Pour chacune, lis le message : la jument 99 existe-t-elle ? La feuille Juments est-elle protégée ?'
     -   id: a03
-        titre: Et dans un tableur ?
-        transition: La base se protège. Le tableur le faisait-il ?
-        consigne: Tu vas expliquer pourquoi la base est plus fiable que le tableur pour l’historique de reproduction. On attend une explication argumentée.
+        titre: Et avec un seul tableau ?
+        transition: Le classeur se protège. Le tableau unique le faisait-il ?
+        consigne: Tu vas expliquer pourquoi un classeur relié et contrôlé est plus fiable qu’un tableau unique pour l’historique de reproduction. On attend une explication argumentée.
         contenu:
             -   type: etapes
                 elements:
-                    - Compare avec le tableur du document 1 de S03.
-                    - Pourquoi comparer ? Pour justifier le choix de l’outil devant un employeur.
+                    - Compare avec le tableau unique du document 1 de S03.
+                    - Pourquoi comparer ? Pour justifier l’organisation choisie devant un employeur.
         questions:
             -   id: q01
                 type: texte
-                enonce: Explique pourquoi la base est plus fiable que le tableur pour l’historique de reproduction.
-                aide: 'Pense à une jument tapée dans 15 lignes de tableur, puis dans une base : combien de fois est-elle saisie, et qui contrôle les liens ?'
+                enonce: Explique pourquoi le classeur relié est plus fiable que le tableau unique pour l’historique de reproduction.
+                aide: 'Pense à une jument tapée dans 15 lignes du tableau unique, puis dans le classeur relié : combien de fois est-elle saisie, et qu’est-ce qui contrôle les numéros ?'
     -   id: a04
         titre: Pour aller plus loin
         defi: true
@@ -78,7 +79,7 @@ activites:
             -   id: q01
                 type: texte
                 enonce: Comment la garder dans l’historique sans la compter dans l’effectif ?
-                aide: Une jument vendue a un passé dans l’élevage. Si on la supprime, que perd-on ? Quelle information ajouter à la table à la place ?
+                aide: Une jument vendue a un passé dans l’élevage. Si on supprime sa ligne, que deviennent les RECHERCHEV de la feuille Saillies ? Quelle colonne ajouter à la place ?
     -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
@@ -86,11 +87,11 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment la base empêche-t-elle d’enregistrer des données incohérentes ?'
-                aide: Dis comment les relations et l’intégrité référentielle bloquent les incohérences.
+                enonce: 'Réponds au problème du jour : comment empêcher, dans Calc, d’enregistrer des données incohérentes entre les feuilles ?'
+                aide: Dis comment RECHERCHEV, les règles de validité et la protection de la feuille bloquent les incohérences.
 retenir:
-    - Intégrité référentielle.
-    - Pas de saillie orpheline, pas de suppression d’historique.
+    - RECHERCHEV relie les feuilles par l’identifiant.
+    - 'Validité + protection : pas de saillie orpheline, pas de suppression d’historique.'
 sources:
     -   type: lien
         titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)

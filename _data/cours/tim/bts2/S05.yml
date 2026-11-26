@@ -1,37 +1,38 @@
-titre: 'Séance 5 : Créer les tables et choisir les types de champs'
+titre: 'Séance 5 : Créer les feuilles et choisir les formats de cellules'
 themes:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
-problematique: Comment créer des tables fiables dans un logiciel de base de données ?
+problematique: Comment créer des feuilles de données fiables dans un tableur ?
 competences_bo:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
 objectifs:
     connaissances:
-        - Chaque champ a un type (entier, texte, date, décimal, booléen) et éventuellement une taille et une valeur obligatoire.
-        - La clé primaire est souvent un entier auto-incrémenté.
+        - Chaque colonne a un format de cellule (nombre, texte, date) et peut avoir une règle de saisie (Données > Validité).
+        - L’identifiant est un numéro unique, qui ne change jamais.
     competences:
-        - Créer des tables avec types et clés.
-        - Saisir des enregistrements de test.
+        - Créer des feuilles avec des formats et des règles de validité.
+        - Saisir des lignes de test.
 pourquoi:
     - En S04, tu as conçu le modèle.
-    - Tu le crées maintenant dans LibreOffice Base.
+    - Tu le crées maintenant dans LibreOffice Calc.
 activites:
     -   id: a01
-        titre: La table Jument
-        consigne: Tu vas créer la table Jument dans LibreOffice Base avec ses types et sa clé primaire. On attend le type de trois champs et la raison du champ obligatoire.
+        titre: La feuille Juments
+        consigne: Tu vas créer la feuille Juments dans LibreOffice Calc avec ses formats et une règle sur l’UELN. On attend le format de trois colonnes et la raison de la règle.
         contenu:
             -   type: etapes
                 elements:
-                    - Nouvelle base elevage_moulin.odb (HSQLDB intégré).
-                    - Tables > Créer une table en mode Ébauche.
-                    - 'Champs : id_jument (Entier, clé, valeur automatique), ueln (Texte 15, obligatoire), nom, date_naissance (Date), race.'
-                    - Pourquoi un id automatique ? Deux juments peuvent porter le même nom ; l’id est unique.
+                    - Nouveau classeur elevage_moulin.ods ; renomme la première feuille « Juments » (clic droit sur l’onglet).
+                    - 'Ligne 1, les titres : id_jument, ueln, nom, date_naissance, race. Mets-les en gras ; Affichage > Figer les cellules > Figer la première ligne.'
+                    - 'Formats (Format > Cellules) : id_jument en nombre sans décimale ; ueln en texte (@) ; date_naissance en date JJ/MM/AAAA.'
+                    - 'Colonne ueln : Données > Validité, longueur du texte égale à 15, décoche « Autoriser les cellules vides » ; onglet Message d’erreur : action « Stop ».'
+                    - Pourquoi un id ? Deux juments peuvent porter le même nom ; l’id est unique.
         questions:
             -   id: q01
                 type: tableau
-                enonce: Indique le type de chaque champ.
+                enonce: Indique le format de cellule de chaque colonne.
                 colonnes:
-                    - Champ
-                    - Type
+                    - Colonne
+                    - Format
                 lignes:
                     -   - id_jument
                         - ''
@@ -39,10 +40,10 @@ activites:
                         - ''
                     -   - ueln
                         - ''
-                aide: Une clé s’incrémente seule ; une date a son propre type ; l’UELN a une longueur fixe et contient des lettres.
+                aide: Un identifiant est un nombre sans décimale ; une date a son propre format ; l’UELN contient des lettres et des chiffres.
             -   id: q02
                 type: qcm
-                enonce: Pourquoi rendre « ueln » obligatoire ?
+                enonce: Pourquoi interdire une ligne sans UELN ?
                 choix:
                     -   id: a
                         texte: Un équidé ne peut pas être enregistré sans identification.
@@ -53,27 +54,27 @@ activites:
                 aide: Que dit la réglementation (S02) sur un équidé sans identification ?
         ressources:
             -   type: lien
-                titre: LibreOffice Base — aide en ligne
-                url: https://help.libreoffice.org/latest/fr/text/sdatabase/main.html
+                titre: LibreOffice Calc — aide en ligne
+                url: https://help.libreoffice.org/latest/fr/text/scalc/main0000.html
     -   id: a02
-        titre: Les autres tables
-        transition: La première table est faite. Crée les autres.
-        consigne: Tu vas créer les tables Étalon, Saillie, Poulain et Soin. On attend la structure de la table Saillie.
+        titre: Les autres feuilles
+        transition: La première feuille est faite. Crée les autres.
+        consigne: Tu vas créer les feuilles Etalons, Saillies, Poulains et Soins. On attend la structure de la feuille Saillies.
         contenu:
             -   type: etapes
                 elements:
-                    - Crée Étalon, Saillie (id_saillie, id_jument, id_etalon, date_saillie, resultat), Poulain, Soin.
-                    - Les clés étrangères ont le même type que la clé référencée (Entier).
-                    - Pourquoi le même type ? Sinon la relation est impossible.
+                    - Crée Etalons, Saillies (id_saillie, id_jument, id_etalon, date_saillie, resultat), Poulains, Soins.
+                    - Les colonnes qui renvoient à une autre feuille (id_jument, id_etalon) sont au format nombre, comme l’identifiant de la feuille d’origine.
+                    - 'Pourquoi le même format ? Sinon la recherche entre feuilles ne trouve rien : un « 3 » saisi en texte n’est pas le nombre 3.'
         questions:
             -   id: q01
                 type: texte
-                enonce: Écris la structure de la table Saillie (champs et types).
-                aide: 'Écris chaque champ de Saillie avec son type : l’identifiant, les deux clés étrangères, la date, le résultat.'
+                enonce: Écris la structure de la feuille Saillies (colonnes et formats).
+                aide: 'Écris chaque colonne de Saillies avec son format : l’identifiant, les deux colonnes qui renvoient aux juments et aux étalons, la date, le résultat.'
     -   id: a03
-        titre: Saisir un jeu d’essai
-        transition: Les tables existent. Teste-les.
-        consigne: Tu vas saisir un jeu d’essai (document 1) et tester la contrainte du champ obligatoire. On attend le comportement de la base.
+        titre: Saisir des lignes de test
+        transition: Les feuilles existent. Teste-les.
+        consigne: Tu vas saisir des lignes de test (document 1) et tester la règle de l’UELN. On attend la réaction de Calc.
         contenu:
             -   type: tableau
                 titre: Document 1 — Saillies 2026 (fictives)
@@ -104,37 +105,37 @@ activites:
             -   type: etapes
                 elements:
                     - Saisis 3 juments, 2 étalons, 4 saillies (données fictives du document 1).
-                    - 'Essaie de saisir une jument sans UELN : que se passe-t-il ?'
-                    - Pourquoi un jeu d’essai ? On vérifie que les contraintes marchent.
+                    - 'Essaie de saisir un UELN de 10 caractères, puis d’effacer un UELN : que se passe-t-il ?'
+                    - Pourquoi des lignes de test ? On vérifie que les règles fonctionnent avant de saisir les vraies données.
         questions:
             -   id: q01
                 type: texte
-                enonce: Que se passe-t-il quand tu enregistres une jument sans UELN ?
-                aide: Essaie d’enregistrer une jument du jeu d’essai en laissant l’UELN vide et lis le message de Base.
+                enonce: Que se passe-t-il quand tu saisis un UELN qui n’a pas 15 caractères ?
+                aide: 'Tape un UELN trop court dans la colonne ueln et valide : lis le message de Calc.'
     -   id: a04
         titre: Pour aller plus loin
         defi: true
         facultatif: true
         contenu:
             -   type: paragraphe
-                texte: Le champ « resultat » n’accepte que pleine / vide / avortée.
+                texte: La colonne « resultat » ne doit accepter que pleine / vide / avortée.
         questions:
             -   id: q01
                 type: texte
-                enonce: Comment l’imposer ?
-                aide: Pour que le champ résultat n’accepte que trois valeurs, comment proposer un choix au lieu d’une saisie libre ?
+                enonce: Comment l’imposer dans Calc ?
+                aide: Dans Données > Validité, quel critère propose un choix parmi quelques valeurs au lieu d’une saisie libre ?
     -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
-        transition: Les tables sont créées. Il reste à répondre au problème de départ.
+        transition: Les feuilles sont créées. Il reste à répondre au problème de départ.
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment créer des tables fiables dans un logiciel de base de données ?'
-                aide: Dis comment choisir les types, les clés, les champs obligatoires et les valeurs permises.
+                enonce: 'Réponds au problème du jour : comment créer des feuilles de données fiables dans un tableur ?'
+                aide: Dis comment choisir les formats, l’identifiant, les règles de validité et les valeurs permises.
 retenir:
-    - Types, clé auto, obligatoire.
-    - Jeu d’essai pour tester.
+    - Formats de cellules, identifiant unique, règles de validité.
+    - Lignes de test pour vérifier les règles.
 sources:
     -   type: lien
         titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)

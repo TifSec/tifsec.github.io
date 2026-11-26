@@ -1,4 +1,4 @@
-titre: 'Séance 9 : Un formulaire de saisie pour l’équipe'
+titre: 'Séance 9 : Une saisie simple et sûre pour l’équipe'
 themes:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
 problematique: Comment rendre la saisie des soins simple et sûre pour les salariés ?
@@ -6,51 +6,52 @@ competences_bo:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
 objectifs:
     connaissances:
-        - Un formulaire présente les champs d’une table de façon conviviale ; une liste déroulante affiche le nom et stocke l’id.
-        - Un sous-formulaire affiche les enregistrements liés (les soins d’une jument).
+        - Données > Formulaire affiche une ligne comme une fiche (un champ par colonne) ; les listes de validité imposent des valeurs ; une note d’aide (Validité > Aide à la saisie) guide le salarié.
+        - Le filtre automatique affiche les soins d’une seule jument.
     competences:
-        - Créer un formulaire avec liste déroulante.
-        - Créer un sous-formulaire.
+        - Préparer une feuille de saisie avec formulaire, listes et aides.
+        - Filtrer les soins d’une jument.
 pourquoi:
-    - Les salariés ne doivent pas toucher aux tables directement.
-    - Tu crées un formulaire de saisie des soins.
+    - Les salariés ne doivent pas modifier les formules ni les autres feuilles.
+    - Tu prépares la saisie des soins.
 activites:
     -   id: a01
-        titre: Le formulaire principal
-        consigne: Tu vas créer le formulaire principal de la table Jument. On attend la description du formulaire.
+        titre: La fiche de saisie
+        consigne: Tu vas préparer la saisie des soins sous forme de fiche. On attend la description de ta fiche.
         contenu:
             -   type: fichier
-                titre: base complète de l’élevage
-                url: /assets/fichiers/tim/bts2/elevage_complet.odb
+                titre: classeur complet de l’élevage (LibreOffice Calc)
+                url: /assets/fichiers/tim/bts2/elevage_complet.ods
             -   type: etapes
                 elements:
-                    - 'Formulaires > Assistant : table Jument, tous les champs.'
-                    - 'Mode Ébauche : réorganise, ajoute un titre.'
-                    - Pourquoi un formulaire ? Les salariés voient une fiche claire, pas une grille de données.
+                    - 'Feuille Soins : clique dans le tableau, puis Données > Formulaire : chaque soin s’affiche comme une fiche ; « Nouveau » ajoute une ligne.'
+                    - Ajoute une colonne « nom » (RECHERCHEV sur id_jument) pour que la personne vérifie la jument choisie ; mets un titre clair au-dessus de chaque colonne.
+                    - Pourquoi une fiche ? Les salariés voient un soin à la fois, pas une grande grille.
         questions:
             -   id: q01
                 type: texte
-                enonce: Décris ton formulaire (titre, champs affichés, ordre).
-                aide: 'Décris ton formulaire : le titre, les champs de la jument affichés et leur ordre de saisie.'
+                enonce: Décris ta fiche de saisie (titres des champs, ordre, aide à la vérification).
+                aide: 'Décris ta fiche : les champs affichés, leur ordre de saisie, et ce qui permet de vérifier qu’on a choisi la bonne jument.'
         ressources:
             -   type: lien
-                titre: LibreOffice Base — aide en ligne
-                url: https://help.libreoffice.org/latest/fr/text/sdatabase/main.html
+                titre: LibreOffice Calc — aide en ligne
+                url: https://help.libreoffice.org/latest/fr/text/scalc/main0000.html
     -   id: a02
-        titre: Le sous-formulaire des soins
-        transition: La fiche jument existe. Ajoute ses soins.
-        consigne: Tu vas ajouter le sous-formulaire des soins lié à la jument affichée. On attend son comportement et l’intérêt de la liste.
+        titre: Les listes et les soins d’une jument
+        transition: La fiche existe. Rends-la plus sûre.
+        consigne: Tu vas ajouter des listes de choix et filtrer les soins d’une jument. On attend le comportement du filtre et l’intérêt de la liste.
         contenu:
             -   type: etapes
                 elements:
-                    - Ajoute un sous-formulaire basé sur Soin, lié par id_jument.
-                    - 'Dans le sous-formulaire, le champ type est une liste : vermifuge, vaccin, traitement, autre.'
-                    - Pourquoi un sous-formulaire ? On voit et on saisit les soins de la jument affichée.
+                    - 'Colonne type : Données > Validité > Liste : vermifuge ; vaccin ; traitement ; autre. Colonne id_jument : Plage de cellules = $Juments.$A$2:$A$26.'
+                    - 'Validité > onglet Aide à la saisie : écris une consigne courte pour chaque colonne.'
+                    - 'Données > Filtre automatique : choisis une jument dans la colonne nom, puis une autre.'
+                    - Pourquoi filtrer ? On voit et on contrôle les soins de la jument choisie.
         questions:
             -   id: q01
                 type: texte
-                enonce: Quand tu passes à la jument suivante, que fait le sous-formulaire ?
-                aide: 'Passe à la jument suivante et regarde la liste des soins en bas : que devient-elle ?'
+                enonce: Quand tu choisis une autre jument dans le filtre, que devient la liste des soins ?
+                aide: 'Choisis une autre jument dans le filtre automatique de la colonne nom : quelles lignes restent affichées ?'
             -   id: q02
                 type: qcm
                 enonce: Pourquoi une liste pour le type de soin ?
@@ -65,18 +66,18 @@ activites:
     -   id: a03
         titre: Test par un utilisateur
         transition: Le formulaire marche pour toi. Et pour un autre ?
-        consigne: Tu vas faire tester ton formulaire par un camarade et le corriger. On attend la difficulté et ta correction.
+        consigne: Tu vas faire tester ta feuille de saisie par un camarade et la corriger. On attend la difficulté et ta correction.
         contenu:
             -   type: etapes
                 elements:
-                    - Un camarade saisit 3 soins sans aide.
-                    - Note ses difficultés et corrige le formulaire.
+                    - Un camarade saisit 3 soins sans aide, avec Données > Formulaire.
+                    - Note ses difficultés et corrige ta feuille.
                     - Pourquoi tester avec un autre ? Le concepteur ne voit plus les pièges.
         questions:
             -   id: q01
                 type: texte
                 enonce: Quelle difficulté ton testeur a-t-il rencontrée, et quelle correction as-tu faite ?
-                aide: Écris ce qui a bloqué ton testeur (ordre de tabulation, libellé, date…) et la modification que tu as faite.
+                aide: Écris ce qui a bloqué ton testeur (titre de colonne peu clair, format de date, liste…) et la modification que tu as faite.
     -   id: a04
         titre: Pour aller plus loin
         defi: true
@@ -88,7 +89,7 @@ activites:
             -   id: q01
                 type: texte
                 enonce: Comment le rendre obligatoire seulement pour « traitement » ?
-                aide: Le délai d’attente ne concerne que les traitements. Que peut vérifier la base, et sinon quelle consigne donner ?
+                aide: Le délai d’attente ne concerne que les traitements. Quelle formule peut signaler un oubli (SI, ET), et sinon quelle consigne donner ?
     -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
@@ -97,10 +98,10 @@ activites:
             -   id: q01
                 type: texte
                 enonce: 'Réponds au problème du jour : comment rendre la saisie des soins simple et sûre pour les salariés ?'
-                aide: Dis comment le formulaire, le sous-formulaire et les listes rendent la saisie simple et sûre.
+                aide: Dis comment le formulaire, les listes, les aides à la saisie et le filtre rendent la saisie simple et sûre.
 retenir:
-    - Formulaire + sous-formulaire lié.
-    - Listes ; test utilisateur.
+    - Données > Formulaire ; listes et aides de validité.
+    - Filtre automatique ; test utilisateur.
 sources:
     -   type: lien
         titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)

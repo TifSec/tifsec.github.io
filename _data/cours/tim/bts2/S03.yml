@@ -1,26 +1,26 @@
-titre: 'Séance 3 : Analyser une base de données existante'
+titre: 'Séance 3 : Analyser un classeur de données relié'
 themes:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
-problematique: Comment est organisée une base de données relationnelle ?
+problematique: Comment organiser les données d’un élevage en plusieurs feuilles reliées d’un classeur ?
 competences_bo:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
 objectifs:
     connaissances:
-        - 'Une base relationnelle : des tables (une par sujet), des champs typés, une clé primaire par table, des relations par clés étrangères.'
-        - Elle évite la redondance des tableurs (un nom de jument écrit 30 fois).
+        - 'Un classeur relié : une feuille par sujet (juments, étalons, saillies…), une colonne par information, un identifiant unique par ligne (id_jument).'
+        - 'Une feuille renvoie à une autre par l’identifiant : la feuille Saillies contient id_jument, pas le nom. On évite ainsi de taper 30 fois le nom d’une jument.'
     competences:
-        - Identifier tables, champs, clés.
-        - Lire un schéma relationnel.
+        - Repérer les feuilles, les colonnes et les identifiants.
+        - Lire les liens entre les feuilles.
 pourquoi:
-    - Le tableur atteint ses limites avec des données liées (juments, saillies, poulains).
-    - Avant de construire une base, tu en analyses une.
+    - Un tableau unique atteint ses limites avec des données liées (juments, saillies, poulains).
+    - Avant de construire ton classeur, tu en analyses un déjà organisé.
 activites:
     -   id: a01
-        titre: Les limites du tableur
-        consigne: Tu vas repérer dans l’extrait du tableur de l’élevage (document 1) les problèmes de redondance. On attend les problèmes et leur conséquence.
+        titre: Les limites du tableau unique
+        consigne: Tu vas repérer dans l’extrait du tableau unique de l’élevage (document 1) les problèmes de répétition. On attend les problèmes et leur conséquence.
         contenu:
             -   type: tableau
-                titre: Document 1 — Extrait du tableur de l’élevage (fictif)
+                titre: Document 1 — Extrait du tableau unique de l’élevage (fictif)
                 colonnes:
                     - Jument
                     - UELN
@@ -45,62 +45,63 @@ activites:
                         - pleine
             -   type: etapes
                 elements:
-                    - Lis l’extrait du tableur de l’élevage (document 1).
+                    - Lis l’extrait du tableau unique de l’élevage (document 1).
                     - Repère les répétitions et les risques.
-                    - Pourquoi la redondance pose problème ? Si on corrige un nom à un endroit, il reste faux ailleurs.
+                    - Pourquoi la répétition (redondance) pose problème ? Si on corrige un nom à un endroit, il reste faux ailleurs.
         questions:
             -   id: q01
                 type: texte
                 enonce: D’après le document 1, quels problèmes pose ce tableau ?
                 aide: 'Regarde le document 1 : combien de fois le nom et l’UELN d’une même jument sont-ils tapés ? Que se passe-t-il en cas de faute de frappe ?'
     -   id: a02
-        titre: Lire le schéma
-        transition: Le tableur montre ses limites. Regarde une vraie base.
-        consigne: Tu vas lire le schéma relationnel de la base elevage_demo.odb. On attend la clé primaire et les clés étrangères de trois tables.
+        titre: Lire l’organisation du classeur
+        transition: Le tableau unique montre ses limites. Regarde un classeur organisé.
+        consigne: Tu vas lire l’organisation du classeur elevage_demo.ods. On attend l’identifiant et les colonnes qui renvoient à une autre feuille, pour trois feuilles.
         contenu:
             -   type: fichier
-                titre: base de démonstration de l’élevage (LibreOffice Base)
-                url: /assets/fichiers/tim/bts2/elevage_demo.odb
+                titre: classeur de démonstration de l’élevage (LibreOffice Calc)
+                url: /assets/fichiers/tim/bts2/elevage_demo.ods
             -   type: etapes
                 elements:
-                    - Ouvre la base elevage_demo.odb (à télécharger ci-dessus) dans LibreOffice Base.
-                    - 'Outils > Relations : observe les tables et les liens.'
+                    - Ouvre le classeur elevage_demo.ods (à télécharger ci-dessus) dans LibreOffice Calc.
+                    - 'Regarde les onglets en bas : une feuille par sujet. Observe la ligne de titres de chaque feuille.'
+                    - 'Dans la feuille Saillies, la colonne id_jument contient un numéro : retrouve ce numéro dans la feuille Juments.'
                     - Remplis le tableau.
-                    - Pourquoi un schéma ? Il montre toute l’organisation des données d’un coup d’œil.
+                    - Pourquoi des identifiants ? Le nom de la jument n’est écrit qu’une seule fois, dans la feuille Juments.
         questions:
             -   id: q01
                 type: tableau
-                enonce: D’après le schéma, complète.
+                enonce: D’après le classeur, complète.
                 colonnes:
-                    - Table
-                    - Clé primaire / clé étrangère
+                    - Feuille
+                    - Identifiant / colonnes qui renvoient à une autre feuille
                 lignes:
-                    -   - Jument
+                    -   - Juments
                         - ''
-                    -   - Saillie
+                    -   - Saillies
                         - ''
-                    -   - Poulain
+                    -   - Poulains
                         - ''
-                aide: Sur le schéma, la clé primaire est soulignée ou marquée ; les clés étrangères sont les champs qui pointent vers une autre table.
+                aide: 'L’identifiant est la première colonne de la feuille (id_…). Les colonnes qui renvoient sont les autres id_… : elles désignent une ligne d’une autre feuille.'
         ressources:
             -   type: lien
-                titre: LibreOffice Base — aide en ligne
-                url: https://help.libreoffice.org/latest/fr/text/sdatabase/main.html
+                titre: LibreOffice Calc — aide en ligne
+                url: https://help.libreoffice.org/latest/fr/text/scalc/main0000.html
     -   id: a03
-        titre: Les cardinalités
-        transition: Tu connais les tables. Comment sont-elles liées ?
-        consigne: Tu vas analyser la cardinalité de la relation entre jument et saillie. On attend la relation et la place de la clé étrangère.
+        titre: Combien de lignes pour une jument ?
+        transition: Tu connais les feuilles. Comment sont-elles liées ?
+        consigne: Tu vas analyser le lien entre la feuille Juments et la feuille Saillies. On attend le sens du lien et la feuille où se trouve la colonne id_jument.
         contenu:
             -   type: etapes
                 elements:
-                    - 'Pour chaque relation, demande-toi : combien de… pour un… ?'
-                    - Écris la cardinalité.
-                    - Pourquoi les cardinalités ? Elles disent où placer la clé étrangère.
+                    - 'Pour chaque lien, demande-toi : combien de lignes de l’une pour une ligne de l’autre ?'
+                    - Écris le sens du lien (1 pour plusieurs).
+                    - Pourquoi le sens du lien ? Il dit dans quelle feuille placer la colonne qui renvoie à l’autre.
         questions:
             -   id: q01
                 type: texte
-                enonce: Une jument peut-elle avoir plusieurs saillies ? Une saillie concerne-t-elle plusieurs juments ? Conclus sur la relation.
-                aide: 'Pense à une saison de reproduction : une jument peut revenir plusieurs fois. Et une saillie, concerne combien de juments ? Déduis le type de relation.'
+                enonce: Une jument peut-elle avoir plusieurs saillies (plusieurs lignes dans Saillies) ? Une saillie concerne-t-elle plusieurs juments ? Conclus sur le sens du lien.
+                aide: 'Pense à une saison de reproduction : une jument peut revenir plusieurs fois. Et une saillie, concerne combien de juments ? Déduis le sens du lien (1 pour plusieurs).'
     -   id: a04
         titre: Pour aller plus loin
         defi: true
@@ -111,20 +112,20 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: Le schéma le permet-il ?
-                aide: 'Deux poulains pour une seule saillie : regarde comment Saillie et Poulain sont reliés sur le schéma.'
+                enonce: L’organisation du classeur le permet-elle ?
+                aide: 'Deux poulains pour une seule saillie : regarde la colonne id_saillie de la feuille Poulains. Deux lignes peuvent-elles avoir le même numéro ?'
     -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
-        transition: Tu sais lire une base relationnelle. Il reste à répondre au problème de départ.
+        transition: Tu sais lire un classeur relié. Il reste à répondre au problème de départ.
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment est organisée une base de données relationnelle ?'
-                aide: 'Dis comment la base est découpée : tables, champs, clés primaires et étrangères, relations.'
+                enonce: 'Réponds au problème du jour : comment organiser les données d’un élevage en plusieurs feuilles reliées d’un classeur ?'
+                aide: 'Dis comment le classeur est découpé : feuilles par sujet, colonnes, identifiants, colonnes qui renvoient à une autre feuille, sens des liens.'
 retenir:
-    - Table, champ, clé primaire, clé étrangère.
-    - 'Relation 1-n : clé étrangère côté n.'
+    - Feuille, colonne, identifiant, colonne qui renvoie à une autre feuille.
+    - 'Lien 1 pour plusieurs : l’identifiant est recopié côté « plusieurs » (id_jument dans Saillies).'
 sources:
     -   type: lien
         titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)

@@ -1,38 +1,38 @@
 titre: 'Séance 4 : Modéliser les données de l’élevage'
 themes:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
-problematique: Comment concevoir le modèle de données d’un élevage avant de créer la base ?
+problematique: Comment concevoir l’organisation des données d’un élevage avant de créer le classeur ?
 competences_bo:
     - C4.3 — Ajuster, dans un contexte de transitions, la conduite d’un système d’élevage
 objectifs:
     connaissances:
-        - 'Modéliser : lister les entités (jument, étalon, saillie, poulain, soin), leurs attributs, leurs relations.'
-        - 'Règles : un attribut dépend de la clé de sa table ; pas de calcul stocké (l’âge se calcule).'
+        - 'Modéliser : lister les sujets (jument, étalon, saillie, poulain, soin) qui deviendront des feuilles, leurs informations (les colonnes) et les liens entre eux.'
+        - 'Règles : chaque information dépend de l’identifiant de sa feuille ; on ne tape pas à la main ce qui se calcule (l’âge se calcule par formule).'
     competences:
-        - Construire un modèle entité-relation simplifié.
-        - Choisir les attributs et les clés.
+        - Construire un schéma simple des données.
+        - Choisir les colonnes et les identifiants.
 pourquoi:
-    - En S03, tu as lu une base existante.
-    - Tu conçois maintenant celle de l’élevage du Moulin, avec ses soins vétérinaires.
+    - En S03, tu as lu un classeur déjà organisé.
+    - Tu conçois maintenant celui de l’élevage du Moulin, avec ses soins vétérinaires.
 activites:
     -   id: a01
-        titre: Les entités
-        consigne: Tu vas lister les entités et attributs de l’élevage à partir du cahier des charges (document 1). On attend les attributs de trois entités.
+        titre: Les sujets et leurs informations
+        consigne: Tu vas lister les sujets (futures feuilles) et leurs informations à partir du cahier des charges (document 1). On attend les colonnes de trois feuilles.
         contenu:
             -   type: paragraphe
                 texte: 'Document 1 — L’éleveur veut : la liste de ses juments et étalons utilisés, chaque saillie (date, résultat d’échographie), les poulains nés, et les soins (vermifuges, vaccins, traitements) de chaque jument avec les délais d’attente.'
             -   type: etapes
                 elements:
                     - Lis le cahier des charges (document 1).
-                    - Liste les entités et leurs attributs.
-                    - Pourquoi partir du cahier des charges ? La base doit répondre aux questions de l’éleveur.
+                    - Liste les sujets (une feuille par sujet) et leurs informations (les colonnes).
+                    - Pourquoi partir du cahier des charges ? Le classeur doit répondre aux questions de l’éleveur.
         questions:
             -   id: q01
                 type: tableau
-                enonce: Complète pour trois entités.
+                enonce: Complète pour trois feuilles.
                 colonnes:
-                    - Entité
-                    - Attributs (clé soulignée par *)
+                    - Feuille
+                    - Colonnes (identifiant marqué par *)
                 lignes:
                     -   - Jument
                         - ''
@@ -40,26 +40,26 @@ activites:
                         - ''
                     -   - Soin
                         - ''
-                aide: Pour chaque entité, commence par l’identifiant (clé), puis les informations qui la décrivent sans dépendre d’autre chose.
+                aide: Pour chaque feuille, commence par l’identifiant (id_…), puis les informations qui la décrivent sans dépendre d’autre chose.
     -   id: a02
-        titre: Les relations
-        transition: Les entités sont prêtes. Relie-les.
-        consigne: Tu vas décrire les relations et cardinalités de ton modèle de l’élevage. On attend les relations et la place des clés étrangères.
+        titre: Les liens
+        transition: Les feuilles sont prêtes. Relie-les.
+        consigne: Tu vas décrire les liens entre les feuilles de ton modèle. On attend les liens et la place des colonnes qui renvoient à une autre feuille.
         contenu:
             -   type: etapes
                 elements:
-                    - 'Dessine le schéma : entités reliées, cardinalités.'
-                    - Place les clés étrangères.
-                    - Pourquoi placer la clé côté n ? Chaque saillie connaît sa jument ; une jument ne peut pas stocker toutes ses saillies dans un champ.
+                    - 'Dessine le schéma : les feuilles reliées, avec le sens du lien (1 pour plusieurs).'
+                    - Place les colonnes qui renvoient (id_jument, id_etalon…).
+                    - Pourquoi côté « plusieurs » ? Chaque saillie connaît sa jument ; une jument ne peut pas lister toutes ses saillies dans une seule cellule.
         questions:
             -   id: q01
                 type: texte
-                enonce: Décris les relations de ton modèle et la place des clés étrangères.
-                aide: Pour chaque relation 1-n, la clé de la table « 1 » est recopiée dans la table « n ». Décris-les une par une.
+                enonce: Décris les liens de ton modèle et la place des colonnes qui renvoient à une autre feuille.
+                aide: Pour chaque lien 1 pour plusieurs, l’identifiant de la feuille « 1 » est recopié dans une colonne de la feuille « plusieurs ». Décris-les un par un.
     -   id: a03
         titre: Les pièges
         transition: Le modèle est dessiné. Vérifie-le.
-        consigne: Tu vas repérer, parmi trois attributs proposés (document 2), ceux à éviter. On attend les attributs et la raison.
+        consigne: Tu vas repérer, parmi trois colonnes proposées (document 2), celles à éviter. On attend les colonnes et la raison.
         contenu:
             -   type: liste
                 elements:
@@ -68,14 +68,14 @@ activites:
                     - 'Jument : date de naissance.'
             -   type: etapes
                 elements:
-                    - Lis les trois propositions d’attributs (document 2).
+                    - Lis les trois propositions de colonnes (document 2).
                     - Dis lesquelles sont à éviter.
-                    - Pourquoi éviter ? Un âge stocké est faux l’année suivante ; un champ « poulains » rempli à la main contredit la table Poulain.
+                    - Pourquoi éviter ? Un âge tapé à la main est faux l’année suivante ; un nombre de poulains tapé à la main contredit la feuille Poulains.
         questions:
             -   id: q01
                 type: texte
-                enonce: D’après le document 2, quels attributs faut-il éviter, et pourquoi ?
-                aide: Dans le document 2, cherche les attributs qui changent avec le temps ou qui se calculent à partir d’autres données.
+                enonce: D’après le document 2, quelles colonnes faut-il éviter, et pourquoi ?
+                aide: Dans le document 2, cherche les informations qui changent avec le temps ou qui se calculent par une formule à partir d’autres données.
     -   id: a04
         titre: Pour aller plus loin
         defi: true
@@ -86,20 +86,20 @@ activites:
         questions:
             -   id: q01
                 type: texte
-                enonce: Faut-il une nouvelle entité ?
-                aide: L’insémination est une autre façon de faire une saillie. Faut-il une table de plus, ou une information dans une table existante ?
+                enonce: Faut-il une nouvelle feuille ?
+                aide: L’insémination est une autre façon de faire une saillie. Faut-il une feuille de plus, ou une colonne dans une feuille existante ?
     -   id: a05
         titre: Conclusion de ton travail
         conclusion: true
-        transition: Le modèle de données est prêt. Il reste à répondre au problème de départ.
+        transition: Le modèle est prêt. Il reste à répondre au problème de départ.
         questions:
             -   id: q01
                 type: texte
-                enonce: 'Réponds au problème du jour : comment concevoir le modèle de données d’un élevage avant de créer la base ?'
-                aide: 'Dis les étapes : cahier des charges, entités et attributs, relations et clés, pièges évités.'
+                enonce: 'Réponds au problème du jour : comment concevoir l’organisation des données d’un élevage avant de créer le classeur ?'
+                aide: 'Dis les étapes : cahier des charges, feuilles et colonnes, identifiants et liens, pièges évités.'
 retenir:
-    - Entités, attributs, clés ; relations 1-n.
-    - Ne pas stocker ce qui se calcule.
+    - Feuilles, colonnes, identifiants ; liens 1 pour plusieurs.
+    - 'Ne pas taper ce qui se calcule : on le calcule par formule.'
 sources:
     -   type: lien
         titre: ChloroFil — BTSA ACS’AGRI, document d’accompagnement TIM (décembre 2024)
